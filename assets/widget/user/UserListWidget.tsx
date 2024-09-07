@@ -1,19 +1,48 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios, { AxiosResponse } from 'axios';
+import UserDTO from "../../dtos/UserDTO.tsx";
 import {Link} from "react-router-dom";
 
 const UserListWidget: React.FC = () => {
+    const [users, setUsers] = useState<UserDTO[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
+
+    const fetchUserList = async () => {
+        try {
+            const response: AxiosResponse<UserDTO[]> = await axios.get('https://localhost:8000/api/users');
+            setUsers(response.data);
+        } catch (err) {
+            setError('Impossible de récupérer la liste des utilisateurs.');
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchUserList();
+    }, []);
+
+    if (loading) {
+        return <div>Chargement...</div>;
+    }
+
+    if (error) {
+        return <div>{error}</div>;
+    }
+
     return (
-        <ul>
-            <li>
-                <Link to='/users/1'>User 1</Link>
-            </li>
-            <li>
-                <Link to='/users/2'>User 2</Link>
-            </li>
-            <li>
-                <Link to='/users/3'>User 3</Link>
-            </li>
-        </ul>
+        <div>
+            <h1>Liste des utilisateurs</h1>
+            <ul>
+                {users.map((user) => (
+                    <li key={user.id}>
+                        <Link to={"/users/"+user.id}>{user.login}</Link>
+                    </li>
+                ))}
+            </ul>
+        </div>
     );
 }
 

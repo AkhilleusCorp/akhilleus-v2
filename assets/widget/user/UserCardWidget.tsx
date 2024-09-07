@@ -1,39 +1,59 @@
-import React, { useEffect } from 'react';
-import getOneUser from "../../gateway/UserGateway.tsx";
+import React, {useEffect, useState} from 'react';
 import UserDTO from "../../dtos/UserDTO.tsx";
+import axios, {AxiosResponse} from "axios";
+import {useParams} from "react-router-dom";
 
 const UserCardWidget: React.FC = () => {
-    const [loading, setLoading] = React.useState<boolean>(true);
-    const [user, setUser] = React.useState<UserDTO>();
+    const { userId } = useParams<{ userId: string }>();
+    const [user, setUser] = useState<UserDTO | null>(null);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
+
+    const fetchUserData = async (userId: number) => {
+        try {
+            const response: AxiosResponse<UserDTO> = await axios.get(`https://localhost:8000/api/users/${userId}`);
+            setUser(response.data);
+        } catch (err) {
+            setError('Impossible de récupérer les données utilisateur.');
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     useEffect(() => {
-        getOneUser(1)
-            .then((user) => {
-                setUser(user);
-            })
-            .finally(() => {
+        if (userId) {
+            const numericUserId = parseInt(userId, 10); // Conversion du string en number
+            if (!isNaN(numericUserId)) {
+                fetchUserData(numericUserId); // Appel de la fonction avec un number
+            } else {
+                setError('ID utilisateur invalide.');
                 setLoading(false);
-            });
-    });
+            }
+        }
 
+    }, []);
+
+    // Rendu du composant
     if (loading) {
         return <div>Chargement...</div>;
     }
 
-    if (undefined !== user) {
-        return (
-            <div>
-                <ul>
-                    <li>Id: {user.id}</li>
-                    <li>Login: {user.login}</li>
-                    <li>Email: {user.email}</li>
-                </ul>
-            </div>
-        );
+    if (error) {
+        return <div>{error}</div>;
     }
 
     return (
-        <div>Not found</div>
+        <div>
+            {user ? (
+                <div>
+                    <h1>{user.login} #{user.id}</h1>
+                    <p>Email: {user.email}</p>
+                </div>
+            ) : (
+                <p>Aucun utilisateur trouvé.</p>
+            )}
+        </div>
     );
 }
 

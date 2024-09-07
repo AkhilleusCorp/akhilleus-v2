@@ -14,10 +14,18 @@ final class UserController extends AbstractAPIController implements ApiBaseCrudI
     #[Route('/users', name:'user_get_many', methods: ['GET'])]
     public function getMany(Request $request): JsonResponse
     {
-        return new JsonResponse(
-            [
+        $user1 = new UserDTO();
+        $user1->id = 1;
+        $user1->login = 'g.host';
+        $user1->email = 'garry.host@fakemail.com';
 
-            ]
+
+        $user2 = new UserDTO();
+        $user2->id = 2;
+        $user2->login = 'azerty';
+        $user2->email = 'azerty@fakemail.com';
+        return new JsonResponse(
+            [$user1, $user2]
         );
     }
 
@@ -25,7 +33,7 @@ final class UserController extends AbstractAPIController implements ApiBaseCrudI
     public function getOneById(Request $request, int $id): JsonResponse
     {
         $user = new UserDTO();
-        $user->id = 1;
+        $user->id = $id;
         $user->login = 'g.host';
         $user->email = 'garry.host@fakemail.com';
 

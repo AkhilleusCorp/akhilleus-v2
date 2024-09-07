@@ -3,10 +3,10 @@ import {
     RouterProvider,
 } from "react-router-dom";
 
-import HomePage from "./pages/HomePage.tsx";
-import ErrorPage from "./pages/ErrorPage.tsx";
-import UsersPage from "./pages/user/UsersPage.tsx";
-import UserPage from "./pages/user/UserPage.tsx";
+import HomePage from "../../pages/HomePage.tsx";
+import ErrorPage from "../../pages/ErrorPage.tsx";
+import UsersPage from "../../pages/user/UsersPage.tsx";
+import UserPage from "../../pages/user/UserPage.tsx";
 import * as React from "react";
 
 const routerConfig = createBrowserRouter([
@@ -24,7 +24,7 @@ const routerConfig = createBrowserRouter([
                         index: true,
                         element: <UsersPage />,
                     }, {
-                        path: ':id',
+                        path: ':userId',
                         element: <UserPage />,
                     }
                 ]
