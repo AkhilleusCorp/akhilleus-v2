@@ -11,7 +11,7 @@ const UserCardWidget: React.FC = () => {
 
     const fetchUserData = async (userId: number) => {
         try {
-            const response: AxiosResponse<UserDTO> = await axios.get(`https://localhost:8000/api/users/${userId}`);
+            const response: AxiosResponse<UserDTO> = await axios.get(`https://api.akhilleus.com:8000/api/users/${userId}`);
             setUser(response.data);
         } catch (err) {
             setError('Impossible de récupérer les données utilisateur.');

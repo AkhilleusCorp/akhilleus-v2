@@ -10,7 +10,7 @@ const UserListWidget: React.FC = () => {
 
     const fetchUserList = async () => {
         try {
-            const response: AxiosResponse<UserDTO[]> = await axios.get('https://localhost:8000/api/users');
+            const response: AxiosResponse<UserDTO[]> = await axios.get('https://api.akhilleus.com:8000/api/users');
             setUsers(response.data);
         } catch (err) {
             setError('Impossible de récupérer la liste des utilisateurs.');
