@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Infrastructure\Api\Controller\User;
+namespace App\Infrastructure\Controller\Api\User;
 
 use App\Domain\DTO\User\UserDTO;
-use App\Infrastructure\Api\Controller\AbstractAPIController;
-use App\Infrastructure\Api\Controller\ApiBaseCrudInterface;
+use App\Infrastructure\Controller\Api\Controller\AbstractAPIController;
+use App\UseCase\User\GetOneUserUseCase;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 
-final class UserController extends AbstractAPIController implements ApiBaseCrudInterface
+final class UserController extends AbstractAPIController
 {
     #[Route('/users', name:'user_get_many', methods: ['GET'])]
     public function getMany(Request $request): JsonResponse
@@ -30,15 +30,10 @@ final class UserController extends AbstractAPIController implements ApiBaseCrudI
     }
 
     #[Route('/users/{id}', name:'user_get_one', requirements: ['id' => '\d+'], methods: ['GET'])]
-    public function getOneById(Request $request, int $id): JsonResponse
+    public function getOneById(int $id, GetOneUserUseCase $useCase): JsonResponse
     {
-        $user = new UserDTO();
-        $user->id = $id;
-        $user->login = 'g.host';
-        $user->email = 'garry.host@fakemail.com';
-
         return new JsonResponse(
-            $user
+            $useCase->execute($id)
         );
     }
 

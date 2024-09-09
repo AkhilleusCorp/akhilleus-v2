@@ -1,12 +1,12 @@
 website_controllers:
     resource:
-        path: ../src/Infrastructure/Website/Controller/
-        namespace: App\Infrastructure\Website\Controller
+        path: ../src/Infrastructure/Controller/Website
+        namespace: App\Infrastructure\Controller\Website
     type: attribute
 
 api_controllers:
     resource:
-        path: ../src/Infrastructure/Api/Controller/
-        namespace: App\Infrastructure\Api\Controller
+        path: ../src/Infrastructure/Controller/Api
+        namespace: App\Infrastructure\Controller\Api
     prefix: /api
     type: attribute
