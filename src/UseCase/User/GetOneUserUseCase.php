@@ -9,7 +9,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 final class GetOneUserUseCase implements UseCaseInterface
 {
-    public function __construct(private UserDTOProviderGateway $provider)
+    public function __construct(private readonly UserDTOProviderGateway $provider)
     {
 
     }

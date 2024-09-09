@@ -21,4 +21,13 @@ final class UserDTORepositoryGateway extends ServiceEntityRepository implements 
             ->setParameter('userId', $userId)
             ->getQuery()->getOneOrNullResult();
     }
+
+    /**
+     * @return UserDTO[]
+     */
+    public function getUsersByParameters(array $parameters = []): array
+    {
+        return $this->createQueryBuilder('user')
+            ->getQuery()->getResult();
+    }
 }
