@@ -4,6 +4,10 @@ include .env
 .env.local:
 	@touch .env.local
 
+install_dependencies:
+	composer install
+	yarn
+
 create_local_db:
 	@touch var/akhilleus.db
 
@@ -14,4 +18,3 @@ load_fixtures:
 	php bin/console doctrine:fixtures:load -n
 
 init_project: .env.local create_local_db migrate_db load_fixtures
-

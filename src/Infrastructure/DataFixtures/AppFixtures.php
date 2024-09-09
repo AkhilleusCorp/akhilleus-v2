@@ -17,8 +17,8 @@ final class AppFixtures extends Fixture
     {
         for ($i = 0; $i < 20; $i++) {
             $user = new UserDTO();
-            $user->login = '';
-            $user->email = '';
+            $user->login = "login_{$i}";
+            $user->email = "email_{$i}@fakemail.com";
             $user->password = $this->hasher->hashPassword($user, 'Test1234!');
 
             $manager->persist($user);
