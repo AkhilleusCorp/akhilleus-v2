@@ -1,5 +1,7 @@
 import React from 'react';
 import AdminSidebar from "./AdminSidebar.tsx";
+import AdminFooter from "./AdminFooter.tsx";
+
 interface Props {
     children: React.ReactNode
 }
@@ -11,7 +13,7 @@ const AdminLayout: React.FC<Props> = (props) => {
             <main>
                 {props.children}
             </main>
-            <footer>Footer</footer>
+            <AdminFooter />
         </>
     );
 }

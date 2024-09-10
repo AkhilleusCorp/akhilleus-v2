@@ -1,12 +1,12 @@
 import React from 'react';
-import AdminLayout from "../../layouts/AdminLayout.tsx";
-import UserListWidget from "../../widget/user/UserListWidget.tsx";
+import AdminLayout from "../../layouts/admin/AdminLayout.tsx";
+import UsersListWidget from "../../widget/user/UsersListWidget.tsx";
 
 const UsersPage: React.FC = () => {
     return (
         <AdminLayout>
             <h1>Users Page</h1>
-            <UserListWidget />
+            <UsersListWidget />
         </AdminLayout>
     );
 }

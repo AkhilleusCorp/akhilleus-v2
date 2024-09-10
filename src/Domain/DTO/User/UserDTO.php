@@ -17,10 +17,10 @@ class UserDTO implements PasswordAuthenticatedUserInterface
     #[ORM\Column(type: Types::INTEGER)]
     public int $id;
 
-    #[ORM\Column(type: Types::STRING, length: 50)]
+    #[ORM\Column(type: Types::STRING, length: 50, unique: true)]
     public string $login;
 
-    #[ORM\Column(type: Types::STRING, length: 150)]
+    #[ORM\Column(type: Types::STRING, length: 150, unique: true)]
     public string $email;
 
     #[ORM\Column(type: Types::STRING, length: 255)]
