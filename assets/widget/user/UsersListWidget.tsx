@@ -1,6 +1,5 @@
 import React from 'react';
 import {useSearchParams} from "react-router-dom";
-import {Button} from "@mui/material";
 import useGetManyUsersByParams from "../../hooks/user/useGetManyUserByParams.tsx";
 import UserCardWidget from "./UserCardWidget.tsx";
 import UsersTableWidget from "./UsersTableWidget.tsx";
@@ -15,16 +14,14 @@ const UsersListWidget: React.FC = () => {
 
     const display = searchParams.get('display') || 'table';
 
-    console.log(display);
-
     return (
         <div>
-            <h1>Liste des utilisateurs</h1>
+            <h1>{users.length} Utilisateurs</h1>
 
             { display == 'card' && (
                 users.map((user) => (
                     <div key={'user_'+user.id}>
-                        <UserCardWidget user={user} />
+                        <UserCardWidget user={user} linkToDetails={true} />
                     </div>
                 )))
             }
@@ -32,8 +29,6 @@ const UsersListWidget: React.FC = () => {
             { display == 'table' && (
                 <UsersTableWidget users={users} />
             )}
-
-            <Button>Test</Button>
         </div>
     );
 }

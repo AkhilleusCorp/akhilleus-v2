@@ -3,7 +3,7 @@ import UserDTO from "../../dtos/UserDTO.tsx";
 import {useEffect, useState} from "react";
 
 
-function useGetOneUseById(userId: string|undefined) {
+function useGetOneUseById(userId: string|undefined): UserDTO | null {
     if (!userId) {
         return null;
     }

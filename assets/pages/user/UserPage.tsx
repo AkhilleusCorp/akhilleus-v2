@@ -17,7 +17,7 @@ const UserPage: React.FC = () => {
     return (
         <AdminLayout>
             <h1>User Page</h1>
-            <UserCardWidget user={user}/>
+            <UserCardWidget user={user} linkToDetails={false}/>
         </AdminLayout>
     );
 }

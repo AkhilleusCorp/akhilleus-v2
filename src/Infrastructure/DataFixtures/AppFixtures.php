@@ -15,7 +15,7 @@ final class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        for ($i = 0; $i < 20; $i++) {
+        for ($i = 1; $i < 20; $i++) {
             $user = new UserDTO();
             $user->login = "login_{$i}";
             $user->email = "email_{$i}@fakemail.com";
