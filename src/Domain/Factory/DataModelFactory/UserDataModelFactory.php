@@ -3,6 +3,7 @@
 namespace App\Domain\Factory\DataModelFactory;
 
 use App\Domain\DTO\DataModel\User\UserDataModel;
+use App\Domain\DTO\SourceModel\User\CreateUserSourceModel;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 final class UserDataModelFactory
@@ -11,12 +12,12 @@ final class UserDataModelFactory
     {
 
     }
-    public function buildUserDataModel(string $login, string $email, string $plainPassword): UserDataModel
+    public function buildUserDataModel(CreateUserSourceModel $model): UserDataModel
     {
         $user = new UserDataModel();
-        $user->login = $login;
-        $user->email = $email;
-        $user->password = $this->hasher->hashPassword($user, $plainPassword);
+        $user->login = $model->login;
+        $user->email = $model->email;
+        $user->password = $this->hasher->hashPassword($user, $model->plainPassword);
 
         return $user;
     }
