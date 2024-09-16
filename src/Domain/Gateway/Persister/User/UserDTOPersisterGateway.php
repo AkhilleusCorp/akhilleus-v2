@@ -2,13 +2,13 @@
 
 namespace App\Domain\Gateway\Persister\User;
 
-use App\Domain\DTO\User\UserDTO;
+use App\Domain\DTO\DataModel\User\UserDataModel;
 
 interface UserDTOPersisterGateway
 {
-    public function create(UserDTO $dto, bool $flush = true): UserDTO;
+    public function create(UserDataModel $dto, bool $flush = true): UserDataModel;
 
-    public function edit(UserDTO $dto, bool $flush = true): UserDTO;
+    public function edit(UserDataModel $dto, bool $flush = true): UserDataModel;
 
-    public function remove(UserDTO $dto, bool $flush = true): void;
+    public function remove(UserDataModel $dto, bool $flush = true): void;
 }

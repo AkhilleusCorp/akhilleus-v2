@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Persister;
 
-use App\Domain\DTO\DTOInterface;
+use App\Domain\DTO\DataModel\DataModelInterface;
 use Doctrine\ORM\EntityManagerInterface;
 
 abstract class AbstractDTOPersister
@@ -12,7 +12,7 @@ abstract class AbstractDTOPersister
 
     }
 
-    public function save(DTOInterface $dto, bool $flush = true): DTOInterface
+    public function save(DataModelInterface $dto, bool $flush = true): DataModelInterface
     {
         $this->entityManager->persist($dto);
 
@@ -21,7 +21,7 @@ abstract class AbstractDTOPersister
         }
     }
 
-    public function delete(DTOInterface $dto, bool $flush = true): void
+    public function delete(DataModelInterface $dto, bool $flush = true): void
     {
         $this->entityManager->remove($dto);
 

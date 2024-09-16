@@ -1,13 +1,16 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import UserDTO from "../../dtos/UserDTO.tsx";
 import UserDeleteWidget from "./UserDeleteWidget.tsx";
+import UsersListFilters from "../../filters/UsersListFilters.tsx";
+import useGetManyUsersByParams from "../../hooks/user/useGetManyUserByParams.tsx";
 
-type UsersListWidget = {
-    users: UserDTO[]
+type UsersListAsTableWidgetProps = {
+    filters: UsersListFilters
 }
 
-const UsersListWidget: React.FC<UsersListWidget> = ({ users }) => {
+const UsersListWidget: React.FC<UsersListAsTableWidgetProps> = ({ filters }) => {
+    const users = useGetManyUsersByParams(filters);
+
     const removeUserLineFromTable = (userId: number) => {
         const userLine = document.getElementById('user_'+userId) as HTMLTableRowElement;
         userLine.remove();

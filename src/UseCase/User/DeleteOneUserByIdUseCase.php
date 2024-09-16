@@ -7,7 +7,7 @@ use App\Domain\Gateway\Provider\User\UserDTOProviderGateway;
 use App\UseCase\UseCaseInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-final class DeleteUserUseCase implements UseCaseInterface
+final class DeleteOneUserByIdUseCase implements UseCaseInterface
 {
     public function __construct(
         private readonly UserDTOProviderGateway $provider,

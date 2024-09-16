@@ -1,17 +1,15 @@
 <?php
 
-namespace App\Domain\DTO\User;
+namespace App\Domain\DTO\DataModel\User;
 
-use App\Domain\DTO\DTOInterface;
+use App\Domain\DTO\DataModel\DataModelInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity()]
 #[ORM\Table(name: 'USER')]
-#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
-class UserDTO implements DTOInterface, PasswordAuthenticatedUserInterface
+class UserDataModel implements DataModelInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id()]
     #[ORM\GeneratedValue()]

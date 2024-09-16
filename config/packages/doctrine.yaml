@@ -19,8 +19,8 @@ doctrine:
             App:
                 type: attribute
                 is_bundle: false
-                dir: '%kernel.project_dir%/src/Domain/DTO'
-                prefix: 'App\Domain\DTO'
+                dir: '%kernel.project_dir%/src/Domain/DTO/DataModel'
+                prefix: 'App\Domain\DTO\DataModel'
         controller_resolver:
             auto_mapping: false
 

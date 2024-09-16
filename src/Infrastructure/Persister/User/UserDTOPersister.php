@@ -2,28 +2,28 @@
 
 namespace App\Infrastructure\Persister\User;
 
-use App\Domain\DTO\DTOInterface;
-use App\Domain\DTO\User\UserDTO;
+use App\Domain\DTO\DataModel\DataModelInterface;
+use App\Domain\DTO\DataModel\User\UserDataModel;
 use App\Domain\Gateway\Persister\User\UserDTOPersisterGateway;
 use App\Infrastructure\Persister\AbstractDTOPersister;
 
 final class UserDTOPersister extends AbstractDTOPersister implements UserDTOPersisterGateway
 {
-    public function create(UserDTO|DTOInterface $dto, bool $flush = true): UserDTO
+    public function create(UserDataModel|DataModelInterface $dto, bool $flush = true): UserDataModel
     {
         parent::save($dto, $flush);
 
         // TODO: Do post create stuff.
     }
 
-    public function edit (UserDTO|DTOInterface $dto, bool $flush = true): UserDTO
+    public function edit (UserDataModel|DataModelInterface $dto, bool $flush = true): UserDataModel
     {
         parent::save($dto, $flush);
 
         // TODO: Do post edit stuff.
     }
 
-    public function remove(UserDTO|DTOInterface $dto, bool $flush = true): void
+    public function remove(UserDataModel|DataModelInterface $dto, bool $flush = true): void
     {
         parent::delete($dto, $flush);
 
