@@ -9,7 +9,6 @@ const UserPage: React.FC = () => {
     const { userId } = useParams<{ userId: string }>();
 
     const user = useGetOneUseById(userId);
-
     if (!user) {
         return <ErrorPage />
     }

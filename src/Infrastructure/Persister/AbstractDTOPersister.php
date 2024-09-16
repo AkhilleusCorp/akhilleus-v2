@@ -19,6 +19,8 @@ abstract class AbstractDTOPersister
         if(true === $flush) {
             $this->entityManager->flush();
         }
+
+        return $dto;
     }
 
     public function delete(DataModelInterface $dto, bool $flush = true): void

@@ -1,5 +1,5 @@
 import React from "react";
-import deleteUser from "../../hooks/user/useDeleteOneUserById.tsx";
+import UserApi from "../../api/UserApi.tsx";
 
 type UserCardWidgetProps = {
     userId: number,
@@ -9,7 +9,7 @@ type UserCardWidgetProps = {
 const UserDeleteWidget: React.FC<UserCardWidgetProps> = ({ userId, callbackFunction }) => {
     const handleDeleteUser = async () => {
         try {
-            await deleteUser(userId);
+            await UserApi.deleteUser(userId);
             callbackFunction(userId);
         } catch (error) {
             console.log(error);

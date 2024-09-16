@@ -1,6 +1,6 @@
-import axios, {AxiosResponse} from "axios";
 import UserDTO from "../../dtos/UserDTO.tsx";
 import {useEffect, useState} from "react";
+import UserAPI from "../../api/UserApi.tsx";
 
 
 function useGetOneUseById(userId: string|undefined): UserDTO | null {
@@ -11,8 +11,8 @@ function useGetOneUseById(userId: string|undefined): UserDTO | null {
     const [user, setUser] = useState<UserDTO | null>(null);
     useEffect(() => {
         const fetchUser = async () => {
-            const response: AxiosResponse<UserDTO> = await axios.get(`https://api.akhilleus.com:8000/api/users/${userId}`);
-            setUser(response.data);
+            const user = await UserAPI.getOneUser(userId);
+            setUser(user);
         }
 
         fetchUser();

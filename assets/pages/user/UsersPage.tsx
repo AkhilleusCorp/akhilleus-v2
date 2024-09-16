@@ -2,17 +2,18 @@ import React from 'react';
 import AdminLayout from "../../layouts/admin/AdminLayout.tsx";
 import UsersListAsCardWidget from "../../widget/user/UsersListAsCardWidget.tsx";
 import UsersListAsTableWidget from "../../widget/user/UsersListAsTableWidget.tsx";
-import {useSearchParams} from "react-router-dom";
+import {Link, useSearchParams} from "react-router-dom";
 import UsersListFilters from "../../filters/UsersListFilters.tsx";
 
 const UsersPage: React.FC = () => {
     const [searchParams] = useSearchParams();
     const display = searchParams.get('display') || 'table';
-    const filters: UsersListFilters = { id: 2, login: '_1', email: null }
+    const filters: UsersListFilters = { id: null, login: null, email: null, limit: 50 }
 
     return (
         <AdminLayout>
             <h1>Users Page</h1>
+            <Link to="/users/new">Create User</Link>
 
             { display == 'card' && (
                 <UsersListAsCardWidget filters={filters} />

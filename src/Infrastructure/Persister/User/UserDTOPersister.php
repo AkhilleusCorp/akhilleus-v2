@@ -13,14 +13,14 @@ final class UserDTOPersister extends AbstractDTOPersister implements UserDTOPers
     {
         parent::save($dto, $flush);
 
-        // TODO: Do post create stuff.
+        return $dto;
     }
 
     public function edit (UserDataModel|DataModelInterface $dto, bool $flush = true): UserDataModel
     {
         parent::save($dto, $flush);
 
-        // TODO: Do post edit stuff.
+        return $dto;
     }
 
     public function remove(UserDataModel|DataModelInterface $dto, bool $flush = true): void

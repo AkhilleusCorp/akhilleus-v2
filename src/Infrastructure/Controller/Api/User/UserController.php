@@ -34,7 +34,7 @@ final class UserController extends AbstractAPIController
     public function createOne(Request $request, CreateOneUserByIdUseCase $useCase): JsonResponse
     {
         return new JsonResponse(
-            $useCase->execute($request->request->all(), $this->getDataProfile($request))
+            $useCase->execute(json_decode($request->getContent(), true), $this->getDataProfile($request))
         );
     }
 

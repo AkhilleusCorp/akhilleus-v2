@@ -8,6 +8,7 @@ import ErrorPage from "../../pages/ErrorPage.tsx";
 import UsersPage from "../../pages/user/UsersPage.tsx";
 import UserPage from "../../pages/user/UserPage.tsx";
 import * as React from "react";
+import CreateUserPage from "../../pages/user/CreateUserPage.tsx";
 
 const routerConfig = createBrowserRouter([
     {
@@ -23,6 +24,9 @@ const routerConfig = createBrowserRouter([
                     {
                         index: true,
                         element: <UsersPage />,
+                    }, {
+                        path: '/users/new',
+                        element: <CreateUserPage />,
                     }, {
                         path: ':userId',
                         element: <UserPage />,
