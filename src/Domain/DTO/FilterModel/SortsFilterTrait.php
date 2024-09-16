@@ -7,5 +7,5 @@ trait SortsFilterTrait
     /**
      * @var string[]
      */
-    public ?array $sorts = null;
+    public array $sorts = [];
 }

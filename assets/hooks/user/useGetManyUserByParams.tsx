@@ -9,8 +9,8 @@ function useGetManyUsersByParams(filters: UsersListFilters): UserDTO[] {
     useEffect(() => {
         const queryParams = objectToQueryParams(filters);
         const fetchUsers = async () => {
-            const response: AxiosResponse<UserDTO[]> = await axios.get(`https://api.akhilleus.com:8000/api/users?${queryParams}`);
-            setUsers(response.data);
+            const response: AxiosResponse = await axios.get(`https://api.akhilleus.com:8000/api/users?${queryParams}`);
+            setUsers(response.data.data);
         }
 
         fetchUsers();
