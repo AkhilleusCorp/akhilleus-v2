@@ -32,7 +32,7 @@ const UsersSearchFormWidget: React.FC<UsersSearchFormWidgetProps> = ({defaultFil
                 <input type={"text"} name={"email"} onChange={handleInputChange}/>
             </div>
 
-            <button onClick={handleClick}>Search</button>
+            <button type="button" onClick={handleClick}>Search</button>
         </form>
     )
 }
