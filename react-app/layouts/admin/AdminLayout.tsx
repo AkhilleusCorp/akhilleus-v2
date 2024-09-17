@@ -6,12 +6,12 @@ interface Props {
     children: React.ReactNode
 }
 
-const AdminLayout: React.FC<Props> = (props) => {
+const AdminLayout: React.FC<Props> = ({ children }) => {
     return (
         <>
             <AdminSidebar />
             <main>
-                {props.children}
+                {children}
             </main>
             <AdminFooter />
         </>

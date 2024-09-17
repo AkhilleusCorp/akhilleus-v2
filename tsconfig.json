@@ -23,9 +23,13 @@
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "useUnknownInCatchVariables": true
+    "useUnknownInCatchVariables": true,
+
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true
   },
   "include": [
-    "assets"
+    "react-app"
   ]
 }

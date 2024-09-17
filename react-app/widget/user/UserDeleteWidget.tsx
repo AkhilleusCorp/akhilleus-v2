@@ -1,5 +1,6 @@
 import React from "react";
 import UserApi from "../../api/UserApi.tsx";
+import Button from '@mui/material/Button';
 
 type UserCardWidgetProps = {
     userId: number,
@@ -17,7 +18,7 @@ const UserDeleteWidget: React.FC<UserCardWidgetProps> = ({ userId, callbackFunct
     }
 
     return (
-        <button onClick={handleDeleteUser}>Delete</button>
+        <Button variant="contained" onClick={handleDeleteUser}>Primary</Button>
     )
 }
 
