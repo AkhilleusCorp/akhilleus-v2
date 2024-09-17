@@ -20,7 +20,7 @@ final class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        for ($i = 1; $i < 20; $i++) {
+        for ($i = 1; $i < 50; $i++) {
             $login = 'login' . $i;
             $source = $this->createSourceModel->buildCreateUserSourceModel([
                 'login' => $login,

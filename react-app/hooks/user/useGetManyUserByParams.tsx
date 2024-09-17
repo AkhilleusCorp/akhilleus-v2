@@ -4,7 +4,7 @@ import UsersListFilters from "../../filters/UsersListFilters.tsx";
 import UserAPI from "../../api/UserApi.tsx";
 
 
-function useGetManyUsersByParams(filters: UsersListFilters): UserDTO[] {
+function useGetManyUsersByParams(filters: UsersListFilters, refreshKey: number): UserDTO[] {
     const [users, setUsers] = useState<UserDTO[]>([]);
     useEffect(() => {
         const fetchUsers = async () => {
@@ -13,7 +13,7 @@ function useGetManyUsersByParams(filters: UsersListFilters): UserDTO[] {
         }
 
         fetchUsers();
-    }, []);
+    }, [refreshKey]);
 
     return users;
 }

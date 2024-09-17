@@ -39,9 +39,10 @@ abstract class AbstractFilterModelFactory
     {
         return match ($propertyType) {
             'int' => intval($value),
+            'float' => floatval($value),
             'bool' => (bool)$value,
             'array' => explode(',', $value),
-            default => settype($value, $propertyType),
+            default => $value,
         };
     }
 }
