@@ -16,12 +16,13 @@ const UsersSearchFormWidget: React.FC<UsersSearchFormWidgetProps> = ({defaultFil
         });
     }
 
-    const handleClick = () => {
+    const handleClick = (event) => {
+        event.preventDefault();
         callbackFunction(filters);
     }
 
     return (
-        <form>
+        <form onSubmit={handleClick}>
             <div>
                 <label>Login</label>
                 <input type={"text"} name={"login"} onChange={handleInputChange}/>
@@ -31,7 +32,7 @@ const UsersSearchFormWidget: React.FC<UsersSearchFormWidgetProps> = ({defaultFil
                 <input type={"text"} name={"email"} onChange={handleInputChange}/>
             </div>
 
-            <button type={"button"} onClick={handleClick}>Search</button>
+            <button type={"submit"}>Search</button>
         </form>
     )
 }
