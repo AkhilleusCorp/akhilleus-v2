@@ -20,18 +20,20 @@ const UsersListWidget: React.FC<UsersListAsTableWidgetProps> = ({ filters, refre
     return (
         <table>
             <thead>
-                <tr>
-                    <th>id</th>
-                    <th>Login</th>
-                    <th>Actions</th>
-                </tr>
+            <tr>
+                <th>id</th>
+                <th>Login</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
             </thead>
             <tbody>
             {users.map((user) => (
-                <tr id={'user_'+user.id} key={'user_'+user.id}>
+                <tr id={'user_' + user.id} key={'user_' + user.id}>
                     <td>{user.id}</td>
-                    <td><Link to={'/users/'+user.id}>{user.login}</Link></td>
-                    <td><UserDeleteWidget userId={user.id} callbackFunction={removeUserLineFromTable} /></td>
+                    <td><Link to={'/users/' + user.id}>{user.login}</Link></td>
+                    <td>{user.email}</td>
+                    <td><UserDeleteWidget userId={user.id} callbackFunction={removeUserLineFromTable}/></td>
                 </tr>
             ))}
             </tbody>

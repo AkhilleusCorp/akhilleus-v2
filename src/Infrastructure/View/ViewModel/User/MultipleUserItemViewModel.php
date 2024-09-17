@@ -7,6 +7,6 @@ use App\Infrastructure\View\ViewModel\MultipleObjectItemViewModelInterface;
 final class MultipleUserItemViewModel implements MultipleObjectItemViewModelInterface
 {
     public int $id;
-
     public string $login;
+    public string $email;
 }

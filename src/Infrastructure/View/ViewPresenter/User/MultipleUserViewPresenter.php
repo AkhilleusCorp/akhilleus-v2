@@ -4,6 +4,7 @@ namespace App\Infrastructure\View\ViewPresenter\User;
 
 use App\Domain\DTO\DataModel\DataModelInterface;
 use App\Domain\DTO\DataModel\User\UserDataModel;
+use App\Infrastructure\DataTransformer\EmailObfuscationDataTransformer;
 use App\Infrastructure\View\ViewModel\User\MultipleUserItemViewModel;
 use App\Infrastructure\View\ViewPresenter\AbstractMultipleObjectViewPresenter;
 
@@ -14,6 +15,7 @@ final class MultipleUserViewPresenter extends AbstractMultipleObjectViewPresente
         $item = new MultipleUserItemViewModel();
         $item->id = $data->id;
         $item->login = $data->login;
+        $item->email = $data->email;
 
         return $item;
     }
@@ -23,6 +25,7 @@ final class MultipleUserViewPresenter extends AbstractMultipleObjectViewPresente
         $item = new MultipleUserItemViewModel();
         $item->id = $data->id;
         $item->login = $data->login;
+        $item->email = EmailObfuscationDataTransformer::obfuscate($data->email);
 
         return $item;
     }
