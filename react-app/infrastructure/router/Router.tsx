@@ -8,8 +8,8 @@ import ErrorPage from "../../pages/ErrorPage.tsx";
 import UsersPage from "../../pages/user/UsersPage.tsx";
 import UserDetailsPage from "../../pages/user/UserDetailsPage.tsx";
 import * as React from "react";
-import CreateUserPage from "../../pages/user/CreateUserPage.tsx";
-import EditUserPage from "../../pages/user/EditUserPage.tsx";
+import UserCreatePage from "../../pages/user/UserCreatePage.tsx";
+import UserUpdatePage from "../../pages/user/UserUpdatePage.tsx";
 
 const routerConfig = createBrowserRouter([
     {
@@ -27,10 +27,10 @@ const routerConfig = createBrowserRouter([
                         element: <UsersPage />,
                     }, {
                         path: '/users/new',
-                        element: <CreateUserPage />,
+                        element: <UserCreatePage />,
                     }, {
                         path: '/users/:userId/edit',
-                        element: <EditUserPage />,
+                        element: <UserUpdatePage />,
                     }, {
                         path: ':userId',
                         element: <UserDetailsPage />,

@@ -12,7 +12,7 @@ abstract class AbstractDTOPersister
 
     }
 
-    public function save(DataModelInterface $dto, bool $flush = true): DataModelInterface
+    protected function save(DataModelInterface $dto, bool $flush = true): DataModelInterface
     {
         $this->entityManager->persist($dto);
 
@@ -23,7 +23,7 @@ abstract class AbstractDTOPersister
         return $dto;
     }
 
-    public function delete(DataModelInterface $dto, bool $flush = true): void
+    protected function delete(DataModelInterface $dto, bool $flush = true): void
     {
         $this->entityManager->remove($dto);
 

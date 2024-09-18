@@ -39,6 +39,19 @@ class UserAPI {
         return response.data;
     }
 
+    static async updateUser (userId: number, formData: any): Promise<UserDTO> {
+        const response = await axios.put(
+            this.host + '/' + userId,
+            formData
+        );
+
+        if (response.status !== 200) {
+            throw new Error('An error as occurred');
+        }
+
+        return response.data;
+    }
+
     static async deleteUser (userId: string|number): Promise<void> {
         const response = await axios.delete(this.host +'/' + userId);
 

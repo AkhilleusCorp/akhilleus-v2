@@ -3,11 +3,12 @@
 namespace App\Infrastructure\Controller\Api\User;
 
 use App\Infrastructure\Controller\Api\Controller\AbstractAPIController;
-use App\UseCase\User\CreateOneUserByIdUseCase;
+use App\UseCase\User\CreateOneUserUseCase;
 use App\UseCase\User\DeleteOneUserByIdUseCase;
 use App\UseCase\User\GetManyUserUseCase;
 use App\UseCase\User\GetOneUserUseCase;
-    use Symfony\Component\HttpFoundation\JsonResponse;
+use App\UseCase\User\UpdateOneUserByIdUseCase;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -31,7 +32,7 @@ final class UserController extends AbstractAPIController
     }
 
     #[Route('/users', name:'user_create_one', methods: ['POST'])]
-    public function createOne(Request $request, CreateOneUserByIdUseCase $useCase): JsonResponse
+    public function createOne(Request $request, CreateOneUserUseCase $useCase): JsonResponse
     {
         return new JsonResponse(
             $useCase->execute(json_decode($request->getContent(), true), $this->getDataProfile($request))
@@ -39,12 +40,10 @@ final class UserController extends AbstractAPIController
     }
 
     #[Route('/users/{id}', name:'user_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
-    public function updateOneById(Request $request, int $id): JsonResponse
+    public function updateOneById(Request $request, int $id, UpdateOneUserByIdUseCase $useCase): JsonResponse
     {
         return new JsonResponse(
-            [
-
-            ]
+            $useCase->execute($id, json_decode($request->getContent(), true), $this->getDataProfile($request))
         );
     }
 

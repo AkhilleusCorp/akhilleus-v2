@@ -3,16 +3,17 @@
 namespace App\Domain\Factory\SourceModelFactory\User;
 
 use App\Domain\DTO\SourceModel\User\CreateUserSourceModel;
+use App\Domain\Factory\SourceModelFactory\SourceModelFactoryInterface;
 
-final class CreateUserSourceModelFactory
+final class CreateUserSourceModelFactory implements SourceModelFactoryInterface
 {
-    public function buildCreateUserSourceModel(array $parameters): CreateUserSourceModel
+    public function buildSourceModel(array $parameters): CreateUserSourceModel
     {
-        $model = new createUserSourceModel();
+        $model = new CreateUserSourceModel();
+        $model->login = $parameters['login'];
+        $model->email = $parameters['email'];
+        $model->plainPassword = $parameters['plainPassword'];
 
-        foreach ($parameters as $key => $value) {
-            $model->{$key} = $value;
-        }
         return $model;
     }
 }

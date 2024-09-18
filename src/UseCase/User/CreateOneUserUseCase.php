@@ -9,11 +9,11 @@ use App\Infrastructure\View\ViewModel\User\SingleUserViewModel;
 use App\Infrastructure\View\ViewPresenter\User\SingleUserViewPresenter;
 use App\UseCase\UseCaseInterface;
 
-final class CreateOneUserByIdUseCase implements UseCaseInterface
+final class CreateOneUserUseCase implements UseCaseInterface
 {
     public function __construct(
-        private readonly CreateUserSourceModelFactory $createSourceModel,
-        private readonly UserDataModelFactory $factory,
+        private readonly CreateUserSourceModelFactory $sourceModelFactory,
+        private readonly UserDataModelFactory $dataModelFactory,
         private readonly UserDTOPersister $persister,
         private readonly SingleUserViewPresenter $presenter,
     ) {
@@ -21,8 +21,8 @@ final class CreateOneUserByIdUseCase implements UseCaseInterface
     }
     public function execute(array $parameters, string $dateProfile): SingleUserViewModel
     {
-        $source = $this->createSourceModel->buildCreateUserSourceModel($parameters);
-        $user = $this->factory->buildUserDataModel($source);
+        $source = $this->sourceModelFactory->buildSourceModel($parameters);
+        $user = $this->dataModelFactory->buildNewUserDataModel($source);
 
         $this->persister->create($user);
 

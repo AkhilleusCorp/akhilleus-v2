@@ -2,7 +2,7 @@ import React from 'react';
 import AdminLayout from "../../layouts/admin/AdminLayout.tsx";
 import UserCreateForm from "../../widget/user/UseCreateForm.tsx";
 
-const CreateUserPage: React.FC = () => {
+const UserCreatePage: React.FC = () => {
     return (
         <AdminLayout>
             <h1>Create User Page</h1>
@@ -13,4 +13,4 @@ const CreateUserPage: React.FC = () => {
     );
 }
 
-export default CreateUserPage;
+export default UserCreatePage;
