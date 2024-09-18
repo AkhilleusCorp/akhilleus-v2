@@ -1,4 +1,4 @@
-.overlay {
+.modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -10,10 +10,14 @@
     align-items: center;
 }
 
-.modal {
+.modal-overlay .modal {
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     width: 300px;
     text-align: center;
+}
+
+.modal p {
+    margin: 1em 0;
 }

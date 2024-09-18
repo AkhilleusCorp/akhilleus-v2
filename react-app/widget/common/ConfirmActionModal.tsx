@@ -15,13 +15,16 @@ const ConfirmActionModal: React.FC<ConfirmActionModelType> = ({ targetId, onCanc
     }
 
     return (
-        <div className={"overlay"}>
+        <div className={"modal-overlay"}>
             <div className={"modal"}>
-                <h2>Confirmation</h2>
-                <p>Êtes-vous sûr de vouloir continuer ?</p>
+                <h3>Confirmation</h3>
+                <p>
+                    Are you sure you want to delete user #{targetId} ? <br />
+                    <strong>This operation is irreversible !</strong>
+                </p>
                 <div>
                     <button onClick={onCancel} className={"btn-cancel"}>Cancel</button>
-                    <button onClick={onConfirmClick} className={"btn-validate"}>Confirm</button>
+                    <button onClick={onConfirmClick} className={"btn-danger"}>Confirm</button>
                 </div>
             </div>
         </div>
