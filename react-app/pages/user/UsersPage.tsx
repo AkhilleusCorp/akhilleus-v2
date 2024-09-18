@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import AdminLayout from "../../layouts/admin/AdminLayout.tsx";
-import UsersListAsTableWidget from "../../widget/user/UsersListAsTableWidget.tsx";
+import UsersListTable from "../../widget/user/UsersListTable.tsx";
 import {Link} from "react-router-dom";
 import UsersListFilters from "../../filters/UsersListFilters.tsx";
-import UsersSearchFormWidget from "../../widget/user/UsersSearchFormWidget.tsx";
+import UsersSearchForm from "../../widget/user/UsersSearchForm.tsx";
 
 const UsersPage: React.FC = () => {
     const [filters, setFilters] = useState<UsersListFilters>({ id: null, login: null, email: null, limit: 25 })
@@ -20,17 +20,21 @@ const UsersPage: React.FC = () => {
 
     return (
         <AdminLayout>
-            <h1>Users List</h1>
-            <div className={"margin-bottom-s"}>
-                <Link to="/users/new">Create User</Link>
+            <div>
+                <h1>Users List</h1>
+                <div className={"margin-bottom-s"}>
+                    <Link to="/users/new">Create User</Link>
+                </div>
+
+                <div className={"margin-bottom-s"}>
+                    <UsersSearchForm defaultFilters={filters} callbackFunction={handleUsersSearch}/>
+                </div>
             </div>
 
-            <div className={"margin-bottom-s"}>
-                <UsersSearchFormWidget defaultFilters={filters} callbackFunction={handleUsersSearch}/>
-            </div>
-
-            <div className={"half-width"}>
-            <UsersListAsTableWidget filters={filters} refreshKey={refreshKey} />
+            <div>
+                <div className={"half-width"}>
+                    <UsersListTable filters={filters} refreshKey={refreshKey} />
+                </div>
             </div>
         </AdminLayout>
     );

@@ -1,15 +1,13 @@
 import React, {useState} from "react";
 import UsersListFilters from "../../filters/UsersListFilters.tsx";
 
-type UsersSearchFormWidgetProps = {
+type UsersSearchFormType = {
     defaultFilters: UsersListFilters,
     callbackFunction: (filters: UsersListFilters) => void;
 }
 
-const UsersSearchFormWidget: React.FC<UsersSearchFormWidgetProps> = ({defaultFilters, callbackFunction}) => {
+const UsersSearchForm: React.FC<UsersSearchFormType> = ({defaultFilters, callbackFunction}) => {
     const [filters, setFilters] = useState<UsersListFilters>(defaultFilters);
-
-    console.log(filters);
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setFilters({
@@ -47,4 +45,4 @@ const UsersSearchFormWidget: React.FC<UsersSearchFormWidgetProps> = ({defaultFil
     )
 }
 
-export default UsersSearchFormWidget;
+export default UsersSearchForm;

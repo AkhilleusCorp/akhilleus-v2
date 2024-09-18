@@ -2,14 +2,14 @@ import React, {useState} from 'react';
 import UserAPI from "../../api/UserApi.tsx";
 import {useNavigate} from "react-router-dom";
 
-type UserCreateType = {
+type UserCreateFormType = {
     login: string;
     email: string;
     plainPassword: string;
 }
 
-const UserCreateFormWidget: React.FC = () => {
-    const [userCreate, setUserCreate] = useState<UserCreateType>({login: '', email: '', plainPassword: ''});
+const UserCreateForm: React.FC = () => {
+    const [userCreate, setUserCreate] = useState<UserCreateFormType>({login: '', email: '', plainPassword: ''});
     const navigate = useNavigate();
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -51,4 +51,4 @@ const UserCreateFormWidget: React.FC = () => {
     )
 }
 
-export default UserCreateFormWidget;
+export default UserCreateForm;

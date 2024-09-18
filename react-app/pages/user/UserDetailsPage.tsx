@@ -1,11 +1,11 @@
 import React from 'react';
 import AdminLayout from "../../layouts/admin/AdminLayout.tsx";
-import UserCardWidget from "../../widget/user/UserCardWidget.tsx";
+import UserDetailsCard from "../../widget/user/UserDetailsCard.tsx";
 import {useParams} from "react-router-dom";
 import ErrorPage from "../ErrorPage.tsx";
 import useGetOneUseById from "../../hooks/user/useGetOneUserById.tsx";
 
-const UserPage: React.FC = () => {
+const UserDetailsPage: React.FC = () => {
     const { userId } = useParams<{ userId: string }>();
 
     const user = useGetOneUseById(userId);
@@ -16,9 +16,9 @@ const UserPage: React.FC = () => {
     return (
         <AdminLayout>
             <h1>User Page</h1>
-            <UserCardWidget user={user} linkToDetails={false}/>
+            <UserDetailsCard user={user} linkToDetails={false}/>
         </AdminLayout>
     );
 }
 
-export default UserPage;
+export default UserDetailsPage;

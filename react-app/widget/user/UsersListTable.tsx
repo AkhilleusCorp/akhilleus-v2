@@ -1,15 +1,16 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import UserDeleteWidget from "./UserDeleteWidget.tsx";
+import UserDeleteButton from "./UserDeleteButton.tsx";
 import UsersListFilters from "../../filters/UsersListFilters.tsx";
 import useGetManyUsersByParams from "../../hooks/user/useGetManyUserByParams.tsx";
+import UserEditButton from "./UserEditButton.tsx";
 
-type UsersListAsTableWidgetProps = {
+type UsersListTableType = {
     filters: UsersListFilters;
     refreshKey: number;
 }
 
-const UsersListWidget: React.FC<UsersListAsTableWidgetProps> = ({ filters, refreshKey }) => {
+const UsersListTable: React.FC<UsersListTableType> = ({ filters, refreshKey }) => {
     const users = useGetManyUsersByParams(filters, refreshKey);
 
     const removeUserLineFromTable = (userId: number) => {
@@ -33,7 +34,10 @@ const UsersListWidget: React.FC<UsersListAsTableWidgetProps> = ({ filters, refre
                     <td>{user.id}</td>
                     <td><Link to={'/users/' + user.id}>{user.login}</Link></td>
                     <td>{user.email}</td>
-                    <td><UserDeleteWidget userId={user.id} callbackFunction={removeUserLineFromTable}/></td>
+                    <td>
+                        <UserEditButton userId={user.id} />
+                        <UserDeleteButton userId={user.id} callbackFunction={removeUserLineFromTable}/>
+                    </td>
                 </tr>
             ))}
             </tbody>
@@ -41,4 +45,4 @@ const UsersListWidget: React.FC<UsersListAsTableWidgetProps> = ({ filters, refre
     );
 }
 
-export default UsersListWidget;
+export default UsersListTable;

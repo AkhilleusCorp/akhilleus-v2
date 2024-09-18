@@ -6,9 +6,10 @@ import {
 import HomePage from "../../pages/HomePage.tsx";
 import ErrorPage from "../../pages/ErrorPage.tsx";
 import UsersPage from "../../pages/user/UsersPage.tsx";
-import UserPage from "../../pages/user/UserPage.tsx";
+import UserDetailsPage from "../../pages/user/UserDetailsPage.tsx";
 import * as React from "react";
 import CreateUserPage from "../../pages/user/CreateUserPage.tsx";
+import EditUserPage from "../../pages/user/EditUserPage.tsx";
 
 const routerConfig = createBrowserRouter([
     {
@@ -28,8 +29,11 @@ const routerConfig = createBrowserRouter([
                         path: '/users/new',
                         element: <CreateUserPage />,
                     }, {
+                        path: '/users/:userId/edit',
+                        element: <EditUserPage />,
+                    }, {
                         path: ':userId',
-                        element: <UserPage />,
+                        element: <UserDetailsPage />,
                     }
                 ]
             },

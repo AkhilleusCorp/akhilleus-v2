@@ -1,12 +1,12 @@
 import React from "react";
 import UserApi from "../../api/UserApi.tsx";
 
-type UserCardWidgetProps = {
+type UserDeleteButtonType = {
     userId: number,
     callbackFunction: (userId: number) => void;
 }
 
-const UserDeleteWidget: React.FC<UserCardWidgetProps> = ({ userId, callbackFunction }) => {
+const UserDeleteButton: React.FC<UserDeleteButtonType> = ({ userId, callbackFunction }) => {
     const handleDeleteUser = async () => {
         try {
             await UserApi.deleteUser(userId);
@@ -21,4 +21,4 @@ const UserDeleteWidget: React.FC<UserCardWidgetProps> = ({ userId, callbackFunct
     )
 }
 
-export default UserDeleteWidget;
+export default UserDeleteButton;

@@ -2,12 +2,12 @@ import React from 'react';
 import UserDTO from "../../dtos/UserDTO.tsx";
 import {Link} from "react-router-dom";
 
-type UserCardWidgetProps = {
+type UserDetailsCardType = {
     user: UserDTO,
     linkToDetails: boolean,
 }
 
-const UserCardWidget: React.FC<UserCardWidgetProps> = ({ user, linkToDetails }) => {
+const UserDetailsCard: React.FC<UserDetailsCardType> = ({ user, linkToDetails }) => {
     return (
         <div>
             <h1>
@@ -24,4 +24,4 @@ const UserCardWidget: React.FC<UserCardWidgetProps> = ({ user, linkToDetails }) 
     );
 }
 
-export default UserCardWidget;
+export default UserDetailsCard;

@@ -16,7 +16,7 @@ button {
 
 button.btn-danger {
     color: #ffffff;
-    background: rgba(210, 73, 73, 1);
+    background: rgba(210, 73, 73);
 }
 
 button.btn-danger:hover {
@@ -25,15 +25,24 @@ button.btn-danger:hover {
 
 button.btn-validate {
     color: #ffffff;
-    background: rgba(0, 110, 82, 1);
+    background: rgba(0, 110, 82);
 }
 
 button.btn-validate:hover {
     background: rgba(0, 110, 82, 0.9);
 }
 
+button.btn-warning {
+    color: #ffffff;
+    background: rgb(215, 85, 33);
+}
+
+button.btn-warning:hover {
+    background: rgb(215, 85, 33, 0.9);
+}
+
 button.btn-cancel {
-    background: rgba(231, 235, 238, 1);
+    background: rgba(231, 235, 238);
 }
 
 button.btn-cancel:hover {
