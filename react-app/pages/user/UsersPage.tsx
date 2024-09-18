@@ -21,19 +21,18 @@ const UsersPage: React.FC = () => {
     return (
         <AdminLayout>
             <div>
-                <h1>Users List</h1>
-                <div className={"margin-bottom-s"}>
-                    <Link to="/users/new">Create User</Link>
-                </div>
-
                 <div className={"margin-bottom-s"}>
                     <UsersSearchForm defaultFilters={filters} callbackFunction={handleUsersSearch}/>
                 </div>
             </div>
 
+            <div className={"margin-bottom-s"}>
+                <Link to="/users/new">Create New User</Link>
+            </div>
+
             <div>
                 <div className={"half-width"}>
-                    <UsersListTable filters={filters} refreshKey={refreshKey} />
+                    <UsersListTable filters={filters} refreshKey={refreshKey}/>
                 </div>
             </div>
         </AdminLayout>

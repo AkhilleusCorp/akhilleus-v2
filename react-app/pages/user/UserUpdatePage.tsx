@@ -14,10 +14,7 @@ const UserUpdatePage: React.FC = () => {
 
     return (
         <AdminLayout>
-            <h1>Edit User #{userId}</h1>
-            <div>
-                <UserUpdateForm user={user} />
-            </div>
+            <UserUpdateForm user={user} />
         </AdminLayout>
     );
 }
