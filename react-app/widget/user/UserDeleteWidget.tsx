@@ -17,7 +17,7 @@ const UserDeleteWidget: React.FC<UserCardWidgetProps> = ({ userId, callbackFunct
     }
 
     return (
-        <button className={"danger"} onClick={handleDeleteUser}>Delete</button>
+        <button className={"btn-danger"} onClick={handleDeleteUser}>Delete</button>
     )
 }
 

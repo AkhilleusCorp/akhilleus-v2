@@ -1,25 +1,41 @@
 button {
-    border: 0;
+    display: inline-block;
     outline: 0;
     cursor: pointer;
-    color: white;
-    background-color: rgb(84, 105, 212);
-    box-shadow: rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 12%) 0px 1px 1px 0px, rgb(84 105 212) 0px 0px 0px 1px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(60 66 87 / 8%) 0px 2px 5px 0px;
+    text-align: center;
+    border: 0;
+    padding: 7px 16px;
+    min-height: 36px;
+    min-width: 36px;
     border-radius: 4px;
-    font-size: 14px;
     font-weight: 500;
-    padding: 4px 8px;
-    display: inline-block;
-    min-height: 28px;
-    transition: background-color .24s,box-shadow .24s;
+    font-size: 14px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 0px 0px, rgba(0, 0, 0, 0.2) 0px -1px 0px 0px inset;
+    margin-right: 1em;
 }
 
-button:hover {
-    box-shadow: rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 12%) 0px 1px 1px 0px, rgb(84 105 212) 0px 0px 0px 1px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(60 66 87 / 8%) 0px 3px 9px 0px, rgb(60 66 87 / 8%) 0px 2px 5px 0px;
+button.btn-danger {
+    color: #ffffff;
+    background: rgba(210, 73, 73, 1);
 }
 
-button.danger {
-    background-color: rgb(212, 84, 84);
-    box-shadow: rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 12%) 0px 1px 1px 0px, rgb(212, 84, 84) 0px 0px 0px 1px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(60 66 87 / 8%) 0px 2px 5px 0px;
+button.btn-danger:hover {
+    background: rgba(210, 73, 73, 0.9);
+}
 
+button.btn-validate {
+    color: #ffffff;
+    background: rgba(0, 110, 82, 1);
+}
+
+button.btn-validate:hover {
+    background: rgba(0, 110, 82, 0.9);
+}
+
+button.btn-cancel {
+    background: rgba(231, 235, 238, 1);
+}
+
+button.btn-cancel:hover {
+    background: rgba(231, 235, 238, 0.9);
 }

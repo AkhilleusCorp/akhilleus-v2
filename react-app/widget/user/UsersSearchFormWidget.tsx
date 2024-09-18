@@ -9,6 +9,8 @@ type UsersSearchFormWidgetProps = {
 const UsersSearchFormWidget: React.FC<UsersSearchFormWidgetProps> = ({defaultFilters, callbackFunction}) => {
     const [filters, setFilters] = useState<UsersListFilters>(defaultFilters);
 
+    console.log(filters);
+
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setFilters({
             ...filters,
@@ -16,13 +18,18 @@ const UsersSearchFormWidget: React.FC<UsersSearchFormWidgetProps> = ({defaultFil
         });
     }
 
-    const handleClick = (event) => {
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         callbackFunction(filters);
     }
 
+    const handleCancel = () => {
+        setFilters(defaultFilters);
+        callbackFunction(filters);
+    }
+
     return (
-        <form onSubmit={handleClick}>
+        <form onSubmit={handleSubmit}>
             <div>
                 <label>Login</label>
                 <input type={"text"} name={"login"} onChange={handleInputChange}/>
@@ -32,7 +39,10 @@ const UsersSearchFormWidget: React.FC<UsersSearchFormWidgetProps> = ({defaultFil
                 <input type={"text"} name={"email"} onChange={handleInputChange}/>
             </div>
 
-            <button type={"submit"}>Search</button>
+            <div>
+                <button type={"button"} className={"btn-cancel"} onClick={handleCancel}>Cancel</button>
+                <button type={"submit"} className={"btn-validate"}>Search</button>
+            </div>
         </form>
     )
 }

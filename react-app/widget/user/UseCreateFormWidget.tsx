@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import UserAPI from "../../api/UserApi.tsx";
-import UsersListFilters from "../../filters/UsersListFilters.tsx";
 import {useNavigate} from "react-router-dom";
 
 type UserCreateType = {
@@ -20,7 +19,7 @@ const UserCreateFormWidget: React.FC = () => {
             });
     }
 
-    const handleCreateUser = async (event) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         try {
             const user = await UserAPI.createUser(userCreate);
@@ -31,7 +30,7 @@ const UserCreateFormWidget: React.FC = () => {
     }
 
     return (
-        <form onSubmit={handleCreateUser}>
+        <form onSubmit={handleSubmit}>
             <div>
                 <label>Login</label>
                 <input type={"text"} name={"login"} required={true} onChange={handleInputChange}/>
@@ -44,7 +43,10 @@ const UserCreateFormWidget: React.FC = () => {
                 <label>Password</label>
                 <input type={"text"} name={"plainPassword"} required={true} onChange={handleInputChange}/>
             </div>
-            <button type={"submit"}>Save</button>
+            <div>
+                <button type={"button"} className={"btn-cancel"} onClick={() => navigate(-1)}>Cancel</button>
+                <button type={"submit"} className={"btn-validate"}>Save</button>
+            </div>
         </form>
     )
 }
