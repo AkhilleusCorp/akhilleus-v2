@@ -6,6 +6,7 @@ import ErrorPage from "../ErrorPage.tsx";
 import useGetOneUseById from "../../hooks/user/useGetOneUserById.tsx";
 import UserEditButton from "../../widget/user/UserEditButton.tsx";
 import UserDeleteButton from "../../widget/user/UserDeleteButton.tsx";
+import routes from "../../infrastructure/router/routes-mapping.tsx";
 
 const UserDetailsPage: React.FC = () => {
     const { userId } = useParams<{ userId: string }>();
@@ -18,7 +19,7 @@ const UserDetailsPage: React.FC = () => {
 
     const onConfirmDelete = (userId: number) => {
         console.log(userId);
-        navigate('/users');
+        navigate(routes.userList);
     }
 
     return (

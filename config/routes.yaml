@@ -6,6 +6,15 @@ website_controllers:
     schemes: ['%url_scheme%']
     host: '%host_website%'
 
+admin_controllers:
+    resource:
+        path: ../src/Infrastructure/Controller/Admin
+        namespace: App\Infrastructure\Controller\Admin
+    prefix: /admin
+    type: attribute
+    schemes: ['%url_scheme%']
+    host: '%host_website%'
+
 api_controllers:
     resource:
         path: ../src/Infrastructure/Controller/Api

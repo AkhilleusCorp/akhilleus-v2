@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import UserAPI from "../../api/UserApi.tsx";
 import {useNavigate} from "react-router-dom";
-
+import routes from "../../infrastructure/router/routes-mapping.tsx";
 type UserCreateFormType = {
     login: string;
     email: string;
@@ -23,7 +23,7 @@ const UserCreateForm: React.FC = () => {
         event.preventDefault();
         try {
             const user = await UserAPI.createUser(userCreate);
-            navigate('/users/'+user.id);
+            navigate(routes.userDetails(user.id));
         } catch (error) {
             console.log(error);
         }

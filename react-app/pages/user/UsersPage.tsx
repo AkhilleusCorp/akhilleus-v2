@@ -4,6 +4,7 @@ import UsersListTable from "../../widget/user/UsersListTable.tsx";
 import {Link} from "react-router-dom";
 import UsersListFilters from "../../filters/UsersListFilters.tsx";
 import UsersSearchForm from "../../widget/user/UsersSearchForm.tsx";
+import routes from "../../infrastructure/router/routes-mapping.tsx";
 
 const UsersPage: React.FC = () => {
     const [filters, setFilters] = useState<UsersListFilters>({ id: null, login: null, email: null, limit: 25 })
@@ -28,7 +29,7 @@ const UsersPage: React.FC = () => {
             </div>
 
             <div className={"margin-bottom-s"}>
-                <Link to="/users/new">Create New User</Link>
+                <Link to={routes.userCreate}>Create New User</Link>
             </div>
 
             <div>

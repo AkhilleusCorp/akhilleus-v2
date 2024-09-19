@@ -34,7 +34,7 @@ const UsersListTable: React.FC<UsersListTableType> = ({ filters, refreshKey }) =
                 {users.map((user) => (
                     <tr id={'user_' + user.id} key={'user_' + user.id}>
                         <td>{user.id}</td>
-                        <td><Link to={'/users/' + user.id}>{user.login}</Link></td>
+                        <td><Link to={'/admin/users/' + user.id}>{user.login}</Link></td>
                         <td>{user.email}</td>
                         <td>
                             <UserEditButton userId={user.id} />

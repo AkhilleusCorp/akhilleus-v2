@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from "react-router-dom";
 import HomeIcon from '@mui/icons-material/Home';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
+import routes from "../../infrastructure/router/routes-mapping.tsx";
 
 const AdminSidebar: React.FC = () => {
     return (
@@ -11,8 +12,8 @@ const AdminSidebar: React.FC = () => {
             </header>
             <nav>
                 <ul>
-                    <li><Link to='/'><HomeIcon />Home</Link></li>
-                    <li><Link to='/users'><PeopleAltIcon />Users</Link></li>
+                    <li><Link to={routes.home}><HomeIcon />Home</Link></li>
+                    <li><Link to={routes.userList}><PeopleAltIcon />Users</Link></li>
                 </ul>
             </nav>
         </aside>

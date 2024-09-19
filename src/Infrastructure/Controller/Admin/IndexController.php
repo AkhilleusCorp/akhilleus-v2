@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\Controller\Website;
+namespace App\Infrastructure\Controller\Admin;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -8,10 +8,10 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class IndexController extends AbstractController
 {
-    #[Route('/{reactRouting}', name:'website_index', requirements: ['reactRouting' => '^(?!api).+'], defaults: ['reactRouting' => null])]
+    #[Route('/{reactRouting}', name:'admin_index', requirements: ['reactRouting' => '^(?!api).+'], defaults: ['reactRouting' => null])]
     public function index(): Response
     {
-        return $this->render('index/index.html.twig', [
+        return $this->render('admin/index.html.twig', [
             'controller_name' => 'IndexController',
         ]);
     }

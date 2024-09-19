@@ -1,5 +1,6 @@
 import React from "react";
 import {useNavigate} from "react-router-dom";
+import routes from "../../infrastructure/router/routes-mapping.tsx";
 
 type UserEditButtonType = {
     userId: number,
@@ -8,7 +9,7 @@ type UserEditButtonType = {
 const UserEditButton: React.FC<UserEditButtonType> = ({ userId }) => {
     const navigate = useNavigate();
     const handleClick = () => {
-        navigate('/users/'+userId+'/edit');
+        navigate(routes.userEdit(userId));
     }
 
     return (

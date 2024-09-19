@@ -3,6 +3,7 @@ import {
     RouterProvider,
 } from "react-router-dom";
 
+import routes from "./routes-mapping.tsx";
 import HomePage from "../../pages/HomePage.tsx";
 import ErrorPage from "../../pages/ErrorPage.tsx";
 import UsersPage from "../../pages/user/UsersPage.tsx";
@@ -13,26 +14,26 @@ import UserUpdatePage from "../../pages/user/UserUpdatePage.tsx";
 
 const routerConfig = createBrowserRouter([
     {
-        path: "/",
+        path: routes.home,
         errorElement: <ErrorPage />,
         children: [
             {
                 index: true,
                 element: <HomePage />,
             }, {
-                path: "/users",
+                path: routes.userList,
                 children: [
                     {
                         index: true,
                         element: <UsersPage />,
                     }, {
-                        path: '/users/new',
+                        path: routes.userCreate,
                         element: <UserCreatePage />,
                     }, {
-                        path: '/users/:userId/edit',
+                        path: routes.userEdit(':userId'),
                         element: <UserUpdatePage />,
                     }, {
-                        path: ':userId',
+                        path: routes.userDetails(':userId'),
                         element: <UserDetailsPage />,
                     }
                 ]

@@ -3,6 +3,7 @@ import {useNavigate} from "react-router-dom";
 import UserDTO from "../../dtos/UserDTO.tsx";
 import {useState} from "react";
 import UserAPI from "../../api/UserApi.tsx";
+import routes from "../../infrastructure/router/routes-mapping.tsx";
 
 type UserEditFormType = {
     user: UserDTO,
@@ -23,7 +24,7 @@ const UserEditForm: React.FC<UserEditFormType> = ({user}) => {
         event.preventDefault();
         try {
             await UserAPI.updateUser(user.id, userUpdated);
-            navigate('/users/'+user.id);
+            navigate(routes.userDetails(user.id));
         } catch (error) {
             console.log(error);
         }
