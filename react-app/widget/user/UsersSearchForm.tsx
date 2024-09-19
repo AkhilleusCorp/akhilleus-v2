@@ -22,19 +22,22 @@ const UsersSearchForm: React.FC<UsersSearchFormType> = ({defaultFilters, callbac
     }
 
     const handleCancel = () => {
+        defaultFilters.login = null;
+        defaultFilters.email = null;
+
         setFilters(defaultFilters);
-        callbackFunction(filters);
+        callbackFunction(defaultFilters);
     }
 
     return (
         <form onSubmit={handleSubmit}>
             <div>
                 <label>Login</label>
-                <input type={"text"} name={"login"} onChange={handleInputChange}/>
+                <input type={"text"} name={"login"} value={filters.login ?? ''} onChange={handleInputChange}/>
             </div>
             <div>
                 <label>Email</label>
-                <input type={"text"} name={"email"} onChange={handleInputChange}/>
+                <input type={"text"} name={"email"} value={filters.email ?? ''} onChange={handleInputChange}/>
             </div>
 
             <div>

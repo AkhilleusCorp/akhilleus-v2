@@ -3,6 +3,8 @@ website_controllers:
         path: ../src/Infrastructure/Controller/Website
         namespace: App\Infrastructure\Controller\Website
     type: attribute
+    schemes: ['%url_scheme%']
+    host: '%host_website%'
 
 api_controllers:
     resource:
@@ -10,4 +12,6 @@ api_controllers:
         namespace: App\Infrastructure\Controller\Api
     prefix: /api
     type: attribute
+    schemes: ['%url_scheme%']
+    host: '%host_api%'
 
