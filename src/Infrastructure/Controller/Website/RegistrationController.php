@@ -15,7 +15,6 @@ final class RegistrationController extends AbstractController
     {
         if (Request::METHOD_POST === $request->getMethod()) {
             $useCase->execute($request->request->all(), 'admin');
-            return $this->redirectToRoute('website_authentication_success');
         }
 
         return $this->render('website/pages/registration.html.twig', [
