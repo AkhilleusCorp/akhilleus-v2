@@ -24,9 +24,11 @@ const UserDetailsPage: React.FC = () => {
 
     return (
         <AdminLayout>
-            <UserDetailsCard user={user}/>
-            <UserEditButton userId={user.id} />
-            <UserDeleteButton userId={user.id} callbackFunction={onConfirmDelete} />
+            <div className={"text-align-right margin-bottom-s"}>
+                <UserEditButton userId={user.id} />
+                <UserDeleteButton userId={user.id} callbackFunction={onConfirmDelete} />
+            </div>
+            <UserDetailsCard user={user} linkToDetails={false} />
         </AdminLayout>
     );
 }

@@ -1,0 +1,43 @@
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.card-body {
+}
+
+.card-image {
+    object-fit: cover;
+    display: inline-block;
+}
+
+
+.card-content {
+    padding: 16px;
+    display: inline-block;
+    vertical-align: top;
+
+}
+
+.card-title {
+    font-size: 1.25rem;
+    margin: 0;
+    color: #333;
+}
+
+.card-description {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 8px 0;
+}
+
+.card-footer {
+    border-top: 1px solid red;
+    padding-top: 5px;
+    height: 3em;
+    text-align: right;
+}
