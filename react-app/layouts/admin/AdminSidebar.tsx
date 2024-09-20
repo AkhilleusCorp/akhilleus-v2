@@ -6,13 +6,13 @@ import routes from "../../infrastructure/router/routes-mapping.tsx";
 
 const AdminSidebar: React.FC = () => {
     return (
-        <aside id={"main-menu"}>
+        <aside id={"main-logged-menu"}>
             <header>
                 <h1>Akhilleus</h1>
             </header>
             <nav>
                 <ul>
-                    <li><Link to={routes.home}><HomeIcon />Home</Link></li>
+                    <li><Link to={routes.dashboard}><HomeIcon />Home</Link></li>
                     <li><Link to={routes.userList}><PeopleAltIcon />Users</Link></li>
                 </ul>
             </nav>

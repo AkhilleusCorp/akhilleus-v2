@@ -1,4 +1,4 @@
-aside#main-menu {
+aside#main-logged-menu {
     width: 250px;
     height: 100vh;
     background-color: #f4f4f4;
@@ -8,12 +8,12 @@ aside#main-menu {
     padding: 20px;
 }
 
-#main-content {
+#main-logged-content {
     margin-left: 250px;
     height: 100%;
 }
 
-header#main-header {
+header#main-logged-header {
     background-color: #333;
     color: white;
     padding: 15px;
@@ -25,7 +25,11 @@ header#main-header {
     z-index: 1;
 }
 
-main#page-body {
+header#main-logged-header a {
+    color: white;
+}
+
+main#logged-page-body {
     padding-top: 70px;
     padding-left: 20px;
     padding-right: 20px;

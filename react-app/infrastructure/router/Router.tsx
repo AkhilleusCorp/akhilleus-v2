@@ -14,7 +14,7 @@ import UserUpdatePage from "../../pages/user/UserUpdatePage.tsx";
 
 const routerConfig = createBrowserRouter([
     {
-        path: routes.home,
+        path: routes.dashboard,
         errorElement: <ErrorPage />,
         children: [
             {

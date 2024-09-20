@@ -11,9 +11,9 @@ const AdminLayout: React.FC<Props> = (props) => {
     return (
         <>
             <AdminSidebar />
-            <div id={"main-content"}>
+            <div id={"main-logged-content"}>
                 <AdminHeader />
-                <main id={"page-body"}>
+                <main id={"logged-page-body"}>
                     {props.children}
                 </main>
             </div>

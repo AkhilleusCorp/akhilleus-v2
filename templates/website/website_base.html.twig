@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'website/components/header.html.twig' %}
+
+    {% include 'website/components/navigation.html.twig' %}
+
+    <main id="unlogged-page-body">
+        {% block page_content %}{% endblock %}
+    </main>
+
+    {% include 'website/components/footer.html.twig' %}
+{% endblock %}

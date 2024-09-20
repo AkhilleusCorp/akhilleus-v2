@@ -1,4 +1,5 @@
-@import "layout.css";
+@import "layouts/unlogged-layout.css";
+@import "layouts/logged-layout.css";
 @import "ui-components.css";
 
 * {

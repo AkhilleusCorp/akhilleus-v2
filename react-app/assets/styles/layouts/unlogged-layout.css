@@ -1,0 +1,29 @@
+header#main-unlogged-header {
+    background-color: #d75521;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+header#main-unlogged-header .menu {
+    width: 20%;
+    float: right;
+    text-align: right;
+}
+
+header#main-unlogged-header a {
+    color: white
+}
+
+main#unlogged-page-body {
+    padding-top: 70px;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: calc(100vh - 70px);
+    overflow-y: auto;
+}

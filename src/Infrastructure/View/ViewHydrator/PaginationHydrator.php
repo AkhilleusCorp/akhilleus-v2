@@ -13,12 +13,14 @@ final class PaginationHydrator implements ViewHydratorInterface
 
     public function hydrate(): array
     {
+        $lastPage = ceil($this->count / $this->limit);
+
         return [ 'pagination' =>
             [
                 'count' => $this->count,
                 'firstPage' => self::DEFAULT_FIRST_PAGE,
                 'currentPage' => $this->page,
-                'lastPage' => ceil($this->count / $this->limit)
+                'lastPage' => 0 === $this->count ? self::DEFAULT_FIRST_PAGE : $lastPage
             ]
         ];
     }

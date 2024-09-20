@@ -2,7 +2,7 @@ import React from 'react';
 
 const AdminHeader: React.FC = () => {
     return (
-        <header id={"main-header"}>
+        <header id={"main-logged-header"}>
             <div className={"float-left"}>
                 Some search bar or other ?
             </div>
@@ -10,6 +10,9 @@ const AdminHeader: React.FC = () => {
                 <ul className={"inline"}>
                     <li>Notifications</li>
                     <li>Profile</li>
+                    <li>
+                        <a href={"/"}>Logout</a>
+                    </li>
                 </ul>
             </div>
         </header>
