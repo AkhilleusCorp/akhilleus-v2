@@ -16,8 +16,13 @@ security:
             form_login:
                 login_path: website_authentication
                 check_path: website_authentication
+                default_target_path: website_authentication_success
             logout:
                 path: /logout
+        api:
+            pattern: ^/api
+            stateless: true
+            jwt: ~
 
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
