@@ -3,6 +3,7 @@
 namespace App\Domain\DTO\DataModel\User;
 
 use App\Domain\DTO\DataModel\DataModelInterface;
+use App\Domain\Registry\UserTypeRegistry;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -25,6 +26,9 @@ class UserDataModel implements DataModelInterface, UserInterface, PasswordAuthen
 
     #[ORM\Column(type: Types::STRING, length: 255)]
     public string $password;
+
+    #[ORM\Column(type: Types::STRING, length: 10, unique: false)]
+    public string $type = UserTypeRegistry::USER_TYPE_MEMBER;
 
     public function getPassword(): ?string
     {

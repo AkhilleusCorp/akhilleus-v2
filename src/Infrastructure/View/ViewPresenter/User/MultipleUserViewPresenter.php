@@ -12,20 +12,26 @@ final class MultipleUserViewPresenter extends AbstractMultipleObjectViewPresente
 {
     protected function presentForAdmin(UserDataModel|DataModelInterface $data): MultipleUserItemViewModel
     {
-        $item = new MultipleUserItemViewModel();
-        $item->id = $data->id;
-        $item->username = $data->username;
+        $item = $this->presentCommonData($data);
         $item->email = $data->email;
+        $item->type = $data->type;
 
         return $item;
     }
 
     protected function presentForMember(UserDataModel|DataModelInterface $data): MultipleUserItemViewModel
     {
+        $item = $this->presentCommonData($data);
+        $item->email = EmailObfuscationDataTransformer::obfuscate($data->email);
+
+        return $item;
+    }
+
+    private function presentCommonData(UserDataModel $data): MultipleUserItemViewModel
+    {
         $item = new MultipleUserItemViewModel();
         $item->id = $data->id;
         $item->username = $data->username;
-        $item->email = EmailObfuscationDataTransformer::obfuscate($data->email);
 
         return $item;
     }

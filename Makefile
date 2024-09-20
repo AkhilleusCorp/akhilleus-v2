@@ -18,3 +18,5 @@ load_fixtures:
 	php bin/console doctrine:fixtures:load -n
 
 init_project: .env.local create_local_db migrate_db load_fixtures
+
+reset_db: create_local_db migrate_db load_fixtures

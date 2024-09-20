@@ -12,20 +12,26 @@ final class SingleUserViewPresenter extends AbstractSingleObjectViewPresenter
 {
     protected function presentForAdmin(UserDataModel|DataModelInterface $data): SingleUserViewModel
     {
-        $view = new SingleUserViewModel();
-        $view->id = $data->id;
-        $view->username = $data->username;
+        $view = $this->presentCommonData($data);
         $view->email = $data->email;
+        $view->type = $data->type;
 
         return $view;
     }
 
     protected function presentForMember(UserDataModel|DataModelInterface $data): SingleUserViewModel
     {
+        $view = $this->presentCommonData($data);
+        $view->email = EmailObfuscationDataTransformer::obfuscate($data->email);
+
+        return $view;
+    }
+
+    private function presentCommonData(UserDataModel $data): SingleUserViewModel
+    {
         $view = new SingleUserViewModel();
         $view->id = $data->id;
         $view->username = $data->username;
-        $view->email = EmailObfuscationDataTransformer::obfuscate($data->email);
 
         return $view;
     }

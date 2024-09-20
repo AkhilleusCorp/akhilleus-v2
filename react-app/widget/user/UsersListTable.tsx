@@ -24,6 +24,7 @@ const UsersListTable: React.FC<UsersListTableType> = ({ filters, refreshKey, dis
                     <th>id</th>
                     <th>Username</th>
                     <th>Email</th>
+                    <th>Type</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -36,6 +37,7 @@ const UsersListTable: React.FC<UsersListTableType> = ({ filters, refreshKey, dis
                             </a>
                         </td>
                         <td>{user.email}</td>
+                        <td>{user.type}</td>
                     </tr>
                 ))}
                 </tbody>

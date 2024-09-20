@@ -11,4 +11,6 @@ final class SingleUserViewModel implements SingleObjectViewModelInterface
     public string $username;
 
     public string $email;
+
+    public string $type;
 }

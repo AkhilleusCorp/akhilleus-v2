@@ -2,7 +2,6 @@
 
 namespace App\Infrastructure\Controller\Website;
 
-use App\Infrastructure\Registry\DataProfileRegistry;
 use App\UseCase\User\CreateOneUserUseCase;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,7 +14,8 @@ final class RegistrationController extends AbstractController
     public function registration(Request $request, CreateOneUserUseCase $useCase): Response
     {
         if (Request::METHOD_POST === $request->getMethod()) {
-            $user = $useCase->execute($request->request->all(), DataProfileRegistry::DATA_PROFILE_ADMIN);
+            $useCase->execute($request->request->all(), 'admin');
+            return $this->redirectToRoute('website_authentication_success');
         }
 
         return $this->render('website/pages/registration.html.twig', [
