@@ -63,14 +63,14 @@ final class UserDTORepository extends AbstractBaseDTORepository implements UserD
     {
         if (false === empty($filter->id)) {
             $queryBuilder->andWhere('user.id = :id')
-                ->setParameter('id', $filter->login);
+                ->setParameter('id', $filter->username);
 
             return $queryBuilder->getQuery()->getResult();
         }
 
-        if (false === empty($filter->login)) {
-            $queryBuilder->andWhere('user.login LIKE :login')
-                ->setParameter('login', '%' . $filter->login . '%');
+        if (false === empty($filter->username)) {
+            $queryBuilder->andWhere('user.username LIKE :username')
+                ->setParameter('username', '%' . $filter->username . '%');
         }
 
         if (false === empty($filter->email)) {

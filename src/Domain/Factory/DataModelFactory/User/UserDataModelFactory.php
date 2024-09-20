@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Factory\DataModelFactory;
+namespace App\Domain\Factory\DataModelFactory\User;
 
 use App\Domain\DTO\DataModel\User\UserDataModel;
 use App\Domain\DTO\SourceModel\User\CreateUserSourceModel;
@@ -17,7 +17,7 @@ final class UserDataModelFactory
     public function buildNewUserDataModel(CreateUserSourceModel $model): UserDataModel
     {
         $user = new UserDataModel();
-        $user->login = $model->login;
+        $user->username = $model->username;
         $user->email = $model->email;
         $user->password = $this->hasher->hashPassword($user, $model->plainPassword);
 

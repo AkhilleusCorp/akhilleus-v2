@@ -33,8 +33,8 @@ const UserEditForm: React.FC<UserEditFormType> = ({user}) => {
     return (
         <form onSubmit={handleSubmit}>
             <div>
-                <label>Login</label>
-                <input type={"text"} name={"login"} value={userUpdated.login} onChange={handleInputChange} required={true}/>
+                <label>Username</label>
+                <input type={"text"} name={"username"} value={userUpdated.username} onChange={handleInputChange} required={true}/>
             </div>
             <div>
                 <label>Email</label>

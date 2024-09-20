@@ -10,7 +10,7 @@ final class UpdateUserSourceModelFactory implements SourceModelFactoryInterface
     public function buildSourceModel(array $parameters): UpdateUserSourceModel
     {
         $model = new UpdateUserSourceModel();
-        $model->login = $parameters['login'];
+        $model->username = $parameters['username'];
         $model->email = $parameters['email'];
 
         return $model;

@@ -10,7 +10,7 @@ final class CreateUserSourceModelFactory implements SourceModelFactoryInterface
     public function buildSourceModel(array $parameters): CreateUserSourceModel
     {
         $model = new CreateUserSourceModel();
-        $model->login = $parameters['login'];
+        $model->username = $parameters['username'];
         $model->email = $parameters['email'];
         $model->plainPassword = $parameters['plainPassword'];
 

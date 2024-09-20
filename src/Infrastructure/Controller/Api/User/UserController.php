@@ -20,7 +20,7 @@ use Symfony\Component\Routing\Attribute\Route;
 final class UserController extends AbstractAPIController
 {
     #[Route('/users', name:'user_get_many', methods: ['GET'])]
-    #[OA\Parameter(name: 'login', in: 'query', required: false, schema: new OA\Schema(type: 'string'))]
+    #[OA\Parameter(name: 'username', in: 'query', required: false, schema: new OA\Schema(type: 'string'))]
     #[OA\Parameter(name: 'email', in: 'query', required: false, schema: new OA\Schema(type: 'string'))]
     #[OA\Parameter(name: 'page', in: 'query', required: false, schema: new OA\Schema(type: 'number'))]
     #[OA\Parameter(name: 'limit', in: 'query', required: false, schema: new OA\Schema(type: 'number'))]

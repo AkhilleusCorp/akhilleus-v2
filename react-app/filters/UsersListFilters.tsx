@@ -1,6 +1,6 @@
 type UsersListFilters = {
     id: number | null;
-    login: string | null;
+    username: string | null;
     email: string | null;
     limit: number | null;
 }

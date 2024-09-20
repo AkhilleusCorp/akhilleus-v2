@@ -6,7 +6,7 @@ use App\Domain\DTO\SourceModel\SourceModelInterface;
 
 final class CreateUserSourceModel implements SourceModelInterface
 {
-    public string $login;
+    public string $username;
 
     public string $email;
 

@@ -14,7 +14,7 @@ final class MultipleUserViewPresenter extends AbstractMultipleObjectViewPresente
     {
         $item = new MultipleUserItemViewModel();
         $item->id = $data->id;
-        $item->login = $data->login;
+        $item->username = $data->username;
         $item->email = $data->email;
 
         return $item;
@@ -24,7 +24,7 @@ final class MultipleUserViewPresenter extends AbstractMultipleObjectViewPresente
     {
         $item = new MultipleUserItemViewModel();
         $item->id = $data->id;
-        $item->login = $data->login;
+        $item->username = $data->username;
         $item->email = EmailObfuscationDataTransformer::obfuscate($data->email);
 
         return $item;

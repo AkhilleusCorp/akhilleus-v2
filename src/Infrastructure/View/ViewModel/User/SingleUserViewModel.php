@@ -8,7 +8,7 @@ final class SingleUserViewModel implements SingleObjectViewModelInterface
 {
     public int $id;
 
-    public string $login;
+    public string $username;
 
     public string $email;
 }

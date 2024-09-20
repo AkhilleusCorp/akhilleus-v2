@@ -2,7 +2,7 @@
 
 namespace App\UseCase\User;
 
-use App\Domain\Factory\DataModelFactory\UserDataModelFactory;
+use App\Domain\Factory\DataModelFactory\User\UserDataModelFactory;
 use App\Domain\Factory\SourceModelFactory\User\UpdateUserSourceModelFactory;
 use App\Domain\Gateway\Provider\User\UserDTOProviderGateway;
 use App\Infrastructure\Persister\User\UserDTOPersister;

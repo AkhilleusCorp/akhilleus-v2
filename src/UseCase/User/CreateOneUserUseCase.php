@@ -2,7 +2,7 @@
 
 namespace App\UseCase\User;
 
-use App\Domain\Factory\DataModelFactory\UserDataModelFactory;
+use App\Domain\Factory\DataModelFactory\User\UserDataModelFactory;
 use App\Domain\Factory\SourceModelFactory\User\CreateUserSourceModelFactory;
 use App\Infrastructure\Persister\User\UserDTOPersister;
 use App\Infrastructure\View\ViewModel\User\SingleUserViewModel;

@@ -1,15 +1,15 @@
 class UserDTO {
     id: number;
-    login: string;
+    username: string;
     email: string;
 
     constructor(
         id: number,
-        login: string,
+        username: string,
         email: string,
     ) {
         this.id = id;
-        this.login = login;
+        this.username = username;
         this.email = email;
     }
 

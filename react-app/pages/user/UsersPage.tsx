@@ -7,7 +7,7 @@ import UsersSearchForm from "../../widget/user/UsersSearchForm.tsx";
 import routes from "../../infrastructure/router/routes-mapping.tsx";
 
 const UsersPage: React.FC = () => {
-    const [filters, setFilters] = useState<UsersListFilters>({ id: null, login: null, email: null, limit: 25 })
+    const [filters, setFilters] = useState<UsersListFilters>({ id: null, username: null, email: null, limit: 25 })
     const [refreshKey, setRefreshKey] = useState(0)
 
 

@@ -16,7 +16,7 @@ final class UsersFilterModel implements FilterModelInterface
      */
     public ?array $ids = null;
 
-    public ?string $login = null;
+    public ?string $username = null;
 
     public ?string $email = null;
 }

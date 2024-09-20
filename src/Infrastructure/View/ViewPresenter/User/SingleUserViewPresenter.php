@@ -14,7 +14,7 @@ final class SingleUserViewPresenter extends AbstractSingleObjectViewPresenter
     {
         $view = new SingleUserViewModel();
         $view->id = $data->id;
-        $view->login = $data->login;
+        $view->username = $data->username;
         $view->email = $data->email;
 
         return $view;
@@ -24,7 +24,7 @@ final class SingleUserViewPresenter extends AbstractSingleObjectViewPresenter
     {
         $view = new SingleUserViewModel();
         $view->id = $data->id;
-        $view->login = $data->login;
+        $view->username = $data->username;
         $view->email = EmailObfuscationDataTransformer::obfuscate($data->email);
 
         return $view;

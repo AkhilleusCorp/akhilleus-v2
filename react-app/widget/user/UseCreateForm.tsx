@@ -3,13 +3,13 @@ import UserAPI from "../../api/UserApi.tsx";
 import {useNavigate} from "react-router-dom";
 import routes from "../../infrastructure/router/routes-mapping.tsx";
 type UserCreateFormType = {
-    login: string;
+    username: string;
     email: string;
     plainPassword: string;
 }
 
 const UserCreateForm: React.FC = () => {
-    const [userCreate, setUserCreate] = useState<UserCreateFormType>({login: '', email: '', plainPassword: ''});
+    const [userCreate, setUserCreate] = useState<UserCreateFormType>({username: '', email: '', plainPassword: ''});
     const navigate = useNavigate();
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,8 +32,8 @@ const UserCreateForm: React.FC = () => {
     return (
         <form onSubmit={handleSubmit}>
             <div>
-                <label>Login</label>
-                <input type={"text"} name={"login"} required={true} onChange={handleInputChange}/>
+                <label>Username</label>
+                <input type={"text"} name={"username"} required={true} onChange={handleInputChange}/>
             </div>
             <div>
                 <label>Email</label>

@@ -18,7 +18,7 @@ class UserDataModel implements DataModelInterface, UserInterface, PasswordAuthen
     public int $id;
 
     #[ORM\Column(type: Types::STRING, length: 50, unique: true)]
-    public string $login;
+    public string $username;
 
     #[ORM\Column(type: Types::STRING, length: 150, unique: true)]
     public string $email;

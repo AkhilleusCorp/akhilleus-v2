@@ -9,7 +9,7 @@ const UserDetailsCard: React.FC<UserDetailsCardType> = ({ user }) => {
     return (
         <div>
             <h1>
-                <span>{user.login} #{user.id}</span>
+                <span>{user.username} #{user.id}</span>
             </h1>
             <p>Email: {user.email}</p>
         </div>
