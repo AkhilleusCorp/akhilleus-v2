@@ -6,4 +6,6 @@ final class MultipleObjectViewModel
 {
     /** @var MultipleObjectItemViewModelInterface[] */
     public array $data = [];
+
+    public array $extra = [];
 }

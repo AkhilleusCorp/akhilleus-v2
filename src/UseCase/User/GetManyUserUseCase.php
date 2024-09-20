@@ -4,6 +4,7 @@ namespace App\UseCase\User;
 
 use App\Domain\Factory\FilterModelFactory\User\UsersFilterModelModelFactory;
 use App\Domain\Gateway\Provider\User\UserDTOProviderGateway;
+use App\Infrastructure\View\ViewHydrator\PaginationHydrator;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
 use App\Infrastructure\View\ViewPresenter\User\MultipleUserViewPresenter;
 use App\UseCase\UseCaseInterface;
@@ -22,13 +23,22 @@ final class GetManyUserUseCase implements UseCaseInterface
     {
         $filter = $this->filterFactory->buildUserFilterModel($parameters);
         $users = $this->provider->getUsersByParameters($filter);
-        $usersCount = $this->provider->countUsersByParameters($filter);
+        if (sizeof($users) === $filter->limit) {
+            $usersCount = $this->provider->countUsersByParameters($filter);
+        } else {
+            $usersCount = sizeof($users);
+        }
 
         return $this->presenter->present(
             $users,
-            $usersCount,
-            $filter,
             $dataProfile,
+            [
+                new PaginationHydrator(
+                    $usersCount,
+                    $filter->page,
+                    $filter->limit
+                ),
+            ]
         );
     }
 }
