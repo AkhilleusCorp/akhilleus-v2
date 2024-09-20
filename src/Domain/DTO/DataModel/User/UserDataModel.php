@@ -6,10 +6,11 @@ use App\Domain\DTO\DataModel\DataModelInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity()]
 #[ORM\Table(name: 'USER')]
-class UserDataModel implements DataModelInterface, PasswordAuthenticatedUserInterface
+class UserDataModel implements DataModelInterface, UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id()]
     #[ORM\GeneratedValue()]
@@ -28,5 +29,20 @@ class UserDataModel implements DataModelInterface, PasswordAuthenticatedUserInte
     public function getPassword(): ?string
     {
         return $this->password;
+    }
+
+    public function getRoles(): array
+    {
+        return ['ROLE_ADMIN'];
+    }
+
+    public function eraseCredentials(): void
+    {
+        // TODO: Implement eraseCredentials() method.
+    }
+
+    public function getUserIdentifier(): string
+    {
+        return $this->email;
     }
 }

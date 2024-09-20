@@ -1,5 +1,27 @@
 {% extends 'website/website_base.html.twig' %}
 
 {% block page_content %}
-    {{ label }}
+    {% if error %}
+        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    <form method="post" action={{ path('website_authentication') }}>
+        <div>
+            <label>
+                Email
+                <input type="text" name="_username" value="{{ lastUsername }}" required>
+            </label>
+        </div>
+
+        <div>
+            <label>
+                Password
+                <input type="password" name="_password" required>
+            </label>
+        </div>
+
+        <div>
+            <button type="submit" class="btn-validate">Login</button>
+        </div>
+    </form>
 {% endblock %}

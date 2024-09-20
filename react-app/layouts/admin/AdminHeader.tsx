@@ -11,7 +11,7 @@ const AdminHeader: React.FC = () => {
                     <li>Notifications</li>
                     <li>Profile</li>
                     <li>
-                        <a href={"/"}>Logout</a>
+                        <a href={"/logout"}>Logout</a>
                     </li>
                 </ul>
             </div>
