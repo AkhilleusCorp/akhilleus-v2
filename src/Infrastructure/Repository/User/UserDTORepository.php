@@ -3,7 +3,7 @@
 namespace App\Infrastructure\Repository\User;
 
 use App\Domain\DTO\FilterModel\PaginableFilterInterface;
-use App\Domain\DTO\FilterModel\User\UsersFilterModel;
+use App\Domain\DTO\FilterModel\User\GetManyUsersFilterModel;
 use App\Domain\DTO\DataModel\User\UserDataModel;
 use App\Domain\Gateway\Provider\User\UserDTOProviderGateway;
 use App\Infrastructure\Repository\AbstractBaseDTORepository;
@@ -38,7 +38,7 @@ final class UserDTORepository extends AbstractBaseDTORepository implements UserD
     /**
      * @return UserDataModel[]
      */
-    public function getUsersByParameters(UsersFilterModel $filter): array
+    public function getUsersByParameters(GetManyUsersFilterModel $filter): array
     {
         $queryBuilder = $this->createQueryBuilder($this->getAlias());
 
@@ -49,7 +49,7 @@ final class UserDTORepository extends AbstractBaseDTORepository implements UserD
         return $queryBuilder->getQuery()->getResult();
     }
 
-    public function countUsersByParameters(UsersFilterModel $filter): int
+    public function countUsersByParameters(GetManyUsersFilterModel $filter): int
     {
         $queryBuilder = $this->createQueryBuilder($this->getAlias())
                               ->select('COUNT(DISTINCT user.id)');
@@ -59,7 +59,7 @@ final class UserDTORepository extends AbstractBaseDTORepository implements UserD
         return $queryBuilder->getQuery()->getSingleScalarResult();
     }
 
-    private function addParametersFromFilter(QueryBuilder $queryBuilder, UsersFilterModel $filter): self
+    private function addParametersFromFilter(QueryBuilder $queryBuilder, GetManyUsersFilterModel $filter): self
     {
         if (false === empty($filter->id)) {
             $queryBuilder->andWhere('user.id = :id')

@@ -21,7 +21,7 @@ final class GetManyUserUseCase implements UseCaseInterface
 
     public function execute(array $parameters, string $dataProfile): MultipleObjectViewModel
     {
-        $filter = $this->filterFactory->buildUserFilterModel($parameters);
+        $filter = $this->filterFactory->buildGetManyUsersFilterModel($parameters);
         $users = $this->provider->getUsersByParameters($filter);
         if (sizeof($users) === $filter->limit) {
             $usersCount = $this->provider->countUsersByParameters($filter);

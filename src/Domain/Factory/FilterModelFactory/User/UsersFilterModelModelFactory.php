@@ -3,16 +3,16 @@
 namespace App\Domain\Factory\FilterModelFactory\User;
 
 use App\Domain\DTO\FilterModel\FilterModelInterface;
-use App\Domain\DTO\FilterModel\User\UsersFilterModel;
+use App\Domain\DTO\FilterModel\User\GetManyUsersFilterModel;
 use App\Domain\Factory\FilterModelFactory\AbstractFilterModelFactory;
 
 final class UsersFilterModelModelFactory extends AbstractFilterModelFactory
 {
-    public function buildUserFilterModel(array $parameters): UsersFilterModel
+    public function buildGetManyUsersFilterModel(array $parameters): GetManyUsersFilterModel
     {
         return $this->buildFilter(
             $this->purgeNullStringValues($parameters),
-            new UsersFilterModel()
+            new GetManyUsersFilterModel()
         );
     }
 }

@@ -6,7 +6,7 @@ use App\Domain\DTO\FilterModel\FilterModelInterface;
 use App\Domain\DTO\FilterModel\PaginationFilterTrait;
 use App\Domain\DTO\FilterModel\SortsFilterTrait;
 
-final class UsersFilterModel implements FilterModelInterface
+final class GetManyUsersFilterModel implements FilterModelInterface
 {
     use PaginationFilterTrait;
     use SortsFilterTrait;

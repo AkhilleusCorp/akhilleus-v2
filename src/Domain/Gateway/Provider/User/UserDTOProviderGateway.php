@@ -2,7 +2,7 @@
 
 namespace App\Domain\Gateway\Provider\User;
 
-use App\Domain\DTO\FilterModel\User\UsersFilterModel;
+use App\Domain\DTO\FilterModel\User\GetManyUsersFilterModel;
 use App\Domain\DTO\DataModel\User\UserDataModel;
 
 interface UserDTOProviderGateway
@@ -12,7 +12,7 @@ interface UserDTOProviderGateway
     /**
      * @return UserDataModel[]
      */
-    public function getUsersByParameters(UsersFilterModel $filter): array;
+    public function getUsersByParameters(GetManyUsersFilterModel $filter): array;
 
-    public function countUsersByParameters(UsersFilterModel $filter): int;
+    public function countUsersByParameters(GetManyUsersFilterModel $filter): int;
 }
