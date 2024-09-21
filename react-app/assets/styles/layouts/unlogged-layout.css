@@ -10,6 +10,13 @@ header#main-unlogged-header {
     z-index: 1;
 }
 
+header#main-unlogged-header .website-logo {
+    width: 20%;
+    float: left;
+    text-align: left;
+}
+
+
 header#main-unlogged-header .menu {
     width: 20%;
     float: right;

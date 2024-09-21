@@ -18,27 +18,29 @@
     <form method="post" action="{{ path('website_registration') }}">
         <div>
             <label>
-                Username
+                {{ 'username' | trans }}
                 <input type="text" name="username" required />
             </label>
         </div>
         <div>
             <label>
-                Email
+                {{ 'email' | trans }}
                 <input type="email" name="email" required />
             </label>
         </div>
 
         <div>
             <label>
-                Password
+                {{ 'password' | trans }}
                 <input type="password" id="password" name="plainPassword" required /><br />
-                <input type="checkbox" onclick="showPassword()">Show Password
+                <input type="checkbox" onclick="showPassword()">{{ 'show_password' | trans }}
             </label>
         </div>
 
         <div>
-            <button type="submit" class="btn-validate">Register</button>
+            <button type="submit" class="btn-validate">
+                {{ 'register' | trans }}
+            </button>
         </div>
     </form>
 

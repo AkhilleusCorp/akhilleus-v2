@@ -1,16 +1,21 @@
 <header id="main-unlogged-header">
+    <div class="website-logo">
+        <a href="{{ path('website_home') }}">
+            AKHILLEUS
+        </a>
+    </div>
     <div class="menu">
         <ul class="inline">
             {% if app.user %}
             <li>
-                <a href="/logout">Logout</a>
+                <a href="/logout">{{ 'logout' | trans }}</a>
             </li>
             {% else %}
                 <li>
-                    <a href={{ path('website_authentication') }}>Log In</a>
+                    <a href={{ path('website_authentication') }}>{{ 'log_in' | trans }}</a>
                 </li>
                 <li>
-                    <a href={{ path('website_registration') }}>Sign up</a>
+                    <a href={{ path('website_registration') }}>{{ 'sign_up' | trans }}</a>
                 </li>
             {% endif %}
         </ul>

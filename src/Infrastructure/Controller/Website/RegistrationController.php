@@ -14,11 +14,15 @@ final class RegistrationController extends AbstractController
     public function registration(Request $request, CreateOneUserUseCase $useCase): Response
     {
         if (Request::METHOD_POST === $request->getMethod()) {
-            $useCase->execute($request->request->all(), 'admin');
+            $useCase->execute($request->request->all());
         }
 
-        return $this->render('website/pages/registration.html.twig', [
-            'label' => 'Registration'
-        ]);
+        return $this->render('website/pages/registration.html.twig');
+    }
+
+    #[Route('/registration/success', name:'website_registration_success', methods: ['GET'])]
+    public function registrationSuccess(): Response
+    {
+        return $this->render('website/pages/registration_success.html.twig');
     }
 }

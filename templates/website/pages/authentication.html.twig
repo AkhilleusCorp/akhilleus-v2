@@ -8,20 +8,20 @@
     <form method="post" action={{ path('website_authentication') }}>
         <div>
             <label>
-                Email
+                {{ 'email' | trans }}
                 <input type="text" name="_username" value="{{ lastUsername }}" required>
             </label>
         </div>
 
         <div>
             <label>
-                Password
+                {{ 'password' | trans }}
                 <input type="password" name="_password" required>
             </label>
         </div>
 
         <div>
-            <button type="submit" class="btn-validate">Username</button>
+            <button type="submit" class="btn-validate">{{ 'log_in' | trans }}</button>
         </div>
     </form>
 {% endblock %}
