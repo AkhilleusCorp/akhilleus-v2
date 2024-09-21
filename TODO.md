@@ -1,5 +1,4 @@
 ## Quality / Testing
-* Add a static code quality analyzer
 * Add unit and integration tests on SF part
 * Plug coverall to upload code coverage automatically
 
