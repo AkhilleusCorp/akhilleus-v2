@@ -25,7 +25,7 @@ final class UserFixtures extends Fixture
                 'plainPassword' => 'password' . $i,
             ]);
 
-            $user = $this->dataModelFactory->buildNewUserDataModel($source);
+            $user = $this->dataModelFactory->buildNewDataModel($source);
             $manager->persist($user);
 
             $this->addReference("user-{$username}", $user);

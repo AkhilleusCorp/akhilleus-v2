@@ -23,7 +23,7 @@ final class EquipmentFixtures extends Fixture
                 ['name' => $name]
             );
 
-            $equipment = $this->dataModelFactory->buildNewEquipmentDataModel($source);
+            $equipment = $this->dataModelFactory->buildNewDataModel($source);
             $manager->persist($equipment);
 
             $this->addReference("equipment-{$name}", $equipment);

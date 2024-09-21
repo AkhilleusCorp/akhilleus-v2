@@ -23,7 +23,7 @@ final class CreateOneUserUseCase implements UseCaseInterface
     public function execute(array $parameters, string $dateProfile = UserTypeRegistry::USER_TYPE_MEMBER): SingleUserViewModel
     {
         $source = $this->sourceModelFactory->buildSourceModel($parameters);
-        $user = $this->dataModelFactory->buildNewUserDataModel($source);
+        $user = $this->dataModelFactory->buildNewDataModel($source);
 
         $this->persister->create($user);
 
