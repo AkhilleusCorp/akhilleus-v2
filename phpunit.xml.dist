@@ -19,8 +19,8 @@
         </exclude>
         <report>
             <text outputFile="php://stdout" showUncoveredFiles="true" showOnlySummary="true"/>
-            <html outputDirectory="resources/tests-reports/coverage/html" lowUpperBound="50" highLowerBound="70"/>
-            <clover outputFile="resources/tests-reports/coverage/clover/clover.xml"/>
+            <html outputDirectory="var/tests-reports/coverage/html" lowUpperBound="50" highLowerBound="70"/>
+            <clover outputFile="var/tests-reports/coverage/clover/clover.xml"/>
         </report>
     </coverage>
 
