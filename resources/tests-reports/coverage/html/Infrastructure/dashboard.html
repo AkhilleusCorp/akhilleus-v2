@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for /home/ghriim/Developpements/akhilleus-v2/src/Infrastructure</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../_css/bootstrap.min.css?v=9.2.32" rel="stylesheet" type="text/css">
+  <link href="../_css/nv.d3.min.css?v=9.2.32" rel="stylesheet" type="text/css">
+  <link href="../_css/style.css?v=9.2.32" rel="stylesheet" type="text/css">
+  <link href="../_css/custom.css" rel="stylesheet" type="text/css">
+ </head>
+ <body>
+  <header>
+   <div class="container-fluid">
+    <div class="row">
+     <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="../index.html">/home/ghriim/Developpements/akhilleus-v2/src</a></li>
+         <li class="breadcrumb-item"><a href="index.html">Infrastructure</a></li>
+         <li class="breadcrumb-item active">(Dashboard)</li>
+
+       </ol>
+      </nav>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container-fluid">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Controller/Admin/IndexController.php.html#11">App\Infrastructure\Controller\Admin\IndexController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Api/Controller/AbstractAPIController.php.html#8">App\Infrastructure\Controller\Api\Controller\AbstractAPIController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Api/User/UserController.php.html#20">App\Infrastructure\Controller\Api\User\UserController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Website/AuthenticationController.php.html#13">App\Infrastructure\Controller\Website\AuthenticationController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Website/HomeController.php.html#9">App\Infrastructure\Controller\Website\HomeController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Website/RegistrationController.php.html#11">App\Infrastructure\Controller\Website\RegistrationController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DataFixtures/EquipmentFixtures.php.html#10">App\Infrastructure\DataFixtures\EquipmentFixtures</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DataFixtures/UserFixtures.php.html#10">App\Infrastructure\DataFixtures\UserFixtures</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DataTransformer/EmailObfuscationDataTransformer.php.html#5">App\Infrastructure\DataTransformer\EmailObfuscationDataTransformer</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EventListener/HttpExceptionEventListener.php.html#10">App\Infrastructure\EventListener\HttpExceptionEventListener</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Exception/InvalidDataProfileException.php.html#5">App\Infrastructure\Exception\InvalidDataProfileException</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Persister/AbstractDTOPersister.php.html#8">App\Infrastructure\Persister\AbstractDTOPersister</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Persister/User/UserDTOPersister.php.html#10">App\Infrastructure\Persister\User\UserDTOPersister</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/AbstractBaseDTORepository.php.html#10">App\Infrastructure\Repository\AbstractBaseDTORepository</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/User/UserDTORepository.php.html#18">App\Infrastructure\Repository\User\UserDTORepository</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="View/ViewHydrator/PaginationHydrator.php.html#5">App\Infrastructure\View\ViewHydrator\PaginationHydrator</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="View/ViewPresenter/AbstractMultipleObjectViewPresenter.php.html#12">App\Infrastructure\View\ViewPresenter\AbstractMultipleObjectViewPresenter</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="View/ViewPresenter/AbstractSingleObjectViewPresenter.php.html#9">App\Infrastructure\View\ViewPresenter\AbstractSingleObjectViewPresenter</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="View/ViewPresenter/User/MultipleUserViewPresenter.php.html#11">App\Infrastructure\View\ViewPresenter\User\MultipleUserViewPresenter</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="View/ViewPresenter/User/SingleUserViewPresenter.php.html#11">App\Infrastructure\View\ViewPresenter\User\SingleUserViewPresenter</a></td><td class="text-right">0%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Repository/User/UserDTORepository.php.html#18">App\Infrastructure\Repository\User\UserDTORepository</a></td><td class="text-right">156</td></tr>
+       <tr><td><a href="Repository/AbstractBaseDTORepository.php.html#10">App\Infrastructure\Repository\AbstractBaseDTORepository</a></td><td class="text-right">56</td></tr>
+       <tr><td><a href="Persister/AbstractDTOPersister.php.html#8">App\Infrastructure\Persister\AbstractDTOPersister</a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="View/ViewPresenter/AbstractMultipleObjectViewPresenter.php.html#12">App\Infrastructure\View\ViewPresenter\AbstractMultipleObjectViewPresenter</a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Controller/Website/RegistrationController.php.html#11">App\Infrastructure\Controller\Website\RegistrationController</a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="DataFixtures/EquipmentFixtures.php.html#10">App\Infrastructure\DataFixtures\EquipmentFixtures</a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="DataFixtures/UserFixtures.php.html#10">App\Infrastructure\DataFixtures\UserFixtures</a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="DataTransformer/EmailObfuscationDataTransformer.php.html#5">App\Infrastructure\DataTransformer\EmailObfuscationDataTransformer</a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="View/ViewHydrator/PaginationHydrator.php.html#5">App\Infrastructure\View\ViewHydrator\PaginationHydrator</a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Controller/Admin/IndexController.php.html#11">App\Infrastructure\Controller\Admin\IndexController</a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="EventListener/HttpExceptionEventListener.php.html#10">App\Infrastructure\EventListener\HttpExceptionEventListener</a></td><td class="text-right">6</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Controller/Admin/IndexController.php.html#13"><abbr title="App\Infrastructure\Controller\Admin\IndexController::index">index</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Api/Controller/AbstractAPIController.php.html#10"><abbr title="App\Infrastructure\Controller\Api\Controller\AbstractAPIController::getDataProfile">getDataProfile</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Api/User/UserController.php.html#22"><abbr title="App\Infrastructure\Controller\Api\User\UserController::getMany">getMany</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Api/User/UserController.php.html#39"><abbr title="App\Infrastructure\Controller\Api\User\UserController::getOneById">getOneById</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Api/User/UserController.php.html#52"><abbr title="App\Infrastructure\Controller\Api\User\UserController::createOne">createOne</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Api/User/UserController.php.html#65"><abbr title="App\Infrastructure\Controller\Api\User\UserController::updateOneById">updateOneById</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Api/User/UserController.php.html#78"><abbr title="App\Infrastructure\Controller\Api\User\UserController::deleteOneById">deleteOneById</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Website/AuthenticationController.php.html#15"><abbr title="App\Infrastructure\Controller\Website\AuthenticationController::authentication">authentication</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Website/AuthenticationController.php.html#27"><abbr title="App\Infrastructure\Controller\Website\AuthenticationController::authenticationSuccess">authenticationSuccess</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Website/HomeController.php.html#11"><abbr title="App\Infrastructure\Controller\Website\HomeController::index">index</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Website/RegistrationController.php.html#13"><abbr title="App\Infrastructure\Controller\Website\RegistrationController::registration">registration</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/Website/RegistrationController.php.html#23"><abbr title="App\Infrastructure\Controller\Website\RegistrationController::registrationSuccess">registrationSuccess</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DataFixtures/EquipmentFixtures.php.html#12"><abbr title="App\Infrastructure\DataFixtures\EquipmentFixtures::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DataFixtures/EquipmentFixtures.php.html#18"><abbr title="App\Infrastructure\DataFixtures\EquipmentFixtures::load">load</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DataFixtures/UserFixtures.php.html#12"><abbr title="App\Infrastructure\DataFixtures\UserFixtures::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DataFixtures/UserFixtures.php.html#18"><abbr title="App\Infrastructure\DataFixtures\UserFixtures::load">load</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DataTransformer/EmailObfuscationDataTransformer.php.html#7"><abbr title="App\Infrastructure\DataTransformer\EmailObfuscationDataTransformer::obfuscate">obfuscate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EventListener/HttpExceptionEventListener.php.html#12"><abbr title="App\Infrastructure\EventListener\HttpExceptionEventListener::onKernelException">onKernelException</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Exception/InvalidDataProfileException.php.html#7"><abbr title="App\Infrastructure\Exception\InvalidDataProfileException::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Persister/AbstractDTOPersister.php.html#10"><abbr title="App\Infrastructure\Persister\AbstractDTOPersister::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Persister/AbstractDTOPersister.php.html#15"><abbr title="App\Infrastructure\Persister\AbstractDTOPersister::save">save</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Persister/AbstractDTOPersister.php.html#26"><abbr title="App\Infrastructure\Persister\AbstractDTOPersister::delete">delete</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Persister/User/UserDTOPersister.php.html#12"><abbr title="App\Infrastructure\Persister\User\UserDTOPersister::create">create</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Persister/User/UserDTOPersister.php.html#19"><abbr title="App\Infrastructure\Persister\User\UserDTOPersister::edit">edit</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Persister/User/UserDTOPersister.php.html#26"><abbr title="App\Infrastructure\Persister\User\UserDTOPersister::remove">remove</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/AbstractBaseDTORepository.php.html#14"><abbr title="App\Infrastructure\Repository\AbstractBaseDTORepository::addPaginationConditions">addPaginationConditions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/AbstractBaseDTORepository.php.html#24"><abbr title="App\Infrastructure\Repository\AbstractBaseDTORepository::addSortConditions">addSortConditions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/User/UserDTORepository.php.html#20"><abbr title="App\Infrastructure\Repository\User\UserDTORepository::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/User/UserDTORepository.php.html#25"><abbr title="App\Infrastructure\Repository\User\UserDTORepository::getAlias">getAlias</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/User/UserDTORepository.php.html#30"><abbr title="App\Infrastructure\Repository\User\UserDTORepository::getUserById">getUserById</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/User/UserDTORepository.php.html#41"><abbr title="App\Infrastructure\Repository\User\UserDTORepository::getUsersByParameters">getUsersByParameters</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/User/UserDTORepository.php.html#52"><abbr title="App\Infrastructure\Repository\User\UserDTORepository::countUsersByParameters">countUsersByParameters</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/User/UserDTORepository.php.html#62"><abbr title="App\Infrastructure\Repository\User\UserDTORepository::addParametersFromFilter">addParametersFromFilter</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/User/UserDTORepository.php.html#84"><abbr title="App\Infrastructure\Repository\User\UserDTORepository::refreshUser">refreshUser</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/User/UserDTORepository.php.html#89"><abbr title="App\Infrastructure\Repository\User\UserDTORepository::supportsClass">supportsClass</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Repository/User/UserDTORepository.php.html#94"><abbr title="App\Infrastructure\Repository\User\UserDTORepository::loadUserByIdentifier">loadUserByIdentifier</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="View/ViewHydrator/PaginationHydrator.php.html#9"><abbr title="App\Infrastructure\View\ViewHydrator\PaginationHydrator::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="View/ViewHydrator/PaginationHydrator.php.html#14"><abbr title="App\Infrastructure\View\ViewHydrator\PaginationHydrator::hydrate">hydrate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="View/ViewPresenter/AbstractMultipleObjectViewPresenter.php.html#23"><abbr title="App\Infrastructure\View\ViewPresenter\AbstractMultipleObjectViewPresenter::present">present</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="View/ViewPresenter/AbstractSingleObjectViewPresenter.php.html#11"><abbr title="App\Infrastructure\View\ViewPresenter\AbstractSingleObjectViewPresenter::present">present</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="View/ViewPresenter/User/MultipleUserViewPresenter.php.html#13"><abbr title="App\Infrastructure\View\ViewPresenter\User\MultipleUserViewPresenter::presentForAdmin">presentForAdmin</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="View/ViewPresenter/User/MultipleUserViewPresenter.php.html#22"><abbr title="App\Infrastructure\View\ViewPresenter\User\MultipleUserViewPresenter::presentForMember">presentForMember</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="View/ViewPresenter/User/MultipleUserViewPresenter.php.html#30"><abbr title="App\Infrastructure\View\ViewPresenter\User\MultipleUserViewPresenter::presentCommonData">presentCommonData</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="View/ViewPresenter/User/SingleUserViewPresenter.php.html#13"><abbr title="App\Infrastructure\View\ViewPresenter\User\SingleUserViewPresenter::presentForAdmin">presentForAdmin</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="View/ViewPresenter/User/SingleUserViewPresenter.php.html#22"><abbr title="App\Infrastructure\View\ViewPresenter\User\SingleUserViewPresenter::presentForMember">presentForMember</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="View/ViewPresenter/User/SingleUserViewPresenter.php.html#30"><abbr title="App\Infrastructure\View\ViewPresenter\User\SingleUserViewPresenter::presentCommonData">presentCommonData</abbr></a></td><td class="text-right">0%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Repository/AbstractBaseDTORepository.php.html#24"><abbr title="App\Infrastructure\Repository\AbstractBaseDTORepository::addSortConditions">addSortConditions</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Repository/User/UserDTORepository.php.html#62"><abbr title="App\Infrastructure\Repository\User\UserDTORepository::addParametersFromFilter">addParametersFromFilter</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="View/ViewPresenter/AbstractMultipleObjectViewPresenter.php.html#23"><abbr title="App\Infrastructure\View\ViewPresenter\AbstractMultipleObjectViewPresenter::present">present</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="DataTransformer/EmailObfuscationDataTransformer.php.html#7"><abbr title="App\Infrastructure\DataTransformer\EmailObfuscationDataTransformer::obfuscate">obfuscate</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Controller/Admin/IndexController.php.html#13"><abbr title="App\Infrastructure\Controller\Admin\IndexController::index">index</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Controller/Website/RegistrationController.php.html#13"><abbr title="App\Infrastructure\Controller\Website\RegistrationController::registration">registration</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="DataFixtures/EquipmentFixtures.php.html#18"><abbr title="App\Infrastructure\DataFixtures\EquipmentFixtures::load">load</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="DataFixtures/UserFixtures.php.html#18"><abbr title="App\Infrastructure\DataFixtures\UserFixtures::load">load</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="EventListener/HttpExceptionEventListener.php.html#12"><abbr title="App\Infrastructure\EventListener\HttpExceptionEventListener::onKernelException">onKernelException</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Persister/AbstractDTOPersister.php.html#15"><abbr title="App\Infrastructure\Persister\AbstractDTOPersister::save">save</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Persister/AbstractDTOPersister.php.html#26"><abbr title="App\Infrastructure\Persister\AbstractDTOPersister::delete">delete</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Repository/AbstractBaseDTORepository.php.html#14"><abbr title="App\Infrastructure\Repository\AbstractBaseDTORepository::addPaginationConditions">addPaginationConditions</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="View/ViewHydrator/PaginationHydrator.php.html#14"><abbr title="App\Infrastructure\View\ViewHydrator\PaginationHydrator::hydrate">hydrate</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="View/ViewPresenter/AbstractSingleObjectViewPresenter.php.html#11"><abbr title="App\Infrastructure\View\ViewPresenter\AbstractSingleObjectViewPresenter::present">present</abbr></a></td><td class="text-right">6</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 9.2.32</a> using <a href="https://secure.php.net/" target="_top">PHP 8.2.23</a> and <a href="https://phpunit.de/">PHPUnit 9.6.20</a> at Sat Sep 21 14:06:51 UTC 2024.</small>
+    </p>
+   </footer>
+  </div>
+  <script src="../_js/jquery.min.js?v=9.2.32" type="text/javascript"></script>
+  <script src="../_js/d3.min.js?v=9.2.32" type="text/javascript"></script>
+  <script src="../_js/nv.d3.min.js?v=9.2.32" type="text/javascript"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#classCoverageDistribution svg')
+      .datum(getCoverageDistributionData([20,0,0,0,0,0,0,0,0,0,0,3], "Class Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#methodCoverageDistribution svg')
+      .datum(getCoverageDistributionData([46,0,0,0,0,0,0,0,0,0,0,5], "Method Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getCoverageDistributionData(data, label) {
+    var labels = [
+      '0%',
+      '0-10%',
+      '10-20%',
+      '20-30%',
+      '30-40%',
+      '40-50%',
+      '50-60%',
+      '60-70%',
+      '70-80%',
+      '80-90%',
+      '90-100%',
+      '100%'
+    ];
+    var values = [];
+    $.each(labels, function(key) {
+      values.push({x: labels[key], y: data[key]});
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Cyclomatic Complexity');
+
+    d3.select('#classComplexity svg')
+      .datum(getComplexityData([[0,2,"<a href=\"Controller\/Admin\/IndexController.php.html#11\">App\\Infrastructure\\Controller\\Admin\\IndexController<\/a>"],[0,1,"<a href=\"Controller\/Api\/Controller\/AbstractAPIController.php.html#8\">App\\Infrastructure\\Controller\\Api\\Controller\\AbstractAPIController<\/a>"],[0,5,"<a href=\"Controller\/Api\/User\/UserController.php.html#20\">App\\Infrastructure\\Controller\\Api\\User\\UserController<\/a>"],[0,2,"<a href=\"Controller\/Website\/AuthenticationController.php.html#13\">App\\Infrastructure\\Controller\\Website\\AuthenticationController<\/a>"],[0,1,"<a href=\"Controller\/Website\/HomeController.php.html#9\">App\\Infrastructure\\Controller\\Website\\HomeController<\/a>"],[0,3,"<a href=\"Controller\/Website\/RegistrationController.php.html#11\">App\\Infrastructure\\Controller\\Website\\RegistrationController<\/a>"],[0,3,"<a href=\"DataFixtures\/EquipmentFixtures.php.html#10\">App\\Infrastructure\\DataFixtures\\EquipmentFixtures<\/a>"],[0,3,"<a href=\"DataFixtures\/UserFixtures.php.html#10\">App\\Infrastructure\\DataFixtures\\UserFixtures<\/a>"],[0,3,"<a href=\"DataTransformer\/EmailObfuscationDataTransformer.php.html#5\">App\\Infrastructure\\DataTransformer\\EmailObfuscationDataTransformer<\/a>"],[0,2,"<a href=\"EventListener\/HttpExceptionEventListener.php.html#10\">App\\Infrastructure\\EventListener\\HttpExceptionEventListener<\/a>"],[0,1,"<a href=\"Exception\/InvalidDataProfileException.php.html#5\">App\\Infrastructure\\Exception\\InvalidDataProfileException<\/a>"],[0,5,"<a href=\"Persister\/AbstractDTOPersister.php.html#8\">App\\Infrastructure\\Persister\\AbstractDTOPersister<\/a>"],[0,3,"<a href=\"Persister\/User\/UserDTOPersister.php.html#10\">App\\Infrastructure\\Persister\\User\\UserDTOPersister<\/a>"],[0,7,"<a href=\"Repository\/AbstractBaseDTORepository.php.html#10\">App\\Infrastructure\\Repository\\AbstractBaseDTORepository<\/a>"],[0,12,"<a href=\"Repository\/User\/UserDTORepository.php.html#18\">App\\Infrastructure\\Repository\\User\\UserDTORepository<\/a>"],[0,3,"<a href=\"View\/ViewHydrator\/PaginationHydrator.php.html#5\">App\\Infrastructure\\View\\ViewHydrator\\PaginationHydrator<\/a>"],[100,0,"<a href=\"View\/ViewModel\/MultipleObjectViewModel.php.html#5\">App\\Infrastructure\\View\\ViewModel\\MultipleObjectViewModel<\/a>"],[100,0,"<a href=\"View\/ViewModel\/User\/MultipleUserItemViewModel.php.html#7\">App\\Infrastructure\\View\\ViewModel\\User\\MultipleUserItemViewModel<\/a>"],[100,0,"<a href=\"View\/ViewModel\/User\/SingleUserViewModel.php.html#7\">App\\Infrastructure\\View\\ViewModel\\User\\SingleUserViewModel<\/a>"],[0,4,"<a href=\"View\/ViewPresenter\/AbstractMultipleObjectViewPresenter.php.html#12\">App\\Infrastructure\\View\\ViewPresenter\\AbstractMultipleObjectViewPresenter<\/a>"],[0,2,"<a href=\"View\/ViewPresenter\/AbstractSingleObjectViewPresenter.php.html#9\">App\\Infrastructure\\View\\ViewPresenter\\AbstractSingleObjectViewPresenter<\/a>"],[0,3,"<a href=\"View\/ViewPresenter\/User\/MultipleUserViewPresenter.php.html#11\">App\\Infrastructure\\View\\ViewPresenter\\User\\MultipleUserViewPresenter<\/a>"],[0,3,"<a href=\"View\/ViewPresenter\/User\/SingleUserViewPresenter.php.html#11\">App\\Infrastructure\\View\\ViewPresenter\\User\\SingleUserViewPresenter<\/a>"]], 'Class Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Method Complexity');
+
+    d3.select('#methodComplexity svg')
+      .datum(getComplexityData([[0,2,"<a href=\"Controller\/Admin\/IndexController.php.html#13\">App\\Infrastructure\\Controller\\Admin\\IndexController::index<\/a>"],[0,1,"<a href=\"Controller\/Api\/Controller\/AbstractAPIController.php.html#10\">App\\Infrastructure\\Controller\\Api\\Controller\\AbstractAPIController::getDataProfile<\/a>"],[0,1,"<a href=\"Controller\/Api\/User\/UserController.php.html#22\">App\\Infrastructure\\Controller\\Api\\User\\UserController::getMany<\/a>"],[0,1,"<a href=\"Controller\/Api\/User\/UserController.php.html#39\">App\\Infrastructure\\Controller\\Api\\User\\UserController::getOneById<\/a>"],[0,1,"<a href=\"Controller\/Api\/User\/UserController.php.html#52\">App\\Infrastructure\\Controller\\Api\\User\\UserController::createOne<\/a>"],[0,1,"<a href=\"Controller\/Api\/User\/UserController.php.html#65\">App\\Infrastructure\\Controller\\Api\\User\\UserController::updateOneById<\/a>"],[0,1,"<a href=\"Controller\/Api\/User\/UserController.php.html#78\">App\\Infrastructure\\Controller\\Api\\User\\UserController::deleteOneById<\/a>"],[0,1,"<a href=\"Controller\/Website\/AuthenticationController.php.html#15\">App\\Infrastructure\\Controller\\Website\\AuthenticationController::authentication<\/a>"],[0,1,"<a href=\"Controller\/Website\/AuthenticationController.php.html#27\">App\\Infrastructure\\Controller\\Website\\AuthenticationController::authenticationSuccess<\/a>"],[0,1,"<a href=\"Controller\/Website\/HomeController.php.html#11\">App\\Infrastructure\\Controller\\Website\\HomeController::index<\/a>"],[0,2,"<a href=\"Controller\/Website\/RegistrationController.php.html#13\">App\\Infrastructure\\Controller\\Website\\RegistrationController::registration<\/a>"],[0,1,"<a href=\"Controller\/Website\/RegistrationController.php.html#23\">App\\Infrastructure\\Controller\\Website\\RegistrationController::registrationSuccess<\/a>"],[0,1,"<a href=\"DataFixtures\/EquipmentFixtures.php.html#12\">App\\Infrastructure\\DataFixtures\\EquipmentFixtures::__construct<\/a>"],[0,2,"<a href=\"DataFixtures\/EquipmentFixtures.php.html#18\">App\\Infrastructure\\DataFixtures\\EquipmentFixtures::load<\/a>"],[0,1,"<a href=\"DataFixtures\/UserFixtures.php.html#12\">App\\Infrastructure\\DataFixtures\\UserFixtures::__construct<\/a>"],[0,2,"<a href=\"DataFixtures\/UserFixtures.php.html#18\">App\\Infrastructure\\DataFixtures\\UserFixtures::load<\/a>"],[0,3,"<a href=\"DataTransformer\/EmailObfuscationDataTransformer.php.html#7\">App\\Infrastructure\\DataTransformer\\EmailObfuscationDataTransformer::obfuscate<\/a>"],[0,2,"<a href=\"EventListener\/HttpExceptionEventListener.php.html#12\">App\\Infrastructure\\EventListener\\HttpExceptionEventListener::onKernelException<\/a>"],[0,1,"<a href=\"Exception\/InvalidDataProfileException.php.html#7\">App\\Infrastructure\\Exception\\InvalidDataProfileException::__construct<\/a>"],[0,1,"<a href=\"Persister\/AbstractDTOPersister.php.html#10\">App\\Infrastructure\\Persister\\AbstractDTOPersister::__construct<\/a>"],[0,2,"<a href=\"Persister\/AbstractDTOPersister.php.html#15\">App\\Infrastructure\\Persister\\AbstractDTOPersister::save<\/a>"],[0,2,"<a href=\"Persister\/AbstractDTOPersister.php.html#26\">App\\Infrastructure\\Persister\\AbstractDTOPersister::delete<\/a>"],[0,1,"<a href=\"Persister\/User\/UserDTOPersister.php.html#12\">App\\Infrastructure\\Persister\\User\\UserDTOPersister::create<\/a>"],[0,1,"<a href=\"Persister\/User\/UserDTOPersister.php.html#19\">App\\Infrastructure\\Persister\\User\\UserDTOPersister::edit<\/a>"],[0,1,"<a href=\"Persister\/User\/UserDTOPersister.php.html#26\">App\\Infrastructure\\Persister\\User\\UserDTOPersister::remove<\/a>"],[100,0,"<a href=\"Repository\/AbstractBaseDTORepository.php.html#12\">App\\Infrastructure\\Repository\\AbstractBaseDTORepository::getAlias<\/a>"],[0,2,"<a href=\"Repository\/AbstractBaseDTORepository.php.html#14\">App\\Infrastructure\\Repository\\AbstractBaseDTORepository::addPaginationConditions<\/a>"],[0,5,"<a href=\"Repository\/AbstractBaseDTORepository.php.html#24\">App\\Infrastructure\\Repository\\AbstractBaseDTORepository::addSortConditions<\/a>"],[0,1,"<a href=\"Repository\/User\/UserDTORepository.php.html#20\">App\\Infrastructure\\Repository\\User\\UserDTORepository::__construct<\/a>"],[0,1,"<a href=\"Repository\/User\/UserDTORepository.php.html#25\">App\\Infrastructure\\Repository\\User\\UserDTORepository::getAlias<\/a>"],[0,1,"<a href=\"Repository\/User\/UserDTORepository.php.html#30\">App\\Infrastructure\\Repository\\User\\UserDTORepository::getUserById<\/a>"],[0,1,"<a href=\"Repository\/User\/UserDTORepository.php.html#41\">App\\Infrastructure\\Repository\\User\\UserDTORepository::getUsersByParameters<\/a>"],[0,1,"<a href=\"Repository\/User\/UserDTORepository.php.html#52\">App\\Infrastructure\\Repository\\User\\UserDTORepository::countUsersByParameters<\/a>"],[0,4,"<a href=\"Repository\/User\/UserDTORepository.php.html#62\">App\\Infrastructure\\Repository\\User\\UserDTORepository::addParametersFromFilter<\/a>"],[0,1,"<a href=\"Repository\/User\/UserDTORepository.php.html#84\">App\\Infrastructure\\Repository\\User\\UserDTORepository::refreshUser<\/a>"],[0,1,"<a href=\"Repository\/User\/UserDTORepository.php.html#89\">App\\Infrastructure\\Repository\\User\\UserDTORepository::supportsClass<\/a>"],[0,1,"<a href=\"Repository\/User\/UserDTORepository.php.html#94\">App\\Infrastructure\\Repository\\User\\UserDTORepository::loadUserByIdentifier<\/a>"],[0,1,"<a href=\"View\/ViewHydrator\/PaginationHydrator.php.html#9\">App\\Infrastructure\\View\\ViewHydrator\\PaginationHydrator::__construct<\/a>"],[0,2,"<a href=\"View\/ViewHydrator\/PaginationHydrator.php.html#14\">App\\Infrastructure\\View\\ViewHydrator\\PaginationHydrator::hydrate<\/a>"],[0,4,"<a href=\"View\/ViewPresenter\/AbstractMultipleObjectViewPresenter.php.html#23\">App\\Infrastructure\\View\\ViewPresenter\\AbstractMultipleObjectViewPresenter::present<\/a>"],[100,0,"<a href=\"View\/ViewPresenter\/AbstractMultipleObjectViewPresenter.php.html#44\">App\\Infrastructure\\View\\ViewPresenter\\AbstractMultipleObjectViewPresenter::presentForAdmin<\/a>"],[100,0,"<a href=\"View\/ViewPresenter\/AbstractMultipleObjectViewPresenter.php.html#46\">App\\Infrastructure\\View\\ViewPresenter\\AbstractMultipleObjectViewPresenter::presentForMember<\/a>"],[0,2,"<a href=\"View\/ViewPresenter\/AbstractSingleObjectViewPresenter.php.html#11\">App\\Infrastructure\\View\\ViewPresenter\\AbstractSingleObjectViewPresenter::present<\/a>"],[100,0,"<a href=\"View\/ViewPresenter\/AbstractSingleObjectViewPresenter.php.html#21\">App\\Infrastructure\\View\\ViewPresenter\\AbstractSingleObjectViewPresenter::presentForAdmin<\/a>"],[100,0,"<a href=\"View\/ViewPresenter\/AbstractSingleObjectViewPresenter.php.html#23\">App\\Infrastructure\\View\\ViewPresenter\\AbstractSingleObjectViewPresenter::presentForMember<\/a>"],[0,1,"<a href=\"View\/ViewPresenter\/User\/MultipleUserViewPresenter.php.html#13\">App\\Infrastructure\\View\\ViewPresenter\\User\\MultipleUserViewPresenter::presentForAdmin<\/a>"],[0,1,"<a href=\"View\/ViewPresenter\/User\/MultipleUserViewPresenter.php.html#22\">App\\Infrastructure\\View\\ViewPresenter\\User\\MultipleUserViewPresenter::presentForMember<\/a>"],[0,1,"<a href=\"View\/ViewPresenter\/User\/MultipleUserViewPresenter.php.html#30\">App\\Infrastructure\\View\\ViewPresenter\\User\\MultipleUserViewPresenter::presentCommonData<\/a>"],[0,1,"<a href=\"View\/ViewPresenter\/User\/SingleUserViewPresenter.php.html#13\">App\\Infrastructure\\View\\ViewPresenter\\User\\SingleUserViewPresenter::presentForAdmin<\/a>"],[0,1,"<a href=\"View\/ViewPresenter\/User\/SingleUserViewPresenter.php.html#22\">App\\Infrastructure\\View\\ViewPresenter\\User\\SingleUserViewPresenter::presentForMember<\/a>"],[0,1,"<a href=\"View\/ViewPresenter\/User\/SingleUserViewPresenter.php.html#30\">App\\Infrastructure\\View\\ViewPresenter\\User\\SingleUserViewPresenter::presentCommonData<\/a>"]], 'Method Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getComplexityData(data, label) {
+    var values = [];
+    $.each(data, function(key) {
+      var value = Math.round(data[key][0]*100) / 100;
+      values.push({
+        x: value,
+        y: data[key][1],
+        class: data[key][2],
+        size: 0.05,
+        shape: 'diamond'
+      });
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+});
+  </script>
+ </body>
+</html>
