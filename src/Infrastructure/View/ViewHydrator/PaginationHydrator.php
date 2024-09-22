@@ -4,7 +4,7 @@ namespace App\Infrastructure\View\ViewHydrator;
 
 final class PaginationHydrator implements ViewHydratorInterface
 {
-    private const DEFAULT_FIRST_PAGE = 1;
+    public const DEFAULT_FIRST_PAGE = 1;
 
     public function __construct(private int $count, private int $page, private int $limit)
     {
@@ -19,7 +19,7 @@ final class PaginationHydrator implements ViewHydratorInterface
             [
                 'count' => $this->count,
                 'firstPage' => self::DEFAULT_FIRST_PAGE,
-                'currentPage' => $this->page,
+                'currentPage' => 0 === $this->count ? self::DEFAULT_FIRST_PAGE : $this->page,
                 'lastPage' => 0 === $this->count ? self::DEFAULT_FIRST_PAGE : $lastPage
             ]
         ];

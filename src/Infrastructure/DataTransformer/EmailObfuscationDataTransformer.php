@@ -15,10 +15,6 @@ final class EmailObfuscationDataTransformer {
         $maskedLocalPart = substr($localPart, 0, 1) . str_repeat('*', strlen($localPart) - 1);
 
         $lastDotPosition = strrpos($domain, '.');
-        if ($lastDotPosition === false) {
-            throw new \LogicException("Can't obfuscate $email as it is not a valid email");
-        }
-
         $domainName = substr($domain, 0, $lastDotPosition);
         $extension = substr($domain, $lastDotPosition);
         $maskedDomain = substr($domain, 0, 1) . str_repeat('*', strlen($domainName) - 1);
