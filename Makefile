@@ -11,6 +11,9 @@ install_dependencies:
 create_local_db:
 	@touch var/akhilleus.db
 
+remove_local_db:
+	rm var/akhilleus.db
+
 migrate_db:
 	 php bin/console doctrine:migrations:migrate -n
 
@@ -19,7 +22,7 @@ load_fixtures:
 
 init_project: .env.local create_local_db migrate_db load_fixtures
 
-reset_db: create_local_db migrate_db load_fixtures
+reset_db: remove_local_db create_local_db migrate_db load_fixtures
 
 tests_all:
 	XDEBUG_MODE=coverage vendor/bin/phpunit
