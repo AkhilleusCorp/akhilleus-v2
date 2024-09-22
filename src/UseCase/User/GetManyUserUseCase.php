@@ -23,10 +23,10 @@ final class GetManyUserUseCase implements UseCaseInterface
     {
         $filter = $this->filterFactory->buildGetManyUsersFilterModel($parameters);
         $users = $this->provider->getUsersByParameters($filter);
-        if (sizeof($users) === $filter->limit) {
+
+        $usersCount = sizeof($users);
+        if ($usersCount === $filter->limit) {
             $usersCount = $this->provider->countUsersByParameters($filter);
-        } else {
-            $usersCount = sizeof($users);
         }
 
         return $this->presenter->present(
