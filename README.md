@@ -1,3 +1,5 @@
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/b331de0c17654f808ff7ee4cb7957ff2)](https://app.codacy.com/gh/AkhilleusCorp/akhilleus-v2/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+
 ## Requirements
  * git
  * php >= 8.2
@@ -9,5 +11,4 @@
 
 
 ## Useful links
- * Code analysis: [Codacy](https://app.codacy.com/gh/AkhilleusCorp/akhilleus-v2/dashboard)
  * Code coverage: [Coveralls](https://coveralls.io/github/AkhilleusCorp/akhilleus-v2)
