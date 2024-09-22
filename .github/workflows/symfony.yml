@@ -38,14 +38,13 @@ jobs:
     - name: Create Database
       run: |
         mkdir -p var
-        touch var/database.sqlite
-        php bin/console doctrine:migrations:migrate -n --env=test
+        make create_test_db
+    - name: Load Database Schema
+      run: make migrate_test_db
     - name: Load fixtures
-      run: php bin/console doctrine:fixtures:load -n --env=test
+      run: make load_test_fixtures
     - name: Unit & Integration tests
-      env:
-        DATABASE_URL: sqlite:///%kernel.project_dir%/var/database.sqlite
-      run: vendor/bin/phpunit
+      run: make tests_all
     - name: Run codacy-coverage-reporter
       uses: codacy/codacy-coverage-reporter-action@v1.3.0
       with:
