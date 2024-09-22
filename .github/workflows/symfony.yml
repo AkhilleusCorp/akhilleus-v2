@@ -6,8 +6,6 @@
 name: Symfony
 
 on:
-  push:
-    branches: [ "develop" ]
   pull_request:
     branches: [ "develop" ]
 
@@ -15,7 +13,7 @@ permissions:
   contents: read
 
 jobs:
-  symfony-tests:
+  tests:
     runs-on: ubuntu-latest
     steps:
     #  To automatically get bug fixes and new Php versions for shivammathur/setup-php,
