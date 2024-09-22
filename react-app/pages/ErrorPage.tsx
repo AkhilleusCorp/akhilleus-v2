@@ -15,7 +15,7 @@ const ErrorPage: React.FC = () => {
                         (error as { statusText?: string })?.statusText}
                 </i>
             </p>
-            <button onClick={() => navigate(-1)}>&larr; Go back</button>
+            <button onClick={() => { navigate(-1); }}>&larr; Go back</button>
         </div>
     )
 
