@@ -39,7 +39,7 @@ jobs:
       run: composer install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
     - name: Create Database
       run: |
-        mkdir -p data
+        mkdir -p var
         touch var/database.sqlite
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       env:
