@@ -43,8 +43,6 @@ final class GetManyUserUseCaseTest extends AbstractIntegrationTest
         $this->assertEquals(3, $pagination->lastPage);
     }
 
-
-
     public function testGetManyUserWithNoFiltersForMemberDataProfile(): void
     {
         $view = $this->useCase->execute([]);
@@ -66,4 +64,47 @@ final class GetManyUserUseCaseTest extends AbstractIntegrationTest
 
         $this->useCase->execute([], 'unknown_data_profile');
     }
+
+    public function testGetManyUserWithFilterIdFilter(): void
+    {
+        $view = $this->useCase->execute(['username' => 'ghriim'], DataProfileRegistry::DATA_PROFILE_ADMIN);
+        $this->assertCount(1, $view->data);
+
+
+        $view = $this->useCase->execute(['username' => 'ghriim']);
+        $this->assertCount(1, $view->data);
+    }
+
+    public function testGetManyUserWithFilterEmailFilter(): void
+    {
+        $view = $this->useCase->execute(['email' => 'coach@fakemail.com'], DataProfileRegistry::DATA_PROFILE_ADMIN);
+        $this->assertCount(1, $view->data);
+
+        $view = $this->useCase->execute(['email' => 'not_an_existing_mail@fakemail.com'], DataProfileRegistry::DATA_PROFILE_ADMIN);
+        $this->assertCount(0, $view->data);
+    }
+
+    public function testGetManyUserWithFilterTypesFilter(): void
+    {
+        $view = $this->useCase->execute(['types' => 'coach,admin'], DataProfileRegistry::DATA_PROFILE_ADMIN);
+        $this->assertCount(2, $view->data);
+
+        $view = $this->useCase->execute(['types' => 'coach'], DataProfileRegistry::DATA_PROFILE_ADMIN);
+        $this->assertCount(1, $view->data);
+    }
+
+    public function testGetManyUserWithFilterStatusesFilter(): void
+    {
+        $view = $this->useCase->execute(['statuses' => 'deactivated'], DataProfileRegistry::DATA_PROFILE_ADMIN);
+        $this->assertCount(0, $view->data);
+
+
+        $view = $this->useCase->execute(['statuses' => 'deactivated']);
+        $this->assertCount(0, $view->data);
+
+
+        $view = $this->useCase->execute(['statuses' => 'created']);
+        $this->assertCount(9, $view->data);
+    }
+
 }
