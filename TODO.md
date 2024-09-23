@@ -1,6 +1,5 @@
 ## Quality / Testing
 * Add unit and integration tests on SF part
-* Plug coverall to upload code coverage automatically
 
 ## Functionnalities
 ### User

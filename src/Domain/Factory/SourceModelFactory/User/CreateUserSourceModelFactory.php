@@ -2,18 +2,17 @@
 
 namespace App\Domain\Factory\SourceModelFactory\User;
 
+use App\Domain\DTO\SourceModel\SourceModelInterface;
 use App\Domain\DTO\SourceModel\User\CreateUserSourceModel;
+use App\Domain\Factory\SourceModelFactory\InferSourceModelFactoryTrait;
 use App\Domain\Factory\SourceModelFactory\SourceModelFactoryInterface;
 
 final class CreateUserSourceModelFactory implements SourceModelFactoryInterface
 {
-    public function buildSourceModel(array $parameters): CreateUserSourceModel
-    {
-        $model = new CreateUserSourceModel();
-        $model->username = $parameters['username'];
-        $model->email = $parameters['email'];
-        $model->plainPassword = $parameters['plainPassword'];
+    use InferSourceModelFactoryTrait;
 
-        return $model;
+    public function buildSourceModel(array $parameters): CreateUserSourceModel|SourceModelInterface
+    {
+        return $this->inferSourceModel($parameters, new CreateUserSourceModel());
     }
 }

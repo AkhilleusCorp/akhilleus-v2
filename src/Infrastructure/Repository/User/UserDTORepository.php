@@ -49,23 +49,23 @@ final class UserDTORepository extends AbstractBaseDTORepository implements UserD
         return $queryBuilder->getQuery()->getResult();
     }
 
-    public function countUsersByParameters(GetManyUsersFilterModel $filter): int
+    public function countUsersByParameters(?GetManyUsersFilterModel $filter): int
     {
         $queryBuilder = $this->createQueryBuilder($this->getAlias())
                               ->select('COUNT(DISTINCT user.id)');
 
-        $this->addParametersFromFilter($queryBuilder, $filter);
+        if (null !== $filter) {
+            $this->addParametersFromFilter($queryBuilder, $filter);
+        }
 
         return $queryBuilder->getQuery()->getSingleScalarResult();
     }
 
     private function addParametersFromFilter(QueryBuilder $queryBuilder, GetManyUsersFilterModel $filter): self
     {
-        if (false === empty($filter->id)) {
-            $queryBuilder->andWhere('user.id = :id')
-                ->setParameter('id', $filter->username);
-
-            return $queryBuilder->getQuery()->getResult();
+        if (false === empty($filter->ids)) {
+            $queryBuilder->andWhere('user.id IN (:ids)')
+                ->setParameter('ids', $filter->ids);
         }
 
         if (false === empty($filter->username)) {
@@ -76,6 +76,16 @@ final class UserDTORepository extends AbstractBaseDTORepository implements UserD
         if (false === empty($filter->email)) {
             $queryBuilder->andWhere('user.email LIKE :email')
                 ->setParameter('email', '%' . $filter->email . '%');
+        }
+
+        if (false === empty($filter->types)) {
+            $queryBuilder->andWhere('user.type IN (:types)')
+                ->setParameter('types', $filter->types);
+        }
+
+        if (false === empty($filter->statuses)) {
+            $queryBuilder->andWhere('user.status IN (:statuses)')
+                ->setParameter('statuses', $filter->statuses);
         }
 
         return $this;

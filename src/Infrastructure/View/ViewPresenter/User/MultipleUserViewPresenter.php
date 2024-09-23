@@ -15,6 +15,7 @@ final class MultipleUserViewPresenter extends AbstractMultipleObjectViewPresente
         $item = $this->presentCommonData($data);
         $item->email = $data->email;
         $item->type = $data->type;
+        $item->status = $data->status;
 
         return $item;
     }

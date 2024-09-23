@@ -31,7 +31,7 @@ final class UserDataModelFactory implements DataModelFactoryInterface
         $reflexion = new ReflectionClass(UpdateUserSourceModel::class);
         foreach ($reflexion->getProperties() as $property) {
             $propertyName = $property->getName();
-            if (property_exists($user, $propertyName)) {
+            if (property_exists($user, $propertyName) && isset($model->{$propertyName})) {
                 $user->{$propertyName} = $model->{$propertyName};
             }
         }

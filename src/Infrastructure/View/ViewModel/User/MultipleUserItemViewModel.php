@@ -10,4 +10,5 @@ final class MultipleUserItemViewModel implements MultipleObjectItemViewModelInte
     public string $username;
     public string $email;
     public string $type;
+    public string $status;
 }

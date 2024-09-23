@@ -14,7 +14,6 @@ final class SingleUserViewPresenter extends AbstractSingleObjectViewPresenter
     {
         $view = $this->presentCommonData($data);
         $view->email = $data->email;
-        $view->type = $data->type;
 
         return $view;
     }
@@ -32,6 +31,8 @@ final class SingleUserViewPresenter extends AbstractSingleObjectViewPresenter
         $view = new SingleUserViewModel();
         $view->id = $data->id;
         $view->username = $data->username;
+        $view->type = $data->type;
+        $view->status = $data->status;
 
         return $view;
     }
