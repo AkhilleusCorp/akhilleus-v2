@@ -7,15 +7,31 @@ use App\Domain\Factory\SourceModelFactory\Equipment\CreateEquipmentSourceModelFa
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
-final class EquipmentFixtures extends Fixture
+final class EquipmentFixtures extends AbstractFixtures
 {
     public function __construct(
-        private CreateEquipmentSourceModelFactory $sourceModelFactory,
-        private EquipmentDataModelFactory $dataModelFactory
-    ) {
-
+        private readonly CreateEquipmentSourceModelFactory $sourceModelFactory,
+        private readonly EquipmentDataModelFactory $dataModelFactory
+    )
+    {
     }
-    public function load(ObjectManager $manager)
+
+    protected function explicitFixtures(ObjectManager $manager): void
+    {
+        $names = ['barbell', 'dumbbell', 'bench', 'jump-rope'];
+        foreach ($names as $name) {
+            $source = $this->sourceModelFactory->buildSourceModel(
+                ['name' => $name]
+            );
+
+            $equipment = $this->dataModelFactory->buildNewDataModel($source);
+            $manager->persist($equipment);
+
+            $this->addReference("equipment-{$name}", $equipment);
+        }
+    }
+
+    protected function volumeFixtures(ObjectManager $manager): void
     {
         for ($i = 1; $i < 50; $i++) {
             $name = "equipment{$i}";
@@ -28,7 +44,5 @@ final class EquipmentFixtures extends Fixture
 
             $this->addReference("equipment-{$name}", $equipment);
         }
-
-        $manager->flush();
     }
 }

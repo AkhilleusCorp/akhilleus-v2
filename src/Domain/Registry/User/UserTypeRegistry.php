@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Registry;
+namespace App\Domain\Registry\User;
 
 interface UserTypeRegistry
 {

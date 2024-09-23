@@ -2,12 +2,13 @@
 
 namespace App\Infrastructure\DataFixtures;
 
+use App\Domain\DTO\SourceModel\User\CreateUserSourceModel;
 use App\Domain\Factory\DataModelFactory\User\UserDataModelFactory;
 use App\Domain\Factory\SourceModelFactory\User\CreateUserSourceModelFactory;
-use Doctrine\Bundle\FixturesBundle\Fixture;
+use App\Domain\Registry\User\UserStatusRegistry;
 use Doctrine\Persistence\ObjectManager;
 
-final class UserFixtures extends Fixture
+final class UserFixtures extends AbstractFixtures
 {
     private const DEFAULT_PASSWORD = 'Test1234!';
 
@@ -17,44 +18,39 @@ final class UserFixtures extends Fixture
     ) {
     }
 
-    public function load(ObjectManager $manager): void
-    {
-        $this->explicitFixtures($manager);
-        $this->volumeFixtures($manager);
-
-        $manager->flush();
-    }
-
-    private function explicitFixtures(ObjectManager $manager): void
+    protected function explicitFixtures(ObjectManager $manager): void
     {
         $usernames = ['ghriim', 'camillou', 'g.host'];
 
         foreach ($usernames as $username) {
-            $source = $this->sourceModelFactory->buildSourceModel([
-                'username' => $username,
-                'email' => "{$username}@fakemail.com",
-                'plainPassword' => self::DEFAULT_PASSWORD,
-            ]);
+            $source = $this->buildBaseUserInformation($username);
 
             $user = $this->dataModelFactory->buildNewDataModel($source);
+            $user->status = UserStatusRegistry::USER_STATUS_ACTIVE;
             $manager->persist($user);
         }
     }
 
-    private function volumeFixtures(ObjectManager $manager): void
+    protected function volumeFixtures(ObjectManager $manager): void
     {
         for ($i = 1; $i < 50; $i++) {
             $username = "username{$i}";
-            $source = $this->sourceModelFactory->buildSourceModel([
-                'username' => $username,
-                'email' => "{$username}@fakemail.com",
-                'plainPassword' => self::DEFAULT_PASSWORD,
-            ]);
+            $source = $this->buildBaseUserInformation($username);
 
             $user = $this->dataModelFactory->buildNewDataModel($source);
+            $user->status = UserStatusRegistry::USER_STATUS_ACTIVE;
             $manager->persist($user);
 
             $this->addReference("user-{$username}", $user);
         }
+    }
+
+    private function buildBaseUserInformation(string $username): CreateUserSourceModel
+    {
+        return $this->sourceModelFactory->buildSourceModel([
+            'username' => $username,
+            'email' => "{$username}@fakemail.com",
+            'plainPassword' => self::DEFAULT_PASSWORD,
+        ]);
     }
 }

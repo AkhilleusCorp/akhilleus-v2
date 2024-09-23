@@ -3,7 +3,7 @@
 namespace App\Tests\integrations\UseCase\User;
 
 use App\Domain\Gateway\Provider\User\UserDTOProviderGateway;
-use App\Domain\Registry\UserTypeRegistry;
+use App\Domain\Registry\User\UserTypeRegistry;
 use App\Infrastructure\Exception\InvalidDataProfileException;
 use App\Infrastructure\Registry\DataProfileRegistry;
 use App\Infrastructure\View\ViewPresenter\User\SingleUserViewPresenter;

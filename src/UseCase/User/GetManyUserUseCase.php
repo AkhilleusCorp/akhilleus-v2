@@ -24,7 +24,7 @@ final class GetManyUserUseCase implements UseCaseInterface
         $filter = $this->filterFactory->buildGetManyUsersFilterModel($parameters);
         $users = $this->provider->getUsersByParameters($filter);
 
-        $usersCount = sizeof($users);
+        $usersCount = count($users);
         if ($usersCount === $filter->limit) {
             $usersCount = $this->provider->countUsersByParameters($filter);
         }
