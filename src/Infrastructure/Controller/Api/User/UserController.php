@@ -2,6 +2,8 @@
 
 namespace App\Infrastructure\Controller\Api\User;
 
+use App\Domain\Registry\User\UserStatusRegistry;
+use App\Domain\Registry\User\UserTypeRegistry;
 use App\Infrastructure\Controller\Api\Controller\AbstractAPIController;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
 use App\Infrastructure\View\ViewModel\User\SingleUserViewModel;
@@ -17,11 +19,15 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+
+#[OA\Tag('Users')]
 final class UserController extends AbstractAPIController
 {
     #[Route('/users', name:'user_get_many', methods: ['GET'])]
     #[OA\Parameter(name: 'username', in: 'query', required: false, schema: new OA\Schema(type: 'string'))]
     #[OA\Parameter(name: 'email', in: 'query', required: false, schema: new OA\Schema(type: 'string'))]
+    #[OA\Parameter(name: 'types', in: 'query', required: false, schema: new OA\Schema(type: 'array', items: new OA\Items(type: 'string', enum: UserTypeRegistry::USER_TYPES)))]
+    #[OA\Parameter(name: 'statuses', in: 'query', required: false, schema: new OA\Schema(type: 'array', items: new OA\Items(type: 'string', enum: UserStatusRegistry::USER_STATUSES)))]
     #[OA\Parameter(name: 'page', in: 'query', required: false, schema: new OA\Schema(type: 'number'))]
     #[OA\Parameter(name: 'limit', in: 'query', required: false, schema: new OA\Schema(type: 'number'))]
     #[OA\Response(
@@ -32,7 +38,7 @@ final class UserController extends AbstractAPIController
     public function getMany(Request $request, GetManyUserUseCase $useCase): JsonResponse
     {
         return new JsonResponse(
-            $useCase->execute($request->query->all(), $this->getDataProfile($request))
+            $useCase->execute($request->query->all(), $this->getDataProfile())
         );
     }
 
@@ -42,10 +48,10 @@ final class UserController extends AbstractAPIController
         description: 'Successfully returns a details of a User',
         content: new Model(type: SingleUserViewModel::class)
     )]
-    public function getOneById(Request $request, int $id, GetOneUserUseCase $useCase): JsonResponse
+    public function getOneById(int $id, GetOneUserUseCase $useCase): JsonResponse
     {
         return new JsonResponse(
-            $useCase->execute($id, $this->getDataProfile($request))
+            $useCase->execute($id, $this->getDataProfile())
         );
     }
 
@@ -58,7 +64,7 @@ final class UserController extends AbstractAPIController
     public function createOne(Request $request, CreateOneUserUseCase $useCase): JsonResponse
     {
         return new JsonResponse(
-            $useCase->execute(json_decode($request->getContent(), true), $this->getDataProfile($request))
+            $useCase->execute(json_decode($request->getContent(), true), $this->getDataProfile())
         );
     }
 
@@ -71,7 +77,7 @@ final class UserController extends AbstractAPIController
     public function updateOneById(Request $request, int $id, UpdateOneUserByIdUseCase $useCase): JsonResponse
     {
         return new JsonResponse(
-            $useCase->execute($id, json_decode($request->getContent(), true), $this->getDataProfile($request))
+            $useCase->execute($id, json_decode($request->getContent(), true), $this->getDataProfile())
         );
     }
 

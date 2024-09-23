@@ -78,6 +78,16 @@ final class UserDTORepository extends AbstractBaseDTORepository implements UserD
                 ->setParameter('email', '%' . $filter->email . '%');
         }
 
+        if (false === empty($filter->types)) {
+            $queryBuilder->andWhere('user.type IN (:types)')
+                ->setParameter('types', $filter->types);
+        }
+
+        if (false === empty($filter->statuses)) {
+            $queryBuilder->andWhere('user.status IN (:statuses)')
+                ->setParameter('statuses', $filter->statuses);
+        }
+
         return $this;
     }
 
