@@ -49,12 +49,14 @@ final class UserDTORepository extends AbstractBaseDTORepository implements UserD
         return $queryBuilder->getQuery()->getResult();
     }
 
-    public function countUsersByParameters(GetManyUsersFilterModel $filter): int
+    public function countUsersByParameters(?GetManyUsersFilterModel $filter): int
     {
         $queryBuilder = $this->createQueryBuilder($this->getAlias())
                               ->select('COUNT(DISTINCT user.id)');
 
-        $this->addParametersFromFilter($queryBuilder, $filter);
+        if (null !== $filter) {
+            $this->addParametersFromFilter($queryBuilder, $filter);
+        }
 
         return $queryBuilder->getQuery()->getSingleScalarResult();
     }
