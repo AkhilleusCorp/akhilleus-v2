@@ -4,7 +4,7 @@ namespace App\Infrastructure\Controller\Api\User;
 
 use App\Domain\Registry\User\UserStatusRegistry;
 use App\Domain\Registry\User\UserTypeRegistry;
-use App\Infrastructure\Controller\Api\Controller\AbstractAPIController;
+use App\Infrastructure\Controller\Api\AbstractAPIController;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
 use App\Infrastructure\View\ViewModel\User\SingleUserViewModel;
 use App\UseCase\User\CreateOneUserUseCase;

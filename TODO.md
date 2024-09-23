@@ -1,5 +1,6 @@
-## Quality / Testing
-* Add unit and integration tests on SF part
+## Refactoring
+* Create dedicated UseCaseInterface per CRUD operation
+* Split UseCase folder into API, Website
 
 ## Functionnalities
 ### User
@@ -18,5 +19,3 @@
     * title
     * status (draft, publish, suspended)
     * visibility (public, owner, follower, client, clients)
-    * visibleFrom (date)
-    * visibleTo (date)
