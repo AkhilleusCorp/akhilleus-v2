@@ -2,12 +2,13 @@
 
 namespace App\Infrastructure\Controller\Api\Controller;
 
+use App\Infrastructure\Registry\DataProfileRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 abstract class AbstractAPIController extends AbstractController
 {
     protected function getDataProfile(): string
     {
-        return 'admin'; // Todo: extract from token in the future
+        return DataProfileRegistry::DATA_PROFILE_ADMIN; // Todo: extract from token in the future
     }
 }

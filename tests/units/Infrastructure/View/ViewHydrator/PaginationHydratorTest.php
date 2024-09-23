@@ -3,6 +3,7 @@
 namespace App\Tests\units\Infrastructure\View\ViewHydrator;
 
 use App\Infrastructure\View\ViewHydrator\PaginationHydrator;
+use App\Infrastructure\View\ViewModel\PaginationViewModel;
 use PHPUnit\Framework\TestCase;
 
 final class PaginationHydratorTest extends TestCase
@@ -16,10 +17,10 @@ final class PaginationHydratorTest extends TestCase
         $pagination = $hydrator->hydrate()['pagination'];
 
 
-        $this->assertEquals($count, $pagination['count']);
-        $this->assertEquals(PaginationHydrator::DEFAULT_FIRST_PAGE, $pagination['firstPage']);
-        $this->assertEquals($page, $pagination['currentPage']);
-        $this->assertEquals($expectedLastPage, $pagination['lastPage']);
+        $this->assertEquals($count, $pagination->count);
+        $this->assertEquals(PaginationViewModel::DEFAULT_FIRST_PAGE, $pagination->firstPage);
+        $this->assertEquals($page, $pagination->currentPage);
+        $this->assertEquals($expectedLastPage, $pagination->lastPage);
     }
 
     public function testCountEqual0()
@@ -27,10 +28,10 @@ final class PaginationHydratorTest extends TestCase
         $hydrator = new PaginationHydrator(0, 1, 100);
         $pagination = $hydrator->hydrate()['pagination'];
 
-        $this->assertEquals(0, $pagination['count']);
-        $this->assertEquals(PaginationHydrator::DEFAULT_FIRST_PAGE, $pagination['firstPage']);
-        $this->assertEquals(PaginationHydrator::DEFAULT_FIRST_PAGE, $pagination['currentPage']);
-        $this->assertEquals(PaginationHydrator::DEFAULT_FIRST_PAGE, $pagination['lastPage']);
+        $this->assertEquals(0, $pagination->count);
+        $this->assertEquals(PaginationViewModel::DEFAULT_FIRST_PAGE, $pagination->firstPage);
+        $this->assertEquals(PaginationViewModel::DEFAULT_FIRST_PAGE, $pagination->currentPage);
+        $this->assertEquals(PaginationViewModel::DEFAULT_FIRST_PAGE, $pagination->lastPage);
     }
 
     public function countHigherThan0DataProvider(): array
