@@ -31,8 +31,8 @@ class UserDataModel implements DataModelInterface, UserInterface, PasswordAuthen
     #[ORM\Column(type: Types::STRING, length: 10, unique: false)]
     public string $type = UserTypeRegistry::USER_TYPE_MEMBER;
 
-    #[ORM\Column(type: Types::STRING, length: 10, unique: false)]
-    public string $status = UserStatusRegistry::USER_STATUS_ACTIVE;
+    #[ORM\Column(type: Types::STRING, length: 15, unique: false)]
+    public string $status = UserStatusRegistry::USER_STATUS_CREATED;
 
     public function getPassword(): ?string
     {

@@ -9,4 +9,6 @@ final class UpdateUserSourceModel implements SourceModelInterface
     public string $username;
 
     public string $email;
+
+    public string $status;
 }

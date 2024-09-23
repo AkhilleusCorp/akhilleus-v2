@@ -4,6 +4,7 @@ namespace App\UseCase\User;
 
 use App\Domain\Factory\FilterModelFactory\User\UsersFilterModelModelFactory;
 use App\Domain\Gateway\Provider\User\UserDTOProviderGateway;
+use App\Infrastructure\Registry\DataProfileRegistry;
 use App\Infrastructure\View\ViewHydrator\PaginationHydrator;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
 use App\Infrastructure\View\ViewPresenter\User\MultipleUserViewPresenter;
@@ -19,7 +20,7 @@ final class GetManyUserUseCase implements UseCaseInterface
 
     }
 
-    public function execute(array $parameters, string $dataProfile): MultipleObjectViewModel
+    public function execute(array $parameters, string $dataProfile = DataProfileRegistry::DATA_PROFILE_MEMBER): MultipleObjectViewModel
     {
         $filter = $this->filterFactory->buildGetManyUsersFilterModel($parameters);
         $users = $this->provider->getUsersByParameters($filter);

@@ -3,26 +3,26 @@
 namespace App\Tests\integrations\UseCase\User;
 
 use App\Domain\Gateway\Provider\User\UserDTOProviderGateway;
+use App\Domain\Registry\User\UserStatusRegistry;
 use App\Domain\Registry\User\UserTypeRegistry;
 use App\Infrastructure\Exception\InvalidDataProfileException;
 use App\Infrastructure\Registry\DataProfileRegistry;
 use App\Infrastructure\View\ViewPresenter\User\SingleUserViewPresenter;
+use App\Tests\integrations\AbstractIntegrationTest;
 use App\UseCase\User\GetOneUserUseCase;
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-final class GetOneUserUseCaseTest extends KernelTestCase
+final class GetOneUserUseCaseTest extends AbstractIntegrationTest
 {
     private GetOneUserUseCase $useCase;
 
     protected function setUp(): void
     {
-        static::bootKernel(['environment' => 'test', 'debug' => false]);
+        parent::setUp();
 
-        $container = static::getContainer();
         $this->useCase = new GetOneUserUseCase(
-            $container->get(UserDTOProviderGateway::class),
-            $container->get(SingleUserViewPresenter::class)
+            $this->container->get(UserDTOProviderGateway::class),
+            $this->container->get(SingleUserViewPresenter::class)
         );
     }
 
@@ -34,18 +34,20 @@ final class GetOneUserUseCaseTest extends KernelTestCase
         $this->assertEquals($userId, $viewModel->id);
         $this->assertEquals('ghriim', $viewModel->username);
         $this->assertEquals('ghriim@fakemail.com', $viewModel->email);
+        $this->assertEquals(UserStatusRegistry::USER_STATUS_ACTIVE, $viewModel->status);
         $this->assertEquals(UserTypeRegistry::USER_TYPE_MEMBER, $viewModel->type);
     }
 
     public function testGetOneUserForMemberDataProfile(): void
     {
         $userId = 1;
-        $viewModel = $this->useCase->execute($userId, DataProfileRegistry::DATA_PROFILE_MEMBER);
+        $viewModel = $this->useCase->execute($userId);
 
         $this->assertEquals($userId, $viewModel->id);
         $this->assertEquals('ghriim', $viewModel->username);
         $this->assertEquals('g*****@f*******.com', $viewModel->email);
-        $this->assertFalse(isset($viewModel->type));
+        $this->assertEquals(UserStatusRegistry::USER_STATUS_ACTIVE, $viewModel->status);
+        $this->assertEquals(UserTypeRegistry::USER_TYPE_MEMBER, $viewModel->type);
     }
 
     public function testGetOneUserForUnknownDataProfile(): void
