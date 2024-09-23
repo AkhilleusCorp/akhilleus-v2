@@ -24,6 +24,7 @@ use Symfony\Component\Routing\Attribute\Route;
 final class UserController extends AbstractAPIController
 {
     #[Route('/users', name:'user_get_many', methods: ['GET'])]
+    #[OA\Parameter(name: 'ids', in: 'query', required: false, schema: new OA\Schema(type: 'array', items: new OA\Items(type: 'integer')))]
     #[OA\Parameter(name: 'username', in: 'query', required: false, schema: new OA\Schema(type: 'string'))]
     #[OA\Parameter(name: 'email', in: 'query', required: false, schema: new OA\Schema(type: 'string'))]
     #[OA\Parameter(name: 'types', in: 'query', required: false, schema: new OA\Schema(type: 'array', items: new OA\Items(type: 'string', enum: UserTypeRegistry::USER_TYPES)))]

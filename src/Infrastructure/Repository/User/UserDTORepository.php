@@ -63,11 +63,9 @@ final class UserDTORepository extends AbstractBaseDTORepository implements UserD
 
     private function addParametersFromFilter(QueryBuilder $queryBuilder, GetManyUsersFilterModel $filter): self
     {
-        if (false === empty($filter->id)) {
-            $queryBuilder->andWhere('user.id = :id')
-                ->setParameter('id', $filter->username);
-
-            return $queryBuilder->getQuery()->getResult();
+        if (false === empty($filter->ids)) {
+            $queryBuilder->andWhere('user.id IN (:ids)')
+                ->setParameter('ids', $filter->ids);
         }
 
         if (false === empty($filter->username)) {
