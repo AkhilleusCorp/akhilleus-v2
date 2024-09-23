@@ -18,7 +18,7 @@ migrate_db:
 	 php bin/console doctrine:migrations:migrate -n
 
 load_fixtures:
-	php bin/console doctrine:fixtures:load -n
+	php bin/console doctrine:fixtures:load --purge-with-truncate -n
 
 init_project: .env.local create_local_db migrate_db load_fixtures
 
@@ -35,11 +35,11 @@ migrate_test_db:
 	 php bin/console doctrine:migrations:migrate -n --env=test
 
 load_test_fixtures:
-	php bin/console doctrine:fixtures:load -n --env=test
+	php bin/console doctrine:fixtures:load -n --purge-with-truncate --env=test
 
 init_test_env: create_test_db migrate_test_db
 
-reset_test_db: remove_test_db init_test_env
+reset_test_db: remove_test_db init_test_env load_test_fixtures
 
 tests_all:
 	XDEBUG_MODE=coverage vendor/bin/phpunit
