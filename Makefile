@@ -37,7 +37,7 @@ migrate_test_db:
 load_test_fixtures:
 	php bin/console doctrine:fixtures:load -n --env=test
 
-init_test_env: create_test_db migrate_test_db load_test_fixtures
+init_test_env: create_test_db migrate_test_db
 
 reset_test_db: remove_test_db init_test_env
 

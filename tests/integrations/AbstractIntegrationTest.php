@@ -23,7 +23,5 @@ abstract class AbstractIntegrationTest extends KernelTestCase
         if (!$process->isSuccessful()) {
             throw new ProcessFailedException($process);
         }
-
-        var_dump($process->getOutput()); die;
     }
 }
