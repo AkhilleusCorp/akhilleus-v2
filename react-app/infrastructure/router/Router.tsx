@@ -4,7 +4,7 @@ import {
 } from "react-router-dom";
 
 import routes from "./routes-mapping.tsx";
-import HomePage from "../../pages/HomePage.tsx";
+import DashboardPage from "../../pages/DashboardPage.tsx";
 import ErrorPage from "../../pages/ErrorPage.tsx";
 import UsersPage from "../../pages/user/UsersPage.tsx";
 import UserDetailsPage from "../../pages/user/UserDetailsPage.tsx";
@@ -19,7 +19,7 @@ const routerConfig = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <HomePage />,
+                element: <DashboardPage />,
             }, {
                 path: routes.userList,
                 children: [
