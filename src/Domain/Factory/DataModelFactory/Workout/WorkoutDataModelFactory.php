@@ -5,9 +5,9 @@ namespace App\Domain\Factory\DataModelFactory\Workout;
 use App\Domain\DTO\DataModel\Workout\WorkoutDataModel;
 use App\Domain\DTO\SourceModel\SourceModelInterface;
 use App\Domain\DTO\SourceModel\Workout\CreateWorkoutSourceModel;
-use App\Domain\Factory\DataModelFactory\DataModelFactoryInterface;
+use App\Domain\Factory\DataModelFactory\AbstractDataModelFactory;
 
-final class WorkoutDataModelFactory implements DataModelFactoryInterface
+final class WorkoutAbstractDataModelFactory implements AbstractDataModelFactory
 {
     public function buildNewDataModel(CreateWorkoutSourceModel|SourceModelInterface $source): WorkoutDataModel
     {
