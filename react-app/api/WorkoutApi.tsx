@@ -1,6 +1,7 @@
 import axios from "axios";
 import WorkoutDTO from "../dtos/WorkoutDTO.tsx";
 import WorkoutsListFilters from "../filters/WorkoutsListFilters.tsx";
+import AbstractAPI from "./AbstractAPI.tsx";
 
 class WorkoutAPI extends AbstractAPI {
     private static host = 'https://api.akhilleus.com:8000/api/workouts';

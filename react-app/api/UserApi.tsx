@@ -1,6 +1,7 @@
 import axios from "axios";
 import UserDTO from "../dtos/UserDTO.tsx";
 import UsersListFilters from "../filters/UsersListFilters.tsx";
+import AbstractAPI from "./AbstractAPI.tsx";
 
 class UserAPI extends AbstractAPI {
     private static host = 'https://api.akhilleus.com:8000/api/users';

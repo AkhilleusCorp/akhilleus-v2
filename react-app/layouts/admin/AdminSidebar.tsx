@@ -16,7 +16,7 @@ const AdminSidebar: React.FC = () => {
                 <ul>
                     <li><Link to={routes.dashboard}>Dashboard</Link></li>
                     <li><Link to={routes.user.list}>Users</Link></li>
-                    <li><Link to={routes.workout.list}>Workout</Link></li>
+                    <li><Link to={routes.workout.list}>Workouts</Link></li>
                 </ul>
             </nav>
         </aside>

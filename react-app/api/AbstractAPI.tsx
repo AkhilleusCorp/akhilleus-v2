@@ -4,3 +4,5 @@ abstract class AbstractAPI {
         return new URLSearchParams(params).toString();
     };
 }
+
+export default AbstractAPI;
