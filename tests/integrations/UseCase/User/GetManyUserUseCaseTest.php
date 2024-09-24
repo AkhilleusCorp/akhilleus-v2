@@ -67,7 +67,7 @@ final class GetManyUserUseCaseTest extends AbstractIntegrationTest
 
     public function testGetManyUserWithFilterIdsFilter(): void
     {
-        $view = $this->useCase->execute(['ids' => '1,2,3'], DataProfileRegistry::DATA_PROFILE_ADMIN);
+        $view = $this->useCase->execute(['ids' => '1,2,3', 'email' => 'null'], DataProfileRegistry::DATA_PROFILE_ADMIN);
         $this->assertCount(3, $view->data);
 
 
