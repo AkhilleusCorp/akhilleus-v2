@@ -41,5 +41,7 @@ init_test_env: create_test_db migrate_test_db
 
 reset_test_db: remove_test_db init_test_env load_test_fixtures
 
+reset_test_db: remove_test_db init_test_env
+
 tests_all:
 	XDEBUG_MODE=coverage vendor/bin/phpunit

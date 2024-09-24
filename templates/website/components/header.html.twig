@@ -7,6 +7,9 @@
     <div class="menu">
         <ul class="inline">
             {% if app.user %}
+                <li>
+                    <a href="/admin">{{ 'dashboard' | trans }}</a>
+                </li>
             <li>
                 <a href="/logout">{{ 'logout' | trans }}</a>
             </li>

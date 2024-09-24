@@ -2,7 +2,6 @@ import UserDTO from "../../dtos/UserDTO.tsx";
 import {useEffect, useState} from "react";
 import UserAPI from "../../api/UserApi.tsx";
 
-
 function useGetOneUseById(userId: string|undefined): UserDTO | null {
     if (!userId) {
         return null;

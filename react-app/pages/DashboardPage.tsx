@@ -1,7 +1,8 @@
 import React from 'react';
 import AdminLayout from "../layouts/admin/AdminLayout.tsx";
 
-const HomePage: React.FC = () => {
+const DashboardPage: React.FC = () => {
+
     return (
         <AdminLayout>
             <h1 className="text-3xl font-bold underline">
@@ -11,4 +12,4 @@ const HomePage: React.FC = () => {
     );
 }
 
-export default HomePage;
+export default DashboardPage;

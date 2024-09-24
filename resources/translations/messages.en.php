@@ -10,6 +10,7 @@ return [
     'register' => 'Register',
     'show_password' => 'Show password',
     'log_in' => 'Log in',
-    'logout' => 'logout',
+    'logout' => 'Logout',
     'sign_up' => 'Sign up',
+    'dashboard' => 'Dashboard'
 ];
