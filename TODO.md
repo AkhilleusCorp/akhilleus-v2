@@ -16,3 +16,8 @@
 ### Workout
 #### React
 * Add front end
+  * list
+  * details
+  * create
+  * update
+  * delete

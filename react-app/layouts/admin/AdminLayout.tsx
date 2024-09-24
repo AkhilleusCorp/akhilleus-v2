@@ -9,10 +9,6 @@ interface Props {
 }
 
 const AdminLayout: React.FC<Props> = (props) => {
-    const token = useGetAuthToken();
-
-    console.log('Token' + token);
-
     return (
         <>
             <AdminSidebar />
