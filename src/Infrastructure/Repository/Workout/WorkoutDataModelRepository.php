@@ -49,7 +49,7 @@ final class WorkoutDataModelRepository extends AbstractBaseDTORepository impleme
 
         if (false === empty($filter->name)) {
             $queryBuilder->andWhere('workout.name LIKE :name')
-                ->setParameter('workoutname', '%' . $filter->name . '%');
+                ->setParameter('name', '%' . $filter->name . '%');
         }
 
         if (false === empty($filter->statuses)) {

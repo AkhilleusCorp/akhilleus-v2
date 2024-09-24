@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import UserApi from "../../api/UserApi.tsx";
-import ConfirmActionModal from "../common/ConfirmActionModal.tsx";
+import ConfirmActionModal from "../common/modal/ConfirmActionModal.tsx";
 
 type UserDeleteButtonType = {
     userId: number,

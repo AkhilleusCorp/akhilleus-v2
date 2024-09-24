@@ -5,10 +5,10 @@ import UserEditButton from "./UserEditButton.tsx";
 
 type UserDetailsCardType = {
     user: UserDTO,
-    linkToDetails: boolean
+    displayActions: boolean
 }
 
-const UserDetailsCard: React.FC<UserDetailsCardType> = ({ user, linkToDetails }) => {
+const UserDetailsCard: React.FC<UserDetailsCardType> = ({ user, displayActions }) => {
     return (
         <div>
             <div className={"card"}>
@@ -25,7 +25,7 @@ const UserDetailsCard: React.FC<UserDetailsCardType> = ({ user, linkToDetails })
                     </div>
                 </div>
 
-                {linkToDetails && (
+                {displayActions && (
                     <div className={"card-footer"}>
                         <UserDetailsButton userId={user.id}/>
                         <UserEditButton userId={user.id} />

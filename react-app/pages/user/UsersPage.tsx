@@ -49,7 +49,7 @@ const UsersPage: React.FC = () => {
 
             <div className={"float-left padding-left-m one-thirds-width "}>
                 {userPreview && (
-                    <UserDetailsCard user={userPreview} linkToDetails={true}/>
+                    <UserDetailsCard user={userPreview} displayActions={true}/>
                 )}
             </div>
         </AdminLayout>
