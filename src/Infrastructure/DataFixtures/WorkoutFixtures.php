@@ -13,7 +13,7 @@ final class WorkoutFixtures extends AbstractFixtures
 {
     public function __construct(
         private readonly CreateWorkoutSourceModelFactory $sourceModelFactory,
-        private readonly WorkoutDataModelFactory         $dataModelFactory
+        private readonly WorkoutDataModelFactory $dataModelFactory
     ) {
     }
 

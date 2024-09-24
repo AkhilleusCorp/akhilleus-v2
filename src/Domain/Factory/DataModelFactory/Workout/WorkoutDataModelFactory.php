@@ -7,7 +7,7 @@ use App\Domain\DTO\SourceModel\SourceModelInterface;
 use App\Domain\DTO\SourceModel\Workout\CreateWorkoutSourceModel;
 use App\Domain\Factory\DataModelFactory\AbstractDataModelFactory;
 
-final class WorkoutAbstractDataModelFactory implements AbstractDataModelFactory
+final class WorkoutDataModelFactory extends AbstractDataModelFactory
 {
     public function buildNewDataModel(CreateWorkoutSourceModel|SourceModelInterface $source): WorkoutDataModel
     {

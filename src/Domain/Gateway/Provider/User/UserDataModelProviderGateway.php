@@ -5,7 +5,7 @@ namespace App\Domain\Gateway\Provider\User;
 use App\Domain\DTO\FilterModel\User\GetManyUsersFilterModel;
 use App\Domain\DTO\DataModel\User\UserDataModel;
 
-interface UserDTOProviderGateway
+interface UserDataModelProviderGateway
 {
     public function getUserById(int $userId): ?UserDataModel;
 

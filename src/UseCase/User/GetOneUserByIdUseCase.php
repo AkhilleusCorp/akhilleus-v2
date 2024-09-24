@@ -2,7 +2,7 @@
 
 namespace App\UseCase\User;
 
-use App\Domain\Gateway\Provider\User\UserDTOProviderGateway;
+use App\Domain\Gateway\Provider\User\UserDataModelProviderGateway;
 use App\Infrastructure\Registry\DataProfileRegistry;
 use App\Infrastructure\View\ViewModel\User\SingleUserViewModel;
 use App\Infrastructure\View\ViewPresenter\User\SingleUserViewPresenter;
@@ -12,8 +12,8 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 final class GetOneUserByIdUseCase implements UseCaseInterface
 {
     public function __construct(
-        private readonly UserDTOProviderGateway $provider,
-        private readonly SingleUserViewPresenter $presenter,
+        private readonly UserDataModelProviderGateway $provider,
+        private readonly SingleUserViewPresenter      $presenter,
     ) {
 
     }

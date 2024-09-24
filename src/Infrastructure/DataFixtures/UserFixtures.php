@@ -16,7 +16,7 @@ final class UserFixtures extends AbstractFixtures
 
     public function __construct(
         private readonly CreateUserSourceModelFactory $sourceModelFactory,
-        private readonly UserDataModelFactory         $dataModelFactory
+        private readonly UserDataModelFactory $dataModelFactory
     ) {
     }
 

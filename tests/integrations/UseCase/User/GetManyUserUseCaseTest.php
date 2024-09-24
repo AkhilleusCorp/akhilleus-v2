@@ -4,7 +4,7 @@ namespace App\Tests\integrations\UseCase\User;
 
 use App\Domain\DTO\FilterModel\User\GetManyUsersFilterModel;
 use App\Domain\Factory\FilterModelFactory\User\UsersFilterModelModelFactory;
-use App\Domain\Gateway\Provider\User\UserDTOProviderGateway;
+use App\Domain\Gateway\Provider\User\UserDataModelProviderGateway;
 use App\Infrastructure\Exception\InvalidDataProfileException;
 use App\Infrastructure\Registry\DataProfileRegistry;
 use App\Infrastructure\View\ViewModel\PaginationViewModel;
@@ -22,7 +22,7 @@ final class GetManyUserUseCaseTest extends AbstractIntegrationTest
         parent::setUp();
 
         $this->useCase = new GetManyUserUseCase(
-            $this->container->get(UserDTOProviderGateway::class),
+            $this->container->get(UserDataModelProviderGateway::class),
             $this->container->get(UsersFilterModelModelFactory::class),
             $this->container->get(MultipleUserViewPresenter::class)
         );

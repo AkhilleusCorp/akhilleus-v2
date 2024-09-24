@@ -2,7 +2,7 @@
 
 namespace App\UseCase\Workout;
 
-use App\Domain\Gateway\Provider\Workout\WorkoutDTOProviderGateway;
+use App\Domain\Gateway\Provider\Workout\WorkoutDataModelProviderGateway;
 use App\Infrastructure\Registry\DataProfileRegistry;
 use App\Infrastructure\View\ViewModel\Workout\SingleWorkoutViewModel;
 use App\Infrastructure\View\ViewPresenter\Workout\SingleWorkoutViewPresenter;
@@ -12,8 +12,8 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 final class GetOneWorkoutByIdUseCase implements UseCaseInterface
 {
     public function __construct(
-        private readonly WorkoutDTOProviderGateway $provider,
-        private readonly SingleWorkoutViewPresenter $presenter,
+        private readonly WorkoutDataModelProviderGateway $provider,
+        private readonly SingleWorkoutViewPresenter      $presenter,
     ) {
 
     }

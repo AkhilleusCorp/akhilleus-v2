@@ -5,7 +5,7 @@ namespace App\Domain\Gateway\Provider\Workout;
 use App\Domain\DTO\DataModel\Workout\WorkoutDataModel;
 use App\Domain\DTO\FilterModel\Workout\GetManyWorkoutsFilterModel;
 
-interface WorkoutDTOProviderGateway
+interface WorkoutDataModelProviderGateway
 {
     public function getWorkoutById(int $workoutId): ?WorkoutDataModel;
 

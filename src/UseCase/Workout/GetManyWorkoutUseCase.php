@@ -3,7 +3,7 @@
 namespace App\UseCase\Workout;
 
 use App\Domain\Factory\FilterModelFactory\Workout\WorkoutsFilterModelModelFactory;
-use App\Domain\Gateway\Provider\Workout\WorkoutDTOProviderGateway;
+use App\Domain\Gateway\Provider\Workout\WorkoutDataModelProviderGateway;
 use App\Infrastructure\Registry\DataProfileRegistry;
 use App\Infrastructure\View\ViewHydrator\PaginationHydrator;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
@@ -13,9 +13,9 @@ use App\UseCase\UseCaseInterface;
 final class GetManyWorkoutUseCase implements UseCaseInterface
 {
     public function __construct(
-        private readonly WorkoutDTOProviderGateway $provider,
+        private readonly WorkoutDataModelProviderGateway $provider,
         private readonly WorkoutsFilterModelModelFactory $filterFactory,
-        private readonly MultipleWorkoutViewPresenter $presenter,
+        private readonly MultipleWorkoutViewPresenter    $presenter,
     ) {
 
     }

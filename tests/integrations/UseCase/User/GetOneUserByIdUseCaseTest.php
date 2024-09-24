@@ -2,7 +2,7 @@
 
 namespace App\Tests\integrations\UseCase\User;
 
-use App\Domain\Gateway\Provider\User\UserDTOProviderGateway;
+use App\Domain\Gateway\Provider\User\UserDataModelProviderGateway;
 use App\Domain\Registry\User\UserStatusRegistry;
 use App\Domain\Registry\User\UserTypeRegistry;
 use App\Infrastructure\Exception\InvalidDataProfileException;
@@ -21,7 +21,7 @@ final class GetOneUserByIdUseCaseTest extends AbstractIntegrationTest
         parent::setUp();
 
         $this->useCase = new GetOneUserByIdUseCase(
-            $this->container->get(UserDTOProviderGateway::class),
+            $this->container->get(UserDataModelProviderGateway::class),
             $this->container->get(SingleUserViewPresenter::class)
         );
     }

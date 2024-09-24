@@ -2,7 +2,7 @@
 
 namespace App\Tests\integrations\UseCase\Workout;
 
-use App\Domain\Gateway\Provider\Workout\WorkoutDTOProviderGateway;
+use App\Domain\Gateway\Provider\Workout\WorkoutDataModelProviderGateway;
 use App\Domain\Registry\Workout\WorkoutStatusRegistry;
 use App\Domain\Registry\Workout\WorkoutVisibilityRegistry;
 use App\Infrastructure\Exception\InvalidDataProfileException;
@@ -21,7 +21,7 @@ final class GetOneWorkoutByIdUseCaseTest extends AbstractIntegrationTest
         parent::setUp();
 
         $this->useCase = new GetOneWorkoutByIdUseCase(
-            $this->container->get(WorkoutDTOProviderGateway::class),
+            $this->container->get(WorkoutDataModelProviderGateway::class),
             $this->container->get(SingleWorkoutViewPresenter::class)
         );
     }

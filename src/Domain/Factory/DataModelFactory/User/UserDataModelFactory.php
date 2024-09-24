@@ -8,7 +8,7 @@ use App\Domain\DTO\SourceModel\User\CreateUserSourceModel;
 use App\Domain\Factory\DataModelFactory\AbstractDataModelFactory;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
-final class UserAbstractDataModelFactory extends AbstractDataModelFactory
+final class UserDataModelFactory extends AbstractDataModelFactory
 {
     public function __construct(private readonly UserPasswordHasherInterface $hasher)
     {

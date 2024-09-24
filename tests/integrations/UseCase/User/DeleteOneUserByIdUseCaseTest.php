@@ -3,8 +3,8 @@
 namespace App\Tests\integrations\UseCase\User;
 
 use App\Domain\Gateway\Persister\User\UserDataModelPersisterGateway;
-use App\Domain\Gateway\Provider\User\UserDTOProviderGateway;
-use App\Infrastructure\Repository\User\UserDTORepository;
+use App\Domain\Gateway\Provider\User\UserDataModelProviderGateway;
+use App\Infrastructure\Repository\User\UserDataModelRepository;
 use App\Tests\integrations\AbstractIntegrationTest;
 use App\UseCase\User\DeleteOneUserByIdUseCase;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -12,18 +12,18 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 final class DeleteOneUserByIdUseCaseTest extends AbstractIntegrationTest
 {
     private DeleteOneUserByIdUseCase $useCase;
-    private UserDTORepository $userDTORepository;
+    private UserDataModelRepository $userDTORepository;
 
     public function setUp(): void
     {
         parent::setUp();
 
         $this->useCase = new DeleteOneUserByIdUseCase(
-            $this->container->get(UserDTOProviderGateway::class),
+            $this->container->get(UserDataModelProviderGateway::class),
             $this->container->get(UserDataModelPersisterGateway::class)
         );
 
-        $this->userDTORepository = $this->container->get(UserDTORepository::class);
+        $this->userDTORepository = $this->container->get(UserDataModelRepository::class);
     }
 
     public function testDeleteExistingUser(): void
