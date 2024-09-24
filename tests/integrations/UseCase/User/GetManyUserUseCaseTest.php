@@ -116,5 +116,4 @@ final class GetManyUserUseCaseTest extends AbstractIntegrationTest
         $view = $this->useCase->execute(['statuses' => 'created']);
         $this->assertCount(9, $view->data);
     }
-
 }
