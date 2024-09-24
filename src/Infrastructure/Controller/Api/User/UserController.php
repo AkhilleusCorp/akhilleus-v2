@@ -20,7 +20,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 
-#[OA\Tag('Users')]
+#[OA\Tag('USERS')]
 final class UserController extends AbstractAPIController
 {
     #[Route('/users', name:'user_get_many', methods: ['GET'])]

@@ -8,7 +8,7 @@ use App\Domain\Registry\User\UserTypeRegistry;
 use App\Infrastructure\Persister\User\UserDTOPersister;
 use App\Infrastructure\Registry\DataProfileRegistry;
 use App\Infrastructure\View\ViewModel\User\SingleUserViewModel;
-use App\Infrastructure\View\ViewPresenter\User\SingleUserViewPresenter;
+use App\Infrastructure\View\ViewPresenter\User\SingleUserWorkoutPresenter;
 use App\UseCase\UseCaseInterface;
 
 final class CreateOneUserUseCase implements UseCaseInterface
@@ -17,7 +17,7 @@ final class CreateOneUserUseCase implements UseCaseInterface
         private readonly CreateUserSourceModelFactory $sourceModelFactory,
         private readonly UserDataModelFactory         $dataModelFactory,
         private readonly UserDTOPersister             $persister,
-        private readonly SingleUserViewPresenter      $presenter,
+        private readonly SingleUserWorkoutPresenter   $presenter,
     ) {
 
     }

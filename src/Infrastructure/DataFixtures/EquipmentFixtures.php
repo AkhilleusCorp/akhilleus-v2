@@ -27,7 +27,7 @@ final class EquipmentFixtures extends AbstractFixtures
             $equipment = $this->dataModelFactory->buildNewDataModel($source);
             $manager->persist($equipment);
 
-            $this->addReference("equipment-{$name}", $equipment);
+            $this->addReference("equipment-{$equipment->name}", $equipment);
         }
     }
 
@@ -42,7 +42,7 @@ final class EquipmentFixtures extends AbstractFixtures
             $equipment = $this->dataModelFactory->buildNewDataModel($source);
             $manager->persist($equipment);
 
-            $this->addReference("equipment-{$name}", $equipment);
+            $this->addReference("equipment-{$equipment->name}", $equipment);
         }
     }
 }

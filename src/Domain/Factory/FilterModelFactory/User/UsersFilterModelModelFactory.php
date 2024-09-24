@@ -8,7 +8,7 @@ use App\Domain\Factory\FilterModelFactory\AbstractFilterModelFactory;
 
 final class UsersFilterModelModelFactory extends AbstractFilterModelFactory
 {
-    public function buildGetManyUsersFilterModel(array $parameters): GetManyUsersFilterModel
+    public function buildGetManyUsersFilterModel(array $parameters): GetManyUsersFilterModel|FilterModelInterface
     {
         return $this->buildFilter(
             $this->purgeNullStringValues($parameters),

@@ -38,10 +38,11 @@ abstract class AbstractFilterModelFactory
     private function castType($value, string $propertyType): mixed
     {
         return match ($propertyType) {
+            'string' => trim($value),
             'int' => (int) $value,
             'float' => (float) $value,
             'bool' => (bool)$value,
-            'array' => explode(',', $value),
+            'array' => explode(',', trim($value)),
             default => $value,
         };
     }
