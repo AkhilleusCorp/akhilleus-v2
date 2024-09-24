@@ -13,8 +13,8 @@ final class WorkoutDataModelFactory implements DataModelFactoryInterface
     {
         $workout = new WorkoutDataModel();
         $workout->name = $source->name;
-        $workout->status = $source->status;
-        $workout->visibility = $source->visibility;
+        $workout->status = $source->status ?? $workout->status;
+        $workout->visibility = $source->visibility ?? $workout->visibility;
 
         return $workout;
     }

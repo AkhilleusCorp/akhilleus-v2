@@ -2,7 +2,7 @@
 
 namespace App\Tests\integrations\UseCase\User;
 
-use App\Domain\Gateway\Persister\User\UserDTOPersisterGateway;
+use App\Domain\Gateway\Persister\User\UserDataModelPersisterGateway;
 use App\Domain\Gateway\Provider\User\UserDTOProviderGateway;
 use App\Infrastructure\Repository\User\UserDTORepository;
 use App\Tests\integrations\AbstractIntegrationTest;
@@ -20,7 +20,7 @@ final class DeleteOneUserByIdUseCaseTest extends AbstractIntegrationTest
 
         $this->useCase = new DeleteOneUserByIdUseCase(
             $this->container->get(UserDTOProviderGateway::class),
-            $this->container->get(UserDTOPersisterGateway::class)
+            $this->container->get(UserDataModelPersisterGateway::class)
         );
 
         $this->userDTORepository = $this->container->get(UserDTORepository::class);

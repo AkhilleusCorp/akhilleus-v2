@@ -6,7 +6,7 @@ use App\Domain\Factory\DataModelFactory\User\UserDataModelFactory;
 use App\Domain\Factory\SourceModelFactory\User\UpdateUserSourceModelFactory;
 use App\Domain\Gateway\Provider\User\UserDTOProviderGateway;
 use App\Domain\Registry\User\UserStatusRegistry;
-use App\Infrastructure\Persister\User\UserDTOPersister;
+use App\Infrastructure\Persister\User\UserDataModelPersister;
 use App\Infrastructure\Registry\DataProfileRegistry;
 use App\Infrastructure\Repository\User\UserDTORepository;
 use App\Infrastructure\View\ViewPresenter\User\SingleUserViewPresenter;
@@ -27,7 +27,7 @@ final class UpdateOneUserByIdUseCaseTest extends AbstractIntegrationTest
             $this->container->get(UpdateUserSourceModelFactory::class),
             $this->container->get(UserDataModelFactory::class),
             $this->container->get(UserDTOProviderGateway::class),
-            $this->container->get(UserDTOPersister::class),
+            $this->container->get(UserDataModelPersister::class),
             $this->container->get(SingleUserViewPresenter::class),
         );
 
