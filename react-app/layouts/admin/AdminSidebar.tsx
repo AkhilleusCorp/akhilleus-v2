@@ -8,11 +8,15 @@ const AdminSidebar: React.FC = () => {
     return (
         <aside id={"main-logged-menu"}>
             <header>
-                <h1>Akhilleus</h1>
+                <h1>
+                    <a href={'/'} title={"Website homepage"}>
+                        Akhilleus
+                    </a>
+                </h1>
             </header>
             <nav>
                 <ul>
-                    <li><Link to={routes.dashboard}><HomeIcon />Home</Link></li>
+                    <li><Link to={routes.dashboard}><HomeIcon />Dashboard</Link></li>
                     <li><Link to={routes.userList}><PeopleAltIcon />Users</Link></li>
                 </ul>
             </nav>
