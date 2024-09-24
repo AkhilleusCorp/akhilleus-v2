@@ -2,16 +2,16 @@
 
 namespace App\UseCase\User;
 
-use App\Domain\Gateway\Persister\User\UserDTOPersisterGateway;
-use App\Domain\Gateway\Provider\User\UserDTOProviderGateway;
+use App\Domain\Gateway\Persister\User\UserDataModelPersisterGateway;
+use App\Domain\Gateway\Provider\User\UserDataModelProviderGateway;
 use App\UseCase\UseCaseInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 final class DeleteOneUserByIdUseCase implements UseCaseInterface
 {
     public function __construct(
-        private readonly UserDTOProviderGateway $provider,
-        private readonly UserDTOPersisterGateway $persister,
+        private readonly UserDataModelProviderGateway  $provider,
+        private readonly UserDataModelPersisterGateway $persister,
     ) {
 
     }

@@ -2,26 +2,26 @@
 
 namespace App\Tests\integrations\UseCase\User;
 
-use App\Domain\Gateway\Provider\User\UserDTOProviderGateway;
+use App\Domain\Gateway\Provider\User\UserDataModelProviderGateway;
 use App\Domain\Registry\User\UserStatusRegistry;
 use App\Domain\Registry\User\UserTypeRegistry;
 use App\Infrastructure\Exception\InvalidDataProfileException;
 use App\Infrastructure\Registry\DataProfileRegistry;
 use App\Infrastructure\View\ViewPresenter\User\SingleUserViewPresenter;
 use App\Tests\integrations\AbstractIntegrationTest;
-use App\UseCase\User\GetOneUserUseCase;
+use App\UseCase\User\GetOneUserByIdUseCase;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-final class GetOneUserUseCaseTest extends AbstractIntegrationTest
+final class GetOneUserByIdUseCaseTest extends AbstractIntegrationTest
 {
-    private GetOneUserUseCase $useCase;
+    private GetOneUserByIdUseCase $useCase;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->useCase = new GetOneUserUseCase(
-            $this->container->get(UserDTOProviderGateway::class),
+        $this->useCase = new GetOneUserByIdUseCase(
+            $this->container->get(UserDataModelProviderGateway::class),
             $this->container->get(SingleUserViewPresenter::class)
         );
     }

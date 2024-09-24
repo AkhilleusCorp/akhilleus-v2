@@ -11,6 +11,32 @@ abstract class AbstractBaseDTORepository extends ServiceEntityRepository
 {
     protected abstract function getAlias(): string;
 
+    protected abstract function addParametersFromFilter(QueryBuilder $queryBuilder, FilterModelInterface $filter);
+
+    protected function getDataModelByParameters(FilterModelInterface $filter): array
+    {
+        $queryBuilder = $this->createQueryBuilder($this->getAlias());
+
+        $this->addParametersFromFilter($queryBuilder, $filter)
+            ->addPaginationConditions($queryBuilder, $filter)
+            ->addSortConditions($queryBuilder, $filter);
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
+    protected function countDataModelByParameters(?FilterModelInterface $filter): int
+    {
+        $alias = $this->getAlias();
+        $queryBuilder = $this->createQueryBuilder($alias)
+            ->select("COUNT(DISTINCT {$alias}.id)");
+
+        if (null !== $filter) {
+            $this->addParametersFromFilter($queryBuilder, $filter);
+        }
+
+        return $queryBuilder->getQuery()->getSingleScalarResult();
+    }
+
     protected function addPaginationConditions(QueryBuilder $queryBuilder, FilterModelInterface $filter): self
     {
         if (property_exists($filter, 'limit')) {

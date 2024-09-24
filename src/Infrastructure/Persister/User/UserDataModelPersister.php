@@ -4,10 +4,10 @@ namespace App\Infrastructure\Persister\User;
 
 use App\Domain\DTO\DataModel\DataModelInterface;
 use App\Domain\DTO\DataModel\User\UserDataModel;
-use App\Domain\Gateway\Persister\User\UserDTOPersisterGateway;
-use App\Infrastructure\Persister\AbstractDTOPersister;
+use App\Domain\Gateway\Persister\User\UserDataModelPersisterGateway;
+use App\Infrastructure\Persister\AbstractEntityPersister;
 
-final class UserDTOPersister extends AbstractDTOPersister implements UserDTOPersisterGateway
+final class UserDataModelPersister extends AbstractEntityPersister implements UserDataModelPersisterGateway
 {
     public function create(UserDataModel|DataModelInterface $dto, bool $flush = true): UserDataModel
     {

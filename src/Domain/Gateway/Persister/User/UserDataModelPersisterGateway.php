@@ -4,7 +4,7 @@ namespace App\Domain\Gateway\Persister\User;
 
 use App\Domain\DTO\DataModel\User\UserDataModel;
 
-interface UserDTOPersisterGateway
+interface UserDataModelPersisterGateway
 {
     public function create(UserDataModel $dto, bool $flush = true): UserDataModel;
 

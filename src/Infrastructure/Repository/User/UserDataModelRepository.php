@@ -2,20 +2,17 @@
 
 namespace App\Infrastructure\Repository\User;
 
-use App\Domain\DTO\FilterModel\PaginableFilterInterface;
+use App\Domain\DTO\FilterModel\FilterModelInterface;
 use App\Domain\DTO\FilterModel\User\GetManyUsersFilterModel;
 use App\Domain\DTO\DataModel\User\UserDataModel;
-use App\Domain\Gateway\Provider\User\UserDTOProviderGateway;
+use App\Domain\Gateway\Provider\User\UserDataModelProviderGateway;
 use App\Infrastructure\Repository\AbstractBaseDTORepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
-use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Security\Core\User\UserInterface as TUser;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 
-final class UserDTORepository extends AbstractBaseDTORepository implements UserDTOProviderGateway, UserProviderInterface
+final class UserDataModelRepository extends AbstractBaseDTORepository implements UserDataModelProviderGateway, UserProviderInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
@@ -40,28 +37,15 @@ final class UserDTORepository extends AbstractBaseDTORepository implements UserD
      */
     public function getUsersByParameters(GetManyUsersFilterModel $filter): array
     {
-        $queryBuilder = $this->createQueryBuilder($this->getAlias());
-
-        $this->addParametersFromFilter($queryBuilder, $filter)
-             ->addPaginationConditions($queryBuilder, $filter)
-             ->addSortConditions($queryBuilder, $filter);
-
-        return $queryBuilder->getQuery()->getResult();
+        return $this->getDataModelByParameters($filter);
     }
 
     public function countUsersByParameters(?GetManyUsersFilterModel $filter): int
     {
-        $queryBuilder = $this->createQueryBuilder($this->getAlias())
-                              ->select('COUNT(DISTINCT user.id)');
-
-        if (null !== $filter) {
-            $this->addParametersFromFilter($queryBuilder, $filter);
-        }
-
-        return $queryBuilder->getQuery()->getSingleScalarResult();
+        return $this->countDataModelByParameters($filter);
     }
 
-    private function addParametersFromFilter(QueryBuilder $queryBuilder, GetManyUsersFilterModel $filter): self
+    protected function addParametersFromFilter(QueryBuilder $queryBuilder, GetManyUsersFilterModel|FilterModelInterface $filter): self
     {
         if (false === empty($filter->ids)) {
             $queryBuilder->andWhere('user.id IN (:ids)')

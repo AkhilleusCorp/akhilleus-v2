@@ -5,7 +5,7 @@ namespace App\Infrastructure\Persister;
 use App\Domain\DTO\DataModel\DataModelInterface;
 use Doctrine\ORM\EntityManagerInterface;
 
-abstract class AbstractDTOPersister
+abstract class AbstractEntityPersister
 {
     public function __construct(private EntityManagerInterface $entityManager)
     {

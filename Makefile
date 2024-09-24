@@ -44,4 +44,5 @@ reset_test_db: remove_test_db init_test_env load_test_fixtures
 reset_test_db: remove_test_db init_test_env
 
 tests_all:
+	rm -rf var/cache/test #prevent test failing due to outdated cache
 	XDEBUG_MODE=coverage vendor/bin/phpunit
