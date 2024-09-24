@@ -19,7 +19,7 @@ const UserDetailsPage: React.FC = () => {
 
     const onConfirmDelete = (userId: number) => {
         console.log(userId);
-        navigate(routes.userList);
+        navigate(routes.user.list);
     }
 
     return (

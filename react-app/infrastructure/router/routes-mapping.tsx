@@ -1,9 +1,17 @@
 const routes = {
     dashboard: '/admin',
-    userList: '/admin/users',
-    userDetails: (userId: number|string) => `/admin/users/${userId}`,
-    userCreate: '/admin/users/new',
-    userEdit: (userId: number|string) => `/admin/users/${userId}/edit`,
+    user: {
+        list: '/admin/users',
+        details: (userId: number|string) => `/admin/users/${userId}`,
+        create: '/admin/users/new',
+        edit: (userId: number|string) => `/admin/users/${userId}/edit`,
+    },
+    workout: {
+        list: '/admin/workouts',
+        details: (workoutId: number|string) => `/admin/workouts/${workoutId}`,
+        create: '/admin/workouts/new',
+        edit: (workoutId: number|string) => `/admin/workouts/${workoutId}/edit`,
+    },
     logout: '/logout'
 }
 

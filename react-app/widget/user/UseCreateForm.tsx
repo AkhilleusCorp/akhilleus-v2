@@ -23,7 +23,7 @@ const UserCreateForm: React.FC = () => {
         event.preventDefault();
         try {
             const user = await UserAPI.createUser(userCreate);
-            navigate(routes.userDetails(user.id));
+            navigate(routes.user.details(user.id));
         } catch (error) {
             console.log(error);
         }

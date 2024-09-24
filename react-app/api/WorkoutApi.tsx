@@ -1,12 +1,12 @@
 import axios from "axios";
-import UserDTO from "../dtos/UserDTO.tsx";
-import UsersListFilters from "../filters/UsersListFilters.tsx";
+import WorkoutDTO from "../dtos/WorkoutDTO.tsx";
+import WorkoutsListFilters from "../filters/WorkoutsListFilters.tsx";
 
-class UserAPI extends AbstractAPI {
-    private static host = 'https://api.akhilleus.com:8000/api/users';
+class WorkoutAPI extends AbstractAPI {
+    private static host = 'https://api.akhilleus.com:8000/api/workouts';
 
-    static async getOneUser (userId: string|number): Promise<UserDTO|null> {
-        const response = await axios.get(this.host +'/' + userId);
+    static async getOneWorkout (workoutId: string|number): Promise<WorkoutDTO|null> {
+        const response = await axios.get(this.host +'/' + workoutId);
 
         if (response.status !== 200) {
             throw new Error('An error as occurred');
@@ -15,7 +15,7 @@ class UserAPI extends AbstractAPI {
         return response.data;
     }
 
-    static async getManyUsers (filters: UsersListFilters): Promise<UserDTO[]> {
+    static async getManyWorkouts (filters: WorkoutsListFilters): Promise<WorkoutDTO[]> {
         const queryParams = this.objectToQueryParams(filters);
         const response = await axios.get(this.host+'?'+queryParams);
 
@@ -26,7 +26,7 @@ class UserAPI extends AbstractAPI {
         return response.data.data;
     }
 
-    static async createUser (formData: unknown): Promise<UserDTO> {
+    static async createWorkout (formData: unknown): Promise<WorkoutDTO> {
         const response = await axios.post(
             this.host,
             formData
@@ -39,9 +39,9 @@ class UserAPI extends AbstractAPI {
         return response.data;
     }
 
-    static async updateUser (userId: number, formData: unknown): Promise<UserDTO> {
+    static async updateWorkout (workoutId: number, formData: unknown): Promise<WorkoutDTO> {
         const response = await axios.put(
-            this.host + '/' + userId,
+            this.host + '/' + workoutId,
             formData
         );
 
@@ -52,8 +52,8 @@ class UserAPI extends AbstractAPI {
         return response.data;
     }
 
-    static async deleteUser (userId: string|number): Promise<void> {
-        const response = await axios.delete(this.host +'/' + userId);
+    static async deleteWorkout (workoutId: string|number): Promise<void> {
+        const response = await axios.delete(this.host +'/' + workoutId);
 
         if (response.status !== 200) {
             throw new Error('An error as occurred');
@@ -61,4 +61,4 @@ class UserAPI extends AbstractAPI {
     }
 }
 
-export default UserAPI;
+export default WorkoutAPI;

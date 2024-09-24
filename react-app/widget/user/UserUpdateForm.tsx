@@ -24,7 +24,7 @@ const UserEditForm: React.FC<UserEditFormType> = ({user}) => {
         event.preventDefault();
         try {
             await UserAPI.updateUser(user.id, userUpdated);
-            navigate(routes.userDetails(user.id));
+            navigate(routes.user.details(user.id));
         } catch (error) {
             console.log(error);
         }

@@ -11,6 +11,10 @@ import UserDetailsPage from "../../pages/user/UserDetailsPage.tsx";
 import * as React from "react";
 import UserCreatePage from "../../pages/user/UserCreatePage.tsx";
 import UserUpdatePage from "../../pages/user/UserUpdatePage.tsx";
+import WorkoutsPage from "../../pages/workout/WorkoutsPage.tsx";
+import WorkoutCreatePage from "../../pages/workout/WorkoutCreatePage.tsx";
+import WorkoutUpdatePage from "../../pages/workout/WorkoutUpdatePage.tsx";
+import WorkoutDetailsPage from "../../pages/workout/WorkoutDetailsPage.tsx";
 
 const routerConfig = createBrowserRouter([
     {
@@ -21,20 +25,37 @@ const routerConfig = createBrowserRouter([
                 index: true,
                 element: <DashboardPage />,
             }, {
-                path: routes.userList,
+                path: routes.user.list,
                 children: [
                     {
                         index: true,
                         element: <UsersPage />,
                     }, {
-                        path: routes.userCreate,
+                        path: routes.user.create,
                         element: <UserCreatePage />,
                     }, {
-                        path: routes.userEdit(':userId'),
+                        path: routes.user.edit(':userId'),
                         element: <UserUpdatePage />,
                     }, {
-                        path: routes.userDetails(':userId'),
+                        path: routes.user.details(':userId'),
                         element: <UserDetailsPage />,
+                    }
+                ]
+            }, {
+                path: routes.workout.list,
+                children: [
+                    {
+                        index: true,
+                        element: <WorkoutsPage />,
+                    }, {
+                        path: routes.workout.create,
+                        element: <WorkoutCreatePage />,
+                    }, {
+                        path: routes.workout.edit(':workoutId'),
+                        element: <WorkoutUpdatePage />,
+                    }, {
+                        path: routes.workout.details(':workoutId'),
+                        element: <WorkoutDetailsPage />,
                     }
                 ]
             },

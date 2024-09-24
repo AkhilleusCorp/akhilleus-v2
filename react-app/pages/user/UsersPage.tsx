@@ -37,7 +37,7 @@ const UsersPage: React.FC = () => {
             </div>
 
             <div className={"margin-bottom-s"}>
-                <Link to={routes.userCreate}>Create New User</Link>
+                <Link to={routes.user.create}>Create New User</Link>
             </div>
 
             <div className={"float-left two-thirds-width"}>

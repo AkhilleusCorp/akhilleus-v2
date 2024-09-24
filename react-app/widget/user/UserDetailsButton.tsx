@@ -9,7 +9,7 @@ type UserEditButtonType = {
 const UserDetailsButton: React.FC<UserEditButtonType> = ({ userId }) => {
     const navigate = useNavigate();
     const handleClick = () => {
-        navigate(routes.userDetails(userId));
+        navigate(routes.user.details(userId));
     }
 
     return (
