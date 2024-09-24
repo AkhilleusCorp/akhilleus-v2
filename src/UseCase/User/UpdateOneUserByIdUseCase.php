@@ -8,7 +8,7 @@ use App\Domain\Gateway\Provider\User\UserDTOProviderGateway;
 use App\Infrastructure\Persister\User\UserDTOPersister;
 use App\Infrastructure\Registry\DataProfileRegistry;
 use App\Infrastructure\View\ViewModel\User\SingleUserViewModel;
-use App\Infrastructure\View\ViewPresenter\User\SingleUserWorkoutPresenter;
+use App\Infrastructure\View\ViewPresenter\User\SingleUserViewPresenter;
 use App\UseCase\UseCaseInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -19,7 +19,7 @@ final class UpdateOneUserByIdUseCase implements UseCaseInterface
         private readonly UserDataModelFactory         $dataModelFactory,
         private readonly UserDTOProviderGateway       $provider,
         private readonly UserDTOPersister             $persister,
-        private readonly SingleUserWorkoutPresenter   $presenter,
+        private readonly SingleUserViewPresenter   $presenter,
     ) {
 
     }

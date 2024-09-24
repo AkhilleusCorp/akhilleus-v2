@@ -2,20 +2,20 @@
 
 namespace App\UseCase\User;
 
-use App\Domain\Factory\FilterModelFactory\User\WorkoutsFilterModelModelFactory;
+use App\Domain\Factory\FilterModelFactory\User\UsersFilterModelModelFactory;
 use App\Domain\Gateway\Provider\User\UserDTOProviderGateway;
 use App\Infrastructure\Registry\DataProfileRegistry;
 use App\Infrastructure\View\ViewHydrator\PaginationHydrator;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
-use App\Infrastructure\View\ViewPresenter\User\MultipleWorkoutViewPresenter;
+use App\Infrastructure\View\ViewPresenter\User\MultipleUserViewPresenter;
 use App\UseCase\UseCaseInterface;
 
 final class GetManyUserUseCase implements UseCaseInterface
 {
     public function __construct(
         private readonly UserDTOProviderGateway          $provider,
-        private readonly WorkoutsFilterModelModelFactory $filterFactory,
-        private readonly MultipleWorkoutViewPresenter    $presenter,
+        private readonly UsersFilterModelModelFactory $filterFactory,
+        private readonly MultipleUserViewPresenter    $presenter,
     ) {
 
     }

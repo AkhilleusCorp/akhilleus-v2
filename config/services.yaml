@@ -19,8 +19,11 @@ services:
         resource: '../src/'
         exclude:
             - '../src/DependencyInjection/'
-            - '../src/Domain/DTO/'
             - '../src/Kernel.php'
+            - '../src/Domain/DTO/'
+            - '../src/Domain/Registry/'
+            - '../src/Infrastructure/Exception/'
+            - '../src/Infrastructure/Registry/'
 
     App\Infrastructure\EventListener\HttpExceptionEventListener:
         tags:
