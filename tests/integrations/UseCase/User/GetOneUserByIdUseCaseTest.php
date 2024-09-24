@@ -9,18 +9,18 @@ use App\Infrastructure\Exception\InvalidDataProfileException;
 use App\Infrastructure\Registry\DataProfileRegistry;
 use App\Infrastructure\View\ViewPresenter\User\SingleUserViewPresenter;
 use App\Tests\integrations\AbstractIntegrationTest;
-use App\UseCase\User\GetOneUserUseCase;
+use App\UseCase\User\GetOneUserByIdUseCase;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-final class GetOneUserUseCaseTest extends AbstractIntegrationTest
+final class GetOneUserByIdUseCaseTest extends AbstractIntegrationTest
 {
-    private GetOneUserUseCase $useCase;
+    private GetOneUserByIdUseCase $useCase;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->useCase = new GetOneUserUseCase(
+        $this->useCase = new GetOneUserByIdUseCase(
             $this->container->get(UserDTOProviderGateway::class),
             $this->container->get(SingleUserViewPresenter::class)
         );

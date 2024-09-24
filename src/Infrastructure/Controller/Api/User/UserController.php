@@ -10,7 +10,7 @@ use App\Infrastructure\View\ViewModel\User\SingleUserViewModel;
 use App\UseCase\User\CreateOneUserUseCase;
 use App\UseCase\User\DeleteOneUserByIdUseCase;
 use App\UseCase\User\GetManyUserUseCase;
-use App\UseCase\User\GetOneUserUseCase;
+use App\UseCase\User\GetOneUserByIdUseCase;
 use App\UseCase\User\UpdateOneUserByIdUseCase;
 use Nelmio\ApiDocBundle\Annotation\Model;
 use OpenApi\Attributes as OA;
@@ -49,7 +49,7 @@ final class UserController extends AbstractAPIController
         description: 'Successfully returns a details of a User',
         content: new Model(type: SingleUserViewModel::class)
     )]
-    public function getOneById(int $id, GetOneUserUseCase $useCase): JsonResponse
+    public function getOneById(int $id, GetOneUserByIdUseCase $useCase): JsonResponse
     {
         return new JsonResponse(
             $useCase->execute($id, $this->getDataProfile())

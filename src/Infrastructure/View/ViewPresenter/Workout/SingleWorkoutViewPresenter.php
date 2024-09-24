@@ -8,7 +8,7 @@ use App\Infrastructure\DataTransformer\EmailObfuscationDataTransformer;
 use App\Infrastructure\View\ViewModel\Workout\SingleWorkoutViewModel;
 use App\Infrastructure\View\ViewPresenter\AbstractSingleObjectViewPresenter;
 
-final class SingleWorkoutWorkoutPresenter extends AbstractSingleObjectViewPresenter
+final class SingleWorkoutViewPresenter extends AbstractSingleObjectViewPresenter
 {
     protected function presentForAdmin(WorkoutDataModel|DataModelInterface $data): SingleWorkoutViewModel
     {
