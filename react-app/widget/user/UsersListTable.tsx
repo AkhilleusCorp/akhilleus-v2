@@ -8,15 +8,15 @@ import TableHead from "../common/table/TableHead.tsx";
 type UsersListTableType = {
     filters: UsersListFilters;
     refreshKey: number;
-    displayUserPreview: (userId: number) => void
+    mainLinkClickCallback: (userId: number) => void
 }
 
-const UsersListTable: React.FC<UsersListTableType> = ({ filters, refreshKey, displayUserPreview }) => {
+const UsersListTable: React.FC<UsersListTableType> = ({ filters, refreshKey, mainLinkClickCallback }) => {
     const users = useGetManyUsersByParams(filters, refreshKey);
 
-    const onClickDisplayPreview = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>, userId: number) => {
+    const onUsernameClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>, userId: number) => {
         event.preventDefault();
-        displayUserPreview(userId);
+        mainLinkClickCallback(userId);
     }
 
     return (
@@ -27,7 +27,7 @@ const UsersListTable: React.FC<UsersListTableType> = ({ filters, refreshKey, dis
                 <tr id={'user_' + user.id} key={'user_' + user.id}>
                     <td>{user.id}</td>
                     <td>
-                        <a href={"#"} onClick={(event) => onClickDisplayPreview(event, user.id)}>
+                        <a href={"#"} onClick={(event) => onUsernameClick(event, user.id)}>
                             {user.username}
                         </a>
                     </td>

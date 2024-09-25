@@ -8,15 +8,15 @@ import useGetManyWorkoutsByParams from "../../hooks/workout/useGetManyWorkoutByP
 type WorkoutListTableType = {
     filters: WorkoutsListFilters;
     refreshKey: number;
-    displayUserPreview: (workoutId: number) => void;
+    mainLinkClickCallback: (workoutId: number) => void;
 }
 
-const UsersListTable: React.FC<WorkoutListTableType> = ({ filters, refreshKey, displayUserPreview }) => {
+const UsersListTable: React.FC<WorkoutListTableType> = ({ filters, refreshKey, mainLinkClickCallback }) => {
     const workouts = useGetManyWorkoutsByParams(filters, refreshKey);
 
-    const onClickDisplayPreview = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>, workoutId: number) => {
+    const onNameClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>, workoutId: number) => {
         event.preventDefault();
-        displayUserPreview(workoutId);
+        mainLinkClickCallback(workoutId);
     }
 
     return (
@@ -27,7 +27,7 @@ const UsersListTable: React.FC<WorkoutListTableType> = ({ filters, refreshKey, d
                 <tr id={'workout_' + workout.id} key={'workout_' + workout.id}>
                     <td>{workout.id}</td>
                     <td>
-                        <a href={"#"} onClick={(event) => onClickDisplayPreview(event, workout.id)}>
+                        <a href={"#"} onClick={(event) => onNameClick(event, workout.id)}>
                             {workout.name}
                         </a>
                     </td>

@@ -44,7 +44,7 @@ const WorkoutsPage: React.FC = () => {
             </div>
 
             <div className={"float-left two-thirds-width"}>
-                <WorkoutsListTable filters={filters} refreshKey={refreshKey} displayUserPreview={handleDisplayUserPreview}/>
+                <WorkoutsListTable filters={filters} refreshKey={refreshKey} mainLinkClickCallback={handleDisplayUserPreview}/>
             </div>
 
             <div className={"float-left padding-left-m one-thirds-width "}>
