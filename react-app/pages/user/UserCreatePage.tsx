@@ -5,7 +5,7 @@ import UserCreateForm from "../../widget/user/UseCreateForm.tsx";
 const UserCreatePage: React.FC = () => {
     return (
         <AdminLayout>
-            <h1>Create User Page</h1>
+            <h1>Add new User</h1>
             <div>
                 <UserCreateForm />
             </div>
