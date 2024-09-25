@@ -3,16 +3,16 @@ import AdminLayout from "../../layouts/admin/AdminLayout.tsx";
 import UserDetailsCard from "../../widget/user/UserDetailsCard.tsx";
 import {useParams, useNavigate} from "react-router-dom";
 import ErrorPage from "../ErrorPage.tsx";
-import useGetOneUseById from "../../hooks/user/useGetOneUserById.tsx";
-import UserEditButton from "../../widget/user/UserEditButton.tsx";
+import useGetOneUserById from "../../hooks/user/useGetOneUserById.tsx";
 import UserDeleteButton from "../../widget/user/UserDeleteButton.tsx";
 import routes from "../../infrastructure/router/routes-mapping.tsx";
+import EditButton from "../../widget/common/button/EditButton.tsx";
 
 const UserDetailsPage: React.FC = () => {
     const { userId } = useParams<{ userId: string }>();
     const navigate = useNavigate();
 
-    const user = useGetOneUseById(userId);
+    const user = useGetOneUserById(userId);
     if (!user) {
         return <ErrorPage />
     }
@@ -25,7 +25,7 @@ const UserDetailsPage: React.FC = () => {
     return (
         <AdminLayout>
             <div className={"text-align-right margin-bottom-s"}>
-                <UserEditButton userId={user.id} />
+                <EditButton routeToEditPage={routes.user.edit(user.id)} />
                 <UserDeleteButton userId={user.id} callbackFunction={onConfirmDelete} />
             </div>
             <UserDetailsCard user={user} displayActions={false} />

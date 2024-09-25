@@ -1,6 +1,6 @@
-import React, {useState} from "react";
+import React from "react";
 import UserApi from "../../api/UserApi.tsx";
-import ConfirmActionModal from "../common/modal/ConfirmActionModal.tsx";
+import DeleteButton from "../common/button/DeleteButton.tsx";
 
 type UserDeleteButtonType = {
     userId: number,
@@ -8,16 +8,6 @@ type UserDeleteButtonType = {
 }
 
 const UserDeleteButton: React.FC<UserDeleteButtonType> = ({ userId, callbackFunction }) => {
-    const [targetId, setTargetId] = useState<number|null>(null)
-
-    const onClickDelete = () => {
-        setTargetId(userId);
-    }
-
-    const onCancelDelete = () => {
-        setTargetId(null);
-    }
-
     const handleDeleteUser = async () => {
         try {
             await UserApi.deleteUser(userId);
@@ -28,10 +18,7 @@ const UserDeleteButton: React.FC<UserDeleteButtonType> = ({ userId, callbackFunc
     }
 
     return (
-        <>
-            <ConfirmActionModal targetId={targetId} onCancel={onCancelDelete} onConfirm={handleDeleteUser}/>
-            <button className={"btn-danger"} onClick={onClickDelete}>Delete</button>
-        </>
+       <DeleteButton targetId={userId} onConfirmDeleteFunction={handleDeleteUser} />
     )
 }
 

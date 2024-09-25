@@ -1,7 +1,8 @@
 import React from 'react';
 import UserDTO from "../../dtos/UserDTO.tsx";
 import UserDetailsButton from "./UserDetailsButton.tsx";
-import UserEditButton from "./UserEditButton.tsx";
+import EditButton from "../common/button/EditButton.tsx";
+import routes from "../../infrastructure/router/routes-mapping.tsx";
 
 type UserDetailsCardType = {
     user: UserDTO,
@@ -28,7 +29,7 @@ const UserDetailsCard: React.FC<UserDetailsCardType> = ({ user, displayActions }
                 {displayActions && (
                     <div className={"card-footer"}>
                         <UserDetailsButton userId={user.id}/>
-                        <UserEditButton userId={user.id} />
+                        <EditButton routeToEditPage={routes.user.edit(user.id)} />
                     </div>
                 )}
             </div>
