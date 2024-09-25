@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import WorkoutsListFilters from "../../filters/WorkoutsListFilters.tsx";
+import SearchForm from "../common/form/SearchForm.tsx";
 
 type WorkoutSearchFormType = {
     defaultFilters: WorkoutsListFilters,
@@ -16,30 +17,27 @@ const WorkoutsSearchForm: React.FC<WorkoutSearchFormType> = ({defaultFilters, ca
         });
     }
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        callbackFunction(filters);
-    }
-
     const handleCancel = () => {
-        defaultFilters.name = null;
-
         setFilters(defaultFilters);
+        console.log(defaultFilters);
         callbackFunction(defaultFilters);
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <SearchForm searchFunction={callbackFunction} cancelFunction={handleCancel} filters={filters}>
+            <div>
+                <label>IDs</label>
+                <input type={"text"} name={"ids"} value={filters.ids ?? ''} onChange={handleInputChange}/>
+            </div>
             <div>
                 <label>Name</label>
                 <input type={"text"} name={"name"} value={filters.name ?? ''} onChange={handleInputChange}/>
             </div>
-
             <div>
-                <button type={"button"} className={"btn-cancel"} onClick={handleCancel}>Cancel</button>
-                <button type={"submit"} className={"btn-validate"}>Search</button>
+                <label>Status</label>
+                <input type={"text"} name={"statuses"} value={filters.statuses ?? ''} onChange={handleInputChange}/>
             </div>
-        </form>
+        </SearchForm>
     )
 }
 

@@ -1,12 +1,13 @@
 import React, {useState} from "react";
 import UsersListFilters from "../../filters/UsersListFilters.tsx";
+import SearchForm from "../common/form/SearchForm.tsx";
 
-type UsersSearchFormType = {
+type UserSearchFormType = {
     defaultFilters: UsersListFilters,
     callbackFunction: (filters: UsersListFilters) => void;
 }
 
-const UsersSearchForm: React.FC<UsersSearchFormType> = ({defaultFilters, callbackFunction}) => {
+const UsersSearchForm: React.FC<UserSearchFormType> = ({defaultFilters, callbackFunction}) => {
     const [filters, setFilters] = useState<UsersListFilters>(defaultFilters);
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -16,21 +17,24 @@ const UsersSearchForm: React.FC<UsersSearchFormType> = ({defaultFilters, callbac
         });
     }
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        callbackFunction(filters);
-    }
-
     const handleCancel = () => {
+        // Why is it needed for User search form and not for Workout search form ?
+        defaultFilters.ids = null;
         defaultFilters.username = null;
         defaultFilters.email = null;
+        defaultFilters.statuses = null;
+        defaultFilters.types = null;
 
         setFilters(defaultFilters);
         callbackFunction(defaultFilters);
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <SearchForm searchFunction={callbackFunction} cancelFunction={handleCancel} filters={filters}>
+            <div>
+                <label>IDs</label>
+                <input type={"text"} name={"ids"} value={filters.ids ?? ''} onChange={handleInputChange}/>
+            </div>
             <div>
                 <label>Username</label>
                 <input type={"text"} name={"username"} value={filters.username ?? ''} onChange={handleInputChange}/>
@@ -39,12 +43,15 @@ const UsersSearchForm: React.FC<UsersSearchFormType> = ({defaultFilters, callbac
                 <label>Email</label>
                 <input type={"text"} name={"email"} value={filters.email ?? ''} onChange={handleInputChange}/>
             </div>
-
             <div>
-                <button type={"button"} className={"btn-cancel"} onClick={handleCancel}>Cancel</button>
-                <button type={"submit"} className={"btn-validate"}>Search</button>
+                <label>Statuses</label>
+                <input type={"text"} name={"statuses"} value={filters.statuses ?? ''} onChange={handleInputChange}/>
             </div>
-        </form>
+            <div>
+                <label>Types</label>
+                <input type={"text"} name={"types"} value={filters.types ?? ''} onChange={handleInputChange}/>
+            </div>
+        </SearchForm>
     )
 }
 
