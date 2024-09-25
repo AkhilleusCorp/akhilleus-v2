@@ -1,5 +1,8 @@
 import React from 'react';
 import WorkoutDTO from "../../dtos/WorkoutDTO.tsx";
+import EditButton from "../common/button/EditButton.tsx";
+import routes from "../../infrastructure/router/routes-mapping.tsx";
+import DetailsButton from "../common/button/DetailsButton.tsx";
 
 type WorkoutDetailsCardType = {
     workout: WorkoutDTO,
@@ -22,7 +25,8 @@ const WorkoutDetailsCard: React.FC<WorkoutDetailsCardType> = ({ workout, display
 
                 {displayActions && (
                     <div className={"card-footer"}>
-                        ACTIONS
+                        <DetailsButton routeToDetailsPage={routes.workout.details(workout.id)}/>
+                        <EditButton routeToEditPage={routes.workout.edit(workout.id)} />
                     </div>
                 )}
 
