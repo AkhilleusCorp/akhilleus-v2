@@ -1,6 +1,7 @@
 ## Refactoring
 * Create dedicated UseCaseInterface per CRUD operation
 * Split UseCase folder into API, Website
+* Create a DeleteButton in react that handle 100% of the process
 
 ## Functionnalities
 ### User
@@ -16,8 +17,4 @@
 ### Workout
 #### React
 * Add front end
-  * list
-  * details
-  * create
   * update
-  * delete
