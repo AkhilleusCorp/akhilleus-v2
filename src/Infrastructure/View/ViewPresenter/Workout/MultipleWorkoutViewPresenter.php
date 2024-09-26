@@ -9,17 +9,7 @@ use App\Infrastructure\View\ViewPresenter\AbstractMultipleObjectViewPresenter;
 
 final class MultipleWorkoutViewPresenter extends AbstractMultipleObjectViewPresenter
 {
-    protected function presentForAdmin(WorkoutDataModel|DataModelInterface $data): MultipleWorkoutItemViewModel
-    {
-        return $this->presentCommonData($data);
-    }
-
-    protected function presentForMember(WorkoutDataModel|DataModelInterface $data): MultipleWorkoutItemViewModel
-    {
-        return $this->presentCommonData($data);
-    }
-
-    private function presentCommonData(WorkoutDataModel $data): MultipleWorkoutItemViewModel
+    protected function presentItem(WorkoutDataModel|DataModelInterface $data, string $dataProfile): MultipleWorkoutItemViewModel
     {
         $item = new MultipleWorkoutItemViewModel();
         $item->id = $data->id;

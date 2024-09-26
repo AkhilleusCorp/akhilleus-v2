@@ -1,6 +1,5 @@
 ## Refactoring
 * Create dedicated UseCaseInterface per CRUD operation
-* Split UseCase folder into API, Website
 * Create a DeleteButton in react that handle 100% of the process
 
 ## Functionnalities
@@ -22,7 +21,16 @@
 ### Password
 * Create a dedicated API just to update password
 
-### Workout
-#### React
-* Add front end
-  * update
+### Movement
+#### Add API
+ * GetMany
+ * GetOne
+ * Create
+ * Update
+ * Delete
+#### Add Front end
+ * List
+ * Details
+ * Add
+ * Update
+ * Delete

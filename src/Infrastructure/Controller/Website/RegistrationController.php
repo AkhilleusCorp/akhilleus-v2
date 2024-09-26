@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Controller\Website;
 
-use App\UseCase\User\CreateOneUserUseCase;
+use App\UseCase\API\User\CreateOneUserUseCase;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

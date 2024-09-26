@@ -7,11 +7,11 @@ use App\Domain\Registry\User\UserTypeRegistry;
 use App\Infrastructure\Controller\Api\AbstractAPIController;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
 use App\Infrastructure\View\ViewModel\User\SingleUserViewModel;
-use App\UseCase\User\CreateOneUserUseCase;
-use App\UseCase\User\DeleteOneUserByIdUseCase;
-use App\UseCase\User\GetManyUserUseCase;
-use App\UseCase\User\GetOneUserByIdUseCase;
-use App\UseCase\User\UpdateOneUserByIdUseCase;
+use App\UseCase\API\User\CreateOneUserUseCase;
+use App\UseCase\API\User\DeleteOneUserByIdUseCase;
+use App\UseCase\API\User\GetManyUserUseCase;
+use App\UseCase\API\User\GetOneUserByIdUseCase;
+use App\UseCase\API\User\UpdateOneUserByIdUseCase;
 use Nelmio\ApiDocBundle\Annotation\Model;
 use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -36,11 +36,9 @@ final class UserController extends AbstractAPIController
         description: 'Successfully returns a list of Users',
         content: new Model(type: MultipleObjectViewModel::class)
     )]
-    public function getMany(Request $request, GetManyUserUseCase $useCase): JsonResponse
+    public function getMany(Request $request, GetManyUserUseCase $useCase): MultipleObjectViewModel
     {
-        return new JsonResponse(
-            $useCase->execute($request->query->all(), $this->getDataProfile())
-        );
+        return $useCase->execute($request->query->all(), $this->getDataProfile());
     }
 
     #[Route('/users/{id}', name:'user_get_one_by_id', requirements: ['id' => '\d+'], methods: ['GET'])]
@@ -49,11 +47,9 @@ final class UserController extends AbstractAPIController
         description: 'Successfully returns a details of a User',
         content: new Model(type: SingleUserViewModel::class)
     )]
-    public function getOneById(int $id, GetOneUserByIdUseCase $useCase): JsonResponse
+    public function getOneById(int $id, GetOneUserByIdUseCase $useCase): SingleUserViewModel
     {
-        return new JsonResponse(
-            $useCase->execute($id, $this->getDataProfile())
-        );
+        return $useCase->execute($id, $this->getDataProfile());
     }
 
     #[Route('/users', name:'user_create_one', methods: ['POST'])]
@@ -62,11 +58,9 @@ final class UserController extends AbstractAPIController
         description: 'Successfully returns a details of a User',
         content: new Model(type: SingleUserViewModel::class)
     )]
-    public function createOne(Request $request, CreateOneUserUseCase $useCase): JsonResponse
+    public function createOne(Request $request, CreateOneUserUseCase $useCase): SingleUserViewModel
     {
-        return new JsonResponse(
-            $useCase->execute(json_decode($request->getContent(), true), $this->getDataProfile())
-        );
+        return $useCase->execute(json_decode($request->getContent(), true), $this->getDataProfile());
     }
 
     #[Route('/users/{id}', name:'user_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
@@ -75,11 +69,9 @@ final class UserController extends AbstractAPIController
         description: 'Successfully returns a details of a User',
         content: new Model(type: SingleUserViewModel::class)
     )]
-    public function updateOneById(Request $request, int $id, UpdateOneUserByIdUseCase $useCase): JsonResponse
+    public function updateOneById(Request $request, int $id, UpdateOneUserByIdUseCase $useCase): SingleUserViewModel
     {
-        return new JsonResponse(
-            $useCase->execute($id, json_decode($request->getContent(), true), $this->getDataProfile())
-        );
+        return $useCase->execute($id, json_decode($request->getContent(), true), $this->getDataProfile());
     }
 
     #[Route('/users/{id}', name:'user_delete_one_by_id', requirements: ['id' => '\d+'], methods: ['DELETE'])]
