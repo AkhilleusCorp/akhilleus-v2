@@ -2,6 +2,8 @@
 
 namespace App\Infrastructure\EventListener;
 
+use App\Infrastructure\Registry\DataProfileRegistry;
+use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\ViewEvent;
@@ -14,7 +16,7 @@ final class HttpResponseEventListener
 {
     private Serializer $serializer;
 
-    public function __construct()
+    public function __construct(private readonly JWTTokenManagerInterface $jwtTokenManager)
     {
         $classMetadataFactory = new ClassMetadataFactory(new AttributeLoader());
         $normalizer = new ObjectNormalizer($classMetadataFactory);
@@ -47,7 +49,19 @@ final class HttpResponseEventListener
 
     private function getSerializationGroup(Request $request): string
     {
-        // Todo: will be processed from token and group query parameter
-        return 'admin';
+        $authorization = $request->headers->get('Authorization');
+        if (null === $authorization) {
+            return DataProfileRegistry::DATA_PROFILE_PUBLIC;
+        }
+
+        $token = str_replace('Bearer ', '', $authorization);
+        $payload = $this->jwtTokenManager->parse($token);
+
+        $serializationGroup = $payload['user-type'];
+        if ($dataProfile = $request->query->get('data-profile')) {
+            $serializationGroup = "{$serializationGroup}-{$dataProfile}";
+        }
+
+        return $serializationGroup;
     }
 }
