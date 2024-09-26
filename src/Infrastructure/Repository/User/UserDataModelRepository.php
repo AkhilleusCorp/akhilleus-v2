@@ -29,6 +29,8 @@ final class UserDataModelRepository extends AbstractBaseDTORepository implements
         return $this->createQueryBuilder($this->getAlias())
             ->andWhere('user.id = :userId')
             ->setParameter('userId', $userId)
+            ->leftJoin('user.lifecycle', 'user_lifecycle')
+            ->addSelect('user_lifecycle')
             ->getQuery()->getOneOrNullResult();
     }
 

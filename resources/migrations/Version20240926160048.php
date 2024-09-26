@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20240924075704 extends AbstractMigration
+final class Version20240926160048 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -22,9 +22,15 @@ final class Version20240924075704 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE TABLE EQUIPMENT (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name VARCHAR(150) NOT NULL)');
         $this->addSql('CREATE UNIQUE INDEX UNIQ_97FACB6C5E237E06 ON EQUIPMENT (name)');
-        $this->addSql('CREATE TABLE USER (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, username VARCHAR(50) NOT NULL, email VARCHAR(150) NOT NULL, password VARCHAR(255) NOT NULL, type VARCHAR(10) NOT NULL, status VARCHAR(15) NOT NULL)');
+        $this->addSql('CREATE TABLE USER (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, lifecycle_id INTEGER DEFAULT NULL, username VARCHAR(50) NOT NULL, email VARCHAR(150) NOT NULL, password VARCHAR(255) NOT NULL, type VARCHAR(10) NOT NULL, status VARCHAR(15) NOT NULL, CONSTRAINT FK_BB063BFDD7D7318C FOREIGN KEY (lifecycle_id) REFERENCES USER_LIFECYCLE (id) NOT DEFERRABLE INITIALLY IMMEDIATE)');
         $this->addSql('CREATE UNIQUE INDEX UNIQ_BB063BFDF85E0677 ON USER (username)');
         $this->addSql('CREATE UNIQUE INDEX UNIQ_BB063BFDE7927C74 ON USER (email)');
+        $this->addSql('CREATE UNIQUE INDEX UNIQ_BB063BFDD7D7318C ON USER (lifecycle_id)');
+        $this->addSql('CREATE TABLE USER_LIFECYCLE (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, registration_date DATE NOT NULL --(DC2Type:date_immutable)
+        , last_modification_date DATE NOT NULL --(DC2Type:date_immutable)
+        , last_login_date DATE DEFAULT NULL --(DC2Type:date_immutable)
+        , last_completed_workout_date DATE DEFAULT NULL --(DC2Type:date_immutable)
+        )');
         $this->addSql('CREATE TABLE WORKOUT (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name VARCHAR(150) NOT NULL, status VARCHAR(15) NOT NULL, visibility VARCHAR(20) NOT NULL)');
         $this->addSql('CREATE UNIQUE INDEX UNIQ_5BDA05685E237E06 ON WORKOUT (name)');
         $this->addSql('CREATE TABLE messenger_messages (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, body CLOB NOT NULL, headers CLOB NOT NULL, queue_name VARCHAR(190) NOT NULL, created_at DATETIME NOT NULL --(DC2Type:datetime_immutable)
@@ -41,6 +47,7 @@ final class Version20240924075704 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->addSql('DROP TABLE EQUIPMENT');
         $this->addSql('DROP TABLE USER');
+        $this->addSql('DROP TABLE USER_LIFECYCLE');
         $this->addSql('DROP TABLE WORKOUT');
         $this->addSql('DROP TABLE messenger_messages');
     }

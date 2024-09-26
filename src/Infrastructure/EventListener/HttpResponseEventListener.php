@@ -52,7 +52,7 @@ final class HttpResponseEventListener
         $authorization = $request->headers->get('Authorization');
         if (null === $authorization) {
             //return DataProfileRegistry::DATA_PROFILE_PUBLIC;
-            return DataProfileRegistry::DATA_PROFILE_ADMIN;
+            return DataProfileRegistry::DATA_PROFILE_ADMIN; // Todo: to remove once token is handle in react
         }
 
         $token = str_replace('Bearer ', '', $authorization);

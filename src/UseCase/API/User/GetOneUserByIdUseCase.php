@@ -24,6 +24,8 @@ final class GetOneUserByIdUseCase implements UseCaseInterface
             throw new NotFoundHttpException("User #$id cannot be found");
         }
 
+        var_dump($user->lifecycle); die;
+
         return $this->presenter->present($user, $dataProfile);
     }
 }
