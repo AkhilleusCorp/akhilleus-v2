@@ -1,3 +1,7 @@
+.card form {
+    padding: 1em;
+}
+
 form {
     display: block;
 }
@@ -6,12 +10,7 @@ form div {
     margin-bottom: 1em;
 }
 
-form label {
-    display: inline-block;
-    margin-right: 0.5em;
-}
-
-form input {
+input {
     border: 0;
     outline: 0;
     color: rgb(60, 66, 87);
@@ -31,6 +30,40 @@ form input {
     transition-delay: 0s, 0s;
 }
 
-form input:focus{
+input:focus{
     box-shadow: rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(58 151 212 / 36%) 0px 0px 0px 4px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(60 66 87 / 16%) 0px 0px 0px 1px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px;
+}
+
+
+form .columns {
+    display: flow-root;
+}
+
+form .columns .column:last-child {
+
+}
+
+form .column {
+    min-width: 30%;
+    width: auto;
+    padding: 0 1.5em;
+    border-right: 1px solid #e2deda;
+    float: left;
+    height: 100%;
+}
+
+form .columns .column:last-child {
+    border: none;
+}
+
+form .column label {
+    font-weight: 700;
+}
+
+form .column input {
+    width: 100%;
+}
+
+form .form-search-actions {
+    text-align: center;
 }

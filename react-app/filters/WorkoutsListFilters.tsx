@@ -1,8 +1,8 @@
-type WorkoutsListFilters = {
-    ids: string[] | null;
+import ListFilters from "./ListFilters.tsx";
+
+interface WorkoutsListFilters extends ListFilters {
     name: string | null;
     statuses: string[] | null;
-    limit: number | null;
 }
 
 export default WorkoutsListFilters;

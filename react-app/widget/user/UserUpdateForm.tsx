@@ -4,6 +4,7 @@ import UserDTO from "../../dtos/UserDTO.tsx";
 import {useState} from "react";
 import UserAPI from "../../api/UserApi.tsx";
 import routes from "../../infrastructure/router/routes-mapping.tsx";
+import SaveForm from "../common/form/SaveForm.tsx";
 
 type UserEditFormType = {
     user: UserDTO,
@@ -20,8 +21,7 @@ const UserEditForm: React.FC<UserEditFormType> = ({user}) => {
             });
     }
 
-    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
+    const handleSubmit = async () => {
         try {
             await UserAPI.updateUser(user.id, userUpdated);
             navigate(routes.user.details(user.id));
@@ -31,7 +31,7 @@ const UserEditForm: React.FC<UserEditFormType> = ({user}) => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <SaveForm submitFunction={handleSubmit}>
             <div>
                 <label>Username</label>
                 <input type={"text"} name={"username"} value={userUpdated.username} onChange={handleInputChange} required={true}/>
@@ -40,11 +40,7 @@ const UserEditForm: React.FC<UserEditFormType> = ({user}) => {
                 <label>Email</label>
                 <input type={"email"} name={"email"} value={userUpdated.email} onChange={handleInputChange} required={true}/>
             </div>
-            <div>
-                <button type={"button"} className={"btn-cancel"} onClick={() => navigate(-1)}>Cancel</button>
-                <button type={"submit"} className={"btn-validate"}>Save</button>
-            </div>
-        </form>
+        </SaveForm>
     )
 }
 

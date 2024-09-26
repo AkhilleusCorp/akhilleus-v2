@@ -1,11 +1,12 @@
 import React from 'react';
 
-type ConfirmActionModelType = {
+type ConfirmActionModalType = {
     targetId: number|null;
     onCancel: () => void;
     onConfirm: (targetId: number) => void
 }
-const ConfirmActionModal: React.FC<ConfirmActionModelType> = ({ targetId, onCancel, onConfirm }) => {
+
+const ConfirmActionModal: React.FC<ConfirmActionModalType> = ({ targetId, onCancel, onConfirm }) => {
     if (null == targetId) {
         return null;
     }

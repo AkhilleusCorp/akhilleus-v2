@@ -2,7 +2,7 @@ import UserDTO from "../../dtos/UserDTO.tsx";
 import {useEffect, useState} from "react";
 import UserAPI from "../../api/UserApi.tsx";
 
-function useGetOneUseById(userId: string|undefined): UserDTO | null {
+function useGetOneUserById(userId: string|undefined): UserDTO | null {
     if (!userId) {
         return null;
     }
@@ -20,4 +20,4 @@ function useGetOneUseById(userId: string|undefined): UserDTO | null {
     return user;
 }
 
-export default useGetOneUseById;
+export default useGetOneUserById;

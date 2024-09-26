@@ -1,9 +1,18 @@
 ## Refactoring
 * Create dedicated UseCaseInterface per CRUD operation
 * Split UseCase folder into API, Website
+* Create a DeleteButton in react that handle 100% of the process
 
 ## Functionnalities
+### Dropdown
+* create drop down for enum field like status and visibility
+
 ### User
+#### Dates
+* Add registration date
+* Add last login date
+* Add last modification date
+* Add last workout date
 #### Status
 * Make status updatable from UserDetails page in react
 #### Type
@@ -16,3 +25,4 @@
 ### Workout
 #### React
 * Add front end
+  * update

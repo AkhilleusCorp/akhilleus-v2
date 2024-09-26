@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import UserAPI from "../../api/UserApi.tsx";
 import {useNavigate} from "react-router-dom";
 import routes from "../../infrastructure/router/routes-mapping.tsx";
+import SaveForm from "../common/form/SaveForm.tsx";
+
 type UserCreateFormType = {
     username: string;
     email: string;
@@ -19,8 +21,7 @@ const UserCreateForm: React.FC = () => {
             });
     }
 
-    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
+    const handleSubmit = async () => {
         try {
             const user = await UserAPI.createUser(userCreate);
             navigate(routes.user.details(user.id));
@@ -30,7 +31,7 @@ const UserCreateForm: React.FC = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <SaveForm submitFunction={handleSubmit}>
             <div>
                 <label>Username</label>
                 <input type={"text"} name={"username"} required={true} onChange={handleInputChange}/>
@@ -43,11 +44,7 @@ const UserCreateForm: React.FC = () => {
                 <label>Password</label>
                 <input type={"text"} name={"plainPassword"} required={true} onChange={handleInputChange}/>
             </div>
-            <div>
-                <button type={"button"} className={"btn-cancel"} onClick={() => navigate(-1)}>Cancel</button>
-                <button type={"submit"} className={"btn-validate"}>Save</button>
-            </div>
-        </form>
+        </SaveForm>
     )
 }
 

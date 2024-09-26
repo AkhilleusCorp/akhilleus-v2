@@ -1,38 +1,33 @@
 import React from 'react';
 import UserDTO from "../../dtos/UserDTO.tsx";
-import UserDetailsButton from "./UserDetailsButton.tsx";
-import UserEditButton from "./UserEditButton.tsx";
+import EditButton from "../common/button/EditButton.tsx";
+import routes from "../../infrastructure/router/routes-mapping.tsx";
+import DetailsButton from "../common/button/DetailsButton.tsx";
+import CardFooter from "../common/card/CardFooter.tsx";
+import Card from "../common/card/Card.tsx";
+import CardSideImageBody from "../common/card/CardSideImageBody.tsx";
 
 type UserDetailsCardType = {
     user: UserDTO,
-    linkToDetails: boolean
+    displayActions: boolean
 }
 
-const UserDetailsCard: React.FC<UserDetailsCardType> = ({ user, linkToDetails }) => {
+const UserDetailsCard: React.FC<UserDetailsCardType> = ({ user, displayActions }) => {
     return (
-        <div>
-            <div className={"card"}>
-                <div className={"card-body"}>
-                    <div className={"card-image"}>
-                        <img src={"https://placehold.co/150x150.png"} alt={"Avatar"}/>
-                    </div>
-                    <div className={"card-content"}>
-                        <h3 className={"card-title"}>{user.username}</h3>
-                        <div className={"card-description"}>
-                            <div>ID: {user.id}</div>
-                            <div>Email: {user.email}</div>
-                        </div>
-                    </div>
+        <Card>
+            <CardSideImageBody imageSrc={"https://placehold.co/150x150.png"} imageAlt={"Avatar"}>
+                <h3 className={"card-title"}>{user.username}</h3>
+                <div className={"card-description"}>
+                    <div>ID: {user.id}</div>
+                    <div>Email: {user.email}</div>
                 </div>
+            </CardSideImageBody>
 
-                {linkToDetails && (
-                    <div className={"card-footer"}>
-                        <UserDetailsButton userId={user.id}/>
-                        <UserEditButton userId={user.id} />
-                    </div>
-                )}
-            </div>
-        </div>
+            <CardFooter shouldBeDisplayed={displayActions}>
+                <DetailsButton routeToDetailsPage={routes.user.details(user.id)}/>
+                <EditButton routeToEditPage={routes.user.edit(user.id)} />
+            </CardFooter>
+        </Card>
     );
 }
 
