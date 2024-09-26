@@ -7,9 +7,9 @@ use Symfony\Component\Serializer\Attribute\Groups;
 final class MultipleObjectViewModel
 {
     /** @var MultipleObjectItemViewModelInterface[] */
-    #[Groups('admin', 'member')]
+    #[Groups(['admin', 'coach', 'member'])]
     public array $data = [];
 
-    #[Groups('admin', 'member')]
+    #[Groups(['admin', 'coach', 'member'])]
     public array $extra = [];
 }

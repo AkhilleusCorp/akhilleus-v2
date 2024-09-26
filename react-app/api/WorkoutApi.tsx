@@ -24,6 +24,10 @@ class WorkoutAPI extends AbstractAPI {
             throw new Error('An error as occurred');
         }
 
+        if (response.data.data === undefined) {
+            return [];
+        }
+
         return response.data.data;
     }
 

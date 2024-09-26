@@ -7,13 +7,14 @@ use Symfony\Component\Serializer\Attribute\Groups;
 
 final class MultipleUserItemViewModel implements MultipleObjectItemViewModelInterface
 {
-    #[Groups('admin', 'member')]
+    #[Groups(['admin', 'member'])]
     public int $id;
+    #[Groups(['admin', 'member'])]
     public string $username;
-    #[Groups('admin', 'member')]
+    #[Groups(['admin', 'member'])]
     public string $email;
-    #[Groups('admin', 'member')]
+    #[Groups(['admin', 'member'])]
     public string $type;
-    #[Groups('admin', 'member')]
+    #[Groups(['admin', 'member'])]
     public string $status;
 }

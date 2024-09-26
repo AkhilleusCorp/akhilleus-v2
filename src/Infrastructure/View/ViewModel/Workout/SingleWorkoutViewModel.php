@@ -7,15 +7,15 @@ use Symfony\Component\Serializer\Attribute\Groups;
 
 final class SingleWorkoutViewModel implements SingleObjectViewModelInterface
 {
-    #[Groups('admin', 'member')]
+    #[Groups(['admin', 'member'])]
     public int $id;
 
-    #[Groups('admin', 'member')]
+    #[Groups(['admin', 'member'])]
     public string $name;
 
-    #[Groups('admin', 'member')]
+    #[Groups(['admin', 'member'])]
     public string $status;
 
-    #[Groups('admin', 'member')]
+    #[Groups(['admin', 'member'])]
     public string $visibility;
 }
