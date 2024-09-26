@@ -31,7 +31,7 @@ const WorkoutsPage: React.FC = () => {
 
     return (
         <AdminLayout>
-            <h2 className={"margin-bottom-s"}>
+            <h2>
                 Workouts list
             </h2>
 

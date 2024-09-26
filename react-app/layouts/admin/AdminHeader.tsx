@@ -5,12 +5,12 @@ const AdminHeader: React.FC = () => {
     return (
         <header id={"main-logged-header"}>
             <div className={"float-left"}>
-                Some search bar or other ?
+                <input type={"test"} placeholder={"Search a user"}/>
             </div>
             <div className={"float-right"}>
                 <ul className={"inline"}>
-                    <li>Notifications</li>
-                    <li>Profile</li>
+                    <li><a>Notifications</a></li>
+                    <li><a>Profile</a></li>
                     <li>
                         <a href={routes.logout}>Logout</a>
                     </li>

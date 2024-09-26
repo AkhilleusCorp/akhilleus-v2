@@ -14,6 +14,7 @@ const WorkoutUpdatePage: React.FC = () => {
     
     return (
         <AdminLayout>
+            <h3>{workout.name} #{workout.id}</h3>
             <WorkoutUpdateForm workout={workout} />
         </AdminLayout>
     )

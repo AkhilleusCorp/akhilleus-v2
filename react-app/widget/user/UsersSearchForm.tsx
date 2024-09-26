@@ -31,25 +31,29 @@ const UsersSearchForm: React.FC<UserSearchFormType> = ({defaultFilters, callback
 
     return (
         <SearchForm searchFunction={callbackFunction} cancelFunction={handleCancel} filters={filters}>
-            <div>
-                <label>IDs</label>
-                <input type={"text"} name={"ids"} value={filters.ids ?? ''} onChange={handleInputChange}/>
+            <div className={"column"}>
+                <div>
+                    <label>IDs</label>
+                    <input type={"text"} name={"ids"} value={filters.ids ?? ''} onChange={handleInputChange}/>
+                </div>
+                <div>
+                    <label>Username</label>
+                    <input type={"text"} name={"username"} value={filters.username ?? ''} onChange={handleInputChange}/>
+                </div>
+                <div>
+                    <label>Email</label>
+                    <input type={"text"} name={"email"} value={filters.email ?? ''} onChange={handleInputChange}/>
+                </div>
             </div>
-            <div>
-                <label>Username</label>
-                <input type={"text"} name={"username"} value={filters.username ?? ''} onChange={handleInputChange}/>
-            </div>
-            <div>
-                <label>Email</label>
-                <input type={"text"} name={"email"} value={filters.email ?? ''} onChange={handleInputChange}/>
-            </div>
-            <div>
-                <label>Statuses</label>
-                <input type={"text"} name={"statuses"} value={filters.statuses ?? ''} onChange={handleInputChange}/>
-            </div>
-            <div>
-                <label>Types</label>
-                <input type={"text"} name={"types"} value={filters.types ?? ''} onChange={handleInputChange}/>
+            <div className={"column"}>
+                <div>
+                    <label>Statuses</label>
+                    <input type={"text"} name={"statuses"} value={filters.statuses ?? ''} onChange={handleInputChange}/>
+                </div>
+                <div>
+                    <label>Types</label>
+                    <input type={"text"} name={"types"} value={filters.types ?? ''} onChange={handleInputChange}/>
+                </div>
             </div>
         </SearchForm>
     )

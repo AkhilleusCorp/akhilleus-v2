@@ -25,20 +25,25 @@ const WorkoutsSearchForm: React.FC<WorkoutSearchFormType> = ({defaultFilters, ca
 
     return (
         <SearchForm searchFunction={callbackFunction} cancelFunction={handleCancel} filters={filters}>
-            <div>
-                <label>IDs</label>
-                <input type={"text"} name={"ids"} value={filters.ids ?? ''} onChange={handleInputChange}/>
+            <div className={"column"}>
+                <div>
+                    <label>IDs</label>
+                    <input type={"text"} name={"ids"} value={filters.ids ?? ''} onChange={handleInputChange}/>
+                </div>
+                <div>
+                    <label>Name</label>
+                    <input type={"text"} name={"name"} value={filters.name ?? ''} onChange={handleInputChange}/>
+                </div>
             </div>
-            <div>
-                <label>Name</label>
-                <input type={"text"} name={"name"} value={filters.name ?? ''} onChange={handleInputChange}/>
-            </div>
-            <div>
-                <label>Status</label>
-                <input type={"text"} name={"statuses"} value={filters.statuses ?? ''} onChange={handleInputChange}/>
+
+            <div className={"column"}>
+                <div>
+                    <label>Status</label>
+                    <input type={"text"} name={"statuses"} value={filters.statuses ?? ''} onChange={handleInputChange}/>
+                </div>
             </div>
         </SearchForm>
-    )
+)
 }
 
 export default WorkoutsSearchForm;

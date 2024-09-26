@@ -25,6 +25,10 @@ header#main-logged-header {
     z-index: 1;
 }
 
+header#main-logged-header input {
+    width: 400px;
+}
+
 header#main-logged-header a {
     color: white;
 }
