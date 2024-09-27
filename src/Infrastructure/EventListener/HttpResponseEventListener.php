@@ -2,25 +2,26 @@
 
 namespace App\Infrastructure\EventListener;
 
+use App\Infrastructure\DataTransformer\CustomSerializer;
 use App\Infrastructure\Registry\DataProfileRegistry;
+use App\Infrastructure\Registry\TokenPayloadRegistry;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\ViewEvent;
 use Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactory;
 use Symfony\Component\Serializer\Mapping\Loader\AttributeLoader;
+use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 
 final class HttpResponseEventListener
 {
-    private Serializer $serializer;
+    private ?Serializer $serializer = null;
+    private ?array $tokenPayload = null;
 
     public function __construct(private readonly JWTTokenManagerInterface $jwtTokenManager)
     {
-        $classMetadataFactory = new ClassMetadataFactory(new AttributeLoader());
-        $normalizer = new ObjectNormalizer($classMetadataFactory);
-        $this->serializer = new Serializer([$normalizer]);
     }
 
     private const EXCLUDED_API_ROUTES = [
@@ -35,9 +36,14 @@ final class HttpResponseEventListener
 
         if (str_starts_with($uri, '/api') && false === $this->isIgnoredRoute($request->attributes->get('_route'))) {
             $viewModel = $event->getControllerResult();
+            $tokenPayload = $this->getTokenPayload($request);
+            $serializer = new CustomSerializer(null === $tokenPayload ? null : $tokenPayload['date_format']);
+            $serializationGroup = $this->getSerializationGroup($tokenPayload, $request->query->get('data-profile'));
 
             $event->setResponse(
-                new JsonResponse($this->serializer->normalize($viewModel, null, ['groups' => $this->getSerializationGroup($request)]))
+                new JsonResponse(
+                    $serializer->normalize($viewModel, $serializationGroup)
+                )
             );
         }
     }
@@ -47,19 +53,31 @@ final class HttpResponseEventListener
         return in_array($routeName, self::EXCLUDED_API_ROUTES);
     }
 
-    private function getSerializationGroup(Request $request): string
+    private function getTokenPayload(Request $request): ?array
     {
+        if (null !== $this->tokenPayload) {
+            return $this->tokenPayload;
+        }
+
         $authorization = $request->headers->get('Authorization');
         if (null === $authorization) {
-            //return DataProfileRegistry::DATA_PROFILE_PUBLIC;
-            return DataProfileRegistry::DATA_PROFILE_ADMIN; // Todo: to remove once token is handle in react
+            return null;
         }
 
         $token = str_replace('Bearer ', '', $authorization);
-        $payload = $this->jwtTokenManager->parse($token);
 
-        $serializationGroup = $payload['user-type'];
-        if ($dataProfile = $request->query->get('data-profile')) {
+        return $this->jwtTokenManager->parse($token);
+    }
+
+    private function getSerializationGroup(?array $tokenPayload, ?string $dataProfile): string
+    {
+        if (null === $tokenPayload) {
+            // return DataProfileRegistry::DATA_PROFILE_PUBLIC;
+            return DataProfileRegistry::DATA_PROFILE_ADMIN; // Todo: to remove once token is handle in react
+        }
+
+        $serializationGroup = $tokenPayload[TokenPayloadRegistry::PAYLOAD_USER_TYPE];
+        if (null !== $dataProfile) {
             $serializationGroup = "{$serializationGroup}-{$dataProfile}";
         }
 

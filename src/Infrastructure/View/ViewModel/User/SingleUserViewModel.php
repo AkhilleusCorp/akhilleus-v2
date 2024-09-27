@@ -3,6 +3,7 @@
 namespace App\Infrastructure\View\ViewModel\User;
 
 use App\Infrastructure\View\ViewModel\SingleObjectViewModelInterface;
+use DateTimeImmutable;
 use Symfony\Component\Serializer\Attribute\Groups;
 
 final class SingleUserViewModel implements SingleObjectViewModelInterface
@@ -23,14 +24,14 @@ final class SingleUserViewModel implements SingleObjectViewModelInterface
     public string $status;
 
     #[Groups(['admin', 'member'])]
-    public string $registrationDate;
+    public DateTimeImmutable $registrationDate;
 
     #[Groups(['admin'])]
-    public string $lastModificationDate;
+    public DateTimeImmutable $lastModificationDate;
 
     #[Groups(['admin'])]
-    public ?string $lastLoginDate;
+    public ?DateTimeImmutable $lastLoginDate;
 
     #[Groups(['admin', 'member'])]
-    public ?string $lastCompletedWorkoutDate;
+    public ?DateTimeImmutable $lastCompletedWorkoutDate;
 }
