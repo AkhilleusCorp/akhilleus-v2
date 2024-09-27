@@ -38,9 +38,14 @@ class UserDataModel implements DataModelInterface, UserInterface, PasswordAuthen
     #[ORM\JoinColumn(name: 'lifecycle_id', referencedColumnName: 'id')]
     public UserLifecycleDataModel $lifecycle;
 
+    #[ORM\OneToOne(targetEntity: UserConfigurationDataModel::class, cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(name: 'configuration_id', referencedColumnName: 'id')]
+    public UserConfigurationDataModel $configuration;
+
     public function __construct()
     {
         $this->lifecycle = new UserLifecycleDataModel();
+        $this->configuration = new UserConfigurationDataModel();
     }
 
     public function getPassword(): ?string

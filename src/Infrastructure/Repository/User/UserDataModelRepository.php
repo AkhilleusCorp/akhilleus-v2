@@ -31,6 +31,8 @@ final class UserDataModelRepository extends AbstractBaseDTORepository implements
             ->setParameter('userId', $userId)
             ->leftJoin('user.lifecycle', 'user_lifecycle')
             ->addSelect('user_lifecycle')
+            ->leftJoin('user.configuration', 'user_configuration')
+            ->addSelect('user_configuration')
             ->getQuery()->getOneOrNullResult();
     }
 

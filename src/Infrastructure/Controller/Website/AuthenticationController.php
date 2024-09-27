@@ -43,10 +43,10 @@ final class AuthenticationController extends AbstractController
 
 
     #[Route('/authentication/token', name:'website_authentication_token', methods: ['GET'])]
-    public function authenticationToken(JWTTokenManagerInterface $tokenManager): JsonResponse
+    public function authenticationToken(JWTTokenManagerInterface $tokenManager): Response
     {
         if (null === $this->getUser())  {
-            throw new UnauthorizedHttpException('Basic realm="Access to the website"');
+            return $this->redirectToRoute('website_authentication');
         }
 
         return new JsonResponse(

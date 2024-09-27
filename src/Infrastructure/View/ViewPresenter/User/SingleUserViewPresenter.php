@@ -19,10 +19,16 @@ final class SingleUserViewPresenter implements SingleObjectViewPresenterInterfac
         $view->email = $data->email;
         $view->type = $data->type;
         $view->status = $data->status;
+
         $view->registrationDate = $data->lifecycle->registrationDate;
         $view->lastModificationDate = $data->lifecycle->lastModificationDate;
         $view->lastLoginDate = $data->lifecycle->lastLoginDate;
         $view->lastCompletedWorkoutDate = $data->lifecycle->lastCompletedWorkoutDate;
+
+        $view->dateFormat = $data->configuration->dateFormat;
+        $view->weightUnit = $data->configuration->weightUnit;
+        $view->distanceUnit = $data->configuration->distanceUnit;
+        $view->measurementUnit = $data->configuration->measurementUnit;
 
         if (DataProfileRegistry::DATA_PROFILE_ADMIN !== $dataProfile) {
             $view->email = EmailObfuscationDataTransformer::obfuscate($data->email);

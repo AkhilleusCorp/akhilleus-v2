@@ -34,4 +34,16 @@ final class SingleUserViewModel implements SingleObjectViewModelInterface
 
     #[Groups(['admin', 'member'])]
     public ?DateTimeImmutable $lastCompletedWorkoutDate;
+
+    #[Groups(['admin', 'member'])]
+    public string $dateFormat;
+
+    #[Groups(['admin', 'member'])]
+    public string $weightUnit;
+
+    #[Groups(['admin', 'member'])]
+    public string $distanceUnit;
+
+    #[Groups(['admin', 'member'])]
+    public string $measurementUnit;
 }
