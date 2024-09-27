@@ -3,11 +3,11 @@ import Card from "../common/card/Card.tsx";
 import UserDTO from "../../api/dtos/UserDTO.tsx";
 import CardEmptyBody from "../common/card/CardEmptyBody.tsx";
 
-type UserDetailsCardType = {
+type UserLifecycleCardType = {
     user: UserDTO,
 }
 
-const UserLifecycleCard: React.FC<UserDetailsCardType> = ({ user }) => {
+const UserLifecycleCard: React.FC<UserLifecycleCardType> = ({ user }) => {
     return (
         <Card>
             <CardEmptyBody title={"Lifecycle"}>

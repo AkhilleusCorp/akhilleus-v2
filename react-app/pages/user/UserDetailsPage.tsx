@@ -8,6 +8,7 @@ import UserDeleteButton from "../../widget/user/UserDeleteButton.tsx";
 import EditButton from "../../widget/common/button/EditButton.tsx";
 import websiteRoutes from "../../config/routes/website-routes.tsx";
 import UserLifecycleCard from "../../widget/user/UserLifecycleCard.tsx";
+import UserConfigurationCard from "../../widget/user/UserConfigurationCard.tsx";
 
 const UserDetailsPage: React.FC = () => {
     const { userId } = useParams<{ userId: string }>();
@@ -37,7 +38,7 @@ const UserDetailsPage: React.FC = () => {
                 </div>
 
                 <div className={"column one-thirds-width"}>
-                    <UserLifecycleCard user={user}/>
+                    <UserConfigurationCard user={user}/>
                 </div>
 
                 <div className={"column one-thirds-width"}>
