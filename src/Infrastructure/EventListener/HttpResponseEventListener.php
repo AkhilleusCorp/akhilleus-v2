@@ -2,17 +2,13 @@
 
 namespace App\Infrastructure\EventListener;
 
-use App\Infrastructure\DataTransformer\CustomSerializer;
 use App\Infrastructure\Registry\DataProfileRegistry;
 use App\Infrastructure\Registry\TokenPayloadRegistry;
+use App\Infrastructure\Tools\CustomSerializer;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\ViewEvent;
-use Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactory;
-use Symfony\Component\Serializer\Mapping\Loader\AttributeLoader;
-use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 
 final class HttpResponseEventListener

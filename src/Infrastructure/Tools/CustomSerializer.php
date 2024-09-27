@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\DataTransformer;
+namespace App\Infrastructure\Tools;
 
 use Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactory;
 use Symfony\Component\Serializer\Mapping\Loader\AttributeLoader;
@@ -26,7 +26,7 @@ final class CustomSerializer
         $this->serializer = new Serializer([$dateTimeNormalizer, $objectNormalizer]);
 
     }
-    public function normalize(mixed $data, string $serializationGroup): array
+    public function normalize(mixed $data, ?string $serializationGroup): array
     {
         return $this->serializer->normalize($data, null, [$serializationGroup]);
     }
