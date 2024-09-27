@@ -1,13 +1,12 @@
 import axios from "axios";
+import WorkoutsListFilters from "../../filters/WorkoutsListFilters.tsx";
+import AbstractApiGateway from "./AbstractApiGateway.tsx";
+import apiRoutes from "../../config/routes/api-routes.tsx";
 import WorkoutDTO from "../dtos/WorkoutDTO.tsx";
-import WorkoutsListFilters from "../filters/WorkoutsListFilters.tsx";
-import AbstractAPI from "./AbstractAPI.tsx";
 
-class WorkoutAPI extends AbstractAPI {
-    private static host = 'https://api.akhilleus.com:8000/api/workouts';
-
+class WorkoutApiGateway extends AbstractApiGateway {
     static async getOneWorkout (workoutId: string|number): Promise<WorkoutDTO|null> {
-        const response = await axios.get(this.host +'/' + workoutId);
+        const response = await axios.get(apiRoutes.workout.details(workoutId));
 
         if (response.status !== 200) {
             throw new Error('An error as occurred');
@@ -18,7 +17,7 @@ class WorkoutAPI extends AbstractAPI {
 
     static async getManyWorkouts (filters: WorkoutsListFilters): Promise<WorkoutDTO[]> {
         const queryParams = this.objectToQueryParams(filters);
-        const response = await axios.get(this.host+'?'+queryParams);
+        const response = await axios.get(apiRoutes.workout.list+'?'+queryParams);
 
         if (response.status !== 200) {
             throw new Error('An error as occurred');
@@ -33,7 +32,7 @@ class WorkoutAPI extends AbstractAPI {
 
     static async createWorkout (formData: unknown): Promise<WorkoutDTO> {
         const response = await axios.post(
-            this.host,
+            apiRoutes.workout.create,
             formData
         );
 
@@ -46,7 +45,7 @@ class WorkoutAPI extends AbstractAPI {
 
     static async updateWorkout (workoutId: number, formData: unknown): Promise<WorkoutDTO> {
         const response = await axios.put(
-            this.host + '/' + workoutId,
+            apiRoutes.workout.update(workoutId),
             formData
         );
 
@@ -58,7 +57,7 @@ class WorkoutAPI extends AbstractAPI {
     }
 
     static async deleteWorkout (workoutId: string|number): Promise<void> {
-        const response = await axios.delete(this.host +'/' + workoutId);
+        const response = await axios.delete(apiRoutes.workout.delete(workoutId));
 
         if (response.status !== 200) {
             throw new Error('An error as occurred');
@@ -66,4 +65,4 @@ class WorkoutAPI extends AbstractAPI {
     }
 }
 
-export default WorkoutAPI;
+export default WorkoutApiGateway;

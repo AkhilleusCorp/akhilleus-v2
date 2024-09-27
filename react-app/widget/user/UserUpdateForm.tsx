@@ -1,10 +1,10 @@
 import React from 'react';
 import {useNavigate} from "react-router-dom";
-import UserDTO from "../../dtos/UserDTO.tsx";
 import {useState} from "react";
-import UserAPI from "../../api/UserApi.tsx";
-import routes from "../../infrastructure/router/routes-mapping.tsx";
+import websiteRoutes from "../../config/routes/website-routes.tsx";
 import SaveForm from "../common/form/SaveForm.tsx";
+import UserApiGateway from "../../api/gateway/UserApiGateway.tsx";
+import UserDTO from "../../api/dtos/UserDTO.tsx";
 
 type UserEditFormType = {
     user: UserDTO,
@@ -23,8 +23,8 @@ const UserEditForm: React.FC<UserEditFormType> = ({user}) => {
 
     const handleSubmit = async () => {
         try {
-            await UserAPI.updateUser(user.id, userUpdated);
-            navigate(routes.user.details(user.id));
+            await UserApiGateway.updateUser(user.id, userUpdated);
+            navigate(websiteRoutes.user.details(user.id));
         } catch (error) {
             console.log(error);
         }

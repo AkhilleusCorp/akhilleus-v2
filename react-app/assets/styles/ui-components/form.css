@@ -39,10 +39,6 @@ form .columns {
     display: flow-root;
 }
 
-form .columns .column:last-child {
-
-}
-
 form .column {
     min-width: 30%;
     width: auto;

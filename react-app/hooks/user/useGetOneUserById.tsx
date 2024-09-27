@@ -1,6 +1,6 @@
-import UserDTO from "../../dtos/UserDTO.tsx";
 import {useEffect, useState} from "react";
-import UserAPI from "../../api/UserApi.tsx";
+import UserApiGateway from "../../api/gateway/UserApiGateway.tsx";
+import UserDTO from "../../api/dtos/UserDTO.tsx";
 
 function useGetOneUserById(userId: string|undefined): UserDTO | null {
     if (!userId) {
@@ -10,7 +10,7 @@ function useGetOneUserById(userId: string|undefined): UserDTO | null {
     const [user, setUser] = useState<UserDTO | null>(null);
     useEffect(() => {
         const fetchUser = async () => {
-            const user = await UserAPI.getOneUser(userId);
+            const user = await UserApiGateway.getOneUser(userId);
             setUser(user);
         }
 

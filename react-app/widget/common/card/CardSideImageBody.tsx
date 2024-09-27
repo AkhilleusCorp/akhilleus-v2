@@ -8,10 +8,8 @@ type CardSideImageBodyType = {
 
 const CardSideImageBody: React.FC<CardSideImageBodyType> = ({ imageSrc, imageAlt, children }) => {
     return (
-        <div className={"card-body"}>
-            <div className={"card-image"}>
-                <img src={imageSrc} alt={imageAlt}/>
-            </div>
+        <div className={"card-body card-body-side-image"}>
+            <img src={imageSrc} alt={imageAlt}/>
             <div className={"card-content"}>
                 {children}
             </div>

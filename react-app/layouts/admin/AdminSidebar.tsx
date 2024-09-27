@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import routes from "../../infrastructure/router/routes-mapping.tsx";
+import websiteRoutes from "../../config/routes/website-routes.tsx";
 
 const AdminSidebar: React.FC = () => {
     return (
@@ -14,9 +14,9 @@ const AdminSidebar: React.FC = () => {
             </header>
             <nav>
                 <ul>
-                    <li><Link to={routes.dashboard}>Dashboard</Link></li>
-                    <li><Link to={routes.user.list}>Users</Link></li>
-                    <li><Link to={routes.workout.list}>Workouts</Link></li>
+                    <li><Link to={websiteRoutes.dashboard}>Dashboard</Link></li>
+                    <li><Link to={websiteRoutes.user.list}>Users</Link></li>
+                    <li><Link to={websiteRoutes.workout.list}>Workouts</Link></li>
                 </ul>
             </nav>
         </aside>

@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 import AdminLayout from "../../layouts/admin/AdminLayout.tsx";
 import {Link} from "react-router-dom";
-import routes from "../../infrastructure/router/routes-mapping.tsx";
+import websiteRoutes from "../../config/routes/website-routes.tsx";
 import WorkoutsListFilters from "../../filters/WorkoutsListFilters.tsx";
-import WorkoutAPI from "../../api/WorkoutApi.tsx";
-import WorkoutDTO from "../../dtos/WorkoutDTO.tsx";
-import WorkoutDetailsCard from "../../widget/workout/WorkoutDetailsCard.tsx";
+import WorkoutDTO from "../../api/dtos/WorkoutDTO.tsx";
+import WorkoutPreviewCard from "../../widget/workout/WorkoutPreviewCard.tsx";
 import WorkoutsSearchForm from "../../widget/workout/WorkoutsSearchForm.tsx";
 import WorkoutsListTable from "../../widget/workout/WorkoutsListTable.tsx";
+import WorkoutApiGateway from "../../api/gateway/WorkoutApiGateway.tsx";
 
 const WorkoutsPage: React.FC = () => {
     const defaultFilters: WorkoutsListFilters = { ids: null, name: null, statuses: null, limit: 25 };
@@ -16,7 +16,7 @@ const WorkoutsPage: React.FC = () => {
     const [workoutPreview, setUserPreview] = useState<WorkoutDTO|null>(null);
 
     const handleDisplayUserPreview = async (workoutId: number) => {
-        const preview = await WorkoutAPI.getOneWorkout(String(workoutId));
+        const preview = await WorkoutApiGateway.getOneWorkout(String(workoutId));
         setUserPreview(preview);
     }
 
@@ -40,7 +40,7 @@ const WorkoutsPage: React.FC = () => {
             </div>
 
             <div className={"margin-bottom-s"}>
-                <Link to={routes.workout.create}>Create New Workout</Link>
+                <Link to={websiteRoutes.workout.create}>Create New Workout</Link>
             </div>
 
             <div className={"float-left two-thirds-width"}>
@@ -49,7 +49,7 @@ const WorkoutsPage: React.FC = () => {
 
             <div className={"float-left padding-left-m one-thirds-width "}>
                 {workoutPreview && (
-                    <WorkoutDetailsCard workout={workoutPreview} displayActions={true}/>
+                    <WorkoutPreviewCard workout={workoutPreview} displayActions={true}/>
                 )}
             </div>
         </AdminLayout>

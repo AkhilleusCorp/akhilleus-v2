@@ -21,7 +21,7 @@ const UsersListTable: React.FC<UsersListTableType> = ({ filters, refreshKey, mai
 
     return (
         <Table>
-            <TableHead headers={['id', 'username', 'email', 'type']} />
+            <TableHead headers={['id', 'username', 'status', 'email', 'type']} />
             <tbody>
             {users.map((user) => (
                 <tr id={'user_' + user.id} key={'user_' + user.id}>
@@ -31,6 +31,7 @@ const UsersListTable: React.FC<UsersListTableType> = ({ filters, refreshKey, mai
                             {user.username}
                         </a>
                     </td>
+                    <td>{user.status}</td>
                     <td>{user.email}</td>
                     <td>{user.type}</td>
                 </tr>

@@ -1,0 +1,40 @@
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+.half-width {
+    width: 50%;
+}
+
+.two-thirds-width {
+    width: 66%;
+}
+
+.one-thirds-width {
+    width: 33%;
+}
+
+.columns {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.column.one-thirds-width:first-child {
+    margin-right: 0.5em;
+}
+.column.one-thirds-width:last-child {
+    margin-left: 0.5em;
+}
+
+.column.half-width:first-child {
+    margin-right: 0.5em;
+}
+
+.column.half-width:last-child {
+     margin-left: 0.5em;
+ }

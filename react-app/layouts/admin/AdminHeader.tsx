@@ -1,5 +1,5 @@
 import React from 'react';
-import routes from "../../infrastructure/router/routes-mapping.tsx";
+import websiteRoutes from "../../config/routes/website-routes.tsx";
 
 const AdminHeader: React.FC = () => {
     return (
@@ -12,7 +12,7 @@ const AdminHeader: React.FC = () => {
                     <li><a>Notifications</a></li>
                     <li><a>Profile</a></li>
                     <li>
-                        <a href={routes.logout}>Logout</a>
+                        <a href={websiteRoutes.logout}>Logout</a>
                     </li>
                 </ul>
             </div>
