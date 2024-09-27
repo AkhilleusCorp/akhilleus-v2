@@ -3,14 +3,15 @@
 namespace App\Infrastructure\Controller\Api\Workout;
 
 use App\Domain\Registry\User\UserStatusRegistry;
-use App\Domain\Registry\User\UserTypeRegistry;
 use App\Infrastructure\Controller\Api\AbstractAPIController;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
-use App\UseCase\Workout\CreateOneWorkoutUseCase;
-use App\UseCase\Workout\DeleteOneWorkoutByIdUseCase;
-use App\UseCase\Workout\GetManyWorkoutUseCase;
-use App\UseCase\Workout\GetOneWorkoutByIdUseCase;
-use App\UseCase\Workout\UpdateOneWorkoutByIdUseCase;
+use App\Infrastructure\View\ViewModel\User\SingleUserViewModel;
+use App\Infrastructure\View\ViewModel\Workout\SingleWorkoutViewModel;
+use App\UseCase\API\Workout\CreateOneWorkoutUseCase;
+use App\UseCase\API\Workout\DeleteOneWorkoutByIdUseCase;
+use App\UseCase\API\Workout\GetManyWorkoutUseCase;
+use App\UseCase\API\Workout\GetOneWorkoutByIdUseCase;
+use App\UseCase\API\Workout\UpdateOneWorkoutByIdUseCase;
 use Nelmio\ApiDocBundle\Annotation\Model;
 use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -33,35 +34,27 @@ final class WorkoutController extends AbstractAPIController
         description: 'Successfully returns a list of Workouts',
         content: new Model(type: MultipleObjectViewModel::class)
     )]
-    public function getMany(Request $request, GetManyWorkoutUseCase $useCase): JsonResponse
+    public function getMany(Request $request, GetManyWorkoutUseCase $useCase): MultipleObjectViewModel
     {
-        return new JsonResponse(
-            $useCase->execute($request->query->all(), $this->getDataProfile())
-        );
+        return $useCase->execute($request->query->all(), $this->getDataProfile());
     }
 
     #[Route('/workouts/{id}', name:'workout_get_one_by_id', requirements: ['id' => '\d+'], methods: ['GET'])]
-    public function getOneById(int $id, GetOneWorkoutByIdUseCase $useCase): JsonResponse
+    public function getOneById(int $id, GetOneWorkoutByIdUseCase $useCase): SingleWorkoutViewModel
     {
-        return new JsonResponse(
-            $useCase->execute($id, $this->getDataProfile())
-        );
+        return $useCase->execute($id, $this->getDataProfile());
     }
 
     #[Route('/workouts', name:'workout_create_one', methods: ['POST'])]
-    public function createOne(Request $request, CreateOneWorkoutUseCase $useCase): JsonResponse
+    public function createOne(Request $request, CreateOneWorkoutUseCase $useCase): SingleWorkoutViewModel
     {
-        return new JsonResponse(
-            $useCase->execute(json_decode($request->getContent(), true), $this->getDataProfile())
-        );
+        return $useCase->execute(json_decode($request->getContent(), true), $this->getDataProfile());
     }
 
     #[Route('/workouts/{id}', name:'workout_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
-    public function updateOneById(Request $request, int $id, UpdateOneWorkoutByIdUseCase $useCase): JsonResponse
+    public function updateOneById(Request $request, int $id, UpdateOneWorkoutByIdUseCase $useCase): SingleWorkoutViewModel
     {
-        return new JsonResponse(
-            $useCase->execute($id, json_decode($request->getContent(), true), $this->getDataProfile())
-        );
+        return $useCase->execute($id, json_decode($request->getContent(), true), $this->getDataProfile());
     }
 
     #[Route('/workouts/{id}', name:'workout_delete_one_by_id', requirements: ['id' => '\d+'], methods: ['DELETE'])]

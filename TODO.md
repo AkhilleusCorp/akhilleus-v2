@@ -1,9 +1,10 @@
 ## Refactoring
 * Create dedicated UseCaseInterface per CRUD operation
-* Split UseCase folder into API, Website
 * Create a DeleteButton in react that handle 100% of the process
 
 ## Functionnalities
+### Security
+* Fetch and use token to make api call in order to secure it (and remove public access)
 ### Dropdown
 * create drop down for enum field like status and visibility
 
@@ -22,7 +23,16 @@
 ### Password
 * Create a dedicated API just to update password
 
-### Workout
-#### React
-* Add front end
-  * update
+### Movement
+#### Add API
+ * GetMany
+ * GetOne
+ * Create
+ * Update
+ * Delete
+#### Add Front end
+ * List
+ * Details
+ * Add
+ * Update
+ * Delete

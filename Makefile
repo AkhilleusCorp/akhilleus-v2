@@ -8,40 +8,37 @@ install_dependencies:
 	composer install
 	yarn
 
+up:
+	docker-compose up -d
+	sleep 3
+
+down:
+	docker-compose down --remove-orphan
+
 create_local_db:
-	@touch var/akhilleus.db
+	php bin/console doctrine:database:drop --force --if-exists
+	php bin/console doctrine:database:create
+	php bin/console doctrine:migrations:migrate -n
 
 remove_local_db:
-	rm -f var/akhilleus.db
-
-migrate_db:
-	 php bin/console doctrine:migrations:migrate -n
+	docker-compose down --remove-orphan
 
 load_fixtures:
-	php bin/console doctrine:fixtures:load --purge-with-truncate -n
+	php bin/console doctrine:fixtures:load -n
 
-init_project: .env.local create_local_db migrate_db load_fixtures
+init_project: .env.local up create_local_db load_fixtures
 
-reset_db: remove_local_db create_local_db migrate_db load_fixtures
-
+reset_db: create_local_db load_fixtures
 
 create_test_db:
-	@touch var/akhilleus-test.db
-
-remove_test_db:
-	rm -f var/akhilleus-test.db
-
-migrate_test_db:
-	 php bin/console doctrine:migrations:migrate -n --env=test
+	php bin/console doctrine:database:drop --if-exists --force --env=test
+	php bin/console doctrine:database:create --env=test
+	php bin/console doctrine:schema:create -n --env=test
 
 load_test_fixtures:
-	php bin/console doctrine:fixtures:load -n --purge-with-truncate --env=test
+	php bin/console doctrine:fixtures:load -n --env=test
 
-init_test_env: create_test_db migrate_test_db
-
-reset_test_db: remove_test_db init_test_env load_test_fixtures
-
-reset_test_db: remove_test_db init_test_env
+reset_test_db: create_test_db load_test_fixtures
 
 tests_all:
 	rm -rf var/cache/test #prevent test failing due to outdated cache

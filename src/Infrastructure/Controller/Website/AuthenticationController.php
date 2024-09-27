@@ -2,13 +2,11 @@
 
 namespace App\Infrastructure\Controller\Website;
 
-use App\UseCase\Authentication\AuthenticationSuccessUseCase;
+use App\UseCase\Website\Authentication\AuthenticationSuccessUseCase;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
-use PHPUnit\Util\Json;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 use Symfony\Component\Routing\Attribute\Route;
@@ -45,10 +43,10 @@ final class AuthenticationController extends AbstractController
 
 
     #[Route('/authentication/token', name:'website_authentication_token', methods: ['GET'])]
-    public function authenticationToken(JWTTokenManagerInterface $tokenManager): JsonResponse
+    public function authenticationToken(JWTTokenManagerInterface $tokenManager): Response
     {
         if (null === $this->getUser())  {
-            throw new UnauthorizedHttpException('Basic realm="Access to the website"');
+            return $this->redirectToRoute('website_authentication');
         }
 
         return new JsonResponse(
