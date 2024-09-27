@@ -1,5 +1,7 @@
 import React, {ReactNode} from "react";
 import {useNavigate} from "react-router-dom";
+import Card from "../card/Card.tsx";
+import CardFooter from "../card/CardFooter.tsx";
 
 type SaveFormProps = {
     submitFunction: () => void;
@@ -15,13 +17,15 @@ const SaveForm: React.FC<SaveFormProps> = ({ submitFunction, children }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            {children}
-            <div>
-                <button type={"button"} className={"btn-cancel"} onClick={() => navigate(-1)}>Cancel</button>
-                <button type={"submit"} className={"btn-validate"}>Save</button>
-            </div>
-        </form>
+        <Card>
+            <form onSubmit={handleSubmit}>
+                {children}
+                <CardFooter shouldBeDisplayed={true}>
+                    <button type={"button"} className={"btn-cancel"} onClick={() => navigate(-1)}>Cancel</button>
+                    <button type={"submit"} className={"btn-validate"}>Save</button>
+                </CardFooter>
+            </form>
+        </Card>
     );
 };
 
