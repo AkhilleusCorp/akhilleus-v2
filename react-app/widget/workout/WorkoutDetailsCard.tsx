@@ -1,11 +1,11 @@
 import React from 'react';
-import WorkoutDTO from "../../dtos/WorkoutDTO.tsx";
 import EditButton from "../common/button/EditButton.tsx";
 import websiteRoutes from "../../config/routes/website-routes.tsx";
 import DetailsButton from "../common/button/DetailsButton.tsx";
 import Card from "../common/card/Card.tsx";
 import CardSideImageBody from "../common/card/CardSideImageBody.tsx";
 import CardFooter from "../common/card/CardFooter.tsx";
+import WorkoutDTO from "../../api/dtos/WorkoutDTO.tsx";
 
 type WorkoutDetailsCardType = {
     workout: WorkoutDTO,

@@ -1,11 +1,11 @@
 import React from 'react';
-import UserDTO from "../../dtos/UserDTO.tsx";
 import EditButton from "../common/button/EditButton.tsx";
 import websiteRoutes from "../../config/routes/website-routes.tsx";
 import DetailsButton from "../common/button/DetailsButton.tsx";
 import CardFooter from "../common/card/CardFooter.tsx";
 import Card from "../common/card/Card.tsx";
 import CardSideImageBody from "../common/card/CardSideImageBody.tsx";
+import UserDTO from "../../api/dtos/UserDTO.tsx";
 
 type UserDetailsCardType = {
     user: UserDTO,

@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import WorkoutAPI from "../../api/WorkoutApi.tsx";
 import {useNavigate} from "react-router-dom";
 import websiteRoutes from "../../config/routes/website-routes.tsx";
 import SaveForm from "../common/form/SaveForm.tsx";
+import WorkoutApiGateway from "../../api/gateway/WorkoutApiGateway.tsx";
 
 type WorkoutCreateFormType = {
     name: string;
@@ -21,7 +21,7 @@ const WorkoutCreateForm: React.FC = () => {
 
     const handleSubmit = async () => {
         try {
-            const workout = await WorkoutAPI.createWorkout(workoutCreate);
+            const workout = await WorkoutApiGateway.createWorkout(workoutCreate);
             navigate(websiteRoutes.workout.details(workout.id));
         } catch (error) {
             console.log(error);

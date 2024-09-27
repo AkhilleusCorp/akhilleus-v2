@@ -1,10 +1,10 @@
 import React from 'react';
 import {useNavigate} from "react-router-dom";
-import WorkoutDTO from "../../dtos/WorkoutDTO.tsx";
 import {useState} from "react";
-import WorkoutAPI from "../../api/WorkoutApi.tsx";
 import websiteRoutes from "../../config/routes/website-routes.tsx";
 import SaveForm from "../common/form/SaveForm.tsx";
+import WorkoutApiGateway from "../../api/gateway/WorkoutApiGateway.tsx";
+import WorkoutDTO from "../../api/dtos/WorkoutDTO.tsx";
 
 type WorkoutEditFormType = {
     workout: WorkoutDTO,
@@ -23,7 +23,7 @@ const WorkoutEditForm: React.FC<WorkoutEditFormType> = ({workout}) => {
 
     const handleSubmit = async () => {
         try {
-            await WorkoutAPI.updateWorkout(workout.id, workoutUpdated);
+            await WorkoutApiGateway.updateWorkout(workout.id, workoutUpdated);
             navigate(websiteRoutes.workout.details(workout.id));
         } catch (error) {
             console.log(error);

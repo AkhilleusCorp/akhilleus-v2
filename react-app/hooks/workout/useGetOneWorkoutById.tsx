@@ -1,6 +1,6 @@
-import WorkoutDTO from "../../dtos/WorkoutDTO.tsx";
 import {useEffect, useState} from "react";
-import WorkoutAPI from "../../api/WorkoutApi.tsx";
+import WorkoutApiGateway from "../../api/gateway/WorkoutApiGateway.tsx";
+import WorkoutDTO from "../../api/dtos/WorkoutDTO.tsx";
 
 function useGetOneWorkoutById(workoutId: string|undefined): WorkoutDTO | null {
     if (!workoutId) {
@@ -10,7 +10,7 @@ function useGetOneWorkoutById(workoutId: string|undefined): WorkoutDTO | null {
     const [workout, setWorkout] = useState<WorkoutDTO | null>(null);
     useEffect(() => {
         const fetchWorkout = async () => {
-            const workout = await WorkoutAPI.getOneWorkout(workoutId);
+            const workout = await WorkoutApiGateway.getOneWorkout(workoutId);
             setWorkout(workout);
         }
 

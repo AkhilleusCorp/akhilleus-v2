@@ -5,9 +5,9 @@ import {Link} from "react-router-dom";
 import UsersListFilters from "../../filters/UsersListFilters.tsx";
 import UsersSearchForm from "../../widget/user/UsersSearchForm.tsx";
 import websiteRoutes from "../../config/routes/website-routes.tsx";
-import UserDTO from "../../dtos/UserDTO.tsx";
-import UserAPI from "../../api/UserApi.tsx";
 import UserDetailsCard from "../../widget/user/UserDetailsCard.tsx";
+import UserApiGateway from "../../api/gateway/UserApiGateway.tsx";
+import UserDTO from "../../api/dtos/UserDTO.tsx";
 
 const UsersPage: React.FC = () => {
     const defaultFilters:UsersListFilters = { ids: null, username: null, email: null, statuses: null, types: null, limit: 25 };
@@ -16,7 +16,7 @@ const UsersPage: React.FC = () => {
     const [userPreview, setUserPreview] = useState<UserDTO|null>(null);
 
     const handleDisplayUserPreview = async (userId: number) => {
-        const preview = await UserAPI.getOneUser(String(userId));
+        const preview = await UserApiGateway.getOneUser(String(userId));
         setUserPreview(preview);
     }
 

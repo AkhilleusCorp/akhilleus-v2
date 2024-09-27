@@ -1,10 +1,10 @@
 import axios from "axios";
+import WorkoutsListFilters from "../../filters/WorkoutsListFilters.tsx";
+import AbstractApiGateway from "./AbstractApiGateway.tsx";
+import apiRoutes from "../../config/routes/api-routes.tsx";
 import WorkoutDTO from "../dtos/WorkoutDTO.tsx";
-import WorkoutsListFilters from "../filters/WorkoutsListFilters.tsx";
-import AbstractAPI from "./AbstractAPI.tsx";
-import apiRoutes from "../config/routes/api-routes.tsx";
 
-class WorkoutAPI extends AbstractAPI {
+class WorkoutApiGateway extends AbstractApiGateway {
     static async getOneWorkout (workoutId: string|number): Promise<WorkoutDTO|null> {
         const response = await axios.get(apiRoutes.workout.details(workoutId));
 
@@ -65,4 +65,4 @@ class WorkoutAPI extends AbstractAPI {
     }
 }
 
-export default WorkoutAPI;
+export default WorkoutApiGateway;

@@ -1,10 +1,10 @@
 import axios from "axios";
+import UsersListFilters from "../../filters/UsersListFilters.tsx";
+import AbstractApiGateway from "./AbstractApiGateway.tsx";
+import apiRoutes from "../../config/routes/api-routes.tsx";
 import UserDTO from "../dtos/UserDTO.tsx";
-import UsersListFilters from "../filters/UsersListFilters.tsx";
-import AbstractAPI from "./AbstractAPI.tsx";
-import apiRoutes from "../config/routes/api-routes.tsx";
 
-class UserAPI extends AbstractAPI {
+class UserApiGateway extends AbstractApiGateway {
     static async getOneUser (userId: string|number): Promise<UserDTO|null> {
         const response = await axios.get(apiRoutes.user.details(userId));
 
@@ -65,4 +65,4 @@ class UserAPI extends AbstractAPI {
     }
 }
 
-export default UserAPI;
+export default UserApiGateway;

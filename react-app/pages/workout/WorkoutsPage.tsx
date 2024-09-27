@@ -3,11 +3,11 @@ import AdminLayout from "../../layouts/admin/AdminLayout.tsx";
 import {Link} from "react-router-dom";
 import websiteRoutes from "../../config/routes/website-routes.tsx";
 import WorkoutsListFilters from "../../filters/WorkoutsListFilters.tsx";
-import WorkoutAPI from "../../api/WorkoutApi.tsx";
-import WorkoutDTO from "../../dtos/WorkoutDTO.tsx";
+import WorkoutDTO from "../../api/dtos/WorkoutDTO.tsx";
 import WorkoutDetailsCard from "../../widget/workout/WorkoutDetailsCard.tsx";
 import WorkoutsSearchForm from "../../widget/workout/WorkoutsSearchForm.tsx";
 import WorkoutsListTable from "../../widget/workout/WorkoutsListTable.tsx";
+import WorkoutApiGateway from "../../api/gateway/WorkoutApiGateway.tsx";
 
 const WorkoutsPage: React.FC = () => {
     const defaultFilters: WorkoutsListFilters = { ids: null, name: null, statuses: null, limit: 25 };
@@ -16,7 +16,7 @@ const WorkoutsPage: React.FC = () => {
     const [workoutPreview, setUserPreview] = useState<WorkoutDTO|null>(null);
 
     const handleDisplayUserPreview = async (workoutId: number) => {
-        const preview = await WorkoutAPI.getOneWorkout(String(workoutId));
+        const preview = await WorkoutApiGateway.getOneWorkout(String(workoutId));
         setUserPreview(preview);
     }
 
