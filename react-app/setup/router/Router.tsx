@@ -3,7 +3,6 @@ import {
     RouterProvider,
 } from "react-router-dom";
 
-import routes from "./routes-mapping.tsx";
 import DashboardPage from "../../pages/DashboardPage.tsx";
 import ErrorPage from "../../pages/ErrorPage.tsx";
 import UsersPage from "../../pages/user/UsersPage.tsx";
@@ -15,46 +14,47 @@ import WorkoutsPage from "../../pages/workout/WorkoutsPage.tsx";
 import WorkoutCreatePage from "../../pages/workout/WorkoutCreatePage.tsx";
 import WorkoutUpdatePage from "../../pages/workout/WorkoutUpdatePage.tsx";
 import WorkoutDetailsPage from "../../pages/workout/WorkoutDetailsPage.tsx";
+import websiteRoutes from "../../config/routes/website-routes.tsx";
 
 const routerConfig = createBrowserRouter([
     {
-        path: routes.dashboard,
+        path: websiteRoutes.dashboard,
         errorElement: <ErrorPage />,
         children: [
             {
                 index: true,
                 element: <DashboardPage />,
             }, {
-                path: routes.user.list,
+                path: websiteRoutes.user.list,
                 children: [
                     {
                         index: true,
                         element: <UsersPage />,
                     }, {
-                        path: routes.user.create,
+                        path: websiteRoutes.user.create,
                         element: <UserCreatePage />,
                     }, {
-                        path: routes.user.edit(':userId'),
+                        path: websiteRoutes.user.edit(':userId'),
                         element: <UserUpdatePage />,
                     }, {
-                        path: routes.user.details(':userId'),
+                        path: websiteRoutes.user.details(':userId'),
                         element: <UserDetailsPage />,
                     }
                 ]
             }, {
-                path: routes.workout.list,
+                path: websiteRoutes.workout.list,
                 children: [
                     {
                         index: true,
                         element: <WorkoutsPage />,
                     }, {
-                        path: routes.workout.create,
+                        path: websiteRoutes.workout.create,
                         element: <WorkoutCreatePage />,
                     }, {
-                        path: routes.workout.edit(':workoutId'),
+                        path: websiteRoutes.workout.edit(':workoutId'),
                         element: <WorkoutUpdatePage />,
                     }, {
-                        path: routes.workout.details(':workoutId'),
+                        path: websiteRoutes.workout.details(':workoutId'),
                         element: <WorkoutDetailsPage />,
                     }
                 ]

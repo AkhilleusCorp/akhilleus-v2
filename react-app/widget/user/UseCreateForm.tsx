@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import UserAPI from "../../api/UserApi.tsx";
 import {useNavigate} from "react-router-dom";
-import routes from "../../infrastructure/router/routes-mapping.tsx";
+import websiteRoutes from "../../config/routes/website-routes.tsx";
 import SaveForm from "../common/form/SaveForm.tsx";
 
 type UserCreateFormType = {
@@ -24,7 +24,7 @@ const UserCreateForm: React.FC = () => {
     const handleSubmit = async () => {
         try {
             const user = await UserAPI.createUser(userCreate);
-            navigate(routes.user.details(user.id));
+            navigate(websiteRoutes.user.details(user.id));
         } catch (error) {
             console.log(error);
         }

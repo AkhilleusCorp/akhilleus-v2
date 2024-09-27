@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import AdminLayout from "../../layouts/admin/AdminLayout.tsx";
 import {Link} from "react-router-dom";
-import routes from "../../infrastructure/router/routes-mapping.tsx";
+import websiteRoutes from "../../config/routes/website-routes.tsx";
 import WorkoutsListFilters from "../../filters/WorkoutsListFilters.tsx";
 import WorkoutAPI from "../../api/WorkoutApi.tsx";
 import WorkoutDTO from "../../dtos/WorkoutDTO.tsx";
@@ -40,7 +40,7 @@ const WorkoutsPage: React.FC = () => {
             </div>
 
             <div className={"margin-bottom-s"}>
-                <Link to={routes.workout.create}>Create New Workout</Link>
+                <Link to={websiteRoutes.workout.create}>Create New Workout</Link>
             </div>
 
             <div className={"float-left two-thirds-width"}>

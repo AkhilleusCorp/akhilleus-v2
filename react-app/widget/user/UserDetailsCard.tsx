@@ -1,7 +1,7 @@
 import React from 'react';
 import UserDTO from "../../dtos/UserDTO.tsx";
 import EditButton from "../common/button/EditButton.tsx";
-import routes from "../../infrastructure/router/routes-mapping.tsx";
+import websiteRoutes from "../../config/routes/website-routes.tsx";
 import DetailsButton from "../common/button/DetailsButton.tsx";
 import CardFooter from "../common/card/CardFooter.tsx";
 import Card from "../common/card/Card.tsx";
@@ -24,8 +24,8 @@ const UserDetailsCard: React.FC<UserDetailsCardType> = ({ user, displayActions }
             </CardSideImageBody>
 
             <CardFooter shouldBeDisplayed={displayActions}>
-                <DetailsButton routeToDetailsPage={routes.user.details(user.id)}/>
-                <EditButton routeToEditPage={routes.user.edit(user.id)} />
+                <DetailsButton routeToDetailsPage={websiteRoutes.user.details(user.id)}/>
+                <EditButton routeToEditPage={websiteRoutes.user.edit(user.id)} />
             </CardFooter>
         </Card>
     );

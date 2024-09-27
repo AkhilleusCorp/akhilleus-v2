@@ -1,7 +1,7 @@
 import React from 'react';
 import WorkoutDTO from "../../dtos/WorkoutDTO.tsx";
 import EditButton from "../common/button/EditButton.tsx";
-import routes from "../../infrastructure/router/routes-mapping.tsx";
+import websiteRoutes from "../../config/routes/website-routes.tsx";
 import DetailsButton from "../common/button/DetailsButton.tsx";
 import Card from "../common/card/Card.tsx";
 import CardSideImageBody from "../common/card/CardSideImageBody.tsx";
@@ -24,8 +24,8 @@ const WorkoutDetailsCard: React.FC<WorkoutDetailsCardType> = ({ workout, display
             </CardSideImageBody>
 
             <CardFooter shouldBeDisplayed={displayActions}>
-                <DetailsButton routeToDetailsPage={routes.workout.details(workout.id)}/>
-                <EditButton routeToEditPage={routes.workout.edit(workout.id)} />
+                <DetailsButton routeToDetailsPage={websiteRoutes.workout.details(workout.id)}/>
+                <EditButton routeToEditPage={websiteRoutes.workout.edit(workout.id)} />
             </CardFooter>
         </Card>
     );

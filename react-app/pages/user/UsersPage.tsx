@@ -4,7 +4,7 @@ import UsersListTable from "../../widget/user/UsersListTable.tsx";
 import {Link} from "react-router-dom";
 import UsersListFilters from "../../filters/UsersListFilters.tsx";
 import UsersSearchForm from "../../widget/user/UsersSearchForm.tsx";
-import routes from "../../infrastructure/router/routes-mapping.tsx";
+import websiteRoutes from "../../config/routes/website-routes.tsx";
 import UserDTO from "../../dtos/UserDTO.tsx";
 import UserAPI from "../../api/UserApi.tsx";
 import UserDetailsCard from "../../widget/user/UserDetailsCard.tsx";
@@ -40,7 +40,7 @@ const UsersPage: React.FC = () => {
             </div>
 
             <div className={"margin-bottom-s"}>
-                <Link to={routes.user.create}>Create New User</Link>
+                <Link to={websiteRoutes.user.create}>Create New User</Link>
             </div>
 
             <div className={"float-left two-thirds-width"}>

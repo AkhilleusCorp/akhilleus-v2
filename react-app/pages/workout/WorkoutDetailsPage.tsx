@@ -5,7 +5,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import ErrorPage from "../ErrorPage.tsx";
 import useGetOneWorkoutById from "../../hooks/workout/useGetOneWorkoutById.tsx";
 import EditButton from "../../widget/common/button/EditButton.tsx";
-import routes from "../../infrastructure/router/routes-mapping.tsx";
+import websiteRoutes from "../../config/routes/website-routes.tsx";
 import WorkoutDeleteButton from "../../widget/workout/WorkoutDeleteButton.tsx";
 
 const WorkoutDetailsPage: React.FC = () => {
@@ -19,13 +19,13 @@ const WorkoutDetailsPage: React.FC = () => {
 
     const onConfirmDelete = (userId: number) => {
         console.log(userId);
-        navigate(routes.workout.list);
+        navigate(websiteRoutes.workout.list);
     }
 
     return (
         <AdminLayout>
             <div className={"text-align-right margin-bottom-s"}>
-                <EditButton routeToEditPage={routes.workout.edit(workout.id)}/>
+                <EditButton routeToEditPage={websiteRoutes.workout.edit(workout.id)}/>
                 <WorkoutDeleteButton workoutId={workout.id} callbackFunction={onConfirmDelete} />
             </div>
             <WorkoutDetailsCard workout={workout} displayActions={false}/>
