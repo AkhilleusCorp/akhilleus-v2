@@ -12,7 +12,7 @@ type WorkoutDetailsCardType = {
     displayActions: boolean
 }
 
-const WorkoutDetailsCard: React.FC<WorkoutDetailsCardType> = ({ workout, displayActions }) => {
+const WorkoutPreviewCard: React.FC<WorkoutDetailsCardType> = ({ workout, displayActions }) => {
     return (
         <Card>
             <CardSideImageBody imageSrc={"https://placehold.co/150x150.png"} imageAlt={"Muscles overview"}>
@@ -31,4 +31,4 @@ const WorkoutDetailsCard: React.FC<WorkoutDetailsCardType> = ({ workout, display
     );
 }
 
-export default WorkoutDetailsCard;
+export default WorkoutPreviewCard;

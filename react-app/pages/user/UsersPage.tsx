@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 import UsersListFilters from "../../filters/UsersListFilters.tsx";
 import UsersSearchForm from "../../widget/user/UsersSearchForm.tsx";
 import websiteRoutes from "../../config/routes/website-routes.tsx";
-import UserDetailsCard from "../../widget/user/UserDetailsCard.tsx";
+import UserPreviewCard from "../../widget/user/UserPreviewCard.tsx";
 import UserApiGateway from "../../api/gateway/UserApiGateway.tsx";
 import UserDTO from "../../api/dtos/UserDTO.tsx";
 
@@ -43,14 +43,16 @@ const UsersPage: React.FC = () => {
                 <Link to={websiteRoutes.user.create}>Create New User</Link>
             </div>
 
-            <div className={"float-left two-thirds-width"}>
-                <UsersListTable filters={filters} refreshKey={refreshKey} mainLinkClickCallback={handleDisplayUserPreview}/>
-            </div>
+            <div>
+                <div className={"float-left two-thirds-width"}>
+                    <UsersListTable filters={filters} refreshKey={refreshKey} mainLinkClickCallback={handleDisplayUserPreview}/>
+                </div>
 
-            <div className={"float-left padding-left-m one-thirds-width "}>
-                {userPreview && (
-                    <UserDetailsCard user={userPreview} displayActions={true}/>
-                )}
+                <div className={"float-right one-thirds-width"}>
+                    {userPreview && (
+                        <UserPreviewCard user={userPreview} displayActions={true}/>
+                    )}
+                </div>
             </div>
         </AdminLayout>
     );

@@ -1,6 +1,6 @@
 import React from 'react';
 import AdminLayout from "../../layouts/admin/AdminLayout.tsx";
-import WorkoutDetailsCard from "../../widget/workout/WorkoutDetailsCard.tsx";
+import WorkoutPreviewCard from "../../widget/workout/WorkoutPreviewCard.tsx";
 import {useNavigate, useParams} from "react-router-dom";
 import ErrorPage from "../ErrorPage.tsx";
 import useGetOneWorkoutById from "../../hooks/workout/useGetOneWorkoutById.tsx";
@@ -28,7 +28,7 @@ const WorkoutDetailsPage: React.FC = () => {
                 <EditButton routeToEditPage={websiteRoutes.workout.edit(workout.id)}/>
                 <WorkoutDeleteButton workoutId={workout.id} callbackFunction={onConfirmDelete} />
             </div>
-            <WorkoutDetailsCard workout={workout} displayActions={false}/>
+            <WorkoutPreviewCard workout={workout} displayActions={false}/>
         </AdminLayout>
 )
 }

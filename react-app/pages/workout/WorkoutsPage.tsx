@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import websiteRoutes from "../../config/routes/website-routes.tsx";
 import WorkoutsListFilters from "../../filters/WorkoutsListFilters.tsx";
 import WorkoutDTO from "../../api/dtos/WorkoutDTO.tsx";
-import WorkoutDetailsCard from "../../widget/workout/WorkoutDetailsCard.tsx";
+import WorkoutPreviewCard from "../../widget/workout/WorkoutPreviewCard.tsx";
 import WorkoutsSearchForm from "../../widget/workout/WorkoutsSearchForm.tsx";
 import WorkoutsListTable from "../../widget/workout/WorkoutsListTable.tsx";
 import WorkoutApiGateway from "../../api/gateway/WorkoutApiGateway.tsx";
@@ -49,7 +49,7 @@ const WorkoutsPage: React.FC = () => {
 
             <div className={"float-left padding-left-m one-thirds-width "}>
                 {workoutPreview && (
-                    <WorkoutDetailsCard workout={workoutPreview} displayActions={true}/>
+                    <WorkoutPreviewCard workout={workoutPreview} displayActions={true}/>
                 )}
             </div>
         </AdminLayout>

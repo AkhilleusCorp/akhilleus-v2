@@ -1,4 +1,5 @@
 @import "generics.css";
+@import "position.css";
 @import "ui-components.css";
 @import "layouts/unlogged-layout.css";
 @import "layouts/logged-layout.css";

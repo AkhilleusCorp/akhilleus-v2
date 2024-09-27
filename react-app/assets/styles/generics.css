@@ -15,25 +15,6 @@ body, html {
     background-color: rgba(171, 171, 175, 0.13);
 }
 
-.float-left {
-    float: left;
-}
-
-.float-right {
-    float: right;
-}
-
-.half-width {
-    width: 50%;
-}
-
-.two-thirds-width {
-    width: 66%;
-}
-.one-thirds-width {
-    width: 33%;
-}
-
 .margin-bottom-s {
     margin-bottom: 1em;
 }

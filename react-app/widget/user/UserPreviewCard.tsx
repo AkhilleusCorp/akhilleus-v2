@@ -12,14 +12,16 @@ type UserDetailsCardType = {
     displayActions: boolean
 }
 
-const UserDetailsCard: React.FC<UserDetailsCardType> = ({ user, displayActions }) => {
+const UserPreviewCard: React.FC<UserDetailsCardType> = ({ user, displayActions }) => {
     return (
         <Card>
             <CardSideImageBody imageSrc={"https://placehold.co/150x150.png"} imageAlt={"Avatar"}>
                 <h3 className={"card-title"}>{user.username}</h3>
                 <div className={"card-description"}>
                     <div>ID: {user.id}</div>
+                    <div>Status: {user.status}</div>
                     <div>Email: {user.email}</div>
+                    <div>Type: {user.type}</div>
                 </div>
             </CardSideImageBody>
 
@@ -31,4 +33,4 @@ const UserDetailsCard: React.FC<UserDetailsCardType> = ({ user, displayActions }
     );
 }
 
-export default UserDetailsCard;
+export default UserPreviewCard;
