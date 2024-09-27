@@ -32,14 +32,12 @@ remove_test_db:
 	rm -f var/akhilleus-test.db
 
 migrate_test_db:
-	 php bin/console doctrine:migrations:migrate -n --env=test
+	 php bin/console doctrine:schema:create -n --env=test
 
 load_test_fixtures:
 	php bin/console doctrine:fixtures:load -n --purge-with-truncate --env=test
 
-init_test_env: create_test_db migrate_test_db
-
-reset_test_db: remove_test_db init_test_env load_test_fixtures
+init_test_env: create_test_db migrate_test_db load_test_fixtures
 
 reset_test_db: remove_test_db init_test_env
 
