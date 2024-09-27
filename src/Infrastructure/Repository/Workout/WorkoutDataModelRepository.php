@@ -25,19 +25,19 @@ final class WorkoutDataModelRepository extends AbstractBaseDTORepository impleme
     public function getWorkoutById(int $workoutId): ?WorkoutDataModel
     {
         return $this->createQueryBuilder($this->getAlias())
-            ->andWhere($this->getAlias().'.id = :userId')
-            ->setParameter('userId', $workoutId)
+            ->andWhere($this->getAlias().'.id = :workoutId')
+            ->setParameter('workoutId', $workoutId)
             ->getQuery()->getOneOrNullResult();
     }
 
     public function getWorkoutsByParameters(GetManyWorkoutsFilterModel $filter): array
     {
-        return $this->getDataModelByParameters($filter);
+        return $this->getByParameters($filter);
     }
 
     public function countWorkoutsByParameters(?GetManyWorkoutsFilterModel $filter): int
     {
-        return $this->countDataModelByParameters($filter);
+        return $this->countByParameters($filter);
     }
 
     protected function addParametersFromFilter(QueryBuilder $queryBuilder, GetManyWorkoutsFilterModel|FilterModelInterface $filter): self

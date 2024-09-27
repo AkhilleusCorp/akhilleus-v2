@@ -5,7 +5,6 @@ namespace App\Infrastructure\Controller\Api\Workout;
 use App\Domain\Registry\User\UserStatusRegistry;
 use App\Infrastructure\Controller\Api\AbstractAPIController;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
-use App\Infrastructure\View\ViewModel\User\SingleUserViewModel;
 use App\Infrastructure\View\ViewModel\Workout\SingleWorkoutViewModel;
 use App\UseCase\API\Workout\CreateOneWorkoutUseCase;
 use App\UseCase\API\Workout\DeleteOneWorkoutByIdUseCase;

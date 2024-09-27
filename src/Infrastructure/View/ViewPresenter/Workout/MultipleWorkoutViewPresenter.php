@@ -6,10 +6,11 @@ use App\Domain\DTO\DataModel\DataModelInterface;
 use App\Domain\DTO\DataModel\Workout\WorkoutDataModel;
 use App\Infrastructure\View\ViewModel\Workout\MultipleWorkoutItemViewModel;
 use App\Infrastructure\View\ViewPresenter\AbstractMultipleObjectViewPresenter;
+use App\Infrastructure\View\ViewPresenter\MultipleObjectViewPresenterInterface;
 
-final class MultipleWorkoutViewPresenter extends AbstractMultipleObjectViewPresenter
+final class MultipleWorkoutViewPresenter extends AbstractMultipleObjectViewPresenter implements MultipleObjectViewPresenterInterface
 {
-    protected function presentItem(WorkoutDataModel|DataModelInterface $data, string $dataProfile): MultipleWorkoutItemViewModel
+    public function presentItem(WorkoutDataModel|DataModelInterface $data, ?string $dataProfile): MultipleWorkoutItemViewModel
     {
         $item = new MultipleWorkoutItemViewModel();
         $item->id = $data->id;

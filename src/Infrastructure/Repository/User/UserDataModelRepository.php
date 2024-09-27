@@ -41,12 +41,12 @@ final class UserDataModelRepository extends AbstractBaseDTORepository implements
      */
     public function getUsersByParameters(GetManyUsersFilterModel $filter): array
     {
-        return $this->getDataModelByParameters($filter);
+        return $this->getByParameters($filter);
     }
 
     public function countUsersByParameters(?GetManyUsersFilterModel $filter): int
     {
-        return $this->countDataModelByParameters($filter);
+        return $this->countByParameters($filter);
     }
 
     protected function addParametersFromFilter(QueryBuilder $queryBuilder, GetManyUsersFilterModel|FilterModelInterface $filter): self

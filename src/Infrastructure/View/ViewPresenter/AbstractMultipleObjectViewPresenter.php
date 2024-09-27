@@ -11,12 +11,12 @@ abstract class AbstractMultipleObjectViewPresenter
 {
     /**
      * @param DataModelInterface[] $data
-     * @param string $dataProfile
+     * @param ?string $dataProfile
      * @param ViewHydratorInterface[] $hydrators
      *
      * @return MultipleObjectViewModel
      */
-    public function present(array $data, string $dataProfile, array $hydrators = []): MultipleObjectViewModel
+    public function present(array $data, ?string $dataProfile, array $hydrators = []): MultipleObjectViewModel
     {
         $viewModel = new MultipleObjectViewModel();
         foreach ($data as $item) {
@@ -30,5 +30,4 @@ abstract class AbstractMultipleObjectViewPresenter
         return $viewModel;
     }
 
-    protected abstract function presentItem(DataModelInterface $data, string $dataProfile): MultipleObjectItemViewModelInterface;
 }

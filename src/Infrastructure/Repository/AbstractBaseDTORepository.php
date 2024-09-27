@@ -2,18 +2,28 @@
 
 namespace App\Infrastructure\Repository;
 
+use App\Domain\DTO\DataModel\Equipment\EquipmentDataModel;
 use App\Domain\DTO\FilterModel\FilterModelInterface;
+use App\Domain\Gateway\Provider\GenericDataModelProviderGateway;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\Order;
 use Doctrine\ORM\QueryBuilder;
 
-abstract class AbstractBaseDTORepository extends ServiceEntityRepository
+abstract class AbstractBaseDTORepository extends ServiceEntityRepository implements GenericDataModelProviderGateway
 {
     protected abstract function getAlias(): string;
 
-    protected abstract function addParametersFromFilter(QueryBuilder $queryBuilder, FilterModelInterface $filter);
+    protected abstract function addParametersFromFilter(QueryBuilder $queryBuilder, FilterModelInterface $filter): self;
 
-    protected function getDataModelByParameters(FilterModelInterface $filter): array
+    public function getOneById(int $id): ?EquipmentDataModel
+    {
+        return $this->createQueryBuilder($this->getAlias())
+            ->andWhere($this->getAlias().'.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()->getOneOrNullResult();
+    }
+
+    public function getByParameters(FilterModelInterface $filter): array
     {
         $queryBuilder = $this->createQueryBuilder($this->getAlias());
 
@@ -24,7 +34,7 @@ abstract class AbstractBaseDTORepository extends ServiceEntityRepository
         return $queryBuilder->getQuery()->getResult();
     }
 
-    protected function countDataModelByParameters(?FilterModelInterface $filter): int
+    public function countByParameters(?FilterModelInterface $filter): int
     {
         $alias = $this->getAlias();
         $queryBuilder = $this->createQueryBuilder($alias)

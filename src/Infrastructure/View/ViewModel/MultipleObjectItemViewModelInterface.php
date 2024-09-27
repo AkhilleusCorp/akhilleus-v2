@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\View\ViewModel;
 
-interface MultipleObjectItemViewModelInterface
+interface MultipleObjectItemViewModelInterface extends ViewModelInterface
 {
 
 }
