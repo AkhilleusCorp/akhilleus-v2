@@ -38,8 +38,8 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: 8.2
-          extensions: mbstring, intl, pdo_mysql
-          coverage: none
+          extensions: mbstring, intl, pdo_mysql, xdebug
+          coverage: xdebug
 
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-progress --no-suggest --no-interaction
@@ -54,12 +54,6 @@ jobs:
           until mysql -h 127.0.0.1 -u test_user -p'test_password' -e "SHOW DATABASES;"; do
             sleep 5
           done
-
-      - name: Prepare database
-        run: make create_test_db
-
-      - name: Load fixtures
-        run: make load_test_fixtures
 
       - name: Unit & Integration tests
         run: make tests_all
