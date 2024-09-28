@@ -10,8 +10,9 @@ use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
 use App\Infrastructure\View\ViewModel\Workout\MultipleEquipmentItemDataViewModel;
 use App\Infrastructure\View\ViewPresenter\GenericMultipleObjectViewPresenter;
 use App\Infrastructure\View\ViewPresenter\GenericViewPresenter;
+use App\UseCase\UseCaseInterface;
 
-final class GenericGetManyUseCase
+final class GenericGetManyUseCase implements UseCaseInterface
 {
     public function __construct(
         private readonly GenericFilterModelFactory $filterFactory,

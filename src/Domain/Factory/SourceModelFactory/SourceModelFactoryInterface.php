@@ -6,5 +6,5 @@ use App\Domain\DTO\SourceModel\SourceModelInterface;
 
 interface SourceModelFactoryInterface
 {
-    public function buildSourceModel(array $parameters): SourceModelInterface;
+    public function buildSourceModel(array $parameters, ?SourceModelInterface $sourceModel = null): SourceModelInterface;
 }

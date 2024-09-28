@@ -17,13 +17,16 @@ final class GenericGetOneByIdUseCase implements UseCaseInterface
 
     }
 
-    public function execute(int $id, GenericDataModelProviderGateway $providerGateway, SingleObjectDataViewModelInterface $view): SingleObjectViewModel
-    {
-        $data = $providerGateway->getOneById($id);
-        if (null === $data) {
+    public function execute(
+        int $id,
+        GenericDataModelProviderGateway $providerGateway,
+        SingleObjectDataViewModelInterface $view
+    ): SingleObjectViewModel {
+        $dataModel = $providerGateway->getOneById($id);
+        if (null === $dataModel) {
             throw new NotFoundHttpException();
         }
 
-        return $this->presenter->presentSingleObject($data, $view);
+        return $this->presenter->presentSingleObject($dataModel, $view);
     }
 }

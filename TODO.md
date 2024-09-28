@@ -1,10 +1,6 @@
 ## Refactoring
 ### API
- * Add generic use case for Update
- * Add generic use case for Create
- * Add generic use case for Delete
 ### Website
-
 ### React APP
 * Create a DeleteButton in react that handle 100% of the process
 

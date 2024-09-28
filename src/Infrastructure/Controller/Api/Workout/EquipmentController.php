@@ -3,16 +3,28 @@
 namespace App\Infrastructure\Controller\Api\Workout;
 
 use App\Domain\DTO\FilterModel\Workout\GetManyEquipmentsFilterModel;
+use App\Domain\DTO\SourceModel\Equipment\CreateEquipmentSourceModel;
+use App\Domain\DTO\SourceModel\Equipment\UpdateEquipmentSourceModel;
+use App\Domain\Factory\DataModelFactory\Equipment\EquipmentDataModelFactory;
 use App\Domain\Gateway\Provider\Workout\EquipmentDataModelProviderGateway;
 use App\Infrastructure\Controller\Api\AbstractAPIController;
 use App\Infrastructure\Repository\Workout\EquipmentDataModelRepository;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
 use App\Infrastructure\View\ViewModel\SingleObjectViewModel;
+use App\Infrastructure\View\ViewModel\User\SingleUserDataViewModel;
 use App\Infrastructure\View\ViewModel\Workout\SingleEquipmentDataViewModel;
+use App\UseCase\API\GenericCreateOneByIdUseCase;
+use App\UseCase\API\GenericDeleteOneByIdUseCase;
 use App\UseCase\API\GenericGetManyUseCase;
 use App\UseCase\API\GenericGetOneByIdUseCase;
+use App\UseCase\API\GenericUpdateOneByIdUseCase;
+use App\UseCase\API\User\CreateOneUserUseCase;
+use App\UseCase\API\User\UpdateOneUserByIdUseCase;
+use Nelmio\ApiDocBundle\Annotation\Model;
 use OpenApi\Attributes as OA;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[OA\Tag('EQUIPMENTS')]
@@ -28,5 +40,41 @@ final class EquipmentController extends AbstractAPIController
     public function getOneById(int $id, GenericGetOneByIdUseCase $useCase, EquipmentDataModelProviderGateway $providerGateway): SingleObjectViewModel
     {
         return $useCase->execute($id, $providerGateway, new SingleEquipmentDataViewModel());
+    }
+    #[Route('/equipments', name:'equipments_create_one', methods: ['POST'])]
+    public function createOne(Request $request, GenericCreateOneByIdUseCase $useCase, EquipmentDataModelFactory $dataModelFactory): SingleObjectViewModel
+    {
+        return $useCase->execute(
+            json_decode($request->getContent(), true),
+            new CreateEquipmentSourceModel(),
+            $dataModelFactory,
+            new SingleEquipmentDataViewModel()
+        );
+    }
+
+    #[Route('/users/{id}', name:'user_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
+    public function updateOneById(
+        Request $request,
+        int $id,
+        GenericUpdateOneByIdUseCase $useCase,
+        EquipmentDataModelProviderGateway $providerGateway,
+        EquipmentDataModelFactory $dataModelFactory
+    ): SingleObjectViewModel {
+        return $useCase->execute(
+            $id,
+            json_decode($request->getContent(), true),
+            $providerGateway,
+            new UpdateEquipmentSourceModel(),
+            $dataModelFactory,
+            new SingleEquipmentDataViewModel()
+        );
+    }
+
+    #[Route('/equipments/{id}', name:'equipment_delete_by_id', requirements: ['id' => '\d+'], methods: ['DELETE'])]
+    public function deleteOnById(int $id, GenericDeleteOneByIdUseCase $useCase, EquipmentDataModelProviderGateway $providerGateway): JsonResponse
+    {
+        $useCase->execute($id, $providerGateway);
+
+        return new JsonResponse(null, Response::HTTP_OK);
     }
 }

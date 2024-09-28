@@ -11,7 +11,7 @@ final class UpdateUserSourceModelFactory implements SourceModelFactoryInterface
 {
     use InferSourceModelFactoryTrait;
 
-    public function buildSourceModel(array $parameters): UpdateUserSourceModel|SourceModelInterface
+    public function buildSourceModel(array $parameters, ?SourceModelInterface $sourceModel = null): UpdateUserSourceModel|SourceModelInterface
     {
         return $this->inferSourceModel($parameters, new UpdateUserSourceModel());
     }
