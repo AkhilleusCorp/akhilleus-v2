@@ -2,26 +2,17 @@
 
 namespace App\Infrastructure\Repository;
 
-use App\Domain\DTO\DataModel\Equipment\EquipmentDataModel;
 use App\Domain\DTO\FilterModel\FilterModelInterface;
-use App\Domain\Gateway\Provider\GenericDataModelProviderGateway;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\Order;
 use Doctrine\ORM\QueryBuilder;
 
-abstract class AbstractBaseDTORepository extends ServiceEntityRepository implements GenericDataModelProviderGateway
+abstract class AbstractBaseDTORepository extends ServiceEntityRepository
 {
     protected abstract function getAlias(): string;
 
     protected abstract function addParametersFromFilter(QueryBuilder $queryBuilder, FilterModelInterface $filter): self;
 
-    public function getOneById(int $id): ?EquipmentDataModel
-    {
-        return $this->createQueryBuilder($this->getAlias())
-            ->andWhere($this->getAlias().'.id = :id')
-            ->setParameter('id', $id)
-            ->getQuery()->getOneOrNullResult();
-    }
 
     public function getByParameters(FilterModelInterface $filter): array
     {

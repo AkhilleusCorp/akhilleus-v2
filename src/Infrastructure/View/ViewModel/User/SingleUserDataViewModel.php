@@ -2,11 +2,11 @@
 
 namespace App\Infrastructure\View\ViewModel\User;
 
-use App\Infrastructure\View\ViewModel\SingleObjectViewModelInterface;
+use App\Infrastructure\View\ViewModel\SingleObjectDataViewModelInterface;
 use DateTimeImmutable;
 use Symfony\Component\Serializer\Attribute\Groups;
 
-final class SingleUserViewModel implements SingleObjectViewModelInterface
+final class SingleUserDataViewModel implements SingleObjectDataViewModelInterface
 {
     #[Groups(['admin', 'member'])]
     public int $id;

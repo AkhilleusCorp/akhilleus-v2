@@ -12,7 +12,7 @@ class WorkoutApiGateway extends AbstractApiGateway {
             throw new Error('An error as occurred');
         }
 
-        return response.data;
+        return response.data.data;
     }
 
     static async getManyWorkouts (filters: WorkoutsListFilters): Promise<WorkoutDTO[]> {
@@ -40,7 +40,7 @@ class WorkoutApiGateway extends AbstractApiGateway {
             throw new Error('An error as occurred');
         }
 
-        return response.data;
+        return response.data.data;
     }
 
     static async updateWorkout (workoutId: number, formData: unknown): Promise<WorkoutDTO> {
@@ -53,7 +53,7 @@ class WorkoutApiGateway extends AbstractApiGateway {
             throw new Error('An error as occurred');
         }
 
-        return response.data;
+        return response.data.data;
     }
 
     static async deleteWorkout (workoutId: string|number): Promise<void> {

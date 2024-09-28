@@ -7,7 +7,7 @@ use App\Domain\Factory\SourceModelFactory\User\UpdateUserSourceModelFactory;
 use App\Domain\Gateway\Provider\User\UserDataModelProviderGateway;
 use App\Infrastructure\Persister\User\UserDataModelPersister;
 use App\Infrastructure\Registry\DataProfileRegistry;
-use App\Infrastructure\View\ViewModel\User\SingleUserViewModel;
+use App\Infrastructure\View\ViewModel\User\SingleUserDataViewModel;
 use App\Infrastructure\View\ViewPresenter\User\SingleUserViewPresenter;
 use App\UseCase\UseCaseInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -24,7 +24,7 @@ final class UpdateOneUserByIdUseCase implements UseCaseInterface
 
     }
 
-    public function execute(int $id, array $parameters, string $dataProfile = DataProfileRegistry::DATA_PROFILE_MEMBER): SingleUserViewModel
+    public function execute(int $id, array $parameters, string $dataProfile = DataProfileRegistry::DATA_PROFILE_MEMBER): SingleUserDataViewModel
     {
         $user = $this->provider->getUserById($id);
         if (null === $user) {

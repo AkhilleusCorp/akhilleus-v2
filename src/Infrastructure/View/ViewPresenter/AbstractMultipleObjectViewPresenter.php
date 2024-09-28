@@ -4,7 +4,7 @@ namespace App\Infrastructure\View\ViewPresenter;
 
 use App\Domain\DTO\DataModel\DataModelInterface;
 use App\Infrastructure\View\ViewHydrator\ViewHydratorInterface;
-use App\Infrastructure\View\ViewModel\MultipleObjectItemViewModelInterface;
+use App\Infrastructure\View\ViewModel\MultipleObjectItemDataViewModelInterface;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
 
 abstract class AbstractMultipleObjectViewPresenter

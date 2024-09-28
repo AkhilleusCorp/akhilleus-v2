@@ -4,7 +4,7 @@ namespace App\UseCase\API\Workout;
 
 use App\Domain\Gateway\Provider\Workout\WorkoutDataModelProviderGateway;
 use App\Infrastructure\Registry\DataProfileRegistry;
-use App\Infrastructure\View\ViewModel\Workout\SingleWorkoutViewModel;
+use App\Infrastructure\View\ViewModel\SingleObjectViewModel;
 use App\Infrastructure\View\ViewPresenter\Workout\SingleWorkoutViewPresenter;
 use App\UseCase\UseCaseInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -17,7 +17,7 @@ final class GetOneWorkoutByIdUseCase implements UseCaseInterface
     ) {
     }
 
-    public function execute(int $id, string $dataProfile = DataProfileRegistry::DATA_PROFILE_MEMBER): SingleWorkoutViewModel
+    public function execute(int $id, string $dataProfile = DataProfileRegistry::DATA_PROFILE_MEMBER): SingleObjectViewModel
     {
         $workout = $this->provider->getWorkoutById($id);
         if (null === $workout) {

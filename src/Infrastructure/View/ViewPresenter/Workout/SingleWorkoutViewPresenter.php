@@ -4,14 +4,14 @@ namespace App\Infrastructure\View\ViewPresenter\Workout;
 
 use App\Domain\DTO\DataModel\DataModelInterface;
 use App\Domain\DTO\DataModel\Workout\WorkoutDataModel;
-use App\Infrastructure\View\ViewModel\Workout\SingleWorkoutViewModel;
-use App\Infrastructure\View\ViewPresenter\SingleObjectViewPresenterInterface;
+use App\Infrastructure\View\ViewModel\Workout\SingleWorkoutDataViewModel;
+use App\Infrastructure\View\ViewPresenter\AbstractSingleObjectViewPresenter;
 
-final class SingleWorkoutViewPresenter implements SingleObjectViewPresenterInterface
+final class SingleWorkoutViewPresenter extends AbstractSingleObjectViewPresenter
 {
-    public function present(WorkoutDataModel|DataModelInterface $data, string $dataProfile): SingleWorkoutViewModel
+    public function presentViewData(WorkoutDataModel|DataModelInterface $data, string $dataProfile): SingleWorkoutDataViewModel
     {
-        $view = new SingleWorkoutViewModel();
+        $view = new SingleWorkoutDataViewModel();
         $view->id = $data->id;
         $view->name = $data->name;
         $view->status = $data->status;

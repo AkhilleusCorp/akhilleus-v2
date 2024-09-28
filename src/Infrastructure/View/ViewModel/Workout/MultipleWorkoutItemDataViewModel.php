@@ -2,10 +2,10 @@
 
 namespace App\Infrastructure\View\ViewModel\Workout;
 
-use App\Infrastructure\View\ViewModel\SingleObjectViewModelInterface;
+use App\Infrastructure\View\ViewModel\MultipleObjectItemDataViewModelInterface;
 use Symfony\Component\Serializer\Attribute\Groups;
 
-final class SingleWorkoutViewModel implements SingleObjectViewModelInterface
+final class MultipleWorkoutItemDataViewModel implements MultipleObjectItemDataViewModelInterface
 {
     #[Groups(['admin', 'member'])]
     public int $id;

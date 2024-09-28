@@ -2,6 +2,7 @@
 
 namespace App\Infrastructure\View\ViewModel;
 
-interface ViewModelInterface {
+interface DataViewModelInterface
+{
 
 }

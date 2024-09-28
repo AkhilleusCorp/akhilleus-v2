@@ -26,9 +26,14 @@ remove_local_db:
 load_fixtures:
 	php bin/console doctrine:fixtures:load -n
 
+start_server:
+	symfony server:star
+
 init_project: .env.local up create_local_db load_fixtures
 
 reset_db: create_local_db load_fixtures
+
+start: up create_local_db load_fixtures start_server
 
 create_test_db:
 	php bin/console doctrine:database:drop --if-exists --force --env=test

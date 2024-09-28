@@ -5,7 +5,8 @@ namespace App\Infrastructure\Controller\Api\Workout;
 use App\Domain\Registry\User\UserStatusRegistry;
 use App\Infrastructure\Controller\Api\AbstractAPIController;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
-use App\Infrastructure\View\ViewModel\Workout\SingleWorkoutViewModel;
+use App\Infrastructure\View\ViewModel\SingleObjectViewModel;
+use App\Infrastructure\View\ViewModel\Workout\SingleWorkoutDataViewModel;
 use App\UseCase\API\Workout\CreateOneWorkoutUseCase;
 use App\UseCase\API\Workout\DeleteOneWorkoutByIdUseCase;
 use App\UseCase\API\Workout\GetManyWorkoutUseCase;
@@ -39,19 +40,19 @@ final class WorkoutController extends AbstractAPIController
     }
 
     #[Route('/workouts/{id}', name:'workout_get_one_by_id', requirements: ['id' => '\d+'], methods: ['GET'])]
-    public function getOneById(int $id, GetOneWorkoutByIdUseCase $useCase): SingleWorkoutViewModel
+    public function getOneById(int $id, GetOneWorkoutByIdUseCase $useCase): SingleObjectViewModel
     {
         return $useCase->execute($id, $this->getDataProfile());
     }
 
     #[Route('/workouts', name:'workout_create_one', methods: ['POST'])]
-    public function createOne(Request $request, CreateOneWorkoutUseCase $useCase): SingleWorkoutViewModel
+    public function createOne(Request $request, CreateOneWorkoutUseCase $useCase): SingleObjectViewModel
     {
         return $useCase->execute(json_decode($request->getContent(), true), $this->getDataProfile());
     }
 
     #[Route('/workouts/{id}', name:'workout_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
-    public function updateOneById(Request $request, int $id, UpdateOneWorkoutByIdUseCase $useCase): SingleWorkoutViewModel
+    public function updateOneById(Request $request, int $id, UpdateOneWorkoutByIdUseCase $useCase): SingleObjectViewModel
     {
         return $useCase->execute($id, json_decode($request->getContent(), true), $this->getDataProfile());
     }

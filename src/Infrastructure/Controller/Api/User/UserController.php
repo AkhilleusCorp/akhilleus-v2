@@ -6,7 +6,8 @@ use App\Domain\Registry\User\UserStatusRegistry;
 use App\Domain\Registry\User\UserTypeRegistry;
 use App\Infrastructure\Controller\Api\AbstractAPIController;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
-use App\Infrastructure\View\ViewModel\User\SingleUserViewModel;
+use App\Infrastructure\View\ViewModel\SingleObjectViewModel;
+use App\Infrastructure\View\ViewModel\User\SingleUserDataViewModel;
 use App\UseCase\API\User\CreateOneUserUseCase;
 use App\UseCase\API\User\DeleteOneUserByIdUseCase;
 use App\UseCase\API\User\GetManyUserUseCase;
@@ -45,9 +46,9 @@ final class UserController extends AbstractAPIController
     #[OA\Response(
         response: 200,
         description: 'Successfully returns a details of a User',
-        content: new Model(type: SingleUserViewModel::class)
+        content: new Model(type: SingleUserDataViewModel::class)
     )]
-    public function getOneById(int $id, GetOneUserByIdUseCase $useCase): SingleUserViewModel
+    public function getOneById(int $id, GetOneUserByIdUseCase $useCase): SingleObjectViewModel
     {
         return $useCase->execute($id, $this->getDataProfile());
     }
@@ -56,9 +57,9 @@ final class UserController extends AbstractAPIController
     #[OA\Response(
         response: 200,
         description: 'Successfully returns a details of a User',
-        content: new Model(type: SingleUserViewModel::class)
+        content: new Model(type: SingleUserDataViewModel::class)
     )]
-    public function createOne(Request $request, CreateOneUserUseCase $useCase): SingleUserViewModel
+    public function createOne(Request $request, CreateOneUserUseCase $useCase): SingleObjectViewModel
     {
         return $useCase->execute(json_decode($request->getContent(), true), $this->getDataProfile());
     }
@@ -67,9 +68,9 @@ final class UserController extends AbstractAPIController
     #[OA\Response(
         response: 200,
         description: 'Successfully returns a details of a User',
-        content: new Model(type: SingleUserViewModel::class)
+        content: new Model(type: SingleUserDataViewModel::class)
     )]
-    public function updateOneById(Request $request, int $id, UpdateOneUserByIdUseCase $useCase): SingleUserViewModel
+    public function updateOneById(Request $request, int $id, UpdateOneUserByIdUseCase $useCase): SingleObjectViewModel
     {
         return $useCase->execute($id, json_decode($request->getContent(), true), $this->getDataProfile());
     }

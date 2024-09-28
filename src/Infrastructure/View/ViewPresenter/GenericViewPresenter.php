@@ -3,21 +3,25 @@
 namespace App\Infrastructure\View\ViewPresenter;
 
 use App\Domain\DTO\DataModel\DataModelInterface;
-use App\Infrastructure\View\ViewModel\MultipleObjectItemViewModelInterface;
+use App\Infrastructure\View\ViewModel\DataViewModelInterface;
+use App\Infrastructure\View\ViewModel\MultipleObjectItemDataViewModelInterface;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
-use App\Infrastructure\View\ViewModel\SingleObjectViewModelInterface;
-use App\Infrastructure\View\ViewModel\ViewModelInterface;
+use App\Infrastructure\View\ViewModel\SingleObjectDataViewModelInterface;
+use App\Infrastructure\View\ViewModel\SingleObjectViewModel;
 
 final class GenericViewPresenter
 {
     public function presentSingleObject(
-        DataModelInterface $data,
-        SingleObjectViewModelInterface $view
-    ): SingleObjectViewModelInterface {
-        return $this->presentByReflection($data, $view);
+        DataModelInterface                 $data,
+        SingleObjectDataViewModelInterface $viewData
+    ): SingleObjectViewModel {
+        $view = new SingleObjectViewModel();
+        $view->data = $this->presentByReflection($data, $viewData);
+
+        return $view;
     }
 
-    public function presentMultipleObject(array $data, MultipleObjectItemViewModelInterface $view, array $hydrators = []): MultipleObjectViewModel
+    public function presentMultipleObject(array $data, MultipleObjectItemDataViewModelInterface $view, array $hydrators = []): MultipleObjectViewModel
     {
         $viewModel = new MultipleObjectViewModel();
         foreach ($data as $item) {
@@ -31,7 +35,7 @@ final class GenericViewPresenter
         return $viewModel;
     }
 
-    private function presentByReflection(DataModelInterface $data, ViewModelInterface $view): ViewModelInterface
+    private function presentByReflection(DataModelInterface $data, DataViewModelInterface $view): DataViewModelInterface
     {
         $reflection = new \ReflectionClass($view);
         foreach ($reflection->getProperties() as $property) {

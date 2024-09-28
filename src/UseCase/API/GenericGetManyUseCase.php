@@ -4,10 +4,10 @@ namespace App\UseCase\API;
 
 use App\Domain\DTO\FilterModel\FilterModelInterface;
 use App\Domain\Factory\FilterModelFactory\GenericFilterModelFactory;
-use App\Infrastructure\Repository\AbstractBaseDTORepository;
+use App\Domain\Gateway\Provider\GenericDataModelProviderGateway;
 use App\Infrastructure\View\ViewHydrator\PaginationHydrator;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
-use App\Infrastructure\View\ViewModel\Workout\MultipleEquipmentItemViewModel;
+use App\Infrastructure\View\ViewModel\Workout\MultipleEquipmentItemDataViewModel;
 use App\Infrastructure\View\ViewPresenter\GenericMultipleObjectViewPresenter;
 use App\Infrastructure\View\ViewPresenter\GenericViewPresenter;
 
@@ -20,24 +20,19 @@ final class GenericGetManyUseCase
 
     }
 
-    public function execute(array $parameters, FilterModelInterface $filter, AbstractBaseDTORepository $repository): MultipleObjectViewModel
+    public function execute(array $parameters, FilterModelInterface $filter, GenericDataModelProviderGateway $providerGateway): MultipleObjectViewModel
     {
-        if (false === method_exists($repository, 'getByParameters')
-            || false === method_exists($repository, 'countByParameters')) {
-            throw new \LogicException('Cannot use "GenericGetManyUseCase" on this object');
-        }
-
         $filter = $this->filterFactory->buildGetManyFilterModel($parameters, $filter);
-        $dataModels = $repository->getByParameters($filter);
+        $dataModels = $providerGateway->getByParameters($filter);
 
         $dataModelsCount = count($dataModels);
         if ($dataModelsCount === $filter->limit) {
-            $dataModelsCount = $repository->countByParameters($filter);
+            $dataModelsCount = $providerGateway->countByParameters($filter);
         }
 
         return $this->presenter->presentMultipleObject(
             $dataModels,
-            new MultipleEquipmentItemViewModel(),
+            new MultipleEquipmentItemDataViewModel(),
             [
                 new PaginationHydrator(
                     $dataModelsCount,

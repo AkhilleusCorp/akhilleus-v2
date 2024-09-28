@@ -6,7 +6,7 @@ use App\Domain\Factory\DataModelFactory\User\UserDataModelFactory;
 use App\Domain\Factory\SourceModelFactory\User\CreateUserSourceModelFactory;
 use App\Domain\Gateway\Persister\User\UserDataModelPersisterGateway;
 use App\Infrastructure\Registry\DataProfileRegistry;
-use App\Infrastructure\View\ViewModel\User\SingleUserViewModel;
+use App\Infrastructure\View\ViewModel\User\SingleUserDataViewModel;
 use App\Infrastructure\View\ViewPresenter\User\SingleUserViewPresenter;
 use App\UseCase\UseCaseInterface;
 
@@ -20,7 +20,7 @@ final class CreateOneUserUseCase implements UseCaseInterface
     ) {
 
     }
-    public function execute(array $parameters, string $dateProfile = DataProfileRegistry::DATA_PROFILE_MEMBER): SingleUserViewModel
+    public function execute(array $parameters, string $dateProfile = DataProfileRegistry::DATA_PROFILE_MEMBER): SingleUserDataViewModel
     {
         $source = $this->sourceModelFactory->buildSourceModel($parameters);
         $user = $this->dataModelFactory->buildNewDataModel($source);

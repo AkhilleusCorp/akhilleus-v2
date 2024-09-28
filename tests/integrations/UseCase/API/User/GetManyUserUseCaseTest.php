@@ -7,7 +7,7 @@ use App\Domain\Factory\FilterModelFactory\User\UsersFilterModelModelFactory;
 use App\Domain\Gateway\Provider\User\UserDataModelProviderGateway;
 use App\Infrastructure\Registry\DataProfileRegistry;
 use App\Infrastructure\View\ViewModel\PaginationViewModel;
-use App\Infrastructure\View\ViewModel\User\MultipleUserItemViewModel;
+use App\Infrastructure\View\ViewModel\User\MultipleUserItemDataViewModel;
 use App\Infrastructure\View\ViewPresenter\User\MultipleUserViewPresenter;
 use App\Tests\integrations\AbstractIntegrationTest;
 use App\UseCase\API\User\GetManyUserUseCase;
@@ -31,7 +31,7 @@ final class GetManyUserUseCaseTest extends AbstractIntegrationTest
     {
         $view = $this->useCase->execute([], DataProfileRegistry::DATA_PROFILE_ADMIN);
 
-        /** @var MultipleUserItemViewModel[] $users */
+        /** @var MultipleUserItemDataViewModel[] $users */
         $users = $view->data;
         /** @var PaginationViewModel $pagination */
         $pagination = $view->extra['pagination'];
@@ -46,7 +46,7 @@ final class GetManyUserUseCaseTest extends AbstractIntegrationTest
     {
         $view = $this->useCase->execute([]);
 
-        /** @var MultipleUserItemViewModel[] $users */
+        /** @var MultipleUserItemDataViewModel[] $users */
         $users = $view->data;
         /** @var PaginationViewModel $pagination */
         $pagination = $view->extra['pagination'];
