@@ -2,15 +2,15 @@
 
 namespace App\Infrastructure\DataFixtures;
 
+use App\Domain\DTO\SourceModel\Equipment\CreateEquipmentSourceModel;
 use App\Domain\Factory\DataModelFactory\Equipment\EquipmentDataModelFactory;
-use App\Domain\Factory\SourceModelFactory\Equipment\CreateEquipmentSourceModelFactory;
-use Doctrine\Bundle\FixturesBundle\Fixture;
+use App\Domain\Factory\SourceModelFactory\GenericSourceModelFactory;
 use Doctrine\Persistence\ObjectManager;
 
 final class EquipmentFixtures extends AbstractFixtures
 {
     public function __construct(
-        private readonly CreateEquipmentSourceModelFactory $sourceModelFactory,
+        private readonly GenericSourceModelFactory $sourceModelFactory,
         private readonly EquipmentDataModelFactory $dataModelFactory
     )
     {
@@ -21,7 +21,8 @@ final class EquipmentFixtures extends AbstractFixtures
         $names = ['barbell', 'dumbbell', 'bench', 'jump-rope'];
         foreach ($names as $name) {
             $source = $this->sourceModelFactory->buildSourceModel(
-                ['name' => $name]
+                ['name' => $name],
+                new CreateEquipmentSourceModel()
             );
 
             $equipment = $this->dataModelFactory->buildNewDataModel($source);
@@ -36,7 +37,8 @@ final class EquipmentFixtures extends AbstractFixtures
         for ($i = 1; $i < 50; $i++) {
             $name = "equipment{$i}";
             $source = $this->sourceModelFactory->buildSourceModel(
-                ['name' => $name]
+                ['name' => $name],
+                new CreateEquipmentSourceModel()
             );
 
             $equipment = $this->dataModelFactory->buildNewDataModel($source);
