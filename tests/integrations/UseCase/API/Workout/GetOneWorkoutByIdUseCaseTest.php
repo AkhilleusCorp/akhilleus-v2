@@ -6,6 +6,7 @@ use App\Domain\Gateway\Provider\Workout\WorkoutDataModelProviderGateway;
 use App\Domain\Registry\Workout\WorkoutStatusRegistry;
 use App\Domain\Registry\Workout\WorkoutVisibilityRegistry;
 use App\Infrastructure\Registry\DataProfileRegistry;
+use App\Infrastructure\View\ViewModel\Workout\SingleWorkoutDataViewModel;
 use App\Infrastructure\View\ViewPresenter\Workout\SingleWorkoutViewPresenter;
 use App\Tests\integrations\AbstractIntegrationTest;
 use App\UseCase\API\Workout\GetOneWorkoutByIdUseCase;
@@ -29,22 +30,26 @@ final class GetOneWorkoutByIdUseCaseTest extends AbstractIntegrationTest
     {
         $workoutId = 1;
         $viewModel = $this->useCase->execute($workoutId, DataProfileRegistry::DATA_PROFILE_ADMIN);
+        /** @var SingleWorkoutDataViewModel $viewData */
+        $viewData = $viewModel->data;
 
-        $this->assertEquals($workoutId, $viewModel->id);
-        $this->assertEquals('InProgressPrivate', $viewModel->name);
-        $this->assertEquals(WorkoutStatusRegistry::WORKOUT_STATUS_IN_PROGRESS, $viewModel->status);
-        $this->assertEquals(WorkoutVisibilityRegistry::WORKOUT_VISIBILITY_PRIVATE, $viewModel->visibility);
+        $this->assertEquals($workoutId, $viewData->id);
+        $this->assertEquals('InProgressPrivate', $viewData->name);
+        $this->assertEquals(WorkoutStatusRegistry::WORKOUT_STATUS_IN_PROGRESS, $viewData->status);
+        $this->assertEquals(WorkoutVisibilityRegistry::WORKOUT_VISIBILITY_PRIVATE, $viewData->visibility);
     }
 
     public function testGetOneUserForMemberDataProfile(): void
     {
         $workoutId = 1;
         $viewModel = $this->useCase->execute($workoutId);
+        /** @var SingleWorkoutDataViewModel $viewData */
+        $viewData = $viewModel->data;
 
-        $this->assertEquals($workoutId, $viewModel->id);
-        $this->assertEquals('InProgressPrivate', $viewModel->name);
-        $this->assertEquals(WorkoutStatusRegistry::WORKOUT_STATUS_IN_PROGRESS, $viewModel->status);
-        $this->assertEquals(WorkoutVisibilityRegistry::WORKOUT_VISIBILITY_PRIVATE, $viewModel->visibility);
+        $this->assertEquals($workoutId, $viewData->id);
+        $this->assertEquals('InProgressPrivate', $viewData->name);
+        $this->assertEquals(WorkoutStatusRegistry::WORKOUT_STATUS_IN_PROGRESS, $viewData->status);
+        $this->assertEquals(WorkoutVisibilityRegistry::WORKOUT_VISIBILITY_PRIVATE, $viewData->visibility);
     }
 
     public function testGetOneNonExistingUser(): void

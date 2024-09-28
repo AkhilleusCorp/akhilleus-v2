@@ -8,6 +8,7 @@ use App\Domain\Gateway\Provider\Workout\WorkoutDataModelProviderGateway;
 use App\Infrastructure\Persister\Workout\WorkoutDataModelPersister;
 use App\Infrastructure\Registry\DataProfileRegistry;
 use App\Infrastructure\Repository\Workout\WorkoutDataModelRepository;
+use App\Infrastructure\View\ViewModel\Workout\SingleWorkoutDataViewModel;
 use App\Infrastructure\View\ViewPresenter\Workout\SingleWorkoutViewPresenter;
 use App\Tests\integrations\AbstractIntegrationTest;
 use App\UseCase\API\Workout\UpdateOneWorkoutByIdUseCase;
@@ -40,17 +41,20 @@ final class UpdateOneWorkoutByIdUseCaseTest extends AbstractIntegrationTest
         $workoutPreUpdate = $this->workoutDTORepository->getWorkoutById($workoutId);
         $workoutNamePreUpdate = $workoutPreUpdate->name;
 
-        $workoutReplied = $this->useCase->execute(
+        $viewModel = $this->useCase->execute(
             $workoutId,
             ['name' => 'New name for a new life'],
             DataProfileRegistry::DATA_PROFILE_ADMIN
         );
+        /** @var SingleWorkoutDataViewModel $viewData */
+        $viewData = $viewModel->data;
+
         $workoutPostUpdate = $this->workoutDTORepository->getWorkoutById($workoutId);
 
-        $this->assertEquals($workoutPostUpdate->name, $workoutReplied->name);
+        $this->assertEquals($workoutPostUpdate->name, $viewData->name);
         $this->assertNotEquals($workoutNamePreUpdate, $workoutPostUpdate->name);
-        $this->assertEquals($workoutPreUpdate->status, $workoutReplied->status);
-        $this->assertEquals($workoutPostUpdate->visibility, $workoutReplied->visibility);
+        $this->assertEquals($workoutPreUpdate->status, $viewData->status);
+        $this->assertEquals($workoutPostUpdate->visibility, $viewData->visibility);
     }
 
     public function testUpdateNonExistingWorkout(): void

@@ -7,6 +7,7 @@ use App\Domain\Factory\SourceModelFactory\User\UpdateUserSourceModelFactory;
 use App\Domain\Gateway\Provider\User\UserDataModelProviderGateway;
 use App\Infrastructure\Persister\User\UserDataModelPersister;
 use App\Infrastructure\Registry\DataProfileRegistry;
+use App\Infrastructure\View\ViewModel\SingleObjectViewModel;
 use App\Infrastructure\View\ViewModel\User\SingleUserDataViewModel;
 use App\Infrastructure\View\ViewPresenter\User\SingleUserViewPresenter;
 use App\UseCase\UseCaseInterface;
@@ -24,7 +25,7 @@ final class UpdateOneUserByIdUseCase implements UseCaseInterface
 
     }
 
-    public function execute(int $id, array $parameters, string $dataProfile = DataProfileRegistry::DATA_PROFILE_MEMBER): SingleUserDataViewModel
+    public function execute(int $id, array $parameters, string $dataProfile = DataProfileRegistry::DATA_PROFILE_MEMBER): SingleObjectViewModel
     {
         $user = $this->provider->getUserById($id);
         if (null === $user) {

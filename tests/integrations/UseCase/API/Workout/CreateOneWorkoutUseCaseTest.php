@@ -8,6 +8,7 @@ use App\Domain\Gateway\Persister\Workout\WorkoutDataModelPersisterGateway;
 use App\Domain\Registry\Workout\WorkoutStatusRegistry;
 use App\Domain\Registry\Workout\WorkoutVisibilityRegistry;
 use App\Infrastructure\Registry\DataProfileRegistry;
+use App\Infrastructure\View\ViewModel\Workout\SingleWorkoutDataViewModel;
 use App\Infrastructure\View\ViewPresenter\Workout\SingleWorkoutViewPresenter;
 use App\Tests\integrations\AbstractIntegrationTest;
 use App\UseCase\API\Workout\CreateOneWorkoutUseCase;
@@ -35,10 +36,12 @@ final class CreateOneWorkoutUseCaseTest extends AbstractIntegrationTest
             ['name' => $name],
             DataProfileRegistry::DATA_PROFILE_ADMIN
         );
+        /** @var SingleWorkoutDataViewModel $viewData */
+        $viewData = $viewModel->data;
 
-        $this->assertEquals($name, $viewModel->name);
-        $this->assertEquals(WorkoutStatusRegistry::WORKOUT_STATUS_IN_PROGRESS, $viewModel->status);
-        $this->assertEquals(WorkoutVisibilityRegistry::WORKOUT_VISIBILITY_FRIENDS, $viewModel->visibility);
+        $this->assertEquals($name, $viewData->name);
+        $this->assertEquals(WorkoutStatusRegistry::WORKOUT_STATUS_IN_PROGRESS, $viewData->status);
+        $this->assertEquals(WorkoutVisibilityRegistry::WORKOUT_VISIBILITY_FRIENDS, $viewData->visibility);
     }
 
     public function testCreateOneForMemberDataProfile(): void
@@ -47,10 +50,12 @@ final class CreateOneWorkoutUseCaseTest extends AbstractIntegrationTest
         $viewModel = $this->useCase->execute(
             ['name' => $name]
         );
+        /** @var SingleWorkoutDataViewModel $viewData */
+        $viewData = $viewModel->data;
 
-        $this->assertEquals($name, $viewModel->name);
-        $this->assertEquals(WorkoutStatusRegistry::WORKOUT_STATUS_IN_PROGRESS, $viewModel->status);
-        $this->assertEquals(WorkoutVisibilityRegistry::WORKOUT_VISIBILITY_FRIENDS, $viewModel->visibility);
+        $this->assertEquals($name, $viewData->name);
+        $this->assertEquals(WorkoutStatusRegistry::WORKOUT_STATUS_IN_PROGRESS, $viewData->status);
+        $this->assertEquals(WorkoutVisibilityRegistry::WORKOUT_VISIBILITY_FRIENDS, $viewData->visibility);
     }
 
     public function testCreateOnePlannedForSpecificClient(): void
@@ -63,9 +68,11 @@ final class CreateOneWorkoutUseCaseTest extends AbstractIntegrationTest
                 'visibility' => WorkoutVisibilityRegistry::WORKOUT_VISIBILITY_SPECIFIC_CLIENT
             ]
         );
+        /** @var SingleWorkoutDataViewModel $viewData */
+        $viewData = $viewModel->data;
 
-        $this->assertEquals($name, $viewModel->name);
-        $this->assertEquals(WorkoutStatusRegistry::WORKOUT_STATUS_PLANNED, $viewModel->status);
-        $this->assertEquals(WorkoutVisibilityRegistry::WORKOUT_VISIBILITY_SPECIFIC_CLIENT, $viewModel->visibility);
+        $this->assertEquals($name, $viewData->name);
+        $this->assertEquals(WorkoutStatusRegistry::WORKOUT_STATUS_PLANNED, $viewData->status);
+        $this->assertEquals(WorkoutVisibilityRegistry::WORKOUT_VISIBILITY_SPECIFIC_CLIENT, $viewData->visibility);
     }
 }
