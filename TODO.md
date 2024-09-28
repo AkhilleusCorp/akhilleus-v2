@@ -9,6 +9,12 @@
  * Update documentation to handle data & extra sub field for all APIs
 ### User API
  * Create a dedicated API just to update password
+### Movement API
+ * List
+ * Details
+ * Add
+ * Update
+ * Delete
 ### Configuration API
 * Expose an API that contain configuration information
   * enum for UserStatus, UserType
@@ -22,13 +28,20 @@
 
 ## React APP
 ### Security
-* Fetch and use token to make api call in order to secure it (and remove public access)
+ * Fetch and use token to make api call in order to secure it (and remove public access)
 ### Form
-* create drop down for enum field like status and visibility
+ * create drop down for enum field like status and visibility
+### Equipment
+#### Add Front end
+ * List
+ * Details
+ * Add
+ * Update
+ * Delete
 ### Movement
 #### Add Front end
-* List
-* Details
-* Add
-* Update
-* Delete
+ * List
+ * Details
+ * Add
+ * Update
+ * Delete
