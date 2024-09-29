@@ -6,11 +6,11 @@ use App\Domain\DTO\DataModel\Workout\WorkoutDataModel;
 use App\Domain\DTO\FilterModel\FilterModelInterface;
 use App\Domain\DTO\FilterModel\Workout\GetManyWorkoutsFilterModel;
 use App\Domain\Gateway\Provider\Workout\WorkoutDataModelProviderGateway;
-use App\Infrastructure\Repository\AbstractBaseDTORepository;
+use App\Infrastructure\Repository\AbstractBaseDataModelRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
-final class WorkoutDataModelRepository extends AbstractBaseDTORepository implements WorkoutDataModelProviderGateway
+final class WorkoutDataModelRepository extends AbstractBaseDataModelRepository implements WorkoutDataModelProviderGateway
 {
     public function __construct(ManagerRegistry $registry)
     {
@@ -25,19 +25,19 @@ final class WorkoutDataModelRepository extends AbstractBaseDTORepository impleme
     public function getWorkoutById(int $workoutId): ?WorkoutDataModel
     {
         return $this->createQueryBuilder($this->getAlias())
-            ->andWhere($this->getAlias().'.id = :userId')
-            ->setParameter('userId', $workoutId)
+            ->andWhere($this->getAlias().'.id = :workoutId')
+            ->setParameter('workoutId', $workoutId)
             ->getQuery()->getOneOrNullResult();
     }
 
     public function getWorkoutsByParameters(GetManyWorkoutsFilterModel $filter): array
     {
-        return $this->getDataModelByParameters($filter);
+        return $this->getByParameters($filter);
     }
 
     public function countWorkoutsByParameters(?GetManyWorkoutsFilterModel $filter): int
     {
-        return $this->countDataModelByParameters($filter);
+        return $this->countByParameters($filter);
     }
 
     protected function addParametersFromFilter(QueryBuilder $queryBuilder, GetManyWorkoutsFilterModel|FilterModelInterface $filter): self

@@ -7,10 +7,8 @@ use App\Domain\DTO\DataModel\User\UserDataModel;
 use App\Domain\DTO\SourceModel\SourceModelInterface;
 use App\Domain\DTO\SourceModel\UpdateSourceModelInterface;
 
-abstract class AbstractDataModelFactory
+abstract class AbstractDataModelFactory implements DataModelFactoryInterface
 {
-    abstract function buildNewDataModel(SourceModelInterface $source): DataModelInterface;
-
     public function mergeSourceAndDataModel(DataModelInterface $dataModel, UpdateSourceModelInterface $model): DataModelInterface
     {
         $reflexion = new \ReflectionClass($model);

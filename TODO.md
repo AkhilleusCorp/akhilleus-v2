@@ -1,35 +1,44 @@
 ## Refactoring
-* Create dedicated UseCaseInterface per CRUD operation
+### API
+### Website
+### React APP
 * Create a DeleteButton in react that handle 100% of the process
 
-## Functionnalities
-### Security
-* Fetch and use token to make api call in order to secure it (and remove public access)
-### Dropdown
-* create drop down for enum field like status and visibility
-
-### User
-#### Dates
-* Add registration date
-* Add last login date
-* Add last modification date
-* Add last workout date
-#### Status
-* Make status updatable from UserDetails page in react
-#### Type
-* Only allow to create Admin and Coach from the Create page in react (member should only be created through registration)
-#### Registration
-* Add a registration form for Coach
-### Password
-* Create a dedicated API just to update password
-
-### Movement
-#### Add API
- * GetMany
- * GetOne
- * Create
+## API
+### Documentation
+ * Update documentation to handle data & extra sub field for all APIs
+### User API
+ * Create a dedicated API just to update password
+### Movement API
+ * List
+ * Details
+ * Add
  * Update
  * Delete
+### Configuration API
+* Expose an API that contain configuration information
+  * enum for UserStatus, UserType
+  * enum for WorkoutStatus, WorkoutVisibility
+
+## Website
+### Login
+ * Update last login date
+### Registration
+* Add a registration form for Coach
+
+## React APP
+### Security
+ * Fetch and use token to make api call in order to secure it (and remove public access)
+### Form
+ * create drop down for enum field like status and visibility
+### Equipment
+#### Add Front end
+ * List
+ * Details
+ * Add
+ * Update
+ * Delete
+### Movement
 #### Add Front end
  * List
  * Details

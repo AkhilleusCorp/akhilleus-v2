@@ -9,8 +9,8 @@ admin_controllers:
 
 api_controllers:
     resource:
-        path: ../src/Infrastructure/Controller/Api
-        namespace: App\Infrastructure\Controller\Api
+        path: ../src/Infrastructure/Controller/API
+        namespace: App\Infrastructure\Controller\API
     prefix: /api
     type: attribute
     schemes: ['%url_scheme%']

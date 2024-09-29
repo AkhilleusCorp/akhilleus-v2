@@ -9,6 +9,7 @@ use App\Domain\Registry\User\UserStatusRegistry;
 use App\Infrastructure\Persister\User\UserDataModelPersister;
 use App\Infrastructure\Registry\DataProfileRegistry;
 use App\Infrastructure\Repository\User\UserDataModelRepository;
+use App\Infrastructure\View\ViewModel\User\SingleUserDataViewModel;
 use App\Infrastructure\View\ViewPresenter\User\SingleUserViewPresenter;
 use App\Tests\integrations\AbstractIntegrationTest;
 use App\UseCase\API\User\UpdateOneUserByIdUseCase;
@@ -41,18 +42,21 @@ final class UpdateOneUserByIdUseCaseTest extends AbstractIntegrationTest
         $userPreUpdate = $this->userDTORepository->getUserById($userId);
         $preUpdateUsername = $userPreUpdate->username;
 
-        $userReplied = $this->useCase->execute(
+        $viewModel = $this->useCase->execute(
             $userId,
             ['username' => 'Ghriim-v2', 'email' => 'ghriim-v2@fakemail.com'],
             DataProfileRegistry::DATA_PROFILE_ADMIN
         );
+        /** @var SingleUserDataViewModel $viewData */
+        $viewData = $viewModel->data;
+
         $userPostUpdate = $this->userDTORepository->getUserById($userId);
 
-        $this->assertEquals($userPostUpdate->username, $userReplied->username);
-        $this->assertNotEquals($preUpdateUsername, $userReplied->username);
-        $this->assertEquals($userPostUpdate->email, $userReplied->email);
-        $this->assertEquals($userPreUpdate->email, $userReplied->email);
-        $this->assertEquals($userPreUpdate->status, $userReplied->status);
+        $this->assertEquals($userPostUpdate->username, $viewData->username);
+        $this->assertNotEquals($preUpdateUsername, $viewData->username);
+        $this->assertEquals($userPostUpdate->email, $viewData->email);
+        $this->assertEquals($userPreUpdate->email, $viewData->email);
+        $this->assertEquals($userPreUpdate->status, $viewData->status);
     }
 
     public function testUpdateNonExistingUser(): void

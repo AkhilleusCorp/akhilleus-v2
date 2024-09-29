@@ -8,6 +8,7 @@ use App\Domain\Gateway\Persister\User\UserDataModelPersisterGateway;
 use App\Domain\Registry\User\UserStatusRegistry;
 use App\Domain\Registry\User\UserTypeRegistry;
 use App\Infrastructure\Registry\DataProfileRegistry;
+use App\Infrastructure\View\ViewModel\User\SingleUserDataViewModel;
 use App\Infrastructure\View\ViewPresenter\User\SingleUserViewPresenter;
 use App\Tests\integrations\AbstractIntegrationTest;
 use App\UseCase\API\User\CreateOneUserUseCase;
@@ -38,11 +39,13 @@ final class CreateOneUserUseCaseTest extends AbstractIntegrationTest
             ],
             DataProfileRegistry::DATA_PROFILE_ADMIN
         );
+        /** @var SingleUserDataViewModel $viewData */
+        $viewData = $viewModel->data;
 
-        $this->assertEquals('bob', $viewModel->username);
-        $this->assertEquals('bob@fakemail.com', $viewModel->email);
-        $this->assertEquals(UserStatusRegistry::USER_STATUS_CREATED, $viewModel->status);
-        $this->assertEquals(UserTypeRegistry::USER_TYPE_MEMBER, $viewModel->type);
+        $this->assertEquals('bob', $viewData->username);
+        $this->assertEquals('bob@fakemail.com', $viewData->email);
+        $this->assertEquals(UserStatusRegistry::USER_STATUS_CREATED, $viewData->status);
+        $this->assertEquals(UserTypeRegistry::USER_TYPE_MEMBER, $viewData->type);
     }
 
     public function testCreateOneForMemberDataProfile(): void
@@ -54,10 +57,12 @@ final class CreateOneUserUseCaseTest extends AbstractIntegrationTest
                 'plainPassword' => 'Azerty1234!'
             ]
         );
+        /** @var SingleUserDataViewModel $viewData */
+        $viewData = $viewModel->data;
 
-        $this->assertEquals('bob2', $viewModel->username);
-        $this->assertEquals('b***@f*******.com', $viewModel->email);
-        $this->assertEquals(UserStatusRegistry::USER_STATUS_CREATED, $viewModel->status);
-        $this->assertEquals(UserTypeRegistry::USER_TYPE_MEMBER, $viewModel->type);
+        $this->assertEquals('bob2', $viewData->username);
+        $this->assertEquals('b***@f*******.com', $viewData->email);
+        $this->assertEquals(UserStatusRegistry::USER_STATUS_CREATED, $viewData->status);
+        $this->assertEquals(UserTypeRegistry::USER_TYPE_MEMBER, $viewData->type);
     }
 }

@@ -12,7 +12,7 @@ class UserApiGateway extends AbstractApiGateway {
             throw new Error('An error as occurred');
         }
 
-        return response.data;
+        return response.data.data;
     }
 
     static async getManyUsers (filters: UsersListFilters): Promise<UserDTO[]> {
@@ -40,7 +40,7 @@ class UserApiGateway extends AbstractApiGateway {
             throw new Error('An error as occurred');
         }
 
-        return response.data;
+        return response.data.data;
     }
 
     static async updateUser (userId: number, formData: unknown): Promise<UserDTO> {

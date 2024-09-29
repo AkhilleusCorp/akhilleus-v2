@@ -29,5 +29,4 @@ final class WorkoutDataModelPersister extends AbstractEntityPersister implements
 
         // TODO: Do post delete stuff.
     }
-
 }

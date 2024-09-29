@@ -2,7 +2,7 @@
 
 namespace App\Domain\DTO\SourceModel;
 
-interface UpdateSourceModelInterface
+interface UpdateSourceModelInterface extends SourceModelInterface
 {
 
 }

@@ -4,7 +4,7 @@ namespace App\UseCase\API\User;
 
 use App\Domain\Gateway\Provider\User\UserDataModelProviderGateway;
 use App\Infrastructure\Registry\DataProfileRegistry;
-use App\Infrastructure\View\ViewModel\User\SingleUserViewModel;
+use App\Infrastructure\View\ViewModel\SingleObjectViewModel;
 use App\Infrastructure\View\ViewPresenter\User\SingleUserViewPresenter;
 use App\UseCase\UseCaseInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -17,7 +17,7 @@ final class GetOneUserByIdUseCase implements UseCaseInterface
     ) {
     }
 
-    public function execute(int $id, string $dataProfile = DataProfileRegistry::DATA_PROFILE_MEMBER): SingleUserViewModel
+    public function execute(int $id, string $dataProfile = DataProfileRegistry::DATA_PROFILE_MEMBER): SingleObjectViewModel
     {
         $user = $this->provider->getUserById($id);
         if (null === $user) {

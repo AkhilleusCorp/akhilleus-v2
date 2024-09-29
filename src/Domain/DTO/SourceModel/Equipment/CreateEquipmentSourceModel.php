@@ -2,9 +2,9 @@
 
 namespace App\Domain\DTO\SourceModel\Equipment;
 
-use App\Domain\DTO\SourceModel\SourceModelInterface;
+use App\Domain\DTO\SourceModel\CreateSourceModelInterface;
 
-final class CreateEquipmentSourceModel implements SourceModelInterface
+final class CreateEquipmentSourceModel implements CreateSourceModelInterface
 {
     public string $name;
 }

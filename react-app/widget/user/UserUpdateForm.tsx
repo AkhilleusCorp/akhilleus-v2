@@ -34,11 +34,18 @@ const UserEditForm: React.FC<UserEditFormType> = ({user}) => {
         <SaveForm submitFunction={handleSubmit}>
             <div>
                 <label>Username</label>
-                <input type={"text"} name={"username"} value={userUpdated.username} onChange={handleInputChange} required={true}/>
+                <input type={"text"} name={"username"} value={userUpdated.username} onChange={handleInputChange}
+                       required={true}/>
             </div>
             <div>
                 <label>Email</label>
-                <input type={"email"} name={"email"} value={userUpdated.email} onChange={handleInputChange} required={true}/>
+                <input type={"email"} name={"email"} value={userUpdated.email} onChange={handleInputChange}
+                       required={true}/>
+            </div>
+            <div>
+                <label>Status</label>
+                <input type={"text"} name={"status"} value={userUpdated.status ?? ''} onChange={handleInputChange}
+                       required={true}/>
             </div>
         </SaveForm>
     )

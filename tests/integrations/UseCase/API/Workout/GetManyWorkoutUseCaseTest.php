@@ -7,7 +7,7 @@ use App\Domain\Factory\FilterModelFactory\Workout\WorkoutsFilterModelModelFactor
 use App\Domain\Gateway\Provider\Workout\WorkoutDataModelProviderGateway;
 use App\Infrastructure\Registry\DataProfileRegistry;
 use App\Infrastructure\View\ViewModel\PaginationViewModel;
-use App\Infrastructure\View\ViewModel\Workout\MultipleWorkoutItemViewModel;
+use App\Infrastructure\View\ViewModel\Workout\MultipleWorkoutItemDataViewModel;
 use App\Infrastructure\View\ViewPresenter\Workout\MultipleWorkoutViewPresenter;
 use App\Tests\integrations\AbstractIntegrationTest;
 use App\UseCase\API\Workout\GetManyWorkoutUseCase;
@@ -31,7 +31,7 @@ final class GetManyWorkoutUseCaseTest extends AbstractIntegrationTest
     {
         $view = $this->useCase->execute([], DataProfileRegistry::DATA_PROFILE_ADMIN);
 
-        /** @var MultipleWorkoutItemViewModel[] $workouts */
+        /** @var MultipleWorkoutItemDataViewModel[] $workouts */
         $workouts = $view->data;
         /** @var PaginationViewModel $pagination */
         $pagination = $view->extra['pagination'];
@@ -46,7 +46,7 @@ final class GetManyWorkoutUseCaseTest extends AbstractIntegrationTest
     {
         $view = $this->useCase->execute([]);
 
-        /** @var MultipleWorkoutItemViewModel[] $workouts */
+        /** @var MultipleWorkoutItemDataViewModel[] $workouts */
         $workouts = $view->data;
         /** @var PaginationViewModel $pagination */
         $pagination = $view->extra['pagination'];

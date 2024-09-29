@@ -6,14 +6,15 @@ use App\Domain\DTO\DataModel\DataModelInterface;
 use App\Domain\DTO\DataModel\User\UserDataModel;
 use App\Infrastructure\DataTransformer\EmailObfuscationDataTransformer;
 use App\Infrastructure\Registry\DataProfileRegistry;
-use App\Infrastructure\View\ViewModel\User\MultipleUserItemViewModel;
+use App\Infrastructure\View\ViewModel\User\MultipleUserItemDataViewModel;
 use App\Infrastructure\View\ViewPresenter\AbstractMultipleObjectViewPresenter;
+use App\Infrastructure\View\ViewPresenter\MultipleObjectViewPresenterInterface;
 
-final class MultipleUserViewPresenter extends AbstractMultipleObjectViewPresenter
+final class MultipleUserViewPresenter extends AbstractMultipleObjectViewPresenter implements MultipleObjectViewPresenterInterface
 {
-    protected function presentItem(UserDataModel|DataModelInterface $data, string $dataProfile): MultipleUserItemViewModel
+    public function presentItem(UserDataModel|DataModelInterface $data, ?string $dataProfile): MultipleUserItemDataViewModel
     {
-        $item = new MultipleUserItemViewModel();
+        $item = new MultipleUserItemDataViewModel();
         $item->id = $data->id;
         $item->username = $data->username;
         $item->email = $data->email;
