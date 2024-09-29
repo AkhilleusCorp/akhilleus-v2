@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Infrastructure\DataFixtures;
+namespace App\Infrastructure\DataFixtures\Workout;
 
 use App\Domain\DTO\SourceModel\Workout\CreateMuscleSourceModel;
 use App\Domain\Factory\DataModelFactory\Workout\MuscleDataModelFactory;
 use App\Domain\Factory\SourceModelFactory\GenericSourceModelFactory;
+use App\Infrastructure\DataFixtures\AbstractFixtures;
 use Doctrine\Persistence\ObjectManager;
 
 final class MuscleFixtures extends AbstractFixtures
@@ -18,7 +19,7 @@ final class MuscleFixtures extends AbstractFixtures
 
     protected function explicitFixtures(ObjectManager $manager): void
     {
-        $names = ['biceps', 'triceps', 'quads', 'calves'];
+        $names = ['biceps', 'triceps', 'quads', 'calves', 'chest'];
         foreach ($names as $name) {
             $source = $this->sourceModelFactory->buildSourceModel(
                 ['name' => $name],

@@ -12,8 +12,8 @@ interface WorkoutDataModelProviderGateway
     /**
      * @return WorkoutDataModel[]
      */
-    public function getWorkoutsByParameters(GetManyWorkoutsFilterModel $filter): array;
+    public function getWorkoutsByFilterModel(GetManyWorkoutsFilterModel $filter): array;
 
-    public function countWorkoutsByParameters(?GetManyWorkoutsFilterModel $filter): int;
+    public function countWorkoutsByFilterModel(?GetManyWorkoutsFilterModel $filter): int;
 
 }

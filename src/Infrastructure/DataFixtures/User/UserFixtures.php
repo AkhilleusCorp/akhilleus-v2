@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\DataFixtures;
+namespace App\Infrastructure\DataFixtures\User;
 
 use App\Domain\DTO\DataModel\User\UserDataModel;
 use App\Domain\DTO\SourceModel\User\CreateUserSourceModel;
@@ -8,6 +8,7 @@ use App\Domain\Factory\DataModelFactory\User\UserDataModelFactory;
 use App\Domain\Factory\SourceModelFactory\User\CreateUserSourceModelFactory;
 use App\Domain\Registry\User\UserStatusRegistry;
 use App\Domain\Registry\User\UserTypeRegistry;
+use App\Infrastructure\DataFixtures\AbstractFixtures;
 use Doctrine\Persistence\ObjectManager;
 
 final class UserFixtures extends AbstractFixtures

@@ -12,7 +12,8 @@ interface GenericDataModelProviderGateway
     /**
      * @return DataModelInterface[]
      */
-    public function getByParameters(FilterModelInterface $filter): array;
+    public function getByFilterModel(FilterModelInterface $filter): array;
+    public function getByArrayParameters(array $parameters): array;
 
-    public function countByParameters(?FilterModelInterface $filter): int;
+    public function countByFilterModel(?FilterModelInterface $filter): int;
 }
