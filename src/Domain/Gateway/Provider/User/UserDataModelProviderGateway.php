@@ -12,7 +12,7 @@ interface UserDataModelProviderGateway
     /**
      * @return UserDataModel[]
      */
-    public function getUsersByParameters(GetManyUsersFilterModel $filter): array;
+    public function getUsersByFilterModel(GetManyUsersFilterModel $filter): array;
 
-    public function countUsersByParameters(?GetManyUsersFilterModel $filter): int;
+    public function countUsersByFilterModel(?GetManyUsersFilterModel $filter): int;
 }

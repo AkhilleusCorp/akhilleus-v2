@@ -14,7 +14,7 @@ abstract class AbstractBaseDataModelRepository extends ServiceEntityRepository
     protected abstract function addParametersFromFilter(QueryBuilder $queryBuilder, FilterModelInterface $filter): self;
 
 
-    public function getByParameters(FilterModelInterface $filter): array
+    public function getByFilterModel(FilterModelInterface $filter): array
     {
         $queryBuilder = $this->createQueryBuilder($this->getAlias());
 
@@ -25,7 +25,7 @@ abstract class AbstractBaseDataModelRepository extends ServiceEntityRepository
         return $queryBuilder->getQuery()->getResult();
     }
 
-    public function countByParameters(?FilterModelInterface $filter): int
+    public function countByFilterModel(?FilterModelInterface $filter): int
     {
         $alias = $this->getAlias();
         $queryBuilder = $this->createQueryBuilder($alias)
@@ -36,6 +36,11 @@ abstract class AbstractBaseDataModelRepository extends ServiceEntityRepository
         }
 
         return $queryBuilder->getQuery()->getSingleScalarResult();
+    }
+
+    public function getByArrayParameters(array $parameters): array
+    {
+        return $this->findBy($parameters);
     }
 
     protected function addPaginationConditions(QueryBuilder $queryBuilder, FilterModelInterface $filter): self

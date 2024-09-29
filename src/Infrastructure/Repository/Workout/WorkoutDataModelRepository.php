@@ -30,14 +30,14 @@ final class WorkoutDataModelRepository extends AbstractBaseDataModelRepository i
             ->getQuery()->getOneOrNullResult();
     }
 
-    public function getWorkoutsByParameters(GetManyWorkoutsFilterModel $filter): array
+    public function getWorkoutsByFilterModel(GetManyWorkoutsFilterModel $filter): array
     {
-        return $this->getByParameters($filter);
+        return $this->getByFilterModel($filter);
     }
 
-    public function countWorkoutsByParameters(?GetManyWorkoutsFilterModel $filter): int
+    public function countWorkoutsByFilterModel(?GetManyWorkoutsFilterModel $filter): int
     {
-        return $this->countByParameters($filter);
+        return $this->countByFilterModel($filter);
     }
 
     protected function addParametersFromFilter(QueryBuilder $queryBuilder, GetManyWorkoutsFilterModel|FilterModelInterface $filter): self

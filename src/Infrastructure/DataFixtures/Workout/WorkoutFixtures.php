@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Infrastructure\DataFixtures;
+namespace App\Infrastructure\DataFixtures\Workout;
 
 use App\Domain\DTO\SourceModel\Workout\CreateWorkoutSourceModel;
 use App\Domain\Factory\DataModelFactory\Workout\WorkoutDataModelFactory;
 use App\Domain\Factory\SourceModelFactory\Workout\CreateWorkoutSourceModelFactory;
 use App\Domain\Registry\Workout\WorkoutStatusRegistry;
 use App\Domain\Registry\Workout\WorkoutVisibilityRegistry;
+use App\Infrastructure\DataFixtures\AbstractFixtures;
 use Doctrine\Persistence\ObjectManager;
 
 final class WorkoutFixtures extends AbstractFixtures
