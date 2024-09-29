@@ -1,26 +1,21 @@
 <?php
 
-namespace App\Infrastructure\Controller\API\Workout;
+namespace App\Infrastructure\Controller\API\Equipment;
 
-use App\Domain\DTO\FilterModel\Workout\GetManyEquipmentsFilterModel;
+use App\Domain\DTO\FilterModel\Equipment\GetManyEquipmentsFilterModel;
 use App\Domain\DTO\SourceModel\Equipment\CreateEquipmentSourceModel;
 use App\Domain\DTO\SourceModel\Equipment\UpdateEquipmentSourceModel;
 use App\Domain\Factory\DataModelFactory\Equipment\EquipmentDataModelFactory;
-use App\Domain\Gateway\Provider\Workout\EquipmentDataModelProviderGateway;
+use App\Domain\Gateway\Provider\Equipment\EquipmentDataModelProviderGateway;
 use App\Infrastructure\Controller\API\AbstractAPIController;
-use App\Infrastructure\Repository\Workout\EquipmentDataModelRepository;
+use App\Infrastructure\View\ViewModel\Equipment\SingleEquipmentDataViewModel;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
 use App\Infrastructure\View\ViewModel\SingleObjectViewModel;
-use App\Infrastructure\View\ViewModel\User\SingleUserDataViewModel;
-use App\Infrastructure\View\ViewModel\Workout\SingleEquipmentDataViewModel;
 use App\UseCase\API\GenericCreateOneUseCase;
 use App\UseCase\API\GenericDeleteOneByIdUseCase;
 use App\UseCase\API\GenericGetManyUseCase;
 use App\UseCase\API\GenericGetOneByIdUseCase;
 use App\UseCase\API\GenericUpdateOneByIdUseCase;
-use App\UseCase\API\User\CreateOneUserUseCase;
-use App\UseCase\API\User\UpdateOneUserByIdUseCase;
-use Nelmio\ApiDocBundle\Annotation\Model;
 use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;

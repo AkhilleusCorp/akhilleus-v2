@@ -6,13 +6,13 @@ use App\Domain\DTO\FilterModel\FilterModelInterface;
 use App\Domain\DTO\FilterModel\User\GetManyUsersFilterModel;
 use App\Domain\DTO\DataModel\User\UserDataModel;
 use App\Domain\Gateway\Provider\User\UserDataModelProviderGateway;
-use App\Infrastructure\Repository\AbstractBaseDTORepository;
+use App\Infrastructure\Repository\AbstractBaseDataModelRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 
-final class UserDataModelRepository extends AbstractBaseDTORepository implements UserDataModelProviderGateway, UserProviderInterface
+final class UserDataModelRepository extends AbstractBaseDataModelRepository implements UserDataModelProviderGateway, UserProviderInterface
 {
     public function __construct(ManagerRegistry $registry)
     {

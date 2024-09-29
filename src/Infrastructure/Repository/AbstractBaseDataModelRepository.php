@@ -7,7 +7,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\Order;
 use Doctrine\ORM\QueryBuilder;
 
-abstract class AbstractBaseDTORepository extends ServiceEntityRepository
+abstract class AbstractBaseDataModelRepository extends ServiceEntityRepository
 {
     protected abstract function getAlias(): string;
 

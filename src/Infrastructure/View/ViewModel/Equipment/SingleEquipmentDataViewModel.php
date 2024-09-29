@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\View\ViewModel\Workout;
+namespace App\Infrastructure\View\ViewModel\Equipment;
 
 use App\Infrastructure\View\ViewModel\SingleObjectDataViewModelInterface;
 use Symfony\Component\Serializer\Attribute\Groups;

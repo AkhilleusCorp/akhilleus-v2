@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Gateway\Provider\Workout;
+namespace App\Domain\Gateway\Provider\Equipment;
 
 use App\Domain\Gateway\Provider\GenericDataModelProviderGateway;
 

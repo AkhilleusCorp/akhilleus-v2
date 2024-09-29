@@ -6,11 +6,11 @@ use App\Domain\DTO\DataModel\Workout\WorkoutDataModel;
 use App\Domain\DTO\FilterModel\FilterModelInterface;
 use App\Domain\DTO\FilterModel\Workout\GetManyWorkoutsFilterModel;
 use App\Domain\Gateway\Provider\Workout\WorkoutDataModelProviderGateway;
-use App\Infrastructure\Repository\AbstractBaseDTORepository;
+use App\Infrastructure\Repository\AbstractBaseDataModelRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
-final class WorkoutDataModelRepository extends AbstractBaseDTORepository implements WorkoutDataModelProviderGateway
+final class WorkoutDataModelRepository extends AbstractBaseDataModelRepository implements WorkoutDataModelProviderGateway
 {
     public function __construct(ManagerRegistry $registry)
     {

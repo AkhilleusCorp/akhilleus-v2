@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\DTO\FilterModel\Workout;
+namespace App\Domain\DTO\FilterModel\Equipment;
 
 use App\Domain\DTO\FilterModel\FilterModelInterface;
 use App\Domain\DTO\FilterModel\PaginationFilterTrait;

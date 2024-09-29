@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Tests\integrations\Controller\API\Workout;
+namespace App\Tests\integrations\Controller\API\Equipment;
 
 use App\Domain\Factory\DataModelFactory\Equipment\EquipmentDataModelFactory;
-use App\Domain\Gateway\Provider\Workout\EquipmentDataModelProviderGateway;
-use App\Infrastructure\Controller\API\Workout\EquipmentController;
+use App\Domain\Gateway\Provider\Equipment\EquipmentDataModelProviderGateway;
+use App\Infrastructure\Controller\API\Equipment\EquipmentController;
 use App\Tests\integrations\Controller\AbstractGenericControllerTest;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
