@@ -12,7 +12,7 @@ use App\Infrastructure\View\ViewPresenter\GenericViewPresenter;
 use App\UseCase\UseCaseInterface;
 
 
-final class GenericCreateOneByIdUseCase implements UseCaseInterface
+final class GenericCreateOneUseCase implements UseCaseInterface
 {
     public function __construct(
         private readonly GenericSourceModelFactory $sourceModelFactory,

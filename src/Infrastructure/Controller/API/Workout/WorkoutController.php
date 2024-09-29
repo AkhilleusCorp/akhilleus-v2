@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Infrastructure\Controller\Api\Workout;
+namespace App\Infrastructure\Controller\API\Workout;
 
 use App\Domain\Registry\User\UserStatusRegistry;
-use App\Infrastructure\Controller\Api\AbstractAPIController;
+use App\Infrastructure\Controller\API\AbstractAPIController;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
 use App\Infrastructure\View\ViewModel\SingleObjectViewModel;
 use App\Infrastructure\View\ViewModel\Workout\SingleWorkoutDataViewModel;
@@ -52,7 +52,7 @@ final class WorkoutController extends AbstractAPIController
     }
 
     #[Route('/workouts/{id}', name:'workout_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
-    public function updateOneById(Request $request, int $id, UpdateOneWorkoutByIdUseCase $useCase): SingleObjectViewModel
+    public function updateOneById(int $id, Request $request, UpdateOneWorkoutByIdUseCase $useCase): SingleObjectViewModel
     {
         return $useCase->execute($id, json_decode($request->getContent(), true), $this->getDataProfile());
     }

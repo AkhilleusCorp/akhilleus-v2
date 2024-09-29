@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Infrastructure\Controller\Api\Workout;
+namespace App\Infrastructure\Controller\API\Workout;
 
 use App\Domain\DTO\FilterModel\Workout\GetManyEquipmentsFilterModel;
 use App\Domain\DTO\SourceModel\Equipment\CreateEquipmentSourceModel;
 use App\Domain\DTO\SourceModel\Equipment\UpdateEquipmentSourceModel;
 use App\Domain\Factory\DataModelFactory\Equipment\EquipmentDataModelFactory;
 use App\Domain\Gateway\Provider\Workout\EquipmentDataModelProviderGateway;
-use App\Infrastructure\Controller\Api\AbstractAPIController;
+use App\Infrastructure\Controller\API\AbstractAPIController;
 use App\Infrastructure\Repository\Workout\EquipmentDataModelRepository;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
 use App\Infrastructure\View\ViewModel\SingleObjectViewModel;
 use App\Infrastructure\View\ViewModel\User\SingleUserDataViewModel;
 use App\Infrastructure\View\ViewModel\Workout\SingleEquipmentDataViewModel;
-use App\UseCase\API\GenericCreateOneByIdUseCase;
+use App\UseCase\API\GenericCreateOneUseCase;
 use App\UseCase\API\GenericDeleteOneByIdUseCase;
 use App\UseCase\API\GenericGetManyUseCase;
 use App\UseCase\API\GenericGetOneByIdUseCase;
@@ -42,7 +42,7 @@ final class EquipmentController extends AbstractAPIController
         return $useCase->execute($id, $providerGateway, new SingleEquipmentDataViewModel());
     }
     #[Route('/equipments', name:'equipments_create_one', methods: ['POST'])]
-    public function createOne(Request $request, GenericCreateOneByIdUseCase $useCase, EquipmentDataModelFactory $dataModelFactory): SingleObjectViewModel
+    public function createOne(Request $request, GenericCreateOneUseCase $useCase, EquipmentDataModelFactory $dataModelFactory): SingleObjectViewModel
     {
         return $useCase->execute(
             json_decode($request->getContent(), true),
@@ -54,8 +54,8 @@ final class EquipmentController extends AbstractAPIController
 
     #[Route('/users/{id}', name:'user_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
     public function updateOneById(
-        Request $request,
         int $id,
+        Request $request,
         GenericUpdateOneByIdUseCase $useCase,
         EquipmentDataModelProviderGateway $providerGateway,
         EquipmentDataModelFactory $dataModelFactory

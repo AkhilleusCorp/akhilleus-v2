@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\Controller\Api;
+namespace App\Infrastructure\Controller\API;
 
 use App\Infrastructure\Registry\DataProfileRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

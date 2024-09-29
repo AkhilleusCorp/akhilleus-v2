@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Infrastructure\Controller\Api\User;
+namespace App\Infrastructure\Controller\API\User;
 
 use App\Domain\Registry\User\UserStatusRegistry;
 use App\Domain\Registry\User\UserTypeRegistry;
-use App\Infrastructure\Controller\Api\AbstractAPIController;
+use App\Infrastructure\Controller\API\AbstractAPIController;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
 use App\Infrastructure\View\ViewModel\SingleObjectViewModel;
 use App\Infrastructure\View\ViewModel\User\SingleUserDataViewModel;
@@ -70,7 +70,7 @@ final class UserController extends AbstractAPIController
         description: 'Successfully returns a details of a User',
         content: new Model(type: SingleUserDataViewModel::class)
     )]
-    public function updateOneById(Request $request, int $id, UpdateOneUserByIdUseCase $useCase): SingleObjectViewModel
+    public function updateOneById(int $id, Request $request, UpdateOneUserByIdUseCase $useCase): SingleObjectViewModel
     {
         return $useCase->execute($id, json_decode($request->getContent(), true), $this->getDataProfile());
     }
