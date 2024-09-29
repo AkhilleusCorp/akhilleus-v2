@@ -2,11 +2,11 @@
 
 namespace App\Infrastructure\Repository;
 
-use App\Domain\DTO\DataModel\Equipment\EquipmentDataModel;
+use App\Domain\DTO\DataModel\DataModelInterface;
 
 trait GenericQueriesTrait
 {
-    public function getOneById(int $id): ?EquipmentDataModel
+    public function getOneById(int $id): ?DataModelInterface
     {
         return $this->createQueryBuilder($this->getAlias())
             ->andWhere($this->getAlias().'.id = :id')

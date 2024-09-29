@@ -2,9 +2,9 @@
 
 namespace App\Domain\DTO\SourceModel\User;
 
-use App\Domain\DTO\SourceModel\SourceModelInterface;
+use App\Domain\DTO\SourceModel\CreateSourceModelInterface;
 
-final class CreateUserSourceModel implements SourceModelInterface
+final class CreateUserSourceModel implements CreateSourceModelInterface
 {
     public string $username;
 

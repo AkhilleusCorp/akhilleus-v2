@@ -1,24 +1,22 @@
 <?php
 
-namespace App\Tests\integrations\Controller\API\Equipment;
+namespace App\Tests\integrations\Controller\API\Workout;
 
-use App\Domain\Factory\DataModelFactory\Equipment\EquipmentDataModelFactory;
-use App\Domain\Gateway\Provider\Equipment\EquipmentDataModelProviderGateway;
-use App\Infrastructure\Controller\API\Equipment\EquipmentController;
-use App\Infrastructure\Controller\API\GenericAPIControllerInterface;
+use App\Domain\Factory\DataModelFactory\Workout\MuscleDataModelFactory;
+use App\Domain\Gateway\Provider\Workout\MuscleDataModelProviderGateway;
+use App\Infrastructure\Controller\API\Workout\MuscleController;
 use App\Tests\integrations\Controller\AbstractGenericControllerTest;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-final class EquipmentControllerTest extends AbstractGenericControllerTest
+final class MuscleControllerTest extends AbstractGenericControllerTest
 {
     public function setUp(): void
     {
         parent::setUp();
 
-        $this->controller = new EquipmentController();
-        $this->provider = $this->container->get(EquipmentDataModelProviderGateway::class);
-        $this->dataModelFactory = $this->container->get(EquipmentDataModelFactory::class);
+        $this->controller = new MuscleController();
+        $this->provider = $this->container->get(MuscleDataModelProviderGateway::class);
+        $this->dataModelFactory = $this->container->get(MuscleDataModelFactory::class);
     }
 
     public function testCreateOne(): void
