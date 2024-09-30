@@ -18,7 +18,7 @@ final class EquipmentFixtures extends AbstractFixtures
 
     protected function explicitFixtures(ObjectManager $manager): void
     {
-        $names = ['barbell', 'dumbbell', 'bench', 'jump-rope'];
+        $names = ['barbell', 'dumbbell', 'bench', 'jump-rope', 'cable'];
         foreach ($names as $name) {
             $source = $this->sourceModelFactory->buildSourceModel(
                 ['name' => $name],
@@ -34,17 +34,6 @@ final class EquipmentFixtures extends AbstractFixtures
 
     protected function volumeFixtures(ObjectManager $manager): void
     {
-        for ($i = 1; $i < 50; $i++) {
-            $name = "equipment{$i}";
-            $source = $this->sourceModelFactory->buildSourceModel(
-                ['name' => $name],
-                new CreateEquipmentSourceModel()
-            );
 
-            $equipment = $this->dataModelFactory->buildNewDataModel($source);
-            $manager->persist($equipment);
-
-            $this->addReference("equipment-{$equipment->name}", $equipment);
-        }
     }
 }

@@ -19,7 +19,7 @@ final class MuscleFixtures extends AbstractFixtures
 
     protected function explicitFixtures(ObjectManager $manager): void
     {
-        $names = ['biceps', 'triceps', 'quads', 'calves', 'chest'];
+        $names = ['biceps', 'triceps', 'quads', 'calves', 'chest', 'glutes', 'hamstring'];
         foreach ($names as $name) {
             $source = $this->sourceModelFactory->buildSourceModel(
                 ['name' => $name],
@@ -35,17 +35,6 @@ final class MuscleFixtures extends AbstractFixtures
 
     protected function volumeFixtures(ObjectManager $manager): void
     {
-        for ($i = 1; $i < 50; $i++) {
-            $name = "muscle{$i}";
-            $source = $this->sourceModelFactory->buildSourceModel(
-                ['name' => $name],
-                new CreateMuscleSourceModel()
-            );
 
-            $muscle = $this->dataModelFactory->buildNewDataModel($source);
-            $manager->persist($muscle);
-
-            $this->addReference("muscle-{$muscle->name}", $muscle);
-        }
     }
 }

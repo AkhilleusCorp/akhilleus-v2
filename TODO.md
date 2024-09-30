@@ -10,6 +10,9 @@
  * Update documentation to handle data & extra sub field for all APIs
 ### User API
  * Create a dedicated API just to update password
+### Muscle & Equipment
+ * Add status
+ * Implement DeleteOneByIdUseCase to deal with entity linked to Movement (set state to deleted instead of deleting object)
 ### Movement API
  * List
  * Details
