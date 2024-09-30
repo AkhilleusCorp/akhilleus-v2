@@ -9,6 +9,7 @@
 ### Documentation
  * Update documentation to handle data & extra sub field for all APIs
 ### User API
+ * Handle timezone using UserConfiguration and use it in CustomSerializer
  * Create a dedicated API just to update password
 ### Muscle, Equipment, Movement
  * Add status
