@@ -22,7 +22,6 @@ final class GetManyWorkoutUseCase implements UseCaseInterface
 
     public function execute(array $parameters, string $dataProfile = DataProfileRegistry::DATA_PROFILE_MEMBER): MultipleObjectViewModel
     {
-
         $filter = $this->filterFactory->buildGetManyWorkoutsFilterModel($parameters);
         $workouts = $this->provider->getWorkoutsByFilterModel($filter);
 
