@@ -20,13 +20,17 @@ final class MovementDataModelFactory extends AbstractDataModelFactory
 
     public function buildNewDataModel(CreateMovementSourceModel|CreateSourceModelInterface $source): MovementDataModel
     {
-        var_dump(get_class($this->equipmentProvider)); die;
-
         $movement = new MovementDataModel();
         $movement->name = $source->name;
         $movement->primaryMuscle = $this->muscleProvider->getOneById($source->primaryMuscle);
-        $movement->setAuxiliaryMuscles($this->muscleProvider->getByArrayParameters(['id' => $source->auxiliaryMuscles]));
-        $movement->setEquipments($this->equipmentProvider->getByArrayParameters(['id' => $source->equipments]));
+
+        if (null !== $source->auxiliaryMuscles) {
+            $movement->setAuxiliaryMuscles($this->muscleProvider->getByArrayParameters(['id' => $source->auxiliaryMuscles]));
+        }
+
+        if (null !== $source->equipments) {
+            $movement->setEquipments($this->equipmentProvider->getByArrayParameters(['id' => $source->equipments]));
+        }
 
         return $movement;
     }

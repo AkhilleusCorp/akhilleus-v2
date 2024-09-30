@@ -48,7 +48,7 @@ class MovementDataModel implements DataModelInterface
         return $this->auxiliaryMuscles->toArray();
     }
 
-    public function setAuxiliaryMuscles(array $muscles): array
+    public function setAuxiliaryMuscles(array $muscles): void
     {
         $this->auxiliaryMuscles = new ArrayCollection();
         foreach ($muscles as $muscle) {
@@ -61,7 +61,7 @@ class MovementDataModel implements DataModelInterface
         return $this->equipments->toArray();
     }
 
-    public function setEquipments(array $equipments): array
+    public function setEquipments(array $equipments): void
     {
         $this->equipments = new ArrayCollection();
         foreach ($equipments as $equipment) {

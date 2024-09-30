@@ -22,11 +22,11 @@ final class GetManyUserUseCase implements UseCaseInterface
     public function execute(array $parameters, string $dataProfile = DataProfileRegistry::DATA_PROFILE_MEMBER): MultipleObjectViewModel
     {
         $filter = $this->filterFactory->buildGetManyUsersFilterModel($parameters);
-        $users = $this->provider->getUsersByParameters($filter);
+        $users = $this->provider->getUsersByFilterModel($filter);
 
         $usersCount = count($users);
         if ($usersCount === $filter->limit) {
-            $usersCount = $this->provider->countUsersByParameters($filter);
+            $usersCount = $this->provider->countUsersByFilterModel($filter);
         }
 
         return $this->presenter->present(

@@ -13,8 +13,7 @@ final class EquipmentFixtures extends AbstractFixtures
     public function __construct(
         private readonly GenericSourceModelFactory $sourceModelFactory,
         private readonly EquipmentDataModelFactory $dataModelFactory
-    )
-    {
+    ) {
     }
 
     protected function explicitFixtures(ObjectManager $manager): void

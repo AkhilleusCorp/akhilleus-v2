@@ -2,30 +2,24 @@
 
 namespace App\Infrastructure\DataFixtures\Workout;
 
-use App\Domain\Factory\DataModelFactory\Workout\MovementDataModelFactory;
-use App\Domain\Factory\SourceModelFactory\Workout\CreateMovementSourceModelFactory;
+use App\Domain\DTO\DataModel\Workout\MovementDataModel;
 use App\Infrastructure\DataFixtures\AbstractFixtures;
+use App\Infrastructure\DataFixtures\Equipment\EquipmentFixtures;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-final class MovementFixtures extends AbstractFixtures
+final class MovementFixtures extends AbstractFixtures implements DependentFixtureInterface
 {
-    public function __construct(
-        private readonly CreateMovementSourceModelFactory $sourceModelFactory,
-        private readonly MovementDataModelFactory $dataModelFactory
-    ) {
-
-    }
     protected function explicitFixtures(ObjectManager $manager): void
     {
-        $source = $this->sourceModelFactory->buildSourceModel(
-            [
-                'name' => 'Bench Press',
-                'primaryMuscle' => 5,
-                'equipments' => [1, 3]
-            ]
-        );
+        $movement = new MovementDataModel();
+        $movement->name = 'Bench Press';
+        $movement->primaryMuscle = $this->getReference('muscle-chest');
+        $movement->setEquipments([
+            $this->getReference('equipment-barbell'),
+            $this->getReference('equipment-bench'),
+        ]);
 
-        $movement = $this->dataModelFactory->buildNewDataModel($source);
         $manager->persist($movement);
     }
 
@@ -34,4 +28,11 @@ final class MovementFixtures extends AbstractFixtures
         // TODO: Implement volumeFixtures() method.
     }
 
+    public function getDependencies(): array
+    {
+        return [
+            MuscleFixtures::class,
+            EquipmentFixtures::class,
+        ];
+    }
 }

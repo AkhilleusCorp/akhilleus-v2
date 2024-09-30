@@ -8,7 +8,6 @@ final class CreateMovementSourceModel implements CreateSourceModelInterface
 {
     public string $name;
     public int $primaryMuscle;
-    public array $auxiliaryMuscles;
-
-    public array $equipments;
+    public ?array $auxiliaryMuscles = null;
+    public ?array $equipments = null;
 }
