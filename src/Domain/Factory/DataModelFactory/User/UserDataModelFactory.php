@@ -8,6 +8,7 @@ use App\Domain\DTO\SourceModel\CreateSourceModelInterface;
 use App\Domain\DTO\SourceModel\SourceModelInterface;
 use App\Domain\DTO\SourceModel\UpdateSourceModelInterface;
 use App\Domain\DTO\SourceModel\User\CreateUserSourceModel;
+use App\Domain\DTO\SourceModel\User\UpdateUserSourceModel;
 use App\Domain\Factory\DataModelFactory\AbstractDataModelFactory;
 use DateTimeImmutable;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -31,10 +32,12 @@ final class UserDataModelFactory extends AbstractDataModelFactory
         return $user;
     }
 
-    public function mergeSourceAndDataModel(DataModelInterface $dataModel, UpdateSourceModelInterface $model): DataModelInterface
-    {
+    public function mergeSourceAndDataModel(
+        UserDataModel|DataModelInterface $dataModel,
+        UpdateUserSourceModel|UpdateSourceModelInterface $sourceModel,
+    ): DataModelInterface {
         /** @var UserDataModel $dataModel */
-        $dataModel = parent::mergeSourceAndDataModel($dataModel, $model);
+        $dataModel = parent::mergeSourceAndDataModel($dataModel, $sourceModel);
 
         $dataModel->lifecycle->lastModificationDate = new DateTimeImmutable(false);
 

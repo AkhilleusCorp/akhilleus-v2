@@ -9,13 +9,13 @@ use App\Domain\DTO\SourceModel\UpdateSourceModelInterface;
 
 abstract class AbstractDataModelFactory implements DataModelFactoryInterface
 {
-    public function mergeSourceAndDataModel(DataModelInterface $dataModel, UpdateSourceModelInterface $model): DataModelInterface
+    public function mergeSourceAndDataModel(DataModelInterface $dataModel, UpdateSourceModelInterface $sourceModel): DataModelInterface
     {
-        $reflexion = new \ReflectionClass($model);
+        $reflexion = new \ReflectionClass($sourceModel);
         foreach ($reflexion->getProperties() as $property) {
             $propertyName = $property->getName();
-            if (property_exists($dataModel, $propertyName) && isset($model->{$propertyName})) {
-                $dataModel->{$propertyName} = $model->{$propertyName};
+            if (property_exists($dataModel, $propertyName) && isset($sourceModel->{$propertyName})) {
+                $dataModel->{$propertyName} = $sourceModel->{$propertyName};
             }
         }
 

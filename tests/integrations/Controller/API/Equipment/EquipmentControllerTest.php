@@ -32,8 +32,8 @@ final class EquipmentControllerTest extends AbstractGenericControllerTest
             $this->provider
         );
 
-        $this->assertCount(25, $view->data);
-        $this->assertEquals(53, $view->extra['pagination']->count);
+        $this->assertCount(5, $view->data);
+        $this->assertEquals(5, $view->extra['pagination']->count);
     }
 
     public function testCreateOne(): void

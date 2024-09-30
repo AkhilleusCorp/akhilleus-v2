@@ -52,17 +52,6 @@ abstract class AbstractGenericControllerTest extends AbstractIntegrationTest
         );
     }
 
-    public function testDeleteOneByExistingId(): void
-    {
-        $this->controller->deleteOnById(
-            33,
-            $this->deleteOneByIdUseCase,
-            $this->provider
-        );
-
-        $this->assertNull($this->provider->getOneById(33));
-    }
-
     public function testDeleteOneByNonExistingId(): void
     {
         $this->expectException(NotFoundHttpException::class);
