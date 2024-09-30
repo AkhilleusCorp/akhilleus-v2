@@ -1,47 +1,5 @@
-{% extends 'website/_website_base.html.twig' %}
+{% extends 'website/pages/_registration_base.html.twig' %}
 
-{% block javascripts %}
-    {{ parent() }}
-    <script>
-        function showPassword() {
-            let x = document.getElementById("password");
-            if (x.type === "password") {
-                x.type = "text";
-            } else {
-                x.type = "password";
-            }
-        }
-    </script>
-{% endblock %}
-
-{% block page_content %}
-    <form method="post" action="{{ path('website_registration') }}">
-        <div>
-            <label>
-                {{ 'username' | trans }}
-                <input type="text" name="username" required />
-            </label>
-        </div>
-        <div>
-            <label>
-                {{ 'email' | trans }}
-                <input type="email" name="email" required />
-            </label>
-        </div>
-
-        <div>
-            <label>
-                {{ 'password' | trans }}
-                <input type="password" id="password" name="plainPassword" required /><br />
-                <input type="checkbox" onclick="showPassword()">{{ 'show_password' | trans }}
-            </label>
-        </div>
-
-        <div>
-            <button type="submit" class="btn-validate">
-                {{ 'register' | trans }}
-            </button>
-        </div>
-    </form>
+{% block form_specifics %}
 
 {% endblock %}

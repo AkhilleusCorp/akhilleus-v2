@@ -1,0 +1,57 @@
+{% extends 'website/_website_base.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        function showPassword() {
+            let x = document.getElementById("password");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+    </script>
+{% endblock %}
+
+{% set routeName = 'coach' == context ? 'website_registration_coach' : 'website_registration' %}
+
+{% block page_content %}
+    <div class="half-width">
+        <div class="card">
+            <form method="post" action="{{ path(routeName) }}">
+                <div class="card-body">
+                    <h3>Register as a {{ context }}</h3>
+                    <div>
+                        <label>
+                            {{ 'username' | trans }}
+                            <input type="text" name="username" required />
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            {{ 'email' | trans }}
+                            <input type="email" name="email" required />
+                        </label>
+                    </div>
+
+                    <div>
+                        <label>
+                            {{ 'password' | trans }}
+                            <input type="password" id="password" name="plainPassword" required /><br />
+                            <input type="checkbox" onclick="showPassword()">{{ 'show_password' | trans }}
+                        </label>
+                    </div>
+                </div>
+                {% block form_specifics %}{% endblock %}
+
+                <div class="card-footer">
+                    <button type="submit" class="btn-validate">
+                        {{ 'register' | trans }}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

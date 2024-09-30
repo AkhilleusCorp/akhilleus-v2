@@ -23,7 +23,10 @@ final class RegistrationController extends AbstractController
             $useCase->execute($request->request->all());
         }
 
-        return $this->render('website/pages/registration.html.twig');
+        return $this->render(
+            'website/pages/registration.html.twig',
+            ['context' => 'member']
+        );
     }
 
     #[Route('/registration/coach', name:'website_registration_coach', methods: ['GET', 'POST'])]
@@ -41,7 +44,10 @@ final class RegistrationController extends AbstractController
             );
         }
 
-        return $this->render('website/pages/registration_coach.html.twig');
+        return $this->render(
+            'website/pages/registration_coach.html.twig',
+            ['context' => 'coach']
+        );
     }
 
     #[Route('/registration/success', name:'website_registration_success', methods: ['GET'])]
