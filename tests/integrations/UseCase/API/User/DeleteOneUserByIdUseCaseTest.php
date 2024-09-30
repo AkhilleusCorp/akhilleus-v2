@@ -30,9 +30,9 @@ final class DeleteOneUserByIdUseCaseTest extends AbstractIntegrationTest
     {
         $userId = 1;
 
-        $countBeforeDelete = $this->userDTORepository->countUsersByParameters(null);
+        $countBeforeDelete = $this->userDTORepository->countUsersByFilterModel(null);
         $this->useCase->execute($userId);
-        $countAfterDelete = $this->userDTORepository->countUsersByParameters(null);
+        $countAfterDelete = $this->userDTORepository->countUsersByFilterModel(null);
         $userPostDelete = $this->userDTORepository->getUserById($userId);
 
         $this->assertEquals(($countBeforeDelete - 1), $countAfterDelete);

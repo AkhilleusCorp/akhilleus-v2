@@ -2,9 +2,6 @@
 
 namespace App\Tests\integrations\Controller;
 
-use App\Domain\Factory\DataModelFactory\DataModelFactoryInterface;
-use App\Domain\Gateway\Provider\GenericDataModelProviderGateway;
-use App\Infrastructure\Controller\API\GenericAPIControllerInterface;
 use App\Tests\integrations\AbstractIntegrationTest;
 use App\UseCase\API\GenericCreateOneUseCase;
 use App\UseCase\API\GenericDeleteOneByIdUseCase;
@@ -21,10 +18,6 @@ abstract class AbstractGenericControllerTest extends AbstractIntegrationTest
     protected GenericCreateOneUseCase $createOneUseCase;
     protected GenericUpdateOneByIdUseCase $updateOneByIdUseCase;
     protected GenericDeleteOneByIdUseCase $deleteOneByIdUseCase;
-
-    protected GenericAPIControllerInterface $controller;
-    protected GenericDataModelProviderGateway $provider;
-    protected DataModelFactoryInterface $dataModelFactory;
 
     public function setUp(): void
     {
@@ -59,27 +52,15 @@ abstract class AbstractGenericControllerTest extends AbstractIntegrationTest
         );
     }
 
-    public function testGetManyWithoutFilters(): void
-    {
-        $view = $this->controller->getMany(
-            new Request(),
-            $this->getManyUseCase,
-            $this->provider
-        );
-
-        $this->assertCount(25, $view->data);
-        $this->assertEquals(53, $view->extra['pagination']->count);
-    }
-
     public function testDeleteOneByExistingId(): void
     {
         $this->controller->deleteOnById(
-            1,
+            33,
             $this->deleteOneByIdUseCase,
             $this->provider
         );
 
-        $this->assertNull($this->provider->getOneById(1));
+        $this->assertNull($this->provider->getOneById(33));
     }
 
     public function testDeleteOneByNonExistingId(): void

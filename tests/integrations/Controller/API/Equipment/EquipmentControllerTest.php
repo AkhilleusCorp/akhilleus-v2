@@ -5,13 +5,16 @@ namespace App\Tests\integrations\Controller\API\Equipment;
 use App\Domain\Factory\DataModelFactory\Equipment\EquipmentDataModelFactory;
 use App\Domain\Gateway\Provider\Equipment\EquipmentDataModelProviderGateway;
 use App\Infrastructure\Controller\API\Equipment\EquipmentController;
-use App\Infrastructure\Controller\API\GenericAPIControllerInterface;
 use App\Tests\integrations\Controller\AbstractGenericControllerTest;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 final class EquipmentControllerTest extends AbstractGenericControllerTest
 {
+    protected EquipmentController $controller;
+    protected EquipmentDataModelProviderGateway $provider;
+    protected EquipmentDataModelFactory $dataModelFactory;
+
     public function setUp(): void
     {
         parent::setUp();
@@ -19,6 +22,18 @@ final class EquipmentControllerTest extends AbstractGenericControllerTest
         $this->controller = new EquipmentController();
         $this->provider = $this->container->get(EquipmentDataModelProviderGateway::class);
         $this->dataModelFactory = $this->container->get(EquipmentDataModelFactory::class);
+    }
+
+    public function testGetManyWithoutFilters(): void
+    {
+        $view = $this->controller->getMany(
+            new Request(),
+            $this->getManyUseCase,
+            $this->provider
+        );
+
+        $this->assertCount(25, $view->data);
+        $this->assertEquals(53, $view->extra['pagination']->count);
     }
 
     public function testCreateOne(): void

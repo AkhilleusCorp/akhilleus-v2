@@ -22,8 +22,13 @@ final class MovementDataModelFactory extends AbstractDataModelFactory
     {
         $movement = new MovementDataModel();
         $movement->name = $source->name;
-        $movement->primaryMuscle = $this->muscleProvider->getOneById($source->primaryMuscle);
 
+        $primaryMuscle = $this->muscleProvider->getOneById($source->primaryMuscle);
+        if (null === $primaryMuscle) {
+            throw new \LogicException("Cannot create a movement on a non existing muscle.");
+        }
+
+        $movement->primaryMuscle = $primaryMuscle;
         if (null !== $source->auxiliaryMuscles) {
             $movement->setAuxiliaryMuscles($this->muscleProvider->getByArrayParameters(['id' => $source->auxiliaryMuscles]));
         }

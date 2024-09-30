@@ -22,18 +22,18 @@ class MovementDataModel implements DataModelInterface
     public string $name;
 
     #[ORM\ManyToOne(targetEntity: MuscleDataModel::class)]
-    #[ORM\JoinColumn(name: 'primary_muscle_id', referencedColumnName: 'id')]
+    #[ORM\JoinColumn(name: 'primary_muscle_id', referencedColumnName: 'id', onDelete: 'restrict')]
     public MuscleDataModel $primaryMuscle;
 
-    #[ORM\ManyToMany(targetEntity: MuscleDataModel::class)]
+    #[ORM\ManyToMany(targetEntity: MuscleDataModel::class, cascade: ['remove'])]
     #[ORM\JoinTable(name: 'MOVEMENTS_MUSCLES')]
-    #[ORM\JoinColumn(name: 'movement_id', referencedColumnName: 'id')]
+    #[ORM\JoinColumn(name: 'movement_id', referencedColumnName: 'id', onDelete: 'restrict')]
     #[ORM\InverseJoinColumn(name: 'muscle_id', referencedColumnName: 'id')]
     private Collection $auxiliaryMuscles;
 
-    #[ORM\ManyToMany(targetEntity: EquipmentDataModel::class)]
+    #[ORM\ManyToMany(targetEntity: EquipmentDataModel::class, cascade: ['remove'])]
     #[ORM\JoinTable(name: 'MOVEMENTS_EQUIPMENTS')]
-    #[ORM\JoinColumn(name: 'movement_id', referencedColumnName: 'id')]
+    #[ORM\JoinColumn(name: 'movement_id', referencedColumnName: 'id', onDelete: 'restrict')]
     #[ORM\InverseJoinColumn(name: 'equipment_id', referencedColumnName: 'id')]
     private Collection $equipments;
 
