@@ -7,7 +7,7 @@ use App\Domain\DTO\FilterModel\Workout\GetManyMovementsFilterModel;
 
 interface MovementDataModelProviderGateway
 {
-    public function getMovementById(int $workoutId): ?MovementDataModel;
+    public function getMovementById(int $movementId): ?MovementDataModel;
 
     /**
      * @return MovementDataModel[]

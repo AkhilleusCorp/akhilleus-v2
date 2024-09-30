@@ -19,14 +19,18 @@ final class MovementDataModelRepository extends AbstractBaseDataModelRepository 
 
     protected function getAlias(): string
     {
-        return 'workout';
+        return 'movement';
     }
 
-    public function getMovementById(int $workoutId): ?MovementDataModel
+    public function getMovementById(int $movementId): ?MovementDataModel
     {
         return $this->createQueryBuilder($this->getAlias())
-            ->andWhere($this->getAlias().'.id = :workoutId')
-            ->setParameter('workoutId', $workoutId)
+            ->andWhere($this->getAlias().'.id = :movementId')
+            ->setParameter('movementId', $movementId)
+            ->leftJoin($this->getAlias().'.primaryMuscle', 'movement_primary_muscle')
+            ->leftJoin($this->getAlias().'.auxiliaryMuscles', 'movement_auxiliary_muscle')
+            ->leftJoin($this->getAlias().'.equipments', 'movement_equipments')
+            ->addSelect('movement_primary_muscle', 'movement_auxiliary_muscle', 'movement_equipments')
             ->getQuery()->getOneOrNullResult();
     }
 
@@ -43,12 +47,12 @@ final class MovementDataModelRepository extends AbstractBaseDataModelRepository 
     protected function addParametersFromFilter(QueryBuilder $queryBuilder, GetManyMovementsFilterModel|FilterModelInterface $filter): self
     {
         if (false === empty($filter->ids)) {
-            $queryBuilder->andWhere('workout.id IN (:ids)')
+            $queryBuilder->andWhere('movement.id IN (:ids)')
                 ->setParameter('ids', $filter->ids);
         }
 
         if (false === empty($filter->name)) {
-            $queryBuilder->andWhere('workout.name LIKE :name')
+            $queryBuilder->andWhere('movement.name LIKE :name')
                 ->setParameter('name', '%' . $filter->name . '%');
         }
 
