@@ -33,10 +33,14 @@ final class MovementDataModelFactory extends AbstractDataModelFactory
         MovementDataModel|DataModelInterface $dataModel,
         UpdateMovementSourceModel|UpdateSourceModelInterface $sourceModel
     ): MovementDataModel|DataModelInterface {
-        /** @var MovementDataModel $dataModel */
-        $dataModel = parent::mergeSourceAndDataModel($dataModel, $sourceModel);
+        $dataModel = $this->handleConnectedDataModels($dataModel, $sourceModel);
 
-        return $this->handleConnectedDataModels($dataModel, $sourceModel);
+        // NB: Clean up object since they can't be handled through reflection
+        $sourceModel->primaryMuscle = null;
+        $sourceModel->auxiliaryMuscles = null;
+        $sourceModel->equipments = null;
+
+        return parent::mergeSourceAndDataModel($dataModel, $sourceModel);
     }
 
     private function handleConnectedDataModels(

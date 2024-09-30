@@ -22,7 +22,7 @@ final class GetOneMovementByIdUseCase implements UseCaseInterface
     {
         $workout = $this->provider->getMovementById($id);
         if (null === $workout) {
-            throw new NotFoundHttpException("Workout #$id cannot be found");
+            throw new NotFoundHttpException("Movement #$id cannot be found");
         }
 
         return $this->presenter->present($workout, $dataProfile);

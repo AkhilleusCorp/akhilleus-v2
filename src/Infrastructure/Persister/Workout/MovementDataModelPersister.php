@@ -4,9 +4,10 @@ namespace App\Infrastructure\Persister\Workout;
 
 use App\Domain\DTO\DataModel\DataModelInterface;
 use App\Domain\DTO\DataModel\Workout\MovementDataModel;
+use App\Domain\Gateway\Persister\Workout\MovementDataModelPersisterGateway;
 use App\Infrastructure\Persister\AbstractEntityPersister;
 
-final class MovementDataModelPersister extends AbstractEntityPersister
+final class MovementDataModelPersister extends AbstractEntityPersister implements MovementDataModelPersisterGateway
 {
     public function create(MovementDataModel|DataModelInterface $dto, bool $flush = true): MovementDataModel
     {
