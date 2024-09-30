@@ -20,8 +20,6 @@
   * enum for WorkoutStatus, WorkoutVisibility
 
 ## Website
-### Registration
-* Add a registration form for Coach
 
 ## React APP
 ### Security
