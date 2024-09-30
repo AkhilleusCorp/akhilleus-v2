@@ -6,6 +6,7 @@ use App\Domain\Factory\DataModelFactory\Workout\MuscleDataModelFactory;
 use App\Domain\Gateway\Provider\Workout\MuscleDataModelProviderGateway;
 use App\Infrastructure\Controller\API\Workout\MuscleController;
 use App\Tests\integrations\Controller\AbstractGenericControllerTest;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 final class MuscleControllerTest extends AbstractGenericControllerTest
@@ -17,6 +18,17 @@ final class MuscleControllerTest extends AbstractGenericControllerTest
         $this->controller = new MuscleController();
         $this->provider = $this->container->get(MuscleDataModelProviderGateway::class);
         $this->dataModelFactory = $this->container->get(MuscleDataModelFactory::class);
+    }
+    public function testGetManyWithoutFilters(): void
+    {
+        $view = $this->controller->getMany(
+            new Request(),
+            $this->getManyUseCase,
+            $this->provider
+        );
+
+        $this->assertCount(25, $view->data);
+        $this->assertEquals(54, $view->extra['pagination']->count);
     }
 
     public function testCreateOne(): void

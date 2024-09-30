@@ -24,11 +24,11 @@ final class GetManyWorkoutUseCase implements UseCaseInterface
     {
 
         $filter = $this->filterFactory->buildGetManyWorkoutsFilterModel($parameters);
-        $workouts = $this->provider->getWorkoutsByParameters($filter);
+        $workouts = $this->provider->getWorkoutsByFilterModel($filter);
 
         $workoutsCount = count($workouts);
         if ($workoutsCount === $filter->limit) {
-            $workoutsCount = $this->provider->countWorkoutsByParameters($filter);
+            $workoutsCount = $this->provider->countWorkoutsByFilterModel($filter);
         }
 
         return $this->presenter->present(

@@ -1,5 +1,6 @@
 ## Refactoring
 ### API
+ * Simplify fixtures creation using dataModel directly
 ### Website
 ### React APP
 * Create a DeleteButton in react that handle 100% of the process

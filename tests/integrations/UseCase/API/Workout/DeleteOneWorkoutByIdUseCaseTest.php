@@ -30,9 +30,9 @@ final class DeleteOneWorkoutByIdUseCaseTest extends AbstractIntegrationTest
     {
         $workoutId = 1;
 
-        $countBeforeDelete = $this->workoutDTORepository->countWorkoutsByParameters(null);
+        $countBeforeDelete = $this->workoutDTORepository->countWorkoutsByFilterModel(null);
         $this->useCase->execute($workoutId);
-        $countAfterDelete = $this->workoutDTORepository->countWorkoutsByParameters(null);
+        $countAfterDelete = $this->workoutDTORepository->countWorkoutsByFilterModel(null);
         $workoutPostDelete = $this->workoutDTORepository->getWorkoutById($workoutId);
 
         $this->assertEquals(($countBeforeDelete - 1), $countAfterDelete);

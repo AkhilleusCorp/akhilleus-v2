@@ -4,6 +4,7 @@ namespace App\Domain\Factory\DataModelFactory\User;
 
 use App\Domain\DTO\DataModel\DataModelInterface;
 use App\Domain\DTO\DataModel\User\UserDataModel;
+use App\Domain\DTO\SourceModel\CreateSourceModelInterface;
 use App\Domain\DTO\SourceModel\SourceModelInterface;
 use App\Domain\DTO\SourceModel\UpdateSourceModelInterface;
 use App\Domain\DTO\SourceModel\User\CreateUserSourceModel;
@@ -17,7 +18,7 @@ final class UserDataModelFactory extends AbstractDataModelFactory
     {
 
     }
-    public function buildNewDataModel(CreateUserSourceModel|SourceModelInterface $source): UserDataModel
+    public function buildNewDataModel(CreateUserSourceModel|CreateSourceModelInterface $source): UserDataModel
     {
         $user = new UserDataModel();
         $user->username = $source->username;

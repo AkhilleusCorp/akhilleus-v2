@@ -8,7 +8,6 @@ use App\Domain\Gateway\Provider\GenericDataModelProviderGateway;
 use App\Infrastructure\View\ViewHydrator\PaginationHydrator;
 use App\Infrastructure\View\ViewModel\Equipment\MultipleEquipmentItemDataViewModel;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
-use App\Infrastructure\View\ViewPresenter\GenericMultipleObjectViewPresenter;
 use App\Infrastructure\View\ViewPresenter\GenericViewPresenter;
 use App\UseCase\UseCaseInterface;
 
@@ -24,11 +23,11 @@ final class GenericGetManyUseCase implements UseCaseInterface
     public function execute(array $parameters, FilterModelInterface $filter, GenericDataModelProviderGateway $providerGateway): MultipleObjectViewModel
     {
         $filter = $this->filterFactory->buildGetManyFilterModel($parameters, $filter);
-        $dataModels = $providerGateway->getByParameters($filter);
+        $dataModels = $providerGateway->getByFilterModel($filter);
 
         $dataModelsCount = count($dataModels);
         if ($dataModelsCount === $filter->limit) {
-            $dataModelsCount = $providerGateway->countByParameters($filter);
+            $dataModelsCount = $providerGateway->countByFilterModel($filter);
         }
 
         return $this->presenter->presentMultipleObject(

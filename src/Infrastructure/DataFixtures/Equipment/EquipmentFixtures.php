@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Infrastructure\DataFixtures;
+namespace App\Infrastructure\DataFixtures\Equipment;
 
 use App\Domain\DTO\SourceModel\Equipment\CreateEquipmentSourceModel;
 use App\Domain\Factory\DataModelFactory\Equipment\EquipmentDataModelFactory;
 use App\Domain\Factory\SourceModelFactory\GenericSourceModelFactory;
+use App\Infrastructure\DataFixtures\AbstractFixtures;
 use Doctrine\Persistence\ObjectManager;
 
 final class EquipmentFixtures extends AbstractFixtures
@@ -12,8 +13,7 @@ final class EquipmentFixtures extends AbstractFixtures
     public function __construct(
         private readonly GenericSourceModelFactory $sourceModelFactory,
         private readonly EquipmentDataModelFactory $dataModelFactory
-    )
-    {
+    ) {
     }
 
     protected function explicitFixtures(ObjectManager $manager): void

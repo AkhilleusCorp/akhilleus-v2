@@ -5,12 +5,9 @@ namespace App\Infrastructure\Controller\API\Equipment;
 use App\Domain\DTO\FilterModel\Equipment\GetManyEquipmentsFilterModel;
 use App\Domain\DTO\SourceModel\Equipment\CreateEquipmentSourceModel;
 use App\Domain\DTO\SourceModel\Equipment\UpdateEquipmentSourceModel;
-use App\Domain\Factory\DataModelFactory\DataModelFactoryInterface;
 use App\Domain\Factory\DataModelFactory\Equipment\EquipmentDataModelFactory;
 use App\Domain\Gateway\Provider\Equipment\EquipmentDataModelProviderGateway;
-use App\Domain\Gateway\Provider\GenericDataModelProviderGateway;
 use App\Infrastructure\Controller\API\AbstractAPIController;
-use App\Infrastructure\Controller\API\GenericAPIControllerInterface;
 use App\Infrastructure\View\ViewModel\Equipment\SingleEquipmentDataViewModel;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
 use App\Infrastructure\View\ViewModel\SingleObjectViewModel;
@@ -26,13 +23,13 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[OA\Tag('EQUIPMENTS')]
-final class EquipmentController extends AbstractAPIController implements GenericAPIControllerInterface
+final class EquipmentController extends AbstractAPIController
 {
     #[Route('/equipments', name:'equipment_get_many', methods: ['GET'])]
     public function getMany(
         Request $request,
         GenericGetManyUseCase $useCase,
-        EquipmentDataModelProviderGateway|GenericDataModelProviderGateway $providerGateway
+        EquipmentDataModelProviderGateway $providerGateway
     ): MultipleObjectViewModel {
         return $useCase->execute($request->query->all(), new GetManyEquipmentsFilterModel(), $providerGateway);
     }
@@ -41,7 +38,7 @@ final class EquipmentController extends AbstractAPIController implements Generic
     public function getOneById(
         int $id,
         GenericGetOneByIdUseCase $useCase,
-        EquipmentDataModelProviderGateway|GenericDataModelProviderGateway $providerGateway
+        EquipmentDataModelProviderGateway $providerGateway
     ): SingleObjectViewModel {
         return $useCase->execute($id, $providerGateway, new SingleEquipmentDataViewModel());
     }
@@ -49,7 +46,7 @@ final class EquipmentController extends AbstractAPIController implements Generic
     public function createOne(
         Request $request,
         GenericCreateOneUseCase $useCase,
-        EquipmentDataModelFactory|DataModelFactoryInterface $dataModelFactory
+        EquipmentDataModelFactory $dataModelFactory
     ): SingleObjectViewModel {
         return $useCase->execute(
             json_decode($request->getContent(), true),
@@ -64,8 +61,8 @@ final class EquipmentController extends AbstractAPIController implements Generic
         int $id,
         Request $request,
         GenericUpdateOneByIdUseCase $useCase,
-        EquipmentDataModelProviderGateway|GenericDataModelProviderGateway $providerGateway,
-        EquipmentDataModelFactory|DataModelFactoryInterface $dataModelFactory
+        EquipmentDataModelProviderGateway $providerGateway,
+        EquipmentDataModelFactory $dataModelFactory
     ): SingleObjectViewModel {
         return $useCase->execute(
             $id,
@@ -81,7 +78,7 @@ final class EquipmentController extends AbstractAPIController implements Generic
     public function deleteOnById(
         int $id,
         GenericDeleteOneByIdUseCase $useCase,
-        EquipmentDataModelProviderGateway|GenericDataModelProviderGateway $providerGateway
+        EquipmentDataModelProviderGateway $providerGateway
     ): JsonResponse {
         $useCase->execute($id, $providerGateway);
 
