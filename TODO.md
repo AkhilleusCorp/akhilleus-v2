@@ -10,23 +10,15 @@
  * Update documentation to handle data & extra sub field for all APIs
 ### User API
  * Create a dedicated API just to update password
-### Muscle & Equipment
+### Muscle, Equipment, Movement
  * Add status
- * Implement DeleteOneByIdUseCase to deal with entity linked to Movement (set state to deleted instead of deleting object)
-### Movement API
- * List
- * Details
- * Add
- * Update
- * Delete
+ * Implement DeleteOneByIdUseCase to deal with soft delete if object is used
 ### Configuration API
 * Expose an API that contain configuration information
   * enum for UserStatus, UserType
   * enum for WorkoutStatus, WorkoutVisibility
 
 ## Website
-### Login
- * Update last login date
 ### Registration
 * Add a registration form for Coach
 
@@ -36,14 +28,18 @@
 ### Form
  * create drop down for enum field like status and visibility
 ### Equipment
-#### Add Front end
  * List
  * Details
  * Add
  * Update
  * Delete
+### Muscle
+* List
+* Details
+* Add
+* Update
+* Delete
 ### Movement
-#### Add Front end
  * List
  * Details
  * Add

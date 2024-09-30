@@ -10,7 +10,7 @@ use Symfony\Component\Serializer\Serializer;
 
 final class CustomSerializer
 {
-    private const DEFAULT_DATETIME_FORMAT = 'm-d-Y h:i:s';
+    private const DEFAULT_DATETIME_FORMAT = 'm-d-Y h:i:s A';
     private Serializer $serializer;
 
     public function __construct(
@@ -22,7 +22,9 @@ final class CustomSerializer
 
         $classMetadataFactory = new ClassMetadataFactory(new AttributeLoader());
         $objectNormalizer = new ObjectNormalizer($classMetadataFactory);
-        $dateTimeNormalizer = new DateTimeNormalizer(['datetime_format' => $dateTimeFormat]);
+        $dateTimeNormalizer = new DateTimeNormalizer(
+            [DateTimeNormalizer::FORMAT_KEY => $dateTimeFormat, DateTimeNormalizer::TIMEZONE_KEY => 'Europe/Paris']
+        );
         $this->serializer = new Serializer([$dateTimeNormalizer, $objectNormalizer]);
 
     }
