@@ -3,6 +3,8 @@ import {useNavigate} from "react-router-dom";
 import websiteRoutes from "../../config/routes/website-routes.tsx";
 import SaveForm from "../common/form/SaveForm.tsx";
 import UserApiGateway from "../../api/gateway/UserApiGateway.tsx";
+import {TextField} from "@mui/material";
+import PasswordInput from "../common/input/PasswordInput.tsx";
 
 type UserCreateFormType = {
     username: string;
@@ -30,31 +32,20 @@ const UserCreateForm: React.FC = () => {
         }
     }
 
-    const togglePasswordVisibility = () => {
-        const passwordField = document.getElementById('password')! as HTMLInputElement;
-        if (passwordField.type === 'password') {
-            passwordField.type = 'text';
-        } else {
-            passwordField.type = 'password';
-        }
-    }
-
     return (
         <SaveForm submitFunction={handleSubmit}>
             <div className={"columns"}>
                 <div className={"column"}>
                     <div>
-                        <label>Username</label>
-                        <input type={"text"} name={"username"} required={true} onChange={handleInputChange}/>
+                        <TextField id="outlined-basic" label="Username" variant="outlined" size="small"
+                                   name={"username"} required={true} onChange={handleInputChange} />
                     </div>
                     <div>
-                        <label>Email</label>
-                        <input type={"email"} name={"email"} required={true} onChange={handleInputChange}/>
+                        <TextField id="outlined-basic" label="Email" variant="outlined" size="small"
+                                   name={"email"} type={"email"} required={true} onChange={handleInputChange} />
                     </div>
                     <div>
-                        <label>Password</label>
-                        <input type={"password"} id={"password"} name={"plainPassword"} required={true} onChange={handleInputChange}/>
-                        <input type="checkbox" onChange={togglePasswordVisibility} />Show password
+                        <PasswordInput handleInputChange={handleInputChange} />
                     </div>
                 </div>
             </div>

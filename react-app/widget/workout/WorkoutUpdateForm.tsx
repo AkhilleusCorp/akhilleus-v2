@@ -5,6 +5,7 @@ import websiteRoutes from "../../config/routes/website-routes.tsx";
 import SaveForm from "../common/form/SaveForm.tsx";
 import WorkoutApiGateway from "../../api/gateway/WorkoutApiGateway.tsx";
 import WorkoutDTO from "../../api/dtos/WorkoutDTO.tsx";
+import {TextField} from "@mui/material";
 
 type WorkoutEditFormType = {
     workout: WorkoutDTO,
@@ -33,12 +34,12 @@ const WorkoutEditForm: React.FC<WorkoutEditFormType> = ({workout}) => {
     return (
         <SaveForm submitFunction={handleSubmit}>
             <div>
-                <label>Name</label>
-                <input type={"text"} name={"name"} value={workoutUpdated.name} onChange={handleInputChange} required={true}/>
+                <TextField id="outlined-basic" label="Name" variant="outlined" size="small" required={true}
+                           name={"name"} value={workoutUpdated.name} onChange={handleInputChange} />
             </div>
             <div>
-                <label>Visibility</label>
-                <input type={"visibility"} name={"visibility"} value={workoutUpdated.visibility} onChange={handleInputChange} required={true}/>
+                <TextField id="outlined-basic" label="Visibility" variant="outlined" size="small" required={true}
+                           name={"visibility"} value={workoutUpdated.visibility} onChange={handleInputChange} />
             </div>
         </SaveForm>
     )

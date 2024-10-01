@@ -1,8 +1,7 @@
 import React from "react";
+import {Paper, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow} from '@mui/material';
 import UsersListFilters from "../../filters/UsersListFilters.tsx";
 import useGetManyUsersByParams from "../../hooks/user/useGetManyUserByParams.tsx";
-import Table from "../common/table/Table.tsx";
-import TableHead from "../common/table/TableHead.tsx";
 
 
 type UsersListTableType = {
@@ -20,24 +19,39 @@ const UsersListTable: React.FC<UsersListTableType> = ({ filters, refreshKey, mai
     }
 
     return (
-        <Table>
-            <TableHead headers={['id', 'username', 'status', 'email', 'type']} />
-            <tbody>
-            {users.map((user) => (
-                <tr id={'user_' + user.id} key={'user_' + user.id}>
-                    <td>{user.id}</td>
-                    <td>
-                        <a href={"#"} onClick={(event) => onUsernameClick(event, user.id)}>
-                            {user.username}
-                        </a>
-                    </td>
-                    <td>{user.status}</td>
-                    <td>{user.email}</td>
-                    <td>{user.type}</td>
-                </tr>
-            ))}
-            </tbody>
-        </Table>
+        <TableContainer component={Paper}>
+            <Table>
+                <TableHead>
+                    <TableRow>
+                        <TableCell>id</TableCell>
+                        <TableCell>username</TableCell>
+                        <TableCell>status</TableCell>
+                        <TableCell>email</TableCell>
+                        <TableCell>type</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {users.map((user) => (
+                        <TableRow id={'user_' + user.id} key={'user_' + user.id}>
+                            <TableCell>{user.id}</TableCell>
+                            <TableCell>
+                                <a href={"#"} onClick={(event) => onUsernameClick(event, user.id)}>
+                                    {user.username}
+                                </a>
+                            </TableCell>
+                            <TableCell>{user.status}</TableCell>
+                            <TableCell>{user.email}</TableCell>
+                            <TableCell>{user.type}</TableCell>
+                        </TableRow>
+                        ))}
+                </TableBody>
+                <TableFooter>
+                    <TableRow>
+                        <TablePagination count={50} page={1} rowsPerPage={35} onPageChange={() => {console.log('clicked')}} />
+                    </TableRow>
+                </TableFooter>
+            </Table>
+        </TableContainer>
     );
 }
 

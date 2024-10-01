@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import WorkoutsListFilters from "../../filters/WorkoutsListFilters.tsx";
 import SearchForm from "../common/form/SearchForm.tsx";
+import {TextField} from "@mui/material";
 
 type WorkoutSearchFormType = {
     defaultFilters: WorkoutsListFilters,
@@ -27,19 +28,19 @@ const WorkoutsSearchForm: React.FC<WorkoutSearchFormType> = ({defaultFilters, ca
         <SearchForm searchFunction={callbackFunction} cancelFunction={handleCancel} filters={filters}>
             <div className={"column"}>
                 <div>
-                    <label>IDs</label>
-                    <input type={"text"} name={"ids"} value={filters.ids ?? ''} onChange={handleInputChange}/>
+                    <TextField id="outlined-basic" label="IDs" variant="outlined" size="small"
+                               name={"ids"} value={filters.ids ?? ''} onChange={handleInputChange} />
                 </div>
                 <div>
-                    <label>Name</label>
-                    <input type={"text"} name={"name"} value={filters.name ?? ''} onChange={handleInputChange}/>
+                    <TextField id="outlined-basic" label="name" variant="outlined" size="small"
+                               name={"name"} value={filters.name ?? ''} onChange={handleInputChange} />
                 </div>
             </div>
 
             <div className={"column"}>
                 <div>
-                    <label>Status</label>
-                    <input type={"text"} name={"statuses"} value={filters.statuses ?? ''} onChange={handleInputChange}/>
+                    <TextField id="outlined-basic" label="Status" variant="outlined" size="small"
+                               name={"statuses"} value={filters.statuses ?? ''} onChange={handleInputChange} />
                 </div>
             </div>
         </SearchForm>

@@ -1,5 +1,5 @@
 import React, {ReactNode} from "react";
-import Card from "../card/Card.tsx";
+import {Button, Card, CardActions, CardContent} from "@mui/material";
 
 type SearchFormProps = {
     searchFunction: (filters: any) => void;
@@ -21,13 +21,16 @@ const SearchForm: React.FC<SearchFormProps> = ({ searchFunction, cancelFunction,
     return (
         <Card>
             <form onSubmit={handleSubmit}>
-                <div className={"columns"}>
-                    {children}
-                </div>
-                <div className={"form-search-actions"}>
-                    <button type={"button"} className={"btn-cancel"} onClick={handleCancel}>Cancel</button>
-                    <button type={"submit"} className={"btn-validate"}>Search</button>
-                </div>
+                <CardContent>
+                    <div className={"columns"}>
+                        {children}
+                    </div>
+                </CardContent>
+
+                <CardActions>
+                    <Button type={"button"} variant="outlined" onClick={handleCancel}>Cancel</Button>
+                    <Button type={"submit"} variant="contained">Search</Button>
+                </CardActions>
             </form>
         </Card>
     );

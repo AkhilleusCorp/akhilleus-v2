@@ -1,7 +1,6 @@
 import React, {ReactNode} from "react";
 import {useNavigate} from "react-router-dom";
-import Card from "../card/Card.tsx";
-import CardFooter from "../card/CardFooter.tsx";
+import {Box, Button, Card, CardActions, CardContent} from "@mui/material";
 
 type SaveFormProps = {
     submitFunction: () => void;
@@ -19,11 +18,16 @@ const SaveForm: React.FC<SaveFormProps> = ({ submitFunction, children }) => {
     return (
         <Card>
             <form onSubmit={handleSubmit}>
-                {children}
-                <CardFooter shouldBeDisplayed={true}>
-                    <button type={"button"} className={"btn-cancel"} onClick={() => navigate(-1)}>Cancel</button>
-                    <button type={"submit"} className={"btn-validate"}>Save</button>
-                </CardFooter>
+                <CardContent>
+                    <Box component="form" sx={{'& .MuiTextField-root': {m: 1, width: '25ch'}}}>
+                        {children}
+                    </Box>
+                </CardContent>
+
+                <CardActions>
+                    <Button type={"button"} variant="outlined" onClick={() => navigate(-1)}>Cancel</Button>
+                    <Button type={"submit"} variant="contained">Save</Button>
+                </CardActions>
             </form>
         </Card>
     );

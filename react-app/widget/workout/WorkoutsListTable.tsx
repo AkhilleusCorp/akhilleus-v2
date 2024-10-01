@@ -1,6 +1,5 @@
 import React from "react";
-import Table from "../common/table/Table.tsx";
-import TableHead from "../common/table/TableHead.tsx";
+import {Paper, Table,TableBody,TableCell, TableContainer, TableHead, TableRow} from '@mui/material';
 import WorkoutsListFilters from "../../filters/WorkoutsListFilters.tsx";
 import useGetManyWorkoutsByParams from "../../hooks/workout/useGetManyWorkoutByParams.tsx";
 
@@ -20,22 +19,30 @@ const UsersListTable: React.FC<WorkoutListTableType> = ({ filters, refreshKey, m
     }
 
     return (
-        <Table>
-            <TableHead headers={['id', 'name', 'status']} />
-            <tbody>
-            {workouts.map((workout) => (
-                <tr id={'workout_' + workout.id} key={'workout_' + workout.id}>
-                    <td>{workout.id}</td>
-                    <td>
-                        <a href={"#"} onClick={(event) => onNameClick(event, workout.id)}>
-                            {workout.name}
-                        </a>
-                    </td>
-                    <td>{workout.status}</td>
-                </tr>
-            ))}
-            </tbody>
-        </Table>
+        <TableContainer component={Paper}>
+            <Table>
+                <TableHead>
+                    <TableRow>
+                        <TableCell>id</TableCell>
+                        <TableCell>name</TableCell>
+                        <TableCell>status</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                {workouts.map((workout) => (
+                    <TableRow id={'workout_' + workout.id} key={'workout_' + workout.id}>
+                        <TableCell>{workout.id}</TableCell>
+                        <TableCell>
+                            <a href={"#"} onClick={(event) => onNameClick(event, workout.id)}>
+                                {workout.name}
+                            </a>
+                        </TableCell>
+                        <TableCell>{workout.status}</TableCell>
+                    </TableRow>
+                ))}
+                </TableBody>
+            </Table>
+        </TableContainer>
     );
 }
 

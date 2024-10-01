@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import UsersListFilters from "../../filters/UsersListFilters.tsx";
 import SearchForm from "../common/form/SearchForm.tsx";
+import {TextField} from "@mui/material";
 
 type UserSearchFormType = {
     defaultFilters: UsersListFilters,
@@ -33,26 +34,26 @@ const UsersSearchForm: React.FC<UserSearchFormType> = ({defaultFilters, callback
         <SearchForm searchFunction={callbackFunction} cancelFunction={handleCancel} filters={filters}>
             <div className={"column"}>
                 <div>
-                    <label>IDs</label>
-                    <input type={"text"} name={"ids"} value={filters.ids ?? ''} onChange={handleInputChange}/>
+                    <TextField id="outlined-basic" label="IDs" variant="outlined" size="small"
+                               name={"ids"} value={filters.ids ?? ''} onChange={handleInputChange} />
                 </div>
                 <div>
-                    <label>Username</label>
-                    <input type={"text"} name={"username"} value={filters.username ?? ''} onChange={handleInputChange}/>
+                    <TextField id="outlined-basic" label="Username" variant="outlined" size="small"
+                               name={"username"} value={filters.username ?? ''} onChange={handleInputChange} />
                 </div>
                 <div>
-                    <label>Email</label>
-                    <input type={"text"} name={"email"} value={filters.email ?? ''} onChange={handleInputChange}/>
+                    <TextField id="outlined-basic" label="Email" variant="outlined" size="small"
+                               name={"email"} value={filters.email ?? ''} onChange={handleInputChange} />
                 </div>
             </div>
             <div className={"column"}>
                 <div>
-                    <label>Statuses</label>
-                    <input type={"text"} name={"statuses"} value={filters.statuses ?? ''} onChange={handleInputChange}/>
+                    <TextField id="outlined-basic" label="Status" variant="outlined" size="small"
+                               name={"statuses"} value={filters.statuses ?? ''} onChange={handleInputChange} />
                 </div>
                 <div>
-                    <label>Types</label>
-                    <input type={"text"} name={"types"} value={filters.types ?? ''} onChange={handleInputChange}/>
+                    <TextField id="outlined-basic" label="Type" variant="outlined" size="small"
+                               name={"types"} value={filters.types ?? ''} onChange={handleInputChange} />
                 </div>
             </div>
         </SearchForm>

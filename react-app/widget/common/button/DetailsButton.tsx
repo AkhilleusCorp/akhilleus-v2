@@ -1,5 +1,6 @@
 import React from "react";
 import {useNavigate} from "react-router-dom";
+import {Button} from "@mui/material";
 
 type DetailsButtonType = {
     routeToDetailsPage: string
@@ -12,7 +13,7 @@ const DetailsButton: React.FC<DetailsButtonType> = ({ routeToDetailsPage }) => {
     }
 
     return (
-        <button onClick={handleClick}>Details</button>
+        <Button variant="contained" color="success" onClick={handleClick}>Details</Button>
     )
 }
 

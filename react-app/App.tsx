@@ -1,5 +1,5 @@
 import * as ReactDOM from "react-dom/client";
-import Router from "./setup/router/Router.tsx";
+import AdminRouter from "./setup/router/AdminRouter.tsx";
 
 const root = document.getElementById("root")!;
-ReactDOM.createRoot(root).render(<Router />);
+ReactDOM.createRoot(root).render(<AdminRouter />);

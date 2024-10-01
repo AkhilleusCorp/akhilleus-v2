@@ -1,5 +1,6 @@
 import React from "react";
 import {useNavigate} from "react-router-dom";
+import {Button} from "@mui/material";
 
 type EditButtonType = {
     routeToEditPage: string
@@ -12,7 +13,7 @@ const EditButton: React.FC<EditButtonType> = ({ routeToEditPage }) => {
     }
 
     return (
-        <button className={"btn-warning"} onClick={handleClick}>Edit</button>
+        <Button variant="outlined" onClick={handleClick}>Edit</Button>
     )
 }
 

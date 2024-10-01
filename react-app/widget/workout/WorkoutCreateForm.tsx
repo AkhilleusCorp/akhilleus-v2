@@ -3,6 +3,7 @@ import {useNavigate} from "react-router-dom";
 import websiteRoutes from "../../config/routes/website-routes.tsx";
 import SaveForm from "../common/form/SaveForm.tsx";
 import WorkoutApiGateway from "../../api/gateway/WorkoutApiGateway.tsx";
+import {TextField} from "@mui/material";
 
 type WorkoutCreateFormType = {
     name: string;
@@ -31,8 +32,8 @@ const WorkoutCreateForm: React.FC = () => {
     return (
         <SaveForm submitFunction={handleSubmit}>
             <div>
-                <label>Name</label>
-                <input type={"text"} name={"name"} required={true} onChange={handleInputChange}/>
+                <TextField id="outlined-basic" label="Name" variant="outlined" size="small"
+                           name={"name"} required={true} onChange={handleInputChange} />
             </div>
         </SaveForm>
     )
