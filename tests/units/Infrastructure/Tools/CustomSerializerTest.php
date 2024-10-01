@@ -17,7 +17,7 @@ final class CustomSerializerTest extends TestCase
         $result = $serializer->normalize($object, null);
 
         $this->assertEquals($object->text, $result['text']);
-        $this->assertEquals('01-26-2024 08:00:00', $result['date']);
+        $this->assertEquals('01-26-2024 09:00:00 PM', $result['date']);
     }
 
     public function testWithDateFormatProvided(): void

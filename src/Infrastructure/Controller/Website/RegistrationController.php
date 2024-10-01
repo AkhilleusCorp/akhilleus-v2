@@ -2,6 +2,8 @@
 
 namespace App\Infrastructure\Controller\Website;
 
+use App\Domain\Registry\User\UserTypeRegistry;
+use App\Infrastructure\Registry\DataProfileRegistry;
 use App\UseCase\API\User\CreateOneUserUseCase;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,7 +23,31 @@ final class RegistrationController extends AbstractController
             $useCase->execute($request->request->all());
         }
 
-        return $this->render('website/pages/registration.html.twig');
+        return $this->render(
+            'website/pages/registration.html.twig',
+            ['context' => 'member']
+        );
+    }
+
+    #[Route('/registration/coach', name:'website_registration_coach', methods: ['GET', 'POST'])]
+    public function registrationCoach(Request $request, CreateOneUserUseCase $useCase): Response
+    {
+        if (null !== $this->getUser()) {
+            return $this->redirectToRoute('website_home');
+        }
+
+        if (Request::METHOD_POST === $request->getMethod()) {
+            $useCase->execute(
+                $request->request->all(),
+                DataProfileRegistry::DATA_PROFILE_COACH,
+                UserTypeRegistry::USER_TYPE_COACH
+            );
+        }
+
+        return $this->render(
+            'website/pages/registration_coach.html.twig',
+            ['context' => 'coach']
+        );
     }
 
     #[Route('/registration/success', name:'website_registration_success', methods: ['GET'])]

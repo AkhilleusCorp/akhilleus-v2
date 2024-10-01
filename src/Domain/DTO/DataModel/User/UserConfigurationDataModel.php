@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Table(name: 'USER_CONFIGURATION')]
 class UserConfigurationDataModel implements DataModelInterface
 {
-    private const DEFAULT_DATE_FORMAT = 'd-m-Y h:i:s';
+    private const DEFAULT_DATE_FORMAT = 'd-m-Y H:i:s';
     private const DEFAULT_WEIGHT_UNIT = 'Kg';
     private const DEFAULT_DISTANCE_UNIT = 'Km';
     private const DEFAULT_MEASUREMENT_UNIT = 'cm';
