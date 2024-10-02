@@ -5,6 +5,8 @@ namespace App\Tests\integrations\UseCase\API\User;
 use App\Domain\DTO\FilterModel\User\GetManyUsersFilterModel;
 use App\Domain\Factory\FilterModelFactory\User\UsersFilterModelModelFactory;
 use App\Domain\Gateway\Provider\User\UserDataModelProviderGateway;
+use App\Domain\Registry\User\UserStatusRegistry;
+use App\Domain\Registry\User\UserTypeRegistry;
 use App\Infrastructure\Registry\DataProfileRegistry;
 use App\Infrastructure\View\ViewModel\PaginationViewModel;
 use App\Infrastructure\View\ViewModel\User\MultipleUserItemDataViewModel;
@@ -88,24 +90,26 @@ final class GetManyUserUseCaseTest extends AbstractIntegrationTest
 
     public function testGetManyUserWithFilterTypesFilter(): void
     {
-        $view = $this->useCase->execute(['types' => 'coach,admin'], DataProfileRegistry::DATA_PROFILE_ADMIN);
-        $this->assertCount(2, $view->data);
-
-        $view = $this->useCase->execute(['types' => 'coach'], DataProfileRegistry::DATA_PROFILE_ADMIN);
+        $view = $this->useCase->execute(['type' => UserTypeRegistry::USER_TYPE_ADMIN], DataProfileRegistry::DATA_PROFILE_ADMIN);
         $this->assertCount(1, $view->data);
+
+        $view = $this->useCase->execute(['type' => UserTypeRegistry::USER_TYPE_COACH], DataProfileRegistry::DATA_PROFILE_ADMIN);
+        $this->assertCount(1, $view->data);
+
+        $view = $this->useCase->execute(['type' => UserTypeRegistry::USER_TYPE_MEMBER], DataProfileRegistry::DATA_PROFILE_ADMIN);
+        $this->assertCount(25, $view->data);
     }
 
     public function testGetManyUserWithFilterStatusesFilter(): void
     {
-        $view = $this->useCase->execute(['statuses' => 'deactivated'], DataProfileRegistry::DATA_PROFILE_ADMIN);
+        $view = $this->useCase->execute(['status' => UserStatusRegistry::USER_STATUS_DEACTIVATED], DataProfileRegistry::DATA_PROFILE_ADMIN);
         $this->assertCount(0, $view->data);
 
+        $view = $this->useCase->execute(['status' =>  UserStatusRegistry::USER_STATUS_ACTIVE]);
+        $this->assertCount(25, $view->data);
 
-        $view = $this->useCase->execute(['statuses' => 'deactivated']);
-        $this->assertCount(0, $view->data);
 
-
-        $view = $this->useCase->execute(['statuses' => 'created']);
+        $view = $this->useCase->execute(['status' =>  UserStatusRegistry::USER_STATUS_CREATED]);
         $this->assertCount(9, $view->data);
     }
 }
