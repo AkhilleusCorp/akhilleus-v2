@@ -17,12 +17,11 @@ const UserPreviewCard: React.FC<UserDetailsCardType> = ({ user, displayActions }
                 <Typography gutterBottom variant="h5" component="div">
                     {user.username}
                 </Typography>
-                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                    <div>ID: {user.id}</div>
-                    <div>Status: {user.status}</div>
-                    <div>Email: {user.email}</div>
-                    <div>Type: {user.type}</div>
-                </Typography>
+
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>ID: {user.id}</Typography>
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>Status: {user.status}</Typography>
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>Email: {user.email}</Typography>
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>Type: {user.type}</Typography>
             </CardContent>
 
             {displayActions && (

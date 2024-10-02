@@ -3,4 +3,5 @@
 @import '@fontsource/roboto/500.css';
 @import '@fontsource/roboto/700.css';
 
+@import "position.css";
 @import "layouts/logged-layout.css";

@@ -13,12 +13,11 @@ const UserLifecycleCard: React.FC<UserLifecycleCardType> = ({ user }) => {
                 <Typography gutterBottom variant="h5" component="div">
                     Lifecycle
                 </Typography>
-                <Typography variant="body2" sx={{color: 'text.secondary'}}>
-                    <div>Registration: {user.registrationDate}</div>
-                    <div>Modification: {user.lastModificationDate}</div>
-                    <div>Login: {user.lastLoginDate}</div>
-                    <div>Workout: {user.lastCompletedWorkoutDate}</div>
-                </Typography>
+
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>Registration: {user.registrationDate}</Typography>
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>Modification: {user.lastModificationDate}</Typography>
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>Login: {user.lastLoginDate}</Typography>
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>Workout: {user.lastCompletedWorkoutDate}</Typography>
             </CardContent>
         </Card>
     );

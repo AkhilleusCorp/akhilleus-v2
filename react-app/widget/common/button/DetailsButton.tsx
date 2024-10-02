@@ -13,7 +13,7 @@ const DetailsButton: React.FC<DetailsButtonType> = ({ routeToDetailsPage }) => {
     }
 
     return (
-        <Button variant="contained" color="success" onClick={handleClick}>Details</Button>
+        <Button variant="contained" onClick={handleClick}>Details</Button>
     )
 }
 

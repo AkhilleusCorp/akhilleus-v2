@@ -18,8 +18,10 @@ const WorkoutPreviewCard: React.FC<WorkoutDetailsCardType> = ({ workout, display
                     {workout.name}
                 </Typography>
                 <Typography variant="body2" sx={{color: 'text.secondary'}}>
-                    <div>ID: {workout.id}</div>
-                    <div>Status: {workout.status}</div>
+                    ID: {workout.id}
+                </Typography>
+                <Typography variant="body2" sx={{color: 'text.secondary'}}>
+                    Status: {workout.status}
                 </Typography>
             </CardContent>
 

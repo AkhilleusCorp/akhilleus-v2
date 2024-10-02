@@ -47,7 +47,7 @@ const WorkoutsPage: React.FC = () => {
                 <WorkoutsListTable filters={filters} refreshKey={refreshKey} mainLinkClickCallback={handleDisplayUserPreview}/>
             </div>
 
-            <div className={"float-left padding-left-m one-thirds-width "}>
+            <div className={"float-left padding-left-m one-thirds-width"}>
                 {workoutPreview && (
                     <WorkoutPreviewCard workout={workoutPreview} displayActions={true}/>
                 )}

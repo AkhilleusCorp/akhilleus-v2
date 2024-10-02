@@ -26,8 +26,6 @@ const DropdownInput: React.FC<DropdownInputType> = ({ label, name, value, option
         onSelectChange(event);
     };
 
-    console.log(required);
-
     return (
         <FormControl fullWidth size="small">
             <InputLabel id={name}>{label}</InputLabel>

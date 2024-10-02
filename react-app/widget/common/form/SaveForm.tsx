@@ -19,7 +19,7 @@ const SaveForm: React.FC<SaveFormProps> = ({ submitFunction, children }) => {
         <Card>
             <form onSubmit={handleSubmit}>
                 <CardContent>
-                    <Box component="form" sx={{'& .MuiTextField-root': {m: 1, width: '25ch'}}}>
+                    <Box sx={{'& .MuiTextField-root': {m: 1, width: '25ch'}}}>
                         {children}
                     </Box>
                 </CardContent>
