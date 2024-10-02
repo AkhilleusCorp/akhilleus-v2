@@ -2,6 +2,10 @@
 
 {% block title %}Hello IndexController!{% endblock %}
 
+{% block stylesheets %}
+    {{ encore_entry_link_tags('react_css') }}
+{% endblock %}
+
 {% block javascripts %}
     {{ encore_entry_script_tags('react_app') }}
 {% endblock %}

@@ -63,7 +63,7 @@ const routerConfig = createBrowserRouter([
     },
 ]);
 
-const Router: React.FC = () => {
+const AdminRouter: React.FC = () => {
     return (
         <React.StrictMode>
             <RouterProvider router={routerConfig}/>
@@ -71,4 +71,4 @@ const Router: React.FC = () => {
     );
 }
 
-export default Router;
+export default AdminRouter;

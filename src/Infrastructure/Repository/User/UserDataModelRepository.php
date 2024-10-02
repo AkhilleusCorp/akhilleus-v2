@@ -66,14 +66,14 @@ final class UserDataModelRepository extends AbstractBaseDataModelRepository impl
                 ->setParameter('email', '%' . $filter->email . '%');
         }
 
-        if (false === empty($filter->types)) {
-            $queryBuilder->andWhere('user.type IN (:types)')
-                ->setParameter('types', $filter->types);
+        if (false === empty($filter->type)) {
+            $queryBuilder->andWhere('user.type = :type')
+                ->setParameter('type', $filter->type);
         }
 
-        if (false === empty($filter->statuses)) {
-            $queryBuilder->andWhere('user.status IN (:statuses)')
-                ->setParameter('statuses', $filter->statuses);
+        if (false === empty($filter->status)) {
+            $queryBuilder->andWhere('user.status = :status')
+                ->setParameter('status', $filter->status);
         }
 
         return $this;

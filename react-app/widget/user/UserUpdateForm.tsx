@@ -5,6 +5,7 @@ import websiteRoutes from "../../config/routes/website-routes.tsx";
 import SaveForm from "../common/form/SaveForm.tsx";
 import UserApiGateway from "../../api/gateway/UserApiGateway.tsx";
 import UserDTO from "../../api/dtos/UserDTO.tsx";
+import {TextField} from "@mui/material";
 
 type UserEditFormType = {
     user: UserDTO,
@@ -33,19 +34,16 @@ const UserEditForm: React.FC<UserEditFormType> = ({user}) => {
     return (
         <SaveForm submitFunction={handleSubmit}>
             <div>
-                <label>Username</label>
-                <input type={"text"} name={"username"} value={userUpdated.username} onChange={handleInputChange}
-                       required={true}/>
+                <TextField id="outlined-basic" label="Username" variant="outlined" size="small" required={true}
+                           name={"username"} value={userUpdated.username} onChange={handleInputChange} />
             </div>
             <div>
-                <label>Email</label>
-                <input type={"email"} name={"email"} value={userUpdated.email} onChange={handleInputChange}
-                       required={true}/>
+                <TextField id="outlined-basic" label="Email" variant="outlined" size="small" required={true}
+                           name={"email"} type={"email"} value={userUpdated.email} onChange={handleInputChange} />
             </div>
             <div>
-                <label>Status</label>
-                <input type={"text"} name={"status"} value={userUpdated.status ?? ''} onChange={handleInputChange}
-                       required={true}/>
+                <TextField id="outlined-basic" label="Status" variant="outlined" size="small" required={true}
+                           name={"status"} value={userUpdated.status} onChange={handleInputChange} />
             </div>
         </SaveForm>
     )

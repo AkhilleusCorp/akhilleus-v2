@@ -20,9 +20,7 @@ final class GetManyUsersFilterModel implements FilterModelInterface
 
     public ?string $email = null;
 
-    /** @var string[] */
-    public ?array $types = null;
+    public ?string $type = null;
 
-    /** @var string[] */
-    public ?array $statuses = null;
+    public ?string $status = null;
 }

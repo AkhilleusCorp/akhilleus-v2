@@ -36,5 +36,13 @@
 }
 
 .column.half-width:last-child {
-     margin-left: 0.5em;
- }
+    margin-left: 0.5em;
+}
+
+.margin-bottom-s {
+    margin-bottom: 1em;
+}
+
+.padding-left-m {
+    padding-left: 2em;
+}

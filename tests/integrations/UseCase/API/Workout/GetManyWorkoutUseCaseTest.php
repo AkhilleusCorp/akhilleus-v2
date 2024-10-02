@@ -5,6 +5,7 @@ namespace App\Tests\integrations\UseCase\API\Workout;
 use App\Domain\DTO\FilterModel\Workout\GetManyWorkoutsFilterModel;
 use App\Domain\Factory\FilterModelFactory\Workout\WorkoutsFilterModelModelFactory;
 use App\Domain\Gateway\Provider\Workout\WorkoutDataModelProviderGateway;
+use App\Domain\Registry\Workout\WorkoutStatusRegistry;
 use App\Infrastructure\Registry\DataProfileRegistry;
 use App\Infrastructure\View\ViewModel\PaginationViewModel;
 use App\Infrastructure\View\ViewModel\Workout\MultipleWorkoutItemDataViewModel;
@@ -55,5 +56,19 @@ final class GetManyWorkoutUseCaseTest extends AbstractIntegrationTest
         $this->assertEquals(GetManyWorkoutsFilterModel::DEFAULT_PAGE, $pagination->firstPage);
         $this->assertEquals(GetManyWorkoutsFilterModel::DEFAULT_PAGE, $pagination->currentPage);
         $this->assertEquals(3, $pagination->lastPage);
+    }
+
+    public function testGetManyWorkoutWithFilterStatusesFilter(): void
+    {
+        $view = $this->useCase->execute(['status' => WorkoutStatusRegistry::WORKOUT_STATUS_IN_PROGRESS], DataProfileRegistry::DATA_PROFILE_ADMIN);
+        $this->assertCount(1, $view->data);
+
+
+        $view = $this->useCase->execute(['status' => WorkoutStatusRegistry::WORKOUT_STATUS_COMPLETED]);
+        $this->assertCount(25, $view->data);
+
+
+        $view = $this->useCase->execute(['status' => WorkoutStatusRegistry::WORKOUT_STATUS_PLANNED]);
+        $this->assertCount(1, $view->data);
     }
 }

@@ -21,7 +21,7 @@
         <div class="card">
             <form method="post" action="{{ path(routeName) }}">
                 <div class="card-body">
-                    <h3>Register as a {{ context }}</h3>
+                    <h3>{{ context|capitalize }} registration</h3>
                     <div>
                         <label>
                             {{ 'username' | trans }}
@@ -46,9 +46,18 @@
                 {% block form_specifics %}{% endblock %}
 
                 <div class="card-footer">
-                    <button type="submit" class="btn-validate">
-                        {{ 'register' | trans }}
-                    </button>
+                    <div class="float-left">
+                        {% if 'coach' == context %}
+                            <a href={{ path('website_registration') }}>Want to register as a member ?</a>
+                        {% else %}
+                            <a href={{ path('website_registration_coach') }}>Want to register as a coach ?</a>
+                        {% endif %}
+                    </div>
+                    <div class="float-right">
+                        <button type="submit" class="btn-validate">
+                            {{ 'register' | trans }}
+                        </button>
+                    </div>
                 </div>
             </form>
         </div>

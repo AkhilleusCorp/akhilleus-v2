@@ -2,10 +2,8 @@ import React from 'react';
 import EditButton from "../common/button/EditButton.tsx";
 import websiteRoutes from "../../config/routes/website-routes.tsx";
 import DetailsButton from "../common/button/DetailsButton.tsx";
-import Card from "../common/card/Card.tsx";
-import CardSideImageBody from "../common/card/CardSideImageBody.tsx";
-import CardFooter from "../common/card/CardFooter.tsx";
 import WorkoutDTO from "../../api/dtos/WorkoutDTO.tsx";
+import {Card, CardActions, CardContent, Typography} from "@mui/material";
 
 type WorkoutDetailsCardType = {
     workout: WorkoutDTO,
@@ -15,18 +13,24 @@ type WorkoutDetailsCardType = {
 const WorkoutPreviewCard: React.FC<WorkoutDetailsCardType> = ({ workout, displayActions }) => {
     return (
         <Card>
-            <CardSideImageBody imageSrc={"https://placehold.co/150x150.png"} imageAlt={"Muscles overview"}>
-                <h3 className={"card-title"}>{workout.name}</h3>
-                <div className={"card-description"}>
-                    <div>ID: {workout.id}</div>
-                    <div>Status: {workout.status}</div>
-                </div>
-            </CardSideImageBody>
+            <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                    {workout.name}
+                </Typography>
+                <Typography variant="body2" sx={{color: 'text.secondary'}}>
+                    ID: {workout.id}
+                </Typography>
+                <Typography variant="body2" sx={{color: 'text.secondary'}}>
+                    Status: {workout.status}
+                </Typography>
+            </CardContent>
 
-            <CardFooter shouldBeDisplayed={displayActions}>
-                <DetailsButton routeToDetailsPage={websiteRoutes.workout.details(workout.id)}/>
-                <EditButton routeToEditPage={websiteRoutes.workout.edit(workout.id)} />
-            </CardFooter>
+            {displayActions && (
+                <CardActions>
+                    <DetailsButton routeToDetailsPage={websiteRoutes.workout.details(workout.id)}/>
+                    <EditButton routeToEditPage={websiteRoutes.workout.edit(workout.id)} />
+                </CardActions>
+            )}
         </Card>
     );
 }

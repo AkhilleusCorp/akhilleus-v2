@@ -10,7 +10,7 @@ import UserApiGateway from "../../api/gateway/UserApiGateway.tsx";
 import UserDTO from "../../api/dtos/UserDTO.tsx";
 
 const UsersPage: React.FC = () => {
-    const defaultFilters:UsersListFilters = { ids: null, username: null, email: null, statuses: null, types: null, limit: 25 };
+    const defaultFilters:UsersListFilters = { ids: null, username: null, email: null, status: null, type: null, limit: 25 };
     const [filters, setFilters] = useState<UsersListFilters>(defaultFilters)
     const [refreshKey, setRefreshKey] = useState(0)
     const [userPreview, setUserPreview] = useState<UserDTO|null>(null);

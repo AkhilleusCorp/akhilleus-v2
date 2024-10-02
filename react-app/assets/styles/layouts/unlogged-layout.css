@@ -1,3 +1,19 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*:not(a) {
+    color: #3f3f3f;
+}
+
+body, html {
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: rgba(171, 171, 175, 0.13);
+}
+
 header#main-unlogged-header {
     background-color: #d75521;
     color: white;

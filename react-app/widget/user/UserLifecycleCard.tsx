@@ -1,7 +1,6 @@
 import React from 'react';
-import Card from "../common/card/Card.tsx";
 import UserDTO from "../../api/dtos/UserDTO.tsx";
-import CardEmptyBody from "../common/card/CardEmptyBody.tsx";
+import {Card, CardContent, Typography} from "@mui/material";
 
 type UserLifecycleCardType = {
     user: UserDTO,
@@ -9,15 +8,17 @@ type UserLifecycleCardType = {
 
 const UserLifecycleCard: React.FC<UserLifecycleCardType> = ({ user }) => {
     return (
-        <Card>
-            <CardEmptyBody title={"Lifecycle"}>
-                <div className={"card-description"}>
-                    <div>Registration: {user.registrationDate}</div>
-                    <div>Modification: {user.lastModificationDate}</div>
-                    <div>Login: {user.lastLoginDate}</div>
-                    <div>Workout: {user.lastCompletedWorkoutDate}</div>
-                </div>
-            </CardEmptyBody>
+        <Card sx={{ marginTop: 2 }}>
+            <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                    Lifecycle
+                </Typography>
+
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>Registration: {user.registrationDate}</Typography>
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>Modification: {user.lastModificationDate}</Typography>
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>Login: {user.lastLoginDate}</Typography>
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>Workout: {user.lastCompletedWorkoutDate}</Typography>
+            </CardContent>
         </Card>
     );
 }

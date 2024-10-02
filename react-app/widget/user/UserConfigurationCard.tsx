@@ -1,7 +1,6 @@
 import React from 'react';
-import Card from "../common/card/Card.tsx";
 import UserDTO from "../../api/dtos/UserDTO.tsx";
-import CardEmptyBody from "../common/card/CardEmptyBody.tsx";
+import {Card, CardContent, Typography} from "@mui/material";
 
 type UserConfigurationType = {
     user: UserDTO,
@@ -9,15 +8,16 @@ type UserConfigurationType = {
 
 const UserConfigurationCard: React.FC<UserConfigurationType> = ({ user }) => {
     return (
-        <Card>
-            <CardEmptyBody title={"Configuration"}>
-                <div className={"card-description"}>
-                    <div>Date format: {user.dateFormat}</div>
-                    <div>Weight unit: {user.weightUnit}</div>
-                    <div>Distance unit: {user.distanceUnit}</div>
-                    <div>Measurement unit: {user.measurementUnit}</div>
-                </div>
-            </CardEmptyBody>
+        <Card sx={{ marginTop: 2 }}>
+            <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                    Configuration
+                </Typography>
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>Date format: {user.dateFormat}</Typography>
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>Weight unit: {user.weightUnit}</Typography>
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>Distance unit: {user.distanceUnit}</Typography>
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>Measurement unit: {user.measurementUnit}</Typography>
+            </CardContent>
         </Card>
     );
 }

@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import ConfirmActionModal from "../modal/ConfirmActionModal.tsx";
+import {Button} from "@mui/material";
 
 type DeleteButtonType = {
     targetId: number,
@@ -26,7 +27,7 @@ const DeleteButton: React.FC<DeleteButtonType> = ({ targetId, onConfirmDeleteFun
     return (
         <>
             <ConfirmActionModal targetId={confirmedTargetId} onCancel={onCancelDelete} onConfirm={handleDeleteUser}/>
-            <button className={"btn-danger"} onClick={onClickDelete}>Delete</button>
+            <Button variant="contained" color="error" onClick={onClickDelete}>Delete</Button>
         </>
     )
 }

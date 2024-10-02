@@ -10,7 +10,7 @@ import WorkoutsListTable from "../../widget/workout/WorkoutsListTable.tsx";
 import WorkoutApiGateway from "../../api/gateway/WorkoutApiGateway.tsx";
 
 const WorkoutsPage: React.FC = () => {
-    const defaultFilters: WorkoutsListFilters = { ids: null, name: null, statuses: null, limit: 25 };
+    const defaultFilters: WorkoutsListFilters = { ids: null, name: null, status: null, limit: 25 };
     const [filters, setFilters] = useState<WorkoutsListFilters>(defaultFilters);
     const [refreshKey, setRefreshKey] = useState(0)
     const [workoutPreview, setUserPreview] = useState<WorkoutDTO|null>(null);
@@ -47,7 +47,7 @@ const WorkoutsPage: React.FC = () => {
                 <WorkoutsListTable filters={filters} refreshKey={refreshKey} mainLinkClickCallback={handleDisplayUserPreview}/>
             </div>
 
-            <div className={"float-left padding-left-m one-thirds-width "}>
+            <div className={"float-left padding-left-m one-thirds-width"}>
                 {workoutPreview && (
                     <WorkoutPreviewCard workout={workoutPreview} displayActions={true}/>
                 )}

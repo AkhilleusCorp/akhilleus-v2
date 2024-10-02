@@ -33,16 +33,12 @@ const UserDetailsPage: React.FC = () => {
             <UserPreviewCard user={user} displayActions={false}/>
 
             <div className={"columns"}>
-                <div className={"column one-thirds-width"}>
+                <div className={"column half-width"}>
                     <UserLifecycleCard user={user}/>
                 </div>
 
-                <div className={"column one-thirds-width"}>
+                <div className={"column half-width"}>
                     <UserConfigurationCard user={user}/>
-                </div>
-
-                <div className={"column one-thirds-width"}>
-                    <UserLifecycleCard user={user}/>
                 </div>
             </div>
         </AdminLayout>
