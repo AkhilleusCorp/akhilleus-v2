@@ -52,9 +52,9 @@ final class WorkoutDataModelRepository extends AbstractBaseDataModelRepository i
                 ->setParameter('name', '%' . $filter->name . '%');
         }
 
-        if (false === empty($filter->statuses)) {
-            $queryBuilder->andWhere('workout.status IN (:statuses)')
-                ->setParameter('statuses', $filter->statuses);
+        if (false === empty($filter->status)) {
+            $queryBuilder->andWhere('workout.status = :status')
+                ->setParameter('status', $filter->status);
         }
 
         return $this;

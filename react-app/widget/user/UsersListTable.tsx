@@ -47,7 +47,7 @@ const UsersListTable: React.FC<UsersListTableType> = ({ filters, refreshKey, mai
                 </TableBody>
                 <TableFooter>
                     <TableRow>
-                        <TablePagination count={50} page={1} rowsPerPage={35} onPageChange={() => {console.log('clicked')}} />
+                        <TablePagination count={50} page={1} rowsPerPage={10} onPageChange={() => {console.log('clicked')}} />
                     </TableRow>
                 </TableFooter>
             </Table>

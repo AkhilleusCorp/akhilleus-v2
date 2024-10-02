@@ -16,6 +16,7 @@ class UserApiGateway extends AbstractApiGateway {
     }
 
     static async getManyUsers (filters: UsersListFilters): Promise<UserDTO[]> {
+        console.log(filters);
         const queryParams = this.objectToQueryParams(filters);
         const response = await axios.get(apiRoutes.user.list+'?'+queryParams);
 

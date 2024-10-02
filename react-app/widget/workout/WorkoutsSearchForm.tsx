@@ -1,7 +1,9 @@
 import React, {useState} from "react";
 import WorkoutsListFilters from "../../filters/WorkoutsListFilters.tsx";
 import SearchForm from "../common/form/SearchForm.tsx";
-import {TextField} from "@mui/material";
+import {SelectChangeEvent, TextField} from "@mui/material";
+import DropdownInput from "../common/input/DropdownInput.tsx";
+import workoutRegistries from "../../config/registries/workout-registries.tsx";
 
 type WorkoutSearchFormType = {
     defaultFilters: WorkoutsListFilters,
@@ -18,9 +20,15 @@ const WorkoutsSearchForm: React.FC<WorkoutSearchFormType> = ({defaultFilters, ca
         });
     }
 
+    const handleSelectChange = (event: SelectChangeEvent) => {
+        setFilters({
+            ...filters,
+            [event.target.name]: event.target.value
+        });
+    }
+
     const handleCancel = () => {
         setFilters(defaultFilters);
-        console.log(defaultFilters);
         callbackFunction(defaultFilters);
     }
 
@@ -39,8 +47,8 @@ const WorkoutsSearchForm: React.FC<WorkoutSearchFormType> = ({defaultFilters, ca
 
             <div className={"column"}>
                 <div>
-                    <TextField id="outlined-basic" label="Status" variant="outlined" size="small"
-                               name={"statuses"} value={filters.statuses ?? ''} onChange={handleInputChange} />
+                    <DropdownInput label={"Status"} name={"status"} value={filters.status} options={workoutRegistries.status}
+                                   onSelectChange={handleSelectChange} required={false} />
                 </div>
             </div>
         </SearchForm>
