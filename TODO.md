@@ -1,4 +1,7 @@
 ## Refactoring
+
+### Add movement into workout !
+
 ### API
  * Simplify fixtures creation using dataModel directly
 ### Website
@@ -19,13 +22,12 @@
   * enum for UserStatus, UserType
   * enum for WorkoutStatus, WorkoutVisibility
 
+
 ## Website
 
 ## React APP
 ### Security
  * Fetch and use token to make api call in order to secure it (and remove public access)
-### Form
- * create drop down for enum field like status and visibility
 ### Equipment
  * List
  * Details
