@@ -1,6 +1,6 @@
 import React from "react";
 import DeleteButton from "../common/button/DeleteButton.tsx";
-import UserApiGateway from "../../api/gateway/UserApiGateway.tsx";
+import UserApiGateway from "../../services/api/gateway/UserApiGateway.tsx";
 
 type UserDeleteButtonType = {
     userId: number,

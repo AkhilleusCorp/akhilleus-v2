@@ -1,9 +1,9 @@
 import React, {useState} from "react";
-import WorkoutsListFilters from "../../filters/WorkoutsListFilters.tsx";
+import WorkoutsListFilters from "../../services/api/filters/WorkoutsListFilters.tsx";
 import SearchForm from "../common/form/SearchForm.tsx";
 import {SelectChangeEvent, TextField} from "@mui/material";
 import DropdownInput from "../common/input/DropdownInput.tsx";
-import workoutRegistries from "../../config/registries/workout-registries.tsx";
+import workoutRegistries from "../../constants/workoutRegistries.tsx";
 
 type WorkoutSearchFormType = {
     defaultFilters: WorkoutsListFilters,
@@ -34,22 +34,17 @@ const WorkoutsSearchForm: React.FC<WorkoutSearchFormType> = ({defaultFilters, ca
 
     return (
         <SearchForm searchFunction={callbackFunction} cancelFunction={handleCancel} filters={filters}>
-            <div className={"column"}>
-                <div>
-                    <TextField id="outlined-basic" label="IDs" variant="outlined" size="small"
-                               name={"ids"} value={filters.ids ?? ''} onChange={handleInputChange} />
-                </div>
-                <div>
-                    <TextField id="outlined-basic" label="name" variant="outlined" size="small"
-                               name={"name"} value={filters.name ?? ''} onChange={handleInputChange} />
-                </div>
+            <div>
+                <TextField id="outlined-basic" label="IDs" variant="outlined" size="small"
+                           name={"ids"} value={filters.ids ?? ''} onChange={handleInputChange} />
             </div>
-
-            <div className={"column"}>
-                <div>
-                    <DropdownInput label={"Status"} name={"status"} value={filters.status} options={workoutRegistries.status}
-                                   onSelectChange={handleSelectChange} required={false} />
-                </div>
+            <div>
+                <TextField id="outlined-basic" label="name" variant="outlined" size="small"
+                           name={"name"} value={filters.name ?? ''} onChange={handleInputChange} />
+            </div>
+            <div>
+                <DropdownInput label={"Status"} name={"status"} value={filters.status} options={workoutRegistries.status}
+                               onSelectChange={handleSelectChange} required={false} />
             </div>
         </SearchForm>
 )

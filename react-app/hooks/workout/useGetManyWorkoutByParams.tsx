@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
-import WorkoutsListFilters from "../../filters/WorkoutsListFilters.tsx";
-import WorkoutApiGateway from "../../api/gateway/WorkoutApiGateway.tsx";
-import WorkoutDTO from "../../api/dtos/WorkoutDTO.tsx";
+import WorkoutsListFilters from "../../services/api/filters/WorkoutsListFilters.tsx";
+import WorkoutApiGateway from "../../services/api/gateway/WorkoutApiGateway.tsx";
+import WorkoutDTO from "../../services/api/dtos/WorkoutDTO.tsx";
 
 
 

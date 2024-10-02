@@ -1,6 +1,6 @@
 import React from "react";
 import {Paper, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow} from '@mui/material';
-import UsersListFilters from "../../filters/UsersListFilters.tsx";
+import UsersListFilters from "../../services/api/filters/UsersListFilters.tsx";
 import useGetManyUsersByParams from "../../hooks/user/useGetManyUserByParams.tsx";
 
 

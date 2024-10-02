@@ -1,8 +1,8 @@
 import React from 'react';
 import EditButton from "../common/button/EditButton.tsx";
-import websiteRoutes from "../../config/routes/website-routes.tsx";
+import websiteRoutes from "../../setup/router/websiteRoutes.tsx";
 import DetailsButton from "../common/button/DetailsButton.tsx";
-import WorkoutDTO from "../../api/dtos/WorkoutDTO.tsx";
+import WorkoutDTO from "../../services/api/dtos/WorkoutDTO.tsx";
 import {Card, CardActions, CardContent, Typography} from "@mui/material";
 
 type WorkoutDetailsCardType = {

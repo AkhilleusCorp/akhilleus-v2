@@ -1,8 +1,8 @@
 import axios from "axios";
-import WorkoutsListFilters from "../../filters/WorkoutsListFilters.tsx";
 import AbstractApiGateway from "./AbstractApiGateway.tsx";
-import apiRoutes from "../../config/routes/api-routes.tsx";
 import WorkoutDTO from "../dtos/WorkoutDTO.tsx";
+import WorkoutsListFilters from "../filters/WorkoutsListFilters.tsx";
+import apiRoutes from "../apiRoutes.tsx";
 
 class WorkoutApiGateway extends AbstractApiGateway {
     static async getOneWorkout (workoutId: string|number): Promise<WorkoutDTO|null> {
