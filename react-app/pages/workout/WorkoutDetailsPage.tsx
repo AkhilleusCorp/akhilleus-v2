@@ -5,7 +5,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import ErrorPage from "../ErrorPage.tsx";
 import useGetOneWorkoutById from "../../hooks/workout/useGetOneWorkoutById.tsx";
 import EditButton from "../../widget/common/button/EditButton.tsx";
-import websiteRoutes from "../../config/routes/website-routes.tsx";
+import websiteRoutes from "../../config/routes/websiteRoutes.tsx";
 import WorkoutDeleteButton from "../../widget/workout/WorkoutDeleteButton.tsx";
 
 const WorkoutDetailsPage: React.FC = () => {

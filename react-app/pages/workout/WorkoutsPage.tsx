@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import AdminLayout from "../../layouts/admin/AdminLayout.tsx";
 import {Link} from "react-router-dom";
-import websiteRoutes from "../../config/routes/website-routes.tsx";
-import WorkoutsListFilters from "../../filters/WorkoutsListFilters.tsx";
+import websiteRoutes from "../../config/routes/websiteRoutes.tsx";
+import WorkoutsListFilters from "../../interfaces/filters/WorkoutsListFilters.tsx";
 import WorkoutDTO from "../../api/dtos/WorkoutDTO.tsx";
 import WorkoutPreviewCard from "../../widget/workout/WorkoutPreviewCard.tsx";
 import WorkoutsSearchForm from "../../widget/workout/WorkoutsSearchForm.tsx";

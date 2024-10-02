@@ -1,6 +1,6 @@
 import React from 'react';
 import EditButton from "../common/button/EditButton.tsx";
-import websiteRoutes from "../../config/routes/website-routes.tsx";
+import websiteRoutes from "../../config/routes/websiteRoutes.tsx";
 import DetailsButton from "../common/button/DetailsButton.tsx";
 import UserDTO from "../../api/dtos/UserDTO.tsx";
 import {Card, CardActions, CardContent, Typography} from "@mui/material";

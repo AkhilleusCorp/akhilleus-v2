@@ -1,5 +1,5 @@
 import React from "react";
-import IndexedArray from "../../../interfaces/IndexedArray.tsx";
+import IndexedArray from "../../../interfaces/common/IndexedArray.tsx";
 import {FormControl, InputLabel, MenuItem, Select, SelectChangeEvent} from "@mui/material";
 
 type DropdownInputType = {

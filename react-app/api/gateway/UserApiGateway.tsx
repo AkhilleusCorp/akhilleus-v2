@@ -1,7 +1,7 @@
 import axios from "axios";
-import UsersListFilters from "../../filters/UsersListFilters.tsx";
+import UsersListFilters from "../../interfaces/filters/UsersListFilters.tsx";
 import AbstractApiGateway from "./AbstractApiGateway.tsx";
-import apiRoutes from "../../config/routes/api-routes.tsx";
+import apiRoutes from "../../config/routes/apiRoutes.tsx";
 import UserDTO from "../dtos/UserDTO.tsx";
 
 class UserApiGateway extends AbstractApiGateway {

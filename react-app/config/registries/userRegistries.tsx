@@ -1,4 +1,4 @@
-import IndexedArray from "../../interfaces/IndexedArray.tsx";
+import IndexedArray from "../../interfaces/common/IndexedArray.tsx";
 
 const statuses: IndexedArray = {
     'created': 'Created',

@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import UsersListFilters from "../../filters/UsersListFilters.tsx";
+import UsersListFilters from "../../interfaces/filters/UsersListFilters.tsx";
 import UserApiGateway from "../../api/gateway/UserApiGateway.tsx";
 import UserDTO from "../../api/dtos/UserDTO.tsx";
 

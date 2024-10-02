@@ -1,6 +1,6 @@
 import React from "react";
 import {Paper, Table,TableBody,TableCell, TableContainer, TableHead, TableRow} from '@mui/material';
-import WorkoutsListFilters from "../../filters/WorkoutsListFilters.tsx";
+import WorkoutsListFilters from "../../interfaces/filters/WorkoutsListFilters.tsx";
 import useGetManyWorkoutsByParams from "../../hooks/workout/useGetManyWorkoutByParams.tsx";
 
 

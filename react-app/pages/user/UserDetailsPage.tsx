@@ -6,7 +6,7 @@ import ErrorPage from "../ErrorPage.tsx";
 import useGetOneUserById from "../../hooks/user/useGetOneUserById.tsx";
 import UserDeleteButton from "../../widget/user/UserDeleteButton.tsx";
 import EditButton from "../../widget/common/button/EditButton.tsx";
-import websiteRoutes from "../../config/routes/website-routes.tsx";
+import websiteRoutes from "../../config/routes/websiteRoutes.tsx";
 import UserLifecycleCard from "../../widget/user/UserLifecycleCard.tsx";
 import UserConfigurationCard from "../../widget/user/UserConfigurationCard.tsx";
 

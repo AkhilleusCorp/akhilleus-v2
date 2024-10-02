@@ -1,9 +1,9 @@
 import React, {useState} from "react";
-import WorkoutsListFilters from "../../filters/WorkoutsListFilters.tsx";
+import WorkoutsListFilters from "../../interfaces/filters/WorkoutsListFilters.tsx";
 import SearchForm from "../common/form/SearchForm.tsx";
 import {SelectChangeEvent, TextField} from "@mui/material";
 import DropdownInput from "../common/input/DropdownInput.tsx";
-import workoutRegistries from "../../config/registries/workout-registries.tsx";
+import workoutRegistries from "../../config/registries/workoutRegistries.tsx";
 
 type WorkoutSearchFormType = {
     defaultFilters: WorkoutsListFilters,

@@ -1,7 +1,7 @@
 import axios from "axios";
-import WorkoutsListFilters from "../../filters/WorkoutsListFilters.tsx";
+import WorkoutsListFilters from "../../interfaces/filters/WorkoutsListFilters.tsx";
 import AbstractApiGateway from "./AbstractApiGateway.tsx";
-import apiRoutes from "../../config/routes/api-routes.tsx";
+import apiRoutes from "../../config/routes/apiRoutes.tsx";
 import WorkoutDTO from "../dtos/WorkoutDTO.tsx";
 
 class WorkoutApiGateway extends AbstractApiGateway {
