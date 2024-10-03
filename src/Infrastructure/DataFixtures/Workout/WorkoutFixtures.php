@@ -25,7 +25,7 @@ final class WorkoutFixtures extends AbstractFixtures
 
         $sources[] = $this->sourceModelFactory->buildSourceModel(
             [
-                'name' => 'InProgressPrivate',
+                'name' => 'In Progress Private',
                 'status' => WorkoutStatusRegistry::WORKOUT_STATUS_IN_PROGRESS,
                 'visibility' => WorkoutVisibilityRegistry::WORKOUT_VISIBILITY_PRIVATE
             ]
@@ -33,7 +33,7 @@ final class WorkoutFixtures extends AbstractFixtures
 
         $sources[] = $this->sourceModelFactory->buildSourceModel(
             [
-                'name' => 'PlanSpecificClient',
+                'name' => 'Plan Specific Client',
                 'status' => WorkoutStatusRegistry::WORKOUT_STATUS_PLANNED,
                 'visibility' => WorkoutVisibilityRegistry::WORKOUT_VISIBILITY_SPECIFIC_CLIENT
             ]
@@ -42,7 +42,7 @@ final class WorkoutFixtures extends AbstractFixtures
 
         $sources[] = $this->sourceModelFactory->buildSourceModel(
             [
-                'name' => 'CompletedFriends',
+                'name' => 'Completed Friends',
                 'status' => WorkoutStatusRegistry::WORKOUT_STATUS_COMPLETED,
                 'visibility' => WorkoutVisibilityRegistry::WORKOUT_VISIBILITY_FRIENDS
             ]
@@ -51,7 +51,8 @@ final class WorkoutFixtures extends AbstractFixtures
         foreach ($sources as $source) {
             $workout = $this->dataModelFactory->buildNewDataModel($source);
             $manager->persist($workout);
-            $this->addReference("workout-{$workout->name}", $workout);
+
+            $this->addRef("workout", $workout->name, $workout);
         }
     }
 
@@ -70,7 +71,7 @@ final class WorkoutFixtures extends AbstractFixtures
             $workout = $this->dataModelFactory->buildNewDataModel($source);
             $manager->persist($workout);
 
-            $this->addReference("workout-{$name}", $workout);
+            $this->addRef("workout", $name, $workout);
         }
     }
 }

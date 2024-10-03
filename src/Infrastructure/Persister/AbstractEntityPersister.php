@@ -7,8 +7,9 @@ use Doctrine\ORM\EntityManagerInterface;
 
 abstract class AbstractEntityPersister
 {
-    public function __construct(private EntityManagerInterface $entityManager)
-    {
+    public function __construct(
+        private readonly EntityManagerInterface $entityManager
+    ) {
 
     }
 

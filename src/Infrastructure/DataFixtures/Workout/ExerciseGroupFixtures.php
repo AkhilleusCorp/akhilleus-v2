@@ -11,12 +11,14 @@ final class ExerciseGroupFixtures extends AbstractFixtures implements DependentF
 {
     protected function explicitFixtures(ObjectManager $manager): void
     {
-        $group = new ExerciseGroupDataModel();
-        $group->workout = $this->getReference("workout-InProgressPrivate");
+        for($i = 1; $i <= 5; $i++) {
+            $group = new ExerciseGroupDataModel();
+            $group->workout = $this->getReference("workout-in-progress-private");
 
-        $manager->persist($group);
+            $manager->persist($group);
 
-        $this->addReference("exerciseGroup-InProgressPrivate-1", $group);
+            $this->addReference("exerciseGroup-in-progress-private-{$i}", $group);
+        }
     }
 
     protected function volumeFixtures(ObjectManager $manager): void

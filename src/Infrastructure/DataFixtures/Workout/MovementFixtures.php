@@ -32,7 +32,7 @@ final class MovementFixtures extends AbstractFixtures implements DependentFixtur
 
             $manager->persist($movement);
 
-            $this->addReference("movement-{$movement->name}", $movement);
+            $this->addRef("movement", $movement->name, $movement);
 
         }
     }
@@ -46,7 +46,7 @@ final class MovementFixtures extends AbstractFixtures implements DependentFixtur
     {
         return [
             [
-                'name' => 'Bench Press',
+                'name' => 'Bench press',
                 'primaryMuscleRef' => 'muscle-chest',
                 'auxiliaryMusclesRefs' => [],
                 'equipmentsRefs' => ['equipment-barbell', 'equipment-bench']

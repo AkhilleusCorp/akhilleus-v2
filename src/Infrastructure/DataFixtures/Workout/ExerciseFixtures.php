@@ -11,13 +11,15 @@ final class ExerciseFixtures extends AbstractFixtures implements DependentFixtur
 {
     protected function explicitFixtures(ObjectManager $manager): void
     {
-        $exercise = new ExerciseDataModel();
-        $exercise->movement = $this->getReference("movement-Bench Press");
-        $exercise->group = $this->getReference("exerciseGroup-InProgressPrivate-1");
+        foreach ($this->getExerciseConfig() as $config) {
+            for ($i = 1; $i <= $config['repeat']; $i++) {
+                $exercise = new ExerciseDataModel();
+                $exercise->movement = $this->getReference($config['movementRef']);
+                $exercise->group = $this->getReference($config['groupRef']);
 
-        $manager->persist($exercise);
-
-        $this->addReference("exercise-GroupInProgressPrivate-1", $exercise);
+                $manager->persist($exercise);
+            }
+        }
     }
 
     protected function volumeFixtures(ObjectManager $manager): void
@@ -30,6 +32,17 @@ final class ExerciseFixtures extends AbstractFixtures implements DependentFixtur
         return [
             WorkoutFixtures::class,
             ExerciseGroupFixtures::class
+        ];
+    }
+
+    private function getExerciseConfig(): array
+    {
+        return [
+            ['movementRef' => 'movement-bench-press', 'groupRef' => 'exerciseGroup-in-progress-private-1', 'repeat' => 5],
+            ['movementRef' => 'movement-back-squat', 'groupRef' => 'exerciseGroup-in-progress-private-2', 'repeat' => 3],
+            ['movementRef' => 'movement-biceps-curl', 'groupRef' => 'exerciseGroup-in-progress-private-3', 'repeat' => 5],
+            ['movementRef' => 'movement-bench-press', 'groupRef' => 'exerciseGroup-in-progress-private-4', 'repeat' => 6],
+            ['movementRef' => 'movement-back-squat', 'groupRef' => 'exerciseGroup-in-progress-private-5', 'repeat' => 3],
         ];
     }
 }
