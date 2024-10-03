@@ -31,6 +31,9 @@ final class MovementFixtures extends AbstractFixtures implements DependentFixtur
             $movement->setEquipments($equipments);
 
             $manager->persist($movement);
+
+            $this->addReference("movement-{$movement->name}", $movement);
+
         }
     }
 

@@ -51,7 +51,7 @@ final class WorkoutFixtures extends AbstractFixtures
         foreach ($sources as $source) {
             $workout = $this->dataModelFactory->buildNewDataModel($source);
             $manager->persist($workout);
-            $this->addReference("user-{$workout->name}", $workout);
+            $this->addReference("workout-{$workout->name}", $workout);
         }
     }
 

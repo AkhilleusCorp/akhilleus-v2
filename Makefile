@@ -48,3 +48,6 @@ reset_test_db: create_test_db load_test_fixtures
 tests_all:
 	rm -rf var/cache/test #prevent test failing due to outdated cache
 	XDEBUG_MODE=coverage vendor/bin/phpunit
+
+mysql_connect_akhilleus: ## Connect to core database
+	docker-compose exec database /bin/bash -c 'mysql -u$$MYSQL_USER -p$$MYSQL_PASSWORD $$MYSQL_DB_NAME'

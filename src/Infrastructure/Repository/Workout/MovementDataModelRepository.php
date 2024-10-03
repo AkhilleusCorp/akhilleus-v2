@@ -7,10 +7,11 @@ use App\Domain\DTO\FilterModel\FilterModelInterface;
 use App\Domain\DTO\FilterModel\Workout\GetManyMovementsFilterModel;
 use App\Domain\Gateway\Provider\Workout\MovementDataModelProviderGateway;
 use App\Infrastructure\Repository\AbstractBaseDataModelRepository;
+use App\Infrastructure\Repository\FilterableDataModelRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
-final class MovementDataModelRepository extends AbstractBaseDataModelRepository implements MovementDataModelProviderGateway
+final class MovementDataModelRepository extends AbstractBaseDataModelRepository implements MovementDataModelProviderGateway, FilterableDataModelRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
@@ -44,7 +45,7 @@ final class MovementDataModelRepository extends AbstractBaseDataModelRepository 
         return $this->countByFilterModel($filter);
     }
 
-    protected function addParametersFromFilter(QueryBuilder $queryBuilder, GetManyMovementsFilterModel|FilterModelInterface $filter): self
+    public function addParametersFromFilter(QueryBuilder $queryBuilder, GetManyMovementsFilterModel|FilterModelInterface $filter): self
     {
         if (false === empty($filter->ids)) {
             $queryBuilder->andWhere('movement.id IN (:ids)')

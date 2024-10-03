@@ -7,10 +7,11 @@ use App\Domain\DTO\FilterModel\FilterModelInterface;
 use App\Domain\DTO\FilterModel\Workout\GetManyWorkoutsFilterModel;
 use App\Domain\Gateway\Provider\Workout\WorkoutDataModelProviderGateway;
 use App\Infrastructure\Repository\AbstractBaseDataModelRepository;
+use App\Infrastructure\Repository\FilterableDataModelRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
-final class WorkoutDataModelRepository extends AbstractBaseDataModelRepository implements WorkoutDataModelProviderGateway
+final class WorkoutDataModelRepository extends AbstractBaseDataModelRepository implements WorkoutDataModelProviderGateway, FilterableDataModelRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
@@ -40,7 +41,7 @@ final class WorkoutDataModelRepository extends AbstractBaseDataModelRepository i
         return $this->countByFilterModel($filter);
     }
 
-    protected function addParametersFromFilter(QueryBuilder $queryBuilder, GetManyWorkoutsFilterModel|FilterModelInterface $filter): self
+    public function addParametersFromFilter(QueryBuilder $queryBuilder, GetManyWorkoutsFilterModel|FilterModelInterface $filter): self
     {
         if (false === empty($filter->ids)) {
             $queryBuilder->andWhere('workout.id IN (:ids)')

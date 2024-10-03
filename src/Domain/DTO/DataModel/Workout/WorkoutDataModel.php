@@ -5,6 +5,8 @@ namespace App\Domain\DTO\DataModel\Workout;
 use App\Domain\DTO\DataModel\DataModelInterface;
 use App\Domain\Registry\Workout\WorkoutStatusRegistry;
 use App\Domain\Registry\Workout\WorkoutVisibilityRegistry;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -25,4 +27,37 @@ class WorkoutDataModel implements DataModelInterface
 
     #[ORM\Column(type: Types::STRING, length: 20)]
     public string $visibility = WorkoutVisibilityRegistry::WORKOUT_VISIBILITY_FRIENDS;
+
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
+    public ?\DateTimeImmutable $startDate;
+
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
+    public ?\DateTimeImmutable $endDate;
+
+    #[ORM\OneToMany(targetEntity: ExerciseGroupDataModel::class, mappedBy: 'workout', cascade: ['remove'])]
+    public Collection $exerciseGroups;
+
+    public function __construct()
+    {
+        $this->exerciseGroups = new ArrayCollection();
+    }
+
+    /**
+     * @return ExerciseGroupDataModel[]
+     */
+    public function getExerciseGroups(): array
+    {
+        return $this->exerciseGroups->toArray();
+    }
+
+    /**
+     * @param ExerciseGroupDataModel[] $groups
+     */
+    public function setExerciseGroups(array $groups): void
+    {
+        $this->exerciseGroups = new ArrayCollection();
+        foreach ($groups as $group) {
+            $this->exerciseGroups->add($group);
+        }
+    }
 }
