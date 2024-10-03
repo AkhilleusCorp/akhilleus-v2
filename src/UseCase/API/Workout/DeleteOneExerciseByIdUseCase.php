@@ -3,7 +3,6 @@
 namespace App\UseCase\API\Workout;
 
 use App\Domain\Gateway\Persister\Workout\ExerciseDataModelPersisterGateway;
-use App\Domain\Gateway\Persister\Workout\ExerciseGroupDataModelPersisterGateway;
 use App\Domain\Gateway\Provider\Workout\ExerciseDataModelProviderGateway;
 use App\Domain\Gateway\Provider\Workout\WorkoutDataModelProviderGateway;
 use App\UseCase\UseCaseInterface;

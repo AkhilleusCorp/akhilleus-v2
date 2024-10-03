@@ -14,7 +14,7 @@ final class HttpExceptionEventListener
         $exception = $event->getThrowable();
         if($exception instanceof NotFoundHttpException) {
             $response = new JsonResponse(
-                ['error' => 'Resource not found'],
+                ['error' => $exception->getMessage()],
                 Response::HTTP_NOT_FOUND
             );
 

@@ -19,6 +19,14 @@ final class ExerciseGroupDataModelRepository extends AbstractBaseDataModelReposi
         return 'exercise_group';
     }
 
+    public function getExerciseGroupById(int $groupId): ?ExerciseGroupDataModel
+    {
+        return $this->createQueryBuilder($this->getAlias())
+            ->andWhere($this->getAlias().'.id = :groupId')
+            ->setParameter('groupId', $groupId)
+            ->getQuery()->getOneOrNullResult();
+    }
+
     /**
      * @return ExerciseGroupDataModel[]
      */

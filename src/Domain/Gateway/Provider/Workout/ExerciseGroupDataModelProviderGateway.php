@@ -6,6 +6,9 @@ use App\Domain\DTO\DataModel\Workout\ExerciseGroupDataModel;
 
 interface ExerciseGroupDataModelProviderGateway
 {
+
+    public function getExerciseGroupById(int $groupId): ?ExerciseGroupDataModel;
+
     /**
      * @return ExerciseGroupDataModel[]
      */
