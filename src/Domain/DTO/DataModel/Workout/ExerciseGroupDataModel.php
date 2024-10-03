@@ -24,7 +24,7 @@ class ExerciseGroupDataModel implements DataModelInterface
     #[ORM\Column(type: Types::SIMPLE_ARRAY)]
     public array $movementIds;
 
-    #[ORM\OneToMany(targetEntity: ExerciseDataModel::class, mappedBy: 'group', cascade: ['remove'])]
+    #[ORM\OneToMany(targetEntity: ExerciseDataModel::class, mappedBy: 'group', cascade: ['persist', 'remove'])]
     public Collection $exercises;
 
     public function __construct()

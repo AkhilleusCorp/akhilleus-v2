@@ -2,18 +2,15 @@
 
 namespace App\Infrastructure\View\ViewPresenter\Workout;
 
-use App\Domain\DTO\DataModel\DataModelInterface;
 use App\Domain\DTO\DataModel\Workout\ExerciseGroupDataModel;
 use App\Infrastructure\View\ViewModel\Workout\Embedded\EmbeddedExerciseDataModelView;
-use App\Infrastructure\View\ViewModel\Workout\MultipleGroupedExerciseItemDataViewModel;
-use App\Infrastructure\View\ViewPresenter\AbstractMultipleObjectViewPresenter;
-use App\Infrastructure\View\ViewPresenter\MultipleObjectViewPresenterInterface;
+use App\Infrastructure\View\ViewModel\Workout\ExerciseGroupDataViewModel;
 
-final class MultipleGroupedExerciseViewPresenter extends AbstractMultipleObjectViewPresenter implements MultipleObjectViewPresenterInterface
+trait PresentExerciseGroupTrait
 {
-    public function presentItem(ExerciseGroupDataModel|DataModelInterface $data, ?string $dataProfile): MultipleGroupedExerciseItemDataViewModel
+    public function presentExerciseGroup(ExerciseGroupDataModel $data): ExerciseGroupDataViewModel
     {
-        $groupedExercises = new MultipleGroupedExerciseItemDataViewModel();
+        $groupedExercises = new ExerciseGroupDataViewModel();
         $groupedExercises->groupId = $data->id;
         $groupedExercises->movementIds = $data->movementIds;
 

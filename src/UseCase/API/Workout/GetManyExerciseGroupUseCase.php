@@ -6,16 +6,16 @@ use App\Domain\Gateway\Provider\Workout\ExerciseGroupDataModelProviderGateway;
 use App\Domain\Gateway\Provider\Workout\WorkoutDataModelProviderGateway;
 use App\Infrastructure\Registry\DataProfileRegistry;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
-use App\Infrastructure\View\ViewPresenter\Workout\MultipleGroupedExerciseViewPresenter;
+use App\Infrastructure\View\ViewPresenter\Workout\MultipleExerciseGroupViewPresenter;
 use App\UseCase\UseCaseInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-final class GetGroupedExerciseUseCase implements UseCaseInterface
+final class GetManyExerciseGroupUseCase implements UseCaseInterface
 {
     public function __construct(
         private readonly WorkoutDataModelProviderGateway       $workoutProvider,
         private readonly ExerciseGroupDataModelProviderGateway $groupProvider,
-        private readonly MultipleGroupedExerciseViewPresenter  $presenter,
+        private readonly MultipleExerciseGroupViewPresenter    $presenter,
     ) {
 
     }
