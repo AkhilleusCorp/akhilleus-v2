@@ -1,6 +1,6 @@
 import React from 'react';
 import AdminLayout from "../../layouts/admin/AdminLayout.tsx";
-import WorkoutUpdateForm from "../../widget/workout/WorkoutUpdateForm.tsx";
+import WorkoutUpdateForm from "../../features/workout/WorkoutUpdateForm.tsx";
 import {useParams} from "react-router-dom";
 import useGetOneWorkoutById from "../../hooks/workout/useGetOneWorkoutById.tsx";
 import ErrorPage from "../ErrorPage.tsx";

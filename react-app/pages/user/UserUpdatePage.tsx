@@ -1,7 +1,7 @@
 import React from 'react';
 import AdminLayout from "../../layouts/admin/AdminLayout.tsx";
 import {useParams} from "react-router-dom";
-import UserUpdateForm from "../../widget/user/UserUpdateForm.tsx";
+import UserUpdateForm from "../../features/user/UserUpdateForm.tsx";
 import useGetOneUserById from "../../hooks/user/useGetOneUserById.tsx";
 import ErrorPage from "../ErrorPage.tsx";
 

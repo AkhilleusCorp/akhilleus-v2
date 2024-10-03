@@ -9,7 +9,7 @@ import websiteRoutes from "../../setup/router/websiteRoutes.tsx";
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import SearchInput from "../../widget/common/input/SearchInput.tsx";
+import SearchInput from "../../components/input/SearchInput.tsx";
 
 const AdminHeader: React.FC = () => {
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);

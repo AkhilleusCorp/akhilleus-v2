@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import UsersListFilters from "../../services/api/filters/UsersListFilters.tsx";
-import SearchForm from "../common/form/SearchForm.tsx";
+import SearchForm from "../../components/form/SearchForm.tsx";
 import {SelectChangeEvent, TextField} from "@mui/material";
-import DropdownInput from "../common/input/DropdownInput.tsx";
+import DropdownInput from "../../components/input/DropdownInput.tsx";
 import userRegistries from "../../constants/userRegistries.tsx";
 
 type UserSearchFormType = {

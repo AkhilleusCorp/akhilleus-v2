@@ -1,14 +1,14 @@
 import React from 'react';
 import AdminLayout from "../../layouts/admin/AdminLayout.tsx";
-import UserPreviewCard from "../../widget/user/UserPreviewCard.tsx";
+import UserPreviewCard from "../../features/user/UserPreviewCard.tsx";
 import {useParams, useNavigate} from "react-router-dom";
 import ErrorPage from "../ErrorPage.tsx";
 import useGetOneUserById from "../../hooks/user/useGetOneUserById.tsx";
-import UserDeleteButton from "../../widget/user/UserDeleteButton.tsx";
-import EditButton from "../../widget/common/button/EditButton.tsx";
+import UserDeleteButton from "../../features/user/UserDeleteButton.tsx";
+import EditButton from "../../components/button/EditButton.tsx";
 import websiteRoutes from "../../setup/router/websiteRoutes.tsx";
-import UserLifecycleCard from "../../widget/user/UserLifecycleCard.tsx";
-import UserConfigurationCard from "../../widget/user/UserConfigurationCard.tsx";
+import UserLifecycleCard from "../../features/user/UserLifecycleCard.tsx";
+import UserConfigurationCard from "../../features/user/UserConfigurationCard.tsx";
 
 const UserDetailsPage: React.FC = () => {
     const { userId } = useParams<{ userId: string }>();

@@ -2,7 +2,7 @@ import React from 'react';
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import websiteRoutes from "../../setup/router/websiteRoutes.tsx";
-import SaveForm from "../common/form/SaveForm.tsx";
+import SaveForm from "../../components/form/SaveForm.tsx";
 import UserApiGateway from "../../services/api/gateway/UserApiGateway.tsx";
 import UserDTO from "../../services/api/dtos/UserDTO.tsx";
 import {TextField} from "@mui/material";

@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import AdminLayout from "../../layouts/admin/AdminLayout.tsx";
-import UsersListTable from "../../widget/user/UsersListTable.tsx";
+import UsersListTable from "../../features/user/UsersListTable.tsx";
 import {Link} from "react-router-dom";
 import UsersListFilters from "../../services/api/filters/UsersListFilters.tsx";
-import UsersSearchForm from "../../widget/user/UsersSearchForm.tsx";
+import UsersSearchForm from "../../features/user/UsersSearchForm.tsx";
 import websiteRoutes from "../../setup/router/websiteRoutes.tsx";
-import UserPreviewCard from "../../widget/user/UserPreviewCard.tsx";
+import UserPreviewCard from "../../features/user/UserPreviewCard.tsx";
 import UserApiGateway from "../../services/api/gateway/UserApiGateway.tsx";
 import UserDTO from "../../services/api/dtos/UserDTO.tsx";
 

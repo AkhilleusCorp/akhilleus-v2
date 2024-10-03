@@ -4,9 +4,9 @@ import {Link} from "react-router-dom";
 import websiteRoutes from "../../setup/router/websiteRoutes.tsx";
 import WorkoutsListFilters from "../../services/api/filters/WorkoutsListFilters.tsx";
 import WorkoutDTO from "../../services/api/dtos/WorkoutDTO.tsx";
-import WorkoutPreviewCard from "../../widget/workout/WorkoutPreviewCard.tsx";
-import WorkoutsSearchForm from "../../widget/workout/WorkoutsSearchForm.tsx";
-import WorkoutsListTable from "../../widget/workout/WorkoutsListTable.tsx";
+import WorkoutPreviewCard from "../../features/workout/WorkoutPreviewCard.tsx";
+import WorkoutsSearchForm from "../../features/workout/WorkoutsSearchForm.tsx";
+import WorkoutsListTable from "../../features/workout/WorkoutsListTable.tsx";
 import WorkoutApiGateway from "../../services/api/gateway/WorkoutApiGateway.tsx";
 
 const WorkoutsPage: React.FC = () => {
