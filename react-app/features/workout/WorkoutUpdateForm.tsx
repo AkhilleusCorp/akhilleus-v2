@@ -1,10 +1,10 @@
 import React from 'react';
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
-import websiteRoutes from "../../config/routes/website-routes.tsx";
-import SaveForm from "../common/form/SaveForm.tsx";
-import WorkoutApiGateway from "../../api/gateway/WorkoutApiGateway.tsx";
-import WorkoutDTO from "../../api/dtos/WorkoutDTO.tsx";
+import websiteRoutes from "../../setup/router/websiteRoutes.tsx";
+import SaveForm from "../../components/form/SaveForm.tsx";
+import WorkoutApiGateway from "../../services/api/gateway/WorkoutApiGateway.tsx";
+import WorkoutDTO from "../../services/api/dtos/WorkoutDTO.tsx";
 import {TextField} from "@mui/material";
 
 type WorkoutEditFormType = {

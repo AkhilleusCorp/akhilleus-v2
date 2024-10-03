@@ -22,9 +22,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ searchFunction, cancelFunction,
         <Card>
             <form onSubmit={handleSubmit}>
                 <CardContent>
-                    <div className={"columns"}>
-                        {children}
-                    </div>
+                    {children}
                 </CardContent>
 
                 <CardActions>

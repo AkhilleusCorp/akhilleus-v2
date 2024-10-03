@@ -1,12 +1,12 @@
 import React from 'react';
 import AdminLayout from "../../layouts/admin/AdminLayout.tsx";
-import WorkoutPreviewCard from "../../widget/workout/WorkoutPreviewCard.tsx";
+import WorkoutPreviewCard from "../../features/workout/WorkoutPreviewCard.tsx";
 import {useNavigate, useParams} from "react-router-dom";
 import ErrorPage from "../ErrorPage.tsx";
 import useGetOneWorkoutById from "../../hooks/workout/useGetOneWorkoutById.tsx";
-import EditButton from "../../widget/common/button/EditButton.tsx";
-import websiteRoutes from "../../config/routes/website-routes.tsx";
-import WorkoutDeleteButton from "../../widget/workout/WorkoutDeleteButton.tsx";
+import EditButton from "../../components/button/EditButton.tsx";
+import websiteRoutes from "../../setup/router/websiteRoutes.tsx";
+import WorkoutDeleteButton from "../../features/workout/WorkoutDeleteButton.tsx";
 
 const WorkoutDetailsPage: React.FC = () => {
     const { workoutId } = useParams<{ workoutId: string }>();

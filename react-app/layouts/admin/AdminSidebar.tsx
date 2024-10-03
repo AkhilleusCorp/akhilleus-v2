@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Link} from "react-router-dom";
-import websiteRoutes from "../../config/routes/website-routes.tsx";
+import websiteRoutes from "../../setup/router/websiteRoutes.tsx";
 import {Box, Collapse, Divider, List, ListItem, ListItemButton, ListItemText} from "@mui/material";
 import {ExpandLess, ExpandMore} from "@mui/icons-material";
 

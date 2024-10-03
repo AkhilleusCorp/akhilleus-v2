@@ -1,8 +1,8 @@
 import axios from "axios";
-import UsersListFilters from "../../filters/UsersListFilters.tsx";
 import AbstractApiGateway from "./AbstractApiGateway.tsx";
-import apiRoutes from "../../config/routes/api-routes.tsx";
 import UserDTO from "../dtos/UserDTO.tsx";
+import apiRoutes from "../apiRoutes.tsx";
+import UsersListFilters from "../filters/UsersListFilters.tsx";
 
 class UserApiGateway extends AbstractApiGateway {
     static async getOneUser (userId: string|number): Promise<UserDTO|null> {

@@ -1,5 +1,5 @@
 import React from 'react';
-import UserDTO from "../../api/dtos/UserDTO.tsx";
+import UserDTO from "../../services/api/dtos/UserDTO.tsx";
 import {Card, CardContent, Typography} from "@mui/material";
 
 type UserLifecycleCardType = {

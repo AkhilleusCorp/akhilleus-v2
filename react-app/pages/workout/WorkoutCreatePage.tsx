@@ -1,6 +1,6 @@
 import React from 'react';
 import AdminLayout from "../../layouts/admin/AdminLayout.tsx";
-import WorkoutCreateForm from "../../widget/workout/WorkoutCreateForm.tsx";
+import WorkoutCreateForm from "../../features/workout/WorkoutCreateForm.tsx";
 
 const WorkoutCreatePage: React.FC = () => {
     return (

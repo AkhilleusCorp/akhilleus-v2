@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {useNavigate} from "react-router-dom";
-import websiteRoutes from "../../config/routes/website-routes.tsx";
-import SaveForm from "../common/form/SaveForm.tsx";
-import WorkoutApiGateway from "../../api/gateway/WorkoutApiGateway.tsx";
+import websiteRoutes from "../../setup/router/websiteRoutes.tsx";
+import SaveForm from "../../components/form/SaveForm.tsx";
+import WorkoutApiGateway from "../../services/api/gateway/WorkoutApiGateway.tsx";
 import {TextField} from "@mui/material";
 
 type WorkoutCreateFormType = {

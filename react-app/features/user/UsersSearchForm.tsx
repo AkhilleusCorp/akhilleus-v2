@@ -1,9 +1,9 @@
 import React, {useState} from "react";
-import UsersListFilters from "../../filters/UsersListFilters.tsx";
-import SearchForm from "../common/form/SearchForm.tsx";
+import UsersListFilters from "../../services/api/filters/UsersListFilters.tsx";
+import SearchForm from "../../components/form/SearchForm.tsx";
 import {SelectChangeEvent, TextField} from "@mui/material";
-import DropdownInput from "../common/input/DropdownInput.tsx";
-import userRegistries from "../../config/registries/user-registries.tsx";
+import DropdownInput from "../../components/input/DropdownInput.tsx";
+import userRegistries from "../../constants/userRegistries.tsx";
 
 type UserSearchFormType = {
     defaultFilters: UsersListFilters,
@@ -41,7 +41,6 @@ const UsersSearchForm: React.FC<UserSearchFormType> = ({defaultFilters, callback
 
     return (
         <SearchForm searchFunction={callbackFunction} cancelFunction={handleCancel} filters={filters}>
-            <div className={"column"}>
                 <div>
                     <TextField id="outlined-basic" label="IDs" variant="outlined" size="small"
                                name={"ids"} value={filters.ids ?? ''} onChange={handleInputChange} />
@@ -54,17 +53,15 @@ const UsersSearchForm: React.FC<UserSearchFormType> = ({defaultFilters, callback
                     <TextField id="outlined-basic" label="Email" variant="outlined" size="small"
                                name={"email"} value={filters.email ?? ''} onChange={handleInputChange} />
                 </div>
-            </div>
-            <div className={"column"}>
                 <div>
                     <DropdownInput label={"Type"} name={"type"} value={filters.type} options={userRegistries.types}
-                                   onSelectChange={handleSelectChange} required={false} />
+                                   onSelectChange={handleSelectChange} required={false}/>
                 </div>
-            </div>
-            <div>
-                <DropdownInput label={"Status"} name={"status"} value={filters.status} options={userRegistries.status}
-                               onSelectChange={handleSelectChange} required={false} />
-            </div>
+                <div>
+                    <DropdownInput label={"Status"} name={"status"} value={filters.status}
+                                   options={userRegistries.status}
+                                   onSelectChange={handleSelectChange} required={false}/>
+                </div>
         </SearchForm>
     )
 }

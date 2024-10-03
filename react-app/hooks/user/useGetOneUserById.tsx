@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
-import UserApiGateway from "../../api/gateway/UserApiGateway.tsx";
-import UserDTO from "../../api/dtos/UserDTO.tsx";
+import UserApiGateway from "../../services/api/gateway/UserApiGateway.tsx";
+import UserDTO from "../../services/api/dtos/UserDTO.tsx";
 
 function useGetOneUserById(userId: string|undefined): UserDTO | null {
     if (!userId) {

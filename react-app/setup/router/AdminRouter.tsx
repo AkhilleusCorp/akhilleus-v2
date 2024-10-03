@@ -14,7 +14,7 @@ import WorkoutsPage from "../../pages/workout/WorkoutsPage.tsx";
 import WorkoutCreatePage from "../../pages/workout/WorkoutCreatePage.tsx";
 import WorkoutUpdatePage from "../../pages/workout/WorkoutUpdatePage.tsx";
 import WorkoutDetailsPage from "../../pages/workout/WorkoutDetailsPage.tsx";
-import websiteRoutes from "../../config/routes/website-routes.tsx";
+import websiteRoutes from "./websiteRoutes.tsx";
 
 const routerConfig = createBrowserRouter([
     {
