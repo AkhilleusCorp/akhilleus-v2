@@ -64,6 +64,18 @@ final class MovementFixtures extends AbstractFixtures implements DependentFixtur
                 'equipmentsRefs' => ['equipment-dumbbell']
             ],
             [
+                'name' => 'Front squat',
+                'primaryMuscleRef' => 'muscle-quads',
+                'auxiliaryMusclesRefs' => [],
+                'equipmentsRefs' => ['equipment-barbell']
+            ],
+            [
+                'name' => 'Goblet squat',
+                'primaryMuscleRef' => 'muscle-quads',
+                'auxiliaryMusclesRefs' => [],
+                'equipmentsRefs' => ['equipment-dumbbell']
+            ],
+            [
                 'name' => 'Triceps push down (single arm)',
                 'primaryMuscleRef' => 'muscle-triceps',
                 'auxiliaryMusclesRefs' => [],

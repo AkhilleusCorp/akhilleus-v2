@@ -3,8 +3,10 @@
 namespace App\Infrastructure\Repository\Workout;
 
 use App\Domain\DTO\DataModel\Workout\ExerciseDataModel;
+use App\Domain\DTO\FilterModel\FilterModelInterface;
 use App\Domain\Gateway\Provider\Workout\ExerciseDataModelProviderGateway;
 use App\Infrastructure\Repository\AbstractBaseDataModelRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 final class ExerciseDataModelRepository extends AbstractBaseDataModelRepository implements ExerciseDataModelProviderGateway
@@ -29,4 +31,8 @@ final class ExerciseDataModelRepository extends AbstractBaseDataModelRepository 
             ->getQuery()->getOneOrNullResult();
     }
 
+    protected function addParametersFromFilter(QueryBuilder $queryBuilder, FilterModelInterface $filter): AbstractBaseDataModelRepository
+    {
+        return $this;
+    }
 }

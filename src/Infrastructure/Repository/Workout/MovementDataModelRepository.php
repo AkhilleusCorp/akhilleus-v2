@@ -7,11 +7,10 @@ use App\Domain\DTO\FilterModel\FilterModelInterface;
 use App\Domain\DTO\FilterModel\Workout\GetManyMovementsFilterModel;
 use App\Domain\Gateway\Provider\Workout\MovementDataModelProviderGateway;
 use App\Infrastructure\Repository\AbstractBaseDataModelRepository;
-use App\Infrastructure\Repository\FilterableDataModelRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
-final class MovementDataModelRepository extends AbstractBaseDataModelRepository implements MovementDataModelProviderGateway, FilterableDataModelRepository
+final class MovementDataModelRepository extends AbstractBaseDataModelRepository implements MovementDataModelProviderGateway
 {
     public function __construct(ManagerRegistry $registry)
     {

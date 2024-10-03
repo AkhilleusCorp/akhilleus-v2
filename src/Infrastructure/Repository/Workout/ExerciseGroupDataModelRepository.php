@@ -3,8 +3,10 @@
 namespace App\Infrastructure\Repository\Workout;
 
 use App\Domain\DTO\DataModel\Workout\ExerciseGroupDataModel;
+use App\Domain\DTO\FilterModel\FilterModelInterface;
 use App\Domain\Gateway\Provider\Workout\ExerciseGroupDataModelProviderGateway;
 use App\Infrastructure\Repository\AbstractBaseDataModelRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 final class ExerciseGroupDataModelRepository extends AbstractBaseDataModelRepository implements ExerciseGroupDataModelProviderGateway
@@ -39,5 +41,9 @@ final class ExerciseGroupDataModelRepository extends AbstractBaseDataModelReposi
             ->leftJoin('group_exercises.movement', 'exercise_movement')
             ->addSelect('group_exercises', 'exercise_movement')
             ->getQuery()->getResult();
+    }
+    protected function addParametersFromFilter(QueryBuilder $queryBuilder, FilterModelInterface $filter): AbstractBaseDataModelRepository
+    {
+        return $this;
     }
 }

@@ -15,6 +15,7 @@ final class MultipleGroupedExerciseViewPresenter extends AbstractMultipleObjectV
     {
         $groupedExercises = new MultipleGroupedExerciseItemDataViewModel();
         $groupedExercises->groupId = $data->id;
+        $groupedExercises->movementIds = $data->movementIds;
 
         foreach ($data->getExercises() as $exercise) {
             $embedded = new EmbeddedExerciseDataModelView();

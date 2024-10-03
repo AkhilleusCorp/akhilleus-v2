@@ -41,8 +41,8 @@ final class ExerciseFixtures extends AbstractFixtures implements DependentFixtur
             ['movementRef' => 'movement-bench-press', 'groupRef' => 'exerciseGroup-in-progress-private-1', 'repeat' => 5],
             ['movementRef' => 'movement-back-squat', 'groupRef' => 'exerciseGroup-in-progress-private-2', 'repeat' => 3],
             ['movementRef' => 'movement-biceps-curl', 'groupRef' => 'exerciseGroup-in-progress-private-3', 'repeat' => 5],
-            ['movementRef' => 'movement-bench-press', 'groupRef' => 'exerciseGroup-in-progress-private-4', 'repeat' => 6],
-            ['movementRef' => 'movement-back-squat', 'groupRef' => 'exerciseGroup-in-progress-private-5', 'repeat' => 3],
+            ['movementRef' => 'movement-front-squat', 'groupRef' => 'exerciseGroup-in-progress-private-4', 'repeat' => 6],
+            ['movementRef' => 'movement-goblet-squat', 'groupRef' => 'exerciseGroup-in-progress-private-5', 'repeat' => 3],
         ];
     }
 }

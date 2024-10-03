@@ -12,6 +12,9 @@ final class MultipleGroupedExerciseItemDataViewModel implements MultipleObjectIt
     public int $groupId;
 
     #[Groups(['admin', 'member'])]
+    public array $movementIds;
+
+    #[Groups(['admin', 'member'])]
     /** @var EmbeddedExerciseDataModelView[] $exercises */
     public array $exercises;
 }
