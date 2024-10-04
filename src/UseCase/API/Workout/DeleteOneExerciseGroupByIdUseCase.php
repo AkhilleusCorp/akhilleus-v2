@@ -11,7 +11,6 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 final class DeleteOneExerciseGroupByIdUseCase implements UseCaseInterface
 {
     public function __construct(
-        private readonly WorkoutDataModelProviderGateway  $workoutProvider,
         private readonly ExerciseGroupDataModelProviderGateway $groupProvider,
         private readonly ExerciseGroupDataModelPersisterGateway $groupPersister,
     ) {
@@ -20,14 +19,13 @@ final class DeleteOneExerciseGroupByIdUseCase implements UseCaseInterface
 
     public function execute(int $workoutId, int $groupId): void
     {
-        $workout = $this->workoutProvider->getWorkoutById($workoutId);
-        if (null === $workout) {
-            throw new NotFoundHttpException("Workout #$workoutId cannot be found");
-        }
-
         $group = $this->groupProvider->getExerciseGroupById($groupId);
         if (null === $group) {
             throw new NotFoundHttpException("Exercise group #$groupId cannot be found");
+        }
+
+        if ($workoutId !== $group->workout->id) {
+            throw new NotFoundHttpException("Exercise group #$groupId is not part of Workout #$workoutId");
         }
 
         $this->groupPersister->remove($group);

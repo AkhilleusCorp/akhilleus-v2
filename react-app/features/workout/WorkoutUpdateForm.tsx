@@ -5,7 +5,9 @@ import websiteRoutes from "../../setup/router/websiteRoutes.tsx";
 import SaveForm from "../../components/form/SaveForm.tsx";
 import WorkoutApiGateway from "../../services/api/gateway/WorkoutApiGateway.tsx";
 import WorkoutDTO from "../../services/api/dtos/WorkoutDTO.tsx";
-import {TextField} from "@mui/material";
+import {SelectChangeEvent, TextField} from "@mui/material";
+import DropdownInput from "../../components/input/DropdownInput.tsx";
+import workoutRegistries from "../../constants/workoutRegistries.tsx";
 
 type WorkoutEditFormType = {
     workout: WorkoutDTO,
@@ -16,6 +18,13 @@ const WorkoutEditForm: React.FC<WorkoutEditFormType> = ({workout}) => {
     const [workoutUpdated, setWorkoutUpdated] = useState<WorkoutDTO>(workout);
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setWorkoutUpdated({
+            ...workoutUpdated,
+            [event.target.name]: event.target.value
+        });
+    }
+
+    const handleSelectChange = (event: SelectChangeEvent) => {
         setWorkoutUpdated({
             ...workoutUpdated,
             [event.target.name]: event.target.value
@@ -38,8 +47,8 @@ const WorkoutEditForm: React.FC<WorkoutEditFormType> = ({workout}) => {
                            name={"name"} value={workoutUpdated.name} onChange={handleInputChange} />
             </div>
             <div>
-                <TextField id="outlined-basic" label="Visibility" variant="outlined" size="small" required={true}
-                           name={"visibility"} value={workoutUpdated.visibility} onChange={handleInputChange} />
+                <DropdownInput label={"Status"} name={"visibility"} value={workoutUpdated.visibility} options={workoutRegistries.visibility}
+                           onSelectChange={handleSelectChange} required={true} />
             </div>
         </SaveForm>
     )

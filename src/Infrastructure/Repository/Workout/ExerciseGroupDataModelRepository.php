@@ -25,6 +25,8 @@ final class ExerciseGroupDataModelRepository extends AbstractBaseDataModelReposi
     {
         return $this->createQueryBuilder($this->getAlias())
             ->andWhere($this->getAlias().'.id = :groupId')
+            ->leftJoin($this->getAlias().'.workout', 'group_workout')
+            ->addSelect('group_workout')
             ->setParameter('groupId', $groupId)
             ->getQuery()->getOneOrNullResult();
     }
@@ -37,9 +39,10 @@ final class ExerciseGroupDataModelRepository extends AbstractBaseDataModelReposi
         return $this->createQueryBuilder($this->getAlias())
             ->andWhere($this->getAlias().'.workout = :workoutId')
             ->setParameter('workoutId', $workoutId)
+            ->leftJoin($this->getAlias().'.workout', 'group_workout')
             ->leftJoin($this->getAlias().'.exercises', 'group_exercises')
             ->leftJoin('group_exercises.movement', 'exercise_movement')
-            ->addSelect('group_exercises', 'exercise_movement')
+            ->addSelect('group_workout', 'group_exercises', 'exercise_movement')
             ->getQuery()->getResult();
     }
     protected function addParametersFromFilter(QueryBuilder $queryBuilder, FilterModelInterface $filter): AbstractBaseDataModelRepository

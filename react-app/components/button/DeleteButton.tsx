@@ -21,6 +21,7 @@ const DeleteButton: React.FC<DeleteButtonType> = ({ targetId, onConfirmDeleteFun
     const handleDeleteUser = () => {
         if (null !== confirmedTargetId) {
             onConfirmDeleteFunction(confirmedTargetId);
+            setConfirmedTargetId(null);
         }
     }
 

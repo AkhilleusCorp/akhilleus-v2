@@ -4,13 +4,22 @@ import websiteRoutes from "../../setup/router/websiteRoutes.tsx";
 import DetailsButton from "../../components/button/DetailsButton.tsx";
 import WorkoutDTO from "../../services/api/dtos/WorkoutDTO.tsx";
 import {Card, CardActions, CardContent, Typography} from "@mui/material";
+import WorkoutDeleteButton from "./WorkoutDeleteButton.tsx";
+import {useNavigate} from "react-router-dom";
 
 type WorkoutDetailsCardType = {
     workout: WorkoutDTO,
-    displayActions: boolean
+    displayReadActions: boolean,
+    displayWriteActions: boolean
 }
 
-const WorkoutPreviewCard: React.FC<WorkoutDetailsCardType> = ({ workout, displayActions }) => {
+const WorkoutPreviewCard: React.FC<WorkoutDetailsCardType> = ({ workout, displayReadActions, displayWriteActions }) => {
+    const navigate = useNavigate();
+
+    const onConfirmDelete = () => {
+        navigate(websiteRoutes.workout.list);
+    }
+
     return (
         <Card className={'margin-bottom-s'}>
             <CardContent>
@@ -23,14 +32,23 @@ const WorkoutPreviewCard: React.FC<WorkoutDetailsCardType> = ({ workout, display
                 <Typography variant="body2" sx={{color: 'text.secondary'}}>
                     Status: {workout.status}
                 </Typography>
+                <Typography variant="body2" sx={{color: 'text.secondary'}}>
+                    Visibility: {workout.visibility}
+                </Typography>
             </CardContent>
 
-            {displayActions && (
-                <CardActions>
+            <CardActions>
+                {displayReadActions && (
                     <DetailsButton routeToDetailsPage={websiteRoutes.workout.details(workout.id)}/>
-                    <EditButton routeToEditPage={websiteRoutes.workout.edit(workout.id)} />
-                </CardActions>
-            )}
+                )}
+
+                {displayWriteActions  && (
+                    <>
+                        <EditButton routeToEditPage={websiteRoutes.workout.edit(workout.id)} />
+                        <WorkoutDeleteButton workoutId={workout.id} callbackFunction={onConfirmDelete} />
+                    </>
+                )}
+            </CardActions>
         </Card>
     );
 }

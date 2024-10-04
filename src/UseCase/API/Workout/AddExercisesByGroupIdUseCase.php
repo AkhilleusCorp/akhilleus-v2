@@ -17,7 +17,6 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 final class AddExercisesByGroupIdUseCase implements UseCaseInterface
 {
     public function __construct(
-        private readonly WorkoutDataModelProviderGateway        $workoutProvider,
         private readonly ExerciseGroupDataModelProviderGateway  $groupProvider,
         private readonly MovementDataModelProviderGateway       $movementProvider,
         private readonly ExerciseDataModelFactory               $exerciseDataModelFactory,
@@ -29,14 +28,13 @@ final class AddExercisesByGroupIdUseCase implements UseCaseInterface
 
     public function execute(int $workoutId, int $groupId, string $dataProfile = DataProfileRegistry::DATA_PROFILE_MEMBER): SingleObjectViewModel
     {
-        $workout = $this->workoutProvider->getWorkoutById($workoutId);
-        if (null === $workout) {
-            throw new NotFoundHttpException("Workout #$workoutId cannot be found");
-        }
-
         $group = $this->groupProvider->getExerciseGroupById($groupId);
         if (null === $group) {
             throw new NotFoundHttpException("Exercise group #$groupId cannot be found");
+        }
+
+        if ($workoutId !== $group->workout->id) {
+            throw new NotFoundHttpException("Exercise group #$groupId is not part of Workout #$workoutId");
         }
 
         $movementFilterModel = new GetManyMovementsFilterModel();

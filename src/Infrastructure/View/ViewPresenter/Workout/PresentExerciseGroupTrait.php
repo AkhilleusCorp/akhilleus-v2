@@ -12,6 +12,7 @@ trait PresentExerciseGroupTrait
     {
         $groupedExercises = new ExerciseGroupDataViewModel();
         $groupedExercises->id = $data->id;
+        $groupedExercises->workoutId = $data->workout->id;
         $groupedExercises->movementIds = $data->movementIds;
 
         foreach ($data->getExercises() as $exercise) {

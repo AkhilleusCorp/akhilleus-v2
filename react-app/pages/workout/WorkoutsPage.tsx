@@ -49,7 +49,7 @@ const WorkoutsPage: React.FC = () => {
 
             <div className={"float-left padding-left-m one-thirds-width"}>
                 {workoutPreview && (
-                    <WorkoutPreviewCard workout={workoutPreview} displayActions={true}/>
+                    <WorkoutPreviewCard workout={workoutPreview} displayReadActions={true} displayWriteActions={false}/>
                 )}
             </div>
         </AdminLayout>

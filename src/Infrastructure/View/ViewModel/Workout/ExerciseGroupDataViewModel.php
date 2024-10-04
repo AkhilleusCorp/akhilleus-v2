@@ -13,6 +13,9 @@ final class ExerciseGroupDataViewModel implements MultipleObjectItemDataViewMode
     public int $id;
 
     #[Groups(['admin', 'member'])]
+    public int $workoutId;
+
+    #[Groups(['admin', 'member'])]
     public array $movementIds;
 
     #[Groups(['admin', 'member'])]

@@ -30,7 +30,7 @@ class ExerciseGroupApiGateway extends AbstractApiGateway {
         return response.data.data;
     }
 
-    static async deleteUser (workoutId: QueryId, groupId: QueryId): Promise<void> {
+    static async deleteExerciseGroup (workoutId: QueryId, groupId: QueryId): Promise<void> {
         const response = await axios.delete(apiRoutes.exerciseGroup.delete(workoutId, groupId));
 
         if (response.status !== 200) {

@@ -50,7 +50,7 @@ const UsersPage: React.FC = () => {
 
                 <div className={"float-right one-thirds-width"}>
                     {userPreview && (
-                        <UserPreviewCard user={userPreview} displayActions={true}/>
+                        <UserPreviewCard user={userPreview} displayReadActions={true} displayWriteActions={false}/>
                     )}
                 </div>
             </div>
