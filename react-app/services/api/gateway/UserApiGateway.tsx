@@ -3,9 +3,10 @@ import AbstractApiGateway from "./AbstractApiGateway.tsx";
 import UserDTO from "../dtos/UserDTO.tsx";
 import apiRoutes from "../apiRoutes.tsx";
 import UsersListFilters from "../filters/UsersListFilters.tsx";
+import QueryId from "../../../utils/interfaces/QueryId.tsx";
 
 class UserApiGateway extends AbstractApiGateway {
-    static async getOneUser (userId: string|number): Promise<UserDTO|null> {
+    static async getOneUser (userId: QueryId): Promise<UserDTO|null> {
         const response = await axios.get(apiRoutes.user.details(userId));
 
         if (response.status !== 200) {
@@ -56,7 +57,7 @@ class UserApiGateway extends AbstractApiGateway {
         return response.data;
     }
 
-    static async deleteUser (userId: string|number): Promise<void> {
+    static async deleteUser (userId: QueryId): Promise<void> {
         const response = await axios.delete(apiRoutes.user.delete(userId));
 
         if (response.status !== 200) {

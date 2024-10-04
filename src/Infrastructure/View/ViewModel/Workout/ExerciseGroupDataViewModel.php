@@ -10,7 +10,7 @@ use Symfony\Component\Serializer\Attribute\Groups;
 final class ExerciseGroupDataViewModel implements MultipleObjectItemDataViewModelInterface, SingleObjectDataViewModelInterface
 {
     #[Groups(['admin', 'member'])]
-    public int $groupId;
+    public int $id;
 
     #[Groups(['admin', 'member'])]
     public array $movementIds;

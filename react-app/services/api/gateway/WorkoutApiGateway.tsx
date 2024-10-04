@@ -3,9 +3,10 @@ import AbstractApiGateway from "./AbstractApiGateway.tsx";
 import WorkoutDTO from "../dtos/WorkoutDTO.tsx";
 import WorkoutsListFilters from "../filters/WorkoutsListFilters.tsx";
 import apiRoutes from "../apiRoutes.tsx";
+import QueryId from "../../../utils/interfaces/QueryId.tsx";
 
 class WorkoutApiGateway extends AbstractApiGateway {
-    static async getOneWorkout (workoutId: string|number): Promise<WorkoutDTO|null> {
+    static async getOneWorkout (workoutId: QueryId): Promise<WorkoutDTO|null> {
         const response = await axios.get(apiRoutes.workout.details(workoutId));
 
         if (response.status !== 200) {
@@ -56,7 +57,7 @@ class WorkoutApiGateway extends AbstractApiGateway {
         return response.data.data;
     }
 
-    static async deleteWorkout (workoutId: string|number): Promise<void> {
+    static async deleteWorkout (workoutId: QueryId): Promise<void> {
         const response = await axios.delete(apiRoutes.workout.delete(workoutId));
 
         if (response.status !== 200) {

@@ -12,7 +12,7 @@ type WorkoutDetailsCardType = {
 
 const WorkoutPreviewCard: React.FC<WorkoutDetailsCardType> = ({ workout, displayActions }) => {
     return (
-        <Card>
+        <Card className={'margin-bottom-s'}>
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                     {workout.name}

@@ -7,12 +7,17 @@ import useGetOneWorkoutById from "../../hooks/workout/useGetOneWorkoutById.tsx";
 import EditButton from "../../components/button/EditButton.tsx";
 import websiteRoutes from "../../setup/router/websiteRoutes.tsx";
 import WorkoutDeleteButton from "../../features/workout/WorkoutDeleteButton.tsx";
+import useGetExerciseGroupsByWorkoutId from "../../hooks/workout/useGetExerciseGroupsByWorkoutId.tsx";
+import ExerciseGroupCard from "../../features/exerciseGroup/ExerciseGroupCard.tsx";
+import {Typography} from "@mui/material";
 
 const WorkoutDetailsPage: React.FC = () => {
     const { workoutId } = useParams<{ workoutId: string }>();
     const navigate = useNavigate();
 
     const workout = useGetOneWorkoutById(workoutId);
+    const exerciseGroups = useGetExerciseGroupsByWorkoutId(workoutId);
+
     if (!workout) {
         return <ErrorPage />
     }
@@ -29,6 +34,15 @@ const WorkoutDetailsPage: React.FC = () => {
                 <WorkoutDeleteButton workoutId={workout.id} callbackFunction={onConfirmDelete} />
             </div>
             <WorkoutPreviewCard workout={workout} displayActions={false}/>
+
+            <Typography gutterBottom variant="h5" component="div">
+                Exercises
+            </Typography>
+            { exerciseGroups.map((group: any) => (
+                <div key={'div-'+group.id}>
+                    <ExerciseGroupCard group={group} />
+                </div>
+            ))}
         </AdminLayout>
 )
 }
