@@ -5,11 +5,16 @@ import {Box, Collapse, Divider, List, ListItem, ListItemButton, ListItemText} fr
 import {ExpandLess, ExpandMore} from "@mui/icons-material";
 
 const AdminSidebar: React.FC = () => {
-    const [open, setOpen] = useState(false);
+    const [openTraining, setOpenTraining] = useState(false);
+    const [openReferences, setOpenReferences] = useState(false);
 
-    const handleClick = () => {
-        setOpen(!open);
-    };
+    const handleTrainingClick = () => {
+        setOpenTraining(!openTraining);
+    }
+
+    const handleReferencesClick = () => {
+        setOpenReferences(!openReferences);
+    }
 
     return (
         <aside id={"main-logged-menu"}>
@@ -27,19 +32,14 @@ const AdminSidebar: React.FC = () => {
                         Dashboard
                     </ListItemText>
                 </ListItem>
-                <ListItem component={Link} to={websiteRoutes.user.list}>
-                    <ListItemText >
-                        Users
-                    </ListItemText>
-                </ListItem>
                 <Box>
-                    <ListItemButton onClick={handleClick}>
+                    <ListItemButton onClick={handleTrainingClick}>
                         <ListItemText >
                             Training
                         </ListItemText>
-                        {open ? <ExpandLess /> : <ExpandMore />}
+                        {openTraining ? <ExpandLess /> : <ExpandMore />}
                     </ListItemButton>
-                    <Collapse in={open} timeout="auto" unmountOnExit>
+                    <Collapse in={openTraining} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
                             <ListItem sx={{ pl: 4 }} component={Link} to={websiteRoutes.workout.list}>
                                 <ListItemText>
@@ -49,6 +49,29 @@ const AdminSidebar: React.FC = () => {
                         </List>
                     </Collapse>
                 </Box>
+                <ListItem component={Link} to={websiteRoutes.user.list}>
+                    <ListItemText >
+                        Users
+                    </ListItemText>
+                </ListItem>
+                <Box>
+                    <ListItemButton onClick={handleReferencesClick}>
+                        <ListItemText >
+                            References
+                        </ListItemText>
+                        {openReferences ? <ExpandLess /> : <ExpandMore />}
+                    </ListItemButton>
+                    <Collapse in={openReferences} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+                            <ListItem sx={{ pl: 4 }} component={Link} to={websiteRoutes.equipment.list}>
+                                <ListItemText >
+                                    Equipments
+                                </ListItemText>
+                            </ListItem>
+                        </List>
+                    </Collapse>
+                </Box>
+
             </List>
         </aside>
     );

@@ -15,6 +15,10 @@ import WorkoutCreatePage from "../../pages/workout/WorkoutCreatePage.tsx";
 import WorkoutUpdatePage from "../../pages/workout/WorkoutUpdatePage.tsx";
 import WorkoutDetailsPage from "../../pages/workout/WorkoutDetailsPage.tsx";
 import websiteRoutes from "./websiteRoutes.tsx";
+import EquipmentsPage from "../../pages/equipment/EquipmentsPage.tsx";
+import EquipmentCreatePage from "../../pages/equipment/EquipmentCreatePage.tsx";
+import EquipmentUpdatePage from "../../pages/equipment/EquipmentUpdatePage.tsx";
+import EquipmentDetailsPage from "../../pages/equipment/EquipmentDetailsPage.tsx";
 
 const routerConfig = createBrowserRouter([
     {
@@ -56,6 +60,23 @@ const routerConfig = createBrowserRouter([
                     }, {
                         path: websiteRoutes.workout.details(':workoutId'),
                         element: <WorkoutDetailsPage />,
+                    }
+                ]
+            }, {
+                path: websiteRoutes.equipment.list,
+                children: [
+                    {
+                        index: true,
+                        element: <EquipmentsPage />,
+                    }, {
+                        path: websiteRoutes.equipment.create,
+                        element: <EquipmentCreatePage />,
+                    }, {
+                        path: websiteRoutes.equipment.edit(':equipmentId'),
+                        element: <EquipmentUpdatePage />,
+                    }, {
+                        path: websiteRoutes.equipment.details(':equipmentId'),
+                        element: <EquipmentDetailsPage />,
                     }
                 ]
             },

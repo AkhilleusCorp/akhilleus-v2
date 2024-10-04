@@ -56,7 +56,7 @@ final class EquipmentController extends AbstractAPIController
         );
     }
 
-    #[Route('/users/{id}', name:'user_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
+    #[Route('/equipments/{id}', name:'equipment_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
     public function updateOneById(
         int $id,
         Request $request,
