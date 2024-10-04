@@ -15,7 +15,7 @@ trait PresentExerciseGroupTrait
         $groupedExercises->workoutId = $data->workout->id;
         $groupedExercises->movementIds = $data->movementIds;
 
-        foreach ($data->getExercises() as $exercise) {
+        foreach ($data->exercises->toArray() as $exercise) {
             $embedded = new EmbeddedExerciseDataModelView();
             $embedded->id = $exercise->id;
             $embedded->movementId = $exercise->movement->id;

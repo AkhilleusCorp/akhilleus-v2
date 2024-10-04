@@ -31,23 +31,4 @@ class ExerciseGroupDataModel implements DataModelInterface
     {
         $this->exercises = new ArrayCollection();
     }
-
-    /**
-     * @return ExerciseDataModel[]
-     */
-    public function getExercises(): array
-    {
-        return $this->exercises->toArray();
-    }
-
-    /**
-     * @param ExerciseDataModel[] $exercises
-     */
-    public function setExercises(array $exercises): void
-    {
-        $this->exercises = new ArrayCollection();
-        foreach ($exercises as $exercise) {
-            $this->exercises->add($exercise);
-        }
-    }
 }

@@ -18,4 +18,13 @@ final class SingleWorkoutDataViewModel implements SingleObjectDataViewModelInter
 
     #[Groups(['admin', 'member'])]
     public string $visibility;
+
+    #[Groups(['admin', 'member'])]
+    public ?string $duration;
+
+    #[Groups(['admin', 'member'])]
+    public ?string $endDate;
+
+    #[Groups(['admin', 'member'])]
+    public ?string $plannedDate;
 }

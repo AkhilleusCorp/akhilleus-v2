@@ -6,6 +6,7 @@ import WorkoutDTO from "../../services/api/dtos/WorkoutDTO.tsx";
 import {Card, CardActions, CardContent, Typography} from "@mui/material";
 import WorkoutDeleteButton from "./WorkoutDeleteButton.tsx";
 import {useNavigate} from "react-router-dom";
+import workoutRegistries from "../../constants/workoutRegistries.tsx";
 
 type WorkoutDetailsCardType = {
     workout: WorkoutDTO,
@@ -30,11 +31,30 @@ const WorkoutPreviewCard: React.FC<WorkoutDetailsCardType> = ({ workout, display
                     ID: {workout.id}
                 </Typography>
                 <Typography variant="body2" sx={{color: 'text.secondary'}}>
-                    Status: {workout.status}
+                    Status: {workoutRegistries.status[workout.status]}
                 </Typography>
                 <Typography variant="body2" sx={{color: 'text.secondary'}}>
-                    Visibility: {workout.visibility}
+                    Visibility: {workoutRegistries.visibility[workout.visibility]}
                 </Typography>
+
+                { workout.duration && (
+                    <Typography variant="body2" sx={{color: 'text.secondary'}}>
+                        Duration: {workout.duration}
+                    </Typography>
+                )}
+
+                { workout.endDate && (
+                    <Typography variant="body2" sx={{color: 'text.secondary'}}>
+                        Completed: {workout.endDate}
+                    </Typography>
+                )}
+
+                { workout.plannedDate && (
+                    <Typography variant="body2" sx={{color: 'text.secondary'}}>
+                        Planned for: {workout.plannedDate}
+                    </Typography>
+                )}
+
             </CardContent>
 
             <CardActions>

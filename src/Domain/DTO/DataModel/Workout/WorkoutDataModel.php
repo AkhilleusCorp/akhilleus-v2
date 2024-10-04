@@ -34,30 +34,17 @@ class WorkoutDataModel implements DataModelInterface
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
     public ?\DateTimeImmutable $endDate;
 
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
+    public ?\DateTimeImmutable $plannedDate;
+
+    #[ORM\Column(type: Types::INTEGER, nullable: true)]
+    public ?int $duration; // Stored in seconds
+
     #[ORM\OneToMany(targetEntity: ExerciseGroupDataModel::class, mappedBy: 'workout', cascade: ['remove'])]
     public Collection $exerciseGroups;
 
     public function __construct()
     {
         $this->exerciseGroups = new ArrayCollection();
-    }
-
-    /**
-     * @return ExerciseGroupDataModel[]
-     */
-    public function getExerciseGroups(): array
-    {
-        return $this->exerciseGroups->toArray();
-    }
-
-    /**
-     * @param ExerciseGroupDataModel[] $groups
-     */
-    public function setExerciseGroups(array $groups): void
-    {
-        $this->exerciseGroups = new ArrayCollection();
-        foreach ($groups as $group) {
-            $this->exerciseGroups->add($group);
-        }
     }
 }

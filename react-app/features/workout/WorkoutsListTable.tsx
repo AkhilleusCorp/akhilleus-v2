@@ -2,6 +2,7 @@ import React from "react";
 import {Paper, Table,TableBody,TableCell, TableContainer, TableHead, TableRow} from '@mui/material';
 import WorkoutsListFilters from "../../services/api/filters/WorkoutsListFilters.tsx";
 import useGetManyWorkoutsByParams from "../../hooks/workout/useGetManyWorkoutByParams.tsx";
+import workoutRegistries from "../../constants/workoutRegistries.tsx";
 
 
 type WorkoutListTableType = {
@@ -37,7 +38,7 @@ const UsersListTable: React.FC<WorkoutListTableType> = ({ filters, refreshKey, m
                                 {workout.name}
                             </a>
                         </TableCell>
-                        <TableCell>{workout.status}</TableCell>
+                        <TableCell>{workoutRegistries.status[workout.status]}</TableCell>
                     </TableRow>
                 ))}
                 </TableBody>
