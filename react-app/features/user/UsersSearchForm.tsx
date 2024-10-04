@@ -54,7 +54,7 @@ const UsersSearchForm: React.FC<UserSearchFormType> = ({defaultFilters, callback
                                name={"email"} value={filters.email ?? ''} onChange={handleInputChange} />
                 </div>
                 <div>
-                    <DropdownInput label={"Type"} name={"type"} value={filters.type} options={userRegistries.types}
+                    <DropdownInput label={"Type"} name={"type"} value={filters.type} options={userRegistries.type}
                                    onSelectChange={handleSelectChange} required={false}/>
                 </div>
                 <div>

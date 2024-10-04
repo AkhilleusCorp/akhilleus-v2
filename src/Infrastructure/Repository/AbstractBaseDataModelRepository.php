@@ -10,9 +10,7 @@ use Doctrine\ORM\QueryBuilder;
 abstract class AbstractBaseDataModelRepository extends ServiceEntityRepository
 {
     protected abstract function getAlias(): string;
-
     protected abstract function addParametersFromFilter(QueryBuilder $queryBuilder, FilterModelInterface $filter): self;
-
 
     public function getByFilterModel(FilterModelInterface $filter): array
     {

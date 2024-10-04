@@ -34,7 +34,7 @@ final class GetOneWorkoutByIdUseCaseTest extends AbstractIntegrationTest
         $viewData = $viewModel->data;
 
         $this->assertEquals($workoutId, $viewData->id);
-        $this->assertEquals('InProgressPrivate', $viewData->name);
+        $this->assertEquals('In Progress Private', $viewData->name);
         $this->assertEquals(WorkoutStatusRegistry::WORKOUT_STATUS_IN_PROGRESS, $viewData->status);
         $this->assertEquals(WorkoutVisibilityRegistry::WORKOUT_VISIBILITY_PRIVATE, $viewData->visibility);
     }
@@ -47,7 +47,7 @@ final class GetOneWorkoutByIdUseCaseTest extends AbstractIntegrationTest
         $viewData = $viewModel->data;
 
         $this->assertEquals($workoutId, $viewData->id);
-        $this->assertEquals('InProgressPrivate', $viewData->name);
+        $this->assertEquals('In Progress Private', $viewData->name);
         $this->assertEquals(WorkoutStatusRegistry::WORKOUT_STATUS_IN_PROGRESS, $viewData->status);
         $this->assertEquals(WorkoutVisibilityRegistry::WORKOUT_VISIBILITY_PRIVATE, $viewData->visibility);
     }

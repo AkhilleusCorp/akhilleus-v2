@@ -24,7 +24,7 @@ final class EquipmentDataModelRepository extends AbstractBaseDataModelRepository
         return 'equipment';
     }
 
-    protected function addParametersFromFilter(QueryBuilder $queryBuilder, FilterModelInterface $filter): self
+    protected function addParametersFromFilter(QueryBuilder $queryBuilder, FilterModelInterface $filter): AbstractBaseDataModelRepository
     {
         return $this;
     }

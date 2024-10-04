@@ -44,7 +44,7 @@ final class MovementDataModelRepository extends AbstractBaseDataModelRepository 
         return $this->countByFilterModel($filter);
     }
 
-    protected function addParametersFromFilter(QueryBuilder $queryBuilder, GetManyMovementsFilterModel|FilterModelInterface $filter): self
+    public function addParametersFromFilter(QueryBuilder $queryBuilder, GetManyMovementsFilterModel|FilterModelInterface $filter): self
     {
         if (false === empty($filter->ids)) {
             $queryBuilder->andWhere('movement.id IN (:ids)')

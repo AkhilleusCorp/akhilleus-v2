@@ -29,7 +29,7 @@ final class MuscleFixtures extends AbstractFixtures
             $muscle = $this->dataModelFactory->buildNewDataModel($source);
             $manager->persist($muscle);
 
-            $this->addReference("muscle-{$muscle->name}", $muscle);
+            $this->addRef("muscle", $muscle->name, $muscle);
         }
     }
 

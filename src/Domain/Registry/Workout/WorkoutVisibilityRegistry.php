@@ -10,6 +10,7 @@ interface WorkoutVisibilityRegistry
     public const WORKOUT_VISIBILITY_FOLLOWERS = 'followers';
     public const WORKOUT_VISIBILITY_SPECIFIC_CLIENT = 'specific-client';
     public const WORKOUT_VISIBILITY_ALL_CLIENT = 'all-clients';
+
     public const WORKOUT_VISIBILITIES = [
         self::WORKOUT_VISIBILITY_PRIVATE,
         self::WORKOUT_VISIBILITY_PUBLIC,

@@ -4,13 +4,23 @@ import websiteRoutes from "../../setup/router/websiteRoutes.tsx";
 import DetailsButton from "../../components/button/DetailsButton.tsx";
 import UserDTO from "../../services/api/dtos/UserDTO.tsx";
 import {Card, CardActions, CardContent, Typography} from "@mui/material";
+import {useNavigate} from "react-router-dom";
+import UserDeleteButton from "./UserDeleteButton.tsx";
+import userRegistries from "../../constants/userRegistries.tsx";
 
 type UserDetailsCardType = {
     user: UserDTO,
-    displayActions: boolean
+    displayReadActions: boolean,
+    displayWriteActions: boolean
 }
 
-const UserPreviewCard: React.FC<UserDetailsCardType> = ({ user, displayActions }) => {
+const UserPreviewCard: React.FC<UserDetailsCardType> = ({ user, displayReadActions, displayWriteActions }) => {
+    const navigate = useNavigate();
+
+    const onConfirmDelete = () => {
+        navigate(websiteRoutes.user.list);
+    }
+
     return (
         <Card>
             <CardContent>
@@ -18,18 +28,32 @@ const UserPreviewCard: React.FC<UserDetailsCardType> = ({ user, displayActions }
                     {user.username}
                 </Typography>
 
-                <Typography variant="body2" sx={{ color: 'text.secondary' }}>ID: {user.id}</Typography>
-                <Typography variant="body2" sx={{ color: 'text.secondary' }}>Status: {user.status}</Typography>
-                <Typography variant="body2" sx={{ color: 'text.secondary' }}>Email: {user.email}</Typography>
-                <Typography variant="body2" sx={{ color: 'text.secondary' }}>Type: {user.type}</Typography>
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                    ID: {user.id}
+                </Typography>
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                    Status: {userRegistries.status[user.status]}
+                </Typography>
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                    Email: {user.email}
+                </Typography>
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                    Type: {userRegistries.type[user.type]}
+                </Typography>
             </CardContent>
 
-            {displayActions && (
-                <CardActions>
+            <CardActions>
+                {displayReadActions && (
                     <DetailsButton routeToDetailsPage={websiteRoutes.user.details(user.id)}/>
-                    <EditButton routeToEditPage={websiteRoutes.user.edit(user.id)}/>
-                </CardActions>
-            )}
+                )}
+
+                {displayWriteActions && (
+                    <>
+                        <EditButton routeToEditPage={websiteRoutes.user.edit(user.id)}/>
+                        <UserDeleteButton userId={user.id} callbackFunction={onConfirmDelete}/>
+                    </>
+                )}
+            </CardActions>
         </Card>
     );
 }

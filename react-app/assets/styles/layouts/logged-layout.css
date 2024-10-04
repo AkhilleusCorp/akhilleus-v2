@@ -10,6 +10,8 @@
 
 body, html {
     height: 100%;
+    display: block;
+    overflow: auto;
     font-family: Arial, sans-serif;
     background-color: rgba(171, 171, 175, 0.13);
 }

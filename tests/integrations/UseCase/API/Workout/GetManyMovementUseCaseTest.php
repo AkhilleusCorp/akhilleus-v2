@@ -36,7 +36,7 @@ final class GetManyMovementUseCaseTest extends AbstractIntegrationTest
         /** @var PaginationViewModel $pagination */
         $pagination = $view->extra['pagination'];
 
-        $this->assertCount(4, $movements);
+        $this->assertCount(6, $movements);
         $this->assertEquals(GetManyMovementsFilterModel::DEFAULT_PAGE, $pagination->firstPage);
         $this->assertEquals(GetManyMovementsFilterModel::DEFAULT_PAGE, $pagination->currentPage);
         $this->assertEquals(GetManyMovementsFilterModel::DEFAULT_PAGE, $pagination->lastPage);
@@ -51,7 +51,7 @@ final class GetManyMovementUseCaseTest extends AbstractIntegrationTest
         /** @var PaginationViewModel $pagination */
         $pagination = $view->extra['pagination'];
 
-        $this->assertCount(4, $movements);
+        $this->assertCount(6, $movements);
         $this->assertEquals(GetManyMovementsFilterModel::DEFAULT_PAGE, $pagination->firstPage);
         $this->assertEquals(GetManyMovementsFilterModel::DEFAULT_PAGE, $pagination->currentPage);
         $this->assertEquals(GetManyMovementsFilterModel::DEFAULT_PAGE, $pagination->lastPage);

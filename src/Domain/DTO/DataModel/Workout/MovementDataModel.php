@@ -25,17 +25,17 @@ class MovementDataModel implements DataModelInterface
     #[ORM\JoinColumn(name: 'primary_muscle_id', referencedColumnName: 'id', onDelete: 'restrict')]
     public MuscleDataModel $primaryMuscle;
 
-    #[ORM\ManyToMany(targetEntity: MuscleDataModel::class, cascade: ['remove'])]
+    #[ORM\ManyToMany(targetEntity: MuscleDataModel::class)]
     #[ORM\JoinTable(name: 'MOVEMENTS_MUSCLES')]
     #[ORM\JoinColumn(name: 'movement_id', referencedColumnName: 'id', onDelete: 'restrict')]
     #[ORM\InverseJoinColumn(name: 'muscle_id', referencedColumnName: 'id')]
-    private Collection $auxiliaryMuscles;
+    public Collection $auxiliaryMuscles;
 
-    #[ORM\ManyToMany(targetEntity: EquipmentDataModel::class, cascade: ['remove'])]
+    #[ORM\ManyToMany(targetEntity: EquipmentDataModel::class)]
     #[ORM\JoinTable(name: 'MOVEMENTS_EQUIPMENTS')]
     #[ORM\JoinColumn(name: 'movement_id', referencedColumnName: 'id', onDelete: 'restrict')]
     #[ORM\InverseJoinColumn(name: 'equipment_id', referencedColumnName: 'id')]
-    private Collection $equipments;
+    public Collection $equipments;
 
     public function __construct()
     {
@@ -43,27 +43,17 @@ class MovementDataModel implements DataModelInterface
         $this->equipments = new ArrayCollection();
     }
 
-    public function getAuxiliaryMuscles(): array
-    {
-        return $this->auxiliaryMuscles->toArray();
-    }
-
     public function setAuxiliaryMuscles(array $muscles): void
     {
-        $this->auxiliaryMuscles = new ArrayCollection();
+        $this->auxiliaryMuscles->clear();
         foreach ($muscles as $muscle) {
             $this->auxiliaryMuscles->add($muscle);
         }
     }
 
-    public function getEquipments(): array
-    {
-        return $this->equipments->toArray();
-    }
-
     public function setEquipments(array $equipments): void
     {
-        $this->equipments = new ArrayCollection();
+        $this->equipments->clear();
         foreach ($equipments as $equipment) {
             $this->equipments->add($equipment);
         }

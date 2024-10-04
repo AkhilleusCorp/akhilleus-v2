@@ -7,14 +7,14 @@ const statuses: IndexedArray = {
 }
 
 const types: IndexedArray = {
-    'member': 'member',
-    'coach': 'coach',
-    'admin': 'admin'
+    'member': 'Member',
+    'coach': 'Coach',
+    'admin': 'Admin'
 }
 
 const userRegistries = {
     status: statuses,
-    types: types
+    type: types
 }
 
 export default userRegistries;

@@ -32,7 +32,7 @@ final class GetOneMovementByIdUseCaseTest extends AbstractIntegrationTest
         $viewData = $viewModel->data;
 
         $this->assertEquals($movementId, $viewData->id);
-        $this->assertEquals('Bench Press', $viewData->name);
+        $this->assertEquals('Bench press', $viewData->name);
         $this->assertEquals(5, $viewData->primaryMuscle->id);
         $this->assertEquals([], $viewData->auxiliaryMuscles);
         $this->assertEquals(1, $viewData->equipments[0]->id);
@@ -47,7 +47,7 @@ final class GetOneMovementByIdUseCaseTest extends AbstractIntegrationTest
         $viewData = $viewModel->data;
 
         $this->assertEquals($movementId, $viewData->id);
-        $this->assertEquals('Bench Press', $viewData->name);
+        $this->assertEquals('Bench press', $viewData->name);
         $this->assertEquals(5, $viewData->primaryMuscle->id);
         $this->assertEquals([], $viewData->auxiliaryMuscles);
         $this->assertEquals(1, $viewData->equipments[0]->id);

@@ -2,75 +2,73 @@
 
 namespace App\Infrastructure\DataFixtures\Workout;
 
-use App\Domain\DTO\SourceModel\Workout\CreateWorkoutSourceModel;
-use App\Domain\Factory\DataModelFactory\Workout\WorkoutDataModelFactory;
-use App\Domain\Factory\SourceModelFactory\Workout\CreateWorkoutSourceModelFactory;
-use App\Domain\Registry\Workout\WorkoutStatusRegistry;
+use App\Domain\DataTransformer\WorkoutDurationDataTransformer;
+use App\Domain\DataTransformer\WorkoutStatusDataTransformer;
+use App\Domain\DTO\DataModel\Workout\WorkoutDataModel;
 use App\Domain\Registry\Workout\WorkoutVisibilityRegistry;
 use App\Infrastructure\DataFixtures\AbstractFixtures;
 use Doctrine\Persistence\ObjectManager;
 
 final class WorkoutFixtures extends AbstractFixtures
 {
-    public function __construct(
-        private readonly CreateWorkoutSourceModelFactory $sourceModelFactory,
-        private readonly WorkoutDataModelFactory $dataModelFactory
-    ) {
-    }
-
     protected function explicitFixtures(ObjectManager $manager): void
     {
-        /** @var CreateWorkoutSourceModel[] $sources */
-        $sources = [];
+        foreach ($this->getWorkoutConfig() as $config) {
+            $workout = new WorkoutDataModel();
+            $workout->name = $config['name'];
+            $workout->visibility = $config['visibility'];
+            $workout->startDate = $config['startDate'];
+            $workout->endDate = $config['endDate'];
+            $workout->plannedDate = $config['plannedDate'];
+            $workout->duration = WorkoutDurationDataTransformer::computeDurationInSeconds($workout);
+            $workout->status = WorkoutStatusDataTransformer::computeStatus($workout);
 
-        $sources[] = $this->sourceModelFactory->buildSourceModel(
-            [
-                'name' => 'InProgressPrivate',
-                'status' => WorkoutStatusRegistry::WORKOUT_STATUS_IN_PROGRESS,
-                'visibility' => WorkoutVisibilityRegistry::WORKOUT_VISIBILITY_PRIVATE
-            ]
-        );
-
-        $sources[] = $this->sourceModelFactory->buildSourceModel(
-            [
-                'name' => 'PlanSpecificClient',
-                'status' => WorkoutStatusRegistry::WORKOUT_STATUS_PLANNED,
-                'visibility' => WorkoutVisibilityRegistry::WORKOUT_VISIBILITY_SPECIFIC_CLIENT
-            ]
-        );
-
-
-        $sources[] = $this->sourceModelFactory->buildSourceModel(
-            [
-                'name' => 'CompletedFriends',
-                'status' => WorkoutStatusRegistry::WORKOUT_STATUS_COMPLETED,
-                'visibility' => WorkoutVisibilityRegistry::WORKOUT_VISIBILITY_FRIENDS
-            ]
-        );
-
-        foreach ($sources as $source) {
-            $workout = $this->dataModelFactory->buildNewDataModel($source);
             $manager->persist($workout);
-            $this->addReference("user-{$workout->name}", $workout);
+
+            $this->addRef("workout", $workout->name, $workout);
         }
     }
 
     protected function volumeFixtures(ObjectManager $manager): void
     {
         for ($i = 1; $i < 50; $i++) {
-            $name = "workout{$i}";
-            $source = $this->sourceModelFactory->buildSourceModel(
-                [
-                    'name' => $name,
-                    'status' => WorkoutStatusRegistry::WORKOUT_STATUS_COMPLETED,
-                    'visibility' => WorkoutVisibilityRegistry::WORKOUT_VISIBILITY_PUBLIC
-                ]
-            );
+            $workout = new WorkoutDataModel();
+            $workout->name = "workout{$i}";
+            $workout->visibility = WorkoutVisibilityRegistry::WORKOUT_VISIBILITY_PUBLIC;
+            $workout->startDate = new \DateTimeImmutable('1day 2hours ago');
+            $workout->endDate = new \DateTimeImmutable('1 day 1hours ago');
+            $workout->plannedDate = null;
+            $workout->duration = WorkoutDurationDataTransformer::computeDurationInSeconds($workout);
+            $workout->status = WorkoutStatusDataTransformer::computeStatus($workout);
 
-            $workout = $this->dataModelFactory->buildNewDataModel($source);
             $manager->persist($workout);
 
-            $this->addReference("workout-{$name}", $workout);
+            $this->addRef("workout", $workout->name, $workout);
         }
+    }
+
+    private function getWorkoutConfig(): array
+    {
+        return [
+            [
+                'name' => 'In Progress Private',
+                'startDate' => new \DateTimeImmutable('5min ago'),
+                'endDate' => null,
+                'plannedDate' => null,
+                'visibility' => WorkoutVisibilityRegistry::WORKOUT_VISIBILITY_PRIVATE
+            ], [
+                'name' => 'Plan Specific Client',
+                'startDate' => null,
+                'endDate' => null,
+                'plannedDate' => new \DateTimeImmutable('2days'),
+                'visibility' => WorkoutVisibilityRegistry::WORKOUT_VISIBILITY_SPECIFIC_CLIENT
+            ], [
+                'name' => 'Completed Friends',
+                'startDate' => new \DateTimeImmutable('2hours ago'),
+                'endDate' => new \DateTimeImmutable('1hour ago'),
+                'plannedDate' => null,
+                'visibility' => WorkoutVisibilityRegistry::WORKOUT_VISIBILITY_FRIENDS
+            ]
+        ];
     }
 }

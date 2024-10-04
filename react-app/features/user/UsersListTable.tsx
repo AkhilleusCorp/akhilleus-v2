@@ -2,6 +2,7 @@ import React from "react";
 import {Paper, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow} from '@mui/material';
 import UsersListFilters from "../../services/api/filters/UsersListFilters.tsx";
 import useGetManyUsersByParams from "../../hooks/user/useGetManyUserByParams.tsx";
+import userRegistries from "../../constants/userRegistries.tsx";
 
 
 type UsersListTableType = {
@@ -39,9 +40,9 @@ const UsersListTable: React.FC<UsersListTableType> = ({ filters, refreshKey, mai
                                     {user.username}
                                 </a>
                             </TableCell>
-                            <TableCell>{user.status}</TableCell>
+                            <TableCell>{userRegistries.status[user.status]}</TableCell>
                             <TableCell>{user.email}</TableCell>
-                            <TableCell>{user.type}</TableCell>
+                            <TableCell>{userRegistries.type[user.type]}</TableCell>
                         </TableRow>
                         ))}
                 </TableBody>

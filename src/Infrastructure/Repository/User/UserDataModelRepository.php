@@ -49,7 +49,7 @@ final class UserDataModelRepository extends AbstractBaseDataModelRepository impl
         return $this->countByFilterModel($filter);
     }
 
-    protected function addParametersFromFilter(QueryBuilder $queryBuilder, GetManyUsersFilterModel|FilterModelInterface $filter): self
+    public function addParametersFromFilter(QueryBuilder $queryBuilder, GetManyUsersFilterModel|FilterModelInterface $filter): self
     {
         if (false === empty($filter->ids)) {
             $queryBuilder->andWhere('user.id IN (:ids)')

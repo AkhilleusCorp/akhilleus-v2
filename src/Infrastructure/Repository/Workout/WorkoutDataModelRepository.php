@@ -12,6 +12,7 @@ use Doctrine\Persistence\ManagerRegistry;
 
 final class WorkoutDataModelRepository extends AbstractBaseDataModelRepository implements WorkoutDataModelProviderGateway
 {
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, WorkoutDataModel::class);
@@ -40,7 +41,7 @@ final class WorkoutDataModelRepository extends AbstractBaseDataModelRepository i
         return $this->countByFilterModel($filter);
     }
 
-    protected function addParametersFromFilter(QueryBuilder $queryBuilder, GetManyWorkoutsFilterModel|FilterModelInterface $filter): self
+    public function addParametersFromFilter(QueryBuilder $queryBuilder, GetManyWorkoutsFilterModel|FilterModelInterface $filter): self
     {
         if (false === empty($filter->ids)) {
             $queryBuilder->andWhere('workout.id IN (:ids)')

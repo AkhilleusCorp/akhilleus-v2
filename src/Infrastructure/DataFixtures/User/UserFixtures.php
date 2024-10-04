@@ -47,7 +47,8 @@ final class UserFixtures extends AbstractFixtures
 
         foreach ($users as $user) {
             $manager->persist($user);
-            $this->addReference("user-".$user->username, $user);
+
+            $this->addRef("user", $user->username, $user);
         }
     }
 
@@ -63,7 +64,8 @@ final class UserFixtures extends AbstractFixtures
             }
 
             $manager->persist($user);
-            $this->addReference("user-{$user->username}", $user);
+
+            $this->addRef("user", $user->username, $user);
         }
     }
 

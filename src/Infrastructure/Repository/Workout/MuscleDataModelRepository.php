@@ -24,7 +24,7 @@ final class MuscleDataModelRepository extends AbstractBaseDataModelRepository im
         return 'muscle';
     }
 
-    protected function addParametersFromFilter(QueryBuilder $queryBuilder, FilterModelInterface $filter): self
+    protected function addParametersFromFilter(QueryBuilder $queryBuilder, FilterModelInterface $filter): AbstractBaseDataModelRepository
     {
         return $this;
     }
