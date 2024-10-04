@@ -7,7 +7,7 @@ use App\Domain\Registry\Workout\WorkoutStatusRegistry;
 
 final class WorkoutStatusDataTransformer
 {
-    public static function computeStatus (WorkoutDataModel $workout): string
+    public static function computeStatus(WorkoutDataModel $workout): string
     {
         if (null !== $workout->endDate && null !== $workout->startDate) {
             return WorkoutStatusRegistry::WORKOUT_STATUS_COMPLETED;

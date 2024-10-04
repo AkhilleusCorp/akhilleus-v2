@@ -26,7 +26,8 @@ final class ExerciseGroupDataModelRepository extends AbstractBaseDataModelReposi
         return $this->createQueryBuilder($this->getAlias())
             ->andWhere($this->getAlias().'.id = :groupId')
             ->leftJoin($this->getAlias().'.workout', 'group_workout')
-            ->addSelect('group_workout')
+            ->leftJoin($this->getAlias().'.exercises', 'group_exercises')
+            ->addSelect('group_workout', 'group_exercises')
             ->setParameter('groupId', $groupId)
             ->getQuery()->getOneOrNullResult();
     }

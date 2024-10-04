@@ -29,16 +29,16 @@ class WorkoutDataModel implements DataModelInterface
     public string $visibility = WorkoutVisibilityRegistry::WORKOUT_VISIBILITY_FRIENDS;
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
-    public ?\DateTimeImmutable $startDate;
+    public ?\DateTimeImmutable $startDate = null;
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
-    public ?\DateTimeImmutable $endDate;
+    public ?\DateTimeImmutable $endDate = null;
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
-    public ?\DateTimeImmutable $plannedDate;
+    public ?\DateTimeImmutable $plannedDate = null;
 
     #[ORM\Column(type: Types::INTEGER, nullable: true)]
-    public ?int $duration; // Stored in seconds
+    public ?int $duration = null; // Stored in seconds
 
     #[ORM\OneToMany(targetEntity: ExerciseGroupDataModel::class, mappedBy: 'workout', cascade: ['remove'])]
     public Collection $exerciseGroups;
