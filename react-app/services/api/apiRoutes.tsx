@@ -1,9 +1,10 @@
 import QueryId from "../../utils/interfaces/QueryId.tsx";
 
+const EQUIPMENT_API_HOST = 'https://api.akhilleus.com:8000/api/equipments';
+const MOVEMENT_API_HOST = 'https://api.akhilleus.com:8000/api/movements';
+const MUSCLE_API_HOST = 'https://api.akhilleus.com:8000/api/muscles';
 const USER_API_HOST = 'https://api.akhilleus.com:8000/api/users';
 const WORKOUT_API_HOST = 'https://api.akhilleus.com:8000/api/workouts';
-const EQUIPMENT_API_HOST = 'https://api.akhilleus.com:8000/api/equipments';
-const MUSCLE_API_HOST = 'https://api.akhilleus.com:8000/api/muscles';
 
 const apiRoutes = {
     user: {
@@ -38,6 +39,13 @@ const apiRoutes = {
         details: (muscleId: QueryId) => `${MUSCLE_API_HOST}/${muscleId}`,
         update: (muscleId: QueryId) => `${MUSCLE_API_HOST}/${muscleId}`,
         delete: (muscleId: QueryId) => `${MUSCLE_API_HOST}/${muscleId}`,
+    },
+    movement: {
+        create: MOVEMENT_API_HOST,
+        list: MOVEMENT_API_HOST,
+        details: (movementId: QueryId) => `${MOVEMENT_API_HOST}/${movementId}`,
+        update: (movementId: QueryId) => `${MOVEMENT_API_HOST}/${movementId}`,
+        delete: (movementId: QueryId) => `${MOVEMENT_API_HOST}/${movementId}`,
     },
 }
 

@@ -4,9 +4,9 @@ import {Link} from "react-router-dom";
 import websiteRoutes from "../../setup/router/websiteRoutes.tsx";
 import MusclesListFilters from "../../services/api/filters/MusclesListFilters.tsx";
 import MuscleDTO from "../../services/api/dtos/MuscleDTO.tsx";
-import MusclePreviewCard from "../../features/workout/MusclePreviewCard.tsx";
-import MusclesSearchForm from "../../features/workout/MusclesSearchForm.tsx";
-import MusclesListTable from "../../features/workout/MusclesListTable.tsx";
+import MusclePreviewCard from "../../features/muscle/MusclePreviewCard.tsx";
+import MusclesSearchForm from "../../features/muscle/MusclesSearchForm.tsx";
+import MusclesListTable from "../../features/muscle/MusclesListTable.tsx";
 import MuscleApiGateway from "../../services/api/gateway/MuscleApiGateway.tsx";
 
 const MusclesPage: React.FC = () => {

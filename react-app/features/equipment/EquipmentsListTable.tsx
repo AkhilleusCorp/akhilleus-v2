@@ -10,7 +10,7 @@ type EquipmentListTableType = {
     mainLinkClickCallback: (equipmentId: number) => void;
 }
 
-const UsersListTable: React.FC<EquipmentListTableType> = ({ filters, refreshKey, mainLinkClickCallback }) => {
+const EquipementsListTable: React.FC<EquipmentListTableType> = ({ filters, refreshKey, mainLinkClickCallback }) => {
     const equipments = useGetManyEquipmentsByParams(filters, refreshKey);
 
     const onNameClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>, equipmentId: number) => {
@@ -44,4 +44,4 @@ const UsersListTable: React.FC<EquipmentListTableType> = ({ filters, refreshKey,
     );
 }
 
-export default UsersListTable;
+export default EquipementsListTable;

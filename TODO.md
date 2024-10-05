@@ -1,4 +1,6 @@
 ## Refactoring
+### React APP
+ * Manipulate QueryId object instead of strings for Ids
 
 ### Add movement into workout !
 
@@ -27,9 +29,3 @@
 ## React APP
 ### Security
  * Fetch and use token to make api call in order to secure it (and remove public access)
-### Movement
- * List
- * Details
- * Add
- * Update
- * Delete
