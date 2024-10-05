@@ -53,8 +53,8 @@ final class MovementFixtures extends AbstractFixtures implements DependentFixtur
             ],
             [
                 'name' => 'Back squat',
-                'primaryMuscleRef' => 'muscle-quads',
-                'auxiliaryMusclesRefs' => ['muscle-glutes', 'muscle-hamstring'],
+                'primaryMuscleRef' => 'muscle-quadriceps',
+                'auxiliaryMusclesRefs' => ['muscle-glutes', 'muscle-hamstrings'],
                 'equipmentsRefs' => ['equipment-barbell']
             ],
             [
@@ -65,13 +65,13 @@ final class MovementFixtures extends AbstractFixtures implements DependentFixtur
             ],
             [
                 'name' => 'Front squat',
-                'primaryMuscleRef' => 'muscle-quads',
+                'primaryMuscleRef' => 'muscle-quadriceps',
                 'auxiliaryMusclesRefs' => [],
                 'equipmentsRefs' => ['equipment-barbell']
             ],
             [
                 'name' => 'Goblet squat',
-                'primaryMuscleRef' => 'muscle-quads',
+                'primaryMuscleRef' => 'muscle-quadriceps',
                 'auxiliaryMusclesRefs' => [],
                 'equipmentsRefs' => ['equipment-dumbbell']
             ],

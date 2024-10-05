@@ -18,6 +18,12 @@ const websiteRoutes = {
         create: '/admin/equipments/new',
         edit: (equipmentId: number|string) => `/admin/equipments/${equipmentId}/edit`,
     },
+    muscle: {
+        list: '/admin/muscles',
+        details: (muscleId: number|string) => `/admin/muscles/${muscleId}`,
+        create: '/admin/muscles/new',
+        edit: (muscleId: number|string) => `/admin/muscles/${muscleId}/edit`,
+    },
     logout: '/logout'
 }
 

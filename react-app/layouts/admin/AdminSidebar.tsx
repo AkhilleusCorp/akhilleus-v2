@@ -68,6 +68,11 @@ const AdminSidebar: React.FC = () => {
                                     Equipments
                                 </ListItemText>
                             </ListItem>
+                            <ListItem sx={{ pl: 4 }} component={Link} to={websiteRoutes.muscle.list}>
+                                <ListItemText >
+                                    Muscles
+                                </ListItemText>
+                            </ListItem>
                         </List>
                     </Collapse>
                 </Box>

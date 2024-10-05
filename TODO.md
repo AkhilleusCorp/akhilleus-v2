@@ -22,18 +22,11 @@
   * enum for UserStatus, UserType
   * enum for WorkoutStatus, WorkoutVisibility
 
-
 ## Website
 
 ## React APP
 ### Security
  * Fetch and use token to make api call in order to secure it (and remove public access)
-### Muscle
-* List
-* Details
-* Add
-* Update
-* Delete
 ### Movement
  * List
  * Details
