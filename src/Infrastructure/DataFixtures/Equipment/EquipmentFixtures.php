@@ -18,7 +18,11 @@ final class EquipmentFixtures extends AbstractFixtures
 
     protected function explicitFixtures(ObjectManager $manager): void
     {
-        $names = ['barbell', 'dumbbell', 'bench', 'jump-rope', 'cable'];
+        $names = [
+            'barbell', 'dumbbell', 'bench', 'jump-rope', 'cable',
+            'none', 'kettlebell', 'machine', 'plate', 'resistance-band',
+            'suspension-band', 'other'
+        ];
         foreach ($names as $name) {
             $source = $this->sourceModelFactory->buildSourceModel(
                 ['name' => $name],

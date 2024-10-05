@@ -57,7 +57,7 @@ final class MuscleController extends AbstractAPIController
         );
     }
 
-    #[Route('/users/{id}', name:'user_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
+    #[Route('/muscles/{id}', name:'muscle_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
     public function updateOneById(
         int $id,
         Request $request,

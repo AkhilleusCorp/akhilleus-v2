@@ -19,6 +19,10 @@ import EquipmentsPage from "../../pages/equipment/EquipmentsPage.tsx";
 import EquipmentCreatePage from "../../pages/equipment/EquipmentCreatePage.tsx";
 import EquipmentUpdatePage from "../../pages/equipment/EquipmentUpdatePage.tsx";
 import EquipmentDetailsPage from "../../pages/equipment/EquipmentDetailsPage.tsx";
+import MusclesPage from "../../pages/workout/MusclesPage.tsx";
+import MuscleCreatePage from "../../pages/workout/MuscleCreatePage.tsx";
+import MuscleUpdatePage from "../../pages/workout/MuscleUpdatePage.tsx";
+import MuscleDetailsPage from "../../pages/workout/MuscleDetailsPage.tsx";
 
 const routerConfig = createBrowserRouter([
     {
@@ -77,6 +81,23 @@ const routerConfig = createBrowserRouter([
                     }, {
                         path: websiteRoutes.equipment.details(':equipmentId'),
                         element: <EquipmentDetailsPage />,
+                    }
+                ]
+            }, {
+                path: websiteRoutes.muscle.list,
+                children: [
+                    {
+                        index: true,
+                        element: <MusclesPage />,
+                    }, {
+                        path: websiteRoutes.muscle.create,
+                        element: <MuscleCreatePage />,
+                    }, {
+                        path: websiteRoutes.muscle.edit(':muscleId'),
+                        element: <MuscleUpdatePage />,
+                    }, {
+                        path: websiteRoutes.muscle.details(':muscleId'),
+                        element: <MuscleDetailsPage />,
                     }
                 ]
             },

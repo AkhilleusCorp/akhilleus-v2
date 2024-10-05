@@ -3,6 +3,7 @@ import QueryId from "../../utils/interfaces/QueryId.tsx";
 const USER_API_HOST = 'https://api.akhilleus.com:8000/api/users';
 const WORKOUT_API_HOST = 'https://api.akhilleus.com:8000/api/workouts';
 const EQUIPMENT_API_HOST = 'https://api.akhilleus.com:8000/api/equipments';
+const MUSCLE_API_HOST = 'https://api.akhilleus.com:8000/api/muscles';
 
 const apiRoutes = {
     user: {
@@ -30,6 +31,13 @@ const apiRoutes = {
         details: (equipmentId: QueryId) => `${EQUIPMENT_API_HOST}/${equipmentId}`,
         update: (equipmentId: QueryId) => `${EQUIPMENT_API_HOST}/${equipmentId}`,
         delete: (equipmentId: QueryId) => `${EQUIPMENT_API_HOST}/${equipmentId}`,
+    },
+    muscle: {
+        create: MUSCLE_API_HOST,
+        list: MUSCLE_API_HOST,
+        details: (muscleId: QueryId) => `${MUSCLE_API_HOST}/${muscleId}`,
+        update: (muscleId: QueryId) => `${MUSCLE_API_HOST}/${muscleId}`,
+        delete: (muscleId: QueryId) => `${MUSCLE_API_HOST}/${muscleId}`,
     },
 }
 

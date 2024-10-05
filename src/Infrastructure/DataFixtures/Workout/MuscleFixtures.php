@@ -19,7 +19,11 @@ final class MuscleFixtures extends AbstractFixtures
 
     protected function explicitFixtures(ObjectManager $manager): void
     {
-        $names = ['biceps', 'triceps', 'quads', 'calves', 'chest', 'glutes', 'hamstring'];
+        $names = [
+            'biceps', 'triceps', 'quadriceps', 'calves', 'chest', 'glutes', 'hamstrings',
+            'abdominals', 'abductors', 'adductors', 'forearms', 'lower-back', 'cardio', 'full-body',
+            'neck', 'shoulders', 'lats', 'traps', 'upper-back', 'other',
+        ];
         foreach ($names as $name) {
             $source = $this->sourceModelFactory->buildSourceModel(
                 ['name' => $name],

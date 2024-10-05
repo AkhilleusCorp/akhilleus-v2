@@ -5,7 +5,7 @@ import EquipmentCreateForm from "../../features/equipment/EquipmentCreateForm.ts
 const EquipmentCreatePage: React.FC = () => {
     return (
         <AdminLayout>
-            <h1>Add new User</h1>
+            <h1>Add new Equipment</h1>
             <div>
                 <EquipmentCreateForm/>
             </div>
