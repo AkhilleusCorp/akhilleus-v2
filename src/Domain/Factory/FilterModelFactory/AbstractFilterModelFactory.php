@@ -23,7 +23,7 @@ abstract class AbstractFilterModelFactory
     protected function purgeNullStringValues(array $parameters, array $keysToIgnore = []): array
     {
         foreach ($parameters as $key => $value) {
-            if ('null' === $value && false === in_array($key, $keysToIgnore)) {
+            if (('null' === $value || '' === $value) && false === in_array($key, $keysToIgnore)) {
                 unset($parameters[$key]);
             }
         }

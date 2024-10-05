@@ -34,7 +34,7 @@ final class GenericViewPresenter
         $data = [];
         foreach ($models as $model) {
             $view = $this->presentByReflection($model, clone $view);
-            $viewModel->data[$model->id] = $view;
+            $viewModel->data[] = $view;
         }
 
         foreach ($hydrators as $hydrator) {

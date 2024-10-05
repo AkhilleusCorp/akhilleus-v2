@@ -7,11 +7,14 @@ use App\Domain\DTO\FilterModel\FilterModelInterface;
 use App\Domain\DTO\FilterModel\Workout\GetManyMovementsFilterModel;
 use App\Domain\Gateway\Provider\Workout\MovementDataModelProviderGateway;
 use App\Infrastructure\Repository\AbstractBaseDataModelRepository;
+use App\Infrastructure\Repository\CommonWhereFilterTrait;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 final class MovementDataModelRepository extends AbstractBaseDataModelRepository implements MovementDataModelProviderGateway
 {
+    use CommonWhereFilterTrait;
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, MovementDataModel::class);
@@ -46,15 +49,8 @@ final class MovementDataModelRepository extends AbstractBaseDataModelRepository 
 
     public function addParametersFromFilter(QueryBuilder $queryBuilder, GetManyMovementsFilterModel|FilterModelInterface $filter): self
     {
-        if (false === empty($filter->ids)) {
-            $queryBuilder->andWhere('movement.id IN (:ids)')
-                ->setParameter('ids', $filter->ids);
-        }
-
-        if (false === empty($filter->name)) {
-            $queryBuilder->andWhere('movement.name LIKE :name')
-                ->setParameter('name', '%' . $filter->name . '%');
-        }
+        $this->filterByIds($queryBuilder, $filter->ids);
+        $this->filterByName($queryBuilder, $filter->name);
 
         return $this;
     }

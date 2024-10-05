@@ -28,12 +28,6 @@
 ## React APP
 ### Security
  * Fetch and use token to make api call in order to secure it (and remove public access)
-### Equipment
- * List
- * Details
- * Add
- * Update
- * Delete
 ### Muscle
 * List
 * Details

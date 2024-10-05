@@ -3,7 +3,7 @@ class UserDTO {
     username: string;
     email: string;
     type: string;
-    status: string | null;
+    status: string;
     registrationDate: string | null;
     lastModificationDate: string | null;
     lastLoginDate: string | null;
@@ -19,7 +19,7 @@ class UserDTO {
         username: string,
         email: string,
         type: string,
-        status: string | null,
+        status: string,
         registrationDate: string | null,
         lastModificationDate: string | null,
         lastLoginDate: string | null,

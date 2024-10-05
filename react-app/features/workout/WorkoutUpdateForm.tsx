@@ -13,7 +13,7 @@ type WorkoutEditFormType = {
     workout: WorkoutDTO,
 }
 
-const WorkoutEditForm: React.FC<WorkoutEditFormType> = ({workout}) => {
+const WorkoutUpdateForm: React.FC<WorkoutEditFormType> = ({workout}) => {
     const navigate = useNavigate();
     const [workoutUpdated, setWorkoutUpdated] = useState<WorkoutDTO>(workout);
 
@@ -54,4 +54,4 @@ const WorkoutEditForm: React.FC<WorkoutEditFormType> = ({workout}) => {
     )
 }
 
-export default WorkoutEditForm;
+export default WorkoutUpdateForm;

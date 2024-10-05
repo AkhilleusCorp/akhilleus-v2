@@ -7,11 +7,13 @@ use App\Domain\DTO\FilterModel\FilterModelInterface;
 use App\Domain\DTO\FilterModel\Workout\GetManyWorkoutsFilterModel;
 use App\Domain\Gateway\Provider\Workout\WorkoutDataModelProviderGateway;
 use App\Infrastructure\Repository\AbstractBaseDataModelRepository;
+use App\Infrastructure\Repository\CommonWhereFilterTrait;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 final class WorkoutDataModelRepository extends AbstractBaseDataModelRepository implements WorkoutDataModelProviderGateway
 {
+    use CommonWhereFilterTrait;
 
     public function __construct(ManagerRegistry $registry)
     {
@@ -43,20 +45,9 @@ final class WorkoutDataModelRepository extends AbstractBaseDataModelRepository i
 
     public function addParametersFromFilter(QueryBuilder $queryBuilder, GetManyWorkoutsFilterModel|FilterModelInterface $filter): self
     {
-        if (false === empty($filter->ids)) {
-            $queryBuilder->andWhere('workout.id IN (:ids)')
-                ->setParameter('ids', $filter->ids);
-        }
-
-        if (false === empty($filter->name)) {
-            $queryBuilder->andWhere('workout.name LIKE :name')
-                ->setParameter('name', '%' . $filter->name . '%');
-        }
-
-        if (false === empty($filter->status)) {
-            $queryBuilder->andWhere('workout.status = :status')
-                ->setParameter('status', $filter->status);
-        }
+        $this->filterByIds($queryBuilder, $filter->ids);
+        $this->filterByName($queryBuilder, $filter->name);
+        $this->filterByStatus($queryBuilder, $filter->status);
 
         return $this;
     }
