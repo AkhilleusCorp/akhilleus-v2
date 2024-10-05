@@ -27,19 +27,19 @@ final class MuscleControllerTest extends AbstractGenericControllerTest
             $this->provider
         );
 
-        $this->assertCount(7, $view->data);
-        $this->assertEquals(7, $view->extra['pagination']->count);
+        $this->assertCount(21, $view->data);
+        $this->assertEquals(21, $view->extra['pagination']->count);
     }
 
     public function testCreateOne(): void
     {
         $view = $this->controller->createOne(
-            $this->createRequestWithBody(['name' => 'Some equipment']),
+            $this->createRequestWithBody(['name' => 'Some muscle']),
             $this->createOneUseCase,
             $this->dataModelFactory
         );
 
-        $this->assertEquals('Some equipment', $view->data->name);
+        $this->assertEquals('Some muscle', $view->data->name);
     }
 
     public function testUpdateOneByExistingId(): void
