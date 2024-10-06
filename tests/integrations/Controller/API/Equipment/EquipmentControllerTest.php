@@ -36,6 +36,16 @@ final class EquipmentControllerTest extends AbstractGenericControllerTest
         $this->assertEquals(12, $view->extra['pagination']->count);
     }
 
+    public function testGetDropdownable(): void
+    {
+        $result = $this->controller->getDropdownable(
+            $this->getDropdownableUseCase,
+            $this->provider
+        );
+
+        $this->assertCount(12, $result);
+    }
+
     public function testCreateOne(): void
     {
         $view = $this->controller->createOne(
