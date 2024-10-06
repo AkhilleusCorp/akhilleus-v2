@@ -6,6 +6,9 @@ import MovementApiGateway from "../../services/api/gateway/MovementApiGateway.ts
 import {SelectChangeEvent, TextField} from "@mui/material";
 import MultiSelectInput from "../../components/input/MultiSelectInput.tsx";
 import IndexedArray from "../../utils/interfaces/IndexedArray.tsx";
+import useGetDropdownableEquipments from "../../hooks/equipment/useGetDropdownableEquipments.tsx";
+import useGetDropdownableMuscles from "../../hooks/muscle/useGetDropdownableMuscles.tsx";
+import SelectInput from "../../components/input/SelectInput.tsx";
 
 type MovementCreateFormType = {
     name: string;
@@ -13,14 +16,10 @@ type MovementCreateFormType = {
 
 const MovementCreateForm: React.FC = () => {
     const [movementCreate, setMovementCreate] = useState<MovementCreateFormType>({name: ''});
-    const navigate = useNavigate();
+    const equipments = useGetDropdownableEquipments();
+    const muscles = useGetDropdownableMuscles();
 
-    const options: IndexedArray = {
-        '1': 'barbell',
-        '2': 'bench',
-        '3': 'cable',
-        '4': 'dumbbell',
-    }
+    const navigate = useNavigate();
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setMovementCreate({
@@ -28,7 +27,7 @@ const MovementCreateForm: React.FC = () => {
             [event.target.name]: event.target.value
         });
     }
-    const handleSelectChange = (event: SelectChangeEvent<string[]>) => {
+    const handleSelectChange = (event: SelectChangeEvent<string[]>|SelectChangeEvent) => {
         setMovementCreate({
             ...movementCreate,
             [event.target.name]: event.target.value
@@ -53,18 +52,18 @@ const MovementCreateForm: React.FC = () => {
             </div>
 
             <div>
-                <TextField id="outlined-basic" label="Primary muscle" variant="outlined" size="small"
-                           name={"primaryMuscle"} required={true} onChange={handleInputChange}/>
+                <SelectInput label="Primary muscle" name={"primaryMuscle"} value={null}
+                             options={muscles} required={true} onSelectChange={handleSelectChange}/>
             </div>
 
             <div>
-                <TextField id="outlined-basic" label="Auxiliary muscles" variant="outlined" size="small"
-                           name={"auxiliaryMuscles"} onChange={handleInputChange}/>
+                <MultiSelectInput name={"auxiliaryMuscles"} label={"Auxiliary muscles"}
+                                  value={[]} required={false} options={muscles} onSelectChange={handleSelectChange}/>
             </div>
 
             <div>
                 <MultiSelectInput name={"equipments"} label={"Equipment"}
-                           value={[]} required={false} options={options} onSelectChange={handleSelectChange}/>
+                           value={[]} required={false} options={equipments} onSelectChange={handleSelectChange}/>
             </div>
         </SaveForm>
     )
