@@ -44,7 +44,7 @@ final class UserDataModelRepository extends AbstractBaseDataModelRepository impl
      */
     public function getUsersByFilterModel(GetManyUsersFilterModel $filter): array
     {
-        return $this->getByFilterModel($filter);
+        return $this->getByFilterModel($filter)->getQuery()->getResult();
     }
 
     public function countUsersByFilterModel(?GetManyUsersFilterModel $filter): int

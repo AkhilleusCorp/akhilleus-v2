@@ -25,6 +25,7 @@ const MovementsListTable: React.FC<MovementListTableType> = ({ filters, refreshK
                     <TableRow>
                         <TableCell>id</TableCell>
                         <TableCell>name</TableCell>
+                        <TableCell>main muscle</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -35,6 +36,9 @@ const MovementsListTable: React.FC<MovementListTableType> = ({ filters, refreshK
                                 <a href={"#"} onClick={(event) => onNameClick(event, movement.id)}>
                                     {movement.name}
                                 </a>
+                            </TableCell>
+                            <TableCell>
+                                {movement.primaryMuscle.label}
                             </TableCell>
                         </TableRow>
                     ))}
