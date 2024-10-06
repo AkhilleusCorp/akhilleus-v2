@@ -70,6 +70,7 @@ final class MovementDataModelRepository extends AbstractBaseDataModelRepository 
     {
         $this->filterByIds($queryBuilder, $filter->ids);
         $this->filterByName($queryBuilder, $filter->name);
+        $this->filterByStatus($queryBuilder, $filter->status);
 
         if (false === empty($filter->muscleId)) {
             $queryBuilder->andWhere($this->getAlias().'.primaryMuscle = :muscleId')

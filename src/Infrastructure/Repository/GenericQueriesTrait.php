@@ -3,7 +3,6 @@
 namespace App\Infrastructure\Repository;
 
 use App\Domain\DTO\DataModel\DataModelInterface;
-use Doctrine\ORM\Query\QueryException;
 
 trait GenericQueriesTrait
 {
@@ -17,13 +16,10 @@ trait GenericQueriesTrait
 
     public function getDropdownable(string $labelProperty): array
     {
-        try {
-            $query = $this->getEntityManager()->createQuery("select d.id, d.{$labelProperty} from {$this->getEntityName()} as d");
+        $query = $this->getEntityManager()->createQuery(
+            "select d.id, d.{$labelProperty} from {$this->getEntityName()} as d where d.status = 'active'"
+        );
 
-            return $query->getArrayResult();
-        } catch (QueryException $exception) { // This exception is actually thrown if property doesn't exist
-            throw new \LogicException("$labelProperty doesn't exist on this object");
-        }
-
+        return $query->getArrayResult();
     }
 }

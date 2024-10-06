@@ -10,7 +10,7 @@ import MusclesListTable from "../../features/muscle/MusclesListTable.tsx";
 import MuscleApiGateway from "../../services/api/gateway/MuscleApiGateway.tsx";
 
 const MusclesPage: React.FC = () => {
-    const defaultFilters: MusclesListFilters = { ids: null, name: null, limit: 25 };
+    const defaultFilters: MusclesListFilters = { ids: null, name: null, status: ['active'], limit: 25 };
     const [filters, setFilters] = useState<MusclesListFilters>(defaultFilters);
     const [refreshKey, setRefreshKey] = useState(0)
     const [musclePreview, setUserPreview] = useState<MuscleDTO|null>(null);

@@ -1,6 +1,5 @@
 import IndexedArray from "../utils/interfaces/IndexedArray.tsx";
 
-
 const statuses: IndexedArray = {
     'planned': 'Planned',
     'in-progress': 'In progress',

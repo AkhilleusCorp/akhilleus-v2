@@ -17,4 +17,7 @@ final class GetManyEquipmentsFilterModel implements FilterModelInterface
     public ?array $ids = null;
 
     public ?string $name = null;
+
+    /** @var array string[] */
+    public array $status = [];
 }

@@ -1,10 +1,10 @@
+### Add movement into workout !
+
 ## Refactoring
 ### API
  * Add default sort to all lists
 ### React APP
  * Manipulate QueryId object instead of strings for Ids
-
-### Add movement into workout !
 
 ### API
  * Simplify fixtures creation using dataModel directly
@@ -21,10 +21,6 @@
 ### Muscle, Equipment, Movement
  * Add status
  * Implement DeleteOneByIdUseCase to deal with soft delete if object is used
-### Configuration API
-* Expose an API that contain configuration information
-  * enum for UserStatus, UserType
-  * enum for WorkoutStatus, WorkoutVisibility
 
 ## Website
 

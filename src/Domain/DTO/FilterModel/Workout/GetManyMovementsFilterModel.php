@@ -21,4 +21,7 @@ final class GetManyMovementsFilterModel implements FilterModelInterface
     public ?string $muscleId = null;
 
     public ?string $equipmentId = null;
+
+    /** @var array string[] */
+    public array $status = [];
 }
