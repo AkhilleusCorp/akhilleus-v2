@@ -7,12 +7,14 @@ use App\Domain\DTO\SourceModel\Equipment\CreateEquipmentSourceModel;
 use App\Domain\DTO\SourceModel\Equipment\UpdateEquipmentSourceModel;
 use App\Domain\Factory\DataModelFactory\Equipment\EquipmentDataModelFactory;
 use App\Domain\Gateway\Provider\Equipment\EquipmentDataModelProviderGateway;
+use App\Domain\Gateway\Provider\Workout\MuscleDataModelProviderGateway;
 use App\Infrastructure\Controller\API\AbstractAPIController;
 use App\Infrastructure\View\ViewModel\Equipment\SingleEquipmentDataViewModel;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
 use App\Infrastructure\View\ViewModel\SingleObjectViewModel;
 use App\UseCase\API\GenericCreateOneUseCase;
 use App\UseCase\API\GenericDeleteOneByIdUseCase;
+use App\UseCase\API\GenericGetDropdownableUseCase;
 use App\UseCase\API\GenericGetManyUseCase;
 use App\UseCase\API\GenericGetOneByIdUseCase;
 use App\UseCase\API\GenericUpdateOneByIdUseCase;
@@ -32,6 +34,14 @@ final class EquipmentController extends AbstractAPIController
         EquipmentDataModelProviderGateway $providerGateway
     ): MultipleObjectViewModel {
         return $useCase->execute($request->query->all(), new GetManyEquipmentsFilterModel(), $providerGateway);
+    }
+
+    #[Route('/equipments/dropdownable', name:'equipment_get_dropdownable', methods: ['GET'])]
+    public function getDropdownable(
+        GenericGetDropdownableUseCase $useCase,
+        EquipmentDataModelProviderGateway $providerGateway
+    ): array {
+        return $useCase->execute('name', $providerGateway);
     }
 
     #[Route('/equipments/{id}', name:'equipment_get_one_by_id', requirements: ['id' => '\d+'], methods: ['GET'])]

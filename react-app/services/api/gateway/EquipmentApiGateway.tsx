@@ -4,6 +4,7 @@ import EquipmentDTO from "../dtos/EquipmentDTO.tsx";
 import EquipmentsListFilters from "../filters/EquipmentsListFilters.tsx";
 import apiRoutes from "../apiRoutes.tsx";
 import QueryId from "../../../utils/interfaces/QueryId.tsx";
+import IndexedArray from "../../../utils/interfaces/IndexedArray.tsx";
 
 class EquipmentApiGateway extends AbstractApiGateway {
     static async getOneEquipment (equipmentId: QueryId): Promise<EquipmentDTO|null> {
@@ -29,6 +30,16 @@ class EquipmentApiGateway extends AbstractApiGateway {
         }
 
         return response.data.data;
+    }
+
+    static async getDropdownableEquipments (): Promise<IndexedArray> {
+        const response = await axios.get(apiRoutes.equipment.dropdownable);
+
+        if (response.status !== 200) {
+            throw new Error('An error as occurred');
+        }
+
+        return response.data;
     }
 
     static async createEquipment (formData: unknown): Promise<EquipmentDTO> {

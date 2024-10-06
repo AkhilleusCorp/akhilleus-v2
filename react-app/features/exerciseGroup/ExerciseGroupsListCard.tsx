@@ -1,7 +1,7 @@
 import React from "react";
 import {Typography} from "@mui/material";
 import ExerciseGroupCard from "./ExerciseGroupCard.tsx";
-import useGetExerciseGroupsByWorkoutId from "../../hooks/workout/useGetExerciseGroupsByWorkoutId.tsx";
+import useGetExerciseGroupByWorkoutId from "../../hooks/exerciseGroup/useGetExerciseGroupByWorkoutId.tsx";
 
 type ExerciseGroupsListCardType = {
     workoutId: string | undefined,
@@ -9,7 +9,7 @@ type ExerciseGroupsListCardType = {
 }
 
 const ExerciseGroupsListCard: React.FC<ExerciseGroupsListCardType> = ({ workoutId, displayWriteActions }) => {
-    const exerciseGroups = useGetExerciseGroupsByWorkoutId(workoutId);
+    const exerciseGroups = useGetExerciseGroupByWorkoutId(workoutId);
 
     return (
         <>

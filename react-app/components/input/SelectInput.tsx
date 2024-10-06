@@ -11,7 +11,7 @@ type DropdownInputType = {
     onSelectChange: (event: SelectChangeEvent) => void;
 }
 
-const DropdownInput: React.FC<DropdownInputType> = ({ label, name, value, options, required, onSelectChange }) => {
+const SelectInput: React.FC<DropdownInputType> = ({ label, name, value, options, required, onSelectChange }) => {
     const [inputValue, setInputValue] = React.useState<any|null>(value);
 
     const menuItems = [];
@@ -47,4 +47,4 @@ const DropdownInput: React.FC<DropdownInputType> = ({ label, name, value, option
     )
 }
 
-export default DropdownInput;
+export default SelectInput;

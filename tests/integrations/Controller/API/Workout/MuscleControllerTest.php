@@ -31,6 +31,16 @@ final class MuscleControllerTest extends AbstractGenericControllerTest
         $this->assertEquals(20, $view->extra['pagination']->count);
     }
 
+    public function testGetDropdownable(): void
+    {
+        $result = $this->controller->getDropdownable(
+            $this->getDropdownableUseCase,
+            $this->provider
+        );
+
+        $this->assertCount(20, $result);
+    }
+
     public function testCreateOne(): void
     {
         $view = $this->controller->createOne(

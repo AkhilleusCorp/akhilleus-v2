@@ -19,10 +19,14 @@ import EquipmentsPage from "../../pages/equipment/EquipmentsPage.tsx";
 import EquipmentCreatePage from "../../pages/equipment/EquipmentCreatePage.tsx";
 import EquipmentUpdatePage from "../../pages/equipment/EquipmentUpdatePage.tsx";
 import EquipmentDetailsPage from "../../pages/equipment/EquipmentDetailsPage.tsx";
-import MusclesPage from "../../pages/workout/MusclesPage.tsx";
-import MuscleCreatePage from "../../pages/workout/MuscleCreatePage.tsx";
-import MuscleUpdatePage from "../../pages/workout/MuscleUpdatePage.tsx";
-import MuscleDetailsPage from "../../pages/workout/MuscleDetailsPage.tsx";
+import MusclesPage from "../../pages/muscle/MusclesPage.tsx";
+import MuscleCreatePage from "../../pages/muscle/MuscleCreatePage.tsx";
+import MuscleUpdatePage from "../../pages/muscle/MuscleUpdatePage.tsx";
+import MuscleDetailsPage from "../../pages/muscle/MuscleDetailsPage.tsx";
+import MovementsPage from "../../pages/movement/MovementsPage.tsx";
+import MovementCreatePage from "../../pages/movement/MovementCreatePage.tsx";
+import MovementUpdatePage from "../../pages/movement/MovementUpdatePage.tsx";
+import MovementDetailsPage from "../../pages/movement/MovementDetailsPage.tsx";
 
 const routerConfig = createBrowserRouter([
     {
@@ -98,6 +102,23 @@ const routerConfig = createBrowserRouter([
                     }, {
                         path: websiteRoutes.muscle.details(':muscleId'),
                         element: <MuscleDetailsPage />,
+                    }
+                ]
+            }, {
+                path: websiteRoutes.movement.list,
+                children: [
+                    {
+                        index: true,
+                        element: <MovementsPage />,
+                    }, {
+                        path: websiteRoutes.movement.create,
+                        element: <MovementCreatePage />,
+                    }, {
+                        path: websiteRoutes.movement.edit(':movementId'),
+                        element: <MovementUpdatePage />,
+                    }, {
+                        path: websiteRoutes.movement.details(':movementId'),
+                        element: <MovementDetailsPage />,
                     }
                 ]
             },

@@ -1,35 +1,33 @@
 import React, {ReactNode} from "react";
-import {Button, Card, CardActions, CardContent} from "@mui/material";
+import {Button, Card, CardActions, CardContent, FormControl, Grid2 as Grid} from "@mui/material";
 
 type SearchFormProps = {
     searchFunction: (filters: any) => void;
-    cancelFunction: () => void;
     filters: any;
     children: ReactNode;
 };
 
-const SearchForm: React.FC<SearchFormProps> = ({ searchFunction, cancelFunction, filters, children }) => {
+const SearchForm: React.FC<SearchFormProps> = ({ searchFunction, filters, children }) => {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         searchFunction(filters);
     };
 
-    const handleCancel = () => {
-        cancelFunction();
-    }
-
     return (
         <Card>
-            <form onSubmit={handleSubmit}>
-                <CardContent>
-                    {children}
-                </CardContent>
+                <form onSubmit={handleSubmit}>
+                    <CardContent>
+                        <FormControl fullWidth>
+                            <Grid container spacing={2}>
+                                {children}
+                            </Grid>
+                        </FormControl>
+                    </CardContent>
 
-                <CardActions>
-                    <Button type={"button"} variant="outlined" onClick={handleCancel}>Cancel</Button>
-                    <Button type={"submit"} variant="contained">Search</Button>
-                </CardActions>
-            </form>
+                    <CardActions style={{justifyContent: 'center'}}>
+                        <Button type={"submit"} variant="contained">Search</Button>
+                    </CardActions>
+                </form>
         </Card>
     );
 };

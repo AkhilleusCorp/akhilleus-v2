@@ -23,7 +23,7 @@ final class GenericGetManyUseCase implements UseCaseInterface
     public function execute(array $parameters, FilterModelInterface $filter, GenericDataModelProviderGateway $providerGateway): MultipleObjectViewModel
     {
         $filter = $this->filterFactory->buildGetManyFilterModel($parameters, $filter);
-        $dataModels = $providerGateway->getByFilterModel($filter);
+        $dataModels = $providerGateway->getByFilterModel($filter)->getQuery()->getResult();
 
         $dataModelsCount = count($dataModels);
         if ($dataModelsCount === $filter->limit) {

@@ -22,10 +22,10 @@ trait CommonWhereFilterTrait
         }
     }
 
-    protected function filterByStatus(QueryBuilder $queryBuilder, ?string $status): void
+    protected function filterByStatus(QueryBuilder $queryBuilder, ?array $status = []): void
     {
         if (false === empty($status)) {
-            $queryBuilder->andWhere($this->getAlias().'.status = :status')
+            $queryBuilder->andWhere($this->getAlias().'.status IN (:status)')
                 ->setParameter('status', $status);
         }
     }

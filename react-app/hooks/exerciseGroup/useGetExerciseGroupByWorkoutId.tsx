@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import ExerciseGroupApiGateway from "../../services/api/gateway/ExerciseGroupGateway.tsx";
 import ExerciseGroupDTO from "../../services/api/dtos/ExerciseGroupDTO.tsx";
 
-function useGetExerciseGroupsByWorkoutId(workoutId: string|undefined): ExerciseGroupDTO[] {
+function useGetExerciseGroupByWorkoutId(workoutId: string|undefined): ExerciseGroupDTO[] {
     if (!workoutId) {
         return [];
     }
@@ -20,4 +20,4 @@ function useGetExerciseGroupsByWorkoutId(workoutId: string|undefined): ExerciseG
     return groups;
 }
 
-export default useGetExerciseGroupsByWorkoutId;
+export default useGetExerciseGroupByWorkoutId;

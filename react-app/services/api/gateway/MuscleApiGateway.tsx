@@ -4,6 +4,7 @@ import MuscleDTO from "../dtos/MuscleDTO.tsx";
 import MusclesListFilters from "../filters/MusclesListFilters.tsx";
 import apiRoutes from "../apiRoutes.tsx";
 import QueryId from "../../../utils/interfaces/QueryId.tsx";
+import IndexedArray from "../../../utils/interfaces/IndexedArray.tsx";
 
 class MuscleApiGateway extends AbstractApiGateway {
     static async getOneMuscle (muscleId: QueryId): Promise<MuscleDTO|null> {
@@ -29,6 +30,16 @@ class MuscleApiGateway extends AbstractApiGateway {
         }
 
         return response.data.data;
+    }
+
+    static async getDropdownableMuscles (): Promise<IndexedArray> {
+        const response = await axios.get(apiRoutes.muscle.dropdownable);
+
+        if (response.status !== 200) {
+            throw new Error('An error as occurred');
+        }
+
+        return response.data;
     }
 
     static async createMuscle (formData: unknown): Promise<MuscleDTO> {

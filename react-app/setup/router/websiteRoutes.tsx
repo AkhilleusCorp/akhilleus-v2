@@ -24,6 +24,12 @@ const websiteRoutes = {
         create: '/admin/muscles/new',
         edit: (muscleId: number|string) => `/admin/muscles/${muscleId}/edit`,
     },
+    movement: {
+        list: '/admin/movements',
+        details: (movementId: number|string) => `/admin/movements/${movementId}`,
+        create: '/admin/movements/new',
+        edit: (movementId: number|string) => `/admin/movements/${movementId}/edit`,
+    },
     logout: '/logout'
 }
 

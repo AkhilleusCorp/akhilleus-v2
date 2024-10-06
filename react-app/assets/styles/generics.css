@@ -5,3 +5,7 @@
     overflow: hidden;
     transition: height 350ms ease-in-out, opacity 750ms ease-in-out;
 }
+
+table th {
+    text-transform: capitalize;
+}

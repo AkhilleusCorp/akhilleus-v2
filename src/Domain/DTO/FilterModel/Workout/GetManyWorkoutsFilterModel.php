@@ -18,5 +18,6 @@ final class GetManyWorkoutsFilterModel implements FilterModelInterface
 
     public ?string $name = null;
 
-    public ?string $status = null;
+    /** @var array string[] */
+    public array $status = [];
 }

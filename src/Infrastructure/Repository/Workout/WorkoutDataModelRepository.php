@@ -35,7 +35,7 @@ final class WorkoutDataModelRepository extends AbstractBaseDataModelRepository i
 
     public function getWorkoutsByFilterModel(GetManyWorkoutsFilterModel $filter): array
     {
-        return $this->getByFilterModel($filter);
+        return $this->getByFilterModel($filter)->getQuery()->getResult();
     }
 
     public function countWorkoutsByFilterModel(?GetManyWorkoutsFilterModel $filter): int

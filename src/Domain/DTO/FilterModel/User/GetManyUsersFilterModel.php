@@ -22,5 +22,6 @@ final class GetManyUsersFilterModel implements FilterModelInterface
 
     public ?string $type = null;
 
-    public ?string $status = null;
+    /** @var array string[] */
+    public array $status = [];
 }

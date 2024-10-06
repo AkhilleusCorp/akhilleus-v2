@@ -12,7 +12,7 @@ abstract class AbstractBaseDataModelRepository extends ServiceEntityRepository
     protected abstract function getAlias(): string;
     protected abstract function addParametersFromFilter(QueryBuilder $queryBuilder, FilterModelInterface $filter): self;
 
-    public function getByFilterModel(FilterModelInterface $filter): array
+    public function getByFilterModel(FilterModelInterface $filter): QueryBuilder
     {
         $queryBuilder = $this->createQueryBuilder($this->getAlias());
 
@@ -20,7 +20,7 @@ abstract class AbstractBaseDataModelRepository extends ServiceEntityRepository
             ->addPaginationConditions($queryBuilder, $filter)
             ->addSortConditions($queryBuilder, $filter);
 
-        return $queryBuilder->getQuery()->getResult();
+        return $queryBuilder;
     }
 
     public function countByFilterModel(?FilterModelInterface $filter): int

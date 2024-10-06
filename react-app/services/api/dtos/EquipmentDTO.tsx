@@ -1,4 +1,4 @@
-class ExerciseDTO {
+class EquipmentDTO {
     id: number;
     name: string;
 
@@ -11,4 +11,4 @@ class ExerciseDTO {
     }
 }
 
-export default ExerciseDTO;
+export default EquipmentDTO;

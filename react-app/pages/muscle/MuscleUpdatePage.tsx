@@ -1,24 +1,23 @@
 import React from 'react';
 import AdminLayout from "../../layouts/admin/AdminLayout.tsx";
-import MusclePreviewCard from "../../features/workout/MusclePreviewCard.tsx";
 import {useParams} from "react-router-dom";
-import useGetOneMuscleById from "../../hooks/workout/useGetOneMuscleById.tsx";
+import useGetOneMuscleById from "../../hooks/muscle/useGetOneMuscleById.tsx";
 import ErrorPage from "../ErrorPage.tsx";
+import MuscleUpdateForm from "../../features/muscle/MuscleUpdateForm.tsx";
 
-const MuscleDetailsPage: React.FC = () => {
+const MuscleUpdatePage: React.FC = () => {
     const { muscleId } = useParams<{ muscleId: string }>();
-
     const muscle = useGetOneMuscleById(muscleId);
-
     if (!muscle) {
         return <ErrorPage />
     }
 
     return (
         <AdminLayout>
-            <MusclePreviewCard muscle={muscle} displayReadActions={false} displayWriteActions={true}/>
+            <h3>{muscle.name} #{muscle.id}</h3>
+            <MuscleUpdateForm muscle={muscle} />
         </AdminLayout>
-    );
+    )
 }
 
-export default MuscleDetailsPage;
+export default MuscleUpdatePage;

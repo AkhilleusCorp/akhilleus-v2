@@ -1,7 +1,7 @@
 import React from "react";
 import {Paper, Table,TableBody,TableCell, TableContainer, TableHead, TableRow} from '@mui/material';
 import MusclesListFilters from "../../services/api/filters/MusclesListFilters.tsx";
-import useGetManyMusclesByParams from "../../hooks/workout/useGetManyMuscleByParams.tsx";
+import useGetManyMusclesByParams from "../../hooks/muscle/useGetManyMuscleByParams.tsx";
 
 
 type MuscleListTableType = {
@@ -10,7 +10,7 @@ type MuscleListTableType = {
     mainLinkClickCallback: (muscleId: number) => void;
 }
 
-const UsersListTable: React.FC<MuscleListTableType> = ({ filters, refreshKey, mainLinkClickCallback }) => {
+const MusclesListTable: React.FC<MuscleListTableType> = ({ filters, refreshKey, mainLinkClickCallback }) => {
     const muscles = useGetManyMusclesByParams(filters, refreshKey);
 
     const onNameClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>, muscleId: number) => {
@@ -44,4 +44,4 @@ const UsersListTable: React.FC<MuscleListTableType> = ({ filters, refreshKey, ma
     );
 }
 
-export default UsersListTable;
+export default MusclesListTable;

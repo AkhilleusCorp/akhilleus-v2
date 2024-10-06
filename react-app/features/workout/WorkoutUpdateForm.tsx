@@ -6,7 +6,7 @@ import SaveForm from "../../components/form/SaveForm.tsx";
 import WorkoutApiGateway from "../../services/api/gateway/WorkoutApiGateway.tsx";
 import WorkoutDTO from "../../services/api/dtos/WorkoutDTO.tsx";
 import {SelectChangeEvent, TextField} from "@mui/material";
-import DropdownInput from "../../components/input/DropdownInput.tsx";
+import SelectInput from "../../components/input/SelectInput.tsx";
 import workoutRegistries from "../../constants/workoutRegistries.tsx";
 
 type WorkoutEditFormType = {
@@ -47,8 +47,8 @@ const WorkoutUpdateForm: React.FC<WorkoutEditFormType> = ({workout}) => {
                            name={"name"} value={workoutUpdated.name} onChange={handleInputChange} />
             </div>
             <div>
-                <DropdownInput label={"Status"} name={"visibility"} value={workoutUpdated.visibility} options={workoutRegistries.visibility}
-                           onSelectChange={handleSelectChange} required={true} />
+                <SelectInput label={"Status"} name={"visibility"} value={workoutUpdated.visibility} options={workoutRegistries.visibility}
+                             onSelectChange={handleSelectChange} required={true} />
             </div>
         </SaveForm>
     )

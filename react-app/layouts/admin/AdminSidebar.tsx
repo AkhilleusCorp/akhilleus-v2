@@ -63,6 +63,11 @@ const AdminSidebar: React.FC = () => {
                     </ListItemButton>
                     <Collapse in={openReferences} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
+                            <ListItem sx={{ pl: 4 }} component={Link} to={websiteRoutes.movement.list}>
+                                <ListItemText >
+                                    Movements
+                                </ListItemText>
+                            </ListItem>
                             <ListItem sx={{ pl: 4 }} component={Link} to={websiteRoutes.equipment.list}>
                                 <ListItemText >
                                     Equipments
