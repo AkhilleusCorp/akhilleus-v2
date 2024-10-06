@@ -5,7 +5,11 @@ import websiteRoutes from "../../setup/router/websiteRoutes.tsx";
 import SaveForm from "../../components/form/SaveForm.tsx";
 import MovementApiGateway from "../../services/api/gateway/MovementApiGateway.tsx";
 import MovementDTO from "../../services/api/dtos/MovementDTO.tsx";
-import {TextField} from "@mui/material";
+import {SelectChangeEvent, TextField} from "@mui/material";
+import SelectInput from "../../components/input/SelectInput.tsx";
+import MultiSelectInput from "../../components/input/MultiSelectInput.tsx";
+import useGetDropdownableEquipments from "../../hooks/equipment/useGetDropdownableEquipments.tsx";
+import useGetDropdownableMuscles from "../../hooks/muscle/useGetDropdownableMuscles.tsx";
 
 type MovementUpdateFormType = {
     movement: MovementDTO,
@@ -14,8 +18,17 @@ type MovementUpdateFormType = {
 const MovementUpdateForm: React.FC<MovementUpdateFormType> = ({movement}) => {
     const navigate = useNavigate();
     const [movementUpdated, setMovementUpdated] = useState<MovementDTO>(movement);
+    const equipments = useGetDropdownableEquipments();
+    const muscles = useGetDropdownableMuscles();
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setMovementUpdated({
+            ...movementUpdated,
+            [event.target.name]: event.target.value
+        });
+    }
+
+    const handleSelectChange = (event: SelectChangeEvent<string[]>|SelectChangeEvent) => {
         setMovementUpdated({
             ...movementUpdated,
             [event.target.name]: event.target.value
@@ -35,7 +48,22 @@ const MovementUpdateForm: React.FC<MovementUpdateFormType> = ({movement}) => {
         <SaveForm submitFunction={handleSubmit}>
             <div>
                 <TextField id="outlined-basic" label="Name" variant="outlined" size="small" required={true}
-                           name={"name"} value={movementUpdated.name} onChange={handleInputChange} />
+                           name={"name"} value={movementUpdated.name} onChange={handleInputChange}/>
+            </div>
+
+            <div>
+                <SelectInput label="Primary muscle" name={"primaryMuscle"} value={movementUpdated.primaryMuscle.id as string}
+                             options={muscles} required={true} onSelectChange={handleSelectChange}/>
+            </div>
+
+            <div>
+                <MultiSelectInput name={"auxiliaryMuscles"} label={"Auxiliary muscles"}
+                                  value={movementUpdated.auxiliaryMuscles.map((muscle) => {return muscle.id as string})} required={false} options={muscles} onSelectChange={handleSelectChange}/>
+            </div>
+
+            <div>
+                <MultiSelectInput name={"equipments"} label={"Equipment"}
+                                  value={movementUpdated.equipments.map((equipment) => {return equipment.id as string})} required={false} options={equipments} onSelectChange={handleSelectChange}/>
             </div>
         </SaveForm>
     )

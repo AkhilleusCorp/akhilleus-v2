@@ -27,13 +27,13 @@ const MovementCreateForm: React.FC = () => {
             [event.target.name]: event.target.value
         });
     }
+
     const handleSelectChange = (event: SelectChangeEvent<string[]>|SelectChangeEvent) => {
         setMovementCreate({
             ...movementCreate,
             [event.target.name]: event.target.value
         });
     }
-
 
     const handleSubmit = async () => {
         try {
