@@ -13,6 +13,7 @@ use App\Infrastructure\View\ViewModel\SingleObjectViewModel;
 use App\Infrastructure\View\ViewModel\Workout\SingleMuscleDataViewModel;
 use App\UseCase\API\GenericCreateOneUseCase;
 use App\UseCase\API\GenericDeleteOneByIdUseCase;
+use App\UseCase\API\GenericGetDropdownableUseCase;
 use App\UseCase\API\GenericGetManyUseCase;
 use App\UseCase\API\GenericGetOneByIdUseCase;
 use App\UseCase\API\GenericUpdateOneByIdUseCase;
@@ -32,6 +33,14 @@ final class MuscleController extends AbstractAPIController
         MuscleDataModelProviderGateway $providerGateway
     ): MultipleObjectViewModel {
         return $useCase->execute($request->query->all(), new GetManyMusclesFilterModel(), $providerGateway);
+    }
+
+    #[Route('/muscles/dropdownable', name:'muscle_get_dropdownable', methods: ['GET'])]
+    public function getDropdownable(
+        GenericGetDropdownableUseCase $useCase,
+        MuscleDataModelProviderGateway $providerGateway
+    ): array {
+        return $useCase->execute('name', $providerGateway);
     }
 
     #[Route('/muscles/{id}', name:'muscle_get_one_by_id', requirements: ['id' => '\d+'], methods: ['GET'])]

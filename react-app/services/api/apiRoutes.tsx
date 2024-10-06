@@ -29,6 +29,7 @@ const apiRoutes = {
     equipment: {
         create: EQUIPMENT_API_HOST,
         list: EQUIPMENT_API_HOST,
+        dropdownable:`${EQUIPMENT_API_HOST}/dropdownable`,
         details: (equipmentId: QueryId) => `${EQUIPMENT_API_HOST}/${equipmentId}`,
         update: (equipmentId: QueryId) => `${EQUIPMENT_API_HOST}/${equipmentId}`,
         delete: (equipmentId: QueryId) => `${EQUIPMENT_API_HOST}/${equipmentId}`,
@@ -36,6 +37,7 @@ const apiRoutes = {
     muscle: {
         create: MUSCLE_API_HOST,
         list: MUSCLE_API_HOST,
+        dropdownable:`${MUSCLE_API_HOST}/dropdownable`,
         details: (muscleId: QueryId) => `${MUSCLE_API_HOST}/${muscleId}`,
         update: (muscleId: QueryId) => `${MUSCLE_API_HOST}/${muscleId}`,
         delete: (muscleId: QueryId) => `${MUSCLE_API_HOST}/${muscleId}`,

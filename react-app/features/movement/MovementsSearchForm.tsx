@@ -1,7 +1,10 @@
 import React, {useState} from "react";
 import MovementsListFilters from "../../services/api/filters/MovementsListFilters.tsx";
 import SearchForm from "../../components/form/SearchForm.tsx";
-import {FormControl, Grid2 as Grid, TextField} from "@mui/material";
+import {FormControl, Grid2 as Grid, SelectChangeEvent, TextField} from "@mui/material";
+import useGetDropdownableEquipments from "../../hooks/equipment/useGetDropdownableEquipments.tsx";
+import SelectInput from "../../components/input/SelectInput.tsx";
+import useGetDropdownableMuscles from "../../hooks/muscle/useGetDropdownableMuscles.tsx";
 
 type MovementSearchFormType = {
     defaultFilters: MovementsListFilters,
@@ -10,8 +13,17 @@ type MovementSearchFormType = {
 
 const MovementsSearchForm: React.FC<MovementSearchFormType> = ({defaultFilters, callbackFunction}) => {
     const [filters, setFilters] = useState<MovementsListFilters>(defaultFilters);
+    const equipments = useGetDropdownableEquipments();
+    const muscles = useGetDropdownableMuscles();
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setFilters({
+            ...filters,
+            [event.target.name]: event.target.value
+        });
+    }
+
+    const handleSelectChange = (event: SelectChangeEvent<string[]>|SelectChangeEvent) => {
         setFilters({
             ...filters,
             [event.target.name]: event.target.value
@@ -32,12 +44,12 @@ const MovementsSearchForm: React.FC<MovementSearchFormType> = ({defaultFilters, 
             </Grid>
             <Grid size={{ xs: 4 }}>
                 <FormControl fullWidth>
-                    <TextField id="outlined-basic" label="Muscle" variant="outlined" size="small"
-                               name={"muscleId"} value={filters.muscleId ?? ''} onChange={handleInputChange}/>
+                    <SelectInput label="Muscle" name={"muscleId"} value={filters.muscleId ?? ''}
+                                 options={muscles} required={false} onSelectChange={handleSelectChange}/>
                 </FormControl>
                 <FormControl fullWidth>
-                    <TextField id="outlined-basic" label="Equipment" variant="outlined" size="small"
-                               name={"equipmentId"} value={filters.equipmentId ?? ''} onChange={handleInputChange}/>
+                    <SelectInput label="Equipment" name={"equipmentId"} value={filters.equipmentId ?? ''}
+                                 options={equipments} required={false} onSelectChange={handleSelectChange}/>
                 </FormControl>
             </Grid>
         </SearchForm>

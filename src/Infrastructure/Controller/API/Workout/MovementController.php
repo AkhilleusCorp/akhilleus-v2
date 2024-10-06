@@ -2,9 +2,12 @@
 
 namespace App\Infrastructure\Controller\API\Workout;
 
+use App\Domain\Gateway\Provider\Workout\MovementDataModelProviderGateway;
+use App\Domain\Gateway\Provider\Workout\MuscleDataModelProviderGateway;
 use App\Infrastructure\Controller\API\AbstractAPIController;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
 use App\Infrastructure\View\ViewModel\SingleObjectViewModel;
+use App\UseCase\API\GenericGetDropdownableUseCase;
 use App\UseCase\API\Workout\CreateOneMovementUseCase;
 use App\UseCase\API\Workout\DeleteOneMovementByIdUseCase;
 use App\UseCase\API\Workout\GetManyMovementUseCase;
@@ -21,6 +24,14 @@ final class MovementController extends AbstractAPIController
     public function getMany(Request $request, GetManyMovementUseCase $useCase): MultipleObjectViewModel
     {
         return $useCase->execute($request->query->all(), $this->getDataProfile());
+    }
+
+    #[Route('/movements/dropdownable', name:'movement', methods: ['GET'])]
+    public function getDropdownable(
+        GenericGetDropdownableUseCase $useCase,
+        MovementDataModelProviderGateway $providerGateway
+    ): array {
+        return $useCase->execute('name', $providerGateway);
     }
 
     #[Route('/movements/{id}', name:'movement_get_one_by_id', requirements: ['id' => '\d+'], methods: ['GET'])]

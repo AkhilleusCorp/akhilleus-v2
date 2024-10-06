@@ -6,7 +6,7 @@ use App\Domain\DTO\DataModel\DataModelInterface;
 use App\Domain\DTO\FilterModel\FilterModelInterface;
 use Doctrine\ORM\QueryBuilder;
 
-interface GenericDataModelProviderGateway
+interface GenericDataModelProviderGateway extends DropdownableDataModelProviderGateway
 {
     public function getOneById(int $id): ?DataModelInterface;
 

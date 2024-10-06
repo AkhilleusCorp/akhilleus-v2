@@ -1,4 +1,6 @@
 ## Refactoring
+### API
+ * Add default sort to all lists
 ### React APP
  * Manipulate QueryId object instead of strings for Ids
 
