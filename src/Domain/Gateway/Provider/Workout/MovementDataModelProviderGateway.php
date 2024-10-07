@@ -11,6 +11,12 @@ interface MovementDataModelProviderGateway extends DropdownableDataModelProvider
     public function getMovementById(int $movementId): ?MovementDataModel;
 
     /**
+     * @param int[] $ids
+     * @return MovementDataModel[]
+     */
+    public function getGetMovementsByIds(array $ids): array;
+
+    /**
      * @return MovementDataModel[]
      */
     public function getMovementsByFilterModel(GetManyMovementsFilterModel $filter): array;

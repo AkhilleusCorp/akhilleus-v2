@@ -10,6 +10,7 @@ use App\UseCase\API\GenericGetDropdownableUseCase;
 final class MovementControllerTest extends AbstractIntegrationTest
 {
     private MovementController $controller;
+    private MovementDataModelProviderGateway $provider;
 
     public function setUp(): void
     {
