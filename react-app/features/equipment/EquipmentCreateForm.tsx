@@ -3,7 +3,9 @@ import {useNavigate} from "react-router-dom";
 import websiteRoutes from "../../setup/router/websiteRoutes.tsx";
 import SaveForm from "../../components/form/SaveForm.tsx";
 import EquipmentApiGateway from "../../services/api/gateway/EquipmentApiGateway.tsx";
-import {TextField} from "@mui/material";
+import {FormControl, Grid2 as Grid, SelectChangeEvent, TextField} from "@mui/material";
+import SelectInput from "../../components/input/SelectInput.tsx";
+import equipmentRegistries from "../../constants/equipmentRegistries.tsx";
 
 type EquipmentCreateFormType = {
     name: string;
@@ -14,6 +16,13 @@ const EquipmentCreateForm: React.FC = () => {
     const navigate = useNavigate();
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setEquipmentCreate({
+            ...equipmentCreate,
+            [event.target.name]: event.target.value
+        });
+    }
+
+    const handleSelectChange = (event: SelectChangeEvent) => {
         setEquipmentCreate({
             ...equipmentCreate,
             [event.target.name]: event.target.value
@@ -31,10 +40,15 @@ const EquipmentCreateForm: React.FC = () => {
 
     return (
         <SaveForm submitFunction={handleSubmit}>
-            <div>
-                <TextField id="outlined-basic" label="Name" variant="outlined" size="small"
-                           name={"name"} required={true} onChange={handleInputChange} />
-            </div>
+            <Grid size={{ xs: 4 }}>
+                <FormControl fullWidth>
+                    <TextField id="outlined-basic" label="Name" variant="outlined" size="small"
+                               name={"name"} required={true} onChange={handleInputChange}/>
+                </FormControl>
+
+                <SelectInput label="Status" name={"status"} value={null}
+                             options={equipmentRegistries.status} required={true} onSelectChange={handleSelectChange}/>
+            </Grid>
         </SaveForm>
     )
 }

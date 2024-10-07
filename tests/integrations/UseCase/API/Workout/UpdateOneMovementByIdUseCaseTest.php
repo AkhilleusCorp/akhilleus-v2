@@ -5,6 +5,7 @@ namespace App\Tests\integrations\UseCase\API\Workout;
 use App\Domain\Factory\DataModelFactory\Workout\MovementDataModelFactory;
 use App\Domain\Factory\SourceModelFactory\Workout\UpdateMovementSourceModelFactory;
 use App\Domain\Gateway\Provider\Workout\MovementDataModelProviderGateway;
+use App\Domain\Registry\Workout\MovementStatusRegistry;
 use App\Infrastructure\Persister\Workout\MovementDataModelPersister;
 use App\Infrastructure\Registry\DataProfileRegistry;
 use App\Infrastructure\Repository\Workout\MovementDataModelRepository;
@@ -43,7 +44,10 @@ final class UpdateOneMovementByIdUseCaseTest extends AbstractIntegrationTest
 
         $viewModel = $this->useCase->execute(
             $movementId,
-            ['name' => 'New name for a new life', 'primaryMuscle' => 1, 'auxiliaryMuscles' => [2,3], 'equipments' => [3,4]],
+            [
+                'name' => 'New name for a new life',
+                'status' => MovementStatusRegistry::MOVEMENT_STATUS_ACTIVE,
+                'primaryMuscle' => 1, 'auxiliaryMuscles' => [2,3], 'equipments' => [3,4]],
             DataProfileRegistry::DATA_PROFILE_ADMIN
         );
         /** @var SingleMovementDataViewModel $viewData */

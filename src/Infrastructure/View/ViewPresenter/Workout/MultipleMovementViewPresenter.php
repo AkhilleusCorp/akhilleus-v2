@@ -16,6 +16,7 @@ final class MultipleMovementViewPresenter extends AbstractMultipleObjectViewPres
         $item = new MultipleMovementItemDataViewModel();
         $item->id = $data->id;
         $item->name = $data->name;
+        $item->status = $data->status;
 
         $item->primaryMuscle = new SimpleEmbeddedObjectViewModel($data->primaryMuscle-> id, $data->primaryMuscle->name);
 

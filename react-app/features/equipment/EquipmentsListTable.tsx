@@ -2,6 +2,7 @@ import React from "react";
 import {Paper, Table,TableBody,TableCell, TableContainer, TableHead, TableRow} from '@mui/material';
 import EquipmentsListFilters from "../../services/api/filters/EquipmentsListFilters.tsx";
 import useGetManyEquipmentsByParams from "../../hooks/equipment/useGetManyEquipmentByParams.tsx";
+import equipmentRegistries from "../../constants/equipmentRegistries.tsx";
 
 
 type EquipmentListTableType = {
@@ -25,6 +26,7 @@ const EquipementsListTable: React.FC<EquipmentListTableType> = ({ filters, refre
                     <TableRow>
                         <TableCell>id</TableCell>
                         <TableCell>name</TableCell>
+                        <TableCell>status</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -36,6 +38,7 @@ const EquipementsListTable: React.FC<EquipmentListTableType> = ({ filters, refre
                                     {equipment.name}
                                 </a>
                             </TableCell>
+                            <TableCell>{equipmentRegistries.status[equipment.status]}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

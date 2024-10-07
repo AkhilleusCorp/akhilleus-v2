@@ -12,4 +12,7 @@ final class SingleEquipmentDataViewModel implements SingleObjectDataViewModelInt
 
     #[Groups(['admin', 'member'])]
     public string $name;
+
+    #[Groups(['admin', 'member'])]
+    public string $status;
 }

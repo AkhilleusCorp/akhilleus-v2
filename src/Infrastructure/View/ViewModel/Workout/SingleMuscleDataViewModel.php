@@ -12,4 +12,7 @@ final class SingleMuscleDataViewModel implements SingleObjectDataViewModelInterf
 
     #[Groups(['admin', 'member'])]
     public string $name;
+
+    #[Groups(['admin', 'member'])]
+    public string $status;
 }

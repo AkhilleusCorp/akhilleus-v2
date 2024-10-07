@@ -5,7 +5,9 @@ import websiteRoutes from "../../setup/router/websiteRoutes.tsx";
 import SaveForm from "../../components/form/SaveForm.tsx";
 import MuscleApiGateway from "../../services/api/gateway/MuscleApiGateway.tsx";
 import MuscleDTO from "../../services/api/dtos/MuscleDTO.tsx";
-import {TextField} from "@mui/material";
+import {FormControl, Grid2 as Grid, SelectChangeEvent, TextField} from "@mui/material";
+import SelectInput from "../../components/input/SelectInput.tsx";
+import muscleRegistries from "../../constants/muscleRegistries.tsx";
 
 type MuscleUpdateFormType = {
     muscle: MuscleDTO,
@@ -16,6 +18,13 @@ const MuscleUpdateForm: React.FC<MuscleUpdateFormType> = ({muscle}) => {
     const [muscleUpdated, setMuscleUpdated] = useState<MuscleDTO>(muscle);
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setMuscleUpdated({
+            ...muscleUpdated,
+            [event.target.name]: event.target.value
+        });
+    }
+
+    const handleSelectChange = (event: SelectChangeEvent) => {
         setMuscleUpdated({
             ...muscleUpdated,
             [event.target.name]: event.target.value
@@ -33,10 +42,15 @@ const MuscleUpdateForm: React.FC<MuscleUpdateFormType> = ({muscle}) => {
 
     return (
         <SaveForm submitFunction={handleSubmit}>
-            <div>
-                <TextField id="outlined-basic" label="Name" variant="outlined" size="small" required={true}
-                           name={"name"} value={muscleUpdated.name} onChange={handleInputChange} />
-            </div>
+            <Grid size={{ xs: 4 }}>
+                <FormControl fullWidth>
+                    <TextField id="outlined-basic" label="Name" variant="outlined" size="small" required={true}
+                               name={"name"} value={muscleUpdated.name} onChange={handleInputChange}/>
+                </FormControl>
+
+                <SelectInput label="Status" name={"status"} value={muscleUpdated.status}
+                             options={muscleRegistries.status} required={true} onSelectChange={handleSelectChange}/>
+            </Grid>
         </SaveForm>
     )
 }

@@ -33,6 +33,7 @@ final class EquipmentDataModelRepository extends AbstractBaseDataModelRepository
     ): AbstractBaseDataModelRepository {
         $this->filterByIds($queryBuilder, $filter->ids);
         $this->filterByName($queryBuilder, $filter->name);
+        $this->filterByStatus($queryBuilder, $filter->status);
 
         return $this;
     }

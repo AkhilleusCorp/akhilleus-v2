@@ -6,6 +6,7 @@ import MovementDTO from "../../services/api/dtos/MovementDTO.tsx";
 import {Card, CardActions, CardContent, Chip, Typography} from "@mui/material";
 import MovementDeleteButton from "./MovementDeleteButton.tsx";
 import {useNavigate} from "react-router-dom";
+import movementRegistries from "../../constants/movementRegistries.tsx";
 
 type MovementDetailsCardType = {
     movement: MovementDTO,
@@ -24,10 +25,10 @@ const MovementPreviewCard: React.FC<MovementDetailsCardType> = ({ movement, disp
         <Card className={'margin-bottom-s'}>
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                    {movement.name}
+                    {movement.name} #{movement.id}
                 </Typography>
                 <Typography variant="body2" sx={{color: 'text.secondary'}}>
-                    ID: {movement.id}
+                    Status: {movementRegistries.status[movement.status]}
                 </Typography>
                 <Typography variant="body2" sx={{color: 'text.secondary'}}>
                     Primary muscle: <Chip label={movement.primaryMuscle.label} color="primary"/>

@@ -15,5 +15,8 @@ final class MultipleMovementItemDataViewModel implements MultipleObjectItemDataV
     public string $name;
 
     #[Groups(['admin', 'member'])]
+    public string $status;
+
+    #[Groups(['admin', 'member'])]
     public SimpleEmbeddedObjectViewModel $primaryMuscle;
 }

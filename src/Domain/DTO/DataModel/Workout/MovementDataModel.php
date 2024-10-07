@@ -4,6 +4,7 @@ namespace App\Domain\DTO\DataModel\Workout;
 
 use App\Domain\DTO\DataModel\DataModelInterface;
 use App\Domain\DTO\DataModel\Equipment\EquipmentDataModel;
+use App\Domain\Registry\Workout\MovementStatusRegistry;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -20,6 +21,9 @@ class MovementDataModel implements DataModelInterface
 
     #[ORM\Column(type: Types::STRING, length: 150, unique: true)]
     public string $name;
+
+    #[ORM\Column(type: Types::STRING, length: 15, nullable: false)]
+    public string $status = MovementStatusRegistry::MOVEMENT_STATUS_DRAFT;
 
     #[ORM\ManyToOne(targetEntity: MuscleDataModel::class)]
     #[ORM\JoinColumn(name: 'primary_muscle_id', referencedColumnName: 'id', onDelete: 'restrict')]

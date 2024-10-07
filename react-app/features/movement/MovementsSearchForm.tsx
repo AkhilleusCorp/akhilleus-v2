@@ -5,6 +5,9 @@ import {FormControl, Grid2 as Grid, SelectChangeEvent, TextField} from "@mui/mat
 import useGetDropdownableEquipments from "../../hooks/equipment/useGetDropdownableEquipments.tsx";
 import SelectInput from "../../components/input/SelectInput.tsx";
 import useGetDropdownableMuscles from "../../hooks/muscle/useGetDropdownableMuscles.tsx";
+import MultiSelectInput from "../../components/input/MultiSelectInput.tsx";
+import movementRegistries from "../../constants/movementRegistries.tsx";
+import QueryIds from "../../utils/interfaces/QueryIds.tsx";
 
 type MovementSearchFormType = {
     defaultFilters: MovementsListFilters,
@@ -23,7 +26,7 @@ const MovementsSearchForm: React.FC<MovementSearchFormType> = ({defaultFilters, 
         });
     }
 
-    const handleSelectChange = (event: SelectChangeEvent<string[]>|SelectChangeEvent) => {
+    const handleSelectChange = (event: SelectChangeEvent<QueryIds>|SelectChangeEvent) => {
         setFilters({
             ...filters,
             [event.target.name]: event.target.value
@@ -51,6 +54,11 @@ const MovementsSearchForm: React.FC<MovementSearchFormType> = ({defaultFilters, 
                     <SelectInput label="Equipment" name={"equipmentId"} value={filters.equipmentId ?? ''}
                                  options={equipments} required={false} onSelectChange={handleSelectChange}/>
                 </FormControl>
+            </Grid>
+            <Grid size={{ xs: 4 }}>
+                <MultiSelectInput label={"Status"} name={"status"} value={filters.status}
+                                  options={movementRegistries.status}
+                                  onSelectChange={handleSelectChange} required={false}/>
             </Grid>
         </SearchForm>
 )

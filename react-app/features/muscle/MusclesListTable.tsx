@@ -2,6 +2,7 @@ import React from "react";
 import {Paper, Table,TableBody,TableCell, TableContainer, TableHead, TableRow} from '@mui/material';
 import MusclesListFilters from "../../services/api/filters/MusclesListFilters.tsx";
 import useGetManyMusclesByParams from "../../hooks/muscle/useGetManyMuscleByParams.tsx";
+import muscleRegistries from "../../constants/muscleRegistries.tsx";
 
 
 type MuscleListTableType = {
@@ -25,6 +26,7 @@ const MusclesListTable: React.FC<MuscleListTableType> = ({ filters, refreshKey, 
                     <TableRow>
                         <TableCell>id</TableCell>
                         <TableCell>name</TableCell>
+                        <TableCell>status</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -36,6 +38,7 @@ const MusclesListTable: React.FC<MuscleListTableType> = ({ filters, refreshKey, 
                                     {muscle.name}
                                 </a>
                             </TableCell>
+                            <TableCell>{muscleRegistries.status[muscle.status]}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

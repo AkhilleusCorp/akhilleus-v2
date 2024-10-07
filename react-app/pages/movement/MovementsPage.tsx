@@ -10,7 +10,7 @@ import MovementsListTable from "../../features/movement/MovementsListTable.tsx";
 import MovementApiGateway from "../../services/api/gateway/MovementApiGateway.tsx";
 
 const MovementsPage: React.FC = () => {
-    const defaultFilters: MovementsListFilters = { ids: null, name: null, muscleId: null, equipmentId: null, limit: 25 };
+    const defaultFilters: MovementsListFilters = { ids: null, name: null, status: ['active'], muscleId: null, equipmentId: null, limit: 25 };
     const [filters, setFilters] = useState<MovementsListFilters>(defaultFilters);
     const [refreshKey, setRefreshKey] = useState(0)
     const [movementPreview, setUserPreview] = useState<MovementDTO|null>(null);

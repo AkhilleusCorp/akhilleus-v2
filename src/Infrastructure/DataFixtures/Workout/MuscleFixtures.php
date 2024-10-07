@@ -2,21 +2,13 @@
 
 namespace App\Infrastructure\DataFixtures\Workout;
 
-use App\Domain\DTO\SourceModel\Workout\CreateMuscleSourceModel;
-use App\Domain\Factory\DataModelFactory\Workout\MuscleDataModelFactory;
-use App\Domain\Factory\SourceModelFactory\GenericSourceModelFactory;
+use App\Domain\DTO\DataModel\Workout\MuscleDataModel;
+use App\Domain\Registry\Workout\MuscleStatusRegistry;
 use App\Infrastructure\DataFixtures\AbstractFixtures;
 use Doctrine\Persistence\ObjectManager;
 
 final class MuscleFixtures extends AbstractFixtures
 {
-    public function __construct(
-        private readonly GenericSourceModelFactory $sourceModelFactory,
-        private readonly MuscleDataModelFactory $dataModelFactory
-    )
-    {
-    }
-
     protected function explicitFixtures(ObjectManager $manager): void
     {
         $names = [
@@ -25,12 +17,10 @@ final class MuscleFixtures extends AbstractFixtures
             'neck', 'shoulders', 'lats', 'traps', 'upper-back', 'other',
         ];
         foreach ($names as $name) {
-            $source = $this->sourceModelFactory->buildSourceModel(
-                ['name' => $name],
-                new CreateMuscleSourceModel()
-            );
+            $muscle = new MuscleDataModel();
+            $muscle->name = $name;
+            $muscle->status = MuscleStatusRegistry::MUSCLE_STATUS_ACTIVE;
 
-            $muscle = $this->dataModelFactory->buildNewDataModel($source);
             $manager->persist($muscle);
 
             $this->addRef("muscle", $muscle->name, $muscle);

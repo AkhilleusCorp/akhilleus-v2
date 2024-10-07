@@ -10,7 +10,7 @@ import EquipmentsListTable from "../../features/equipment/EquipmentsListTable.ts
 import EquipmentApiGateway from "../../services/api/gateway/EquipmentApiGateway.tsx";
 
 const EquipmentsPage: React.FC = () => {
-    const defaultFilters: EquipmentsListFilters = { ids: null, name: null, limit: 25 };
+    const defaultFilters: EquipmentsListFilters = { ids: null, name: null, status: ['active'], limit: 25 };
     const [filters, setFilters] = useState<EquipmentsListFilters>(defaultFilters);
     const [refreshKey, setRefreshKey] = useState(0)
     const [equipmentPreview, setUserPreview] = useState<EquipmentDTO|null>(null);

@@ -3,7 +3,9 @@ import {useNavigate} from "react-router-dom";
 import websiteRoutes from "../../setup/router/websiteRoutes.tsx";
 import SaveForm from "../../components/form/SaveForm.tsx";
 import MuscleApiGateway from "../../services/api/gateway/MuscleApiGateway.tsx";
-import {TextField} from "@mui/material";
+import {FormControl, Grid2 as Grid, SelectChangeEvent, TextField} from "@mui/material";
+import SelectInput from "../../components/input/SelectInput.tsx";
+import muscleRegistries from "../../constants/muscleRegistries.tsx";
 
 type MuscleCreateFormType = {
     name: string;
@@ -14,6 +16,13 @@ const MuscleCreateForm: React.FC = () => {
     const navigate = useNavigate();
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setMuscleCreate({
+            ...muscleCreate,
+            [event.target.name]: event.target.value
+        });
+    }
+
+    const handleSelectChange = (event: SelectChangeEvent) => {
         setMuscleCreate({
             ...muscleCreate,
             [event.target.name]: event.target.value
@@ -31,10 +40,15 @@ const MuscleCreateForm: React.FC = () => {
 
     return (
         <SaveForm submitFunction={handleSubmit}>
-            <div>
-                <TextField id="outlined-basic" label="Name" variant="outlined" size="small"
-                           name={"name"} required={true} onChange={handleInputChange} />
-            </div>
+            <Grid size={{ xs: 4 }}>
+                <FormControl fullWidth>
+                    <TextField id="outlined-basic" label="Name" variant="outlined" size="small"
+                               name={"name"} required={true} onChange={handleInputChange}/>
+                </FormControl>
+
+                <SelectInput label="Status" name={"status"} value={null}
+                             options={muscleRegistries.status} required={true} onSelectChange={handleSelectChange}/>
+            </Grid>
         </SaveForm>
     )
 }

@@ -3,6 +3,7 @@
 namespace App\Domain\DTO\DataModel\Workout;
 
 use App\Domain\DTO\DataModel\DataModelInterface;
+use App\Domain\Registry\Workout\MuscleStatusRegistry;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -17,4 +18,7 @@ class MuscleDataModel implements DataModelInterface
 
     #[ORM\Column(type: Types::STRING, length: 150, unique: true)]
     public string $name;
+
+    #[ORM\Column(type: Types::STRING, length: 15, nullable: false)]
+    public string $status = MuscleStatusRegistry::MUSCLE_STATUS_DRAFT;
 }

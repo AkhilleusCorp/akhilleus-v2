@@ -2,18 +2,19 @@ import React from "react";
 import {Box, Chip, FormControl, InputLabel, MenuItem, OutlinedInput, Select, SelectChangeEvent} from "@mui/material";
 import { Theme, useTheme } from '@mui/material/styles';
 import IndexedArray from "../../utils/interfaces/IndexedArray.tsx";
+import QueryIds from "../../utils/interfaces/QueryIds.tsx";
 
 type MultiSelectInputType = {
     label: string;
     name: string;
-    value: string[] | null;
+    value: string[] | number[] | null;
     options: IndexedArray;
     required: boolean;
-    onSelectChange: (event: SelectChangeEvent<string[]>) => void;
+    onSelectChange: (event: SelectChangeEvent<QueryIds>) => void;
 }
 
 const MultiSelectInput: React.FC<MultiSelectInputType> = ({ label, name, value, options, required, onSelectChange }) => {
-    const [inputValue, setInputValue] = React.useState<string[]>(value ?? []);
+    const [inputValue, setInputValue] = React.useState<QueryIds>(value ?? []);
 
     const theme = useTheme();
     const ITEM_HEIGHT = 48;
@@ -27,7 +28,7 @@ const MultiSelectInput: React.FC<MultiSelectInputType> = ({ label, name, value, 
         },
     };
 
-    function getStyles(name: string, inputValue: readonly string[], theme: Theme) {
+    function getStyles(name: string, inputValue: readonly unknown[], theme: Theme) {
         return {
             fontWeight: inputValue.includes(name)
                 ? theme.typography.fontWeightMedium

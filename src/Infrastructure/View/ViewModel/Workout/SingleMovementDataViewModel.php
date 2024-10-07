@@ -15,6 +15,9 @@ final class SingleMovementDataViewModel implements SingleObjectDataViewModelInte
     public string $name;
 
     #[Groups(['admin', 'member'])]
+    public string $status;
+
+    #[Groups(['admin', 'member'])]
     public SimpleEmbeddedObjectViewModel $primaryMuscle;
 
     #[Groups(['admin', 'member'])]

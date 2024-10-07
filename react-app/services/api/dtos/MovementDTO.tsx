@@ -3,6 +3,7 @@ import SimpleEmbeddedDTO from "./SimpleEmbeddedDTO.tsx";
 class MovementDTO {
     id: number;
     name: string;
+    status: string;
     primaryMuscle: SimpleEmbeddedDTO;
     auxiliaryMuscles: SimpleEmbeddedDTO[];
     equipments: SimpleEmbeddedDTO[];
@@ -10,12 +11,14 @@ class MovementDTO {
     constructor(
         id: number,
         name: string,
+        status: string,
         primaryMuscle: SimpleEmbeddedDTO,
         auxiliaryMuscles: SimpleEmbeddedDTO[],
         equipments: SimpleEmbeddedDTO[]
     ) {
         this.id = id;
         this.name = name;
+        this.status = status;
         this.primaryMuscle = primaryMuscle;
         this.auxiliaryMuscles = auxiliaryMuscles;
         this.equipments = equipments;

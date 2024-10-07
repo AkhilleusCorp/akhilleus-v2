@@ -1,6 +1,6 @@
 import React, {ReactNode} from "react";
 import {useNavigate} from "react-router-dom";
-import {Box, Button, Card, CardActions, CardContent} from "@mui/material";
+import {Button, Card, CardActions, CardContent, FormControl, Grid2 as Grid} from "@mui/material";
 
 type SaveFormProps = {
     submitFunction: () => void;
@@ -19,9 +19,11 @@ const SaveForm: React.FC<SaveFormProps> = ({ submitFunction, children }) => {
         <Card>
             <form onSubmit={handleSubmit}>
                 <CardContent>
-                    <Box sx={{'& .MuiTextField-root': {m: 1, width: '25ch'}}}>
-                        {children}
-                    </Box>
+                    <FormControl fullWidth>
+                        <Grid container spacing={2}>
+                            {children}
+                        </Grid>
+                    </FormControl>
                 </CardContent>
 
                 <CardActions>
