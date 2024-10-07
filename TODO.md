@@ -19,10 +19,13 @@
  * Handle timezone using UserConfiguration and use it in CustomSerializer
  * Create a dedicated API just to update password
 ### Muscle, Equipment, Movement
- * Implement DeleteOneByIdUseCase to deal with soft delete if object is used
+ * add count usage ?
+ * Do not allow to delete if the object is used
 
 ## Website
 
 ## React APP
+### Muscle, Equipment, Movement
+* Do not allow to delete if the object is used
 ### Security
  * Fetch and use token to make api call in order to secure it (and remove public access)
