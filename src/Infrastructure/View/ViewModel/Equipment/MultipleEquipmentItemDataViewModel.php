@@ -12,4 +12,7 @@ final class MultipleEquipmentItemDataViewModel implements MultipleObjectItemData
 
     #[Groups(['admin', 'member'])]
     public string $name;
+
+    #[Groups(['admin', 'member'])]
+    public string $status;
 }

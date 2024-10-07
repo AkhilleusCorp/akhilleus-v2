@@ -5,6 +5,7 @@ import {FormControl, Grid2 as Grid, SelectChangeEvent, TextField} from "@mui/mat
 import SelectInput from "../../components/input/SelectInput.tsx";
 import userRegistries from "../../constants/userRegistries.tsx";
 import MultiSelectInput from "../../components/input/MultiSelectInput.tsx";
+import QueryIds from "../../utils/interfaces/QueryIds.tsx";
 
 type UserSearchFormType = {
     defaultFilters: UsersListFilters,
@@ -21,7 +22,7 @@ const UsersSearchForm: React.FC<UserSearchFormType> = ({defaultFilters, callback
         });
     }
 
-    const handleSelectChange = (event: SelectChangeEvent<string[]>|SelectChangeEvent) => {
+    const handleSelectChange = (event: SelectChangeEvent<QueryIds>|SelectChangeEvent) => {
         setFilters({
             ...filters,
             [event.target.name]: event.target.value

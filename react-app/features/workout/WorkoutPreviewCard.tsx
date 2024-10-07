@@ -25,10 +25,7 @@ const WorkoutPreviewCard: React.FC<WorkoutDetailsCardType> = ({ workout, display
         <Card className={'margin-bottom-s'}>
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                    {workout.name}
-                </Typography>
-                <Typography variant="body2" sx={{color: 'text.secondary'}}>
-                    ID: {workout.id}
+                    {workout.name} #{workout.id}
                 </Typography>
                 <Typography variant="body2" sx={{color: 'text.secondary'}}>
                     Status: {workoutRegistries.status[workout.status]}

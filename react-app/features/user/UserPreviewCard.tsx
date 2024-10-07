@@ -1,4 +1,4 @@
-import React from 'react';
+                                                                                                                                                                                                                                                                                                import React from 'react';
 import EditButton from "../../components/button/EditButton.tsx";
 import websiteRoutes from "../../setup/router/websiteRoutes.tsx";
 import DetailsButton from "../../components/button/DetailsButton.tsx";
@@ -25,11 +25,7 @@ const UserPreviewCard: React.FC<UserDetailsCardType> = ({ user, displayReadActio
         <Card>
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                    {user.username}
-                </Typography>
-
-                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                    ID: {user.id}
+                    {user.username} #{user.id}
                 </Typography>
                 <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                     Status: {userRegistries.status[user.status]}

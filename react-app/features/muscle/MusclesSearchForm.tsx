@@ -4,6 +4,7 @@ import SearchForm from "../../components/form/SearchForm.tsx";
 import {FormControl, Grid2 as Grid, SelectChangeEvent, TextField} from "@mui/material";
 import MultiSelectInput from "../../components/input/MultiSelectInput.tsx";
 import muscleRegistries from "../../constants/muscleRegistries.tsx";
+import QueryIds from "../../utils/interfaces/QueryIds.tsx";
 
 type MuscleSearchFormType = {
     defaultFilters: MusclesListFilters,
@@ -20,7 +21,7 @@ const MusclesSearchForm: React.FC<MuscleSearchFormType> = ({defaultFilters, call
         });
     }
 
-    const handleSelectChange = (event: SelectChangeEvent<string[]>) => {
+    const handleSelectChange = (event: SelectChangeEvent<QueryIds>) => {
         setFilters({
             ...filters,
             [event.target.name]: event.target.value

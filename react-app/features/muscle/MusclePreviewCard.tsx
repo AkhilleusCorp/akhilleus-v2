@@ -6,6 +6,7 @@ import MuscleDTO from "../../services/api/dtos/MuscleDTO.tsx";
 import {Card, CardActions, CardContent, Typography} from "@mui/material";
 import MuscleDeleteButton from "./MuscleDeleteButton.tsx";
 import {useNavigate} from "react-router-dom";
+import muscleRegistries from "../../constants/muscleRegistries.tsx";
 
 type MuscleDetailsCardType = {
     muscle: MuscleDTO,
@@ -24,10 +25,10 @@ const MusclePreviewCard: React.FC<MuscleDetailsCardType> = ({ muscle, displayRea
         <Card className={'margin-bottom-s'}>
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                    {muscle.name}
+                    {muscle.name} #{muscle.id}
                 </Typography>
                 <Typography variant="body2" sx={{color: 'text.secondary'}}>
-                    ID: {muscle.id}
+                    Status: {muscleRegistries.status[muscle.status]}
                 </Typography>
             </CardContent>
 

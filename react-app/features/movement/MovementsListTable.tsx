@@ -2,6 +2,7 @@ import React from "react";
 import {Paper, Table,TableBody,TableCell, TableContainer, TableHead, TableRow} from '@mui/material';
 import MovementsListFilters from "../../services/api/filters/MovementsListFilters.tsx";
 import useGetManyMovementsByParams from "../../hooks/movement/useGetManyMovementByParams.tsx";
+import movementRegistries from "../../constants/movementRegistries.tsx";
 
 
 type MovementListTableType = {
@@ -25,6 +26,7 @@ const MovementsListTable: React.FC<MovementListTableType> = ({ filters, refreshK
                     <TableRow>
                         <TableCell>id</TableCell>
                         <TableCell>name</TableCell>
+                        <TableCell>status</TableCell>
                         <TableCell>main muscle</TableCell>
                     </TableRow>
                 </TableHead>
@@ -37,6 +39,7 @@ const MovementsListTable: React.FC<MovementListTableType> = ({ filters, refreshK
                                     {movement.name}
                                 </a>
                             </TableCell>
+                            <TableCell>{movementRegistries.status[movement.status]}</TableCell>
                             <TableCell>
                                 {movement.primaryMuscle.label}
                             </TableCell>

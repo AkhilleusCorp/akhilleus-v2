@@ -3,12 +3,13 @@ import {useNavigate} from "react-router-dom";
 import websiteRoutes from "../../setup/router/websiteRoutes.tsx";
 import SaveForm from "../../components/form/SaveForm.tsx";
 import MovementApiGateway from "../../services/api/gateway/MovementApiGateway.tsx";
-import {SelectChangeEvent, TextField} from "@mui/material";
+import {FormControl, Grid2 as Grid, SelectChangeEvent, TextField} from "@mui/material";
 import MultiSelectInput from "../../components/input/MultiSelectInput.tsx";
-import IndexedArray from "../../utils/interfaces/IndexedArray.tsx";
 import useGetDropdownableEquipments from "../../hooks/equipment/useGetDropdownableEquipments.tsx";
 import useGetDropdownableMuscles from "../../hooks/muscle/useGetDropdownableMuscles.tsx";
 import SelectInput from "../../components/input/SelectInput.tsx";
+import movementRegistries from "../../constants/movementRegistries.tsx";
+import QueryIds from "../../utils/interfaces/QueryIds.tsx";
 
 type MovementCreateFormType = {
     name: string;
@@ -28,7 +29,7 @@ const MovementCreateForm: React.FC = () => {
         });
     }
 
-    const handleSelectChange = (event: SelectChangeEvent<string[]>|SelectChangeEvent) => {
+    const handleSelectChange = (event: SelectChangeEvent<QueryIds>|SelectChangeEvent) => {
         setMovementCreate({
             ...movementCreate,
             [event.target.name]: event.target.value
@@ -46,25 +47,24 @@ const MovementCreateForm: React.FC = () => {
 
     return (
         <SaveForm submitFunction={handleSubmit}>
-            <div>
-                <TextField id="outlined-basic" label="Name" variant="outlined" size="small"
-                           name={"name"} required={true} onChange={handleInputChange}/>
-            </div>
-
-            <div>
+            <Grid size={{ xs: 4 }}>
+                <FormControl fullWidth>
+                    <TextField id="outlined-basic" label="Name" variant="outlined" size="small"
+                               name={"name"} required={true} onChange={handleInputChange}/>
+                </FormControl>
+                <SelectInput label="Status" name={"status"} value={null}
+                             options={movementRegistries.status} required={true} onSelectChange={handleSelectChange}/>
+            </Grid>
+            <Grid size={{ xs: 4 }}>
                 <SelectInput label="Primary muscle" name={"primaryMuscle"} value={null}
                              options={muscles} required={true} onSelectChange={handleSelectChange}/>
-            </div>
 
-            <div>
                 <MultiSelectInput name={"auxiliaryMuscles"} label={"Auxiliary muscles"}
                                   value={[]} required={false} options={muscles} onSelectChange={handleSelectChange}/>
-            </div>
 
-            <div>
                 <MultiSelectInput name={"equipments"} label={"Equipment"}
-                           value={[]} required={false} options={equipments} onSelectChange={handleSelectChange}/>
-            </div>
+                                  value={[]} required={false} options={equipments} onSelectChange={handleSelectChange}/>
+            </Grid>
         </SaveForm>
     )
 }

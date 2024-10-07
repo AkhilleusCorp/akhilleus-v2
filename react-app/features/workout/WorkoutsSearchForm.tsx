@@ -4,6 +4,7 @@ import SearchForm from "../../components/form/SearchForm.tsx";
 import {FormControl, Grid2 as Grid, SelectChangeEvent, TextField} from "@mui/material";
 import workoutRegistries from "../../constants/workoutRegistries.tsx";
 import MultiSelectInput from "../../components/input/MultiSelectInput.tsx";
+import QueryIds from "../../utils/interfaces/QueryIds.tsx";
 
 type WorkoutSearchFormType = {
     defaultFilters: WorkoutsListFilters,
@@ -20,7 +21,7 @@ const WorkoutsSearchForm: React.FC<WorkoutSearchFormType> = ({defaultFilters, ca
         });
     }
 
-    const handleSelectChange = (event: SelectChangeEvent<string[]>) => {
+    const handleSelectChange = (event: SelectChangeEvent<QueryIds>) => {
         setFilters({
             ...filters,
             [event.target.name]: event.target.value

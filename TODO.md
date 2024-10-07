@@ -19,7 +19,6 @@
  * Handle timezone using UserConfiguration and use it in CustomSerializer
  * Create a dedicated API just to update password
 ### Muscle, Equipment, Movement
- * Add status
  * Implement DeleteOneByIdUseCase to deal with soft delete if object is used
 
 ## Website

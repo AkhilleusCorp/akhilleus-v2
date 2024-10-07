@@ -35,19 +35,17 @@ final class MovementDataModelFactory extends AbstractDataModelFactory
     ): MovementDataModel|DataModelInterface {
         $dataModel = $this->handleConnectedDataModels($dataModel, $sourceModel);
 
-        // NB: Clean up object since they can't be handled through reflection
-        $sourceModel->primaryMuscle = null;
-        $sourceModel->auxiliaryMuscles = null;
-        $sourceModel->equipments = null;
+        $dataModel->name = $sourceModel->name;
+        $dataModel->status = $sourceModel->status;
 
-        return parent::mergeSourceAndDataModel($dataModel, $sourceModel);
+        return $dataModel;
     }
 
     private function handleConnectedDataModels(
         MovementDataModel $dataModel,
         CreateMovementSourceModel|UpdateMovementSourceModel $sourceModel
     ): MovementDataModel {
-        if (null !== $sourceModel->primaryMuscle) {
+        if ($dataModel->primaryMuscle->id !== $sourceModel->primaryMuscle) {
             $primaryMuscle = $this->muscleProvider->getOneById($sourceModel->primaryMuscle);
             if (null === $primaryMuscle) {
                 throw new \LogicException("Cannot create a movement on a non existing muscle.");

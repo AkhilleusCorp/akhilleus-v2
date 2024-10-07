@@ -12,4 +12,7 @@ final class MultipleMuscleItemDataViewModel implements MultipleObjectItemDataVie
 
     #[Groups(['admin', 'member'])]
     public string $name;
+
+    #[Groups(['admin', 'member'])]
+    public string $status;
 }

@@ -4,6 +4,7 @@ import {useParams} from "react-router-dom";
 import useGetOneMovementById from "../../hooks/movement/useGetOneMovementById.tsx";
 import ErrorPage from "../ErrorPage.tsx";
 import MovementUpdateForm from "../../features/movement/MovementUpdateForm.tsx";
+import MovementUpdateSource from "../../services/api/source/MovementUpdateSource.tsx";
 
 const MovementUpdatePage: React.FC = () => {
     const { movementId } = useParams<{ movementId: string }>();
@@ -15,7 +16,7 @@ const MovementUpdatePage: React.FC = () => {
     return (
         <AdminLayout>
             <h3>{movement.name} #{movement.id}</h3>
-            <MovementUpdateForm movement={movement} />
+            <MovementUpdateForm movement={new MovementUpdateSource(movement)} />
         </AdminLayout>
     )
 }

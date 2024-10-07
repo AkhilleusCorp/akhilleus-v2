@@ -6,6 +6,7 @@ import EquipmentDTO from "../../services/api/dtos/EquipmentDTO.tsx";
 import {Card, CardActions, CardContent, Typography} from "@mui/material";
 import EquipmentDeleteButton from "./EquipmentDeleteButton.tsx";
 import {useNavigate} from "react-router-dom";
+import equipmentRegistries from "../../constants/equipmentRegistries.tsx";
 
 type EquipmentDetailsCardType = {
     equipment: EquipmentDTO,
@@ -24,10 +25,10 @@ const EquipmentPreviewCard: React.FC<EquipmentDetailsCardType> = ({ equipment, d
         <Card className={'margin-bottom-s'}>
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                    {equipment.name}
+                    {equipment.name} #{equipment.id}
                 </Typography>
                 <Typography variant="body2" sx={{color: 'text.secondary'}}>
-                    ID: {equipment.id}
+                    Status: {equipmentRegistries.status[equipment.status]}
                 </Typography>
             </CardContent>
 

@@ -6,9 +6,11 @@ use App\Domain\DTO\SourceModel\UpdateSourceModelInterface;
 
 final class UpdateMovementSourceModel implements UpdateSourceModelInterface
 {
-    public ?string $name;
+    public string $name;
 
-    public ?int $primaryMuscle;
+    public string $status;
+
+    public int $primaryMuscle;
 
     /** @var int[]|null $auxiliaryMuscles */
     public ?array $auxiliaryMuscles;

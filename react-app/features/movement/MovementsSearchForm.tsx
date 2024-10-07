@@ -7,6 +7,7 @@ import SelectInput from "../../components/input/SelectInput.tsx";
 import useGetDropdownableMuscles from "../../hooks/muscle/useGetDropdownableMuscles.tsx";
 import MultiSelectInput from "../../components/input/MultiSelectInput.tsx";
 import movementRegistries from "../../constants/movementRegistries.tsx";
+import QueryIds from "../../utils/interfaces/QueryIds.tsx";
 
 type MovementSearchFormType = {
     defaultFilters: MovementsListFilters,
@@ -25,7 +26,7 @@ const MovementsSearchForm: React.FC<MovementSearchFormType> = ({defaultFilters, 
         });
     }
 
-    const handleSelectChange = (event: SelectChangeEvent<string[]>|SelectChangeEvent) => {
+    const handleSelectChange = (event: SelectChangeEvent<QueryIds>|SelectChangeEvent) => {
         setFilters({
             ...filters,
             [event.target.name]: event.target.value

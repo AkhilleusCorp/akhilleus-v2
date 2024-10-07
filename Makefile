@@ -9,11 +9,11 @@ install_dependencies:
 	yarn
 
 up:
-	docker-compose up -d
+	docker compose up -d
 	sleep 3
 
 down:
-	docker-compose down --remove-orphan
+	docker compose down --remove-orphan
 
 create_local_db:
 	php bin/console doctrine:database:drop --force --if-exists
@@ -21,7 +21,7 @@ create_local_db:
 	php bin/console doctrine:migrations:migrate -n
 
 remove_local_db:
-	docker-compose down --remove-orphan
+	docker compose down --remove-orphan
 
 load_fixtures:
 	php bin/console doctrine:fixtures:load -n
@@ -50,4 +50,4 @@ tests_all:
 	XDEBUG_MODE=coverage vendor/bin/phpunit
 
 mysql_connect_akhilleus: ## Connect to core database
-	docker-compose exec database /bin/bash -c 'mysql -u$$MYSQL_USER -p$$MYSQL_PASSWORD $$MYSQL_DB_NAME'
+	docker compose exec database /bin/bash -c 'mysql -u$$MYSQL_USER -p$$MYSQL_PASSWORD $$MYSQL_DB_NAME'

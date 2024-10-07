@@ -15,19 +15,19 @@ const SearchForm: React.FC<SearchFormProps> = ({ searchFunction, filters, childr
 
     return (
         <Card>
-                <form onSubmit={handleSubmit}>
-                    <CardContent>
-                        <FormControl fullWidth>
-                            <Grid container spacing={2}>
-                                {children}
-                            </Grid>
-                        </FormControl>
-                    </CardContent>
+            <form onSubmit={handleSubmit}>
+                <CardContent>
+                    <FormControl fullWidth>
+                        <Grid container spacing={2}>
+                            {children}
+                        </Grid>
+                    </FormControl>
+                </CardContent>
 
-                    <CardActions style={{justifyContent: 'center'}}>
-                        <Button type={"submit"} variant="contained">Search</Button>
-                    </CardActions>
-                </form>
+                <CardActions style={{justifyContent: 'center'}}>
+                    <Button type={"submit"} variant="contained">Search</Button>
+                </CardActions>
+            </form>
         </Card>
     );
 };

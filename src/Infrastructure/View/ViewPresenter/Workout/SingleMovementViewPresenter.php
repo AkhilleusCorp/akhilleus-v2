@@ -17,6 +17,7 @@ final class SingleMovementViewPresenter extends AbstractSingleObjectViewPresente
         $view = new SingleMovementDataViewModel();
         $view->id = $data->id;
         $view->name = $data->name;
+        $view->status = $data->status;
         $view->primaryMuscle = new SimpleEmbeddedObjectViewModel($data->primaryMuscle->id, $data->primaryMuscle->name);
         $view->auxiliaryMuscles = $this->getAuxiliaryMusclesAsEmbedded($data->auxiliaryMuscles->toArray());
         $view->equipments = $this->getEquipmentsAsEmbedded($data->equipments->toArray());
