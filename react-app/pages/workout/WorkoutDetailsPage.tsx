@@ -8,7 +8,7 @@ import ExerciseGroupsListCard from "../../features/exerciseGroup/ExerciseGroupsL
 import useGetExerciseGroupByWorkoutId from "../../hooks/exerciseGroup/useGetExerciseGroupByWorkoutId.tsx";
 const WorkoutDetailsPage: React.FC = () => {
     const { workoutId } = useParams<{ workoutId: string }>();
-    if (undefined === workoutId) {
+    if (undefined == workoutId) {
         return <ErrorPage />
     }
 
