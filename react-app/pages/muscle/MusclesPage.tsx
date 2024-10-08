@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import AdminLayout from "../../layouts/admin/AdminLayout.tsx";
 import {Link} from "react-router-dom";
-import websiteRoutes from "../../setup/router/websiteRoutes.tsx";
+import websiteRoutes from "../../services/router/websiteRoutes.tsx";
 import MusclesListFilters from "../../services/api/filters/MusclesListFilters.tsx";
 import MuscleDTO from "../../services/api/dtos/MuscleDTO.tsx";
 import MusclePreviewCard from "../../features/muscle/MusclePreviewCard.tsx";

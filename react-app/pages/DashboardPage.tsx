@@ -2,7 +2,7 @@ import React from 'react';
 import AdminLayout from "../layouts/admin/AdminLayout.tsx";
 import RepositoriesList from "../features/RepositoriesList.tsx";
 import {Provider} from "react-redux";
-import {store} from "../setup/redux/store.tsx";
+import {store} from "../services/redux/store.tsx";
 
 const DashboardPage: React.FC = () => {
 

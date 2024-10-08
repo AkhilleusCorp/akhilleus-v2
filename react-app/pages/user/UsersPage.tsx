@@ -4,7 +4,7 @@ import UsersListTable from "../../features/user/UsersListTable.tsx";
 import {Link} from "react-router-dom";
 import UsersListFilters from "../../services/api/filters/UsersListFilters.tsx";
 import UsersSearchForm from "../../features/user/UsersSearchForm.tsx";
-import websiteRoutes from "../../setup/router/websiteRoutes.tsx";
+import websiteRoutes from "../../services/router/websiteRoutes.tsx";
 import UserPreviewCard from "../../features/user/UserPreviewCard.tsx";
 import UserApiGateway from "../../services/api/gateway/UserApiGateway.tsx";
 import UserDTO from "../../services/api/dtos/UserDTO.tsx";

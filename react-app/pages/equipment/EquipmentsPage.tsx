@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import AdminLayout from "../../layouts/admin/AdminLayout.tsx";
 import {Link} from "react-router-dom";
-import websiteRoutes from "../../setup/router/websiteRoutes.tsx";
+import websiteRoutes from "../../services/router/websiteRoutes.tsx";
 import EquipmentsListFilters from "../../services/api/filters/EquipmentsListFilters.tsx";
 import EquipmentDTO from "../../services/api/dtos/EquipmentDTO.tsx";
 import EquipmentPreviewCard from "../../features/equipment/EquipmentPreviewCard.tsx";

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import AdminLayout from "../../layouts/admin/AdminLayout.tsx";
 import {Link} from "react-router-dom";
-import websiteRoutes from "../../setup/router/websiteRoutes.tsx";
+import websiteRoutes from "../../services/router/websiteRoutes.tsx";
 import WorkoutsListFilters from "../../services/api/filters/WorkoutsListFilters.tsx";
 import WorkoutDTO from "../../services/api/dtos/WorkoutDTO.tsx";
 import WorkoutPreviewCard from "../../features/workout/WorkoutPreviewCard.tsx";
