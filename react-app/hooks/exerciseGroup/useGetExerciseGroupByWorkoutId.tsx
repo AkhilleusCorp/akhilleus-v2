@@ -1,12 +1,9 @@
 import {useEffect, useState} from "react";
-import ExerciseGroupApiGateway from "../../services/api/gateway/ExerciseGroupGateway.tsx";
+import ExerciseGroupApiGateway from "../../services/api/gateway/ExerciseGroupApiGateway.tsx";
 import ExerciseGroupDTO from "../../services/api/dtos/ExerciseGroupDTO.tsx";
+import QueryId from "../../utils/interfaces/QueryId.tsx";
 
-function useGetExerciseGroupByWorkoutId(workoutId: string|undefined): ExerciseGroupDTO[] {
-    if (!workoutId) {
-        return [];
-    }
-
+function useGetExerciseGroupByWorkoutId(workoutId: QueryId): ExerciseGroupDTO[] {
     const [groups, setGroups] = useState<ExerciseGroupDTO[]>([]);
     useEffect(() => {
         const fetchGroups = async () => {

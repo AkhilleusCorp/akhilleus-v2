@@ -1,5 +1,5 @@
 import React from "react";
-import {Paper, Table, TableBody, TableCell, TableContainer, TableRow} from "@mui/material";
+import {Table, TableBody, TableCell, TableContainer, TableRow} from "@mui/material";
 import ExerciseDTO from "../../services/api/dtos/ExerciseDTO.tsx";
 
 type ExercisesPreviewListTable = {
@@ -9,7 +9,7 @@ type ExercisesPreviewListTable = {
 
 const ExercisesPreviewListTable: React.FC<ExercisesPreviewListTable> = ({exercises, hasMultipleMovement}) => {
     return (
-        <TableContainer component={Paper}>
+        <TableContainer>
             <Table>
                 <TableBody>
                 { exercises.map((exercise: any) => (

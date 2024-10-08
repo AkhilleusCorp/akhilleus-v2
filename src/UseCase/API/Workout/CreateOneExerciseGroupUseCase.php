@@ -15,7 +15,6 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 final class CreateOneExerciseGroupUseCase implements UseCaseInterface
 {
     public function __construct(
-        private readonly WorkoutDataModelProviderGateway  $workoutProvider,
         private readonly CreateExerciseGroupSourceModelFactory $sourceModelFactory,
         private readonly ExerciseGroupDataModelFactory $dataModelFactory,
         private readonly ExerciseGroupDataModelPersisterGateway $persister,
@@ -26,11 +25,7 @@ final class CreateOneExerciseGroupUseCase implements UseCaseInterface
 
     public function execute(int $workoutId, array $parameters, string $dataProfile = DataProfileRegistry::DATA_PROFILE_MEMBER): SingleObjectViewModel
     {
-        $workout = $this->workoutProvider->getWorkoutById($workoutId);
-        if (null === $workout) {
-            throw new NotFoundHttpException("Workout #$workoutId cannot be found");
-        }
-
+        $parameters['workoutId'] = $workoutId;
         $source = $this->sourceModelFactory->buildSourceModel($parameters);
         $exerciseGroup = $this->dataModelFactory->buildNewDataModel($source);
 

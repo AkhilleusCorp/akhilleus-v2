@@ -1,5 +1,5 @@
 interface IndexedArray {
-    [key: string]: string;
+    [key: string|number]: string|number;
 }
 
 export default IndexedArray;

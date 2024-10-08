@@ -4,6 +4,7 @@ import MovementDTO from "../dtos/MovementDTO.tsx";
 import MovementsListFilters from "../filters/MovementsListFilters.tsx";
 import apiRoutes from "../apiRoutes.tsx";
 import QueryId from "../../../utils/interfaces/QueryId.tsx";
+import IndexedArray from "../../../utils/interfaces/IndexedArray.tsx";
 
 class MovementApiGateway extends AbstractApiGateway {
     static async getOneMovement (movementId: QueryId): Promise<MovementDTO|null> {
@@ -29,6 +30,16 @@ class MovementApiGateway extends AbstractApiGateway {
         }
 
         return response.data.data;
+    }
+
+    static async getDropdownableMovements (): Promise<IndexedArray> {
+        const response = await axios.get(apiRoutes.movement.dropdownable);
+
+        if (response.status !== 200) {
+            throw new Error('An error as occurred');
+        }
+
+        return response.data;
     }
 
     static async createMovement (formData: unknown): Promise<MovementDTO> {

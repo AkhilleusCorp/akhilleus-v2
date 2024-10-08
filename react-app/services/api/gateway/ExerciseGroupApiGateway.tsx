@@ -20,8 +20,11 @@ class ExerciseGroupApiGateway extends AbstractApiGateway {
         return response.data.data;
     }
 
-    static async addExercisesToGroup (workoutId: QueryId, groupId: QueryId): Promise<ExerciseGroupDTO|null> {
-        const response = await axios.patch(apiRoutes.exerciseGroup.addExercises(workoutId, groupId));
+    static async createOneExerciseGroup (workoutId: QueryId, formData: unknown): Promise<ExerciseGroupDTO> {
+        const response = await axios.post(
+            apiRoutes.exerciseGroup.create(workoutId),
+            formData
+        );
 
         if (response.status !== 200) {
             throw new Error('An error as occurred');

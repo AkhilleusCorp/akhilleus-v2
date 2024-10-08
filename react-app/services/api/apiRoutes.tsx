@@ -22,9 +22,12 @@ const apiRoutes = {
         delete: (workoutId: QueryId) => `${WORKOUT_API_HOST}/${workoutId}`,
     },
     exerciseGroup: {
+        create:  (workoutId: QueryId) => `${WORKOUT_API_HOST}/${workoutId}/groups`,
         list: (workoutId: QueryId) => `${WORKOUT_API_HOST}/${workoutId}/groups`,
-        addExercises: (workoutId: QueryId, groupId: QueryId) => `${WORKOUT_API_HOST}/${workoutId}/groups/${groupId}/exercises`,
         delete: (workoutId: QueryId, groupId: QueryId) => `${WORKOUT_API_HOST}/${workoutId}/groups/${groupId}`,
+    },
+    exercise: {
+        addExercises: (workoutId: QueryId, groupId: QueryId) => `${WORKOUT_API_HOST}/${workoutId}/groups/${groupId}/exercises`,
     },
     equipment: {
         create: EQUIPMENT_API_HOST,
@@ -45,6 +48,7 @@ const apiRoutes = {
     movement: {
         create: MOVEMENT_API_HOST,
         list: MOVEMENT_API_HOST,
+        dropdownable:`${MOVEMENT_API_HOST}/dropdownable`,
         details: (movementId: QueryId) => `${MOVEMENT_API_HOST}/${movementId}`,
         update: (movementId: QueryId) => `${MOVEMENT_API_HOST}/${movementId}`,
         delete: (movementId: QueryId) => `${MOVEMENT_API_HOST}/${movementId}`,
