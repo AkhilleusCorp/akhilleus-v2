@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import AdminLayout from "../../layouts/admin/AdminLayout.tsx";
 import {Link} from "react-router-dom";
-import websiteRoutes from "../../setup/router/websiteRoutes.tsx";
+import websiteRoutes from "../../services/router/websiteRoutes.tsx";
 import MovementsListFilters from "../../services/api/filters/MovementsListFilters.tsx";
 import MovementDTO from "../../services/api/dtos/MovementDTO.tsx";
 import MovementPreviewCard from "../../features/movement/MovementPreviewCard.tsx";
