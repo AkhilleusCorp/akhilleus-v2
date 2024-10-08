@@ -1,10 +1,10 @@
 import QueryId from "../../utils/interfaces/QueryId.tsx";
 
-const EQUIPMENT_API_HOST = 'https://api.akhilleus.com:8000/api/equipments';
-const MOVEMENT_API_HOST = 'https://api.akhilleus.com:8000/api/movements';
-const MUSCLE_API_HOST = 'https://api.akhilleus.com:8000/api/muscles';
-const USER_API_HOST = 'https://api.akhilleus.com:8000/api/users';
-const WORKOUT_API_HOST = 'https://api.akhilleus.com:8000/api/workouts';
+const EQUIPMENT_API_HOST = 'https://api.akhilleus.com/api/equipments';
+const MOVEMENT_API_HOST = 'https://api.akhilleus.com/api/movements';
+const MUSCLE_API_HOST = 'https://api.akhilleus.com/api/muscles';
+const USER_API_HOST = 'https://api.akhilleus.com/api/users';
+const WORKOUT_API_HOST = 'https://api.akhilleus.com/api/workouts';
 
 const apiRoutes = {
     user: {
@@ -22,9 +22,12 @@ const apiRoutes = {
         delete: (workoutId: QueryId) => `${WORKOUT_API_HOST}/${workoutId}`,
     },
     exerciseGroup: {
+        create:  (workoutId: QueryId) => `${WORKOUT_API_HOST}/${workoutId}/groups`,
         list: (workoutId: QueryId) => `${WORKOUT_API_HOST}/${workoutId}/groups`,
-        addExercises: (workoutId: QueryId, groupId: QueryId) => `${WORKOUT_API_HOST}/${workoutId}/groups/${groupId}/exercises`,
         delete: (workoutId: QueryId, groupId: QueryId) => `${WORKOUT_API_HOST}/${workoutId}/groups/${groupId}`,
+    },
+    exercise: {
+        addExercises: (workoutId: QueryId, groupId: QueryId) => `${WORKOUT_API_HOST}/${workoutId}/groups/${groupId}/exercises`,
     },
     equipment: {
         create: EQUIPMENT_API_HOST,
@@ -45,6 +48,7 @@ const apiRoutes = {
     movement: {
         create: MOVEMENT_API_HOST,
         list: MOVEMENT_API_HOST,
+        dropdownable:`${MOVEMENT_API_HOST}/dropdownable`,
         details: (movementId: QueryId) => `${MOVEMENT_API_HOST}/${movementId}`,
         update: (movementId: QueryId) => `${MOVEMENT_API_HOST}/${movementId}`,
         delete: (movementId: QueryId) => `${MOVEMENT_API_HOST}/${movementId}`,

@@ -5,10 +5,17 @@ import {useParams} from "react-router-dom";
 import useGetOneWorkoutById from "../../hooks/workout/useGetOneWorkoutById.tsx";
 import ErrorPage from "../ErrorPage.tsx";
 import ExerciseGroupsListCard from "../../features/exerciseGroup/ExerciseGroupsListCard.tsx";
+import useGetExerciseGroupByWorkoutId from "../../hooks/exerciseGroup/useGetExerciseGroupByWorkoutId.tsx";
 
 const WorkoutUpdatePage: React.FC = () => {
     const { workoutId } = useParams<{ workoutId: string }>();
+    if (undefined == workoutId) {
+        return <ErrorPage />
+    }
+
     const workout = useGetOneWorkoutById(workoutId);
+    const groups = useGetExerciseGroupByWorkoutId(workoutId);
+
     if (!workout) {
         return <ErrorPage />
     }
@@ -17,7 +24,7 @@ const WorkoutUpdatePage: React.FC = () => {
         <AdminLayout>
             <h3>{workout.name} #{workout.id}</h3>
             <WorkoutUpdateForm workout={workout} />
-            <ExerciseGroupsListCard workoutId={workoutId} displayWriteActions={true}/>
+            <ExerciseGroupsListCard workoutId={workout.id} groups={groups} displayWriteActions={true}/>
         </AdminLayout>
     )
 }

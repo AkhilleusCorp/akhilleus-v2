@@ -28,7 +28,7 @@ const DeleteButton: React.FC<DeleteButtonType> = ({ targetId, onConfirmDeleteFun
     return (
         <>
             <ConfirmActionModal targetId={confirmedTargetId} onCancel={onCancelDelete} onConfirm={handleDeleteUser}/>
-            <Button variant="contained" color="error" onClick={onClickDelete}>Delete</Button>
+            <Button variant="outlined" color="error" onClick={onClickDelete}>Delete</Button>
         </>
     )
 }

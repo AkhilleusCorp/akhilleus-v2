@@ -4,7 +4,7 @@ import IndexedArray from "../../utils/interfaces/IndexedArray.tsx";
 import ExercisesPreviewListTable from "./ExercisesPreviewListTable.tsx";
 import ExerciseGroupDTO from "../../services/api/dtos/ExerciseGroupDTO.tsx";
 import ExerciseGroupDeleteButton from "./ExerciseGroupDeleteButton.tsx";
-import ExerciseGroupApiGateway from "../../services/api/gateway/ExerciseGroupGateway.tsx";
+import ExerciseApiGateway from "../../services/api/gateway/ExerciseApiGateway.tsx";
 
 type ExerciseGroupCardType = {
     group: ExerciseGroupDTO,
@@ -26,7 +26,7 @@ const ExerciseGroupCard: React.FC<ExerciseGroupCardType> = ({ group, displayWrit
 
     const handleAddExercises = async() => {
         try {
-            const updatedGroup = await ExerciseGroupApiGateway.addExercisesToGroup(group.workoutId, group.id);
+            const updatedGroup = await ExerciseApiGateway.addExercisesToGroup(group.workoutId, group.id);
             if (null !== updatedGroup) {
                 setStateGroup(updatedGroup);
             }
@@ -35,15 +35,23 @@ const ExerciseGroupCard: React.FC<ExerciseGroupCardType> = ({ group, displayWrit
         }
     }
 
+    const movementLabelPrefix = (index: number) => {
+        if (index > 0) {
+            return " / "
+        }
+
+        return "";
+    }
+
     return (
         <Card id={"card-"+stateGroup.id} key={stateGroup.id} className={'margin-bottom-s'}>
             <CardContent>
                 <div className={"margin-bottom-s"}>
                     <div className={"float-left two-thirds-width"}>
-                        <Typography gutterBottom variant="h5" component="div">
-                            {stateGroup.movementIds.map((movementId: string) => (
-                                <span key={stateGroup.id+'-'+movementId}>
-                                    {movementNames[movementId]}
+                        <Typography gutterBottom variant="h6" component="div">
+                            {stateGroup.movementIds.map((movementId: string, index) => (
+                                <span key={stateGroup.id + '-' + movementId}>
+                                    {movementLabelPrefix(index)}{movementNames[movementId]}
                                 </span>
                             ))}
                         </Typography>
@@ -57,9 +65,9 @@ const ExerciseGroupCard: React.FC<ExerciseGroupCardType> = ({ group, displayWrit
                 </div>
                 <ExercisesPreviewListTable exercises={stateGroup.exercises} hasMultipleMovement={1 != stateGroup.movementIds.length}/>
             </CardContent>
-            <CardActions>
+            <CardActions style={{justifyContent: 'center'}}>
                 { displayWriteActions && (
-                    <Button onClick={handleAddExercises}>Add set</Button>
+                    <Button onClick={handleAddExercises} variant="outlined">Add set</Button>
                 )}
             </CardActions>
         </Card>

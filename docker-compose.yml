@@ -1,7 +1,42 @@
 services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx_server
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./.docker/nginx/conf.d:/etc/nginx/conf.d
+      - ./.docker/nginx/ssl:/etc/nginx/ssl
+      - .:/var/www/html
+    depends_on:
+      - php
+    networks:
+      symfony:
+        aliases:
+          - 'website.akhilleus.com'
+          - 'api.akhilleus.com'
+
+  php:
+    container_name: php_server
+    build:
+      context: ./.docker/php-fpm
+    env_file:
+      - .env
+      - .env.local
+    volumes:
+      - .:/var/www/html
+    working_dir: /var/www/html
+    command:
+      - "php-fpm"
+    depends_on:
+      - database
+    networks:
+      - symfony
+
   database:
     image: mysql:8.0
-    container_name: symfony_mysql
+    container_name: mysql_server
     environment:
       MYSQL_ROOT_PASSWORD: root_password
       MYSQL_DATABASE: symfony_db

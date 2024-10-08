@@ -11,6 +11,8 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 final class MuscleControllerTest extends AbstractGenericControllerTest
 {
+    private MuscleDataModelFactory $dataModelFactory;
+
     public function setUp(): void
     {
         parent::setUp();

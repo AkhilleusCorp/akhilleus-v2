@@ -39,6 +39,18 @@ final class MovementDataModelRepository extends AbstractBaseDataModelRepository 
             ->getQuery()->getOneOrNullResult();
     }
 
+    /**
+     * @param int[] $ids
+     * @return MovementDataModel[]
+     */
+    public function getGetMovementsByIds(array $ids): array
+    {
+        return $this->createQueryBuilder($this->getAlias())
+            ->andWhere($this->getAlias().'.id IN (:ids)')
+            ->setParameter('ids', $ids)
+            ->getQuery()->getResult();
+    }
+
     public function getMovementsByFilterModel(GetManyMovementsFilterModel $filter): array
     {
         $queryBuilder = $this->getByFilterModel($filter);
