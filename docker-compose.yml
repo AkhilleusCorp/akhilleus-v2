@@ -8,8 +8,7 @@ services:
     volumes:
       - ./.docker/nginx/conf.d:/etc/nginx/conf.d
       - ./.docker/nginx/ssl:/etc/nginx/ssl
-      - ./public:/var/www/html
-      - ./.docker/nginx/logs:/var/log/nginx
+      - .:/var/www/html
     depends_on:
       - php
     networks:

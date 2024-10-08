@@ -9,6 +9,10 @@ import useGetExerciseGroupByWorkoutId from "../../hooks/exerciseGroup/useGetExer
 
 const WorkoutUpdatePage: React.FC = () => {
     const { workoutId } = useParams<{ workoutId: string }>();
+    if (undefined === workoutId) {
+        return <ErrorPage />
+    }
+
     const workout = useGetOneWorkoutById(workoutId);
     const groups = useGetExerciseGroupByWorkoutId(workoutId);
 
