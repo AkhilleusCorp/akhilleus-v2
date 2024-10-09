@@ -1,7 +1,7 @@
 import axios from "axios";
 import IndexedArray from "../../../utils/interfaces/IndexedArray.tsx";
-
 abstract class AbstractApiGateway {
+
     static async getOne (url: string): Promise<any|null> {
         const response = await axios.get(url);
 

@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {Paper, Table,TableBody,TableCell, TableContainer, TableHead, TableRow} from '@mui/material';
 import EquipmentsListFilters from "../../services/api/filters/EquipmentsListFilters.tsx";
-import useGetManyEquipmentsByParams from "../../hooks/equipment/useGetManyEquipmentByParams.tsx";
 import equipmentRegistries from "../../constants/equipmentRegistries.tsx";
+import { useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../services/redux/index.tsx";
+import { useDispatch } from "react-redux";
+import { fetchEquipments } from "../../services/redux/reducers/EquipmentSlice.tsx";
 
 
 type EquipmentListTableType = {
@@ -12,7 +15,12 @@ type EquipmentListTableType = {
 }
 
 const EquipementsListTable: React.FC<EquipmentListTableType> = ({ filters, refreshKey, mainLinkClickCallback }) => {
-    const equipments = useGetManyEquipmentsByParams(filters, refreshKey);
+    const { equipments, loading, error } = useSelector((state: RootState) => state.equipments);
+    const dispatch = useDispatch<AppDispatch>();
+
+    useEffect(() => {
+        dispatch(fetchEquipments(filters));
+    }, [dispatch, refreshKey]);
 
     const onNameClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>, equipmentId: number) => {
         event.preventDefault();
@@ -20,30 +28,34 @@ const EquipementsListTable: React.FC<EquipmentListTableType> = ({ filters, refre
     }
 
     return (
-        <TableContainer component={Paper}>
-            <Table>
-                <TableHead>
-                    <TableRow>
-                        <TableCell>id</TableCell>
-                        <TableCell>name</TableCell>
-                        <TableCell>status</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {equipments.map((equipment) => (
-                        <TableRow id={'equipment_' + equipment.id} key={'equipment_' + equipment.id}>
-                            <TableCell>{equipment.id}</TableCell>
-                            <TableCell>
-                                <a href={"#"} onClick={(event) => onNameClick(event, equipment.id)}>
-                                    {equipment.name}
-                                </a>
-                            </TableCell>
-                            <TableCell>{equipmentRegistries.status[equipment.status]}</TableCell>
+        <>
+            {loading && <p>Loading equipments...</p>}
+            {error && <p style={{ color: 'red' }}>{error}</p>}
+            <TableContainer component={Paper}>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>id</TableCell>
+                            <TableCell>name</TableCell>
+                            <TableCell>status</TableCell>
                         </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </TableContainer>
+                    </TableHead>
+                    <TableBody>
+                        {equipments.map((equipment) => (
+                            <TableRow id={'equipment_' + equipment.id} key={'equipment_' + equipment.id}>
+                                <TableCell>{equipment.id}</TableCell>
+                                <TableCell>
+                                    <a href={"#"} onClick={(event) => onNameClick(event, equipment.id)}>
+                                        {equipment.name}
+                                    </a>
+                                </TableCell>
+                                <TableCell>{equipmentRegistries.status[equipment.status]}</TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        </>  
     );
 }
 

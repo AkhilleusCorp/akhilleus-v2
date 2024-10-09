@@ -1,29 +1,37 @@
-import React, {useState} from "react";
+import React, {useEffect} from "react";
 import {Grid2 as Grid, Typography} from "@mui/material";
 import ExerciseGroupCard from "./ExerciseGroupCard.tsx";
 import ExerciseGroupAddButton from "./ExerciseGroupAddButton.tsx";
 import useGetDropdownableMovements from "../../hooks/movement/useGetDropdownableMovements.tsx";
-import ExerciseGroupDTO from "../../services/api/dtos/ExerciseGroupDTO.tsx";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { AppDispatch, RootState } from "../../services/redux/index.tsx";
+import { fetchExerciseGroups } from "../../services/redux/reducers/ExerciseGroupSlice.tsx";
 
 type ExerciseGroupsListCardType = {
     workoutId: number,
-    groups: ExerciseGroupDTO[],
     displayWriteActions: boolean
 }
 
-const ExerciseGroupsListCard: React.FC<ExerciseGroupsListCardType> = ({ workoutId, groups, displayWriteActions }) => {
-    const [exerciseGroups, setExerciseGroups] = useState<ExerciseGroupDTO[]>(groups);
+const ExerciseGroupsListCard: React.FC<ExerciseGroupsListCardType> = ({ workoutId, displayWriteActions }) => {
     const movements = useGetDropdownableMovements();
 
-    const handleAddExerciseGroup = (group: ExerciseGroupDTO) => {
-       setExerciseGroups(prevExerciseGroups => [...prevExerciseGroups, group]);
-    }
+    const { exerciseGroups, loading, error } = useSelector((state: RootState) => state.exerciseGroups);
+    const dispatch = useDispatch<AppDispatch>();
+
+    useEffect(() => {
+        dispatch(fetchExerciseGroups(workoutId));
+    }, [dispatch]);
 
     return (
         <>
             <Typography gutterBottom variant="h5" component="div" className={"margin-top-s"}>
                 Exercises
             </Typography>
+
+            {loading && <p>Loading exercises...</p>}
+            {error && <p style={{ color: 'red' }}>{error}</p>}
+            
             { exerciseGroups.map((group: any) => (
                 <div key={'div-'+group.id}>
                     <ExerciseGroupCard group={group} displayWriteActions={displayWriteActions} />
@@ -31,10 +39,8 @@ const ExerciseGroupsListCard: React.FC<ExerciseGroupsListCardType> = ({ workoutI
             ))}
 
             <Grid container spacing={2} style={{justifyContent: 'center'}}>
-                <ExerciseGroupAddButton workoutId={workoutId} type={'exercise'} movements={movements}
-                                        callbackFunction={handleAddExerciseGroup}/>
-                <ExerciseGroupAddButton workoutId={workoutId} type={'superset'} movements={movements}
-                                        callbackFunction={handleAddExerciseGroup}/>
+                <ExerciseGroupAddButton workoutId={workoutId} type={'exercise'} movements={movements}/>
+                <ExerciseGroupAddButton workoutId={workoutId} type={'superset'} movements={movements}/>
             </Grid>
         </>
     )
