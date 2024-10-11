@@ -10,7 +10,7 @@ const GlobalError: React.FC<GlobalErrorType> = ({ error }) => {
     return (
         <>
             { error && (
-                <Box sx={{ display: 'flex' }}>
+                <Box sx={{ display: 'block', width: '100%' }} className={"margin-bottom-s"}>
                     <Alert severity="error">{error}</Alert>
                 </Box>
             )}
