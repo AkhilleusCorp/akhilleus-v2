@@ -2,18 +2,19 @@ import React, {useState} from "react";
 import {Button} from "@mui/material";
 import IndexedArray from "../../utils/interfaces/IndexedArray.tsx";
 import ExerciseGroupAddModal from "./ExerciseGroupAddModal.tsx";
-import ExerciseGroupApiGateway from "../../services/api/gateway/ExerciseGroupApiGateway.tsx";
-import ExerciseGroupDTO from "../../services/api/dtos/ExerciseGroupDTO.tsx";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../services/redux/index.tsx";
+import { addExerciseGroup } from "../../services/redux/reducers/ExerciseGroupSlice.tsx";
 
 type ExerciseGroupAddButtonType = {
     workoutId: number,
     type: 'exercise' | 'superset' | 'circuit',
-    movements: IndexedArray,
-    callbackFunction: (group: ExerciseGroupDTO) => void
+    movements: IndexedArray
 }
 
-const ExerciseGroupAddButton: React.FC<ExerciseGroupAddButtonType> = ({ workoutId, type, movements, callbackFunction }) => {
+const ExerciseGroupAddButton: React.FC<ExerciseGroupAddButtonType> = ({ workoutId, type, movements }) => {
     const [openModal, setOpenModal] = useState<boolean>(false);
+    const dispatch = useDispatch<AppDispatch>();
 
     const onClickAdd = () => {
         setOpenModal(true);
@@ -24,14 +25,9 @@ const ExerciseGroupAddButton: React.FC<ExerciseGroupAddButtonType> = ({ workoutI
     }
 
     const handleAddExerciseGroup = async (movementIds: number[]) => {
-        try {
-            const exerciseGroup = await ExerciseGroupApiGateway.createOneExerciseGroup(workoutId, {movementIds: movementIds});
-            setOpenModal(false);
+        dispatch(addExerciseGroup({workoutId, movementIds}));
 
-            callbackFunction(exerciseGroup);
-        } catch (error) {
-            console.log(error);
-        }
+        setOpenModal(false);
     }
 
     return (

@@ -16,24 +16,21 @@ down:
 	docker compose down --remove-orphan
 
 create_local_db:
-	php bin/console doctrine:database:drop --force --if-exists
-	php bin/console doctrine:database:create
-	php bin/console doctrine:migrations:migrate -n
+	docker compose exec php bin/console doctrine:database:drop --force --if-exists
+	docker compose exec php php bin/console doctrine:database:create
+	docker compose exec php php bin/console doctrine:migrations:migrate -n
 
 remove_local_db:
 	docker compose down --remove-orphan
 
 load_fixtures:
-	php bin/console doctrine:fixtures:load -n
-
-start_server:
-	symfony server:star
+	docker compose exec php php bin/console doctrine:fixtures:load -n
 
 init_project: .env.local up create_local_db load_fixtures
 
 reset_db: create_local_db load_fixtures
 
-start: up create_local_db load_fixtures start_server
+start: up create_local_db load_fixtures
 
 create_test_db:
 	php bin/console doctrine:database:drop --if-exists --force --env=test

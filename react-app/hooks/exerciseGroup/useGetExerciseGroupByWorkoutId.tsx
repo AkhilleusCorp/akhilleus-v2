@@ -3,7 +3,11 @@ import ExerciseGroupApiGateway from "../../services/api/gateway/ExerciseGroupApi
 import ExerciseGroupDTO from "../../services/api/dtos/ExerciseGroupDTO.tsx";
 import QueryId from "../../utils/interfaces/QueryId.tsx";
 
-function useGetExerciseGroupByWorkoutId(workoutId: QueryId): ExerciseGroupDTO[] {
+function useGetExerciseGroupByWorkoutId(workoutId: QueryId|null): ExerciseGroupDTO[] {
+    if (null == workoutId) {
+        return [];
+    }
+
     const [groups, setGroups] = useState<ExerciseGroupDTO[]>([]);
     useEffect(() => {
         const fetchGroups = async () => {
@@ -12,7 +16,7 @@ function useGetExerciseGroupByWorkoutId(workoutId: QueryId): ExerciseGroupDTO[] 
         }
 
         fetchGroups();
-    }, [workoutId]);
+    }, []);
 
     return groups;
 }
