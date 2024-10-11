@@ -33,12 +33,12 @@ reset_db: create_local_db load_fixtures
 start: up create_local_db load_fixtures
 
 create_test_db:
-	docker compose exec php php bin/console doctrine:database:drop --if-exists --force --env=test
-	docker compose exec php php bin/console doctrine:database:create --env=test
-	docker compose exec php php bin/console doctrine:schema:create -n --env=test
+	php bin/console doctrine:database:drop --if-exists --force --env=test
+	php bin/console doctrine:database:create --env=test
+	php bin/console doctrine:schema:create -n --env=test
 
 load_test_fixtures:
-	docker compose exec php php bin/console doctrine:fixtures:load -n --env=test
+	php bin/console doctrine:fixtures:load -n --env=test
 
 reset_test_db: create_test_db load_test_fixtures
 
