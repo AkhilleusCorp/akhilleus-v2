@@ -3,9 +3,10 @@ import {Paper, Table,TableBody,TableCell, TableContainer, TableHead, TableRow} f
 import EquipmentsListFilters from "../../services/api/filters/EquipmentsListFilters.tsx";
 import equipmentRegistries from "../../constants/equipmentRegistries.tsx";
 import { useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../services/redux/index.tsx";
+import { AppDispatch, RootState } from "../../services/redux";
 import { useDispatch } from "react-redux";
 import { fetchEquipments } from "../../services/redux/reducers/EquipmentSlice.tsx";
+import ApiResultWrapper from "../../components/common/ApiResultWrapper.tsx";
 
 
 type EquipmentListTableType = {
@@ -28,9 +29,7 @@ const EquipementsListTable: React.FC<EquipmentListTableType> = ({ filters, refre
     }
 
     return (
-        <>
-            {loading && <p>Loading equipments...</p>}
-            {error && <p style={{ color: 'red' }}>{error}</p>}
+        <ApiResultWrapper loading={loading} error={error} hasPreviousLoad={equipments.length > 1}>
             <TableContainer component={Paper}>
                 <Table>
                     <TableHead>
@@ -55,7 +54,7 @@ const EquipementsListTable: React.FC<EquipmentListTableType> = ({ filters, refre
                     </TableBody>
                 </Table>
             </TableContainer>
-        </>  
+        </ApiResultWrapper>
     );
 }
 

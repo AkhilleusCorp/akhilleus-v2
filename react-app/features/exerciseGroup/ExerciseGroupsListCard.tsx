@@ -5,8 +5,9 @@ import ExerciseGroupAddButton from "./ExerciseGroupAddButton.tsx";
 import useGetDropdownableMovements from "../../hooks/movement/useGetDropdownableMovements.tsx";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { AppDispatch, RootState } from "../../services/redux/index.tsx";
+import { AppDispatch, RootState } from "../../services/redux";
 import { fetchExerciseGroups } from "../../services/redux/reducers/ExerciseGroupSlice.tsx";
+import ApiResultWrapper from "../../components/common/ApiResultWrapper.tsx";
 
 type ExerciseGroupsListCardType = {
     workoutId: number,
@@ -29,19 +30,20 @@ const ExerciseGroupsListCard: React.FC<ExerciseGroupsListCardType> = ({ workoutI
                 Exercises
             </Typography>
 
-            {loading && <p>Loading exercises...</p>}
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-            
-            { exerciseGroups.map((group: any) => (
-                <div key={'div-'+group.id}>
-                    <ExerciseGroupCard group={group} displayWriteActions={displayWriteActions} />
-                </div>
-            ))}
+            <ApiResultWrapper loading={loading} error={error} hasPreviousLoad={exerciseGroups.length > 1}>
+                { exerciseGroups.map((group: any) => (
+                    <div key={'div-'+group.id}>
+                        <ExerciseGroupCard group={group} displayWriteActions={displayWriteActions} />
+                    </div>
+                ))}
 
-            <Grid container spacing={2} style={{justifyContent: 'center'}}>
-                <ExerciseGroupAddButton workoutId={workoutId} type={'exercise'} movements={movements}/>
-                <ExerciseGroupAddButton workoutId={workoutId} type={'superset'} movements={movements}/>
-            </Grid>
+                { displayWriteActions && (
+                    <Grid container spacing={2} style={{justifyContent: 'center'}}>
+                    <ExerciseGroupAddButton workoutId={workoutId} type={'exercise'} movements={movements}/>
+                        <ExerciseGroupAddButton workoutId={workoutId} type={'superset'} movements={movements}/>
+                    </Grid>
+                )}
+            </ApiResultWrapper>
         </>
     )
 }
