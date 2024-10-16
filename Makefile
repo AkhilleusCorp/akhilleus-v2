@@ -61,7 +61,7 @@ tests_integration:
 	$(PHP) vendor/bin/phpunit --testsuite integration
 
 tests_all:
-	XDEBUG_MODE=coverage vendor/bin/phpunit
+	XDEBUG_MODE=coverage vendor/bin/phpunit --stop-on-failure
 
 mysql_connect_akhilleus: ## Connect to core database
 	docker compose exec database /bin/bash -c 'mysql -u$$MYSQL_USER -p$$MYSQL_PASSWORD $$MYSQL_DB_NAME'
