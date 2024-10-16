@@ -3,7 +3,7 @@ include .env
 
 PHP := docker compose exec php
 
-ifeq ($(CI),test)
+ifeq ($(CI),true)
 	PHP := php
 endif
 

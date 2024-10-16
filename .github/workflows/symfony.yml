@@ -16,6 +16,7 @@ permissions:
 
 env:
   APP_ENV: test
+  CI: true
 
 jobs:
   tests:
