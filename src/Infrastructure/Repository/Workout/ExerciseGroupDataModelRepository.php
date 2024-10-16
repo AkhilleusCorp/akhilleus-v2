@@ -46,6 +46,7 @@ final class ExerciseGroupDataModelRepository extends AbstractBaseDataModelReposi
             ->addSelect('group_workout', 'group_exercises', 'exercise_movement')
             ->getQuery()->getResult();
     }
+
     protected function addParametersFromFilter(QueryBuilder $queryBuilder, FilterModelInterface $filter): AbstractBaseDataModelRepository
     {
         return $this;

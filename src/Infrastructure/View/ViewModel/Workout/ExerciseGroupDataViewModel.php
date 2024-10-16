@@ -15,10 +15,11 @@ final class ExerciseGroupDataViewModel implements MultipleObjectItemDataViewMode
     #[Groups(['admin', 'member'])]
     public int $workoutId;
 
+    /** @var int[] $movementIds */
     #[Groups(['admin', 'member'])]
     public array $movementIds;
 
-    #[Groups(['admin', 'member'])]
     /** @var EmbeddedExerciseDataModelView[] $exercises */
+    #[Groups(['admin', 'member'])]
     public array $exercises;
 }

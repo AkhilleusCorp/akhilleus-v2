@@ -8,7 +8,6 @@ use Lexik\Bundle\JWTAuthenticationBundle\Event\JWTCreatedEvent;
 
 final class JWTTokenCreatedListener
 {
-
     public function onJWTCreated(JWTCreatedEvent $event): void
     {
         /** @var UserDataModel $user */

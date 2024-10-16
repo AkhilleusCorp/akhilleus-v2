@@ -27,9 +27,12 @@ final class EquipmentDataModelRepository extends AbstractBaseDataModelRepository
         return 'equipment';
     }
 
+    /**
+     * @param GetManyEquipmentsFilterModel $filter
+     */
     protected function addParametersFromFilter(
         QueryBuilder $queryBuilder,
-        GetManyEquipmentsFilterModel|FilterModelInterface $filter
+        FilterModelInterface $filter,
     ): AbstractBaseDataModelRepository {
         $this->filterByIds($queryBuilder, $filter->ids);
         $this->filterByName($queryBuilder, $filter->name);

@@ -26,37 +26,40 @@ use Symfony\Component\Routing\Attribute\Route;
 #[OA\Tag('EQUIPMENTS')]
 final class MuscleController extends AbstractAPIController
 {
-    #[Route('/muscles', name:'muscle_get_many', methods: ['GET'])]
+    #[Route('/muscles', name: 'muscle_get_many', methods: ['GET'])]
     public function getMany(
         Request $request,
         GenericGetManyUseCase $useCase,
-        MuscleDataModelProviderGateway $providerGateway
+        MuscleDataModelProviderGateway $providerGateway,
     ): MultipleObjectViewModel {
         return $useCase->execute($request->query->all(), new GetManyMusclesFilterModel(), $providerGateway);
     }
 
-    #[Route('/muscles/dropdownable', name:'muscle_get_dropdownable', methods: ['GET'])]
+    /**
+     * @return array<string, string>
+     */
+    #[Route('/muscles/dropdownable', name: 'muscle_get_dropdownable', methods: ['GET'])]
     public function getDropdownable(
         GenericGetDropdownableUseCase $useCase,
-        MuscleDataModelProviderGateway $providerGateway
+        MuscleDataModelProviderGateway $providerGateway,
     ): array {
         return $useCase->execute('name', $providerGateway);
     }
 
-    #[Route('/muscles/{id}', name:'muscle_get_one_by_id', requirements: ['id' => '\d+'], methods: ['GET'])]
+    #[Route('/muscles/{id}', name: 'muscle_get_one_by_id', requirements: ['id' => '\d+'], methods: ['GET'])]
     public function getOneById(
         int $id,
         GenericGetOneByIdUseCase $useCase,
-        MuscleDataModelProviderGateway $providerGateway
+        MuscleDataModelProviderGateway $providerGateway,
     ): SingleObjectViewModel {
         return $useCase->execute($id, $providerGateway, new SingleMuscleDataViewModel());
     }
 
-    #[Route('/muscles', name:'muscles_create_one', methods: ['POST'])]
+    #[Route('/muscles', name: 'muscles_create_one', methods: ['POST'])]
     public function createOne(
         Request $request,
         GenericCreateOneUseCase $useCase,
-        MuscleDataModelFactory $dataModelFactory
+        MuscleDataModelFactory $dataModelFactory,
     ): SingleObjectViewModel {
         return $useCase->execute(
             json_decode($request->getContent(), true),
@@ -66,13 +69,13 @@ final class MuscleController extends AbstractAPIController
         );
     }
 
-    #[Route('/muscles/{id}', name:'muscle_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
+    #[Route('/muscles/{id}', name: 'muscle_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
     public function updateOneById(
         int $id,
         Request $request,
         GenericUpdateOneByIdUseCase $useCase,
         MuscleDataModelProviderGateway $providerGateway,
-        MuscleDataModelFactory $dataModelFactory
+        MuscleDataModelFactory $dataModelFactory,
     ): SingleObjectViewModel {
         return $useCase->execute(
             $id,
@@ -84,11 +87,11 @@ final class MuscleController extends AbstractAPIController
         );
     }
 
-    #[Route('/muscles/{id}', name:'muscle_delete_by_id', requirements: ['id' => '\d+'], methods: ['DELETE'])]
+    #[Route('/muscles/{id}', name: 'muscle_delete_by_id', requirements: ['id' => '\d+'], methods: ['DELETE'])]
     public function deleteOnById(
         int $id,
         GenericDeleteOneByIdUseCase $useCase,
-        MuscleDataModelProviderGateway $providerGateway
+        MuscleDataModelProviderGateway $providerGateway,
     ): JsonResponse {
         $useCase->execute($id, $providerGateway);
 

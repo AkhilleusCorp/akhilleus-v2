@@ -4,5 +4,4 @@ namespace App\UseCase;
 
 interface UseCaseInterface
 {
-
 }

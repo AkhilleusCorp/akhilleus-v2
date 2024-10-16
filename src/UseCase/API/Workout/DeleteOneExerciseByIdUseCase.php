@@ -11,11 +11,10 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 final class DeleteOneExerciseByIdUseCase implements UseCaseInterface
 {
     public function __construct(
-        private readonly WorkoutDataModelProviderGateway  $workoutProvider,
+        private readonly WorkoutDataModelProviderGateway $workoutProvider,
         private readonly ExerciseDataModelProviderGateway $exerciseProvider,
         private readonly ExerciseDataModelPersisterGateway $exercisePersister,
     ) {
-
     }
 
     public function execute(int $workoutId, int $exerciseId): void

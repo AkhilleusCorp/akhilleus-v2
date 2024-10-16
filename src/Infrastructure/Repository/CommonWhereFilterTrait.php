@@ -6,6 +6,9 @@ use Doctrine\ORM\QueryBuilder;
 
 trait CommonWhereFilterTrait
 {
+    /**
+     * @param int[]|null $ids
+     */
     protected function filterByIds(QueryBuilder $queryBuilder, ?array $ids): void
     {
         if (false === empty($ids)) {
@@ -18,10 +21,13 @@ trait CommonWhereFilterTrait
     {
         if (false === empty($name)) {
             $queryBuilder->andWhere($this->getAlias().'.name LIKE :name')
-                ->setParameter('name', '%' . $name . '%');
+                ->setParameter('name', '%'.$name.'%');
         }
     }
 
+    /**
+     * @param string[]|null $status
+     */
     protected function filterByStatus(QueryBuilder $queryBuilder, ?array $status = []): void
     {
         if (false === empty($status)) {

@@ -7,13 +7,12 @@ use App\Domain\Gateway\Persister\GenericDataModelPersisterGateway;
 
 final class GenericPersister extends AbstractEntityPersister implements GenericDataModelPersisterGateway
 {
-
     public function create(DataModelInterface $dto, bool $flush = true): DataModelInterface
     {
         return parent::save($dto, $flush);
     }
 
-    public function edit (DataModelInterface $dto, bool $flush = true): DataModelInterface
+    public function edit(DataModelInterface $dto, bool $flush = true): DataModelInterface
     {
         return parent::save($dto, $flush);
     }

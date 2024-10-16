@@ -20,11 +20,11 @@ final class SingleMovementDataViewModel implements SingleObjectDataViewModelInte
     #[Groups(['admin', 'member'])]
     public SimpleEmbeddedObjectViewModel $primaryMuscle;
 
-    #[Groups(['admin', 'member'])]
     /** @var SimpleEmbeddedObjectViewModel[] $auxiliaryMuscles */
+    #[Groups(['admin', 'member'])]
     public array $auxiliaryMuscles;
 
-    #[Groups(['admin', 'member'])]
     /** @var SimpleEmbeddedObjectViewModel[] $equipments */
+    #[Groups(['admin', 'member'])]
     public array $equipments;
 }

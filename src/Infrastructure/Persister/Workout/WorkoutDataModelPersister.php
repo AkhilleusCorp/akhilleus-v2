@@ -15,7 +15,7 @@ final class WorkoutDataModelPersister extends AbstractEntityPersister implements
         return $dto;
     }
 
-    public function edit (WorkoutDataModel $dto, bool $flush = true): WorkoutDataModel
+    public function edit(WorkoutDataModel $dto, bool $flush = true): WorkoutDataModel
     {
         parent::save($dto, $flush);
 

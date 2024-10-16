@@ -25,13 +25,13 @@ final class WorkoutFixtures extends AbstractFixtures
 
             $manager->persist($workout);
 
-            $this->addRef("workout", $workout->name, $workout);
+            $this->addRef('workout', $workout->name, $workout);
         }
     }
 
     protected function volumeFixtures(ObjectManager $manager): void
     {
-        for ($i = 1; $i < 50; $i++) {
+        for ($i = 1; $i < 50; ++$i) {
             $workout = new WorkoutDataModel();
             $workout->name = "workout{$i}";
             $workout->visibility = WorkoutVisibilityRegistry::WORKOUT_VISIBILITY_PUBLIC;
@@ -43,10 +43,13 @@ final class WorkoutFixtures extends AbstractFixtures
 
             $manager->persist($workout);
 
-            $this->addRef("workout", $workout->name, $workout);
+            $this->addRef('workout', $workout->name, $workout);
         }
     }
 
+    /**
+     * @return array<mixed>
+     */
     private function getWorkoutConfig(): array
     {
         return [
@@ -55,20 +58,20 @@ final class WorkoutFixtures extends AbstractFixtures
                 'startDate' => new \DateTimeImmutable('5min ago'),
                 'endDate' => null,
                 'plannedDate' => null,
-                'visibility' => WorkoutVisibilityRegistry::WORKOUT_VISIBILITY_PRIVATE
+                'visibility' => WorkoutVisibilityRegistry::WORKOUT_VISIBILITY_PRIVATE,
             ], [
                 'name' => 'Plan Specific Client',
                 'startDate' => null,
                 'endDate' => null,
                 'plannedDate' => new \DateTimeImmutable('2days'),
-                'visibility' => WorkoutVisibilityRegistry::WORKOUT_VISIBILITY_SPECIFIC_CLIENT
+                'visibility' => WorkoutVisibilityRegistry::WORKOUT_VISIBILITY_SPECIFIC_CLIENT,
             ], [
                 'name' => 'Completed Friends',
                 'startDate' => new \DateTimeImmutable('2hours ago'),
                 'endDate' => new \DateTimeImmutable('1hour ago'),
                 'plannedDate' => null,
-                'visibility' => WorkoutVisibilityRegistry::WORKOUT_VISIBILITY_FRIENDS
-            ]
+                'visibility' => WorkoutVisibilityRegistry::WORKOUT_VISIBILITY_FRIENDS,
+            ],
         ];
     }
 }

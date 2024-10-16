@@ -7,10 +7,7 @@ use App\Domain\Gateway\Provider\DropdownableDataModelProviderGateway;
 final class GenericGetDropdownableUseCase
 {
     /**
-     * @param string $labelProperty
-     * @param DropdownableDataModelProviderGateway $providerGateway
-     *
-     * @return array
+     * @return array<string, string>
      */
     public function execute(string $labelProperty, DropdownableDataModelProviderGateway $providerGateway): array
     {
@@ -18,11 +15,7 @@ final class GenericGetDropdownableUseCase
 
         $dropdownableList = [];
         foreach ($results as $result) {
-            if (false === isset($result[$labelProperty])) {
-                throw new \LogicException("{$labelProperty} does not exist on this object");
-            }
-
-            $dropdownableList[$result['id']] = $result[$labelProperty];
+            $dropdownableList[$result['id']] = $result['label'];
         }
 
         return $dropdownableList;

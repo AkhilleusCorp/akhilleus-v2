@@ -3,8 +3,6 @@
 namespace App\Domain\Factory\DataModelFactory;
 
 use App\Domain\DTO\DataModel\DataModelInterface;
-use App\Domain\DTO\DataModel\User\UserDataModel;
-use App\Domain\DTO\SourceModel\SourceModelInterface;
 use App\Domain\DTO\SourceModel\UpdateSourceModelInterface;
 
 abstract class AbstractDataModelFactory implements DataModelFactoryInterface

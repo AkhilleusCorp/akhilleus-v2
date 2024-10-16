@@ -11,8 +11,16 @@ final class CreateUserSourceModelFactory implements SourceModelFactoryInterface
 {
     use InferSourceModelFactoryTrait;
 
-    public function buildSourceModel(array $parameters, ?SourceModelInterface $sourceModel = null): CreateUserSourceModel|SourceModelInterface
+    /**
+     * @param array<mixed> $parameters
+     *
+     * @return CreateUserSourceModel
+     */
+    public function buildSourceModel(array $parameters): SourceModelInterface
     {
-        return $this->inferSourceModel($parameters, new CreateUserSourceModel());
+        $sourceModel = new CreateUserSourceModel();
+        $this->inferSourceModel($parameters, $sourceModel);
+
+        return $sourceModel;
     }
 }

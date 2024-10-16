@@ -17,7 +17,7 @@ final class UserFixtures extends AbstractFixtures
 
     public function __construct(
         private readonly CreateUserSourceModelFactory $sourceModelFactory,
-        private readonly UserDataModelFactory $dataModelFactory
+        private readonly UserDataModelFactory $dataModelFactory,
     ) {
     }
 
@@ -48,13 +48,13 @@ final class UserFixtures extends AbstractFixtures
         foreach ($users as $user) {
             $manager->persist($user);
 
-            $this->addRef("user", $user->username, $user);
+            $this->addRef('user', $user->username, $user);
         }
     }
 
     protected function volumeFixtures(ObjectManager $manager): void
     {
-        for ($i = 1; $i < 50; $i++) {
+        for ($i = 1; $i < 50; ++$i) {
             $username = "username{$i}";
             $source = $this->buildBaseUserInformation($username);
 
@@ -65,7 +65,7 @@ final class UserFixtures extends AbstractFixtures
 
             $manager->persist($user);
 
-            $this->addRef("user", $user->username, $user);
+            $this->addRef('user', $user->username, $user);
         }
     }
 

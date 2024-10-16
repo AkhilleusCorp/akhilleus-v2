@@ -14,10 +14,13 @@ trait GenericQueriesTrait
             ->getQuery()->getOneOrNullResult();
     }
 
+    /**
+     * @return array{id: int, label: string}
+     */
     public function getDropdownable(string $labelProperty): array
     {
         $query = $this->getEntityManager()->createQuery(
-            "select d.id, d.{$labelProperty} from {$this->getEntityName()} as d where d.status = 'active'"
+            "select d.id, d.{$labelProperty} as label from {$this->getEntityName()} as d where d.status = 'active'"
         );
 
         return $query->getArrayResult();

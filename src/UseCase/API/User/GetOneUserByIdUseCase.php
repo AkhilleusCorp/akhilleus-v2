@@ -13,7 +13,7 @@ final class GetOneUserByIdUseCase implements UseCaseInterface
 {
     public function __construct(
         private readonly UserDataModelProviderGateway $provider,
-        private readonly SingleUserViewPresenter      $presenter,
+        private readonly SingleUserViewPresenter $presenter,
     ) {
     }
 

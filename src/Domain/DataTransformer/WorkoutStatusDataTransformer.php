@@ -21,6 +21,6 @@ final class WorkoutStatusDataTransformer
             return WorkoutStatusRegistry::WORKOUT_STATUS_PLANNED;
         }
 
-        throw new \LogicException("Workout is in an unknown state.");
+        throw new \LogicException('Workout is in an unknown state.');
     }
 }

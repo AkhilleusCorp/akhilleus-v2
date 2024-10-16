@@ -15,11 +15,13 @@ final class GetManyMovementUseCase implements UseCaseInterface
     public function __construct(
         private readonly MovementDataModelProviderGateway $provider,
         private readonly MovementsFilterModelModelFactory $filterFactory,
-        private readonly MultipleMovementViewPresenter    $presenter,
+        private readonly MultipleMovementViewPresenter $presenter,
     ) {
-
     }
 
+    /**
+     * @param array<mixed> $parameters
+     */
     public function execute(array $parameters, string $dataProfile = DataProfileRegistry::DATA_PROFILE_MEMBER): MultipleObjectViewModel
     {
         $filter = $this->filterFactory->buildGetManyMovementsFilterModel($parameters);

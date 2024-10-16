@@ -3,23 +3,21 @@
 namespace App\Infrastructure\View\ViewPresenter;
 
 use App\Domain\DTO\DataModel\DataModelInterface;
+use App\Infrastructure\View\ViewHydrator\ViewHydratorInterface;
 use App\Infrastructure\View\ViewModel\DataViewModelInterface;
-use App\Infrastructure\View\ViewModel\Equipment\MultipleEquipmentItemDataViewModel;
 use App\Infrastructure\View\ViewModel\MultipleObjectItemDataViewModelInterface;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
 use App\Infrastructure\View\ViewModel\SingleObjectDataViewModelInterface;
 use App\Infrastructure\View\ViewModel\SingleObjectViewModel;
-use ReflectionClass;
-use ReflectionProperty;
 
 final class GenericViewPresenter
 {
-    /** @var ReflectionProperty[] */
+    /** @var \ReflectionProperty[] */
     private ?array $reflectionProperties = null;
 
     public function presentSingleObject(
-        DataModelInterface                 $model,
-        SingleObjectDataViewModelInterface $viewData
+        DataModelInterface $model,
+        SingleObjectDataViewModelInterface $viewData,
     ): SingleObjectViewModel {
         $view = new SingleObjectViewModel();
         $view->data = $this->presentByReflection($model, $viewData);
@@ -27,11 +25,14 @@ final class GenericViewPresenter
         return $view;
     }
 
+    /**
+     * @param DataModelInterface[]    $models
+     * @param ViewHydratorInterface[] $hydrators
+     */
     public function presentMultipleObject(array $models, MultipleObjectItemDataViewModelInterface $view, array $hydrators = []): MultipleObjectViewModel
     {
         $viewModel = new MultipleObjectViewModel();
 
-        $data = [];
         foreach ($models as $model) {
             $view = $this->presentByReflection($model, clone $view);
             $viewModel->data[] = $view;
@@ -44,7 +45,7 @@ final class GenericViewPresenter
         return $viewModel;
     }
 
-    private function presentByReflection(DataModelInterface $model, DataViewModelInterface $view): DataViewModelInterface
+    private function presentByReflection(DataModelInterface $model, SingleObjectDataViewModelInterface|MultipleObjectItemDataViewModelInterface $view): SingleObjectDataViewModelInterface|MultipleObjectItemDataViewModelInterface
     {
         foreach ($this->getReflectionProperties($view) as $property) {
             $propertyName = $property->getName();
@@ -56,14 +57,14 @@ final class GenericViewPresenter
         return $view;
     }
 
-    /** @return ReflectionProperty[] */
+    /** @return \ReflectionProperty[] */
     private function getReflectionProperties(DataViewModelInterface $view): array
     {
         if (null !== $this->reflectionProperties) {
             return $this->reflectionProperties;
         }
 
-        $reflection = new ReflectionClass($view);
+        $reflection = new \ReflectionClass($view);
         $this->reflectionProperties = $reflection->getProperties();
 
         return $this->reflectionProperties;

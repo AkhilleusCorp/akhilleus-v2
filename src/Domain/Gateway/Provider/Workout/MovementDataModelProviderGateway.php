@@ -12,6 +12,7 @@ interface MovementDataModelProviderGateway extends DropdownableDataModelProvider
 
     /**
      * @param int[] $ids
+     *
      * @return MovementDataModel[]
      */
     public function getGetMovementsByIds(array $ids): array;
@@ -22,5 +23,4 @@ interface MovementDataModelProviderGateway extends DropdownableDataModelProvider
     public function getMovementsByFilterModel(GetManyMovementsFilterModel $filter): array;
 
     public function countMovementsByFilterModel(?GetManyMovementsFilterModel $filter): int;
-
 }

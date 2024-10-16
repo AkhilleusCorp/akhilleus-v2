@@ -34,8 +34,7 @@ final class MovementFixtures extends AbstractFixtures implements DependentFixtur
 
             $manager->persist($movement);
 
-            $this->addRef("movement", $movement->name, $movement);
-
+            $this->addRef('movement', $movement->name, $movement);
         }
     }
 
@@ -44,6 +43,9 @@ final class MovementFixtures extends AbstractFixtures implements DependentFixtur
         // TODO: Implement volumeFixtures() method.
     }
 
+    /**
+     * @return array<mixed>
+     */
     private function getMovementsConfig(): array
     {
         return [
@@ -51,41 +53,44 @@ final class MovementFixtures extends AbstractFixtures implements DependentFixtur
                 'name' => 'Bench press',
                 'primaryMuscleRef' => 'muscle-chest',
                 'auxiliaryMusclesRefs' => [],
-                'equipmentsRefs' => ['equipment-barbell', 'equipment-bench']
+                'equipmentsRefs' => ['equipment-barbell', 'equipment-bench'],
             ],
             [
                 'name' => 'Back squat',
                 'primaryMuscleRef' => 'muscle-quadriceps',
                 'auxiliaryMusclesRefs' => ['muscle-glutes', 'muscle-hamstrings'],
-                'equipmentsRefs' => ['equipment-barbell']
+                'equipmentsRefs' => ['equipment-barbell'],
             ],
             [
                 'name' => 'Biceps curl',
                 'primaryMuscleRef' => 'muscle-biceps',
                 'auxiliaryMusclesRefs' => [],
-                'equipmentsRefs' => ['equipment-dumbbell']
+                'equipmentsRefs' => ['equipment-dumbbell'],
             ],
             [
                 'name' => 'Front squat',
                 'primaryMuscleRef' => 'muscle-quadriceps',
                 'auxiliaryMusclesRefs' => [],
-                'equipmentsRefs' => ['equipment-barbell']
+                'equipmentsRefs' => ['equipment-barbell'],
             ],
             [
                 'name' => 'Goblet squat',
                 'primaryMuscleRef' => 'muscle-quadriceps',
                 'auxiliaryMusclesRefs' => [],
-                'equipmentsRefs' => ['equipment-dumbbell']
+                'equipmentsRefs' => ['equipment-dumbbell'],
             ],
             [
                 'name' => 'Triceps push down (single arm)',
                 'primaryMuscleRef' => 'muscle-triceps',
                 'auxiliaryMusclesRefs' => [],
-                'equipmentsRefs' => ['equipment-cable']
-            ]
+                'equipmentsRefs' => ['equipment-cable'],
+            ],
         ];
     }
 
+    /**
+     * @return string[]
+     */
     public function getDependencies(): array
     {
         return [

@@ -11,7 +11,10 @@ use App\Infrastructure\View\ViewPresenter\AbstractSingleObjectViewPresenter;
 
 final class SingleWorkoutViewPresenter extends AbstractSingleObjectViewPresenter
 {
-    public function presentViewData(WorkoutDataModel|DataModelInterface $data, string $dataProfile): SingleWorkoutDataViewModel
+    /**
+     * @param WorkoutDataModel $data
+     */
+    public function presentViewData(DataModelInterface $data, string $dataProfile): SingleWorkoutDataViewModel
     {
         $view = new SingleWorkoutDataViewModel();
         $view->id = $data->id;

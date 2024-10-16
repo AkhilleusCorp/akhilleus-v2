@@ -4,7 +4,6 @@ namespace App\UseCase\API\Workout;
 
 use App\Domain\Gateway\Persister\Workout\ExerciseGroupDataModelPersisterGateway;
 use App\Domain\Gateway\Provider\Workout\ExerciseGroupDataModelProviderGateway;
-use App\Domain\Gateway\Provider\Workout\WorkoutDataModelProviderGateway;
 use App\UseCase\UseCaseInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -14,7 +13,6 @@ final class DeleteOneExerciseGroupByIdUseCase implements UseCaseInterface
         private readonly ExerciseGroupDataModelProviderGateway $groupProvider,
         private readonly ExerciseGroupDataModelPersisterGateway $groupPersister,
     ) {
-
     }
 
     public function execute(int $workoutId, int $groupId): void

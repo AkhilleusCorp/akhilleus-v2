@@ -14,7 +14,7 @@ final class CustomSerializer
     private Serializer $serializer;
 
     public function __construct(
-        ?string $dateTimeFormat
+        ?string $dateTimeFormat,
     ) {
         if (null === $dateTimeFormat) {
             $dateTimeFormat = self::DEFAULT_DATETIME_FORMAT;
@@ -26,8 +26,13 @@ final class CustomSerializer
             [DateTimeNormalizer::FORMAT_KEY => $dateTimeFormat, DateTimeNormalizer::TIMEZONE_KEY => 'Europe/Paris']
         );
         $this->serializer = new Serializer([$dateTimeNormalizer, $objectNormalizer]);
-
     }
+
+    /**
+     * @return array<mixed>
+     *
+     * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
+     */
     public function normalize(mixed $data, ?string $serializationGroup): array
     {
         return $this->serializer->normalize($data, null, [$serializationGroup]);

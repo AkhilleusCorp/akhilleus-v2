@@ -11,8 +11,16 @@ final class CreateExerciseGroupSourceModelFactory implements SourceModelFactoryI
 {
     use InferSourceModelFactoryTrait;
 
-    public function buildSourceModel(array $parameters, ?SourceModelInterface $sourceModel = null): CreateExerciseGroupSourceModel|SourceModelInterface
+    /**
+     * @param array<mixed> $parameters
+     *
+     * @return CreateExerciseGroupSourceModel
+     */
+    public function buildSourceModel(array $parameters): SourceModelInterface
     {
-        return $this->inferSourceModel($parameters, new CreateExerciseGroupSourceModel());
+        $sourceModel = new CreateExerciseGroupSourceModel();
+        $this->inferSourceModel($parameters, $sourceModel);
+
+        return $sourceModel;
     }
 }

@@ -12,7 +12,10 @@ final class SingleExerciseGroupViewPresenter extends AbstractSingleObjectViewPre
 {
     use PresentExerciseGroupTrait;
 
-    public function presentViewData(ExerciseGroupDataModel|DataModelInterface $data, string $dataProfile): ExerciseGroupDataViewModel|SingleObjectDataViewModelInterface
+    /**
+     * @param ExerciseGroupDataModel $data
+     */
+    public function presentViewData(DataModelInterface $data, string $dataProfile): ExerciseGroupDataViewModel|SingleObjectDataViewModelInterface
     {
         return $this->presentExerciseGroup($data);
     }

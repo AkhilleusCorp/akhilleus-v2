@@ -12,9 +12,9 @@ final class UpdateMovementSourceModel implements UpdateSourceModelInterface
 
     public int $primaryMuscle;
 
-    /** @var int[]|null $auxiliaryMuscles */
+    /** @var int[]|null */
     public ?array $auxiliaryMuscles;
 
-    /** @var int[]|null $equipments */
+    /** @var int[]|null */
     public ?array $equipments;
 }

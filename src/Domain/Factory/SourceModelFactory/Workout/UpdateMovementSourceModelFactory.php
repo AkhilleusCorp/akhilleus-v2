@@ -11,8 +11,16 @@ final class UpdateMovementSourceModelFactory implements SourceModelFactoryInterf
 {
     use InferSourceModelFactoryTrait;
 
-    public function buildSourceModel(array $parameters, ?SourceModelInterface $sourceModel = null): UpdateMovementSourceModel|SourceModelInterface
+    /**
+     * @param array<mixed> $parameters
+     *
+     * @return UpdateMovementSourceModel
+     */
+    public function buildSourceModel(array $parameters): SourceModelInterface
     {
-        return $this->inferSourceModel($parameters, new UpdateMovementSourceModel());
+        $sourceModel = new UpdateMovementSourceModel();
+        $this->inferSourceModel($parameters, $sourceModel);
+
+        return $sourceModel;
     }
 }

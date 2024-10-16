@@ -11,6 +11,12 @@ interface GenericDataModelProviderGateway extends DropdownableDataModelProviderG
     public function getOneById(int $id): ?DataModelInterface;
 
     public function getByFilterModel(FilterModelInterface $filter): QueryBuilder;
+
+    /**
+     * @param array<mixed> $parameters
+     *
+     * @return DataModelInterface[]
+     */
     public function getByArrayParameters(array $parameters): array;
 
     public function countByFilterModel(?FilterModelInterface $filter): int;

@@ -8,7 +8,12 @@ ifeq ($(CI),test)
 endif
 
 .env.local:
-	@touch .env.local
+	touch .env.local
+
+.php-cs-fixer.php: .php-cs-fixer.dist.php
+	cp .php-cs-fixer.dist.php $@
+
+setup: .env.local .php-cs-fixer.php
 
 install_dependencies:
 	${PHP} composer install

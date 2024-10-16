@@ -2,8 +2,8 @@
 
 namespace App\Infrastructure\DataTransformer;
 
-final class EmailObfuscationDataTransformer {
-
+final class EmailObfuscationDataTransformer
+{
     public static function obfuscate(string $email): string
     {
         if (false === filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -12,13 +12,13 @@ final class EmailObfuscationDataTransformer {
 
         list($localPart, $domain) = explode('@', $email);
 
-        $maskedLocalPart = substr($localPart, 0, 1) . str_repeat('*', strlen($localPart) - 1);
+        $maskedLocalPart = substr($localPart, 0, 1).str_repeat('*', strlen($localPart) - 1);
 
         $lastDotPosition = strrpos($domain, '.');
         $domainName = substr($domain, 0, $lastDotPosition);
         $extension = substr($domain, $lastDotPosition);
-        $maskedDomain = substr($domain, 0, 1) . str_repeat('*', strlen($domainName) - 1);
+        $maskedDomain = substr($domain, 0, 1).str_repeat('*', strlen($domainName) - 1);
 
-        return $maskedLocalPart . '@' . $maskedDomain . $extension;
+        return $maskedLocalPart.'@'.$maskedDomain.$extension;
     }
 }

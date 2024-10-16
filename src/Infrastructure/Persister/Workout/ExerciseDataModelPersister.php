@@ -11,7 +11,7 @@ final class ExerciseDataModelPersister extends AbstractEntityPersister implement
 {
     public function __construct(
         EntityManagerInterface $entityManager,
-        private readonly ExerciseGroupDataModelPersister $groupPersister
+        private readonly ExerciseGroupDataModelPersister $groupPersister,
     ) {
         parent::__construct($entityManager);
     }
@@ -23,7 +23,7 @@ final class ExerciseDataModelPersister extends AbstractEntityPersister implement
         return $dto;
     }
 
-    public function edit (ExerciseDataModel $dto, bool $flush = true): ?ExerciseDataModel
+    public function edit(ExerciseDataModel $dto, bool $flush = true): ?ExerciseDataModel
     {
         parent::save($dto, $flush);
 
@@ -38,5 +38,4 @@ final class ExerciseDataModelPersister extends AbstractEntityPersister implement
             $this->groupPersister->remove($dto->group, $flush);
         }
     }
-
 }

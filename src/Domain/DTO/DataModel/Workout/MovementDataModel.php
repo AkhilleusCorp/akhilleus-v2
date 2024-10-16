@@ -29,12 +29,14 @@ class MovementDataModel implements DataModelInterface
     #[ORM\JoinColumn(name: 'primary_muscle_id', referencedColumnName: 'id', onDelete: 'restrict')]
     public MuscleDataModel $primaryMuscle;
 
+    /** @var Collection<int, MuscleDataModel> */
     #[ORM\ManyToMany(targetEntity: MuscleDataModel::class)]
     #[ORM\JoinTable(name: 'MOVEMENTS_MUSCLES')]
     #[ORM\JoinColumn(name: 'movement_id', referencedColumnName: 'id', onDelete: 'restrict')]
     #[ORM\InverseJoinColumn(name: 'muscle_id', referencedColumnName: 'id')]
     public Collection $auxiliaryMuscles;
 
+    /** @var Collection<int, EquipmentDataModel> */
     #[ORM\ManyToMany(targetEntity: EquipmentDataModel::class)]
     #[ORM\JoinTable(name: 'MOVEMENTS_EQUIPMENTS')]
     #[ORM\JoinColumn(name: 'movement_id', referencedColumnName: 'id', onDelete: 'restrict')]
@@ -47,6 +49,9 @@ class MovementDataModel implements DataModelInterface
         $this->equipments = new ArrayCollection();
     }
 
+    /**
+     * @param MuscleDataModel[] $muscles
+     */
     public function setAuxiliaryMuscles(array $muscles): void
     {
         $this->auxiliaryMuscles->clear();
@@ -55,6 +60,9 @@ class MovementDataModel implements DataModelInterface
         }
     }
 
+    /**
+     * @param EquipmentDataModel[] $equipments
+     */
     public function setEquipments(array $equipments): void
     {
         $this->equipments->clear();

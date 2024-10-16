@@ -19,25 +19,28 @@ final class GenericUpdateOneByIdUseCase implements UseCaseInterface
     public function __construct(
         private readonly GenericSourceModelFactory $sourceModelFactory,
         private readonly GenericPersister $persister,
-        private readonly GenericViewPresenter $presenter
+        private readonly GenericViewPresenter $presenter,
     ) {
-
     }
 
+    /**
+     * @param array<mixed> $parameters
+     */
     public function execute(
         int $id,
         array $parameters,
         GenericDataModelProviderGateway $providerGateway,
         UpdateSourceModelInterface|SourceModelInterface $sourceModel,
         DataModelFactoryInterface $dataModelFactory,
-        SingleObjectDataViewModelInterface $view
+        SingleObjectDataViewModelInterface $view,
     ): SingleObjectViewModel {
         $data = $providerGateway->getOneById($id);
         if (null === $data) {
             throw new NotFoundHttpException();
         }
 
-        $source = $this->sourceModelFactory->buildSourceModel($parameters, $sourceModel);
+        /** @var UpdateSourceModelInterface $source */
+        $source = $this->sourceModelFactory->buildGenericSourceModel($parameters, $sourceModel);
         $dataModel = $dataModelFactory->mergeSourceAndDataModel($data, $source);
 
         $this->persister->edit($data);

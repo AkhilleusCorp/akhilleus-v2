@@ -6,12 +6,19 @@ use App\Domain\DTO\SourceModel\CreateSourceModelInterface;
 use App\Domain\DTO\SourceModel\SourceModelInterface;
 use App\Domain\DTO\SourceModel\UpdateSourceModelInterface;
 
-final class GenericSourceModelFactory implements SourceModelFactoryInterface
+final class GenericSourceModelFactory implements GenericSourceModelFactoryInterface
 {
     use InferSourceModelFactoryTrait;
 
-    public function buildSourceModel(array $parameters, ?SourceModelInterface $sourceModel = null): CreateSourceModelInterface|UpdateSourceModelInterface
+    /**
+     * @param array<mixed> $parameters
+     *
+     * @return CreateSourceModelInterface|UpdateSourceModelInterface|SourceModelInterface
+     */
+    public function buildGenericSourceModel(array $parameters, SourceModelInterface $sourceModel): SourceModelInterface
     {
-        return $this->inferSourceModel($parameters, $sourceModel);
+        $this->inferSourceModel($parameters, $sourceModel);
+
+        return $sourceModel;
     }
 }

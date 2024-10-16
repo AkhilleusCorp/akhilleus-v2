@@ -12,7 +12,7 @@ final class HttpExceptionEventListener
     public function onKernelException(ExceptionEvent $event): void
     {
         $exception = $event->getThrowable();
-        if($exception instanceof NotFoundHttpException) {
+        if ($exception instanceof NotFoundHttpException) {
             $response = new JsonResponse(
                 ['error' => $exception->getMessage()],
                 Response::HTTP_NOT_FOUND

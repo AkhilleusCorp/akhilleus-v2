@@ -8,16 +8,15 @@ use Doctrine\ORM\EntityManagerInterface;
 abstract class AbstractEntityPersister
 {
     public function __construct(
-        private readonly EntityManagerInterface $entityManager
+        private readonly EntityManagerInterface $entityManager,
     ) {
-
     }
 
     protected function save(DataModelInterface $dto, bool $flush = true): DataModelInterface
     {
         $this->entityManager->persist($dto);
 
-        if(true === $flush) {
+        if (true === $flush) {
             $this->entityManager->flush();
         }
 
@@ -28,7 +27,7 @@ abstract class AbstractEntityPersister
     {
         $this->entityManager->remove($dto);
 
-        if(true === $flush) {
+        if (true === $flush) {
             $this->entityManager->flush();
         }
     }

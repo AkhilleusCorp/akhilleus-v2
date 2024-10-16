@@ -43,7 +43,10 @@ final class WorkoutDataModelRepository extends AbstractBaseDataModelRepository i
         return $this->countByFilterModel($filter);
     }
 
-    public function addParametersFromFilter(QueryBuilder $queryBuilder, GetManyWorkoutsFilterModel|FilterModelInterface $filter): self
+    /**
+     * @param GetManyWorkoutsFilterModel $filter
+     */
+    public function addParametersFromFilter(QueryBuilder $queryBuilder, FilterModelInterface $filter): self
     {
         $this->filterByIds($queryBuilder, $filter->ids);
         $this->filterByName($queryBuilder, $filter->name);

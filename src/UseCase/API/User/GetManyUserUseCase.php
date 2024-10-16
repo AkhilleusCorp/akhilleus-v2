@@ -15,10 +15,13 @@ final class GetManyUserUseCase implements UseCaseInterface
     public function __construct(
         private readonly UserDataModelProviderGateway $provider,
         private readonly UsersFilterModelModelFactory $filterFactory,
-        private readonly MultipleUserViewPresenter    $presenter,
+        private readonly MultipleUserViewPresenter $presenter,
     ) {
     }
 
+    /**
+     * @param array<mixed> $parameters
+     */
     public function execute(array $parameters, string $dataProfile = DataProfileRegistry::DATA_PROFILE_MEMBER): MultipleObjectViewModel
     {
         $filter = $this->filterFactory->buildGetManyUsersFilterModel($parameters);

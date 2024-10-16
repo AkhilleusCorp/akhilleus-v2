@@ -11,8 +11,16 @@ final class UpdateWorkoutSourceModelFactory implements SourceModelFactoryInterfa
 {
     use InferSourceModelFactoryTrait;
 
-    public function buildSourceModel(array $parameters, ?SourceModelInterface $sourceModel = null): UpdateWorkoutSourceModel|SourceModelInterface
+    /**
+     * @param array<mixed> $parameters
+     *
+     * @return UpdateWorkoutSourceModel
+     */
+    public function buildSourceModel(array $parameters): SourceModelInterface
     {
-        return $this->inferSourceModel($parameters, new UpdateWorkoutSourceModel());
+        $sourceModel = new UpdateWorkoutSourceModel();
+        $this->inferSourceModel($parameters, $sourceModel);
+
+        return $sourceModel;
     }
 }

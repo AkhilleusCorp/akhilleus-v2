@@ -15,7 +15,7 @@ final class MovementDataModelPersister extends AbstractEntityPersister implement
         return $dto;
     }
 
-    public function edit (MovementDataModel $dto, bool $flush = true): MovementDataModel
+    public function edit(MovementDataModel $dto, bool $flush = true): MovementDataModel
     {
         parent::save($dto, $flush);
 

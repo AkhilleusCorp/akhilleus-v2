@@ -12,15 +12,14 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 final class GenericGetOneByIdUseCase implements UseCaseInterface
 {
     public function __construct(
-        private readonly GenericViewPresenter $presenter
+        private readonly GenericViewPresenter $presenter,
     ) {
-
     }
 
     public function execute(
         int $id,
         GenericDataModelProviderGateway $providerGateway,
-        SingleObjectDataViewModelInterface $view
+        SingleObjectDataViewModelInterface $view,
     ): SingleObjectViewModel {
         $dataModel = $providerGateway->getOneById($id);
         if (null === $dataModel) {

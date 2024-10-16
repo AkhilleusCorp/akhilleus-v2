@@ -13,7 +13,7 @@ final class GetOneWorkoutByIdUseCase implements UseCaseInterface
 {
     public function __construct(
         private readonly WorkoutDataModelProviderGateway $provider,
-        private readonly SingleWorkoutViewPresenter      $presenter,
+        private readonly SingleWorkoutViewPresenter $presenter,
     ) {
     }
 

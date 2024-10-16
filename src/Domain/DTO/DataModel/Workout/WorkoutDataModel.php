@@ -40,6 +40,7 @@ class WorkoutDataModel implements DataModelInterface
     #[ORM\Column(type: Types::INTEGER, nullable: true)]
     public ?int $duration = null; // Stored in seconds
 
+    /** @var Collection<int, ExerciseGroupDataModel> */
     #[ORM\OneToMany(targetEntity: ExerciseGroupDataModel::class, mappedBy: 'workout', cascade: ['remove'])]
     public Collection $exerciseGroups;
 

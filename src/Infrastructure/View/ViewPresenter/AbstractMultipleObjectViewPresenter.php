@@ -4,17 +4,13 @@ namespace App\Infrastructure\View\ViewPresenter;
 
 use App\Domain\DTO\DataModel\DataModelInterface;
 use App\Infrastructure\View\ViewHydrator\ViewHydratorInterface;
-use App\Infrastructure\View\ViewModel\MultipleObjectItemDataViewModelInterface;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
 
-abstract class AbstractMultipleObjectViewPresenter
+abstract class AbstractMultipleObjectViewPresenter implements MultipleObjectViewPresenterInterface
 {
     /**
-     * @param DataModelInterface[] $data
-     * @param ?string $dataProfile
+     * @param DataModelInterface[]    $data
      * @param ViewHydratorInterface[] $hydrators
-     *
-     * @return MultipleObjectViewModel
      */
     public function present(array $data, ?string $dataProfile, array $hydrators = []): MultipleObjectViewModel
     {
@@ -29,5 +25,4 @@ abstract class AbstractMultipleObjectViewPresenter
 
         return $viewModel;
     }
-
 }

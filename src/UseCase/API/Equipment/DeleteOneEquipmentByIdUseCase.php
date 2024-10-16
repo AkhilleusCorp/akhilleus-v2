@@ -11,7 +11,6 @@ final class DeleteOneEquipmentByIdUseCase implements UseCaseInterface
     public function __construct(
         private readonly EquipmentDataModelProviderGateway $provider,
     ) {
-
     }
 
     public function execute(int $id): void

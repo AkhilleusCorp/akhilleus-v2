@@ -2,17 +2,22 @@
 
 namespace App\Domain\Factory\FilterModelFactory\Workout;
 
-use App\Domain\DTO\FilterModel\FilterModelInterface;
 use App\Domain\DTO\FilterModel\Workout\GetManyWorkoutsFilterModel;
 use App\Domain\Factory\FilterModelFactory\AbstractFilterModelFactory;
 
 final class WorkoutsFilterModelModelFactory extends AbstractFilterModelFactory
 {
-    public function buildGetManyWorkoutsFilterModel(array $parameters): GetManyWorkoutsFilterModel|FilterModelInterface
+    /**
+     * @param array<mixed> $parameters
+     */
+    public function buildGetManyWorkoutsFilterModel(array $parameters): GetManyWorkoutsFilterModel
     {
-        return $this->buildFilter(
+        $filterModel = new GetManyWorkoutsFilterModel();
+        $this->buildFilter(
             $this->purgeNullStringValues($parameters),
-            new GetManyWorkoutsFilterModel()
+            $filterModel
         );
+
+        return $filterModel;
     }
 }

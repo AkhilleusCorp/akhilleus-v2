@@ -13,14 +13,16 @@ use App\UseCase\UseCaseInterface;
 final class CreateOneMovementUseCase implements UseCaseInterface
 {
     public function __construct(
-        private readonly CreateMovementSourceModelFactory  $sourceModelFactory,
-        private readonly MovementDataModelFactory          $dataModelFactory,
+        private readonly CreateMovementSourceModelFactory $sourceModelFactory,
+        private readonly MovementDataModelFactory $dataModelFactory,
         private readonly MovementDataModelPersisterGateway $persister,
-        private readonly SingleMovementViewPresenter       $presenter,
+        private readonly SingleMovementViewPresenter $presenter,
     ) {
-
     }
 
+    /**
+     * @param array<mixed> $parameters
+     */
     public function execute(array $parameters, string $dateProfile = DataProfileRegistry::DATA_PROFILE_MEMBER): SingleObjectViewModel
     {
         $source = $this->sourceModelFactory->buildSourceModel($parameters);

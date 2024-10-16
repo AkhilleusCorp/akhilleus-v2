@@ -17,6 +17,6 @@ interface WorkoutVisibilityRegistry
         self::WORKOUT_VISIBILITY_FRIENDS,
         self::WORKOUT_VISIBILITY_FOLLOWERS,
         self::WORKOUT_VISIBILITY_SPECIFIC_CLIENT,
-        self::WORKOUT_VISIBILITY_ALL_CLIENT
+        self::WORKOUT_VISIBILITY_ALL_CLIENT,
     ];
 }

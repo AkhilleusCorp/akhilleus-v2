@@ -13,7 +13,6 @@ final class DeleteOneMovementByIdUseCase implements UseCaseInterface
         private readonly MovementDataModelProviderGateway $provider,
         private readonly MovementDataModelPersisterGateway $persister,
     ) {
-
     }
 
     public function execute(int $id): void

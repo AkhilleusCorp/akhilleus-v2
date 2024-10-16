@@ -12,7 +12,10 @@ use App\Infrastructure\View\ViewPresenter\AbstractSingleObjectViewPresenter;
 
 final class SingleMovementViewPresenter extends AbstractSingleObjectViewPresenter
 {
-    public function presentViewData(MovementDataModel|DataModelInterface $data, string $dataProfile): SingleMovementDataViewModel
+    /**
+     * @param MovementDataModel $data
+     */
+    public function presentViewData(DataModelInterface $data, string $dataProfile): SingleMovementDataViewModel
     {
         $view = new SingleMovementDataViewModel();
         $view->id = $data->id;
@@ -27,6 +30,7 @@ final class SingleMovementViewPresenter extends AbstractSingleObjectViewPresente
 
     /**
      * @param MuscleDataModel[] $auxiliaryMuscles
+     *
      * @return SimpleEmbeddedObjectViewModel[]
      */
     private function getAuxiliaryMusclesAsEmbedded(array $auxiliaryMuscles): array
@@ -41,6 +45,7 @@ final class SingleMovementViewPresenter extends AbstractSingleObjectViewPresente
 
     /**
      * @param EquipmentDataModel[] $equipments
+     *
      * @return SimpleEmbeddedObjectViewModel[]
      */
     private function getEquipmentsAsEmbedded(array $equipments): array

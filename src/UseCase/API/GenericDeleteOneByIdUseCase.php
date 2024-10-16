@@ -11,12 +11,11 @@ final class GenericDeleteOneByIdUseCase implements UseCaseInterface
 {
     public function __construct(private readonly GenericPersister $persister)
     {
-
     }
 
     public function execute(
         int $id,
-        GenericDataModelProviderGateway $providerGateway
+        GenericDataModelProviderGateway $providerGateway,
     ): void {
         $dataModel = $providerGateway->getOneById($id);
         if (null === $dataModel) {
