@@ -49,8 +49,5 @@ tests_integration:
 tests_all:
 	XDEBUG_MODE=coverage $(PHP) vendor/bin/simple-phpunit
 
-tests_all_ci:
-	XDEBUG_MODE=coverage vendor/bin/simple-phpunit
-
 mysql_connect_akhilleus: ## Connect to core database
 	docker compose exec database /bin/bash -c 'mysql -u$$MYSQL_USER -p$$MYSQL_PASSWORD $$MYSQL_DB_NAME'
