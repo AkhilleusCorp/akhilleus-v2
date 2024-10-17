@@ -3,10 +3,6 @@ include .env
 
 PHP := docker compose exec php
 
-ifeq ($(CI),true)
-	PHP := php
-endif
-
 .env.local:
 	touch .env.local
 
@@ -51,7 +47,10 @@ tests_integration:
 	$(PHP) vendor/bin/simple-phpunit --testsuite integration
 
 tests_all:
-	XDEBUG_MODE=coverage $(PHP) vendor/bin/simple-phpunit --stop-on-failure
+	XDEBUG_MODE=coverage $(PHP) vendor/bin/simple-phpunit
+
+tests_all_ci:
+	XDEBUG_MODE=coverage vendor/bin/simple-phpunit
 
 mysql_connect_akhilleus: ## Connect to core database
 	docker compose exec database /bin/bash -c 'mysql -u$$MYSQL_USER -p$$MYSQL_PASSWORD $$MYSQL_DB_NAME'
