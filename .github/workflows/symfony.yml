@@ -51,7 +51,9 @@ jobs:
           done
 
       - name: Unit & Integration tests
-        run: XDEBUG_MODE=coverage vendor/bin/simple-phpunit --env=test
+        run: XDEBUG_MODE=coverage vendor/bin/simple-phpunit
+        env:
+          DATABASE_URL: "mysql://test_user:test_password@127.0.0.1:3306/test_db"
 
       - name: Run codacy-coverage-reporter
         uses: codacy/codacy-coverage-reporter-action@v1.3.0
