@@ -11,7 +11,6 @@ final class DeleteOneMuscleByIdUseCase implements UseCaseInterface
     public function __construct(
         private readonly MuscleDataModelProviderGateway $provider,
     ) {
-
     }
 
     public function execute(int $id): void

@@ -63,10 +63,8 @@ final class GetManyWorkoutUseCaseTest extends AbstractIntegrationTest
         $view = $this->useCase->execute(['status' => WorkoutStatusRegistry::WORKOUT_STATUS_IN_PROGRESS], DataProfileRegistry::DATA_PROFILE_ADMIN);
         $this->assertCount(1, $view->data);
 
-
         $view = $this->useCase->execute(['status' => WorkoutStatusRegistry::WORKOUT_STATUS_COMPLETED]);
         $this->assertCount(25, $view->data);
-
 
         $view = $this->useCase->execute(['status' => WorkoutStatusRegistry::WORKOUT_STATUS_PLANNED]);
         $this->assertCount(1, $view->data);

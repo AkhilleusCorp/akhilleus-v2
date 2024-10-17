@@ -23,12 +23,11 @@ final class MuscleFixtures extends AbstractFixtures
 
             $manager->persist($muscle);
 
-            $this->addRef("muscle", $muscle->name, $muscle);
+            $this->addRef('muscle', $muscle->name, $muscle);
         }
     }
 
     protected function volumeFixtures(ObjectManager $manager): void
     {
-
     }
 }

@@ -8,7 +8,6 @@ use App\Domain\Gateway\Provider\User\UserDataModelProviderGateway;
 use App\Infrastructure\Persister\User\UserDataModelPersister;
 use App\Infrastructure\Registry\DataProfileRegistry;
 use App\Infrastructure\View\ViewModel\SingleObjectViewModel;
-use App\Infrastructure\View\ViewModel\User\SingleUserDataViewModel;
 use App\Infrastructure\View\ViewPresenter\User\SingleUserViewPresenter;
 use App\UseCase\UseCaseInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -17,14 +16,16 @@ final class UpdateOneUserByIdUseCase implements UseCaseInterface
 {
     public function __construct(
         private readonly UpdateUserSourceModelFactory $sourceModelFactory,
-        private readonly UserDataModelFactory         $dataModelFactory,
+        private readonly UserDataModelFactory $dataModelFactory,
         private readonly UserDataModelProviderGateway $provider,
-        private readonly UserDataModelPersister       $persister,
-        private readonly SingleUserViewPresenter      $presenter,
+        private readonly UserDataModelPersister $persister,
+        private readonly SingleUserViewPresenter $presenter,
     ) {
-
     }
 
+    /**
+     * @param array<mixed> $parameters
+     */
     public function execute(int $id, array $parameters, string $dataProfile = DataProfileRegistry::DATA_PROFILE_MEMBER): SingleObjectViewModel
     {
         $user = $this->provider->getUserById($id);

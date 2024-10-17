@@ -15,11 +15,13 @@ final class GetManyWorkoutUseCase implements UseCaseInterface
     public function __construct(
         private readonly WorkoutDataModelProviderGateway $provider,
         private readonly WorkoutsFilterModelModelFactory $filterFactory,
-        private readonly MultipleWorkoutViewPresenter    $presenter,
+        private readonly MultipleWorkoutViewPresenter $presenter,
     ) {
-
     }
 
+    /**
+     * @param array<mixed> $parameters
+     */
     public function execute(array $parameters, string $dataProfile = DataProfileRegistry::DATA_PROFILE_MEMBER): MultipleObjectViewModel
     {
         $filter = $this->filterFactory->buildGetManyWorkoutsFilterModel($parameters);

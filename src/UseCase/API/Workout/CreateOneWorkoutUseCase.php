@@ -13,14 +13,16 @@ use App\UseCase\UseCaseInterface;
 final class CreateOneWorkoutUseCase implements UseCaseInterface
 {
     public function __construct(
-        private readonly CreateWorkoutSourceModelFactory  $sourceModelFactory,
-        private readonly WorkoutDataModelFactory          $dataModelFactory,
+        private readonly CreateWorkoutSourceModelFactory $sourceModelFactory,
+        private readonly WorkoutDataModelFactory $dataModelFactory,
         private readonly WorkoutDataModelPersisterGateway $persister,
-        private readonly SingleWorkoutViewPresenter       $presenter,
+        private readonly SingleWorkoutViewPresenter $presenter,
     ) {
-
     }
 
+    /**
+     * @param array<mixed> $parameters
+     */
     public function execute(array $parameters, string $dateProfile = DataProfileRegistry::DATA_PROFILE_MEMBER): SingleObjectViewModel
     {
         $source = $this->sourceModelFactory->buildSourceModel($parameters);

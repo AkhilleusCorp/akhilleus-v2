@@ -27,9 +27,12 @@ final class MuscleDataModelRepository extends AbstractBaseDataModelRepository im
         return 'muscle';
     }
 
+    /**
+     * @param GetManyMusclesFilterModel $filter
+     */
     protected function addParametersFromFilter(
         QueryBuilder $queryBuilder,
-        GetManyMusclesFilterModel|FilterModelInterface $filter
+        FilterModelInterface $filter,
     ): AbstractBaseDataModelRepository {
         $this->filterByIds($queryBuilder, $filter->ids);
         $this->filterByName($queryBuilder, $filter->name);

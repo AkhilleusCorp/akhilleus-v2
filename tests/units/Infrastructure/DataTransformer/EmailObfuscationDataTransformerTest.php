@@ -26,6 +26,9 @@ final class EmailObfuscationDataTransformerTest extends TestCase
         EmailObfuscationDataTransformer::obfuscate($invalidEmail);
     }
 
+    /**
+     * @return array<mixed>
+     */
     public function validEmailDataProvider(): array
     {
         return [
@@ -35,13 +38,16 @@ final class EmailObfuscationDataTransformerTest extends TestCase
         ];
     }
 
+    /**
+     * @return array<mixed>
+     */
     public function invalidEmailDataProvider(): array
     {
         return [
             ['this-is-not-an-email'],
             ['this-is-not-an-email@mail'],
             ['this-is-not-an-email.com'],
-            ['@test.com']
+            ['@test.com'],
         ];
     }
 }

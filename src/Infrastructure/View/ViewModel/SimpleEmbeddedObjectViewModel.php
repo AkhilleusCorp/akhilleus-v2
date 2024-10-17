@@ -14,9 +14,8 @@ final class SimpleEmbeddedObjectViewModel
 
     public function __construct(
         int $id,
-        string $label
-    )
-    {
+        string $label,
+    ) {
         $this->id = $id;
         $this->label = $label;
     }

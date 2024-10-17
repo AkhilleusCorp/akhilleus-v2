@@ -2,15 +2,11 @@
 
 namespace App\Domain\DTO\FilterModel\Equipment;
 
+use App\Domain\DTO\FilterModel\AbstractFilterModel;
 use App\Domain\DTO\FilterModel\FilterModelInterface;
-use App\Domain\DTO\FilterModel\PaginationFilterTrait;
-use App\Domain\DTO\FilterModel\SortsFilterTrait;
 
-final class GetManyEquipmentsFilterModel implements FilterModelInterface
+final class GetManyEquipmentsFilterModel extends AbstractFilterModel implements FilterModelInterface
 {
-    use PaginationFilterTrait;
-    use SortsFilterTrait;
-
     /**
      * @var int[]
      */
@@ -18,6 +14,6 @@ final class GetManyEquipmentsFilterModel implements FilterModelInterface
 
     public ?string $name = null;
 
-    /** @var array string[] */
+    /** @var string[] */
     public array $status = [];
 }

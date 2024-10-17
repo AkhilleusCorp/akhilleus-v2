@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class RegistrationController extends AbstractController
 {
-    #[Route('/registration', name:'website_registration', methods: ['GET', 'POST'])]
+    #[Route('/registration', name: 'website_registration', methods: ['GET', 'POST'])]
     public function registration(Request $request, CreateOneUserUseCase $useCase): Response
     {
         if (null !== $this->getUser()) {
@@ -29,7 +29,7 @@ final class RegistrationController extends AbstractController
         );
     }
 
-    #[Route('/registration/coach', name:'website_registration_coach', methods: ['GET', 'POST'])]
+    #[Route('/registration/coach', name: 'website_registration_coach', methods: ['GET', 'POST'])]
     public function registrationCoach(Request $request, CreateOneUserUseCase $useCase): Response
     {
         if (null !== $this->getUser()) {
@@ -50,7 +50,7 @@ final class RegistrationController extends AbstractController
         );
     }
 
-    #[Route('/registration/success', name:'website_registration_success', methods: ['GET'])]
+    #[Route('/registration/success', name: 'website_registration_success', methods: ['GET'])]
     public function registrationSuccess(): Response
     {
         if (null !== $this->getUser()) {

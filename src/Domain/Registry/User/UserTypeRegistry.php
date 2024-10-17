@@ -11,6 +11,6 @@ interface UserTypeRegistry
     public const USER_TYPES = [
         self::USER_TYPE_MEMBER,
         self::USER_TYPE_COACH,
-        self::USER_TYPE_ADMIN
+        self::USER_TYPE_ADMIN,
     ];
 }

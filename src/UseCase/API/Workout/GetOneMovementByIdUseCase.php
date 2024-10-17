@@ -15,7 +15,6 @@ final class GetOneMovementByIdUseCase implements UseCaseInterface
         private readonly MovementDataModelProviderGateway $provider,
         private readonly SingleMovementViewPresenter $presenter,
     ) {
-
     }
 
     public function execute(int $id, string $dataProfile = DataProfileRegistry::DATA_PROFILE_MEMBER): SingleObjectViewModel

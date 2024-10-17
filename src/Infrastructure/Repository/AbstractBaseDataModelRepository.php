@@ -2,15 +2,18 @@
 
 namespace App\Infrastructure\Repository;
 
+use App\Domain\DTO\DataModel\DataModelInterface;
 use App\Domain\DTO\FilterModel\FilterModelInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\Order;
 use Doctrine\ORM\QueryBuilder;
 
+// @phpstan-ignore-next-line
 abstract class AbstractBaseDataModelRepository extends ServiceEntityRepository
 {
-    protected abstract function getAlias(): string;
-    protected abstract function addParametersFromFilter(QueryBuilder $queryBuilder, FilterModelInterface $filter): self;
+    abstract protected function getAlias(): string;
+
+    abstract protected function addParametersFromFilter(QueryBuilder $queryBuilder, FilterModelInterface $filter): self;
 
     public function getByFilterModel(FilterModelInterface $filter): QueryBuilder
     {
@@ -36,6 +39,11 @@ abstract class AbstractBaseDataModelRepository extends ServiceEntityRepository
         return $queryBuilder->getQuery()->getSingleScalarResult();
     }
 
+    /**
+     * @param array<mixed> $parameters
+     *
+     * @return DataModelInterface[]
+     */
     public function getByArrayParameters(array $parameters): array
     {
         return $this->findBy($parameters);
@@ -43,7 +51,7 @@ abstract class AbstractBaseDataModelRepository extends ServiceEntityRepository
 
     protected function addPaginationConditions(QueryBuilder $queryBuilder, FilterModelInterface $filter): self
     {
-        if (property_exists($filter, 'limit')) {
+        if (property_exists($filter, 'limit') && property_exists($filter, 'page')) {
             $queryBuilder->setMaxResults($filter->limit);
             $queryBuilder->setFirstResult($filter->limit * ($filter->page - 1));
         }

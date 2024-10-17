@@ -16,14 +16,13 @@ final class PaginationHydratorTest extends TestCase
         $hydrator = new PaginationHydrator($count, $page, $limit);
         $pagination = $hydrator->hydrate()['pagination'];
 
-
         $this->assertEquals($count, $pagination->count);
         $this->assertEquals(PaginationViewModel::DEFAULT_FIRST_PAGE, $pagination->firstPage);
         $this->assertEquals($page, $pagination->currentPage);
         $this->assertEquals($expectedLastPage, $pagination->lastPage);
     }
 
-    public function testCountEqual0()
+    public function testCountEqual0(): void
     {
         $hydrator = new PaginationHydrator(0, 1, 100);
         $pagination = $hydrator->hydrate()['pagination'];
@@ -34,6 +33,9 @@ final class PaginationHydratorTest extends TestCase
         $this->assertEquals(PaginationViewModel::DEFAULT_FIRST_PAGE, $pagination->lastPage);
     }
 
+    /**
+     * @return array<mixed>
+     */
     public function countHigherThan0DataProvider(): array
     {
         return [

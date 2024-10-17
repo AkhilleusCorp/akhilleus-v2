@@ -2,17 +2,22 @@
 
 namespace App\Domain\Factory\FilterModelFactory\User;
 
-use App\Domain\DTO\FilterModel\FilterModelInterface;
 use App\Domain\DTO\FilterModel\User\GetManyUsersFilterModel;
 use App\Domain\Factory\FilterModelFactory\AbstractFilterModelFactory;
 
 final class UsersFilterModelModelFactory extends AbstractFilterModelFactory
 {
-    public function buildGetManyUsersFilterModel(array $parameters): GetManyUsersFilterModel|FilterModelInterface
+    /**
+     * @param array<mixed> $parameters
+     */
+    public function buildGetManyUsersFilterModel(array $parameters): GetManyUsersFilterModel
     {
-        return $this->buildFilter(
+        $filterModel = new GetManyUsersFilterModel();
+        $this->buildFilter(
             $this->purgeNullStringValues($parameters),
-            new GetManyUsersFilterModel()
+            $filterModel
         );
+
+        return $filterModel;
     }
 }

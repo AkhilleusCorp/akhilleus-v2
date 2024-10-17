@@ -15,5 +15,4 @@ interface WorkoutDataModelProviderGateway
     public function getWorkoutsByFilterModel(GetManyWorkoutsFilterModel $filter): array;
 
     public function countWorkoutsByFilterModel(?GetManyWorkoutsFilterModel $filter): int;
-
 }

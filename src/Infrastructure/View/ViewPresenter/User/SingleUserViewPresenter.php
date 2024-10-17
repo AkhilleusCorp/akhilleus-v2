@@ -11,7 +11,10 @@ use App\Infrastructure\View\ViewPresenter\AbstractSingleObjectViewPresenter;
 
 final class SingleUserViewPresenter extends AbstractSingleObjectViewPresenter
 {
-    public function presentViewData(UserDataModel|DataModelInterface $data, string $dataProfile): SingleUserDataViewModel
+    /**
+     * @param UserDataModel $data
+     */
+    public function presentViewData(DataModelInterface $data, string $dataProfile): SingleUserDataViewModel
     {
         $viewData = new SingleUserDataViewModel();
         $viewData->id = $data->id;

@@ -3,9 +3,7 @@
 namespace App\Tests\units\Infrastructure\Tools;
 
 use App\Infrastructure\Tools\CustomSerializer;
-use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
-use stdClass;
 
 final class CustomSerializerTest extends TestCase
 {
@@ -31,11 +29,11 @@ final class CustomSerializerTest extends TestCase
         $this->assertEquals('26/01/2024', $result['date']);
     }
 
-    private function getObject(): stdClass
+    private function getObject(): \stdClass
     {
-        $object = new stdClass();
+        $object = new \stdClass();
         $object->text = 'This is text';
-        $object->date = DateTimeImmutable::createFromFormat('Y-m-d H:i:s', '2024-01-26 20:00:00');
+        $object->date = \DateTimeImmutable::createFromFormat('Y-m-d H:i:s', '2024-01-26 20:00:00');
 
         return $object;
     }

@@ -2,15 +2,11 @@
 
 namespace App\Domain\DTO\FilterModel\Workout;
 
+use App\Domain\DTO\FilterModel\AbstractFilterModel;
 use App\Domain\DTO\FilterModel\FilterModelInterface;
-use App\Domain\DTO\FilterModel\PaginationFilterTrait;
-use App\Domain\DTO\FilterModel\SortsFilterTrait;
 
-final class GetManyMovementsFilterModel implements FilterModelInterface
+final class GetManyMovementsFilterModel extends AbstractFilterModel implements FilterModelInterface
 {
-    use PaginationFilterTrait;
-    use SortsFilterTrait;
-
     /**
      * @var int[]
      */
@@ -22,6 +18,6 @@ final class GetManyMovementsFilterModel implements FilterModelInterface
 
     public ?string $equipmentId = null;
 
-    /** @var array string[] */
+    /** @var string[] */
     public array $status = [];
 }

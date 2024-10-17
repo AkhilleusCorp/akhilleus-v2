@@ -21,9 +21,11 @@ class ExerciseGroupDataModel implements DataModelInterface
     #[ORM\JoinColumn(name: 'workout_id', referencedColumnName: 'id', onDelete: 'restrict')]
     public WorkoutDataModel $workout;
 
+    /** @var int[] */
     #[ORM\Column(type: Types::SIMPLE_ARRAY)]
     public array $movementIds;
 
+    /** @var Collection<int, ExerciseDataModel> */
     #[ORM\OneToMany(targetEntity: ExerciseDataModel::class, mappedBy: 'group', cascade: ['persist', 'remove'])]
     public Collection $exercises;
 

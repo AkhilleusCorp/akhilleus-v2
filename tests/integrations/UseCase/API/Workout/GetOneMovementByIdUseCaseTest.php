@@ -57,9 +57,8 @@ final class GetOneMovementByIdUseCaseTest extends AbstractIntegrationTest
     public function testGetOneNonExistingUser(): void
     {
         $this->expectException(NotFoundHttpException::class);
-        $this->expectExceptionMessage("Movement #666 cannot be found");
+        $this->expectExceptionMessage('Movement #666 cannot be found');
 
         $this->useCase->execute(666, DataProfileRegistry::DATA_PROFILE_ADMIN);
     }
-
 }

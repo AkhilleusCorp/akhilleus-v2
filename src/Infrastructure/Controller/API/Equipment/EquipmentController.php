@@ -7,7 +7,6 @@ use App\Domain\DTO\SourceModel\Equipment\CreateEquipmentSourceModel;
 use App\Domain\DTO\SourceModel\Equipment\UpdateEquipmentSourceModel;
 use App\Domain\Factory\DataModelFactory\Equipment\EquipmentDataModelFactory;
 use App\Domain\Gateway\Provider\Equipment\EquipmentDataModelProviderGateway;
-use App\Domain\Gateway\Provider\Workout\MuscleDataModelProviderGateway;
 use App\Infrastructure\Controller\API\AbstractAPIController;
 use App\Infrastructure\View\ViewModel\Equipment\SingleEquipmentDataViewModel;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
@@ -27,36 +26,40 @@ use Symfony\Component\Routing\Attribute\Route;
 #[OA\Tag('EQUIPMENTS')]
 final class EquipmentController extends AbstractAPIController
 {
-    #[Route('/equipments', name:'equipment_get_many', methods: ['GET'])]
+    #[Route('/equipments', name: 'equipment_get_many', methods: ['GET'])]
     public function getMany(
         Request $request,
         GenericGetManyUseCase $useCase,
-        EquipmentDataModelProviderGateway $providerGateway
+        EquipmentDataModelProviderGateway $providerGateway,
     ): MultipleObjectViewModel {
         return $useCase->execute($request->query->all(), new GetManyEquipmentsFilterModel(), $providerGateway);
     }
 
-    #[Route('/equipments/dropdownable', name:'equipment_get_dropdownable', methods: ['GET'])]
+    /**
+     * @return array<string, string>
+     */
+    #[Route('/equipments/dropdownable', name: 'equipment_get_dropdownable', methods: ['GET'])]
     public function getDropdownable(
         GenericGetDropdownableUseCase $useCase,
-        EquipmentDataModelProviderGateway $providerGateway
+        EquipmentDataModelProviderGateway $providerGateway,
     ): array {
         return $useCase->execute('name', $providerGateway);
     }
 
-    #[Route('/equipments/{id}', name:'equipment_get_one_by_id', requirements: ['id' => '\d+'], methods: ['GET'])]
+    #[Route('/equipments/{id}', name: 'equipment_get_one_by_id', requirements: ['id' => '\d+'], methods: ['GET'])]
     public function getOneById(
         int $id,
         GenericGetOneByIdUseCase $useCase,
-        EquipmentDataModelProviderGateway $providerGateway
+        EquipmentDataModelProviderGateway $providerGateway,
     ): SingleObjectViewModel {
         return $useCase->execute($id, $providerGateway, new SingleEquipmentDataViewModel());
     }
-    #[Route('/equipments', name:'equipments_create_one', methods: ['POST'])]
+
+    #[Route('/equipments', name: 'equipments_create_one', methods: ['POST'])]
     public function createOne(
         Request $request,
         GenericCreateOneUseCase $useCase,
-        EquipmentDataModelFactory $dataModelFactory
+        EquipmentDataModelFactory $dataModelFactory,
     ): SingleObjectViewModel {
         return $useCase->execute(
             json_decode($request->getContent(), true),
@@ -66,13 +69,13 @@ final class EquipmentController extends AbstractAPIController
         );
     }
 
-    #[Route('/equipments/{id}', name:'equipment_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
+    #[Route('/equipments/{id}', name: 'equipment_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
     public function updateOneById(
         int $id,
         Request $request,
         GenericUpdateOneByIdUseCase $useCase,
         EquipmentDataModelProviderGateway $providerGateway,
-        EquipmentDataModelFactory $dataModelFactory
+        EquipmentDataModelFactory $dataModelFactory,
     ): SingleObjectViewModel {
         return $useCase->execute(
             $id,
@@ -84,11 +87,11 @@ final class EquipmentController extends AbstractAPIController
         );
     }
 
-    #[Route('/equipments/{id}', name:'equipment_delete_by_id', requirements: ['id' => '\d+'], methods: ['DELETE'])]
+    #[Route('/equipments/{id}', name: 'equipment_delete_by_id', requirements: ['id' => '\d+'], methods: ['DELETE'])]
     public function deleteOnById(
         int $id,
         GenericDeleteOneByIdUseCase $useCase,
-        EquipmentDataModelProviderGateway $providerGateway
+        EquipmentDataModelProviderGateway $providerGateway,
     ): JsonResponse {
         $useCase->execute($id, $providerGateway);
 

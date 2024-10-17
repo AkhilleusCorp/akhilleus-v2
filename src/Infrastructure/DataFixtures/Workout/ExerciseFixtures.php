@@ -13,7 +13,7 @@ final class ExerciseFixtures extends AbstractFixtures implements DependentFixtur
     protected function explicitFixtures(ObjectManager $manager): void
     {
         foreach ($this->getExerciseConfig() as $config) {
-            for ($i = 1; $i <= $config['repeat']; $i++) {
+            for ($i = 1; $i <= $config['repeat']; ++$i) {
                 $exercise = new ExerciseDataModel();
                 $exercise->type = 1 === $i ? ExerciseTypeRegistry::EXERCISE_TYPE_WARMUP : ExerciseTypeRegistry::EXERCISE_TYPE_NORMAL;
                 $exercise->movement = $this->getReference($config['movementRef']);
@@ -29,14 +29,20 @@ final class ExerciseFixtures extends AbstractFixtures implements DependentFixtur
         // TODO: Implement volumeFixtures() method.
     }
 
+    /**
+     * @return string[]
+     */
     public function getDependencies(): array
     {
         return [
             WorkoutFixtures::class,
-            ExerciseGroupFixtures::class
+            ExerciseGroupFixtures::class,
         ];
     }
 
+    /**
+     * @return array<mixed>
+     */
     private function getExerciseConfig(): array
     {
         return [

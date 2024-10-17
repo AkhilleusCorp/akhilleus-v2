@@ -10,10 +10,9 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 final class DeleteOneUserByIdUseCase implements UseCaseInterface
 {
     public function __construct(
-        private readonly UserDataModelProviderGateway  $provider,
+        private readonly UserDataModelProviderGateway $provider,
         private readonly UserDataModelPersisterGateway $persister,
     ) {
-
     }
 
     public function execute(int $id): void

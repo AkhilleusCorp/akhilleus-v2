@@ -8,11 +8,13 @@ use App\Infrastructure\DataTransformer\EmailObfuscationDataTransformer;
 use App\Infrastructure\Registry\DataProfileRegistry;
 use App\Infrastructure\View\ViewModel\User\MultipleUserItemDataViewModel;
 use App\Infrastructure\View\ViewPresenter\AbstractMultipleObjectViewPresenter;
-use App\Infrastructure\View\ViewPresenter\MultipleObjectViewPresenterInterface;
 
-final class MultipleUserViewPresenter extends AbstractMultipleObjectViewPresenter implements MultipleObjectViewPresenterInterface
+final class MultipleUserViewPresenter extends AbstractMultipleObjectViewPresenter
 {
-    public function presentItem(UserDataModel|DataModelInterface $data, ?string $dataProfile): MultipleUserItemDataViewModel
+    /**
+     * @param UserDataModel $data
+     */
+    public function presentItem(DataModelInterface $data, ?string $dataProfile): MultipleUserItemDataViewModel
     {
         $item = new MultipleUserItemDataViewModel();
         $item->id = $data->id;

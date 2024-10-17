@@ -8,6 +8,6 @@ final class CreateExerciseGroupSourceModel implements CreateSourceModelInterface
 {
     public int $workoutId;
 
-    /** @var int[] $movementIds */
+    /** @var int[] */
     public array $movementIds;
 }

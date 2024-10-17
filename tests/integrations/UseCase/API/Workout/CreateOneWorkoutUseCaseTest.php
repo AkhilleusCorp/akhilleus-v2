@@ -65,7 +65,7 @@ final class CreateOneWorkoutUseCaseTest extends AbstractIntegrationTest
             [
                 'name' => $name,
                 'status' => WorkoutStatusRegistry::WORKOUT_STATUS_PLANNED,
-                'visibility' => WorkoutVisibilityRegistry::WORKOUT_VISIBILITY_SPECIFIC_CLIENT
+                'visibility' => WorkoutVisibilityRegistry::WORKOUT_VISIBILITY_SPECIFIC_CLIENT,
             ]
         );
         /** @var SingleWorkoutDataViewModel $viewData */

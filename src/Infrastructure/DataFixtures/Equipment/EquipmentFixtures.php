@@ -14,7 +14,7 @@ final class EquipmentFixtures extends AbstractFixtures
         $names = [
             'barbell', 'dumbbell', 'bench', 'jump-rope', 'cable',
             'none', 'kettlebell', 'machine', 'plate', 'resistance-band',
-            'suspension-band', 'other'
+            'suspension-band', 'other',
         ];
         foreach ($names as $name) {
             $equipment = new EquipmentDataModel();
@@ -23,12 +23,11 @@ final class EquipmentFixtures extends AbstractFixtures
 
             $manager->persist($equipment);
 
-            $this->addRef("equipment", $equipment->name, $equipment);
+            $this->addRef('equipment', $equipment->name, $equipment);
         }
     }
 
     protected function volumeFixtures(ObjectManager $manager): void
     {
-
     }
 }

@@ -6,10 +6,8 @@ use App\Infrastructure\View\ViewModel\PaginationViewModel;
 
 final class PaginationHydrator implements ViewHydratorInterface
 {
-
     public function __construct(private int $count, private int $page, private int $limit)
     {
-
     }
 
     public function hydrate(): array
@@ -17,9 +15,9 @@ final class PaginationHydrator implements ViewHydratorInterface
         $pagination = new PaginationViewModel(
             $this->count,
             $this->page,
-            ceil($this->count / $this->limit)
+            (int) ceil($this->count / $this->limit)
         );
 
-        return [ 'pagination' => $pagination];
+        return ['pagination' => $pagination];
     }
 }

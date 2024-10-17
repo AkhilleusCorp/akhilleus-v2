@@ -18,14 +18,12 @@ use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Attribute\Route;
-
 
 #[OA\Tag('USERS')]
 final class UserController extends AbstractAPIController
 {
-    #[Route('/users', name:'user_get_many', methods: ['GET'])]
+    #[Route('/users', name: 'user_get_many', methods: ['GET'])]
     #[OA\Parameter(name: 'ids', in: 'query', required: false, schema: new OA\Schema(type: 'array', items: new OA\Items(type: 'integer')))]
     #[OA\Parameter(name: 'username', in: 'query', required: false, schema: new OA\Schema(type: 'string'))]
     #[OA\Parameter(name: 'email', in: 'query', required: false, schema: new OA\Schema(type: 'string'))]
@@ -43,7 +41,7 @@ final class UserController extends AbstractAPIController
         return $useCase->execute($request->query->all(), $this->getDataProfile());
     }
 
-    #[Route('/users/{id}', name:'user_get_one_by_id', requirements: ['id' => '\d+'], methods: ['GET'])]
+    #[Route('/users/{id}', name: 'user_get_one_by_id', requirements: ['id' => '\d+'], methods: ['GET'])]
     #[OA\Response(
         response: 200,
         description: 'Successfully returns a details of a User',
@@ -54,7 +52,7 @@ final class UserController extends AbstractAPIController
         return $useCase->execute($id, $this->getDataProfile());
     }
 
-    #[Route('/users', name:'user_create_one', methods: ['POST'])]
+    #[Route('/users', name: 'user_create_one', methods: ['POST'])]
     #[OA\Response(
         response: 200,
         description: 'Successfully returns a details of a User',
@@ -65,7 +63,7 @@ final class UserController extends AbstractAPIController
         return $useCase->execute(json_decode($request->getContent(), true), $this->getDataProfile());
     }
 
-    #[Route('/users/{id}', name:'user_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
+    #[Route('/users/{id}', name: 'user_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
     #[OA\Response(
         response: 200,
         description: 'Successfully returns a details of a User',
@@ -76,7 +74,7 @@ final class UserController extends AbstractAPIController
         return $useCase->execute($id, json_decode($request->getContent(), true), $this->getDataProfile());
     }
 
-    #[Route('/users/{id}', name:'user_delete_one_by_id', requirements: ['id' => '\d+'], methods: ['DELETE'])]
+    #[Route('/users/{id}', name: 'user_delete_one_by_id', requirements: ['id' => '\d+'], methods: ['DELETE'])]
     #[OA\Response(
         response: 200,
         description: 'Successfully returns a details of a User',

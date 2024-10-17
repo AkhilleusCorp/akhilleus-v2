@@ -9,11 +9,12 @@ use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\ViewEvent;
-use Symfony\Component\Serializer\Serializer;
 
 final class HttpResponseEventListener
 {
-    private ?Serializer $serializer = null;
+    /**
+     * @var array<mixed>|null
+     */
     private ?array $tokenPayload = null;
 
     public function __construct(private readonly JWTTokenManagerInterface $jwtTokenManager)
@@ -22,7 +23,7 @@ final class HttpResponseEventListener
 
     private const EXCLUDED_API_ROUTES = [
         'app.swagger',
-        'app.swagger_ui'
+        'app.swagger_ui',
     ];
 
     public function onKernelView(ViewEvent $event): void
@@ -49,6 +50,9 @@ final class HttpResponseEventListener
         return in_array($routeName, self::EXCLUDED_API_ROUTES);
     }
 
+    /**
+     * @return array<mixed>|null
+     */
     private function getTokenPayload(Request $request): ?array
     {
         if (null !== $this->tokenPayload) {
@@ -65,6 +69,9 @@ final class HttpResponseEventListener
         return $this->jwtTokenManager->parse($token);
     }
 
+    /**
+     * @param array<mixed>|null $tokenPayload
+     */
     private function getSerializationGroup(?array $tokenPayload, ?string $dataProfile): string
     {
         if (null === $tokenPayload) {

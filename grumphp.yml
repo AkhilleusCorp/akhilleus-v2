@@ -1,0 +1,24 @@
+grumphp:
+    hooks_dir: ./.grumphp/hooks
+    tasks:
+        phpcsfixer2:
+            config: '.php-cs-fixer.php'
+            verbose: true
+            diff: true
+        jsonlint: ~
+        yamllint:
+            parse_constant: true
+            parse_custom_tags: true
+        phplint: ~
+        phpstan: ~
+        phpunitbridge:
+            always_execute: true
+            testsuite: unit
+        git_commit_message:
+            allow_empty_message: false
+            case_insensitive: true
+            multiline: true
+            additional_modifiers: ''
+    ascii:
+        failed: ~
+        succeeded: ~

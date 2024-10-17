@@ -41,6 +41,7 @@ final class MovementDataModelRepository extends AbstractBaseDataModelRepository 
 
     /**
      * @param int[] $ids
+     *
      * @return MovementDataModel[]
      */
     public function getGetMovementsByIds(array $ids): array
@@ -78,7 +79,10 @@ final class MovementDataModelRepository extends AbstractBaseDataModelRepository 
         return $this->countByFilterModel($filter);
     }
 
-    public function addParametersFromFilter(QueryBuilder $queryBuilder, GetManyMovementsFilterModel|FilterModelInterface $filter): self
+    /**
+     * @param GetManyMovementsFilterModel $filter
+     */
+    public function addParametersFromFilter(QueryBuilder $queryBuilder, FilterModelInterface $filter): self
     {
         $this->filterByIds($queryBuilder, $filter->ids);
         $this->filterByName($queryBuilder, $filter->name);

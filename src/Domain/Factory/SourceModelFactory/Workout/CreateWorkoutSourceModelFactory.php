@@ -2,8 +2,8 @@
 
 namespace App\Domain\Factory\SourceModelFactory\Workout;
 
-use App\Domain\DTO\SourceModel\Workout\CreateWorkoutSourceModel;
 use App\Domain\DTO\SourceModel\SourceModelInterface;
+use App\Domain\DTO\SourceModel\Workout\CreateWorkoutSourceModel;
 use App\Domain\Factory\SourceModelFactory\InferSourceModelFactoryTrait;
 use App\Domain\Factory\SourceModelFactory\SourceModelFactoryInterface;
 
@@ -11,8 +11,16 @@ final class CreateWorkoutSourceModelFactory implements SourceModelFactoryInterfa
 {
     use InferSourceModelFactoryTrait;
 
-    public function buildSourceModel(array $parameters, ?SourceModelInterface $sourceModel = null): CreateWorkoutSourceModel|SourceModelInterface
+    /**
+     * @param array<mixed> $parameters
+     *
+     * @return CreateWorkoutSourceModel
+     */
+    public function buildSourceModel(array $parameters): SourceModelInterface
     {
-        return $this->inferSourceModel($parameters, new CreateWorkoutSourceModel());
+        $sourceModel = new CreateWorkoutSourceModel();
+        $this->inferSourceModel($parameters, $sourceModel);
+
+        return $sourceModel;
     }
 }

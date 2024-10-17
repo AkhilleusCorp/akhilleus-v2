@@ -16,13 +16,16 @@ final class UpdateOneMovementByIdUseCase implements UseCaseInterface
 {
     public function __construct(
         private readonly UpdateMovementSourceModelFactory $sourceModelFactory,
-        private readonly MovementDataModelFactory         $dataModelFactory,
+        private readonly MovementDataModelFactory $dataModelFactory,
         private readonly MovementDataModelProviderGateway $provider,
-        private readonly MovementDataModelPersister       $persister,
-        private readonly SingleMovementViewPresenter      $presenter,
+        private readonly MovementDataModelPersister $persister,
+        private readonly SingleMovementViewPresenter $presenter,
     ) {
-
     }
+
+    /**
+     * @param array<mixed> $parameters
+     */
     public function execute(int $id, array $parameters, string $dataProfile = DataProfileRegistry::DATA_PROFILE_MEMBER): SingleObjectViewModel
     {
         $movement = $this->provider->getMovementById($id);

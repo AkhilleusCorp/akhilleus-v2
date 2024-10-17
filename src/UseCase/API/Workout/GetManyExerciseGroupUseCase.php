@@ -13,11 +13,10 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 final class GetManyExerciseGroupUseCase implements UseCaseInterface
 {
     public function __construct(
-        private readonly WorkoutDataModelProviderGateway       $workoutProvider,
+        private readonly WorkoutDataModelProviderGateway $workoutProvider,
         private readonly ExerciseGroupDataModelProviderGateway $groupProvider,
-        private readonly MultipleExerciseGroupViewPresenter    $presenter,
+        private readonly MultipleExerciseGroupViewPresenter $presenter,
     ) {
-
     }
 
     public function execute(int $workoutId, string $dataProfile = DataProfileRegistry::DATA_PROFILE_MEMBER): MultipleObjectViewModel

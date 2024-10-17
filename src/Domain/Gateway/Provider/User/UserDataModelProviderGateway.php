@@ -2,8 +2,8 @@
 
 namespace App\Domain\Gateway\Provider\User;
 
-use App\Domain\DTO\FilterModel\User\GetManyUsersFilterModel;
 use App\Domain\DTO\DataModel\User\UserDataModel;
+use App\Domain\DTO\FilterModel\User\GetManyUsersFilterModel;
 
 interface UserDataModelProviderGateway
 {

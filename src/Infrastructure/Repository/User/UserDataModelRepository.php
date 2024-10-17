@@ -2,9 +2,9 @@
 
 namespace App\Infrastructure\Repository\User;
 
+use App\Domain\DTO\DataModel\User\UserDataModel;
 use App\Domain\DTO\FilterModel\FilterModelInterface;
 use App\Domain\DTO\FilterModel\User\GetManyUsersFilterModel;
-use App\Domain\DTO\DataModel\User\UserDataModel;
 use App\Domain\Gateway\Provider\User\UserDataModelProviderGateway;
 use App\Infrastructure\Repository\AbstractBaseDataModelRepository;
 use App\Infrastructure\Repository\CommonWhereFilterTrait;
@@ -13,6 +13,9 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 
+/**
+ * @implements UserProviderInterface<UserDataModel>
+ */
 final class UserDataModelRepository extends AbstractBaseDataModelRepository implements UserDataModelProviderGateway, UserProviderInterface
 {
     use CommonWhereFilterTrait;
@@ -52,7 +55,10 @@ final class UserDataModelRepository extends AbstractBaseDataModelRepository impl
         return $this->countByFilterModel($filter);
     }
 
-    public function addParametersFromFilter(QueryBuilder $queryBuilder, GetManyUsersFilterModel|FilterModelInterface $filter): self
+    /**
+     * @param GetManyUsersFilterModel $filter
+     */
+    public function addParametersFromFilter(QueryBuilder $queryBuilder, FilterModelInterface $filter): self
     {
         $this->filterByIds($queryBuilder, $filter->ids);
         $this->filterByStatus($queryBuilder, $filter->status);
@@ -60,12 +66,12 @@ final class UserDataModelRepository extends AbstractBaseDataModelRepository impl
 
         if (false === empty($filter->username)) {
             $queryBuilder->andWhere($this->getAlias().'.username LIKE :username')
-                ->setParameter('username', '%' . $filter->username . '%');
+                ->setParameter('username', '%'.$filter->username.'%');
         }
 
         if (false === empty($filter->email)) {
             $queryBuilder->andWhere($this->getAlias().'.email LIKE :email')
-                ->setParameter('email', '%' . $filter->email . '%');
+                ->setParameter('email', '%'.$filter->email.'%');
         }
 
         return $this;
@@ -73,18 +79,16 @@ final class UserDataModelRepository extends AbstractBaseDataModelRepository impl
 
     public function refreshUser(UserInterface $user): UserInterface
     {
-        return $this->getUserById($user->getUserIdentifier());
+        return $this->getUserById((int) $user->getUserIdentifier());
     }
 
     public function supportsClass(string $class): bool
     {
-        // TODO: Implement supportsClass() method.
+        return UserDataModel::class === $class;
     }
 
-    public function loadUserByIdentifier(string $identifier): UserInterface
+    public function loadUserByIdentifier(string $identifier): UserDataModel
     {
-        // TODO: Implement loadUserByIdentifier() method.
+        return $this->getUserById((int) $identifier);
     }
-
-
 }

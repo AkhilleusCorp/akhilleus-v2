@@ -57,7 +57,7 @@ final class GetOneUserByIdUseCaseTest extends AbstractIntegrationTest
     public function testGetOneNonExistingUser(): void
     {
         $this->expectException(NotFoundHttpException::class);
-        $this->expectExceptionMessage("User #666 cannot be found");
+        $this->expectExceptionMessage('User #666 cannot be found');
 
         $this->useCase->execute(666, DataProfileRegistry::DATA_PROFILE_ADMIN);
     }

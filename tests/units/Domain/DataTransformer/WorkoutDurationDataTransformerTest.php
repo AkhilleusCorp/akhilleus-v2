@@ -47,7 +47,6 @@ final class WorkoutDurationDataTransformerTest extends TestCase
 
         $this->assertEquals(1800, $result);
 
-
         $workout = new WorkoutDataModel();
         $workout->startDate = new \DateTimeImmutable('2024-01-26 20:04:00');
         $workout->endDate = new \DateTimeImmutable('2024-01-26 21:22:00');

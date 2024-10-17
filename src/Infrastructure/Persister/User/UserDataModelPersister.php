@@ -15,7 +15,7 @@ final class UserDataModelPersister extends AbstractEntityPersister implements Us
         return $dto;
     }
 
-    public function edit (UserDataModel $dto, bool $flush = true): UserDataModel
+    public function edit(UserDataModel $dto, bool $flush = true): UserDataModel
     {
         parent::save($dto, $flush);
 

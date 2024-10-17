@@ -2,7 +2,7 @@
 
 namespace App\UseCase\API;
 
-use App\Domain\DTO\FilterModel\FilterModelInterface;
+use App\Domain\DTO\FilterModel\AbstractFilterModel;
 use App\Domain\Factory\FilterModelFactory\GenericFilterModelFactory;
 use App\Domain\Gateway\Provider\GenericDataModelProviderGateway;
 use App\Infrastructure\View\ViewHydrator\PaginationHydrator;
@@ -15,13 +15,16 @@ final class GenericGetManyUseCase implements UseCaseInterface
 {
     public function __construct(
         private readonly GenericFilterModelFactory $filterFactory,
-        private readonly GenericViewPresenter $presenter
+        private readonly GenericViewPresenter $presenter,
     ) {
-
     }
 
-    public function execute(array $parameters, FilterModelInterface $filter, GenericDataModelProviderGateway $providerGateway): MultipleObjectViewModel
+    /**
+     * @param array<mixed> $parameters
+     */
+    public function execute(array $parameters, AbstractFilterModel $filter, GenericDataModelProviderGateway $providerGateway): MultipleObjectViewModel
     {
+        /** @var AbstractFilterModel $filter */
         $filter = $this->filterFactory->buildGetManyFilterModel($parameters, $filter);
         $dataModels = $providerGateway->getByFilterModel($filter)->getQuery()->getResult();
 

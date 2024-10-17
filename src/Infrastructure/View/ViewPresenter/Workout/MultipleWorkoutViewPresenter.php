@@ -10,7 +10,10 @@ use App\Infrastructure\View\ViewPresenter\MultipleObjectViewPresenterInterface;
 
 final class MultipleWorkoutViewPresenter extends AbstractMultipleObjectViewPresenter implements MultipleObjectViewPresenterInterface
 {
-    public function presentItem(WorkoutDataModel|DataModelInterface $data, ?string $dataProfile): MultipleWorkoutItemDataViewModel
+    /**
+     * @param WorkoutDataModel $data
+     */
+    public function presentItem(DataModelInterface $data, ?string $dataProfile): MultipleWorkoutItemDataViewModel
     {
         $item = new MultipleWorkoutItemDataViewModel();
         $item->id = $data->id;

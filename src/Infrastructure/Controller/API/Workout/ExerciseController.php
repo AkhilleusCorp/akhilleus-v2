@@ -12,13 +12,13 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class ExerciseController extends AbstractAPIController
 {
-    #[Route('/workouts/{workoutId}/groups/{groupId}/exercises', name:'exercise_add_by_group_id', requirements: ['workoutId' => '\d+', 'groupId' => '\d+'], methods: ['PATCH'])]
+    #[Route('/workouts/{workoutId}/groups/{groupId}/exercises', name: 'exercise_add_by_group_id', requirements: ['workoutId' => '\d+', 'groupId' => '\d+'], methods: ['PATCH'])]
     public function addExercisesByGroupId(int $workoutId, int $groupId, AddExercisesByGroupIdUseCase $useCase): SingleObjectViewModel
     {
         return $useCase->execute($workoutId, $groupId, $this->getDataProfile());
     }
 
-    #[Route('/workouts/{workoutId}/exercises/{exerciseId}', name:'exercise_delete_one_by_id', requirements: ['workoutId' => '\d+', 'exerciseId' => '\d+'], methods: ['DELETE'])]
+    #[Route('/workouts/{workoutId}/exercises/{exerciseId}', name: 'exercise_delete_one_by_id', requirements: ['workoutId' => '\d+', 'exerciseId' => '\d+'], methods: ['DELETE'])]
     public function deleteOneById(int $workoutId, int $exerciseId, DeleteOneExerciseByIdUseCase $useCase): JsonResponse
     {
         $useCase->execute($workoutId, $exerciseId);

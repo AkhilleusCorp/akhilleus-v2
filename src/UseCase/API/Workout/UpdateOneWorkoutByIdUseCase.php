@@ -16,13 +16,16 @@ final class UpdateOneWorkoutByIdUseCase implements UseCaseInterface
 {
     public function __construct(
         private readonly UpdateWorkoutSourceModelFactory $sourceModelFactory,
-        private readonly WorkoutDataModelFactory         $dataModelFactory,
+        private readonly WorkoutDataModelFactory $dataModelFactory,
         private readonly WorkoutDataModelProviderGateway $provider,
-        private readonly WorkoutDataModelPersister       $persister,
-        private readonly SingleWorkoutViewPresenter      $presenter,
+        private readonly WorkoutDataModelPersister $persister,
+        private readonly SingleWorkoutViewPresenter $presenter,
     ) {
-
     }
+
+    /**
+     * @param array<mixed> $parameters
+     */
     public function execute(int $id, array $parameters, string $dataProfile = DataProfileRegistry::DATA_PROFILE_MEMBER): SingleObjectViewModel
     {
         $workout = $this->provider->getWorkoutById($id);

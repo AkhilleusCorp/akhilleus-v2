@@ -17,11 +17,26 @@ abstract class AbstractIntegrationTest extends KernelTestCase
 
         $this->container = static::getContainer();
 
-        $process = new Process(['make', 'reset_test_db']);
-        $process->run();
+        foreach ($this->getCommands() as $cmd) {
+            $process = Process::fromShellCommandline($cmd);
+            $process->run();
 
-        if (!$process->isSuccessful()) {
-            throw new ProcessFailedException($process);
+            if (!$process->isSuccessful()) {
+                throw new ProcessFailedException($process);
+            }
         }
+    }
+
+    /**
+     * @return string[]
+     */
+    private function getCommands(): array
+    {
+        return [
+            'php bin/console doctrine:database:drop --if-exists --force --env=test',
+            'php bin/console doctrine:database:create --env=test',
+            'php bin/console doctrine:schema:create -n --env=test',
+            'php bin/console doctrine:fixtures:load -n --env=test',
+        ];
     }
 }

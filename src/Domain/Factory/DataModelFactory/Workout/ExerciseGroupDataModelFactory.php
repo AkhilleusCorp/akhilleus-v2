@@ -16,22 +16,23 @@ final class ExerciseGroupDataModelFactory extends AbstractDataModelFactory
         private readonly MovementDataModelProviderGateway $movementProvider,
         private readonly ExerciseDataModelFactory $exerciseDataModelFactory,
     ) {
-
     }
 
     /**
      * @Todo use validation exception instead of generics
+     *
+     * @param CreateExerciseGroupSourceModel $source
      */
-    public function buildNewDataModel(CreateExerciseGroupSourceModel|CreateSourceModelInterface $source): ExerciseGroupDataModel
+    public function buildNewDataModel(CreateSourceModelInterface $source): ExerciseGroupDataModel
     {
         $workout = $this->workoutProvider->getWorkoutById($source->workoutId);
-        if (null === $workout)  {
+        if (null === $workout) {
             throw new \LogicException("Workout #{$source->workoutId} could not be found");
         }
 
         $movements = $this->movementProvider->getGetMovementsByIds($source->movementIds);
         if (true === empty($movements) || count($source->movementIds) !== count($movements)) {
-            throw new \LogicException("Some or all the movements provided could not be found");
+            throw new \LogicException('Some or all the movements provided could not be found');
         }
 
         $exerciseGroup = new ExerciseGroupDataModel();

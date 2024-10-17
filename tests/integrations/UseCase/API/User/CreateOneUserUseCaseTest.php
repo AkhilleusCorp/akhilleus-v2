@@ -35,7 +35,7 @@ final class CreateOneUserUseCaseTest extends AbstractIntegrationTest
             [
                 'username' => 'bob',
                 'email' => 'bob@fakemail.com',
-                'plainPassword' => 'Azerty1234!'
+                'plainPassword' => 'Azerty1234!',
             ],
             DataProfileRegistry::DATA_PROFILE_ADMIN
         );
@@ -54,7 +54,7 @@ final class CreateOneUserUseCaseTest extends AbstractIntegrationTest
             [
                 'username' => 'bob2',
                 'email' => 'bob2@fakemail.com',
-                'plainPassword' => 'Azerty1234!'
+                'plainPassword' => 'Azerty1234!',
             ]
         );
         /** @var SingleUserDataViewModel $viewData */

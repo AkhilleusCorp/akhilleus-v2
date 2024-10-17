@@ -16,5 +16,5 @@ abstract class AbstractSingleObjectViewPresenter
         return $view;
     }
 
-    public abstract function presentViewData(DataModelInterface $data, string $dataProfile): SingleObjectDataViewModelInterface;
+    abstract public function presentViewData(DataModelInterface $data, string $dataProfile): SingleObjectDataViewModelInterface;
 }

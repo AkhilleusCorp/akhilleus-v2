@@ -7,7 +7,6 @@ use App\Domain\Factory\DataModelFactory\Workout\ExerciseDataModelFactory;
 use App\Domain\Gateway\Persister\Workout\ExerciseGroupDataModelPersisterGateway;
 use App\Domain\Gateway\Provider\Workout\ExerciseGroupDataModelProviderGateway;
 use App\Domain\Gateway\Provider\Workout\MovementDataModelProviderGateway;
-use App\Domain\Gateway\Provider\Workout\WorkoutDataModelProviderGateway;
 use App\Infrastructure\Registry\DataProfileRegistry;
 use App\Infrastructure\View\ViewModel\SingleObjectViewModel;
 use App\Infrastructure\View\ViewPresenter\Workout\SingleExerciseGroupViewPresenter;
@@ -17,13 +16,12 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 final class AddExercisesByGroupIdUseCase implements UseCaseInterface
 {
     public function __construct(
-        private readonly ExerciseGroupDataModelProviderGateway  $groupProvider,
-        private readonly MovementDataModelProviderGateway       $movementProvider,
-        private readonly ExerciseDataModelFactory               $exerciseDataModelFactory,
+        private readonly ExerciseGroupDataModelProviderGateway $groupProvider,
+        private readonly MovementDataModelProviderGateway $movementProvider,
+        private readonly ExerciseDataModelFactory $exerciseDataModelFactory,
         private readonly ExerciseGroupDataModelPersisterGateway $groupPersister,
-        private readonly SingleExerciseGroupViewPresenter       $presenter,
+        private readonly SingleExerciseGroupViewPresenter $presenter,
     ) {
-
     }
 
     public function execute(int $workoutId, int $groupId, string $dataProfile = DataProfileRegistry::DATA_PROFILE_MEMBER): SingleObjectViewModel
@@ -42,7 +40,7 @@ final class AddExercisesByGroupIdUseCase implements UseCaseInterface
 
         $movements = $this->movementProvider->getMovementsByFilterModel($movementFilterModel);
         if (true === empty($movements)) {
-            throw new NotFoundHttpException("Movements could not be found");
+            throw new NotFoundHttpException('Movements could not be found');
         }
 
         foreach ($movements as $movement) {
