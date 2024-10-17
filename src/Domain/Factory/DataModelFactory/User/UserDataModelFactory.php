@@ -33,9 +33,13 @@ final class UserDataModelFactory extends AbstractDataModelFactory
         return $user;
     }
 
+    /**
+     * @param UserDataModel         $dataModel
+     * @param UpdateUserSourceModel $sourceModel
+     */
     public function mergeSourceAndDataModel(
-        UserDataModel|DataModelInterface $dataModel,
-        UpdateUserSourceModel|UpdateSourceModelInterface $sourceModel,
+        DataModelInterface $dataModel,
+        UpdateSourceModelInterface $sourceModel,
     ): UserDataModel {
         /** @var UserDataModel $dataModel */
         $dataModel = parent::mergeSourceAndDataModel($dataModel, $sourceModel);

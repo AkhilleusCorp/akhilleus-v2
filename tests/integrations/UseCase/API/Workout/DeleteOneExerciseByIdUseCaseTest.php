@@ -30,7 +30,7 @@ final class DeleteOneExerciseByIdUseCaseTest extends AbstractIntegrationTest
     public function testExecuteForNonExistingWorkout(): void
     {
         $this->expectException(NotFoundHttpException::class);
-        $this->expectExceptionMessage("Workout #666 cannot be found");
+        $this->expectExceptionMessage('Workout #666 cannot be found');
 
         $this->useCase->execute(666, 1);
     }
@@ -38,7 +38,7 @@ final class DeleteOneExerciseByIdUseCaseTest extends AbstractIntegrationTest
     public function testExecuteForNonExistingExercise(): void
     {
         $this->expectException(NotFoundHttpException::class);
-        $this->expectExceptionMessage("Exercise #666 cannot be found");
+        $this->expectExceptionMessage('Exercise #666 cannot be found');
 
         $this->useCase->execute(1, 666);
     }

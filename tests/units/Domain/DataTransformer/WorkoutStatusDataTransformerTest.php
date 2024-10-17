@@ -6,6 +6,7 @@ use App\Domain\DataTransformer\WorkoutStatusDataTransformer;
 use App\Domain\DTO\DataModel\Workout\WorkoutDataModel;
 use App\Domain\Registry\Workout\WorkoutStatusRegistry;
 use PHPUnit\Framework\TestCase;
+
 final class WorkoutStatusDataTransformerTest extends TestCase
 {
     public function testComputeStatusUnknownState(): void

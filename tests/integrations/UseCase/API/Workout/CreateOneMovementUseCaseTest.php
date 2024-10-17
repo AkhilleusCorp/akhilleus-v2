@@ -31,7 +31,7 @@ final class CreateOneMovementUseCaseTest extends AbstractIntegrationTest
     {
         $name = 'New movement for admin';
         $viewModel = $this->useCase->execute(
-            ['name' => $name, 'primaryMuscle' => 1, 'auxiliaryMuscles' => [2,3], 'equipments' => [3,4]],
+            ['name' => $name, 'primaryMuscle' => 1, 'auxiliaryMuscles' => [2, 3], 'equipments' => [3, 4]],
             DataProfileRegistry::DATA_PROFILE_ADMIN
         );
         /** @var SingleMovementDataViewModel $viewData */
@@ -44,7 +44,7 @@ final class CreateOneMovementUseCaseTest extends AbstractIntegrationTest
     {
         $name = 'New movement for member';
         $viewModel = $this->useCase->execute(
-            ['name' => $name, 'primaryMuscle' => 1, 'auxiliaryMuscles' => [2,3], 'equipments' => [3,4]],
+            ['name' => $name, 'primaryMuscle' => 1, 'auxiliaryMuscles' => [2, 3], 'equipments' => [3, 4]],
             DataProfileRegistry::DATA_PROFILE_ADMIN
         );
         /** @var SingleMovementDataViewModel $viewData */

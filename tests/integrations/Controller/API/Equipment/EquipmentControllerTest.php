@@ -5,6 +5,7 @@ namespace App\Tests\integrations\Controller\API\Equipment;
 use App\Domain\Factory\DataModelFactory\Equipment\EquipmentDataModelFactory;
 use App\Domain\Gateway\Provider\Equipment\EquipmentDataModelProviderGateway;
 use App\Infrastructure\Controller\API\Equipment\EquipmentController;
+use App\Infrastructure\View\ViewModel\Equipment\SingleEquipmentDataViewModel;
 use App\Tests\integrations\Controller\AbstractGenericControllerTest;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -46,6 +47,41 @@ final class EquipmentControllerTest extends AbstractGenericControllerTest
         $this->assertCount(12, $result);
     }
 
+    public function testGetOneByExistingId(): void
+    {
+        $view = $this->controller->getOneById(
+            1,
+            $this->getOneByIdUseCase,
+            $this->provider
+        );
+
+        /** @var SingleEquipmentDataViewModel $data */
+        $data = $view->data;
+        $this->assertEquals(1, $data->id);
+    }
+
+    public function testGetOneByNonExistingId(): void
+    {
+        $this->expectException(NotFoundHttpException::class);
+
+        $this->controller->getOneById(
+            666,
+            $this->getOneByIdUseCase,
+            $this->provider
+        );
+    }
+
+    public function testDeleteOneByNonExistingId(): void
+    {
+        $this->expectException(NotFoundHttpException::class);
+
+        $this->controller->deleteOnById(
+            666,
+            $this->deleteOneByIdUseCase,
+            $this->provider
+        );
+    }
+
     public function testCreateOne(): void
     {
         $view = $this->controller->createOne(
@@ -54,7 +90,9 @@ final class EquipmentControllerTest extends AbstractGenericControllerTest
             $this->dataModelFactory
         );
 
-        $this->assertEquals('Some equipment', $view->data->name);
+        /** @var SingleEquipmentDataViewModel $data */
+        $data = $view->data;
+        $this->assertEquals('Some equipment', $data->name);
     }
 
     public function testUpdateOneByExistingId(): void
@@ -67,7 +105,9 @@ final class EquipmentControllerTest extends AbstractGenericControllerTest
             $this->dataModelFactory
         );
 
-        $this->assertEquals('A name that cannot be expected', $view->data->name);
+        /** @var SingleEquipmentDataViewModel $data */
+        $data = $view->data;
+        $this->assertEquals('A name that cannot be expected', $data->name);
     }
 
     public function testUpdateOneByNonExistingId(): void

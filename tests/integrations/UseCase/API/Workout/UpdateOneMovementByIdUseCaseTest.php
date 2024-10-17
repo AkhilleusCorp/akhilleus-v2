@@ -47,7 +47,7 @@ final class UpdateOneMovementByIdUseCaseTest extends AbstractIntegrationTest
             [
                 'name' => 'New name for a new life',
                 'status' => MovementStatusRegistry::MOVEMENT_STATUS_ACTIVE,
-                'primaryMuscle' => 1, 'auxiliaryMuscles' => [2,3], 'equipments' => [3,4]],
+                'primaryMuscle' => 1, 'auxiliaryMuscles' => [2, 3], 'equipments' => [3, 4]],
             DataProfileRegistry::DATA_PROFILE_ADMIN
         );
         /** @var SingleMovementDataViewModel $viewData */

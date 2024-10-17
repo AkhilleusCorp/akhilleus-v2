@@ -55,7 +55,7 @@ final class GetOneWorkoutByIdUseCaseTest extends AbstractIntegrationTest
     public function testGetOneNonExistingUser(): void
     {
         $this->expectException(NotFoundHttpException::class);
-        $this->expectExceptionMessage("Workout #666 cannot be found");
+        $this->expectExceptionMessage('Workout #666 cannot be found');
 
         $this->useCase->execute(666, DataProfileRegistry::DATA_PROFILE_ADMIN);
     }

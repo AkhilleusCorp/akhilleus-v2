@@ -6,6 +6,7 @@ use App\Domain\Factory\DataModelFactory\Workout\ExerciseDataModelFactory;
 use App\Domain\Gateway\Persister\Workout\ExerciseGroupDataModelPersisterGateway;
 use App\Domain\Gateway\Provider\Workout\ExerciseGroupDataModelProviderGateway;
 use App\Domain\Gateway\Provider\Workout\MovementDataModelProviderGateway;
+use App\Infrastructure\View\ViewModel\Workout\ExerciseGroupDataViewModel;
 use App\Infrastructure\View\ViewPresenter\Workout\SingleExerciseGroupViewPresenter;
 use App\Tests\integrations\AbstractIntegrationTest;
 use App\UseCase\API\Workout\AddExercisesByGroupIdUseCase;
@@ -34,7 +35,7 @@ final class AddExercisesByGroupIdUseCaseTest extends AbstractIntegrationTest
     public function testExecuteForNonExistingGroup(): void
     {
         $this->expectException(NotFoundHttpException::class);
-        $this->expectExceptionMessage("Exercise group #666 cannot be found");
+        $this->expectExceptionMessage('Exercise group #666 cannot be found');
 
         $this->useCase->execute(1, 666);
     }
@@ -42,7 +43,7 @@ final class AddExercisesByGroupIdUseCaseTest extends AbstractIntegrationTest
     public function testExecuteForGroupNotInGivenWorkout(): void
     {
         $this->expectException(NotFoundHttpException::class);
-        $this->expectExceptionMessage("Exercise group #4 is not part of Workout #3");
+        $this->expectExceptionMessage('Exercise group #4 is not part of Workout #3');
 
         $this->useCase->execute(3, 4);
     }
@@ -52,8 +53,9 @@ final class AddExercisesByGroupIdUseCaseTest extends AbstractIntegrationTest
         $group = $this->provider->getExerciseGroupById(4);
         $this->assertCount(6, $group->exercises);
 
-        $result = $this->useCase->execute(1, 4);
-        $this->assertCount(7, $result->data->exercises);
+        /** @var ExerciseGroupDataViewModel $result */
+        $result = $this->useCase->execute(1, 4)->data;
+        $this->assertCount(7, $result->exercises);
 
         $group = $this->provider->getExerciseGroupById(4);
         $this->assertCount(7, $group->exercises);

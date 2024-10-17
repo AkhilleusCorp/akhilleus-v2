@@ -43,25 +43,15 @@ reset_db: create_local_db load_fixtures
 
 start: up install_dependencies create_local_db load_fixtures
 
-create_test_db:
-	$(PHP) bin/console doctrine:database:drop --if-exists --force --env=test
-	$(PHP) bin/console doctrine:database:create --env=test
-	$(PHP) bin/console doctrine:schema:create -n --env=test
-
-load_test_fixtures:
-	$(PHP) bin/console doctrine:fixtures:load -n --env=test
-
-reset_test_db: create_test_db load_test_fixtures
-
 tests_unit:
-	$(PHP) vendor/bin/phpunit --testsuite unit
+	$(PHP) vendor/bin/simple-phpunit --testsuite unit
 
 tests_integration:
 	$(PHP) bin/console cache:clear
-	$(PHP) vendor/bin/phpunit --testsuite integration
+	$(PHP) vendor/bin/simple-phpunit --testsuite integration
 
 tests_all:
-	XDEBUG_MODE=coverage vendor/bin/phpunit --stop-on-failure
+	XDEBUG_MODE=coverage $(PHP) vendor/bin/simple-phpunit --stop-on-failure
 
 mysql_connect_akhilleus: ## Connect to core database
 	docker compose exec database /bin/bash -c 'mysql -u$$MYSQL_USER -p$$MYSQL_PASSWORD $$MYSQL_DB_NAME'

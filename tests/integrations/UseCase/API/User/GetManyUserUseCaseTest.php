@@ -64,7 +64,6 @@ final class GetManyUserUseCaseTest extends AbstractIntegrationTest
         $view = $this->useCase->execute(['ids' => '1,2,3', 'email' => 'null'], DataProfileRegistry::DATA_PROFILE_ADMIN);
         $this->assertCount(3, $view->data);
 
-
         $view = $this->useCase->execute(['ids' => '1,2,3']);
         $this->assertCount(3, $view->data);
     }
@@ -73,7 +72,6 @@ final class GetManyUserUseCaseTest extends AbstractIntegrationTest
     {
         $view = $this->useCase->execute(['username' => 'ghriim'], DataProfileRegistry::DATA_PROFILE_ADMIN);
         $this->assertCount(1, $view->data);
-
 
         $view = $this->useCase->execute(['username' => 'ghriim']);
         $this->assertCount(1, $view->data);
@@ -105,11 +103,10 @@ final class GetManyUserUseCaseTest extends AbstractIntegrationTest
         $view = $this->useCase->execute(['status' => UserStatusRegistry::USER_STATUS_DEACTIVATED], DataProfileRegistry::DATA_PROFILE_ADMIN);
         $this->assertCount(0, $view->data);
 
-        $view = $this->useCase->execute(['status' =>  UserStatusRegistry::USER_STATUS_ACTIVE]);
+        $view = $this->useCase->execute(['status' => UserStatusRegistry::USER_STATUS_ACTIVE]);
         $this->assertCount(25, $view->data);
 
-
-        $view = $this->useCase->execute(['status' =>  UserStatusRegistry::USER_STATUS_CREATED]);
+        $view = $this->useCase->execute(['status' => UserStatusRegistry::USER_STATUS_CREATED]);
         $this->assertCount(9, $view->data);
     }
 }

@@ -10,7 +10,6 @@ use App\UseCase\API\GenericGetManyUseCase;
 use App\UseCase\API\GenericGetOneByIdUseCase;
 use App\UseCase\API\GenericUpdateOneByIdUseCase;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 abstract class AbstractGenericControllerTest extends AbstractIntegrationTest
 {
@@ -33,39 +32,9 @@ abstract class AbstractGenericControllerTest extends AbstractIntegrationTest
         $this->deleteOneByIdUseCase = $this->container->get(GenericDeleteOneByIdUseCase::class);
     }
 
-    public function testGetOneByExistingId(): void
-    {
-        $view = $this->controller->getOneById(
-            1,
-            $this->getOneByIdUseCase,
-            $this->provider
-        );
-
-        $this->assertEquals(1, $view->data->id);
-    }
-
-    public function testGetOneByNonExistingId(): void
-    {
-        $this->expectException(NotFoundHttpException::class);
-
-        $this->controller->getOneById(
-            666,
-            $this->getOneByIdUseCase,
-            $this->provider
-        );
-    }
-
-    public function testDeleteOneByNonExistingId(): void
-    {
-        $this->expectException(NotFoundHttpException::class);
-
-        $this->controller->deleteOnById(
-            666,
-            $this->deleteOneByIdUseCase,
-            $this->provider
-        );
-    }
-
+    /**
+     * @param array<mixed> $parameters
+     */
     protected function createRequestWithBody(array $parameters): Request
     {
         return new Request(

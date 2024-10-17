@@ -24,13 +24,14 @@ final class GenericUpdateOneByIdUseCase implements UseCaseInterface
     }
 
     /**
-     * @param array<mixed> $parameters
+     * @param array<mixed>               $parameters
+     * @param UpdateSourceModelInterface $sourceModel
      */
     public function execute(
         int $id,
         array $parameters,
         GenericDataModelProviderGateway $providerGateway,
-        UpdateSourceModelInterface|SourceModelInterface $sourceModel,
+        SourceModelInterface $sourceModel,
         DataModelFactoryInterface $dataModelFactory,
         SingleObjectDataViewModelInterface $view,
     ): SingleObjectViewModel {

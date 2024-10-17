@@ -28,7 +28,7 @@ final class DeleteOneExerciseGroupByIdUseCaseTest extends AbstractIntegrationTes
     public function testExecuteForNonExistingGroup(): void
     {
         $this->expectException(NotFoundHttpException::class);
-        $this->expectExceptionMessage("Exercise group #666 cannot be found");
+        $this->expectExceptionMessage('Exercise group #666 cannot be found');
 
         $this->useCase->execute(1, 666);
     }
@@ -36,7 +36,7 @@ final class DeleteOneExerciseGroupByIdUseCaseTest extends AbstractIntegrationTes
     public function testExecuteForGroupNotInGivenWorkout(): void
     {
         $this->expectException(NotFoundHttpException::class);
-        $this->expectExceptionMessage("Exercise group #4 is not part of Workout #3");
+        $this->expectExceptionMessage('Exercise group #4 is not part of Workout #3');
 
         $this->useCase->execute(3, 4);
     }
