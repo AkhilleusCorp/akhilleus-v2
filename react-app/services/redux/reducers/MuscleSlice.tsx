@@ -2,20 +2,24 @@ import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit"
 import MuscleDTO from "../../api/dtos/MuscleDTO.tsx";
 import MuscleListFilters from "../../api/filters/MusclesListFilters.tsx";
 import MuscleApiGateway from "../../api/gateway/MuscleApiGateway.tsx";
+import APIResponseDTO from "../../api/dtos/APIResponseDTO.tsx";
+import PaginationDTO from "../../api/dtos/PaginationDTO.tsx";
 
 export interface MuscleInitialState {
     muscles: MuscleDTO[],
+    pagination: PaginationDTO | null,
     loading: boolean,
     error: string | null,
 }
 
 const initialState: MuscleInitialState = {
     muscles: [],
+    pagination: null,
     loading: false,
     error: null,
 }
 
-export const fetchMuscles = createAsyncThunk<MuscleDTO[], MuscleListFilters, { rejectValue: string}>(
+export const fetchMuscles = createAsyncThunk<APIResponseDTO, MuscleListFilters, { rejectValue: string}>(
     'muscles/fetchMuscles',
     async (filters: MuscleListFilters, {rejectWithValue}) => {
         try {
@@ -41,9 +45,10 @@ export const muscleSlice = createSlice({
             state.loading = false;
             state.error = action.payload || 'Unknown error';
         })
-        builder.addCase(fetchMuscles.fulfilled, (state: MuscleInitialState, action: PayloadAction<MuscleDTO[]>) => {
+        builder.addCase(fetchMuscles.fulfilled, (state: MuscleInitialState, action: PayloadAction<APIResponseDTO>) => {
             state.loading = false;
-            state.muscles = action.payload;
+            state.muscles = action.payload.data;
+            state.pagination = action.payload.extra.pagination;
         })
     }
 })

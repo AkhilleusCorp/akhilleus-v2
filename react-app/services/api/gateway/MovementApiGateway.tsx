@@ -4,13 +4,14 @@ import MovementsListFilters from "../filters/MovementsListFilters.tsx";
 import apiRoutes from "../apiRoutes.tsx";
 import QueryId from "../../../utils/interfaces/QueryId.tsx";
 import IndexedArray from "../../../utils/interfaces/IndexedArray.tsx";
+import APIResponseDTO from "../dtos/APIResponseDTO.tsx";
 
 class MovementApiGateway extends AbstractApiGateway {
     static async getOneMovement (movementId: QueryId): Promise<MovementDTO|null> {
         return this.getOne(apiRoutes.movement.details(movementId));
     }
 
-    static async getManyMovements (filters: MovementsListFilters): Promise<MovementDTO[]> {
+    static async getManyMovements (filters: MovementsListFilters): Promise<APIResponseDTO> {
         return this.getMany(apiRoutes.movement.list, filters);
     }
 

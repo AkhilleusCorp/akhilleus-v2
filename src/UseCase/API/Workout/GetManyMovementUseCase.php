@@ -7,6 +7,7 @@ use App\Domain\Gateway\Provider\Workout\MovementDataModelProviderGateway;
 use App\Infrastructure\Registry\DataProfileRegistry;
 use App\Infrastructure\View\ViewHydrator\PaginationHydrator;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
+use App\Infrastructure\View\ViewModel\PaginationViewModel;
 use App\Infrastructure\View\ViewPresenter\Workout\MultipleMovementViewPresenter;
 use App\UseCase\UseCaseInterface;
 
@@ -28,7 +29,7 @@ final class GetManyMovementUseCase implements UseCaseInterface
         $movements = $this->provider->getMovementsByFilterModel($filter);
 
         $movementsCount = count($movements);
-        if ($movementsCount === $filter->limit) {
+        if ($movementsCount === $filter->limit || PaginationViewModel::DEFAULT_FIRST_PAGE !== $filter->page) {
             $movementsCount = $this->provider->countMovementsByFilterModel($filter);
         }
 

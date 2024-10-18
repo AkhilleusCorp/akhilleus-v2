@@ -7,6 +7,7 @@ use App\Domain\Gateway\Provider\User\UserDataModelProviderGateway;
 use App\Infrastructure\Registry\DataProfileRegistry;
 use App\Infrastructure\View\ViewHydrator\PaginationHydrator;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
+use App\Infrastructure\View\ViewModel\PaginationViewModel;
 use App\Infrastructure\View\ViewPresenter\User\MultipleUserViewPresenter;
 use App\UseCase\UseCaseInterface;
 
@@ -28,7 +29,7 @@ final class GetManyUserUseCase implements UseCaseInterface
         $users = $this->provider->getUsersByFilterModel($filter);
 
         $usersCount = count($users);
-        if ($usersCount === $filter->limit) {
+        if ($usersCount === $filter->limit || PaginationViewModel::DEFAULT_FIRST_PAGE !== $filter->page) {
             $usersCount = $this->provider->countUsersByFilterModel($filter);
         }
 

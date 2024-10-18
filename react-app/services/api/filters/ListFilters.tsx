@@ -1,6 +1,8 @@
 interface ListFilters {
     ids: string[] | null;
-    limit: number | null;
+    page: number;
+    limit: number;
+    sorts: string[] | null;
 }
 
 export default ListFilters;

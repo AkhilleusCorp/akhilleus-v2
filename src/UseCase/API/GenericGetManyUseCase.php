@@ -8,6 +8,7 @@ use App\Domain\Gateway\Provider\GenericDataModelProviderGateway;
 use App\Infrastructure\View\ViewHydrator\PaginationHydrator;
 use App\Infrastructure\View\ViewModel\Equipment\MultipleEquipmentItemDataViewModel;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
+use App\Infrastructure\View\ViewModel\PaginationViewModel;
 use App\Infrastructure\View\ViewPresenter\GenericViewPresenter;
 use App\UseCase\UseCaseInterface;
 
@@ -29,7 +30,7 @@ final class GenericGetManyUseCase implements UseCaseInterface
         $dataModels = $providerGateway->getByFilterModel($filter)->getQuery()->getResult();
 
         $dataModelsCount = count($dataModels);
-        if ($dataModelsCount === $filter->limit) {
+        if ($dataModelsCount === $filter->limit || PaginationViewModel::DEFAULT_FIRST_PAGE !== $filter->page) {
             $dataModelsCount = $providerGateway->countByFilterModel($filter);
         }
 

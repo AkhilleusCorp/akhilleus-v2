@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, {useEffect, useState} from "react";
 import {Paper, Table,TableBody,TableCell, TableContainer, TableHead, TableRow} from '@mui/material';
 import EquipmentsListFilters from "../../services/api/filters/EquipmentsListFilters.tsx";
 import equipmentRegistries from "../../constants/equipmentRegistries.tsx";
@@ -7,6 +7,8 @@ import { AppDispatch, RootState } from "../../services/redux";
 import { useDispatch } from "react-redux";
 import { fetchEquipments } from "../../services/redux/reducers/EquipmentSlice.tsx";
 import ApiResultWrapper from "../../components/common/ApiResultWrapper.tsx";
+import PaginatedTableFooter from "../../components/table/PaginatedTableFooter.tsx";
+import ListFilters from "../../services/api/filters/ListFilters.tsx";
 
 
 type EquipmentListTableType = {
@@ -16,16 +18,22 @@ type EquipmentListTableType = {
 }
 
 const EquipementsListTable: React.FC<EquipmentListTableType> = ({ filters, refreshKey, mainLinkClickCallback }) => {
-    const { equipments, loading, error } = useSelector((state: RootState) => state.equipments);
+    const { equipments, pagination, loading, error } = useSelector((state: RootState) => state.equipments);
     const dispatch = useDispatch<AppDispatch>();
+    const [refresh, setRefresh] = useState<number>(refreshKey);
 
     useEffect(() => {
         dispatch(fetchEquipments(filters));
-    }, [dispatch, refreshKey]);
+    }, [dispatch, refresh]);
 
     const onNameClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>, equipmentId: number) => {
         event.preventDefault();
         mainLinkClickCallback(equipmentId);
+    }
+
+    const handlePagination = (paginationFilters: ListFilters) => {
+        filters.page = paginationFilters.page;
+        setRefresh(prev => prev + 1);
     }
 
     return (
@@ -34,7 +42,6 @@ const EquipementsListTable: React.FC<EquipmentListTableType> = ({ filters, refre
                 <Table>
                     <TableHead>
                         <TableRow>
-                            <TableCell>id</TableCell>
                             <TableCell>name</TableCell>
                             <TableCell>status</TableCell>
                         </TableRow>
@@ -42,7 +49,6 @@ const EquipementsListTable: React.FC<EquipmentListTableType> = ({ filters, refre
                     <TableBody>
                         {equipments.map((equipment) => (
                             <TableRow id={'equipment_' + equipment.id} key={'equipment_' + equipment.id}>
-                                <TableCell>{equipment.id}</TableCell>
                                 <TableCell>
                                     <a href={"#"} onClick={(event) => onNameClick(event, equipment.id)}>
                                         {equipment.name}
@@ -53,6 +59,7 @@ const EquipementsListTable: React.FC<EquipmentListTableType> = ({ filters, refre
                         ))}
                     </TableBody>
                 </Table>
+                <PaginatedTableFooter pagination={pagination} filters={filters} callbackFunction={handlePagination}/>
             </TableContainer>
         </ApiResultWrapper>
     );

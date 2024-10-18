@@ -1,12 +1,14 @@
-import React, { useEffect } from "react";
+import React, {useEffect, useState} from "react";
 import {Paper, Table,TableBody,TableCell, TableContainer, TableHead, TableRow} from '@mui/material';
 import MusclesListFilters from "../../services/api/filters/MusclesListFilters.tsx";
 import muscleRegistries from "../../constants/muscleRegistries.tsx";
 import { useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../services/redux/index.tsx";
+import { AppDispatch, RootState } from "../../services/redux";
 import { useDispatch } from "react-redux";
 import { fetchMuscles } from "../../services/redux/reducers/MuscleSlice.tsx";
 import ApiResultWrapper from "../../components/common/ApiResultWrapper.tsx";
+import ListFilters from "../../services/api/filters/ListFilters.tsx";
+import PaginatedTableFooter from "../../components/table/PaginatedTableFooter.tsx";
 
 
 type MuscleListTableType = {
@@ -16,16 +18,22 @@ type MuscleListTableType = {
 }
 
 const MusclesListTable: React.FC<MuscleListTableType> = ({ filters, refreshKey, mainLinkClickCallback }) => {
-    const { muscles, loading, error } = useSelector((state: RootState) => state.muscles);
+    const { muscles, pagination, loading, error } = useSelector((state: RootState) => state.muscles);
     const dispatch = useDispatch<AppDispatch>();
+    const [refresh, setRefresh] = useState<number>(refreshKey);
 
     useEffect(() => {
         dispatch(fetchMuscles(filters));
-    }, [dispatch, refreshKey]);
+    }, [dispatch, refresh]);
 
     const onNameClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>, muscleId: number) => {
         event.preventDefault();
         mainLinkClickCallback(muscleId);
+    }
+
+    const handlePagination = (paginationFilters: ListFilters) => {
+        filters.page = paginationFilters.page;
+        setRefresh(prev => prev + 1);
     }
 
     return (
@@ -34,7 +42,6 @@ const MusclesListTable: React.FC<MuscleListTableType> = ({ filters, refreshKey, 
                 <Table>
                     <TableHead>
                         <TableRow>
-                            <TableCell>id</TableCell>
                             <TableCell>name</TableCell>
                             <TableCell>status</TableCell>
                         </TableRow>
@@ -42,7 +49,6 @@ const MusclesListTable: React.FC<MuscleListTableType> = ({ filters, refreshKey, 
                     <TableBody>
                         {muscles.map((muscle) => (
                             <TableRow id={'muscle_' + muscle.id} key={'muscle_' + muscle.id}>
-                                <TableCell>{muscle.id}</TableCell>
                                 <TableCell>
                                     <a href={"#"} onClick={(event) => onNameClick(event, muscle.id)}>
                                         {muscle.name}
@@ -53,6 +59,7 @@ const MusclesListTable: React.FC<MuscleListTableType> = ({ filters, refreshKey, 
                         ))}
                     </TableBody>
                 </Table>
+                <PaginatedTableFooter pagination={pagination} filters={filters} callbackFunction={handlePagination}/>
             </TableContainer>
         </ApiResultWrapper>
     );

@@ -3,13 +3,14 @@ import UserDTO from "../dtos/UserDTO.tsx";
 import apiRoutes from "../apiRoutes.tsx";
 import UsersListFilters from "../filters/UsersListFilters.tsx";
 import QueryId from "../../../utils/interfaces/QueryId.tsx";
+import APIResponseDTO from "../dtos/APIResponseDTO.tsx";
 
 class UserApiGateway extends AbstractApiGateway {
     static async getOneUser (userId: QueryId): Promise<UserDTO|null> {
         return this.getOne(apiRoutes.user.details(userId));
     }
 
-    static async getManyUsers (filters: UsersListFilters): Promise<UserDTO[]> {
+    static async getManyUsers (filters: UsersListFilters): Promise<APIResponseDTO> {
         return this.getMany(apiRoutes.user.list, filters);
     }
 
