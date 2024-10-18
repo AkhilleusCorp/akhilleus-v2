@@ -12,10 +12,11 @@ import ApiResultWrapper from "../../components/common/ApiResultWrapper.tsx";
 type UsersListTableType = {
     filters: UsersListFilters;
     refreshKey: number;
-    mainLinkClickCallback: (userId: number) => void
+    mainLinkClickCallback: (userId: number) => void;
+    callbackFunction: (filters: UsersListFilters) => void;
 }
 
-const UsersListTable: React.FC<UsersListTableType> = ({ filters, refreshKey, mainLinkClickCallback }) => {
+const UsersListTable: React.FC<UsersListTableType> = ({ filters, refreshKey, mainLinkClickCallback, callbackFunction }) => {
     const { users, loading, error } = useSelector((state: RootState) => state.users);
     const dispatch = useDispatch<AppDispatch>();
 
@@ -26,6 +27,16 @@ const UsersListTable: React.FC<UsersListTableType> = ({ filters, refreshKey, mai
     const onUsernameClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>, userId: number) => {
         event.preventDefault();
         mainLinkClickCallback(userId);
+    }
+
+    const handlePageChange = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
+        event?.preventDefault();
+        console.log(newPage);
+    }
+
+    const handleRowsPerPageChange= (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,) => {
+        filters.limit = parseInt(event.target.value, 10);
+        callbackFunction(filters);
     }
 
     return (
@@ -58,7 +69,9 @@ const UsersListTable: React.FC<UsersListTableType> = ({ filters, refreshKey, mai
                     </TableBody>
                     <TableFooter>
                         <TableRow>
-                            <TablePagination count={50} page={1} rowsPerPage={10} onPageChange={() => {console.log('clicked')}} />
+                            <TablePagination count={50} page={1} rowsPerPage={filters.limit}
+                                             onPageChange={handlePageChange}
+                                             onRowsPerPageChange={handleRowsPerPageChange}/>
                         </TableRow>
                     </TableFooter>
                 </Table>

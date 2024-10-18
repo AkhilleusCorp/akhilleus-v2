@@ -10,7 +10,7 @@ import WorkoutsListTable from "../../features/workout/WorkoutsListTable.tsx";
 import WorkoutApiGateway from "../../services/api/gateway/WorkoutApiGateway.tsx";
 
 const WorkoutsPage: React.FC = () => {
-    const defaultFilters: WorkoutsListFilters = { ids: null, name: null, status: null, limit: 25 };
+    const defaultFilters = new WorkoutsListFilters();
     const [filters, setFilters] = useState<WorkoutsListFilters>(defaultFilters);
     const [refreshKey, setRefreshKey] = useState(0)
     const [workoutPreview, setUserPreview] = useState<WorkoutDTO|null>(null);

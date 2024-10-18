@@ -10,7 +10,7 @@ import UserApiGateway from "../../services/api/gateway/UserApiGateway.tsx";
 import UserDTO from "../../services/api/dtos/UserDTO.tsx";
 
 const UsersPage: React.FC = () => {
-    const defaultFilters:UsersListFilters = { ids: null, username: null, email: null, status: null, type: null, limit: 25 };
+    const defaultFilters = new UsersListFilters();
     const [filters, setFilters] = useState<UsersListFilters>(defaultFilters)
     const [refreshKey, setRefreshKey] = useState(0)
     const [userPreview, setUserPreview] = useState<UserDTO|null>(null);
@@ -45,7 +45,9 @@ const UsersPage: React.FC = () => {
 
             <div>
                 <div className={"float-left two-thirds-width"}>
-                    <UsersListTable filters={filters} refreshKey={refreshKey} mainLinkClickCallback={handleDisplayUserPreview}/>
+                    <UsersListTable filters={filters} refreshKey={refreshKey}
+                                    mainLinkClickCallback={handleDisplayUserPreview}
+                                    callbackFunction={handleUsersSearch}/>
                 </div>
 
                 <div className={"float-right one-thirds-width"}>
