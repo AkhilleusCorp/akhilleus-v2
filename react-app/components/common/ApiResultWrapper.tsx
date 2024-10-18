@@ -5,20 +5,20 @@ import GlobalError from '../error/GlobalError';
 type ApiResultWrapperType = {
     loading: boolean;
     error: string | null;
-    hasPreviousLoad: boolean;
+    hasPreviousPayload: boolean;
     children: React.ReactNode;
 }
 
 const ApiResultWrapper: React.FC<ApiResultWrapperType> = (props) => {
     return (
         <>
-            { !props.hasPreviousLoad && (
+            { !props.hasPreviousPayload && (
                 <CircularLoading loading={props.loading}/>
             )}            
 
             <GlobalError error={props.error}/>
 
-            { (!props.loading || props.hasPreviousLoad) && (
+            { (!props.loading || props.hasPreviousPayload) && (
                 props.children
             )}
         </>

@@ -29,7 +29,7 @@ const EquipementsListTable: React.FC<EquipmentListTableType> = ({ filters, refre
     }
 
     return (
-        <ApiResultWrapper loading={loading} error={error} hasPreviousLoad={equipments.length > 1}>
+        <ApiResultWrapper loading={loading} error={error} hasPreviousPayload={equipments.length > 1}>
             <TableContainer component={Paper}>
                 <Table>
                     <TableHead>

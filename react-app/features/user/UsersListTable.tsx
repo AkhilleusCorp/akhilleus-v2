@@ -29,7 +29,7 @@ const UsersListTable: React.FC<UsersListTableType> = ({ filters, refreshKey, mai
     }
 
     return (
-        <ApiResultWrapper loading={loading} error={error} hasPreviousLoad={users.length > 1}>
+        <ApiResultWrapper loading={loading} error={error} hasPreviousPayload={users.length > 1}>
             <TableContainer component={Paper}>
                 <Table>
                     <TableHead>

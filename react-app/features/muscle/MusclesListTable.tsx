@@ -29,7 +29,7 @@ const MusclesListTable: React.FC<MuscleListTableType> = ({ filters, refreshKey, 
     }
 
     return (
-        <ApiResultWrapper loading={loading} error={error} hasPreviousLoad={muscles.length > 1}>
+        <ApiResultWrapper loading={loading} error={error} hasPreviousPayload={muscles.length > 1}>
             <TableContainer component={Paper}>
                 <Table>
                     <TableHead>

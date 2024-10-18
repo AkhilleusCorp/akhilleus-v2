@@ -15,7 +15,11 @@
 ## API
 ## Website
 ## React APP
-### Redux
+### Global
+ * Handle pagination
+### Security
+ * Migrate registration to react app
+ * Migrate login to react app
  * use redux for getOne (used in preview and details)
 ### Muscle, Equipment, Movement
 * Do not allow to delete if the object is used
