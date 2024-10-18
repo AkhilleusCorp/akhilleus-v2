@@ -1,5 +1,6 @@
 import axios from "axios";
 import IndexedArray from "../../../utils/interfaces/IndexedArray.tsx";
+import APIResponseDTO from "../dtos/APIResponseDTO.tsx";
 abstract class AbstractApiGateway {
 
     static async getOne (url: string): Promise<any|null> {
@@ -12,18 +13,14 @@ abstract class AbstractApiGateway {
         return response.data.data;
     }
 
-    static async getMany (url: string, filters: any|null): Promise<any[]> {
+    static async getMany (url: string, filters: any|null): Promise<APIResponseDTO> {
         const queryUrl = null == filters ? url : url + "?" + this.objectToQueryParams(filters);
         const response = await axios.get(queryUrl);
         if (response.status !== 200) {
             throw new Error('An error as occurred');
         }
 
-        if (response.data.data === undefined) {
-            return [];
-        }
-
-        return response.data.data;
+        return response.data;
     }
 
     static async getDropdownable (url: string): Promise<IndexedArray> {

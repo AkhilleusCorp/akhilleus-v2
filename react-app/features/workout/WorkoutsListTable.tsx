@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, {useEffect, useState} from "react";
 import {Paper, Table,TableBody,TableCell, TableContainer, TableHead, TableRow} from '@mui/material';
 import WorkoutsListFilters from "../../services/api/filters/WorkoutsListFilters.tsx";
 import workoutRegistries from "../../constants/workoutRegistries.tsx";
@@ -7,6 +7,8 @@ import { AppDispatch, RootState } from "../../services/redux/index.tsx";
 import { useDispatch } from "react-redux";
 import { fetchWorkouts } from "../../services/redux/reducers/WorkoutSlice.tsx";
 import ApiResultWrapper from "../../components/common/ApiResultWrapper.tsx";
+import PaginatedTableFooter from "../../components/table/PaginatedTableFooter.tsx";
+import ListFilters from "../../services/api/filters/ListFilters.tsx";
 
 
 type WorkoutListTableType = {
@@ -16,16 +18,22 @@ type WorkoutListTableType = {
 }
 
 const UsersListTable: React.FC<WorkoutListTableType> = ({ filters, refreshKey, mainLinkClickCallback }) => {
-    const { workouts, loading, error } = useSelector((state: RootState) => state.workouts);
+    const { workouts, pagination, loading, error } = useSelector((state: RootState) => state.workouts);
     const dispatch = useDispatch<AppDispatch>();
+    const [refresh, setRefresh] = useState<number>(refreshKey);
 
     useEffect(() => {
         dispatch(fetchWorkouts(filters));
-    }, [dispatch, refreshKey]);
+    }, [dispatch, refresh]);
 
     const onNameClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>, workoutId: number) => {
         event.preventDefault();
         mainLinkClickCallback(workoutId);
+    }
+
+    const handlePagination = (paginationFilters: ListFilters) => {
+        filters.page = paginationFilters.page;
+        setRefresh(prev => prev + 1);
     }
 
     return (
@@ -53,6 +61,7 @@ const UsersListTable: React.FC<WorkoutListTableType> = ({ filters, refreshKey, m
                     ))}
                     </TableBody>
                 </Table>
+                <PaginatedTableFooter pagination={pagination} filters={filters} callbackFunction={handlePagination}/>
             </TableContainer>
         </ApiResultWrapper>
     );

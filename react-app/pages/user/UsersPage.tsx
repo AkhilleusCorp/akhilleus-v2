@@ -46,8 +46,7 @@ const UsersPage: React.FC = () => {
             <div>
                 <div className={"float-left two-thirds-width"}>
                     <UsersListTable filters={filters} refreshKey={refreshKey}
-                                    mainLinkClickCallback={handleDisplayUserPreview}
-                                    callbackFunction={handleUsersSearch}/>
+                                    mainLinkClickCallback={handleDisplayUserPreview} />
                 </div>
 
                 <div className={"float-right one-thirds-width"}>

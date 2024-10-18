@@ -4,16 +4,15 @@ import EquipmentsListFilters from "../filters/EquipmentsListFilters.tsx";
 import apiRoutes from "../apiRoutes.tsx";
 import QueryId from "../../../utils/interfaces/QueryId.tsx";
 import IndexedArray from "../../../utils/interfaces/IndexedArray.tsx";
-import axios from "axios";
+import APIResponseDTO from "../dtos/APIResponseDTO.tsx";
 
 class EquipmentApiGateway extends AbstractApiGateway {
     static async getOneEquipment (equipmentId: QueryId): Promise<EquipmentDTO|null> {
         return this.getOne(apiRoutes.equipment.details(equipmentId));
     }
 
-    static async getManyEquipments (filters: EquipmentsListFilters): Promise<EquipmentDTO[]> {
-        const response = await axios.get(apiRoutes.equipment.list + '?' + this.objectToQueryParams(filters));
-        return response.data.data;
+    static async getManyEquipments (filters: EquipmentsListFilters): Promise<APIResponseDTO> {
+        return this.getMany(apiRoutes.equipment.list, filters);
     }
 
     static async getDropdownableEquipments (): Promise<IndexedArray> {

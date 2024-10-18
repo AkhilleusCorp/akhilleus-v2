@@ -2,20 +2,24 @@ import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit"
 import MovementDTO from "../../api/dtos/MovementDTO.tsx";
 import MovementListFilters from "../../api/filters/MovementsListFilters.tsx";
 import MovementApiGateway from "../../api/gateway/MovementApiGateway.tsx";
+import APIResponseDTO from "../../api/dtos/APIResponseDTO.tsx";
+import PaginationDTO from "../../api/dtos/PaginationDTO.tsx";
 
 export interface MovementInitialState {
     movements: MovementDTO[],
+    pagination: PaginationDTO | null,
     loading: boolean,
     error: string | null,
 }
 
 const initialState: MovementInitialState = {
     movements: [],
+    pagination: null,
     loading: false,
     error: null,
 }
 
-export const fetchMovements = createAsyncThunk<MovementDTO[], MovementListFilters, { rejectValue: string}>(
+export const fetchMovements = createAsyncThunk<APIResponseDTO, MovementListFilters, { rejectValue: string}>(
     'movements/fetchMovements',
     async (filters: MovementListFilters, {rejectWithValue}) => {
         try {
@@ -41,9 +45,10 @@ export const movementSlice = createSlice({
             state.loading = false;
             state.error = action.payload || 'Unknown error';
         })
-        builder.addCase(fetchMovements.fulfilled, (state: MovementInitialState, action: PayloadAction<MovementDTO[]>) => {
+        builder.addCase(fetchMovements.fulfilled, (state: MovementInitialState, action: PayloadAction<APIResponseDTO>) => {
             state.loading = false;
-            state.movements = action.payload;
+            state.movements = action.payload.data;
+            state.pagination = action.payload.extra.pagination;
         })
     }
 })

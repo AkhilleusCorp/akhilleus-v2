@@ -3,13 +3,14 @@ import WorkoutDTO from "../dtos/WorkoutDTO.tsx";
 import WorkoutsListFilters from "../filters/WorkoutsListFilters.tsx";
 import apiRoutes from "../apiRoutes.tsx";
 import QueryId from "../../../utils/interfaces/QueryId.tsx";
+import APIResponseDTO from "../dtos/APIResponseDTO.tsx";
 
 class WorkoutApiGateway extends AbstractApiGateway {
     static async getOneWorkout (workoutId: QueryId): Promise<WorkoutDTO|null> {
         return this.getOne(apiRoutes.workout.details(workoutId));
     }
 
-    static async getManyWorkouts (filters: WorkoutsListFilters): Promise<WorkoutDTO[]> {
+    static async getManyWorkouts (filters: WorkoutsListFilters): Promise<APIResponseDTO> {
         return this.getMany(apiRoutes.workout.list, filters);
     }
 

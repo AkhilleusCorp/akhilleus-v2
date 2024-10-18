@@ -4,13 +4,14 @@ import MusclesListFilters from "../filters/MusclesListFilters.tsx";
 import apiRoutes from "../apiRoutes.tsx";
 import QueryId from "../../../utils/interfaces/QueryId.tsx";
 import IndexedArray from "../../../utils/interfaces/IndexedArray.tsx";
+import APIResponseDTO from "../dtos/APIResponseDTO.tsx";
 
 class MuscleApiGateway extends AbstractApiGateway {
     static async getOneMuscle (muscleId: QueryId): Promise<MuscleDTO|null> {
         return this.getOne(apiRoutes.muscle.details(muscleId));
     }
 
-    static async getManyMuscles (filters: MusclesListFilters): Promise<MuscleDTO[]> {
+    static async getManyMuscles (filters: MusclesListFilters): Promise<APIResponseDTO> {
         return this.getMany(apiRoutes.muscle.list, filters);
     }
 

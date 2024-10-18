@@ -2,20 +2,24 @@ import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit"
 import EquipmentDTO from "../../api/dtos/EquipmentDTO.tsx";
 import EquipmentListFilters from "../../api/filters/EquipmentsListFilters.tsx";
 import EquipmentApiGateway from "../../api/gateway/EquipmentApiGateway.tsx";
+import APIResponseDTO from "../../api/dtos/APIResponseDTO.tsx";
+import PaginationDTO from "../../api/dtos/PaginationDTO.tsx";
 
 export interface EquipmentInitialState {
     equipments: EquipmentDTO[],
+    pagination: PaginationDTO | null,
     loading: boolean,
     error: string | null,
 }
 
 const initialState: EquipmentInitialState = {
     equipments: [],
+    pagination: null,
     loading: false,
     error: null,
 }
 
-export const fetchEquipments = createAsyncThunk<EquipmentDTO[], EquipmentListFilters, { rejectValue: string}>(
+export const fetchEquipments = createAsyncThunk<APIResponseDTO, EquipmentListFilters, { rejectValue: string}>(
     'equipments/fetchEquipments',
     async (filters: EquipmentListFilters, {rejectWithValue}) => {
         try {
@@ -41,9 +45,10 @@ export const equipmentSlice = createSlice({
             state.loading = false;
             state.error = action.payload || 'Unknown error';
         })
-        builder.addCase(fetchEquipments.fulfilled, (state: EquipmentInitialState, action: PayloadAction<EquipmentDTO[]>) => {
+        builder.addCase(fetchEquipments.fulfilled, (state: EquipmentInitialState, action: PayloadAction<APIResponseDTO>) => {
             state.loading = false;
-            state.equipments = action.payload;
+            state.equipments = action.payload.data;
+            state.pagination = action.payload.extra.pagination;
         })
     }
 })

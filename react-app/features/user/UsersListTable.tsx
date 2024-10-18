@@ -1,42 +1,39 @@
-import React, { useEffect } from "react";
-import {Paper, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow} from '@mui/material';
+import React, {useEffect, useState} from "react";
+import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from '@mui/material';
 import UsersListFilters from "../../services/api/filters/UsersListFilters.tsx";
 import userRegistries from "../../constants/userRegistries.tsx";
 import { useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../services/redux/index.tsx";
+import { AppDispatch, RootState } from "../../services/redux";
 import { useDispatch } from "react-redux";
 import { fetchUsers } from "../../services/redux/reducers/UserSlice.tsx";
 import ApiResultWrapper from "../../components/common/ApiResultWrapper.tsx";
+import PaginatedTableFooter from "../../components/table/PaginatedTableFooter.tsx";
+import ListFilters from "../../services/api/filters/ListFilters.tsx";
 
 
 type UsersListTableType = {
     filters: UsersListFilters;
     refreshKey: number;
     mainLinkClickCallback: (userId: number) => void;
-    callbackFunction: (filters: UsersListFilters) => void;
 }
 
-const UsersListTable: React.FC<UsersListTableType> = ({ filters, refreshKey, mainLinkClickCallback, callbackFunction }) => {
-    const { users, loading, error } = useSelector((state: RootState) => state.users);
+const UsersListTable: React.FC<UsersListTableType> = ({ filters, refreshKey, mainLinkClickCallback }) => {
+    const { users, pagination, loading, error } = useSelector((state: RootState) => state.users);
     const dispatch = useDispatch<AppDispatch>();
+    const [refresh, setRefresh] = useState<number>(refreshKey);
 
     useEffect(() => {
         dispatch(fetchUsers(filters));
-    }, [dispatch, refreshKey]);
+    }, [dispatch, refresh]);
 
     const onUsernameClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>, userId: number) => {
         event.preventDefault();
         mainLinkClickCallback(userId);
     }
 
-    const handlePageChange = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
-        event?.preventDefault();
-        console.log(newPage);
-    }
-
-    const handleRowsPerPageChange= (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,) => {
-        filters.limit = parseInt(event.target.value, 10);
-        callbackFunction(filters);
+    const handlePagination = (paginationFilters: ListFilters) => {
+        filters.page = paginationFilters.page;
+        setRefresh(prev => prev + 1);
     }
 
     return (
@@ -65,16 +62,10 @@ const UsersListTable: React.FC<UsersListTableType> = ({ filters, refreshKey, mai
                                 <TableCell>{user.email}</TableCell>
                                 <TableCell>{userRegistries.type[user.type]}</TableCell>
                             </TableRow>
-                            ))}
+                        ))}
                     </TableBody>
-                    <TableFooter>
-                        <TableRow>
-                            <TablePagination count={50} page={1} rowsPerPage={filters.limit}
-                                             onPageChange={handlePageChange}
-                                             onRowsPerPageChange={handleRowsPerPageChange}/>
-                        </TableRow>
-                    </TableFooter>
                 </Table>
+                <PaginatedTableFooter pagination={pagination} filters={filters} callbackFunction={handlePagination}/>
             </TableContainer>
         </ApiResultWrapper>
     );

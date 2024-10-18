@@ -7,6 +7,7 @@ use App\Domain\Gateway\Provider\Workout\WorkoutDataModelProviderGateway;
 use App\Infrastructure\Registry\DataProfileRegistry;
 use App\Infrastructure\View\ViewHydrator\PaginationHydrator;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
+use App\Infrastructure\View\ViewModel\PaginationViewModel;
 use App\Infrastructure\View\ViewPresenter\Workout\MultipleWorkoutViewPresenter;
 use App\UseCase\UseCaseInterface;
 
@@ -28,7 +29,7 @@ final class GetManyWorkoutUseCase implements UseCaseInterface
         $workouts = $this->provider->getWorkoutsByFilterModel($filter);
 
         $workoutsCount = count($workouts);
-        if ($workoutsCount === $filter->limit) {
+        if ($workoutsCount === $filter->limit || PaginationViewModel::DEFAULT_FIRST_PAGE !== $filter->page) {
             $workoutsCount = $this->provider->countWorkoutsByFilterModel($filter);
         }
 

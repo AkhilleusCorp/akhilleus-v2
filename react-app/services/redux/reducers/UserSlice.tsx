@@ -2,20 +2,24 @@ import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit"
 import UserDTO from "../../api/dtos/UserDTO.tsx";
 import UserListFilters from "../../api/filters/UsersListFilters.tsx";
 import UserApiGateway from "../../api/gateway/UserApiGateway.tsx";
+import PaginationDTO from "../../api/dtos/PaginationDTO.tsx";
+import APIResponseDTO from "../../api/dtos/APIResponseDTO.tsx";
 
 export interface UserInitialState {
     users: UserDTO[],
+    pagination: PaginationDTO | null,
     loading: boolean,
     error: string | null,
 }
 
 const initialState: UserInitialState = {
     users: [],
+    pagination: null,
     loading: false,
     error: null,
 }
 
-export const fetchUsers = createAsyncThunk<UserDTO[], UserListFilters, { rejectValue: string}>(
+export const fetchUsers = createAsyncThunk<APIResponseDTO, UserListFilters, { rejectValue: string}>(
     'users/fetchUsers',
     async (filters: UserListFilters, {rejectWithValue}) => {
         try {
@@ -41,9 +45,10 @@ export const userSlice = createSlice({
             state.loading = false;
             state.error = action.payload || 'Unknown error';
         })
-        builder.addCase(fetchUsers.fulfilled, (state: UserInitialState, action: PayloadAction<UserDTO[]>) => {
+        builder.addCase(fetchUsers.fulfilled, (state: UserInitialState, action: PayloadAction<APIResponseDTO>) => {
             state.loading = false;
-            state.users = action.payload;
+            state.users = action.payload.data;
+            state.pagination = action.payload.extra.pagination;
         })
     }
 })
