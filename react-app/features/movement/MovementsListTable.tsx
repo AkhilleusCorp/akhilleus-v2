@@ -29,7 +29,7 @@ const MovementsListTable: React.FC<MovementListTableType> = ({ filters, refreshK
     }
 
     return (
-        <ApiResultWrapper loading={loading} error={error} hasPreviousLoad={movements.length > 1}>
+        <ApiResultWrapper loading={loading} error={error} hasPreviousPayload={movements.length > 1}>
             <TableContainer component={Paper}>
                 <Table>
                     <TableHead>

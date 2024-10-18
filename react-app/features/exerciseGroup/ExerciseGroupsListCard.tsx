@@ -30,7 +30,7 @@ const ExerciseGroupsListCard: React.FC<ExerciseGroupsListCardType> = ({ workoutI
                 Exercises
             </Typography>
 
-            <ApiResultWrapper loading={loading} error={error} hasPreviousLoad={exerciseGroups.length > 1}>
+            <ApiResultWrapper loading={loading} error={error} hasPreviousPayload={false}>
                 { exerciseGroups.map((group: any) => (
                     <div key={'div-'+group.id}>
                         <ExerciseGroupCard group={group} displayWriteActions={displayWriteActions} />
