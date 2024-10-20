@@ -1,8 +1,8 @@
 import React from "react";
 import {Box, Chip, FormControl, InputLabel, MenuItem, OutlinedInput, Select, SelectChangeEvent} from "@mui/material";
 import { Theme, useTheme } from '@mui/material/styles';
-import IndexedArray from "../../utils/interfaces/IndexedArray.tsx";
-import QueryIds from "../../utils/interfaces/QueryIds.tsx";
+import IndexedArray from "app/utils/interfaces/IndexedArray.tsx";
+import QueryIds from "app/utils/interfaces/QueryIds.tsx";
 
 type MultiSelectInputType = {
     label: string;

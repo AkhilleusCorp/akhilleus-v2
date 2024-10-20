@@ -8,8 +8,7 @@ import { useDispatch } from "react-redux";
 import { fetchEquipments } from "../../services/redux/reducers/EquipmentSlice.tsx";
 import ApiResultWrapper from "../../components/common/ApiResultWrapper.tsx";
 import PaginatedTableFooter from "../../components/table/PaginatedTableFooter.tsx";
-import ListFilters from "../../services/api/filters/ListFilters.tsx";
-
+import ListFilters from "app/services/api/filters/ListFilters.tsx";
 
 type EquipmentListTableType = {
     filters: EquipmentsListFilters;

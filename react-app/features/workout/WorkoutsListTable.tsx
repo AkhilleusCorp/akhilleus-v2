@@ -8,8 +8,7 @@ import { useDispatch } from "react-redux";
 import { fetchWorkouts } from "../../services/redux/reducers/WorkoutSlice.tsx";
 import ApiResultWrapper from "../../components/common/ApiResultWrapper.tsx";
 import PaginatedTableFooter from "../../components/table/PaginatedTableFooter.tsx";
-import ListFilters from "../../services/api/filters/ListFilters.tsx";
-
+import ListFilters from "app/services/api/filters/ListFilters.tsx";
 
 type WorkoutListTableType = {
     filters: WorkoutsListFilters;

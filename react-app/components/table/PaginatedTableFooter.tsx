@@ -1,7 +1,7 @@
 import {Grid2 as Grid, Pagination, Typography} from "@mui/material";
 import React from "react";
-import ListFilters from "../../services/api/filters/ListFilters.tsx";
-import PaginationDTO from "../../services/api/dtos/PaginationDTO.tsx";
+import ListFilters from "app/services/api/filters/ListFilters.tsx";
+import PaginationDTO from "app/services/api/dtos/PaginationDTO.tsx";
 
 type PaginatedTableFooter = {
     pagination: PaginationDTO | null,

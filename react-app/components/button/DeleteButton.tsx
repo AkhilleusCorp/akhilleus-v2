@@ -1,6 +1,6 @@
 import React, {useState} from "react";
-import ConfirmActionModal from "../modal/ConfirmActionModal.tsx";
 import {Button} from "@mui/material";
+import ConfirmActionModal from "app/components/modal/ConfirmActionModal.tsx";
 
 type DeleteButtonType = {
     targetId: number,

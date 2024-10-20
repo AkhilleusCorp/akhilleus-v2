@@ -7,7 +7,7 @@ import { AppDispatch, RootState } from "../../services/redux";
 import { useDispatch } from "react-redux";
 import { fetchMuscles } from "../../services/redux/reducers/MuscleSlice.tsx";
 import ApiResultWrapper from "../../components/common/ApiResultWrapper.tsx";
-import ListFilters from "../../services/api/filters/ListFilters.tsx";
+import ListFilters from "app/services/api/filters/ListFilters.tsx";
 import PaginatedTableFooter from "../../components/table/PaginatedTableFooter.tsx";
 
 
