@@ -1,4 +1,4 @@
-const websiteRoutes = {
+const adminRoutes = {
     dashboard: '/admin',
     user: {
         list: '/admin/users',
@@ -33,4 +33,4 @@ const websiteRoutes = {
     logout: '/logout'
 }
 
-export default websiteRoutes;
+export default adminRoutes;

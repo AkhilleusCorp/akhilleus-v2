@@ -7,7 +7,7 @@ import useGetDropdownableEquipments from "app/admin/hooks/equipment/useGetDropdo
 import useGetDropdownableMuscles from "app/admin/hooks/muscle/useGetDropdownableMuscles.tsx";
 import QueryIds from "app/common/utils/interfaces/QueryIds.tsx";
 import MovementApiGateway from "app/admin/services/api/gateway/MovementApiGateway.tsx";
-import websiteRoutes from "app/admin/services/router/websiteRoutes.tsx";
+import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
 import SaveForm from "app/common/components/form/SaveForm.tsx";
 import SelectInput from "app/common/components/input/SelectInput.tsx";
 import movementRegistries from "app/common/constants/movementRegistries.tsx";
@@ -40,7 +40,7 @@ const MovementUpdateForm: React.FC<MovementUpdateFormType> = ({movement}) => {
     const handleSubmit = async () => {
         try {
             await MovementApiGateway.updateMovement(movement.id, movementUpdated);
-            navigate(websiteRoutes.movement.details(movement.id));
+            navigate(adminRoutes.movement.details(movement.id));
         } catch (error) {
             console.log(error);
         }

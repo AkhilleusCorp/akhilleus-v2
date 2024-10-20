@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Link} from "react-router-dom";
 import {Box, Collapse, Divider, List, ListItem, ListItemButton, ListItemText} from "@mui/material";
 import {ExpandLess, ExpandMore} from "@mui/icons-material";
-import websiteRoutes from "app/admin/services/router/websiteRoutes.tsx";
+import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
 
 const AdminSidebar: React.FC = () => {
     const [openTraining, setOpenTraining] = useState(false);
@@ -27,7 +27,7 @@ const AdminSidebar: React.FC = () => {
 
                 <Divider />
 
-                <ListItem component={Link} to={websiteRoutes.dashboard}>
+                <ListItem component={Link} to={adminRoutes.dashboard}>
                     <ListItemText >
                         Dashboard
                     </ListItemText>
@@ -41,7 +41,7 @@ const AdminSidebar: React.FC = () => {
                     </ListItemButton>
                     <Collapse in={openTraining} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
-                            <ListItem sx={{ pl: 4 }} component={Link} to={websiteRoutes.workout.list}>
+                            <ListItem sx={{ pl: 4 }} component={Link} to={adminRoutes.workout.list}>
                                 <ListItemText>
                                     Workouts
                                 </ListItemText>
@@ -49,7 +49,7 @@ const AdminSidebar: React.FC = () => {
                         </List>
                     </Collapse>
                 </Box>
-                <ListItem component={Link} to={websiteRoutes.user.list}>
+                <ListItem component={Link} to={adminRoutes.user.list}>
                     <ListItemText >
                         Users
                     </ListItemText>
@@ -63,17 +63,17 @@ const AdminSidebar: React.FC = () => {
                     </ListItemButton>
                     <Collapse in={openReferences} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
-                            <ListItem sx={{ pl: 4 }} component={Link} to={websiteRoutes.movement.list}>
+                            <ListItem sx={{ pl: 4 }} component={Link} to={adminRoutes.movement.list}>
                                 <ListItemText >
                                     Movements
                                 </ListItemText>
                             </ListItem>
-                            <ListItem sx={{ pl: 4 }} component={Link} to={websiteRoutes.equipment.list}>
+                            <ListItem sx={{ pl: 4 }} component={Link} to={adminRoutes.equipment.list}>
                                 <ListItemText >
                                     Equipments
                                 </ListItemText>
                             </ListItem>
-                            <ListItem sx={{ pl: 4 }} component={Link} to={websiteRoutes.muscle.list}>
+                            <ListItem sx={{ pl: 4 }} component={Link} to={adminRoutes.muscle.list}>
                                 <ListItemText >
                                     Muscles
                                 </ListItemText>

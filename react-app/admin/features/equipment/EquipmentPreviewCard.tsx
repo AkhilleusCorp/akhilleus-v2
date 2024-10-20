@@ -2,7 +2,7 @@ import React from 'react';
 import {Card, CardActions, CardContent, Typography} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import EquipmentDTO from "app/admin/services/api/dtos/EquipmentDTO.tsx";
-import websiteRoutes from "app/admin/services/router/websiteRoutes.tsx";
+import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
 import equipmentRegistries from "app/common/constants/equipmentRegistries.tsx";
 import DetailsButton from "app/common/components/button/DetailsButton.tsx";
 import EditButton from "app/common/components/button/EditButton.tsx";
@@ -18,7 +18,7 @@ const EquipmentPreviewCard: React.FC<EquipmentDetailsCardType> = ({ equipment, d
     const navigate = useNavigate();
 
     const onConfirmDelete = () => {
-        navigate(websiteRoutes.equipment.list);
+        navigate(adminRoutes.equipment.list);
     }
 
     return (
@@ -34,12 +34,12 @@ const EquipmentPreviewCard: React.FC<EquipmentDetailsCardType> = ({ equipment, d
 
             <CardActions>
                 {displayReadActions && (
-                    <DetailsButton routeToDetailsPage={websiteRoutes.equipment.details(equipment.id)}/>
+                    <DetailsButton routeToDetailsPage={adminRoutes.equipment.details(equipment.id)}/>
                 )}
 
                 {displayWriteActions  && (
                     <>
-                        <EditButton routeToEditPage={websiteRoutes.equipment.edit(equipment.id)} />
+                        <EditButton routeToEditPage={adminRoutes.equipment.edit(equipment.id)} />
                         <EquipmentDeleteButton equipmentId={equipment.id} callbackFunction={onConfirmDelete} />
                     </>
                 )}

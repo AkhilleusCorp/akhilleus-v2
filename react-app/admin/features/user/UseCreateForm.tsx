@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import {TextField} from "@mui/material";
 import UserApiGateway from "app/admin/services/api/gateway/UserApiGateway.tsx";
-import websiteRoutes from "app/admin/services/router/websiteRoutes.tsx";
+import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
 import SaveForm from "app/common/components/form/SaveForm.tsx";
 import PasswordInput from "app/common/components/input/PasswordInput.tsx";
 
@@ -26,7 +26,7 @@ const UserCreateForm: React.FC = () => {
     const handleSubmit = async () => {
         try {
             const user = await UserApiGateway.createUser(userCreate);
-            navigate(websiteRoutes.user.details(user.id));
+            navigate(adminRoutes.user.details(user.id));
         } catch (error) {
             console.log(error);
         }

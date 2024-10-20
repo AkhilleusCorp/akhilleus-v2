@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import AdminLayout from "app/admin/layouts/AdminLayout.tsx";
 import {Link} from "react-router-dom";
-import websiteRoutes from "app/admin/services/router/websiteRoutes.tsx";
+import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
 import MusclesListFilters from "app/admin/services/api/filters/MusclesListFilters.tsx";
 import MuscleDTO from "app/admin/services/api/dtos/MuscleDTO.tsx";
 import MusclePreviewCard from "app/admin/features/muscle/MusclePreviewCard.tsx";
@@ -40,7 +40,7 @@ const MusclesPage: React.FC = () => {
             </div>
 
             <div className={"margin-bottom-s"}>
-                <Link to={websiteRoutes.muscle.create}>Create New Muscle</Link>
+                <Link to={adminRoutes.muscle.create}>Create New Muscle</Link>
             </div>
 
             <div className={"float-left two-thirds-width"}>

@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import {TextField} from "@mui/material";
 import WorkoutApiGateway from "app/admin/services/api/gateway/WorkoutApiGateway.tsx";
-import websiteRoutes from "app/admin/services/router/websiteRoutes.tsx";
+import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
 import SaveForm from "app/common/components/form/SaveForm.tsx";
 
 type WorkoutCreateFormType = {
@@ -23,7 +23,7 @@ const WorkoutCreateForm: React.FC = () => {
     const handleSubmit = async () => {
         try {
             const workout = await WorkoutApiGateway.createWorkout(workoutCreate);
-            navigate(websiteRoutes.workout.details(workout.id));
+            navigate(adminRoutes.workout.details(workout.id));
         } catch (error) {
             console.log(error);
         }

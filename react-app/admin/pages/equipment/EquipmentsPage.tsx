@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import AdminLayout from "app/admin/layouts/AdminLayout.tsx";
 import {Link} from "react-router-dom";
-import websiteRoutes from "app/admin/services/router/websiteRoutes.tsx";
+import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
 import EquipmentsListFilters from "app/admin/services/api/filters/EquipmentsListFilters.tsx";
 import EquipmentDTO from "app/admin/services/api/dtos/EquipmentDTO.tsx";
 import EquipmentPreviewCard from "app/admin/features/equipment/EquipmentPreviewCard.tsx";
@@ -40,7 +40,7 @@ const EquipmentsPage: React.FC = () => {
             </div>
 
             <div className={"margin-bottom-s"}>
-                <Link to={websiteRoutes.equipment.create}>Create New Equipment</Link>
+                <Link to={adminRoutes.equipment.create}>Create New Equipment</Link>
             </div>
 
             <div className={"float-left two-thirds-width"}>

@@ -1,15 +1,15 @@
 import React from 'react';
 import AdminLayout from "app/admin/layouts/AdminLayout.tsx";
 
-const DashboardPage: React.FC = () => {
+const AdminDashboardPage: React.FC = () => {
     
     return (
         <AdminLayout>
             <h1 className="text-3xl font-bold underline">
-                <div>Dashboard</div>
+                <div>Admin dashboard</div>
             </h1>
         </AdminLayout>
     );
 }
 
-export default DashboardPage;
+export default AdminDashboardPage;
