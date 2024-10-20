@@ -1,6 +1,6 @@
 import React from "react";
-import MuscleApiGateway from "../../services/api/gateway/MuscleApiGateway.tsx";
-import DeleteButton from "../../components/button/DeleteButton.tsx";
+import MuscleApiGateway from "app/services/api/gateway/MuscleApiGateway.tsx";
+import DeleteButton from "app/components/button/DeleteButton.tsx";
 
 type MuscleDeleteButtonType = {
     muscleId: number,
