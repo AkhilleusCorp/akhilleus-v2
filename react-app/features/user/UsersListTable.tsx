@@ -1,15 +1,14 @@
 import React, {useEffect, useState} from "react";
 import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from '@mui/material';
-import UsersListFilters from "../../services/api/filters/UsersListFilters.tsx";
-import userRegistries from "../../constants/userRegistries.tsx";
 import { useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../services/redux";
 import { useDispatch } from "react-redux";
-import { fetchUsers } from "../../services/redux/reducers/UserSlice.tsx";
-import ApiResultWrapper from "../../components/common/ApiResultWrapper.tsx";
-import PaginatedTableFooter from "../../components/table/PaginatedTableFooter.tsx";
-import ListFilters from "../../services/api/filters/ListFilters.tsx";
-
+import ListFilters from "app/services/api/filters/ListFilters.tsx";
+import UsersListFilters from "app/services/api/filters/UsersListFilters.tsx";
+import {AppDispatch, RootState} from "app/services/redux";
+import {fetchUsers} from "app/services/redux/reducers/UserSlice.tsx";
+import ApiResultWrapper from "app/components/common/ApiResultWrapper.tsx";
+import userRegistries from "app/constants/userRegistries.tsx";
+import PaginatedTableFooter from "app/components/table/PaginatedTableFooter.tsx";
 
 type UsersListTableType = {
     filters: UsersListFilters;

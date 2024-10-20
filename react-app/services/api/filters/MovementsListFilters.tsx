@@ -1,4 +1,4 @@
-import ListFilters from "./ListFilters.tsx";
+import ListFilters from "app/services/api/filters/ListFilters.tsx";
 
 class MovementsListFilters implements ListFilters {
     ids: string[] | null;

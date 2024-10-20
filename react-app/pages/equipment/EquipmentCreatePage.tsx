@@ -1,6 +1,6 @@
 import React from 'react';
-import AdminLayout from "../../layouts/admin/AdminLayout.tsx";
-import EquipmentCreateForm from "../../features/equipment/EquipmentCreateForm.tsx";
+import AdminLayout from "app/layouts/admin/AdminLayout.tsx";
+import EquipmentCreateForm from "app/features/equipment/EquipmentCreateForm.tsx";
 
 const EquipmentCreatePage: React.FC = () => {
     return (

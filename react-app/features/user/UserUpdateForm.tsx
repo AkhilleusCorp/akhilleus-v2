@@ -1,11 +1,11 @@
 import React from 'react';
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
-import websiteRoutes from "../../services/router/websiteRoutes.tsx";
-import SaveForm from "../../components/form/SaveForm.tsx";
-import UserApiGateway from "../../services/api/gateway/UserApiGateway.tsx";
-import UserDTO from "../../services/api/dtos/UserDTO.tsx";
 import {TextField} from "@mui/material";
+import UserDTO from "app/services/api/dtos/UserDTO.tsx";
+import UserApiGateway from "app/services/api/gateway/UserApiGateway.tsx";
+import websiteRoutes from "app/services/router/websiteRoutes.tsx";
+import SaveForm from "app/components/form/SaveForm.tsx";
 
 type UserEditFormType = {
     user: UserDTO,

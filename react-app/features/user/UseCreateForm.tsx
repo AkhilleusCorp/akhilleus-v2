@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import {useNavigate} from "react-router-dom";
-import websiteRoutes from "../../services/router/websiteRoutes.tsx";
-import SaveForm from "../../components/form/SaveForm.tsx";
-import UserApiGateway from "../../services/api/gateway/UserApiGateway.tsx";
 import {TextField} from "@mui/material";
-import PasswordInput from "../../components/input/PasswordInput.tsx";
+import UserApiGateway from "app/services/api/gateway/UserApiGateway.tsx";
+import websiteRoutes from "app/services/router/websiteRoutes.tsx";
+import SaveForm from "app/components/form/SaveForm.tsx";
+import PasswordInput from "app/components/input/PasswordInput.tsx";
 
 type UserCreateFormType = {
     username: string;

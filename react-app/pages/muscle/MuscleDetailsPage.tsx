@@ -1,9 +1,9 @@
 import React from 'react';
-import AdminLayout from "../../layouts/admin/AdminLayout.tsx";
-import MusclePreviewCard from "../../features/muscle/MusclePreviewCard.tsx";
+import AdminLayout from "app/layouts/admin/AdminLayout.tsx";
+import MusclePreviewCard from "app/features/muscle/MusclePreviewCard.tsx";
 import {useParams} from "react-router-dom";
-import useGetOneMuscleById from "../../hooks/muscle/useGetOneMuscleById.tsx";
-import ErrorPage from "../ErrorPage.tsx";
+import useGetOneMuscleById from "app/hooks/muscle/useGetOneMuscleById.tsx";
+import ErrorPage from "app/pages/ErrorPage.tsx";
 
 const MuscleDetailsPage: React.FC = () => {
     const { muscleId } = useParams<{ muscleId: string }>();

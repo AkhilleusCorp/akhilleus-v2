@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
-import AdminLayout from "../../layouts/admin/AdminLayout.tsx";
+import AdminLayout from "app/layouts/admin/AdminLayout.tsx";
 import {Link} from "react-router-dom";
-import websiteRoutes from "../../services/router/websiteRoutes.tsx";
-import MusclesListFilters from "../../services/api/filters/MusclesListFilters.tsx";
-import MuscleDTO from "../../services/api/dtos/MuscleDTO.tsx";
-import MusclePreviewCard from "../../features/muscle/MusclePreviewCard.tsx";
-import MusclesSearchForm from "../../features/muscle/MusclesSearchForm.tsx";
-import MusclesListTable from "../../features/muscle/MusclesListTable.tsx";
-import MuscleApiGateway from "../../services/api/gateway/MuscleApiGateway.tsx";
+import websiteRoutes from "app/services/router/websiteRoutes.tsx";
+import MusclesListFilters from "app/services/api/filters/MusclesListFilters.tsx";
+import MuscleDTO from "app/services/api/dtos/MuscleDTO.tsx";
+import MusclePreviewCard from "app/features/muscle/MusclePreviewCard.tsx";
+import MusclesSearchForm from "app/features/muscle/MusclesSearchForm.tsx";
+import MusclesListTable from "app/features/muscle/MusclesListTable.tsx";
+import MuscleApiGateway from "app/services/api/gateway/MuscleApiGateway.tsx";
 
 const MusclesPage: React.FC = () => {
     const defaultFilters = new MusclesListFilters();

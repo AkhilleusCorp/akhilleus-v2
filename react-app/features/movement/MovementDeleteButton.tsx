@@ -1,6 +1,6 @@
 import React from "react";
-import MovementApiGateway from "../../services/api/gateway/MovementApiGateway.tsx";
-import DeleteButton from "../../components/button/DeleteButton.tsx";
+import MovementApiGateway from "app/services/api/gateway/MovementApiGateway.tsx";
+import DeleteButton from "app/components/button/DeleteButton.tsx";
 
 type MovementDeleteButtonType = {
     movementId: number,

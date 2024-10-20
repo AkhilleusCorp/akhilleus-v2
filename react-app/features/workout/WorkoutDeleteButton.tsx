@@ -1,6 +1,6 @@
 import React from "react";
-import WorkoutApiGateway from "../../services/api/gateway/WorkoutApiGateway.tsx";
-import DeleteButton from "../../components/button/DeleteButton.tsx";
+import WorkoutApiGateway from "app/services/api/gateway/WorkoutApiGateway.tsx";
+import DeleteButton from "app/components/button/DeleteButton.tsx";
 
 type WorkoutDeleteButtonType = {
     workoutId: number,

@@ -1,5 +1,5 @@
 import React from 'react';
-import AdminLayout from "../layouts/admin/AdminLayout.tsx";
+import AdminLayout from "app/layouts/admin/AdminLayout.tsx";
 
 const DashboardPage: React.FC = () => {
     

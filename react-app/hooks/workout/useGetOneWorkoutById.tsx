@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
-import WorkoutApiGateway from "../../services/api/gateway/WorkoutApiGateway.tsx";
-import WorkoutDTO from "../../services/api/dtos/WorkoutDTO.tsx";
+import WorkoutApiGateway from "app/services/api/gateway/WorkoutApiGateway.tsx";
+import WorkoutDTO from "app/services/api/dtos/WorkoutDTO.tsx";
 
 function useGetOneWorkoutById(workoutId: string|undefined): WorkoutDTO | null {
     if (!workoutId) {

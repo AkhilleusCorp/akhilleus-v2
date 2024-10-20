@@ -1,4 +1,4 @@
-import QueryId from "../../utils/interfaces/QueryId.tsx";
+import QueryId from "app/utils/interfaces/QueryId.tsx";
 
 const EQUIPMENT_API_HOST = 'https://api.akhilleus.com/api/equipments';
 const MOVEMENT_API_HOST = 'https://api.akhilleus.com/api/movements';

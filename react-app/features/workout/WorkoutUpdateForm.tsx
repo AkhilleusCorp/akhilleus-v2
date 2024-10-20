@@ -1,13 +1,13 @@
 import React from 'react';
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
-import websiteRoutes from "../../services/router/websiteRoutes.tsx";
-import SaveForm from "../../components/form/SaveForm.tsx";
-import WorkoutApiGateway from "../../services/api/gateway/WorkoutApiGateway.tsx";
-import WorkoutDTO from "../../services/api/dtos/WorkoutDTO.tsx";
 import {SelectChangeEvent, TextField} from "@mui/material";
-import SelectInput from "../../components/input/SelectInput.tsx";
-import workoutRegistries from "../../constants/workoutRegistries.tsx";
+import WorkoutDTO from "app/services/api/dtos/WorkoutDTO.tsx";
+import WorkoutApiGateway from "app/services/api/gateway/WorkoutApiGateway.tsx";
+import websiteRoutes from "app/services/router/websiteRoutes.tsx";
+import SaveForm from "app/components/form/SaveForm.tsx";
+import SelectInput from "app/components/input/SelectInput.tsx";
+import workoutRegistries from "app/constants/workoutRegistries.tsx";
 
 type WorkoutEditFormType = {
     workout: WorkoutDTO,

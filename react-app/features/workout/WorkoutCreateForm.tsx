@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {useNavigate} from "react-router-dom";
-import websiteRoutes from "../../services/router/websiteRoutes.tsx";
-import SaveForm from "../../components/form/SaveForm.tsx";
-import WorkoutApiGateway from "../../services/api/gateway/WorkoutApiGateway.tsx";
 import {TextField} from "@mui/material";
+import WorkoutApiGateway from "app/services/api/gateway/WorkoutApiGateway.tsx";
+import websiteRoutes from "app/services/router/websiteRoutes.tsx";
+import SaveForm from "app/components/form/SaveForm.tsx";
 
 type WorkoutCreateFormType = {
     name: string;

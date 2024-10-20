@@ -1,9 +1,9 @@
 import React from 'react';
-import AdminLayout from "../../layouts/admin/AdminLayout.tsx";
+import AdminLayout from "app/layouts/admin/AdminLayout.tsx";
 import {useParams} from "react-router-dom";
-import UserUpdateForm from "../../features/user/UserUpdateForm.tsx";
-import useGetOneUserById from "../../hooks/user/useGetOneUserById.tsx";
-import ErrorPage from "../ErrorPage.tsx";
+import UserUpdateForm from "app/features/user/UserUpdateForm.tsx";
+import useGetOneUserById from "app/hooks/user/useGetOneUserById.tsx";
+import ErrorPage from "app/pages/ErrorPage.tsx";
 
 const UserUpdatePage: React.FC = () => {
     const { userId } = useParams<{ userId: string }>();

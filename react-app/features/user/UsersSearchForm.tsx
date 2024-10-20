@@ -1,11 +1,11 @@
 import React, {useState} from "react";
-import UsersListFilters from "../../services/api/filters/UsersListFilters.tsx";
-import SearchForm from "../../components/form/SearchForm.tsx";
 import {FormControl, Grid2 as Grid, SelectChangeEvent, TextField} from "@mui/material";
-import SelectInput from "../../components/input/SelectInput.tsx";
-import userRegistries from "../../constants/userRegistries.tsx";
-import MultiSelectInput from "../../components/input/MultiSelectInput.tsx";
-import QueryIds from "../../utils/interfaces/QueryIds.tsx";
+import UsersListFilters from "app/services/api/filters/UsersListFilters.tsx";
+import QueryIds from "app/utils/interfaces/QueryIds.tsx";
+import SearchForm from "app/components/form/SearchForm.tsx";
+import userRegistries from "app/constants/userRegistries.tsx";
+import MultiSelectInput from "app/components/input/MultiSelectInput.tsx";
+import SelectInput from "app/components/input/SelectInput.tsx";
 
 type UserSearchFormType = {
     defaultFilters: UsersListFilters,

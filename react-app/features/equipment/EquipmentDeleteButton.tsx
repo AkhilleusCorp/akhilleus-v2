@@ -1,6 +1,6 @@
 import React from "react";
-import EquipmentApiGateway from "../../services/api/gateway/EquipmentApiGateway.tsx";
-import DeleteButton from "../../components/button/DeleteButton.tsx";
+import EquipmentApiGateway from "app/services/api/gateway/EquipmentApiGateway.tsx";
+import DeleteButton from "app/components/button/DeleteButton.tsx";
 
 type EquipmentDeleteButtonType = {
     equipmentId: number,

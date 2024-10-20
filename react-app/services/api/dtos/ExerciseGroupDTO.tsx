@@ -1,4 +1,4 @@
-import ExerciseDTO from "./ExerciseDTO.tsx";
+import ExerciseDTO from "app/services/api/dtos/ExerciseDTO.tsx";
 
 class ExerciseGroupDTO {
     id: number;

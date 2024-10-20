@@ -1,13 +1,13 @@
 import React, {useState} from "react";
-import MovementsListFilters from "../../services/api/filters/MovementsListFilters.tsx";
-import SearchForm from "../../components/form/SearchForm.tsx";
 import {FormControl, Grid2 as Grid, SelectChangeEvent, TextField} from "@mui/material";
-import useGetDropdownableEquipments from "../../hooks/equipment/useGetDropdownableEquipments.tsx";
-import SelectInput from "../../components/input/SelectInput.tsx";
-import useGetDropdownableMuscles from "../../hooks/muscle/useGetDropdownableMuscles.tsx";
-import MultiSelectInput from "../../components/input/MultiSelectInput.tsx";
-import movementRegistries from "../../constants/movementRegistries.tsx";
-import QueryIds from "../../utils/interfaces/QueryIds.tsx";
+import MovementsListFilters from "app/services/api/filters/MovementsListFilters.tsx";
+import useGetDropdownableEquipments from "app/hooks/equipment/useGetDropdownableEquipments.tsx";
+import useGetDropdownableMuscles from "app/hooks/muscle/useGetDropdownableMuscles.tsx";
+import QueryIds from "app/utils/interfaces/QueryIds.tsx";
+import SearchForm from "app/components/form/SearchForm.tsx";
+import SelectInput from "app/components/input/SelectInput.tsx";
+import MultiSelectInput from "app/components/input/MultiSelectInput.tsx";
+import movementRegistries from "app/constants/movementRegistries.tsx";
 
 type MovementSearchFormType = {
     defaultFilters: MovementsListFilters,

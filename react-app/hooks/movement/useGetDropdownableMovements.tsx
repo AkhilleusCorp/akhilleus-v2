@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
-import MovementApiGateway from "../../services/api/gateway/MovementApiGateway.tsx";
-import IndexedArray from "../../utils/interfaces/IndexedArray.tsx";
+import MovementApiGateway from "app/services/api/gateway/MovementApiGateway.tsx";
+import IndexedArray from "app/utils/interfaces/IndexedArray.tsx";
 
 function useGetDropdownableMovements(): IndexedArray {
     const [movements, setMovements] = useState<IndexedArray>({});

@@ -1,9 +1,9 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit"
-import MuscleDTO from "../../api/dtos/MuscleDTO.tsx";
-import MuscleListFilters from "../../api/filters/MusclesListFilters.tsx";
-import MuscleApiGateway from "../../api/gateway/MuscleApiGateway.tsx";
-import APIResponseDTO from "../../api/dtos/APIResponseDTO.tsx";
-import PaginationDTO from "../../api/dtos/PaginationDTO.tsx";
+import MuscleDTO from "app/services/api/dtos/MuscleDTO.tsx";
+import MuscleListFilters from "app/services/api/filters/MusclesListFilters.tsx";
+import MuscleApiGateway from "app/services/api/gateway/MuscleApiGateway.tsx";
+import APIResponseDTO from "app/services/api/dtos/APIResponseDTO.tsx";
+import PaginationDTO from "app/services/api/dtos/PaginationDTO.tsx";
 
 export interface MuscleInitialState {
     muscles: MuscleDTO[],

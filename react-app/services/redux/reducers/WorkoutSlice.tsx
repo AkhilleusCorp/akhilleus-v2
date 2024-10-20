@@ -1,9 +1,9 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit"
-import WorkoutDTO from "../../api/dtos/WorkoutDTO.tsx";
-import WorkoutListFilters from "../../api/filters/WorkoutsListFilters.tsx";
-import WorkoutApiGateway from "../../api/gateway/WorkoutApiGateway.tsx";
-import PaginationDTO from "../../api/dtos/PaginationDTO.tsx";
-import APIResponseDTO from "../../api/dtos/APIResponseDTO.tsx";
+import WorkoutDTO from "app/services/api/dtos/WorkoutDTO.tsx";
+import WorkoutListFilters from "app/services/api/filters/WorkoutsListFilters.tsx";
+import WorkoutApiGateway from "app/services/api/gateway/WorkoutApiGateway.tsx";
+import PaginationDTO from "app/services/api/dtos/PaginationDTO.tsx";
+import APIResponseDTO from "app/services/api/dtos/APIResponseDTO.tsx";
 
 export interface WorkoutInitialState {
     workouts: WorkoutDTO[],

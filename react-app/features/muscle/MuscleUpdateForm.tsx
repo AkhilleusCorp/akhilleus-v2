@@ -1,13 +1,13 @@
 import React from 'react';
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
-import websiteRoutes from "../../services/router/websiteRoutes.tsx";
-import SaveForm from "../../components/form/SaveForm.tsx";
-import MuscleApiGateway from "../../services/api/gateway/MuscleApiGateway.tsx";
-import MuscleDTO from "../../services/api/dtos/MuscleDTO.tsx";
 import {FormControl, Grid2 as Grid, SelectChangeEvent, TextField} from "@mui/material";
-import SelectInput from "../../components/input/SelectInput.tsx";
-import muscleRegistries from "../../constants/muscleRegistries.tsx";
+import MuscleDTO from "app/services/api/dtos/MuscleDTO.tsx";
+import MuscleApiGateway from "app/services/api/gateway/MuscleApiGateway.tsx";
+import websiteRoutes from "app/services/router/websiteRoutes.tsx";
+import SaveForm from "app/components/form/SaveForm.tsx";
+import muscleRegistries from "app/constants/muscleRegistries.tsx";
+import SelectInput from "app/components/input/SelectInput.tsx";
 
 type MuscleUpdateFormType = {
     muscle: MuscleDTO,

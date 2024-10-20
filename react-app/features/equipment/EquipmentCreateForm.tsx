@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import {useNavigate} from "react-router-dom";
-import websiteRoutes from "../../services/router/websiteRoutes.tsx";
-import SaveForm from "../../components/form/SaveForm.tsx";
-import EquipmentApiGateway from "../../services/api/gateway/EquipmentApiGateway.tsx";
 import {FormControl, Grid2 as Grid, SelectChangeEvent, TextField} from "@mui/material";
-import SelectInput from "../../components/input/SelectInput.tsx";
-import equipmentRegistries from "../../constants/equipmentRegistries.tsx";
+import EquipmentApiGateway from "app/services/api/gateway/EquipmentApiGateway.tsx";
+import websiteRoutes from "app/services/router/websiteRoutes.tsx";
+import SaveForm from "app/components/form/SaveForm.tsx";
+import equipmentRegistries from "app/constants/equipmentRegistries.tsx";
+import SelectInput from "app/components/input/SelectInput.tsx";
 
 type EquipmentCreateFormType = {
     name: string;

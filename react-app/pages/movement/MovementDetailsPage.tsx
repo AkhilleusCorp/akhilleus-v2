@@ -1,9 +1,9 @@
 import React from 'react';
-import AdminLayout from "../../layouts/admin/AdminLayout.tsx";
-import MovementPreviewCard from "../../features/movement/MovementPreviewCard.tsx";
+import AdminLayout from "app/layouts/admin/AdminLayout.tsx";
+import MovementPreviewCard from "app/features/movement/MovementPreviewCard.tsx";
 import {useParams} from "react-router-dom";
-import useGetOneMovementById from "../../hooks/movement/useGetOneMovementById.tsx";
-import ErrorPage from "../ErrorPage.tsx";
+import useGetOneMovementById from "app/hooks/movement/useGetOneMovementById.tsx";
+import ErrorPage from "app/pages/ErrorPage.tsx";
 
 const MovementDetailsPage: React.FC = () => {
     const { movementId } = useParams<{ movementId: string }>();

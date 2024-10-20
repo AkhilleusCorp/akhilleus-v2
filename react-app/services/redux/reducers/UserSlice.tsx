@@ -1,9 +1,9 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit"
-import UserDTO from "../../api/dtos/UserDTO.tsx";
-import UserListFilters from "../../api/filters/UsersListFilters.tsx";
-import UserApiGateway from "../../api/gateway/UserApiGateway.tsx";
-import PaginationDTO from "../../api/dtos/PaginationDTO.tsx";
-import APIResponseDTO from "../../api/dtos/APIResponseDTO.tsx";
+import UserDTO from "app/services/api/dtos/UserDTO.tsx";
+import UserListFilters from "app/services/api/filters/UsersListFilters.tsx";
+import UserApiGateway from "app/services/api/gateway/UserApiGateway.tsx";
+import PaginationDTO from "app/services/api/dtos/PaginationDTO.tsx";
+import APIResponseDTO from "app/services/api/dtos/APIResponseDTO.tsx";
 
 export interface UserInitialState {
     users: UserDTO[],

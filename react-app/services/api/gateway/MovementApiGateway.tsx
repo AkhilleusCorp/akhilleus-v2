@@ -1,10 +1,10 @@
-import AbstractApiGateway from "./AbstractApiGateway.tsx";
-import MovementDTO from "../dtos/MovementDTO.tsx";
-import MovementsListFilters from "../filters/MovementsListFilters.tsx";
-import apiRoutes from "../apiRoutes.tsx";
-import QueryId from "../../../utils/interfaces/QueryId.tsx";
-import IndexedArray from "../../../utils/interfaces/IndexedArray.tsx";
-import APIResponseDTO from "../dtos/APIResponseDTO.tsx";
+import AbstractApiGateway from "app/services/api/gateway/AbstractApiGateway.tsx";
+import MovementDTO from "app/services/api/dtos/MovementDTO.tsx";
+import MovementsListFilters from "app/services/api/filters/MovementsListFilters.tsx";
+import apiRoutes from "app/services/api/apiRoutes.tsx";
+import QueryId from "app/utils/interfaces/QueryId.tsx";
+import IndexedArray from "app/utils/interfaces/IndexedArray.tsx";
+import APIResponseDTO from "app/services/api/dtos/APIResponseDTO.tsx";
 
 class MovementApiGateway extends AbstractApiGateway {
     static async getOneMovement (movementId: QueryId): Promise<MovementDTO|null> {

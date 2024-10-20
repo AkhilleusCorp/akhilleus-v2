@@ -1,17 +1,17 @@
 import React from 'react';
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
-import websiteRoutes from "../../services/router/websiteRoutes.tsx";
-import SaveForm from "../../components/form/SaveForm.tsx";
-import MovementApiGateway from "../../services/api/gateway/MovementApiGateway.tsx";
 import {FormControl, Grid2 as Grid, SelectChangeEvent, TextField} from "@mui/material";
-import SelectInput from "../../components/input/SelectInput.tsx";
-import MultiSelectInput from "../../components/input/MultiSelectInput.tsx";
-import useGetDropdownableEquipments from "../../hooks/equipment/useGetDropdownableEquipments.tsx";
-import useGetDropdownableMuscles from "../../hooks/muscle/useGetDropdownableMuscles.tsx";
-import movementRegistries from "../../constants/movementRegistries.tsx";
-import MovementUpdateSource from "../../services/api/source/MovementUpdateSource.tsx";
-import QueryIds from "../../utils/interfaces/QueryIds.tsx";
+import MovementUpdateSource from "app/services/api/source/MovementUpdateSource.tsx";
+import useGetDropdownableEquipments from "app/hooks/equipment/useGetDropdownableEquipments.tsx";
+import useGetDropdownableMuscles from "app/hooks/muscle/useGetDropdownableMuscles.tsx";
+import QueryIds from "app/utils/interfaces/QueryIds.tsx";
+import MovementApiGateway from "app/services/api/gateway/MovementApiGateway.tsx";
+import websiteRoutes from "app/services/router/websiteRoutes.tsx";
+import SaveForm from "app/components/form/SaveForm.tsx";
+import SelectInput from "app/components/input/SelectInput.tsx";
+import movementRegistries from "app/constants/movementRegistries.tsx";
+import MultiSelectInput from "app/components/input/MultiSelectInput.tsx";
 
 type MovementUpdateFormType = {
     movement: MovementUpdateSource,

@@ -1,12 +1,12 @@
 import React from 'react';
-import EditButton from "../../components/button/EditButton.tsx";
-import websiteRoutes from "../../services/router/websiteRoutes.tsx";
-import DetailsButton from "../../components/button/DetailsButton.tsx";
-import MuscleDTO from "../../services/api/dtos/MuscleDTO.tsx";
 import {Card, CardActions, CardContent, Typography} from "@mui/material";
-import MuscleDeleteButton from "./MuscleDeleteButton.tsx";
 import {useNavigate} from "react-router-dom";
-import muscleRegistries from "../../constants/muscleRegistries.tsx";
+import MuscleDTO from "app/services/api/dtos/MuscleDTO.tsx";
+import websiteRoutes from "app/services/router/websiteRoutes.tsx";
+import muscleRegistries from "app/constants/muscleRegistries.tsx";
+import DetailsButton from "app/components/button/DetailsButton.tsx";
+import MuscleDeleteButton from "app/features/muscle/MuscleDeleteButton.tsx";
+import EditButton from "app/components/button/EditButton.tsx";
 
 type MuscleDetailsCardType = {
     muscle: MuscleDTO,

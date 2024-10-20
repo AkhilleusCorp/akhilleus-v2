@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import {useNavigate} from "react-router-dom";
-import websiteRoutes from "../../services/router/websiteRoutes.tsx";
-import SaveForm from "../../components/form/SaveForm.tsx";
-import MuscleApiGateway from "../../services/api/gateway/MuscleApiGateway.tsx";
 import {FormControl, Grid2 as Grid, SelectChangeEvent, TextField} from "@mui/material";
-import SelectInput from "../../components/input/SelectInput.tsx";
-import muscleRegistries from "../../constants/muscleRegistries.tsx";
+import MuscleApiGateway from "app/services/api/gateway/MuscleApiGateway.tsx";
+import websiteRoutes from "app/services/router/websiteRoutes.tsx";
+import SaveForm from "app/components/form/SaveForm.tsx";
+import SelectInput from "app/components/input/SelectInput.tsx";
+import muscleRegistries from "app/constants/muscleRegistries.tsx";
 
 type MuscleCreateFormType = {
     name: string;

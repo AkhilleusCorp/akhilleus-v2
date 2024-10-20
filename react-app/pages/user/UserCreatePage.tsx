@@ -1,6 +1,6 @@
 import React from 'react';
-import AdminLayout from "../../layouts/admin/AdminLayout.tsx";
-import UserCreateForm from "../../features/user/UseCreateForm.tsx";
+import AdminLayout from "app/layouts/admin/AdminLayout.tsx";
+import UserCreateForm from "app/features/user/UseCreateForm.tsx";
 
 const UserCreatePage: React.FC = () => {
     return (

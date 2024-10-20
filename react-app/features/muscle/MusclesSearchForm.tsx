@@ -1,10 +1,10 @@
 import React, {useState} from "react";
-import MusclesListFilters from "../../services/api/filters/MusclesListFilters.tsx";
-import SearchForm from "../../components/form/SearchForm.tsx";
 import {FormControl, Grid2 as Grid, SelectChangeEvent, TextField} from "@mui/material";
-import MultiSelectInput from "../../components/input/MultiSelectInput.tsx";
-import muscleRegistries from "../../constants/muscleRegistries.tsx";
-import QueryIds from "../../utils/interfaces/QueryIds.tsx";
+import MusclesListFilters from "app/services/api/filters/MusclesListFilters.tsx";
+import QueryIds from "app/utils/interfaces/QueryIds.tsx";
+import muscleRegistries from "app/constants/muscleRegistries.tsx";
+import MultiSelectInput from "app/components/input/MultiSelectInput.tsx";
+import SearchForm from "app/components/form/SearchForm.tsx";
 
 type MuscleSearchFormType = {
     defaultFilters: MusclesListFilters,

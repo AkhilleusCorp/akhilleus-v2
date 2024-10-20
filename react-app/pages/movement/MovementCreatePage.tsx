@@ -1,6 +1,6 @@
 import React from 'react';
-import AdminLayout from "../../layouts/admin/AdminLayout.tsx";
-import MovementCreateForm from "../../features/movement/MovementCreateForm.tsx";
+import AdminLayout from "app/layouts/admin/AdminLayout.tsx";
+import MovementCreateForm from "app/features/movement/MovementCreateForm.tsx";
 
 const MovementCreatePage: React.FC = () => {
     return (

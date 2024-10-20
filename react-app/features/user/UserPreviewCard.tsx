@@ -1,12 +1,12 @@
-                                                                                                                                                                                                                                                                                                import React from 'react';
-import EditButton from "../../components/button/EditButton.tsx";
-import websiteRoutes from "../../services/router/websiteRoutes.tsx";
-import DetailsButton from "../../components/button/DetailsButton.tsx";
-import UserDTO from "../../services/api/dtos/UserDTO.tsx";
+import React from "react";
 import {Card, CardActions, CardContent, Typography} from "@mui/material";
 import {useNavigate} from "react-router-dom";
-import UserDeleteButton from "./UserDeleteButton.tsx";
-import userRegistries from "../../constants/userRegistries.tsx";
+import UserDTO from "app/services/api/dtos/UserDTO.tsx";
+import websiteRoutes from "app/services/router/websiteRoutes.tsx";
+import userRegistries from "app/constants/userRegistries.tsx";
+import DetailsButton from "app/components/button/DetailsButton.tsx";
+import EditButton from "app/components/button/EditButton.tsx";
+import UserDeleteButton from "app/features/user/UserDeleteButton.tsx";
 
 type UserDetailsCardType = {
     user: UserDTO,

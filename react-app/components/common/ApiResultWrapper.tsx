@@ -1,6 +1,6 @@
 import * as React from 'react';
 import CircularLoading from './CircularLoading';
-import GlobalError from '../error/GlobalError';
+import GlobalError from "app/components/error/GlobalError.tsx";
 
 type ApiResultWrapperType = {
     loading: boolean;

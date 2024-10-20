@@ -1,12 +1,12 @@
 import React from 'react';
-import EditButton from "../../components/button/EditButton.tsx";
-import websiteRoutes from "../../services/router/websiteRoutes.tsx";
-import DetailsButton from "../../components/button/DetailsButton.tsx";
-import MovementDTO from "../../services/api/dtos/MovementDTO.tsx";
 import {Card, CardActions, CardContent, Chip, Typography} from "@mui/material";
-import MovementDeleteButton from "./MovementDeleteButton.tsx";
 import {useNavigate} from "react-router-dom";
-import movementRegistries from "../../constants/movementRegistries.tsx";
+import MovementDTO from "app/services/api/dtos/MovementDTO.tsx";
+import websiteRoutes from "app/services/router/websiteRoutes.tsx";
+import movementRegistries from "app/constants/movementRegistries.tsx";
+import DetailsButton from "app/components/button/DetailsButton.tsx";
+import EditButton from "app/components/button/EditButton.tsx";
+import MovementDeleteButton from "app/features/movement/MovementDeleteButton.tsx";
 
 type MovementDetailsCardType = {
     movement: MovementDTO,

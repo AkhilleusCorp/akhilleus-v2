@@ -1,9 +1,9 @@
-import AbstractApiGateway from "./AbstractApiGateway.tsx";
-import UserDTO from "../dtos/UserDTO.tsx";
-import apiRoutes from "../apiRoutes.tsx";
-import UsersListFilters from "../filters/UsersListFilters.tsx";
-import QueryId from "../../../utils/interfaces/QueryId.tsx";
-import APIResponseDTO from "../dtos/APIResponseDTO.tsx";
+import AbstractApiGateway from "app/services/api/gateway/AbstractApiGateway.tsx";
+import UserDTO from "app/services/api/dtos/UserDTO.tsx";
+import apiRoutes from "app/services/api/apiRoutes.tsx";
+import UsersListFilters from "app/services/api/filters/UsersListFilters.tsx";
+import QueryId from "app/utils/interfaces/QueryId.tsx";
+import APIResponseDTO from "app/services/api/dtos/APIResponseDTO.tsx";
 
 class UserApiGateway extends AbstractApiGateway {
     static async getOneUser (userId: QueryId): Promise<UserDTO|null> {

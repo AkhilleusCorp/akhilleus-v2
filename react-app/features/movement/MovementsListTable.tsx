@@ -1,15 +1,14 @@
 import React, {useEffect, useState} from "react";
 import {Paper, Table,TableBody,TableCell, TableContainer, TableHead, TableRow} from '@mui/material';
-import MovementsListFilters from "../../services/api/filters/MovementsListFilters.tsx";
-import movementRegistries from "../../constants/movementRegistries.tsx";
 import { useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../services/redux/index.tsx";
 import { useDispatch } from "react-redux";
-import { fetchMovements } from "../../services/redux/reducers/MovementSlice.tsx";
-import ApiResultWrapper from "../../components/common/ApiResultWrapper.tsx";
-import PaginatedTableFooter from "../../components/table/PaginatedTableFooter.tsx";
-import ListFilters from "../../services/api/filters/ListFilters.tsx";
-
+import ListFilters from "app/services/api/filters/ListFilters.tsx";
+import MovementsListFilters from "app/services/api/filters/MovementsListFilters.tsx";
+import {AppDispatch, RootState} from "app/services/redux";
+import {fetchMovements} from "app/services/redux/reducers/MovementSlice.tsx";
+import ApiResultWrapper from "app/components/common/ApiResultWrapper.tsx";
+import movementRegistries from "app/constants/movementRegistries.tsx";
+import PaginatedTableFooter from "app/components/table/PaginatedTableFooter.tsx";
 
 type MovementListTableType = {
     filters: MovementsListFilters;

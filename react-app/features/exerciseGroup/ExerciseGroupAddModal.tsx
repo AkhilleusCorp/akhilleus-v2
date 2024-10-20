@@ -6,8 +6,8 @@ import {
     DialogContent,
     DialogTitle, SelectChangeEvent
 } from "@mui/material";
-import SelectInput from "../../components/input/SelectInput.tsx";
-import IndexedArray from "../../utils/interfaces/IndexedArray.tsx";
+import IndexedArray from "app/utils/interfaces/IndexedArray.tsx";
+import SelectInput from "app/components/input/SelectInput.tsx";
 
 type ExerciseGroupAddModalType = {
     shouldBeOpen: boolean;

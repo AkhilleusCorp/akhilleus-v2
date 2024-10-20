@@ -1,10 +1,10 @@
 import React, {useState} from "react";
-import EquipmentsListFilters from "../../services/api/filters/EquipmentsListFilters.tsx";
-import SearchForm from "../../components/form/SearchForm.tsx";
 import {FormControl, Grid2 as Grid, SelectChangeEvent, TextField} from "@mui/material";
-import MultiSelectInput from "../../components/input/MultiSelectInput.tsx";
-import equipmentRegistries from "../../constants/equipmentRegistries.tsx";
-import QueryIds from "../../utils/interfaces/QueryIds.tsx";
+import EquipmentsListFilters from "app/services/api/filters/EquipmentsListFilters.tsx";
+import QueryIds from "app/utils/interfaces/QueryIds.tsx";
+import SearchForm from "app/components/form/SearchForm.tsx";
+import MultiSelectInput from "app/components/input/MultiSelectInput.tsx";
+import equipmentRegistries from "app/constants/equipmentRegistries.tsx";
 
 type EquipmentSearchFormType = {
     defaultFilters: EquipmentsListFilters,

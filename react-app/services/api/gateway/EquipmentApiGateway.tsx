@@ -1,10 +1,10 @@
-import AbstractApiGateway from "./AbstractApiGateway.tsx";
-import EquipmentDTO from "../dtos/EquipmentDTO.tsx";
-import EquipmentsListFilters from "../filters/EquipmentsListFilters.tsx";
-import apiRoutes from "../apiRoutes.tsx";
-import QueryId from "../../../utils/interfaces/QueryId.tsx";
-import IndexedArray from "../../../utils/interfaces/IndexedArray.tsx";
-import APIResponseDTO from "../dtos/APIResponseDTO.tsx";
+import AbstractApiGateway from "app/services/api/gateway/AbstractApiGateway.tsx";
+import EquipmentDTO from "app/services/api/dtos/EquipmentDTO.tsx";
+import EquipmentsListFilters from "app/services/api/filters/EquipmentsListFilters.tsx";
+import apiRoutes from "app/services/api/apiRoutes.tsx";
+import QueryId from "app/utils/interfaces/QueryId.tsx";
+import IndexedArray from "app/utils/interfaces/IndexedArray.tsx";
+import APIResponseDTO from "app/services/api/dtos/APIResponseDTO.tsx";
 
 class EquipmentApiGateway extends AbstractApiGateway {
     static async getOneEquipment (equipmentId: QueryId): Promise<EquipmentDTO|null> {
