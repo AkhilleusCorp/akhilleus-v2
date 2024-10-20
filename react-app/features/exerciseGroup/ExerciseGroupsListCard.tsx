@@ -1,13 +1,13 @@
 import React, {useEffect} from "react";
 import {Grid2 as Grid, Typography} from "@mui/material";
-import ExerciseGroupCard from "./ExerciseGroupCard.tsx";
-import ExerciseGroupAddButton from "./ExerciseGroupAddButton.tsx";
-import useGetDropdownableMovements from "../../hooks/movement/useGetDropdownableMovements.tsx";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { AppDispatch, RootState } from "../../services/redux";
-import { fetchExerciseGroups } from "../../services/redux/reducers/ExerciseGroupSlice.tsx";
-import ApiResultWrapper from "../../components/common/ApiResultWrapper.tsx";
+import useGetDropdownableMovements from "app/hooks/movement/useGetDropdownableMovements.tsx";
+import {AppDispatch, RootState} from "app/services/redux";
+import {fetchExerciseGroups} from "app/services/redux/reducers/ExerciseGroupSlice.tsx";
+import ApiResultWrapper from "app/components/common/ApiResultWrapper.tsx";
+import ExerciseGroupCard from "app/features/exerciseGroup/ExerciseGroupCard.tsx";
+import ExerciseGroupAddButton from "app/features/exerciseGroup/ExerciseGroupAddButton.tsx";
 
 type ExerciseGroupsListCardType = {
     workoutId: number,
@@ -39,7 +39,7 @@ const ExerciseGroupsListCard: React.FC<ExerciseGroupsListCardType> = ({ workoutI
 
                 { displayWriteActions && (
                     <Grid container spacing={2} style={{justifyContent: 'center'}}>
-                    <ExerciseGroupAddButton workoutId={workoutId} type={'exercise'} movements={movements}/>
+                        <ExerciseGroupAddButton workoutId={workoutId} type={'exercise'} movements={movements}/>
                         <ExerciseGroupAddButton workoutId={workoutId} type={'superset'} movements={movements}/>
                     </Grid>
                 )}

@@ -1,10 +1,10 @@
 import React, {useState} from "react";
 import {Button} from "@mui/material";
-import IndexedArray from "../../utils/interfaces/IndexedArray.tsx";
-import ExerciseGroupAddModal from "./ExerciseGroupAddModal.tsx";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../services/redux/index.tsx";
-import { addExerciseGroup } from "../../services/redux/reducers/ExerciseGroupSlice.tsx";
+import IndexedArray from "app/utils/interfaces/IndexedArray.tsx";
+import {AppDispatch} from "app/services/redux";
+import {addExerciseGroup} from "app/services/redux/reducers/ExerciseGroupSlice.tsx";
+import ExerciseGroupAddModal from "app/features/exerciseGroup/ExerciseGroupAddModal.tsx";
 
 type ExerciseGroupAddButtonType = {
     workoutId: number,
