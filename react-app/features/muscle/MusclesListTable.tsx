@@ -1,14 +1,15 @@
 import React, {useEffect, useState} from "react";
 import {Paper, Table,TableBody,TableCell, TableContainer, TableHead, TableRow} from '@mui/material';
+import MusclesListFilters from "../../services/api/filters/MusclesListFilters.tsx";
+import muscleRegistries from "../../constants/muscleRegistries.tsx";
 import { useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../services/redux";
 import { useDispatch } from "react-redux";
+import { fetchMuscles } from "../../services/redux/reducers/MuscleSlice.tsx";
+import ApiResultWrapper from "../../components/common/ApiResultWrapper.tsx";
 import ListFilters from "app/services/api/filters/ListFilters.tsx";
-import MusclesListFilters from "app/services/api/filters/MusclesListFilters.tsx";
-import {AppDispatch, RootState} from "app/services/redux";
-import {fetchMuscles} from "app/services/redux/reducers/MuscleSlice.tsx";
-import ApiResultWrapper from "app/components/common/ApiResultWrapper.tsx";
-import muscleRegistries from "app/constants/muscleRegistries.tsx";
-import PaginatedTableFooter from "app/components/table/PaginatedTableFooter.tsx";
+import PaginatedTableFooter from "../../components/table/PaginatedTableFooter.tsx";
+
 
 type MuscleListTableType = {
     filters: MusclesListFilters;

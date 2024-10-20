@@ -1,13 +1,14 @@
 import React, {useEffect, useState} from "react";
 import {Paper, Table,TableBody,TableCell, TableContainer, TableHead, TableRow} from '@mui/material';
-import { useSelector, useDispatch } from "react-redux";
+import WorkoutsListFilters from "../../services/api/filters/WorkoutsListFilters.tsx";
+import workoutRegistries from "../../constants/workoutRegistries.tsx";
+import { useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../services/redux/index.tsx";
+import { useDispatch } from "react-redux";
+import { fetchWorkouts } from "../../services/redux/reducers/WorkoutSlice.tsx";
+import ApiResultWrapper from "../../components/common/ApiResultWrapper.tsx";
+import PaginatedTableFooter from "../../components/table/PaginatedTableFooter.tsx";
 import ListFilters from "app/services/api/filters/ListFilters.tsx";
-import WorkoutsListFilters from "app/services/api/filters/WorkoutsListFilters.tsx";
-import {AppDispatch, RootState} from "app/services/redux";
-import {fetchWorkouts} from "app/services/redux/reducers/WorkoutSlice.tsx";
-import ApiResultWrapper from "app/components/common/ApiResultWrapper.tsx";
-import workoutRegistries from "app/constants/workoutRegistries.tsx";
-import PaginatedTableFooter from "app/components/table/PaginatedTableFooter.tsx";
 
 type WorkoutListTableType = {
     filters: WorkoutsListFilters;
