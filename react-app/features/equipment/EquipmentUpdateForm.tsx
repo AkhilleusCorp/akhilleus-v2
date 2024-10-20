@@ -1,13 +1,13 @@
 import React from 'react';
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
-import websiteRoutes from "../../services/router/websiteRoutes.tsx";
-import SaveForm from "../../components/form/SaveForm.tsx";
-import EquipmentApiGateway from "../../services/api/gateway/EquipmentApiGateway.tsx";
-import EquipmentDTO from "../../services/api/dtos/EquipmentDTO.tsx";
 import {FormControl, Grid2 as Grid, SelectChangeEvent, TextField} from "@mui/material";
-import SelectInput from "../../components/input/SelectInput.tsx";
-import equipmentRegistries from "../../constants/equipmentRegistries.tsx";
+import EquipmentDTO from "app/services/api/dtos/EquipmentDTO.tsx";
+import EquipmentApiGateway from "app/services/api/gateway/EquipmentApiGateway.tsx";
+import websiteRoutes from "app/services/router/websiteRoutes.tsx";
+import equipmentRegistries from "app/constants/equipmentRegistries.tsx";
+import SelectInput from "app/components/input/SelectInput.tsx";
+import SaveForm from "app/components/form/SaveForm.tsx";
 
 type EquipmentUpdateFormType = {
     equipment: EquipmentDTO,
