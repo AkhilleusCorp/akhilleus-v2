@@ -1,14 +1,14 @@
 import React, {useEffect, useState} from "react";
 import {Paper, Table,TableBody,TableCell, TableContainer, TableHead, TableRow} from '@mui/material';
-import EquipmentsListFilters from "../../services/api/filters/EquipmentsListFilters.tsx";
-import equipmentRegistries from "../../constants/equipmentRegistries.tsx";
 import { useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../services/redux";
 import { useDispatch } from "react-redux";
-import { fetchEquipments } from "../../services/redux/reducers/EquipmentSlice.tsx";
-import ApiResultWrapper from "../../components/common/ApiResultWrapper.tsx";
-import PaginatedTableFooter from "../../components/table/PaginatedTableFooter.tsx";
 import ListFilters from "app/services/api/filters/ListFilters.tsx";
+import EquipmentsListFilters from "app/services/api/filters/EquipmentsListFilters.tsx";
+import {AppDispatch, RootState} from "app/services/redux";
+import {fetchEquipments} from "app/services/redux/reducers/EquipmentSlice.tsx";
+import ApiResultWrapper from "app/components/common/ApiResultWrapper.tsx";
+import equipmentRegistries from "app/constants/equipmentRegistries.tsx";
+import PaginatedTableFooter from "app/components/table/PaginatedTableFooter.tsx";
 
 type EquipmentListTableType = {
     filters: EquipmentsListFilters;
