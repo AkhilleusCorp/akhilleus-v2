@@ -1,9 +1,9 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit"
-import MovementDTO from "../../api/dtos/MovementDTO.tsx";
-import MovementListFilters from "../../api/filters/MovementsListFilters.tsx";
-import MovementApiGateway from "../../api/gateway/MovementApiGateway.tsx";
-import APIResponseDTO from "../../api/dtos/APIResponseDTO.tsx";
-import PaginationDTO from "../../api/dtos/PaginationDTO.tsx";
+import MovementDTO from "app/services/api/dtos/MovementDTO.tsx";
+import MovementListFilters from "app/services/api/filters/MovementsListFilters.tsx";
+import MovementApiGateway from "app/services/api/gateway/MovementApiGateway.tsx";
+import APIResponseDTO from "app/services/api/dtos/APIResponseDTO.tsx";
+import PaginationDTO from "app/services/api/dtos/PaginationDTO.tsx";
 
 export interface MovementInitialState {
     movements: MovementDTO[],

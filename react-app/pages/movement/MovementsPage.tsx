@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
-import AdminLayout from "../../layouts/admin/AdminLayout.tsx";
+import AdminLayout from "app/layouts/admin/AdminLayout.tsx";
 import {Link} from "react-router-dom";
-import websiteRoutes from "../../services/router/websiteRoutes.tsx";
-import MovementsListFilters from "../../services/api/filters/MovementsListFilters.tsx";
-import MovementDTO from "../../services/api/dtos/MovementDTO.tsx";
-import MovementPreviewCard from "../../features/movement/MovementPreviewCard.tsx";
-import MovementsSearchForm from "../../features/movement/MovementsSearchForm.tsx";
-import MovementsListTable from "../../features/movement/MovementsListTable.tsx";
-import MovementApiGateway from "../../services/api/gateway/MovementApiGateway.tsx";
+import websiteRoutes from "app/services/router/websiteRoutes.tsx";
+import MovementsListFilters from "app/services/api/filters/MovementsListFilters.tsx";
+import MovementDTO from "app/services/api/dtos/MovementDTO.tsx";
+import MovementPreviewCard from "app/features/movement/MovementPreviewCard.tsx";
+import MovementsSearchForm from "app/features/movement/MovementsSearchForm.tsx";
+import MovementsListTable from "app/features/movement/MovementsListTable.tsx";
+import MovementApiGateway from "app/services/api/gateway/MovementApiGateway.tsx";
 
 const MovementsPage: React.FC = () => {
     const defaultFilters= new MovementsListFilters();

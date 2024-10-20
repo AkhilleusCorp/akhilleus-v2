@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
-import AdminLayout from "../../layouts/admin/AdminLayout.tsx";
-import UsersListTable from "../../features/user/UsersListTable.tsx";
+import AdminLayout from "app/layouts/admin/AdminLayout.tsx";
+import UsersListTable from "app/features/user/UsersListTable.tsx";
 import {Link} from "react-router-dom";
-import UsersListFilters from "../../services/api/filters/UsersListFilters.tsx";
-import UsersSearchForm from "../../features/user/UsersSearchForm.tsx";
-import websiteRoutes from "../../services/router/websiteRoutes.tsx";
-import UserPreviewCard from "../../features/user/UserPreviewCard.tsx";
-import UserApiGateway from "../../services/api/gateway/UserApiGateway.tsx";
-import UserDTO from "../../services/api/dtos/UserDTO.tsx";
+import UsersListFilters from "app/services/api/filters/UsersListFilters.tsx";
+import UsersSearchForm from "app/features/user/UsersSearchForm.tsx";
+import websiteRoutes from "app/services/router/websiteRoutes.tsx";
+import UserPreviewCard from "app/features/user/UserPreviewCard.tsx";
+import UserApiGateway from "app/services/api/gateway/UserApiGateway.tsx";
+import UserDTO from "app/services/api/dtos/UserDTO.tsx";
 
 const UsersPage: React.FC = () => {
     const defaultFilters = new UsersListFilters();

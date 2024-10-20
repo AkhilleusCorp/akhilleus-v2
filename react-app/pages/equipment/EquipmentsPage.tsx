@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
-import AdminLayout from "../../layouts/admin/AdminLayout.tsx";
+import AdminLayout from "app/layouts/admin/AdminLayout.tsx";
 import {Link} from "react-router-dom";
-import websiteRoutes from "../../services/router/websiteRoutes.tsx";
-import EquipmentsListFilters from "../../services/api/filters/EquipmentsListFilters.tsx";
-import EquipmentDTO from "../../services/api/dtos/EquipmentDTO.tsx";
-import EquipmentPreviewCard from "../../features/equipment/EquipmentPreviewCard.tsx";
-import EquipmentsSearchForm from "../../features/equipment/EquipmentsSearchForm.tsx";
-import EquipmentsListTable from "../../features/equipment/EquipmentsListTable.tsx";
-import EquipmentApiGateway from "../../services/api/gateway/EquipmentApiGateway.tsx";
+import websiteRoutes from "app/services/router/websiteRoutes.tsx";
+import EquipmentsListFilters from "app/services/api/filters/EquipmentsListFilters.tsx";
+import EquipmentDTO from "app/services/api/dtos/EquipmentDTO.tsx";
+import EquipmentPreviewCard from "app/features/equipment/EquipmentPreviewCard.tsx";
+import EquipmentsSearchForm from "app/features/equipment/EquipmentsSearchForm.tsx";
+import EquipmentsListTable from "app/features/equipment/EquipmentsListTable.tsx";
+import EquipmentApiGateway from "app/services/api/gateway/EquipmentApiGateway.tsx";
 
 const EquipmentsPage: React.FC = () => {
     const defaultFilters = new EquipmentsListFilters();

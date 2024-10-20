@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {Link} from "react-router-dom";
-import websiteRoutes from "../../services/router/websiteRoutes.tsx";
 import {Box, Collapse, Divider, List, ListItem, ListItemButton, ListItemText} from "@mui/material";
 import {ExpandLess, ExpandMore} from "@mui/icons-material";
+import websiteRoutes from "app/services/router/websiteRoutes.tsx";
 
 const AdminSidebar: React.FC = () => {
     const [openTraining, setOpenTraining] = useState(false);

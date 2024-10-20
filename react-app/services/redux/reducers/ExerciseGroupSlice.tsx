@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit"
-import ExerciseGroupDTO from "../../api/dtos/ExerciseGroupDTO.tsx";
-import ExerciseGroupApiGateway from "../../api/gateway/ExerciseGroupApiGateway.tsx";
+import ExerciseGroupDTO from "app/services/api/dtos/ExerciseGroupDTO.tsx";
+import ExerciseGroupApiGateway from "app/services/api/gateway/ExerciseGroupApiGateway.tsx";
 
 export interface ExerciseGroupInitialState {
     exerciseGroups: ExerciseGroupDTO[],

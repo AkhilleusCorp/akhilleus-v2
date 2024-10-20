@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import AuthTokenManager from "../services/authentication/AuthTokenManager.tsx";
+import AuthTokenManager from "app/services/authentication/AuthTokenManager.tsx";
 
 function useGetAuthToken(): string | null {
     const [token, setToken] = useState<string|null>(null);

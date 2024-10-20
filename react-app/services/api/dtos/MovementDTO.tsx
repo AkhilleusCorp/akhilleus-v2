@@ -1,4 +1,4 @@
-import SimpleEmbeddedDTO from "./SimpleEmbeddedDTO.tsx";
+import SimpleEmbeddedDTO from "app/services/api/dtos/SimpleEmbeddedDTO.tsx";
 
 class MovementDTO {
     id: number;

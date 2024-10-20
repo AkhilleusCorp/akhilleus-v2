@@ -1,6 +1,6 @@
 import React from 'react';
-import AdminLayout from "../../layouts/admin/AdminLayout.tsx";
-import MuscleCreateForm from "../../features/muscle/MuscleCreateForm.tsx";
+import AdminLayout from "app/layouts/admin/AdminLayout.tsx";
+import MuscleCreateForm from "app/features/muscle/MuscleCreateForm.tsx";
 
 const MuscleCreatePage: React.FC = () => {
     return (

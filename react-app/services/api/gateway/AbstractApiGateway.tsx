@@ -1,6 +1,6 @@
 import axios from "axios";
-import IndexedArray from "../../../utils/interfaces/IndexedArray.tsx";
-import APIResponseDTO from "../dtos/APIResponseDTO.tsx";
+import IndexedArray from "app/utils/interfaces/IndexedArray.tsx";
+import APIResponseDTO from "app/services/api/dtos/APIResponseDTO.tsx";
 abstract class AbstractApiGateway {
 
     static async getOne (url: string): Promise<any|null> {
