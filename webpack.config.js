@@ -21,7 +21,7 @@ Encore
      * Each entry will result in one JavaScript file (e.g. app.js)
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
-    .addEntry('react_app', './react-app/App.tsx')
+    .addEntry('react_admin_app', './react-app/admin/AdminApp.tsx')
     .addEntry('react_css', './react-app/assets/styles/react-app.css')
     .addEntry('app_css', './react-app/assets/styles/app.css')
     .enableReactPreset()
