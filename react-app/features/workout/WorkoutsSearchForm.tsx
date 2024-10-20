@@ -1,10 +1,10 @@
 import React, {useState} from "react";
-import WorkoutsListFilters from "../../services/api/filters/WorkoutsListFilters.tsx";
-import SearchForm from "../../components/form/SearchForm.tsx";
 import {FormControl, Grid2 as Grid, SelectChangeEvent, TextField} from "@mui/material";
-import workoutRegistries from "../../constants/workoutRegistries.tsx";
-import MultiSelectInput from "../../components/input/MultiSelectInput.tsx";
-import QueryIds from "../../utils/interfaces/QueryIds.tsx";
+import WorkoutsListFilters from "app/services/api/filters/WorkoutsListFilters.tsx";
+import QueryIds from "app/utils/interfaces/QueryIds.tsx";
+import SearchForm from "app/components/form/SearchForm.tsx";
+import MultiSelectInput from "app/components/input/MultiSelectInput.tsx";
+import workoutRegistries from "app/constants/workoutRegistries.tsx";
 
 type WorkoutSearchFormType = {
     defaultFilters: WorkoutsListFilters,

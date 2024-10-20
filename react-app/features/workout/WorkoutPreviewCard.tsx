@@ -1,12 +1,12 @@
 import React from 'react';
-import EditButton from "../../components/button/EditButton.tsx";
-import websiteRoutes from "../../services/router/websiteRoutes.tsx";
-import DetailsButton from "../../components/button/DetailsButton.tsx";
-import WorkoutDTO from "../../services/api/dtos/WorkoutDTO.tsx";
 import {Card, CardActions, CardContent, Typography} from "@mui/material";
-import WorkoutDeleteButton from "./WorkoutDeleteButton.tsx";
 import {useNavigate} from "react-router-dom";
-import workoutRegistries from "../../constants/workoutRegistries.tsx";
+import WorkoutDTO from "app/services/api/dtos/WorkoutDTO.tsx";
+import websiteRoutes from "app/services/router/websiteRoutes.tsx";
+import workoutRegistries from "app/constants/workoutRegistries.tsx";
+import DetailsButton from "app/components/button/DetailsButton.tsx";
+import EditButton from "app/components/button/EditButton.tsx";
+import WorkoutDeleteButton from "app/features/workout/WorkoutDeleteButton.tsx";
 
 type WorkoutDetailsCardType = {
     workout: WorkoutDTO,
