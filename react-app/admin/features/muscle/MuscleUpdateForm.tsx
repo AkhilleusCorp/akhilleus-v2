@@ -4,7 +4,7 @@ import {useState} from "react";
 import {FormControl, Grid2 as Grid, SelectChangeEvent, TextField} from "@mui/material";
 import MuscleDTO from "app/admin/services/api/dtos/MuscleDTO.tsx";
 import MuscleApiGateway from "app/admin/services/api/gateway/MuscleApiGateway.tsx";
-import websiteRoutes from "app/admin/services/router/websiteRoutes.tsx";
+import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
 import SaveForm from "app/common/components/form/SaveForm.tsx";
 import muscleRegistries from "app/common/constants/muscleRegistries.tsx";
 import SelectInput from "app/common/components/input/SelectInput.tsx";
@@ -34,7 +34,7 @@ const MuscleUpdateForm: React.FC<MuscleUpdateFormType> = ({muscle}) => {
     const handleSubmit = async () => {
         try {
             await MuscleApiGateway.updateMuscle(muscle.id, muscleUpdated);
-            navigate(websiteRoutes.muscle.details(muscle.id));
+            navigate(adminRoutes.muscle.details(muscle.id));
         } catch (error) {
             console.log(error);
         }

@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import {FormControl, Grid2 as Grid, SelectChangeEvent, TextField} from "@mui/material";
 import EquipmentApiGateway from "app/admin/services/api/gateway/EquipmentApiGateway.tsx";
-import websiteRoutes from "app/admin/services/router/websiteRoutes.tsx";
+import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
 import SaveForm from "app/common/components/form/SaveForm.tsx";
 import equipmentRegistries from "app/common/constants/equipmentRegistries.tsx";
 import SelectInput from "app/common/components/input/SelectInput.tsx";
@@ -32,7 +32,7 @@ const EquipmentCreateForm: React.FC = () => {
     const handleSubmit = async () => {
         try {
             const equipment = await EquipmentApiGateway.createEquipment(equipmentCreate);
-            navigate(websiteRoutes.equipment.details(equipment.id));
+            navigate(adminRoutes.equipment.details(equipment.id));
         } catch (error) {
             console.log(error);
         }

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import AdminLayout from "app/admin/layouts/AdminLayout.tsx";
 import {Link} from "react-router-dom";
-import websiteRoutes from "app/admin/services/router/websiteRoutes.tsx";
+import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
 import MovementsListFilters from "app/admin/services/api/filters/MovementsListFilters.tsx";
 import MovementDTO from "app/admin/services/api/dtos/MovementDTO.tsx";
 import MovementPreviewCard from "app/admin/features/movement/MovementPreviewCard.tsx";
@@ -40,7 +40,7 @@ const MovementsPage: React.FC = () => {
             </div>
 
             <div className={"margin-bottom-s"}>
-                <Link to={websiteRoutes.movement.create}>Create New Movement</Link>
+                <Link to={adminRoutes.movement.create}>Create New Movement</Link>
             </div>
 
             <div className={"float-left two-thirds-width"}>

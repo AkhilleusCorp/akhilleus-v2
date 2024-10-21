@@ -35,7 +35,7 @@ final class AuthenticationController extends AbstractController
         $useCase->execute($this->getUser());
 
         return new RedirectResponse(
-            '/admin', // will be base on user type
+            '/member', // will be base on user type
         );
     }
 

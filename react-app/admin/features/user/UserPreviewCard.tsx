@@ -2,7 +2,7 @@ import React from "react";
 import {Card, CardActions, CardContent, Typography} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import UserDTO from "app/admin/services/api/dtos/UserDTO.tsx";
-import websiteRoutes from "app/admin/services/router/websiteRoutes.tsx";
+import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
 import userRegistries from "app/common/constants/userRegistries.tsx";
 import DetailsButton from "app/common/components/button/DetailsButton.tsx";
 import EditButton from "app/common/components/button/EditButton.tsx";
@@ -18,7 +18,7 @@ const UserPreviewCard: React.FC<UserDetailsCardType> = ({ user, displayReadActio
     const navigate = useNavigate();
 
     const onConfirmDelete = () => {
-        navigate(websiteRoutes.user.list);
+        navigate(adminRoutes.user.list);
     }
 
     return (
@@ -40,12 +40,12 @@ const UserPreviewCard: React.FC<UserDetailsCardType> = ({ user, displayReadActio
 
             <CardActions>
                 {displayReadActions && (
-                    <DetailsButton routeToDetailsPage={websiteRoutes.user.details(user.id)}/>
+                    <DetailsButton routeToDetailsPage={adminRoutes.user.details(user.id)}/>
                 )}
 
                 {displayWriteActions && (
                     <>
-                        <EditButton routeToEditPage={websiteRoutes.user.edit(user.id)}/>
+                        <EditButton routeToEditPage={adminRoutes.user.edit(user.id)}/>
                         <UserDeleteButton userId={user.id} callbackFunction={onConfirmDelete}/>
                     </>
                 )}

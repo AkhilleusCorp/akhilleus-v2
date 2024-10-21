@@ -1,8 +1,7 @@
-admin_controllers:
+react_app_controllers:
     resource:
-        path: ../src/Infrastructure/Controller/Admin
-        namespace: App\Infrastructure\Controller\Admin
-    prefix: /admin
+        path: ../src/Infrastructure/Controller/ReactApp
+        namespace: App\Infrastructure\Controller\ReactApp
     type: attribute
     schemes: ['%url_scheme%']
     host: '%host_website%'
