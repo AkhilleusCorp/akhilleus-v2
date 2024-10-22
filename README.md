@@ -3,13 +3,20 @@
 
 ## Requirements
  * git
- * php >= 8.2
- * sqlite
- * xdebug
- * node
- * npm
- * yarn
+ * docker
+ * node, npm, yarn (need to be moved to docker)
 
+## Installation
+ * clone the repository
+ * make setup (creates local files required for applications to run)
+ * make start (up containers, install symfony dependencies, create database, load fixtures)
+ * yarn install (install js dependencies)
+ * yarn watch (for dev)
 
-## Useful links
- * Code coverage: [Coveralls](https://coveralls.io/github/AkhilleusCorp/akhilleus-v2)
+## Backend tests
+ * unit tests only: make tests_unit
+ * integration tests only: make tests_integration
+ * All tests + coverage: tests_all
+
+## Frontend tests
+ * to come

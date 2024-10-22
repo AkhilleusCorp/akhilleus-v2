@@ -11,8 +11,21 @@
 
 ## Features
 ## API
+ * Workout start
+ * ExerciseGroup rest time between set
+ * Exercise value (weight, distance, duration, etc)
 ## Website
 ## React APP
+### Member area
+#### Workouts
+ * agenda (history + planned)
+ * details 
+ * edit
+ * start
+#### Exercise 
+ * update type
+ * add value (weight, distance, duration, etc)
+ * remove one
 ### Security
  * Migrate registration to react app
  * Migrate login to react app
