@@ -5,6 +5,7 @@ import MemberWorkoutListCard from "app/member/features/workout/MemberWorkoutList
 
 const MemberDashboardPage: React.FC = () => {
     const defaultFilters = new WorkoutsListFilters(10);
+    defaultFilters.status = ['completed'];
 
     return (
         <MemberLayout>

@@ -34,7 +34,7 @@ final class HttpResponseEventListener
         if (str_starts_with($uri, '/api') && false === $this->isIgnoredRoute($request->attributes->get('_route'))) {
             $viewModel = $event->getControllerResult();
             $tokenPayload = $this->getTokenPayload($request);
-            $serializer = new CustomSerializer(null === $tokenPayload ? null : $tokenPayload['date_format']);
+            $serializer = new CustomSerializer(null === $tokenPayload ? null : $tokenPayload[TokenPayloadRegistry::PAYLOAD_DATE_FORMAT]);
             $serializationGroup = $this->getSerializationGroup($tokenPayload, $request->query->get('data-profile'));
 
             $event->setResponse(
@@ -75,8 +75,7 @@ final class HttpResponseEventListener
     private function getSerializationGroup(?array $tokenPayload, ?string $dataProfile): string
     {
         if (null === $tokenPayload) {
-            // return DataProfileRegistry::DATA_PROFILE_PUBLIC;
-            return DataProfileRegistry::DATA_PROFILE_ADMIN; // Todo: to remove once token is handle in react
+            return DataProfileRegistry::DATA_PROFILE_PUBLIC;
         }
 
         $serializationGroup = $tokenPayload[TokenPayloadRegistry::PAYLOAD_USER_TYPE];

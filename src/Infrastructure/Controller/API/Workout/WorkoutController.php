@@ -24,6 +24,7 @@ final class WorkoutController extends AbstractAPIController
     #[Route('/workouts', name: 'workout_get_many', methods: ['GET'])]
     #[OA\Parameter(name: 'ids', in: 'query', required: false, schema: new OA\Schema(type: 'array', items: new OA\Items(type: 'integer')))]
     #[OA\Parameter(name: 'name', in: 'query', required: false, schema: new OA\Schema(type: 'string'))]
+    #[OA\Parameter(name: 'memberId', in: 'query', required: false, schema: new OA\Schema(type: 'number'))]
     #[OA\Parameter(name: 'status', in: 'query', required: false, schema: new OA\Schema(type: 'string', enum: UserStatusRegistry::USER_STATUSES))]
     #[OA\Parameter(name: 'page', in: 'query', required: false, schema: new OA\Schema(type: 'number'))]
     #[OA\Parameter(name: 'limit', in: 'query', required: false, schema: new OA\Schema(type: 'number'))]
@@ -34,7 +35,7 @@ final class WorkoutController extends AbstractAPIController
     )]
     public function getMany(Request $request, GetManyWorkoutUseCase $useCase): MultipleObjectViewModel
     {
-        return $useCase->execute($request->query->all(), $this->getDataProfile());
+        return $useCase->execute($request->query->all(), $this->getTokenPayload(), $this->getDataProfile());
     }
 
     #[Route('/workouts/{id}', name: 'workout_get_one_by_id', requirements: ['id' => '\d+'], methods: ['GET'])]

@@ -7,6 +7,7 @@ class WorkoutsListFilters implements ListFilters {
     sorts: string[] | null;
 
     name: string | null;
+    memberId: number | null;
     status: string[] | null;
 
     constructor(

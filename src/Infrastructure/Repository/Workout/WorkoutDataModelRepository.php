@@ -52,6 +52,11 @@ final class WorkoutDataModelRepository extends AbstractBaseDataModelRepository i
         $this->filterByName($queryBuilder, $filter->name);
         $this->filterByStatus($queryBuilder, $filter->status);
 
+        if (null !== $filter->memberId) {
+            $queryBuilder->andWhere($this->getAlias().'.member = :memberId')
+                         ->setParameter('memberId', $filter->memberId);
+        }
+
         return $this;
     }
 }

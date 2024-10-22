@@ -3,6 +3,7 @@
 namespace App\Domain\DTO\DataModel\Workout;
 
 use App\Domain\DTO\DataModel\DataModelInterface;
+use App\Domain\DTO\DataModel\User\UserDataModel;
 use App\Domain\Registry\Workout\WorkoutStatusRegistry;
 use App\Domain\Registry\Workout\WorkoutVisibilityRegistry;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -43,6 +44,14 @@ class WorkoutDataModel implements DataModelInterface
     /** @var Collection<int, ExerciseGroupDataModel> */
     #[ORM\OneToMany(targetEntity: ExerciseGroupDataModel::class, mappedBy: 'workout', cascade: ['remove'])]
     public Collection $exerciseGroups;
+
+    #[ORM\ManyToOne(targetEntity: UserDataModel::class)]
+    #[ORM\JoinColumn(name: 'member_id', referencedColumnName: 'id')]
+    public UserDataModel $member;
+
+    #[ORM\ManyToOne(targetEntity: UserDataModel::class)]
+    #[ORM\JoinColumn(name: 'coach_id', referencedColumnName: 'id', nullable: true)]
+    public ?UserDataModel $coach;
 
     public function __construct()
     {

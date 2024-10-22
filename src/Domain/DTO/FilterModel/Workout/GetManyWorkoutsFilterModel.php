@@ -14,6 +14,8 @@ final class GetManyWorkoutsFilterModel extends AbstractFilterModel implements Fi
 
     public ?string $name = null;
 
+    public ?int $memberId = null;
+
     /** @var string[] */
     public array $status = [];
 }

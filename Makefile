@@ -30,6 +30,12 @@ create_local_db:
 remove_local_db:
 	docker compose down --remove-orphan
 
+create_migration:
+	$(PHP) bin/console make:migration --formatted -n
+
+apply_migration:
+	$(PHP) bin/console doctrine:migrations:migrate -n
+
 load_fixtures:
 	$(PHP) bin/console doctrine:fixtures:load -n
 
