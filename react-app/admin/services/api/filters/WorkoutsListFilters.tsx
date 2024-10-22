@@ -9,10 +9,12 @@ class WorkoutsListFilters implements ListFilters {
     name: string | null;
     status: string[] | null;
 
-    constructor() {
+    constructor(
+        limit?: number
+    ) {
         this.ids = null;
         this.page = 1;
-        this.limit =  25;
+        this.limit = limit ?? 25;
         this.sorts = null;
 
         this.name = null;

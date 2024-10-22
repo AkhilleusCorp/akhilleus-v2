@@ -2,12 +2,13 @@ import React, {useEffect} from "react";
 import {Grid2 as Grid, Typography} from "@mui/material";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import useGetDropdownableMovements from "app/admin/hooks/movement/useGetDropdownableMovements.tsx";
+import useGetDropdownableMovements from "app/common/hooks/movement/useGetDropdownableMovements.tsx";
 import {AdminDispatch, AdminRootState} from "app/admin/services/redux";
 import {fetchExerciseGroups} from "app/common/services/redux/reducers/ExerciseGroupSlice.tsx";
 import ApiResultWrapper from "app/common/components/common/ApiResultWrapper.tsx";
 import ExerciseGroupCard from "app/admin/features/exerciseGroup/ExerciseGroupCard.tsx";
 import ExerciseGroupAddButton from "app/admin/features/exerciseGroup/ExerciseGroupAddButton.tsx";
+import ExerciseGroupDTO from "app/admin/services/api/dtos/ExerciseGroupDTO.tsx";
 
 type ExerciseGroupsListCardType = {
     workoutId: number,
@@ -31,7 +32,7 @@ const ExerciseGroupsListCard: React.FC<ExerciseGroupsListCardType> = ({ workoutI
             </Typography>
 
             <ApiResultWrapper loading={loading} error={error} hasPreviousPayload={false}>
-                { exerciseGroups.map((group: any) => (
+                { exerciseGroups.map((group: ExerciseGroupDTO) => (
                     <div key={'div-'+group.id}>
                         <ExerciseGroupCard group={group} displayWriteActions={displayWriteActions} />
                     </div>

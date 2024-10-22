@@ -1,7 +1,7 @@
 import React from 'react';
 import AdminLayout from "app/admin/layouts/AdminLayout.tsx";
 import {useParams} from "react-router-dom";
-import useGetOneEquipmentById from "app/admin/hooks/equipment/useGetOneEquipmentById.tsx";
+import useGetOneEquipmentById from "app/common/hooks/equipment/useGetOneEquipmentById.tsx";
 import ErrorPage from "app/common/pages/ErrorPage.tsx";
 import EquipmentUpdateForm from "app/admin/features/equipment/EquipmentUpdateForm.tsx";
 

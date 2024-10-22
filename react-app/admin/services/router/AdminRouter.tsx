@@ -10,10 +10,10 @@ import UsersPage from "app/admin/pages/user/UsersPage.tsx";
 import UserDetailsPage from "app/admin/pages/user/UserDetailsPage.tsx";
 import UserCreatePage from "app/admin/pages/user/UserCreatePage.tsx";
 import UserUpdatePage from "app/admin/pages/user/UserUpdatePage.tsx";
-import WorkoutsPage from "app/admin/pages/workout/WorkoutsPage.tsx";
-import WorkoutCreatePage from "app/admin/pages/workout/WorkoutCreatePage.tsx";
-import WorkoutUpdatePage from "app/admin/pages/workout/WorkoutUpdatePage.tsx";
-import WorkoutDetailsPage from "app/admin/pages/workout/WorkoutDetailsPage.tsx";
+import AdminWorkoutsPage from "app/admin/pages/workout/AdminWorkoutsPage.tsx";
+import AdminWorkoutCreatePage from "app/admin/pages/workout/AdminWorkoutCreatePage.tsx";
+import AdminWorkoutUpdatePage from "app/admin/pages/workout/AdminWorkoutUpdatePage.tsx";
+import AdminWorkoutDetailsPage from "app/admin/pages/workout/AdminWorkoutDetailsPage.tsx";
 import EquipmentsPage from "app/admin/pages/equipment/EquipmentsPage.tsx";
 import EquipmentCreatePage from "app/admin/pages/equipment/EquipmentCreatePage.tsx";
 import EquipmentUpdatePage from "app/admin/pages/equipment/EquipmentUpdatePage.tsx";
@@ -58,16 +58,16 @@ const routerConfig = createBrowserRouter([
                 children: [
                     {
                         index: true,
-                        element: <WorkoutsPage />,
+                        element: <AdminWorkoutsPage />,
                     }, {
                         path: adminRoutes.workout.create,
-                        element: <WorkoutCreatePage />,
+                        element: <AdminWorkoutCreatePage />,
                     }, {
                         path: adminRoutes.workout.edit(':workoutId'),
-                        element: <WorkoutUpdatePage />,
+                        element: <AdminWorkoutUpdatePage />,
                     }, {
                         path: adminRoutes.workout.details(':workoutId'),
-                        element: <WorkoutDetailsPage />,
+                        element: <AdminWorkoutDetailsPage />,
                     }
                 ]
             }, {

@@ -1,18 +1,25 @@
 import React from 'react';
 import {
     AppBar,
-    Badge, Box,
+    Badge, Box, Button,
     Container, Divider, IconButton, Menu, MenuItem,
     Toolbar, Typography
 } from "@mui/material";
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import SearchInput from "app/common/components/input/SearchInput.tsx";
-import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
+import AdbIcon from '@mui/icons-material/Adb';
+import memberRoutes from "app/member/services/router/memberRoutes.tsx";
+import {useNavigate} from "react-router-dom";
 
-const AdminHeader: React.FC = () => {
+type navigationItem = {
+    label: string,
+    route: string,
+}
+
+const MemberHeader: React.FC = () => {
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+    const navigate = useNavigate();
 
     const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElUser(event.currentTarget);
@@ -21,8 +28,16 @@ const AdminHeader: React.FC = () => {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+    const navigateToPage = (event: React.MouseEvent<HTMLSpanElement>, route: string) => {
+        event.preventDefault();
+        navigate(route);
+    }
 
-    const renderAdminMenu = (
+    const navigationConfig: navigationItem[] = [
+        {'label': 'dashboard', 'route': memberRoutes.dashboard},
+    ]
+
+    const renderMemberMenu = (
         <Menu
             anchorEl={anchorElUser}
             anchorOrigin={{
@@ -48,7 +63,7 @@ const AdminHeader: React.FC = () => {
 
             <MenuItem>
                 <Typography>
-                    <a href={adminRoutes.logout}>Logout</a>
+                    <a href={memberRoutes.logout}>Logout</a>
                 </Typography>
             </MenuItem>
         </Menu>
@@ -58,10 +73,35 @@ const AdminHeader: React.FC = () => {
         <Box>
             <AppBar position="sticky">
                 <Container maxWidth={false}>
-                    <Toolbar>
-                        <SearchInput />
-                        <Box sx={{ flexGrow: 1 }} />
-                        <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                    <Toolbar disableGutters>
+                        <AdbIcon sx={{ display: { xs: 'none', md: 'flex', color: 'white' }, mr: 1 }} />
+                        <Typography
+                            variant="h6"
+                            noWrap
+                            component="a"
+                            href="#"
+                            onClick={(event) => navigateToPage(event, memberRoutes.dashboard)}
+                            sx={{
+                                mr: 2,
+                                display: { xs: 'none', md: 'flex' },
+                                fontFamily: 'monospace',
+                                fontWeight: 700,
+                                letterSpacing: '.3rem',
+                                color: 'white',
+                                textDecoration: 'none',
+                            }}
+                        >
+                            Ahilleus
+                        </Typography>
+                        <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                            { navigationConfig.map((navigation) => (
+                                <Button key={'key-'+navigation.label} sx={{ my: 2, color: 'white', display: 'block' }}
+                                        onClick={(event) => navigateToPage(event, navigation.route)}>
+                                    {navigation.label}
+                                </Button>
+                            ))}
+                        </Box>
+                        <Box sx={{ flexGrow: 0 }}>
                             <IconButton size="large" aria-label="show 4 new mails" color="inherit">
                                 <Badge badgeContent={4} color="error">
                                     <MailIcon />
@@ -90,9 +130,9 @@ const AdminHeader: React.FC = () => {
                     </Toolbar>
                 </Container>
             </AppBar>
-            {renderAdminMenu}
+            {renderMemberMenu}
         </Box>
     );
 }
 
-export default AdminHeader;
+export default MemberHeader;

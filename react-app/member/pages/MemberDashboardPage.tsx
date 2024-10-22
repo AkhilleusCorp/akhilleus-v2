@@ -1,11 +1,10 @@
 import React from 'react';
-import {Grid2 as Grid} from "@mui/material";
 import MemberLayout from "app/member/layouts/MemberLayout.tsx";
 import WorkoutsListFilters from "app/admin/services/api/filters/WorkoutsListFilters.tsx";
-import WorkoutListCard from "app/member/features/workout/WorkoutListCard.tsx";
+import MemberWorkoutListCard from "app/member/features/workout/MemberWorkoutListCard.tsx";
 
 const MemberDashboardPage: React.FC = () => {
-    const defaultFilters = new WorkoutsListFilters();
+    const defaultFilters = new WorkoutsListFilters(10);
 
     return (
         <MemberLayout>
@@ -13,9 +12,9 @@ const MemberDashboardPage: React.FC = () => {
                 <div>Member dashboard</div>
             </h1>
 
-            <Grid>
-                <WorkoutListCard filters={defaultFilters} refreshKey={1}/>
-            </Grid>
+            <div className={"one-thirds-width"}>
+                <MemberWorkoutListCard filters={defaultFilters} refreshKey={1}/>
+            </div>
         </MemberLayout>
     );
 }

@@ -9,7 +9,7 @@ import WorkoutsSearchForm from "app/admin/features/workout/WorkoutsSearchForm.ts
 import WorkoutsListTable from "app/admin/features/workout/WorkoutsListTable.tsx";
 import WorkoutApiGateway from "app/admin/services/api/gateway/WorkoutApiGateway.tsx";
 
-const WorkoutsPage: React.FC = () => {
+const AdminWorkoutsPage: React.FC = () => {
     const defaultFilters = new WorkoutsListFilters();
     const [filters, setFilters] = useState<WorkoutsListFilters>(defaultFilters);
     const [refreshKey, setRefreshKey] = useState(0)
@@ -56,4 +56,4 @@ const WorkoutsPage: React.FC = () => {
     )
 }
 
-export default WorkoutsPage;
+export default AdminWorkoutsPage;

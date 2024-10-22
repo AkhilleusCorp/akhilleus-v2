@@ -3,7 +3,7 @@ import AdminLayout from "app/admin/layouts/AdminLayout.tsx";
 import UserPreviewCard from "app/admin/features/user/UserPreviewCard.tsx";
 import {useParams} from "react-router-dom";
 import ErrorPage from "app/common/pages/ErrorPage.tsx";
-import useGetOneUserById from "app/admin/hooks/user/useGetOneUserById.tsx";
+import useGetOneUserById from "app/common/hooks/user/useGetOneUserById.tsx";
 import UserLifecycleCard from "app/admin/features/user/UserLifecycleCard.tsx";
 import UserConfigurationCard from "app/admin/features/user/UserConfigurationCard.tsx";
 
