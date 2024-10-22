@@ -36,6 +36,6 @@ final class CreateOneUserUseCase implements UseCaseInterface
 
         $this->persister->create($user);
 
-        return $this->presenter->present($user, $payload->userType);
+        return $this->presenter->present($user, null === $payload ? $user->type : $payload->userType);
     }
 }

@@ -28,12 +28,12 @@ final class GetManyExerciseGroupUseCaseTest extends AbstractIntegrationTest
     {
         $this->expectException(NotFoundHttpException::class);
 
-        $this->useCase->execute(666);
+        $this->useCase->execute(666, $this->getMemberTokenPayload());
     }
 
     public function testExecuteForWorkoutWithoutGroup(): void
     {
-        $result = $this->useCase->execute(25);
+        $result = $this->useCase->execute(25, $this->getMemberTokenPayload());
 
         $this->assertCount(0, $result->data);
         $this->assertEmpty($result->extra);
@@ -41,7 +41,7 @@ final class GetManyExerciseGroupUseCaseTest extends AbstractIntegrationTest
 
     public function testExecuteForWorkoutWithGroups(): void
     {
-        $result = $this->useCase->execute(1);
+        $result = $this->useCase->execute(1, $this->getMemberTokenPayload());
 
         $this->assertCount(5, $result->data);
         $this->assertEmpty($result->extra);

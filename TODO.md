@@ -14,6 +14,8 @@
  * Workout start
  * ExerciseGroup rest time between set
  * Exercise value (weight, distance, duration, etc)
+ * Add .env var auto add token for userId in dev mode only
+ * Add .env var HTML wrap api response to see provider
 ## Website
 ## React APP
 ### Member area

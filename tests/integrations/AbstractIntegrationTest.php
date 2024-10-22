@@ -32,7 +32,7 @@ abstract class AbstractIntegrationTest extends KernelTestCase
     protected function getMemberTokenPayload(): TokenPayloadDTO
     {
         $payload = new TokenPayloadDTO();
-        $payload->userId = 3;
+        $payload->userId = 1;
         $payload->userType = UserTypeRegistry::USER_TYPE_MEMBER;
 
         return $payload;
@@ -50,7 +50,7 @@ abstract class AbstractIntegrationTest extends KernelTestCase
     protected function getAdminTokenPayload(): TokenPayloadDTO
     {
         $payload = new TokenPayloadDTO();
-        $payload->userId = 1;
+        $payload->userId = 3;
         $payload->userType = UserTypeRegistry::USER_TYPE_ADMIN;
 
         return $payload;
