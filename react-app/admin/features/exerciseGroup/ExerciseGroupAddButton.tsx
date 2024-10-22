@@ -2,8 +2,8 @@ import React, {useState} from "react";
 import {Button} from "@mui/material";
 import { useDispatch } from "react-redux";
 import IndexedArray from "app/common/utils/interfaces/IndexedArray.tsx";
-import {AppDispatch} from "app/admin/services/redux";
-import {addExerciseGroup} from "app/admin/services/redux/reducers/ExerciseGroupSlice.tsx";
+import {AdminDispatch} from "app/admin/services/redux";
+import {addExerciseGroup} from "app/common/services/redux/reducers/ExerciseGroupSlice.tsx";
 import ExerciseGroupAddModal from "app/admin/features/exerciseGroup/ExerciseGroupAddModal.tsx";
 
 type ExerciseGroupAddButtonType = {
@@ -14,7 +14,7 @@ type ExerciseGroupAddButtonType = {
 
 const ExerciseGroupAddButton: React.FC<ExerciseGroupAddButtonType> = ({ workoutId, type, movements }) => {
     const [openModal, setOpenModal] = useState<boolean>(false);
-    const dispatch = useDispatch<AppDispatch>();
+    const dispatch = useDispatch<AdminDispatch>();
 
     const onClickAdd = () => {
         setOpenModal(true);

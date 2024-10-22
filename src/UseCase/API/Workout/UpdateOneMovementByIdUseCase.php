@@ -5,8 +5,8 @@ namespace App\UseCase\API\Workout;
 use App\Domain\Factory\DataModelFactory\Workout\MovementDataModelFactory;
 use App\Domain\Factory\SourceModelFactory\Workout\UpdateMovementSourceModelFactory;
 use App\Domain\Gateway\Provider\Workout\MovementDataModelProviderGateway;
+use App\Infrastructure\DTO\TokenPayloadDTO;
 use App\Infrastructure\Persister\Workout\MovementDataModelPersister;
-use App\Infrastructure\Registry\DataProfileRegistry;
 use App\Infrastructure\View\ViewModel\SingleObjectViewModel;
 use App\Infrastructure\View\ViewPresenter\Workout\SingleMovementViewPresenter;
 use App\UseCase\UseCaseInterface;
@@ -26,7 +26,7 @@ final class UpdateOneMovementByIdUseCase implements UseCaseInterface
     /**
      * @param array<mixed> $parameters
      */
-    public function execute(int $id, array $parameters, string $dataProfile = DataProfileRegistry::DATA_PROFILE_MEMBER): SingleObjectViewModel
+    public function execute(int $id, array $parameters, TokenPayloadDTO $payload): SingleObjectViewModel
     {
         $movement = $this->provider->getMovementById($id);
         if (null === $movement) {
@@ -38,6 +38,6 @@ final class UpdateOneMovementByIdUseCase implements UseCaseInterface
 
         $this->persister->edit($movement);
 
-        return $this->presenter->present($movement, $dataProfile);
+        return $this->presenter->present($movement, $payload->userType);
     }
 }

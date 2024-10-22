@@ -2,7 +2,7 @@ import React from 'react';
 import {Card, CardActions, CardContent, Typography} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import MuscleDTO from "app/admin/services/api/dtos/MuscleDTO.tsx";
-import websiteRoutes from "app/admin/services/router/websiteRoutes.tsx";
+import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
 import muscleRegistries from "app/common/constants/muscleRegistries.tsx";
 import DetailsButton from "app/common/components/button/DetailsButton.tsx";
 import MuscleDeleteButton from "app/admin/features/muscle/MuscleDeleteButton.tsx";
@@ -18,7 +18,7 @@ const MusclePreviewCard: React.FC<MuscleDetailsCardType> = ({ muscle, displayRea
     const navigate = useNavigate();
 
     const onConfirmDelete = () => {
-        navigate(websiteRoutes.muscle.list);
+        navigate(adminRoutes.muscle.list);
     }
 
     return (
@@ -34,12 +34,12 @@ const MusclePreviewCard: React.FC<MuscleDetailsCardType> = ({ muscle, displayRea
 
             <CardActions>
                 {displayReadActions && (
-                    <DetailsButton routeToDetailsPage={websiteRoutes.muscle.details(muscle.id)}/>
+                    <DetailsButton routeToDetailsPage={adminRoutes.muscle.details(muscle.id)}/>
                 )}
 
                 {displayWriteActions  && (
                     <>
-                        <EditButton routeToEditPage={websiteRoutes.muscle.edit(muscle.id)} />
+                        <EditButton routeToEditPage={adminRoutes.muscle.edit(muscle.id)} />
                         <MuscleDeleteButton muscleId={muscle.id} callbackFunction={onConfirmDelete} />
                     </>
                 )}

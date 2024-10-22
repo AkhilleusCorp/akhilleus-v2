@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import {FormControl, Grid2 as Grid, SelectChangeEvent, TextField} from "@mui/material";
 import MovementsListFilters from "app/admin/services/api/filters/MovementsListFilters.tsx";
-import useGetDropdownableEquipments from "app/admin/hooks/equipment/useGetDropdownableEquipments.tsx";
-import useGetDropdownableMuscles from "app/admin/hooks/muscle/useGetDropdownableMuscles.tsx";
+import useGetDropdownableEquipments from "app/common/hooks/equipment/useGetDropdownableEquipments.tsx";
+import useGetDropdownableMuscles from "app/common/hooks/muscle/useGetDropdownableMuscles.tsx";
 import QueryIds from "app/common/utils/interfaces/QueryIds.tsx";
 import SearchForm from "app/common/components/form/SearchForm.tsx";
 import SelectInput from "app/common/components/input/SelectInput.tsx";

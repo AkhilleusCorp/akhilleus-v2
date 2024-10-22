@@ -7,7 +7,6 @@ use App\Domain\Factory\SourceModelFactory\User\CreateUserSourceModelFactory;
 use App\Domain\Gateway\Persister\User\UserDataModelPersisterGateway;
 use App\Domain\Registry\User\UserStatusRegistry;
 use App\Domain\Registry\User\UserTypeRegistry;
-use App\Infrastructure\Registry\DataProfileRegistry;
 use App\Infrastructure\View\ViewModel\User\SingleUserDataViewModel;
 use App\Infrastructure\View\ViewPresenter\User\SingleUserViewPresenter;
 use App\Tests\integrations\AbstractIntegrationTest;
@@ -29,16 +28,18 @@ final class CreateOneUserUseCaseTest extends AbstractIntegrationTest
         );
     }
 
-    public function testCreateOneForAdminDataProfile(): void
+    public function testCreateOneForAdmin(): void
     {
         $viewModel = $this->useCase->execute(
             [
                 'username' => 'bob',
                 'email' => 'bob@fakemail.com',
                 'plainPassword' => 'Azerty1234!',
+                'userType' => UserTypeRegistry::USER_TYPE_MEMBER,
             ],
-            DataProfileRegistry::DATA_PROFILE_ADMIN
+            $this->getAdminTokenPayload()
         );
+
         /** @var SingleUserDataViewModel $viewData */
         $viewData = $viewModel->data;
 
@@ -48,7 +49,7 @@ final class CreateOneUserUseCaseTest extends AbstractIntegrationTest
         $this->assertEquals(UserTypeRegistry::USER_TYPE_MEMBER, $viewData->type);
     }
 
-    public function testCreateOneForMemberDataProfile(): void
+    public function testCreateOneForMember(): void
     {
         $viewModel = $this->useCase->execute(
             [
@@ -57,6 +58,7 @@ final class CreateOneUserUseCaseTest extends AbstractIntegrationTest
                 'plainPassword' => 'Azerty1234!',
             ]
         );
+
         /** @var SingleUserDataViewModel $viewData */
         $viewData = $viewModel->data;
 

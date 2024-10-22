@@ -4,8 +4,8 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import ListFilters from "app/common/services/api/filters/ListFilters.tsx";
 import EquipmentsListFilters from "app/admin/services/api/filters/EquipmentsListFilters.tsx";
-import {AppDispatch, RootState} from "app/admin/services/redux";
-import {fetchEquipments} from "app/admin/services/redux/reducers/EquipmentSlice.tsx";
+import {AdminDispatch, AdminRootState} from "app/admin/services/redux";
+import {fetchEquipments} from "app/common/services/redux/reducers/EquipmentSlice.tsx";
 import ApiResultWrapper from "app/common/components/common/ApiResultWrapper.tsx";
 import equipmentRegistries from "app/common/constants/equipmentRegistries.tsx";
 import PaginatedTableFooter from "app/common/components/table/PaginatedTableFooter.tsx";
@@ -17,8 +17,8 @@ type EquipmentListTableType = {
 }
 
 const EquipementsListTable: React.FC<EquipmentListTableType> = ({ filters, refreshKey, mainLinkClickCallback }) => {
-    const { equipments, pagination, loading, error } = useSelector((state: RootState) => state.equipments);
-    const dispatch = useDispatch<AppDispatch>();
+    const { equipments, pagination, loading, error } = useSelector((state: AdminRootState) => state.equipments);
+    const dispatch = useDispatch<AdminDispatch>();
     const [refresh, setRefresh] = useState<number>(refreshKey);
 
     useEffect(() => {

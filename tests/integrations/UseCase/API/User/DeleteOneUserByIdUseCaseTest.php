@@ -28,7 +28,7 @@ final class DeleteOneUserByIdUseCaseTest extends AbstractIntegrationTest
 
     public function testDeleteExistingUser(): void
     {
-        $userId = 1;
+        $userId = 50;
 
         $countBeforeDelete = $this->userDTORepository->countUsersByFilterModel(null);
         $this->useCase->execute($userId);

@@ -3,7 +3,7 @@
 namespace App\UseCase\API\Workout;
 
 use App\Domain\Gateway\Provider\Workout\WorkoutDataModelProviderGateway;
-use App\Infrastructure\Registry\DataProfileRegistry;
+use App\Infrastructure\DTO\TokenPayloadDTO;
 use App\Infrastructure\View\ViewModel\SingleObjectViewModel;
 use App\Infrastructure\View\ViewPresenter\Workout\SingleWorkoutViewPresenter;
 use App\UseCase\UseCaseInterface;
@@ -17,13 +17,13 @@ final class GetOneWorkoutByIdUseCase implements UseCaseInterface
     ) {
     }
 
-    public function execute(int $id, string $dataProfile = DataProfileRegistry::DATA_PROFILE_MEMBER): SingleObjectViewModel
+    public function execute(int $id, TokenPayloadDTO $payload): SingleObjectViewModel
     {
         $workout = $this->provider->getWorkoutById($id);
         if (null === $workout) {
             throw new NotFoundHttpException("Workout #$id cannot be found");
         }
 
-        return $this->presenter->present($workout, $dataProfile);
+        return $this->presenter->present($workout, $payload->userType);
     }
 }

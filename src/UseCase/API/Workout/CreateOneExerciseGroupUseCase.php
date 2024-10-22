@@ -5,7 +5,7 @@ namespace App\UseCase\API\Workout;
 use App\Domain\Factory\DataModelFactory\Workout\ExerciseGroupDataModelFactory;
 use App\Domain\Factory\SourceModelFactory\Workout\CreateExerciseGroupSourceModelFactory;
 use App\Domain\Gateway\Persister\Workout\ExerciseGroupDataModelPersisterGateway;
-use App\Infrastructure\Registry\DataProfileRegistry;
+use App\Infrastructure\DTO\TokenPayloadDTO;
 use App\Infrastructure\View\ViewModel\SingleObjectViewModel;
 use App\Infrastructure\View\ViewPresenter\Workout\SingleExerciseGroupViewPresenter;
 use App\UseCase\UseCaseInterface;
@@ -23,7 +23,7 @@ final class CreateOneExerciseGroupUseCase implements UseCaseInterface
     /**
      * @param array<mixed> $parameters
      */
-    public function execute(int $workoutId, array $parameters, string $dataProfile = DataProfileRegistry::DATA_PROFILE_MEMBER): SingleObjectViewModel
+    public function execute(int $workoutId, array $parameters, TokenPayloadDTO $payload): SingleObjectViewModel
     {
         $parameters['workoutId'] = $workoutId;
         $source = $this->sourceModelFactory->buildSourceModel($parameters);
@@ -33,7 +33,7 @@ final class CreateOneExerciseGroupUseCase implements UseCaseInterface
 
         return $this->presenter->present(
             $exerciseGroup,
-            $dataProfile
+            $payload->userType
         );
     }
 }

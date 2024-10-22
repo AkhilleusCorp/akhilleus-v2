@@ -14,7 +14,7 @@ final class SingleWorkoutViewPresenter extends AbstractSingleObjectViewPresenter
     /**
      * @param WorkoutDataModel $data
      */
-    public function presentViewData(DataModelInterface $data, string $dataProfile): SingleWorkoutDataViewModel
+    public function presentViewData(DataModelInterface $data, string $userType): SingleWorkoutDataViewModel
     {
         $view = new SingleWorkoutDataViewModel();
         $view->id = $data->id;

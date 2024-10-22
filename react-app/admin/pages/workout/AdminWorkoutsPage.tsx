@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import AdminLayout from "app/admin/layouts/AdminLayout.tsx";
 import {Link} from "react-router-dom";
-import websiteRoutes from "app/admin/services/router/websiteRoutes.tsx";
+import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
 import WorkoutsListFilters from "app/admin/services/api/filters/WorkoutsListFilters.tsx";
 import WorkoutDTO from "app/admin/services/api/dtos/WorkoutDTO.tsx";
 import WorkoutPreviewCard from "app/admin/features/workout/WorkoutPreviewCard.tsx";
@@ -9,7 +9,7 @@ import WorkoutsSearchForm from "app/admin/features/workout/WorkoutsSearchForm.ts
 import WorkoutsListTable from "app/admin/features/workout/WorkoutsListTable.tsx";
 import WorkoutApiGateway from "app/admin/services/api/gateway/WorkoutApiGateway.tsx";
 
-const WorkoutsPage: React.FC = () => {
+const AdminWorkoutsPage: React.FC = () => {
     const defaultFilters = new WorkoutsListFilters();
     const [filters, setFilters] = useState<WorkoutsListFilters>(defaultFilters);
     const [refreshKey, setRefreshKey] = useState(0)
@@ -40,7 +40,7 @@ const WorkoutsPage: React.FC = () => {
             </div>
 
             <div className={"margin-bottom-s"}>
-                <Link to={websiteRoutes.workout.create}>Create New Workout</Link>
+                <Link to={adminRoutes.workout.create}>Create New Workout</Link>
             </div>
 
             <div className={"float-left two-thirds-width"}>
@@ -56,4 +56,4 @@ const WorkoutsPage: React.FC = () => {
     )
 }
 
-export default WorkoutsPage;
+export default AdminWorkoutsPage;

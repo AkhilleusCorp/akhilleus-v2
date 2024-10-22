@@ -11,4 +11,6 @@ final class CreateUserSourceModel implements CreateSourceModelInterface
     public string $email;
 
     public string $plainPassword;
+
+    public ?string $userType = null;
 }

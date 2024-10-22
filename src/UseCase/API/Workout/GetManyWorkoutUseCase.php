@@ -4,7 +4,7 @@ namespace App\UseCase\API\Workout;
 
 use App\Domain\Factory\FilterModelFactory\Workout\WorkoutsFilterModelModelFactory;
 use App\Domain\Gateway\Provider\Workout\WorkoutDataModelProviderGateway;
-use App\Infrastructure\Registry\DataProfileRegistry;
+use App\Infrastructure\DTO\TokenPayloadDTO;
 use App\Infrastructure\View\ViewHydrator\PaginationHydrator;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
 use App\Infrastructure\View\ViewModel\PaginationViewModel;
@@ -23,9 +23,11 @@ final class GetManyWorkoutUseCase implements UseCaseInterface
     /**
      * @param array<mixed> $parameters
      */
-    public function execute(array $parameters, string $dataProfile = DataProfileRegistry::DATA_PROFILE_MEMBER): MultipleObjectViewModel
-    {
-        $filter = $this->filterFactory->buildGetManyWorkoutsFilterModel($parameters);
+    public function execute(
+        array $parameters,
+        TokenPayloadDTO $payload,
+    ): MultipleObjectViewModel {
+        $filter = $this->filterFactory->buildGetManyWorkoutsFilterModel($parameters, $payload);
         $workouts = $this->provider->getWorkoutsByFilterModel($filter);
 
         $workoutsCount = count($workouts);
@@ -35,7 +37,7 @@ final class GetManyWorkoutUseCase implements UseCaseInterface
 
         return $this->presenter->present(
             $workouts,
-            $dataProfile,
+            $payload->userType,
             [
                 new PaginationHydrator(
                     $workoutsCount,

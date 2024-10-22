@@ -4,7 +4,7 @@ import UsersListTable from "app/admin/features/user/UsersListTable.tsx";
 import {Link} from "react-router-dom";
 import UsersListFilters from "app/admin/services/api/filters/UsersListFilters.tsx";
 import UsersSearchForm from "app/admin/features/user/UsersSearchForm.tsx";
-import websiteRoutes from "app/admin/services/router/websiteRoutes.tsx";
+import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
 import UserPreviewCard from "app/admin/features/user/UserPreviewCard.tsx";
 import UserApiGateway from "app/admin/services/api/gateway/UserApiGateway.tsx";
 import UserDTO from "app/admin/services/api/dtos/UserDTO.tsx";
@@ -40,7 +40,7 @@ const UsersPage: React.FC = () => {
             </div>
 
             <div className={"margin-bottom-s"}>
-                <Link to={websiteRoutes.user.create}>Create New User</Link>
+                <Link to={adminRoutes.user.create}>Create New User</Link>
             </div>
 
             <div>

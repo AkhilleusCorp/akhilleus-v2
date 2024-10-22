@@ -2,7 +2,7 @@ import React from 'react';
 import AdminLayout from "app/admin/layouts/AdminLayout.tsx";
 import WorkoutCreateForm from "app/admin/features/workout/WorkoutCreateForm.tsx";
 
-const WorkoutCreatePage: React.FC = () => {
+const AdminWorkoutCreatePage: React.FC = () => {
     return (
         <AdminLayout>
             <h1>Add new Workout</h1>
@@ -13,4 +13,4 @@ const WorkoutCreatePage: React.FC = () => {
 )
 }
 
-export default WorkoutCreatePage;
+export default AdminWorkoutCreatePage;

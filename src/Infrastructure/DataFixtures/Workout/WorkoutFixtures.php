@@ -22,6 +22,8 @@ final class WorkoutFixtures extends AbstractFixtures
             $workout->plannedDate = $config['plannedDate'];
             $workout->duration = WorkoutDurationDataTransformer::computeDurationInSeconds($workout);
             $workout->status = WorkoutStatusDataTransformer::computeStatus($workout);
+            $workout->member = $this->getReference('user-ghriim');
+            $workout->coach = null;
 
             $manager->persist($workout);
 

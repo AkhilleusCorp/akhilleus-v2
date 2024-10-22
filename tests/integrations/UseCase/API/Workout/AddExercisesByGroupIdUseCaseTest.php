@@ -37,7 +37,7 @@ final class AddExercisesByGroupIdUseCaseTest extends AbstractIntegrationTest
         $this->expectException(NotFoundHttpException::class);
         $this->expectExceptionMessage('Exercise group #666 cannot be found');
 
-        $this->useCase->execute(1, 666);
+        $this->useCase->execute(1, 666, $this->getAdminTokenPayload());
     }
 
     public function testExecuteForGroupNotInGivenWorkout(): void
@@ -45,7 +45,7 @@ final class AddExercisesByGroupIdUseCaseTest extends AbstractIntegrationTest
         $this->expectException(NotFoundHttpException::class);
         $this->expectExceptionMessage('Exercise group #4 is not part of Workout #3');
 
-        $this->useCase->execute(3, 4);
+        $this->useCase->execute(3, 4, $this->getAdminTokenPayload());
     }
 
     public function testExecuteSuccessful(): void
@@ -54,7 +54,7 @@ final class AddExercisesByGroupIdUseCaseTest extends AbstractIntegrationTest
         $this->assertCount(6, $group->exercises);
 
         /** @var ExerciseGroupDataViewModel $result */
-        $result = $this->useCase->execute(1, 4)->data;
+        $result = $this->useCase->execute(1, 4, $this->getAdminTokenPayload())->data;
         $this->assertCount(7, $result->exercises);
 
         $group = $this->provider->getExerciseGroupById(4);

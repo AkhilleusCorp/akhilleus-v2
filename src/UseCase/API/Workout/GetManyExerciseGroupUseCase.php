@@ -4,7 +4,7 @@ namespace App\UseCase\API\Workout;
 
 use App\Domain\Gateway\Provider\Workout\ExerciseGroupDataModelProviderGateway;
 use App\Domain\Gateway\Provider\Workout\WorkoutDataModelProviderGateway;
-use App\Infrastructure\Registry\DataProfileRegistry;
+use App\Infrastructure\DTO\TokenPayloadDTO;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
 use App\Infrastructure\View\ViewPresenter\Workout\MultipleExerciseGroupViewPresenter;
 use App\UseCase\UseCaseInterface;
@@ -19,7 +19,7 @@ final class GetManyExerciseGroupUseCase implements UseCaseInterface
     ) {
     }
 
-    public function execute(int $workoutId, string $dataProfile = DataProfileRegistry::DATA_PROFILE_MEMBER): MultipleObjectViewModel
+    public function execute(int $workoutId, TokenPayloadDTO $payload): MultipleObjectViewModel
     {
         $workout = $this->workoutProvider->getWorkoutById($workoutId);
         if (null === $workout) {
@@ -33,7 +33,7 @@ final class GetManyExerciseGroupUseCase implements UseCaseInterface
 
         return $this->presenter->present(
             $groups,
-            $dataProfile
+            $payload->userType
         );
     }
 }

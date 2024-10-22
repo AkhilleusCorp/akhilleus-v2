@@ -2,7 +2,7 @@ import React from 'react';
 import {Card, CardActions, CardContent, Chip, Typography} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import MovementDTO from "app/admin/services/api/dtos/MovementDTO.tsx";
-import websiteRoutes from "app/admin/services/router/websiteRoutes.tsx";
+import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
 import movementRegistries from "app/common/constants/movementRegistries.tsx";
 import DetailsButton from "app/common/components/button/DetailsButton.tsx";
 import EditButton from "app/common/components/button/EditButton.tsx";
@@ -18,7 +18,7 @@ const MovementPreviewCard: React.FC<MovementDetailsCardType> = ({ movement, disp
     const navigate = useNavigate();
 
     const onConfirmDelete = () => {
-        navigate(websiteRoutes.movement.list);
+        navigate(adminRoutes.movement.list);
     }
 
     return (
@@ -49,12 +49,12 @@ const MovementPreviewCard: React.FC<MovementDetailsCardType> = ({ movement, disp
 
             <CardActions>
                 {displayReadActions && (
-                    <DetailsButton routeToDetailsPage={websiteRoutes.movement.details(movement.id)}/>
+                    <DetailsButton routeToDetailsPage={adminRoutes.movement.details(movement.id)}/>
                 )}
 
                 {displayWriteActions  && (
                     <>
-                        <EditButton routeToEditPage={websiteRoutes.movement.edit(movement.id)} />
+                        <EditButton routeToEditPage={adminRoutes.movement.edit(movement.id)} />
                         <MovementDeleteButton movementId={movement.id} callbackFunction={onConfirmDelete} />
                     </>
                 )}

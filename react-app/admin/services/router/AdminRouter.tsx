@@ -2,18 +2,18 @@ import {
     createBrowserRouter,
     RouterProvider,
 } from "react-router-dom";
+import * as React from "react";
 
-import DashboardPage from "app/admin/pages/DashboardPage.tsx";
+import AdminDashboardPage from "app/admin/pages/AdminDashboardPage.tsx";
 import ErrorPage from "app/common/pages/ErrorPage.tsx";
 import UsersPage from "app/admin/pages/user/UsersPage.tsx";
 import UserDetailsPage from "app/admin/pages/user/UserDetailsPage.tsx";
-import * as React from "react";
 import UserCreatePage from "app/admin/pages/user/UserCreatePage.tsx";
 import UserUpdatePage from "app/admin/pages/user/UserUpdatePage.tsx";
-import WorkoutsPage from "app/admin/pages/workout/WorkoutsPage.tsx";
-import WorkoutCreatePage from "app/admin/pages/workout/WorkoutCreatePage.tsx";
-import WorkoutUpdatePage from "app/admin/pages/workout/WorkoutUpdatePage.tsx";
-import WorkoutDetailsPage from "app/admin/pages/workout/WorkoutDetailsPage.tsx";
+import AdminWorkoutsPage from "app/admin/pages/workout/AdminWorkoutsPage.tsx";
+import AdminWorkoutCreatePage from "app/admin/pages/workout/AdminWorkoutCreatePage.tsx";
+import AdminWorkoutUpdatePage from "app/admin/pages/workout/AdminWorkoutUpdatePage.tsx";
+import AdminWorkoutDetailsPage from "app/admin/pages/workout/AdminWorkoutDetailsPage.tsx";
 import EquipmentsPage from "app/admin/pages/equipment/EquipmentsPage.tsx";
 import EquipmentCreatePage from "app/admin/pages/equipment/EquipmentCreatePage.tsx";
 import EquipmentUpdatePage from "app/admin/pages/equipment/EquipmentUpdatePage.tsx";
@@ -26,98 +26,98 @@ import MovementsPage from "app/admin/pages/movement/MovementsPage.tsx";
 import MovementCreatePage from "app/admin/pages/movement/MovementCreatePage.tsx";
 import MovementUpdatePage from "app/admin/pages/movement/MovementUpdatePage.tsx";
 import MovementDetailsPage from "app/admin/pages/movement/MovementDetailsPage.tsx";
-import websiteRoutes from "app/admin/services/router/websiteRoutes.tsx";
+import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
 
 const routerConfig = createBrowserRouter([
     {
-        path: websiteRoutes.dashboard,
+        path: adminRoutes.dashboard,
         errorElement: <ErrorPage />,
         children: [
             {
                 index: true,
-                element: <DashboardPage />,
+                element: <AdminDashboardPage />,
             }, {
-                path: websiteRoutes.user.list,
+                path: adminRoutes.user.list,
                 children: [
                     {
                         index: true,
                         element: <UsersPage />,
                     }, {
-                        path: websiteRoutes.user.create,
+                        path: adminRoutes.user.create,
                         element: <UserCreatePage />,
                     }, {
-                        path: websiteRoutes.user.edit(':userId'),
+                        path: adminRoutes.user.edit(':userId'),
                         element: <UserUpdatePage />,
                     }, {
-                        path: websiteRoutes.user.details(':userId'),
+                        path: adminRoutes.user.details(':userId'),
                         element: <UserDetailsPage />,
                     }
                 ]
             }, {
-                path: websiteRoutes.workout.list,
+                path: adminRoutes.workout.list,
                 children: [
                     {
                         index: true,
-                        element: <WorkoutsPage />,
+                        element: <AdminWorkoutsPage />,
                     }, {
-                        path: websiteRoutes.workout.create,
-                        element: <WorkoutCreatePage />,
+                        path: adminRoutes.workout.create,
+                        element: <AdminWorkoutCreatePage />,
                     }, {
-                        path: websiteRoutes.workout.edit(':workoutId'),
-                        element: <WorkoutUpdatePage />,
+                        path: adminRoutes.workout.edit(':workoutId'),
+                        element: <AdminWorkoutUpdatePage />,
                     }, {
-                        path: websiteRoutes.workout.details(':workoutId'),
-                        element: <WorkoutDetailsPage />,
+                        path: adminRoutes.workout.details(':workoutId'),
+                        element: <AdminWorkoutDetailsPage />,
                     }
                 ]
             }, {
-                path: websiteRoutes.equipment.list,
+                path: adminRoutes.equipment.list,
                 children: [
                     {
                         index: true,
                         element: <EquipmentsPage />,
                     }, {
-                        path: websiteRoutes.equipment.create,
+                        path: adminRoutes.equipment.create,
                         element: <EquipmentCreatePage />,
                     }, {
-                        path: websiteRoutes.equipment.edit(':equipmentId'),
+                        path: adminRoutes.equipment.edit(':equipmentId'),
                         element: <EquipmentUpdatePage />,
                     }, {
-                        path: websiteRoutes.equipment.details(':equipmentId'),
+                        path: adminRoutes.equipment.details(':equipmentId'),
                         element: <EquipmentDetailsPage />,
                     }
                 ]
             }, {
-                path: websiteRoutes.muscle.list,
+                path: adminRoutes.muscle.list,
                 children: [
                     {
                         index: true,
                         element: <MusclesPage />,
                     }, {
-                        path: websiteRoutes.muscle.create,
+                        path: adminRoutes.muscle.create,
                         element: <MuscleCreatePage />,
                     }, {
-                        path: websiteRoutes.muscle.edit(':muscleId'),
+                        path: adminRoutes.muscle.edit(':muscleId'),
                         element: <MuscleUpdatePage />,
                     }, {
-                        path: websiteRoutes.muscle.details(':muscleId'),
+                        path: adminRoutes.muscle.details(':muscleId'),
                         element: <MuscleDetailsPage />,
                     }
                 ]
             }, {
-                path: websiteRoutes.movement.list,
+                path: adminRoutes.movement.list,
                 children: [
                     {
                         index: true,
                         element: <MovementsPage />,
                     }, {
-                        path: websiteRoutes.movement.create,
+                        path: adminRoutes.movement.create,
                         element: <MovementCreatePage />,
                     }, {
-                        path: websiteRoutes.movement.edit(':movementId'),
+                        path: adminRoutes.movement.edit(':movementId'),
                         element: <MovementUpdatePage />,
                     }, {
-                        path: websiteRoutes.movement.details(':movementId'),
+                        path: adminRoutes.movement.details(':movementId'),
                         element: <MovementDetailsPage />,
                     }
                 ]

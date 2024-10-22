@@ -2,6 +2,8 @@
 
 namespace App\Tests\integrations;
 
+use App\Domain\Registry\User\UserTypeRegistry;
+use App\Infrastructure\DTO\TokenPayloadDTO;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\Process\Exception\ProcessFailedException;
@@ -25,6 +27,33 @@ abstract class AbstractIntegrationTest extends KernelTestCase
                 throw new ProcessFailedException($process);
             }
         }
+    }
+
+    protected function getMemberTokenPayload(): TokenPayloadDTO
+    {
+        $payload = new TokenPayloadDTO();
+        $payload->userId = 1;
+        $payload->userType = UserTypeRegistry::USER_TYPE_MEMBER;
+
+        return $payload;
+    }
+
+    protected function getCoachTokenPayload(): TokenPayloadDTO
+    {
+        $payload = new TokenPayloadDTO();
+        $payload->userId = 2;
+        $payload->userType = UserTypeRegistry::USER_TYPE_COACH;
+
+        return $payload;
+    }
+
+    protected function getAdminTokenPayload(): TokenPayloadDTO
+    {
+        $payload = new TokenPayloadDTO();
+        $payload->userId = 3;
+        $payload->userType = UserTypeRegistry::USER_TYPE_ADMIN;
+
+        return $payload;
     }
 
     /**

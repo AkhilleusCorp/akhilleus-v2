@@ -2,12 +2,11 @@
 
 namespace App\Tests\integrations\UseCase\API\User;
 
-use App\Domain\DTO\FilterModel\User\GetManyUsersFilterModel;
+use App\Domain\DTO\FilterModel\AbstractFilterModel;
 use App\Domain\Factory\FilterModelFactory\User\UsersFilterModelModelFactory;
 use App\Domain\Gateway\Provider\User\UserDataModelProviderGateway;
 use App\Domain\Registry\User\UserStatusRegistry;
 use App\Domain\Registry\User\UserTypeRegistry;
-use App\Infrastructure\Registry\DataProfileRegistry;
 use App\Infrastructure\View\ViewModel\PaginationViewModel;
 use App\Infrastructure\View\ViewModel\User\MultipleUserItemDataViewModel;
 use App\Infrastructure\View\ViewPresenter\User\MultipleUserViewPresenter;
@@ -29,84 +28,84 @@ final class GetManyUserUseCaseTest extends AbstractIntegrationTest
         );
     }
 
-    public function testGetManyUserWithNoFiltersForAdminDataProfile(): void
+    public function testGetManyUserWithNoFiltersForAdmin(): void
     {
-        $view = $this->useCase->execute([], DataProfileRegistry::DATA_PROFILE_ADMIN);
+        $view = $this->useCase->execute([], $this->getAdminTokenPayload());
 
         /** @var MultipleUserItemDataViewModel[] $users */
         $users = $view->data;
         /** @var PaginationViewModel $pagination */
         $pagination = $view->extra['pagination'];
 
-        $this->assertCount(GetManyUsersFilterModel::DEFAULT_LIMIT, $users);
-        $this->assertEquals(GetManyUsersFilterModel::DEFAULT_PAGE, $pagination->firstPage);
-        $this->assertEquals(GetManyUsersFilterModel::DEFAULT_PAGE, $pagination->currentPage);
+        $this->assertCount(AbstractFilterModel::DEFAULT_LIMIT, $users);
+        $this->assertEquals(AbstractFilterModel::DEFAULT_PAGE, $pagination->firstPage);
+        $this->assertEquals(AbstractFilterModel::DEFAULT_PAGE, $pagination->currentPage);
         $this->assertEquals(3, $pagination->lastPage);
     }
 
-    public function testGetManyUserWithNoFiltersForMemberDataProfile(): void
+    public function testGetManyUserWithNoFiltersForMember(): void
     {
-        $view = $this->useCase->execute([]);
+        $view = $this->useCase->execute([], $this->getMemberTokenPayload());
 
         /** @var MultipleUserItemDataViewModel[] $users */
         $users = $view->data;
         /** @var PaginationViewModel $pagination */
         $pagination = $view->extra['pagination'];
 
-        $this->assertCount(GetManyUsersFilterModel::DEFAULT_LIMIT, $users);
-        $this->assertEquals(GetManyUsersFilterModel::DEFAULT_PAGE, $pagination->firstPage);
-        $this->assertEquals(GetManyUsersFilterModel::DEFAULT_PAGE, $pagination->currentPage);
+        $this->assertCount(AbstractFilterModel::DEFAULT_LIMIT, $users);
+        $this->assertEquals(AbstractFilterModel::DEFAULT_PAGE, $pagination->firstPage);
+        $this->assertEquals(AbstractFilterModel::DEFAULT_PAGE, $pagination->currentPage);
         $this->assertEquals(3, $pagination->lastPage);
     }
 
     public function testGetManyUserWithFilterIdsFilter(): void
     {
-        $view = $this->useCase->execute(['ids' => '1,2,3', 'email' => 'null'], DataProfileRegistry::DATA_PROFILE_ADMIN);
+        $view = $this->useCase->execute(['ids' => '1,2,3', 'email' => 'null'], $this->getAdminTokenPayload());
         $this->assertCount(3, $view->data);
 
-        $view = $this->useCase->execute(['ids' => '1,2,3']);
+        $view = $this->useCase->execute(['ids' => '1,2,3'], $this->getMemberTokenPayload());
         $this->assertCount(3, $view->data);
     }
 
     public function testGetManyUserWithFilterUsernameFilter(): void
     {
-        $view = $this->useCase->execute(['username' => 'ghriim'], DataProfileRegistry::DATA_PROFILE_ADMIN);
+        $view = $this->useCase->execute(['username' => 'ghriim'], $this->getAdminTokenPayload());
         $this->assertCount(1, $view->data);
 
-        $view = $this->useCase->execute(['username' => 'ghriim']);
+        $view = $this->useCase->execute(['username' => 'ghriim'], $this->getMemberTokenPayload());
         $this->assertCount(1, $view->data);
     }
 
     public function testGetManyUserWithFilterEmailFilter(): void
     {
-        $view = $this->useCase->execute(['email' => 'coach@fakemail.com'], DataProfileRegistry::DATA_PROFILE_ADMIN);
+        $view = $this->useCase->execute(['email' => 'coach@fakemail.com'], $this->getAdminTokenPayload());
         $this->assertCount(1, $view->data);
 
-        $view = $this->useCase->execute(['email' => 'not_an_existing_mail@fakemail.com'], DataProfileRegistry::DATA_PROFILE_ADMIN);
+        $view = $this->useCase->execute(['email' => 'not_an_existing_mail@fakemail.com'], $this->getAdminTokenPayload());
         $this->assertCount(0, $view->data);
     }
 
     public function testGetManyUserWithFilterTypesFilter(): void
     {
-        $view = $this->useCase->execute(['type' => UserTypeRegistry::USER_TYPE_ADMIN], DataProfileRegistry::DATA_PROFILE_ADMIN);
+        $view = $this->useCase->execute(['type' => UserTypeRegistry::USER_TYPE_ADMIN], $this->getAdminTokenPayload());
         $this->assertCount(1, $view->data);
 
-        $view = $this->useCase->execute(['type' => UserTypeRegistry::USER_TYPE_COACH], DataProfileRegistry::DATA_PROFILE_ADMIN);
+        $view = $this->useCase->execute(['type' => UserTypeRegistry::USER_TYPE_COACH], $this->getAdminTokenPayload());
         $this->assertCount(1, $view->data);
 
-        $view = $this->useCase->execute(['type' => UserTypeRegistry::USER_TYPE_MEMBER], DataProfileRegistry::DATA_PROFILE_ADMIN);
+        $view = $this->useCase->execute(['type' => UserTypeRegistry::USER_TYPE_MEMBER], $this->getAdminTokenPayload());
         $this->assertCount(25, $view->data);
     }
 
     public function testGetManyUserWithFilterStatusesFilter(): void
     {
-        $view = $this->useCase->execute(['status' => UserStatusRegistry::USER_STATUS_DEACTIVATED], DataProfileRegistry::DATA_PROFILE_ADMIN);
+        $view = $this->useCase->execute(['status' => UserStatusRegistry::USER_STATUS_DEACTIVATED], $this->getAdminTokenPayload());
         $this->assertCount(0, $view->data);
 
-        $view = $this->useCase->execute(['status' => UserStatusRegistry::USER_STATUS_ACTIVE]);
+        $view = $this->useCase->execute(['status' => UserStatusRegistry::USER_STATUS_ACTIVE], $this->getMemberTokenPayload());
         $this->assertCount(25, $view->data);
 
-        $view = $this->useCase->execute(['status' => UserStatusRegistry::USER_STATUS_CREATED]);
+        $view = $this->useCase->execute(['status' => UserStatusRegistry::USER_STATUS_CREATED], $this->getMemberTokenPayload());
         $this->assertCount(9, $view->data);
     }
 }

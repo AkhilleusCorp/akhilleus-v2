@@ -7,12 +7,15 @@ class WorkoutsListFilters implements ListFilters {
     sorts: string[] | null;
 
     name: string | null;
+    memberId: number | null;
     status: string[] | null;
 
-    constructor() {
+    constructor(
+        limit?: number
+    ) {
         this.ids = null;
         this.page = 1;
-        this.limit =  25;
+        this.limit = limit ?? 25;
         this.sorts = null;
 
         this.name = null;

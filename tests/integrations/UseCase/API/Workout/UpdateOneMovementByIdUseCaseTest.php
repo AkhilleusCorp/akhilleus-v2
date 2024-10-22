@@ -7,7 +7,6 @@ use App\Domain\Factory\SourceModelFactory\Workout\UpdateMovementSourceModelFacto
 use App\Domain\Gateway\Provider\Workout\MovementDataModelProviderGateway;
 use App\Domain\Registry\Workout\MovementStatusRegistry;
 use App\Infrastructure\Persister\Workout\MovementDataModelPersister;
-use App\Infrastructure\Registry\DataProfileRegistry;
 use App\Infrastructure\Repository\Workout\MovementDataModelRepository;
 use App\Infrastructure\View\ViewModel\Workout\SingleMovementDataViewModel;
 use App\Infrastructure\View\ViewPresenter\Workout\SingleMovementViewPresenter;
@@ -47,8 +46,11 @@ final class UpdateOneMovementByIdUseCaseTest extends AbstractIntegrationTest
             [
                 'name' => 'New name for a new life',
                 'status' => MovementStatusRegistry::MOVEMENT_STATUS_ACTIVE,
-                'primaryMuscle' => 1, 'auxiliaryMuscles' => [2, 3], 'equipments' => [3, 4]],
-            DataProfileRegistry::DATA_PROFILE_ADMIN
+                'primaryMuscle' => 1,
+                'auxiliaryMuscles' => [2, 3],
+                'equipments' => [3, 4],
+            ],
+            $this->getAdminTokenPayload()
         );
         /** @var SingleMovementDataViewModel $viewData */
         $viewData = $viewModel->data;
@@ -63,6 +65,6 @@ final class UpdateOneMovementByIdUseCaseTest extends AbstractIntegrationTest
     {
         $this->expectException(NotFoundHttpException::class);
 
-        $this->useCase->execute(666, ['name' => 'whatever']);
+        $this->useCase->execute(666, ['name' => 'whatever'], $this->getAdminTokenPayload());
     }
 }

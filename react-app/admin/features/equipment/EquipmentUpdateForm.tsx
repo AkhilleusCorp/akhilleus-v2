@@ -4,7 +4,7 @@ import {useState} from "react";
 import {FormControl, Grid2 as Grid, SelectChangeEvent, TextField} from "@mui/material";
 import EquipmentDTO from "app/admin/services/api/dtos/EquipmentDTO.tsx";
 import EquipmentApiGateway from "app/admin/services/api/gateway/EquipmentApiGateway.tsx";
-import websiteRoutes from "app/admin/services/router/websiteRoutes.tsx";
+import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
 import equipmentRegistries from "app/common/constants/equipmentRegistries.tsx";
 import SelectInput from "app/common/components/input/SelectInput.tsx";
 import SaveForm from "app/common/components/form/SaveForm.tsx";
@@ -34,7 +34,7 @@ const EquipmentUpdateForm: React.FC<EquipmentUpdateFormType> = ({equipment}) => 
     const handleSubmit = async () => {
         try {
             await EquipmentApiGateway.updateEquipment(equipment.id, equipmentUpdated);
-            navigate(websiteRoutes.equipment.details(equipment.id));
+            navigate(adminRoutes.equipment.details(equipment.id));
         } catch (error) {
             console.log(error);
         }

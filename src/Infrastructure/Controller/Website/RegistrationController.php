@@ -3,7 +3,6 @@
 namespace App\Infrastructure\Controller\Website;
 
 use App\Domain\Registry\User\UserTypeRegistry;
-use App\Infrastructure\Registry\DataProfileRegistry;
 use App\UseCase\API\User\CreateOneUserUseCase;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,6 +19,7 @@ final class RegistrationController extends AbstractController
         }
 
         if (Request::METHOD_POST === $request->getMethod()) {
+            $request->request->set('userType', UserTypeRegistry::USER_TYPE_MEMBER);
             $useCase->execute($request->request->all());
         }
 
@@ -37,11 +37,8 @@ final class RegistrationController extends AbstractController
         }
 
         if (Request::METHOD_POST === $request->getMethod()) {
-            $useCase->execute(
-                $request->request->all(),
-                DataProfileRegistry::DATA_PROFILE_COACH,
-                UserTypeRegistry::USER_TYPE_COACH
-            );
+            $request->request->set('userType', UserTypeRegistry::USER_TYPE_COACH);
+            $useCase->execute($request->request->all());
         }
 
         return $this->render(

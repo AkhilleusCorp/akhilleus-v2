@@ -9,7 +9,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import SearchInput from "app/common/components/input/SearchInput.tsx";
-import websiteRoutes from "app/admin/services/router/websiteRoutes.tsx";
+import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
 
 const AdminHeader: React.FC = () => {
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
@@ -22,7 +22,7 @@ const AdminHeader: React.FC = () => {
         setAnchorElUser(null);
     };
 
-    const renderMenu = (
+    const renderAdminMenu = (
         <Menu
             anchorEl={anchorElUser}
             anchorOrigin={{
@@ -48,7 +48,7 @@ const AdminHeader: React.FC = () => {
 
             <MenuItem>
                 <Typography>
-                    <a href={websiteRoutes.logout}>Logout</a>
+                    <a href={adminRoutes.logout}>Logout</a>
                 </Typography>
             </MenuItem>
         </Menu>
@@ -90,7 +90,7 @@ const AdminHeader: React.FC = () => {
                     </Toolbar>
                 </Container>
             </AppBar>
-            {renderMenu}
+            {renderAdminMenu}
         </Box>
     );
 }

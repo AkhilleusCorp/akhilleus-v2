@@ -4,7 +4,7 @@ import {useState} from "react";
 import {TextField} from "@mui/material";
 import UserDTO from "app/admin/services/api/dtos/UserDTO.tsx";
 import UserApiGateway from "app/admin/services/api/gateway/UserApiGateway.tsx";
-import websiteRoutes from "app/admin/services/router/websiteRoutes.tsx";
+import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
 import SaveForm from "app/common/components/form/SaveForm.tsx";
 
 type UserEditFormType = {
@@ -25,7 +25,7 @@ const UserEditForm: React.FC<UserEditFormType> = ({user}) => {
     const handleSubmit = async () => {
         try {
             await UserApiGateway.updateUser(user.id, userUpdated);
-            navigate(websiteRoutes.user.details(user.id));
+            navigate(adminRoutes.user.details(user.id));
         } catch (error) {
             console.log(error);
         }

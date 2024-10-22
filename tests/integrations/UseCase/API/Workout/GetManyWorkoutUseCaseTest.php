@@ -2,11 +2,10 @@
 
 namespace App\Tests\integrations\UseCase\API\Workout;
 
-use App\Domain\DTO\FilterModel\Workout\GetManyWorkoutsFilterModel;
+use App\Domain\DTO\FilterModel\AbstractFilterModel;
 use App\Domain\Factory\FilterModelFactory\Workout\WorkoutsFilterModelModelFactory;
 use App\Domain\Gateway\Provider\Workout\WorkoutDataModelProviderGateway;
 use App\Domain\Registry\Workout\WorkoutStatusRegistry;
-use App\Infrastructure\Registry\DataProfileRegistry;
 use App\Infrastructure\View\ViewModel\PaginationViewModel;
 use App\Infrastructure\View\ViewModel\Workout\MultipleWorkoutItemDataViewModel;
 use App\Infrastructure\View\ViewPresenter\Workout\MultipleWorkoutViewPresenter;
@@ -28,45 +27,51 @@ final class GetManyWorkoutUseCaseTest extends AbstractIntegrationTest
         );
     }
 
-    public function testGetManyWorkoutWithNoFiltersForAdminDataProfile(): void
+    public function testGetManyWorkoutWithNoFiltersForAdmin(): void
     {
-        $view = $this->useCase->execute([], DataProfileRegistry::DATA_PROFILE_ADMIN);
+        $view = $this->useCase->execute([], $this->getAdminTokenPayload());
 
         /** @var MultipleWorkoutItemDataViewModel[] $workouts */
         $workouts = $view->data;
         /** @var PaginationViewModel $pagination */
         $pagination = $view->extra['pagination'];
 
-        $this->assertCount(GetManyWorkoutsFilterModel::DEFAULT_LIMIT, $workouts);
-        $this->assertEquals(GetManyWorkoutsFilterModel::DEFAULT_PAGE, $pagination->firstPage);
-        $this->assertEquals(GetManyWorkoutsFilterModel::DEFAULT_PAGE, $pagination->currentPage);
+        $this->assertCount(AbstractFilterModel::DEFAULT_LIMIT, $workouts);
+        $this->assertEquals(AbstractFilterModel::DEFAULT_PAGE, $pagination->firstPage);
+        $this->assertEquals(AbstractFilterModel::DEFAULT_PAGE, $pagination->currentPage);
         $this->assertEquals(3, $pagination->lastPage);
     }
 
-    public function testGetManyWorkoutWithNoFiltersForMemberDataProfile(): void
+    public function testGetManyWorkoutWithNoFiltersForMember(): void
     {
-        $view = $this->useCase->execute([]);
+        $view = $this->useCase->execute([], $this->getMemberTokenPayload());
 
         /** @var MultipleWorkoutItemDataViewModel[] $workouts */
         $workouts = $view->data;
         /** @var PaginationViewModel $pagination */
         $pagination = $view->extra['pagination'];
 
-        $this->assertCount(GetManyWorkoutsFilterModel::DEFAULT_LIMIT, $workouts);
-        $this->assertEquals(GetManyWorkoutsFilterModel::DEFAULT_PAGE, $pagination->firstPage);
-        $this->assertEquals(GetManyWorkoutsFilterModel::DEFAULT_PAGE, $pagination->currentPage);
-        $this->assertEquals(3, $pagination->lastPage);
+        $this->assertCount(3, $workouts);
+        $this->assertEquals(AbstractFilterModel::DEFAULT_PAGE, $pagination->firstPage);
+        $this->assertEquals(AbstractFilterModel::DEFAULT_PAGE, $pagination->currentPage);
+        $this->assertEquals(AbstractFilterModel::DEFAULT_PAGE, $pagination->lastPage);
     }
 
     public function testGetManyWorkoutWithFilterStatusesFilter(): void
     {
-        $view = $this->useCase->execute(['status' => WorkoutStatusRegistry::WORKOUT_STATUS_IN_PROGRESS], DataProfileRegistry::DATA_PROFILE_ADMIN);
+        $view = $this->useCase->execute(
+            ['status' => WorkoutStatusRegistry::WORKOUT_STATUS_IN_PROGRESS.','.WorkoutStatusRegistry::WORKOUT_STATUS_PLANNED],
+            $this->getAdminTokenPayload()
+        );
+        $this->assertCount(2, $view->data);
+
+        $view = $this->useCase->execute(['status' => WorkoutStatusRegistry::WORKOUT_STATUS_IN_PROGRESS], $this->getMemberTokenPayload());
         $this->assertCount(1, $view->data);
 
-        $view = $this->useCase->execute(['status' => WorkoutStatusRegistry::WORKOUT_STATUS_COMPLETED]);
-        $this->assertCount(25, $view->data);
+        $view = $this->useCase->execute(['status' => WorkoutStatusRegistry::WORKOUT_STATUS_COMPLETED], $this->getMemberTokenPayload());
+        $this->assertCount(1, $view->data);
 
-        $view = $this->useCase->execute(['status' => WorkoutStatusRegistry::WORKOUT_STATUS_PLANNED]);
+        $view = $this->useCase->execute(['status' => WorkoutStatusRegistry::WORKOUT_STATUS_PLANNED], $this->getMemberTokenPayload());
         $this->assertCount(1, $view->data);
     }
 }

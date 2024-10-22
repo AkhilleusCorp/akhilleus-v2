@@ -2,7 +2,7 @@ import React from 'react';
 import AdminLayout from "app/admin/layouts/AdminLayout.tsx";
 import EquipmentPreviewCard from "app/admin/features/equipment/EquipmentPreviewCard.tsx";
 import {useParams} from "react-router-dom";
-import useGetOneEquipmentById from "app/admin/hooks/equipment/useGetOneEquipmentById.tsx";
+import useGetOneEquipmentById from "app/common/hooks/equipment/useGetOneEquipmentById.tsx";
 import ErrorPage from "app/common/pages/ErrorPage.tsx";
 
 const EquipmentDetailsPage: React.FC = () => {

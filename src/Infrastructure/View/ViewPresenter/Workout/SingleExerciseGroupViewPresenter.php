@@ -14,7 +14,7 @@ final class SingleExerciseGroupViewPresenter extends AbstractSingleObjectViewPre
     /**
      * @param ExerciseGroupDataModel $data
      */
-    public function presentViewData(DataModelInterface $data, string $dataProfile): SingleObjectDataViewModelInterface
+    public function presentViewData(DataModelInterface $data, string $userType): SingleObjectDataViewModelInterface
     {
         return $this->presentExerciseGroup($data);
     }

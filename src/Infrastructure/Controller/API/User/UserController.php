@@ -38,7 +38,7 @@ final class UserController extends AbstractAPIController
     )]
     public function getMany(Request $request, GetManyUserUseCase $useCase): MultipleObjectViewModel
     {
-        return $useCase->execute($request->query->all(), $this->getDataProfile());
+        return $useCase->execute($request->query->all(), $this->getTokenPayload($request));
     }
 
     #[Route('/users/{id}', name: 'user_get_one_by_id', requirements: ['id' => '\d+'], methods: ['GET'])]
@@ -47,9 +47,9 @@ final class UserController extends AbstractAPIController
         description: 'Successfully returns a details of a User',
         content: new Model(type: SingleUserDataViewModel::class)
     )]
-    public function getOneById(int $id, GetOneUserByIdUseCase $useCase): SingleObjectViewModel
+    public function getOneById(Request $request, int $id, GetOneUserByIdUseCase $useCase): SingleObjectViewModel
     {
-        return $useCase->execute($id, $this->getDataProfile());
+        return $useCase->execute($id, $this->getTokenPayload($request));
     }
 
     #[Route('/users', name: 'user_create_one', methods: ['POST'])]
@@ -60,7 +60,7 @@ final class UserController extends AbstractAPIController
     )]
     public function createOne(Request $request, CreateOneUserUseCase $useCase): SingleObjectViewModel
     {
-        return $useCase->execute(json_decode($request->getContent(), true), $this->getDataProfile());
+        return $useCase->execute(json_decode($request->getContent(), true), $this->getTokenPayload($request));
     }
 
     #[Route('/users/{id}', name: 'user_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
@@ -69,9 +69,9 @@ final class UserController extends AbstractAPIController
         description: 'Successfully returns a details of a User',
         content: new Model(type: SingleUserDataViewModel::class)
     )]
-    public function updateOneById(int $id, Request $request, UpdateOneUserByIdUseCase $useCase): SingleObjectViewModel
+    public function updateOneById(Request $request, int $id, UpdateOneUserByIdUseCase $useCase): SingleObjectViewModel
     {
-        return $useCase->execute($id, json_decode($request->getContent(), true), $this->getDataProfile());
+        return $useCase->execute($id, json_decode($request->getContent(), true), $this->getTokenPayload($request));
     }
 
     #[Route('/users/{id}', name: 'user_delete_one_by_id', requirements: ['id' => '\d+'], methods: ['DELETE'])]

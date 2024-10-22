@@ -4,8 +4,8 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import ListFilters from "app/common/services/api/filters/ListFilters.tsx";
 import MovementsListFilters from "app/admin/services/api/filters/MovementsListFilters.tsx";
-import {AppDispatch, RootState} from "app/admin/services/redux";
-import {fetchMovements} from "app/admin/services/redux/reducers/MovementSlice.tsx";
+import {AdminDispatch, AdminRootState} from "app/admin/services/redux";
+import {fetchMovements} from "app/common/services/redux/reducers/MovementSlice.tsx";
 import ApiResultWrapper from "app/common/components/common/ApiResultWrapper.tsx";
 import movementRegistries from "app/common/constants/movementRegistries.tsx";
 import PaginatedTableFooter from "app/common/components/table/PaginatedTableFooter.tsx";
@@ -17,8 +17,8 @@ type MovementListTableType = {
 }
 
 const MovementsListTable: React.FC<MovementListTableType> = ({ filters, refreshKey, mainLinkClickCallback }) => {
-    const { movements, pagination, loading, error } = useSelector((state: RootState) => state.movements);
-    const dispatch = useDispatch<AppDispatch>();
+    const { movements, pagination, loading, error } = useSelector((state: AdminRootState) => state.movements);
+    const dispatch = useDispatch<AdminDispatch>();
     const [refresh, setRefresh] = useState<number>(refreshKey);
 
     useEffect(() => {

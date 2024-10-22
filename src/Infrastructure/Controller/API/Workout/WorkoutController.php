@@ -24,6 +24,7 @@ final class WorkoutController extends AbstractAPIController
     #[Route('/workouts', name: 'workout_get_many', methods: ['GET'])]
     #[OA\Parameter(name: 'ids', in: 'query', required: false, schema: new OA\Schema(type: 'array', items: new OA\Items(type: 'integer')))]
     #[OA\Parameter(name: 'name', in: 'query', required: false, schema: new OA\Schema(type: 'string'))]
+    #[OA\Parameter(name: 'memberId', in: 'query', required: false, schema: new OA\Schema(type: 'number'))]
     #[OA\Parameter(name: 'status', in: 'query', required: false, schema: new OA\Schema(type: 'string', enum: UserStatusRegistry::USER_STATUSES))]
     #[OA\Parameter(name: 'page', in: 'query', required: false, schema: new OA\Schema(type: 'number'))]
     #[OA\Parameter(name: 'limit', in: 'query', required: false, schema: new OA\Schema(type: 'number'))]
@@ -34,25 +35,25 @@ final class WorkoutController extends AbstractAPIController
     )]
     public function getMany(Request $request, GetManyWorkoutUseCase $useCase): MultipleObjectViewModel
     {
-        return $useCase->execute($request->query->all(), $this->getDataProfile());
+        return $useCase->execute($request->query->all(), $this->getTokenPayload($request));
     }
 
     #[Route('/workouts/{id}', name: 'workout_get_one_by_id', requirements: ['id' => '\d+'], methods: ['GET'])]
-    public function getOneById(int $id, GetOneWorkoutByIdUseCase $useCase): SingleObjectViewModel
+    public function getOneById(Request $request, int $id, GetOneWorkoutByIdUseCase $useCase): SingleObjectViewModel
     {
-        return $useCase->execute($id, $this->getDataProfile());
+        return $useCase->execute($id, $this->getTokenPayload($request));
     }
 
     #[Route('/workouts', name: 'workout_create_one', methods: ['POST'])]
     public function createOne(Request $request, CreateOneWorkoutUseCase $useCase): SingleObjectViewModel
     {
-        return $useCase->execute(json_decode($request->getContent(), true), $this->getDataProfile());
+        return $useCase->execute(json_decode($request->getContent(), true), $this->getTokenPayload($request));
     }
 
     #[Route('/workouts/{id}', name: 'workout_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
-    public function updateOneById(int $id, Request $request, UpdateOneWorkoutByIdUseCase $useCase): SingleObjectViewModel
+    public function updateOneById(Request $request, int $id, UpdateOneWorkoutByIdUseCase $useCase): SingleObjectViewModel
     {
-        return $useCase->execute($id, json_decode($request->getContent(), true), $this->getDataProfile());
+        return $useCase->execute($id, json_decode($request->getContent(), true), $this->getTokenPayload($request));
     }
 
     #[Route('/workouts/{id}', name: 'workout_delete_one_by_id', requirements: ['id' => '\d+'], methods: ['DELETE'])]

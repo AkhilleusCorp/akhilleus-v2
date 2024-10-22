@@ -5,7 +5,6 @@ namespace App\Tests\integrations\UseCase\API\Workout;
 use App\Domain\Factory\DataModelFactory\Workout\MovementDataModelFactory;
 use App\Domain\Factory\SourceModelFactory\Workout\CreateMovementSourceModelFactory;
 use App\Domain\Gateway\Persister\Workout\MovementDataModelPersisterGateway;
-use App\Infrastructure\Registry\DataProfileRegistry;
 use App\Infrastructure\View\ViewModel\Workout\SingleMovementDataViewModel;
 use App\Infrastructure\View\ViewPresenter\Workout\SingleMovementViewPresenter;
 use App\Tests\integrations\AbstractIntegrationTest;
@@ -27,12 +26,12 @@ final class CreateOneMovementUseCaseTest extends AbstractIntegrationTest
         );
     }
 
-    public function testCreateOneForAdminDataProfile(): void
+    public function testCreateOneForAdmin(): void
     {
         $name = 'New movement for admin';
         $viewModel = $this->useCase->execute(
             ['name' => $name, 'primaryMuscle' => 1, 'auxiliaryMuscles' => [2, 3], 'equipments' => [3, 4]],
-            DataProfileRegistry::DATA_PROFILE_ADMIN
+            $this->getAdminTokenPayload()
         );
         /** @var SingleMovementDataViewModel $viewData */
         $viewData = $viewModel->data;
@@ -40,12 +39,12 @@ final class CreateOneMovementUseCaseTest extends AbstractIntegrationTest
         $this->assertEquals($name, $viewData->name);
     }
 
-    public function testCreateOneForMemberDataProfile(): void
+    public function testCreateOneForMember(): void
     {
         $name = 'New movement for member';
         $viewModel = $this->useCase->execute(
             ['name' => $name, 'primaryMuscle' => 1, 'auxiliaryMuscles' => [2, 3], 'equipments' => [3, 4]],
-            DataProfileRegistry::DATA_PROFILE_ADMIN
+            $this->getAdminTokenPayload()
         );
         /** @var SingleMovementDataViewModel $viewData */
         $viewData = $viewModel->data;

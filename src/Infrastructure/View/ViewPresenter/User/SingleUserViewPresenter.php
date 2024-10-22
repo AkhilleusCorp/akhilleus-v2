@@ -4,8 +4,8 @@ namespace App\Infrastructure\View\ViewPresenter\User;
 
 use App\Domain\DTO\DataModel\DataModelInterface;
 use App\Domain\DTO\DataModel\User\UserDataModel;
+use App\Domain\Registry\User\UserTypeRegistry;
 use App\Infrastructure\DataTransformer\EmailObfuscationDataTransformer;
-use App\Infrastructure\Registry\DataProfileRegistry;
 use App\Infrastructure\View\ViewModel\User\SingleUserDataViewModel;
 use App\Infrastructure\View\ViewPresenter\AbstractSingleObjectViewPresenter;
 
@@ -14,7 +14,7 @@ final class SingleUserViewPresenter extends AbstractSingleObjectViewPresenter
     /**
      * @param UserDataModel $data
      */
-    public function presentViewData(DataModelInterface $data, string $dataProfile): SingleUserDataViewModel
+    public function presentViewData(DataModelInterface $data, string $userType): SingleUserDataViewModel
     {
         $viewData = new SingleUserDataViewModel();
         $viewData->id = $data->id;
@@ -33,7 +33,7 @@ final class SingleUserViewPresenter extends AbstractSingleObjectViewPresenter
         $viewData->distanceUnit = $data->configuration->distanceUnit;
         $viewData->measurementUnit = $data->configuration->measurementUnit;
 
-        if (DataProfileRegistry::DATA_PROFILE_ADMIN !== $dataProfile) {
+        if (UserTypeRegistry::USER_TYPE_ADMIN !== $userType) {
             $viewData->email = EmailObfuscationDataTransformer::obfuscate($data->email);
         }
 
