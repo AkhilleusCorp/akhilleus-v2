@@ -7,5 +7,5 @@ use App\Infrastructure\View\ViewModel\MultipleObjectItemDataViewModelInterface;
 
 interface MultipleObjectViewPresenterInterface
 {
-    public function presentItem(DataModelInterface $data, ?string $dataProfile): MultipleObjectItemDataViewModelInterface;
+    public function presentItem(DataModelInterface $data, ?string $userType): MultipleObjectItemDataViewModelInterface;
 }

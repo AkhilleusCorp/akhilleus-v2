@@ -12,11 +12,11 @@ abstract class AbstractMultipleObjectViewPresenter implements MultipleObjectView
      * @param DataModelInterface[]    $data
      * @param ViewHydratorInterface[] $hydrators
      */
-    public function present(array $data, ?string $dataProfile, array $hydrators = []): MultipleObjectViewModel
+    public function present(array $data, ?string $userType, array $hydrators = []): MultipleObjectViewModel
     {
         $viewModel = new MultipleObjectViewModel();
         foreach ($data as $item) {
-            $viewModel->data[] = $this->presentItem($item, $dataProfile);
+            $viewModel->data[] = $this->presentItem($item, $userType);
         }
 
         foreach ($hydrators as $hydrator) {

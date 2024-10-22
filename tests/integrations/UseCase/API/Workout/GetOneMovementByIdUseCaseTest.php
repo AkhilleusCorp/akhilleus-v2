@@ -3,7 +3,6 @@
 namespace App\Tests\integrations\UseCase\API\Workout;
 
 use App\Domain\Gateway\Provider\Workout\MovementDataModelProviderGateway;
-use App\Infrastructure\Registry\DataProfileRegistry;
 use App\Infrastructure\View\ViewModel\Workout\SingleMovementDataViewModel;
 use App\Infrastructure\View\ViewPresenter\Workout\SingleMovementViewPresenter;
 use App\Tests\integrations\AbstractIntegrationTest;
@@ -24,10 +23,10 @@ final class GetOneMovementByIdUseCaseTest extends AbstractIntegrationTest
         );
     }
 
-    public function testGetOneUserForAdminDataProfile(): void
+    public function testGetOneUserForAdmin(): void
     {
         $movementId = 1;
-        $viewModel = $this->useCase->execute($movementId, DataProfileRegistry::DATA_PROFILE_ADMIN);
+        $viewModel = $this->useCase->execute($movementId, $this->getAdminTokenPayload());
         /** @var SingleMovementDataViewModel $viewData */
         $viewData = $viewModel->data;
 
@@ -39,10 +38,10 @@ final class GetOneMovementByIdUseCaseTest extends AbstractIntegrationTest
         $this->assertEquals(3, $viewData->equipments[1]->id);
     }
 
-    public function testGetOneUserForMemberDataProfile(): void
+    public function testGetOneUserForMember(): void
     {
         $movementId = 1;
-        $viewModel = $this->useCase->execute($movementId);
+        $viewModel = $this->useCase->execute($movementId, $this->getMemberTokenPayload());
         /** @var SingleMovementDataViewModel $viewData */
         $viewData = $viewModel->data;
 
@@ -59,6 +58,6 @@ final class GetOneMovementByIdUseCaseTest extends AbstractIntegrationTest
         $this->expectException(NotFoundHttpException::class);
         $this->expectExceptionMessage('Movement #666 cannot be found');
 
-        $this->useCase->execute(666, DataProfileRegistry::DATA_PROFILE_ADMIN);
+        $this->useCase->execute(666, $this->getAdminTokenPayload());
     }
 }

@@ -15,7 +15,7 @@ final class SingleMovementViewPresenter extends AbstractSingleObjectViewPresente
     /**
      * @param MovementDataModel $data
      */
-    public function presentViewData(DataModelInterface $data, string $dataProfile): SingleMovementDataViewModel
+    public function presentViewData(DataModelInterface $data, string $userType): SingleMovementDataViewModel
     {
         $view = new SingleMovementDataViewModel();
         $view->id = $data->id;

@@ -7,7 +7,7 @@ use App\Domain\Factory\DataModelFactory\Workout\ExerciseDataModelFactory;
 use App\Domain\Gateway\Persister\Workout\ExerciseGroupDataModelPersisterGateway;
 use App\Domain\Gateway\Provider\Workout\ExerciseGroupDataModelProviderGateway;
 use App\Domain\Gateway\Provider\Workout\MovementDataModelProviderGateway;
-use App\Infrastructure\Registry\DataProfileRegistry;
+use App\Infrastructure\DTO\TokenPayloadDTO;
 use App\Infrastructure\View\ViewModel\SingleObjectViewModel;
 use App\Infrastructure\View\ViewPresenter\Workout\SingleExerciseGroupViewPresenter;
 use App\UseCase\UseCaseInterface;
@@ -24,7 +24,7 @@ final class AddExercisesByGroupIdUseCase implements UseCaseInterface
     ) {
     }
 
-    public function execute(int $workoutId, int $groupId, string $dataProfile = DataProfileRegistry::DATA_PROFILE_MEMBER): SingleObjectViewModel
+    public function execute(int $workoutId, int $groupId, TokenPayloadDTO $payload): SingleObjectViewModel
     {
         $group = $this->groupProvider->getExerciseGroupById($groupId);
         if (null === $group) {
@@ -52,7 +52,7 @@ final class AddExercisesByGroupIdUseCase implements UseCaseInterface
 
         return $this->presenter->present(
             $group,
-            $dataProfile
+            $payload->userType
         );
     }
 }

@@ -3,7 +3,7 @@
 namespace App\UseCase\API\User;
 
 use App\Domain\Gateway\Provider\User\UserDataModelProviderGateway;
-use App\Infrastructure\Registry\DataProfileRegistry;
+use App\Infrastructure\DTO\TokenPayloadDTO;
 use App\Infrastructure\View\ViewModel\SingleObjectViewModel;
 use App\Infrastructure\View\ViewPresenter\User\SingleUserViewPresenter;
 use App\UseCase\UseCaseInterface;
@@ -17,13 +17,13 @@ final class GetOneUserByIdUseCase implements UseCaseInterface
     ) {
     }
 
-    public function execute(int $id, string $dataProfile = DataProfileRegistry::DATA_PROFILE_MEMBER): SingleObjectViewModel
+    public function execute(int $id, TokenPayloadDTO $payload): SingleObjectViewModel
     {
         $user = $this->provider->getUserById($id);
         if (null === $user) {
             throw new NotFoundHttpException("User #$id cannot be found");
         }
 
-        return $this->presenter->present($user, $dataProfile);
+        return $this->presenter->present($user, $payload->userType);
     }
 }

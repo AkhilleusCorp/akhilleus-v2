@@ -2,13 +2,13 @@
 
 namespace App\Infrastructure\EventListener;
 
-use App\Infrastructure\Registry\DataProfileRegistry;
 use App\Infrastructure\Registry\TokenPayloadRegistry;
 use App\Infrastructure\Tools\CustomSerializer;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\ViewEvent;
+use Symfony\Component\Serializer\Exception\LogicException;
 
 final class HttpResponseEventListener
 {
@@ -72,15 +72,15 @@ final class HttpResponseEventListener
     /**
      * @param array<mixed>|null $tokenPayload
      */
-    private function getSerializationGroup(?array $tokenPayload, ?string $dataProfile): string
+    private function getSerializationGroup(?array $tokenPayload, ?string $userType): string
     {
         if (null === $tokenPayload) {
-            return DataProfileRegistry::DATA_PROFILE_PUBLIC;
+            throw new LogicException('Cannot serialize data without a serialization group');
         }
 
         $serializationGroup = $tokenPayload[TokenPayloadRegistry::PAYLOAD_USER_TYPE];
-        if (null !== $dataProfile) {
-            $serializationGroup = "{$serializationGroup}-{$dataProfile}";
+        if (null !== $userType) {
+            $serializationGroup = "{$serializationGroup}-{$userType}";
         }
 
         return $serializationGroup;

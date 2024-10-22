@@ -5,7 +5,6 @@ namespace App\Tests\integrations\UseCase\API\User;
 use App\Domain\Gateway\Provider\User\UserDataModelProviderGateway;
 use App\Domain\Registry\User\UserStatusRegistry;
 use App\Domain\Registry\User\UserTypeRegistry;
-use App\Infrastructure\Registry\DataProfileRegistry;
 use App\Infrastructure\View\ViewModel\User\SingleUserDataViewModel;
 use App\Infrastructure\View\ViewPresenter\User\SingleUserViewPresenter;
 use App\Tests\integrations\AbstractIntegrationTest;
@@ -26,10 +25,10 @@ final class GetOneUserByIdUseCaseTest extends AbstractIntegrationTest
         );
     }
 
-    public function testGetOneUserForAdminDataProfile(): void
+    public function testGetOneUserForAdmin(): void
     {
         $userId = 1;
-        $viewModel = $this->useCase->execute($userId, DataProfileRegistry::DATA_PROFILE_ADMIN);
+        $viewModel = $this->useCase->execute($userId, $this->getAdminTokenPayload());
         /** @var SingleUserDataViewModel $viewData */
         $viewData = $viewModel->data;
 
@@ -40,10 +39,10 @@ final class GetOneUserByIdUseCaseTest extends AbstractIntegrationTest
         $this->assertEquals(UserTypeRegistry::USER_TYPE_MEMBER, $viewData->type);
     }
 
-    public function testGetOneUserForMemberDataProfile(): void
+    public function testGetOneUserForMember(): void
     {
         $userId = 1;
-        $viewModel = $this->useCase->execute($userId);
+        $viewModel = $this->useCase->execute($userId, $this->getMemberTokenPayload());
         /** @var SingleUserDataViewModel $viewData */
         $viewData = $viewModel->data;
 
@@ -59,6 +58,6 @@ final class GetOneUserByIdUseCaseTest extends AbstractIntegrationTest
         $this->expectException(NotFoundHttpException::class);
         $this->expectExceptionMessage('User #666 cannot be found');
 
-        $this->useCase->execute(666, DataProfileRegistry::DATA_PROFILE_ADMIN);
+        $this->useCase->execute(666, $this->getAdminTokenPayload());
     }
 }

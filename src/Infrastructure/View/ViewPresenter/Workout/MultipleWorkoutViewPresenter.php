@@ -13,7 +13,7 @@ final class MultipleWorkoutViewPresenter extends AbstractMultipleObjectViewPrese
     /**
      * @param WorkoutDataModel $data
      */
-    public function presentItem(DataModelInterface $data, ?string $dataProfile): MultipleWorkoutItemDataViewModel
+    public function presentItem(DataModelInterface $data, ?string $userType): MultipleWorkoutItemDataViewModel
     {
         $item = new MultipleWorkoutItemDataViewModel();
         $item->id = $data->id;

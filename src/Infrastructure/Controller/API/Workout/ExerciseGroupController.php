@@ -16,18 +16,18 @@ use Symfony\Component\Routing\Attribute\Route;
 final class ExerciseGroupController extends AbstractAPIController
 {
     #[Route('/workouts/{workoutId}/groups', name: 'exercise_group_get_many', requirements: ['workoutId' => '\d+'], methods: ['GET'])]
-    public function getMany(int $workoutId, GetManyExerciseGroupUseCase $useCase): MultipleObjectViewModel
+    public function getMany(Request $request, int $workoutId, GetManyExerciseGroupUseCase $useCase): MultipleObjectViewModel
     {
-        return $useCase->execute($workoutId, $this->getDataProfile());
+        return $useCase->execute($workoutId, $this->getTokenPayload($request));
     }
 
     #[Route('/workouts/{workoutId}/groups', name: 'exercise_group_create_one', requirements: ['workoutId' => '\d+'], methods: ['POST'])]
-    public function createOneExerciseGroup(int $workoutId, Request $request, CreateOneExerciseGroupUseCase $useCase): SingleObjectViewModel
+    public function createOneExerciseGroup(Request $request, int $workoutId, CreateOneExerciseGroupUseCase $useCase): SingleObjectViewModel
     {
         return $useCase->execute(
             $workoutId,
             json_decode($request->getContent(), true),
-            $this->getDataProfile()
+            $this->getTokenPayload($request)
         );
     }
 

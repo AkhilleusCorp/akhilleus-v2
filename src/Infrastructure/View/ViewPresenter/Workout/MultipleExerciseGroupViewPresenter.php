@@ -14,7 +14,7 @@ final class MultipleExerciseGroupViewPresenter extends AbstractMultipleObjectVie
     /**
      * @param ExerciseGroupDataModel $data
      */
-    public function presentItem(DataModelInterface $data, ?string $dataProfile): ExerciseGroupDataViewModel
+    public function presentItem(DataModelInterface $data, ?string $userType): ExerciseGroupDataViewModel
     {
         return $this->presentExerciseGroup($data);
     }

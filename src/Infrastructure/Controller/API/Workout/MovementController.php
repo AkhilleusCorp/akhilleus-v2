@@ -22,7 +22,7 @@ final class MovementController extends AbstractAPIController
     #[Route('/movements', name: 'movement_get_many', methods: ['GET'])]
     public function getMany(Request $request, GetManyMovementUseCase $useCase): MultipleObjectViewModel
     {
-        return $useCase->execute($request->query->all(), $this->getDataProfile());
+        return $useCase->execute($request->query->all(), $this->getTokenPayload($request));
     }
 
     /**
@@ -37,21 +37,21 @@ final class MovementController extends AbstractAPIController
     }
 
     #[Route('/movements/{id}', name: 'movement_get_one_by_id', requirements: ['id' => '\d+'], methods: ['GET'])]
-    public function getOneById(int $id, GetOneMovementByIdUseCase $useCase): SingleObjectViewModel
+    public function getOneById(Request $request, int $id, GetOneMovementByIdUseCase $useCase): SingleObjectViewModel
     {
-        return $useCase->execute($id, $this->getDataProfile());
+        return $useCase->execute($id, $this->getTokenPayload($request));
     }
 
     #[Route('/movements', name: 'movement_create_one', methods: ['POST'])]
     public function createOne(Request $request, CreateOneMovementUseCase $useCase): SingleObjectViewModel
     {
-        return $useCase->execute(json_decode($request->getContent(), true), $this->getDataProfile());
+        return $useCase->execute(json_decode($request->getContent(), true), $this->getTokenPayload($request));
     }
 
     #[Route('/movements/{id}', name: 'movement_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
-    public function updateOneById(int $id, Request $request, UpdateOneMovementByIdUseCase $useCase): SingleObjectViewModel
+    public function updateOneById(Request $request, int $id, UpdateOneMovementByIdUseCase $useCase): SingleObjectViewModel
     {
-        return $useCase->execute($id, json_decode($request->getContent(), true), $this->getDataProfile());
+        return $useCase->execute($id, json_decode($request->getContent(), true), $this->getTokenPayload($request));
     }
 
     #[Route('/movements/{id}', name: 'movement_delete_one_by_id', requirements: ['id' => '\d+'], methods: ['DELETE'])]

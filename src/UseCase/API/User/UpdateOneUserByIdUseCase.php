@@ -5,8 +5,8 @@ namespace App\UseCase\API\User;
 use App\Domain\Factory\DataModelFactory\User\UserDataModelFactory;
 use App\Domain\Factory\SourceModelFactory\User\UpdateUserSourceModelFactory;
 use App\Domain\Gateway\Provider\User\UserDataModelProviderGateway;
+use App\Infrastructure\DTO\TokenPayloadDTO;
 use App\Infrastructure\Persister\User\UserDataModelPersister;
-use App\Infrastructure\Registry\DataProfileRegistry;
 use App\Infrastructure\View\ViewModel\SingleObjectViewModel;
 use App\Infrastructure\View\ViewPresenter\User\SingleUserViewPresenter;
 use App\UseCase\UseCaseInterface;
@@ -26,7 +26,7 @@ final class UpdateOneUserByIdUseCase implements UseCaseInterface
     /**
      * @param array<mixed> $parameters
      */
-    public function execute(int $id, array $parameters, string $dataProfile = DataProfileRegistry::DATA_PROFILE_MEMBER): SingleObjectViewModel
+    public function execute(int $id, array $parameters, TokenPayloadDTO $payload): SingleObjectViewModel
     {
         $user = $this->provider->getUserById($id);
         if (null === $user) {
@@ -38,6 +38,6 @@ final class UpdateOneUserByIdUseCase implements UseCaseInterface
 
         $this->persister->edit($user);
 
-        return $this->presenter->present($user, $dataProfile);
+        return $this->presenter->present($user, $payload->userType);
     }
 }

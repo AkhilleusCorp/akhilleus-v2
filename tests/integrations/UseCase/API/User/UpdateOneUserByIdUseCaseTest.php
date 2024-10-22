@@ -7,7 +7,6 @@ use App\Domain\Factory\SourceModelFactory\User\UpdateUserSourceModelFactory;
 use App\Domain\Gateway\Provider\User\UserDataModelProviderGateway;
 use App\Domain\Registry\User\UserStatusRegistry;
 use App\Infrastructure\Persister\User\UserDataModelPersister;
-use App\Infrastructure\Registry\DataProfileRegistry;
 use App\Infrastructure\Repository\User\UserDataModelRepository;
 use App\Infrastructure\View\ViewModel\User\SingleUserDataViewModel;
 use App\Infrastructure\View\ViewPresenter\User\SingleUserViewPresenter;
@@ -45,7 +44,7 @@ final class UpdateOneUserByIdUseCaseTest extends AbstractIntegrationTest
         $viewModel = $this->useCase->execute(
             $userId,
             ['username' => 'Ghriim-v2', 'email' => 'ghriim-v2@fakemail.com'],
-            DataProfileRegistry::DATA_PROFILE_ADMIN
+            $this->getAdminTokenPayload()
         );
         /** @var SingleUserDataViewModel $viewData */
         $viewData = $viewModel->data;
@@ -63,6 +62,10 @@ final class UpdateOneUserByIdUseCaseTest extends AbstractIntegrationTest
     {
         $this->expectException(NotFoundHttpException::class);
 
-        $this->useCase->execute(666, ['username' => 'bob', 'status' => UserStatusRegistry::USER_STATUS_DEACTIVATED]);
+        $this->useCase->execute(
+            666,
+            ['username' => 'bob', 'status' => UserStatusRegistry::USER_STATUS_DEACTIVATED],
+            $this->getAdminTokenPayload()
+        );
     }
 }

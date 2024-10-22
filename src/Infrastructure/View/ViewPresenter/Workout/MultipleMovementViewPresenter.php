@@ -13,7 +13,7 @@ final class MultipleMovementViewPresenter extends AbstractMultipleObjectViewPres
     /**
      * @param MovementDataModel $data
      */
-    public function presentItem(DataModelInterface $data, ?string $dataProfile): MultipleMovementItemDataViewModel
+    public function presentItem(DataModelInterface $data, ?string $userType): MultipleMovementItemDataViewModel
     {
         $item = new MultipleMovementItemDataViewModel();
         $item->id = $data->id;

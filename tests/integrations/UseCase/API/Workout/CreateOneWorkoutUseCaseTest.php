@@ -7,7 +7,6 @@ use App\Domain\Factory\SourceModelFactory\Workout\CreateWorkoutSourceModelFactor
 use App\Domain\Gateway\Persister\Workout\WorkoutDataModelPersisterGateway;
 use App\Domain\Registry\Workout\WorkoutStatusRegistry;
 use App\Domain\Registry\Workout\WorkoutVisibilityRegistry;
-use App\Infrastructure\Registry\DataProfileRegistry;
 use App\Infrastructure\View\ViewModel\Workout\SingleWorkoutDataViewModel;
 use App\Infrastructure\View\ViewPresenter\Workout\SingleWorkoutViewPresenter;
 use App\Tests\integrations\AbstractIntegrationTest;
@@ -29,13 +28,10 @@ final class CreateOneWorkoutUseCaseTest extends AbstractIntegrationTest
         );
     }
 
-    public function testCreateOneForAdminDataProfile(): void
+    public function testCreateOneForAdmin(): void
     {
         $name = 'New workout for admin';
-        $viewModel = $this->useCase->execute(
-            ['name' => $name],
-            DataProfileRegistry::DATA_PROFILE_ADMIN
-        );
+        $viewModel = $this->useCase->execute(['name' => $name], $this->getAdminTokenPayload());
         /** @var SingleWorkoutDataViewModel $viewData */
         $viewData = $viewModel->data;
 
@@ -44,12 +40,11 @@ final class CreateOneWorkoutUseCaseTest extends AbstractIntegrationTest
         $this->assertEquals(WorkoutVisibilityRegistry::WORKOUT_VISIBILITY_FRIENDS, $viewData->visibility);
     }
 
-    public function testCreateOneForMemberDataProfile(): void
+    public function testCreateOneForMember(): void
     {
         $name = 'New workout for member';
-        $viewModel = $this->useCase->execute(
-            ['name' => $name]
-        );
+        $viewModel = $this->useCase->execute(['name' => $name], $this->getMemberTokenPayload());
+
         /** @var SingleWorkoutDataViewModel $viewData */
         $viewData = $viewModel->data;
 
@@ -66,7 +61,8 @@ final class CreateOneWorkoutUseCaseTest extends AbstractIntegrationTest
                 'name' => $name,
                 'status' => WorkoutStatusRegistry::WORKOUT_STATUS_PLANNED,
                 'visibility' => WorkoutVisibilityRegistry::WORKOUT_VISIBILITY_SPECIFIC_CLIENT,
-            ]
+            ],
+            $this->getMemberTokenPayload()
         );
         /** @var SingleWorkoutDataViewModel $viewData */
         $viewData = $viewModel->data;

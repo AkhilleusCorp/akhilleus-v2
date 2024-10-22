@@ -6,7 +6,6 @@ use App\Domain\Factory\DataModelFactory\Workout\WorkoutDataModelFactory;
 use App\Domain\Factory\SourceModelFactory\Workout\UpdateWorkoutSourceModelFactory;
 use App\Domain\Gateway\Provider\Workout\WorkoutDataModelProviderGateway;
 use App\Infrastructure\Persister\Workout\WorkoutDataModelPersister;
-use App\Infrastructure\Registry\DataProfileRegistry;
 use App\Infrastructure\Repository\Workout\WorkoutDataModelRepository;
 use App\Infrastructure\View\ViewModel\Workout\SingleWorkoutDataViewModel;
 use App\Infrastructure\View\ViewPresenter\Workout\SingleWorkoutViewPresenter;
@@ -44,7 +43,7 @@ final class UpdateOneWorkoutByIdUseCaseTest extends AbstractIntegrationTest
         $viewModel = $this->useCase->execute(
             $workoutId,
             ['name' => 'New name for a new life'],
-            DataProfileRegistry::DATA_PROFILE_ADMIN
+            $this->getAdminTokenPayload()
         );
         /** @var SingleWorkoutDataViewModel $viewData */
         $viewData = $viewModel->data;
@@ -61,6 +60,6 @@ final class UpdateOneWorkoutByIdUseCaseTest extends AbstractIntegrationTest
     {
         $this->expectException(NotFoundHttpException::class);
 
-        $this->useCase->execute(666, ['name' => 'whatever']);
+        $this->useCase->execute(666, ['name' => 'whatever'], $this->getMemberTokenPayload());
     }
 }
