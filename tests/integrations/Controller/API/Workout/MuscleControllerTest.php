@@ -7,6 +7,7 @@ use App\Domain\Gateway\Provider\Workout\MuscleDataModelProviderGateway;
 use App\Infrastructure\Controller\API\Workout\MuscleController;
 use App\Infrastructure\View\ViewModel\Workout\SingleMuscleDataViewModel;
 use App\Tests\integrations\Controller\AbstractGenericControllerTest;
+use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -20,7 +21,7 @@ final class MuscleControllerTest extends AbstractGenericControllerTest
     {
         parent::setUp();
 
-        $this->controller = new MuscleController();
+        $this->controller = new MuscleController($this->container->get(JWTTokenManagerInterface::class));
         $this->provider = $this->container->get(MuscleDataModelProviderGateway::class);
         $this->dataModelFactory = $this->container->get(MuscleDataModelFactory::class);
     }
