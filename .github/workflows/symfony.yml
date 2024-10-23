@@ -39,8 +39,9 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-progress --no-suggest --no-interaction
 
-      - name: Copy .env file
-        run: cp .env .env.test
+      - name: Create .env.test.local
+        run: |
+          cp .env.test.ci > .env.test.local
 
       - name: Wait for MySQL to be ready
         run: |
@@ -51,8 +52,6 @@ jobs:
 
       - name: Unit & Integration tests
         run: XDEBUG_MODE=coverage vendor/bin/simple-phpunit
-        env:
-          DATABASE_URL: "mysql://test_user:test_password@127.0.0.1:3306/test_db"
 
       - name: Run codacy-coverage-reporter
         uses: codacy/codacy-coverage-reporter-action@v1.3.0
