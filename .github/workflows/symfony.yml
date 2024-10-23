@@ -31,7 +31,7 @@ jobs:
 
       - name: Create .env.test.local
         run: |
-          cp .env.test.ci > .env.test.local
+          cp .env.test.ci .env.test.local
 
       - name: Set up PHP 8.2
         uses: shivammathur/setup-php@v2
