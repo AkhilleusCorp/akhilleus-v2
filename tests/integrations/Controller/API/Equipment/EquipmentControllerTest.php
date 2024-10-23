@@ -7,6 +7,7 @@ use App\Domain\Gateway\Provider\Equipment\EquipmentDataModelProviderGateway;
 use App\Infrastructure\Controller\API\Equipment\EquipmentController;
 use App\Infrastructure\View\ViewModel\Equipment\SingleEquipmentDataViewModel;
 use App\Tests\integrations\Controller\AbstractGenericControllerTest;
+use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -20,7 +21,7 @@ final class EquipmentControllerTest extends AbstractGenericControllerTest
     {
         parent::setUp();
 
-        $this->controller = new EquipmentController();
+        $this->controller = new EquipmentController($this->container->get(JWTTokenManagerInterface::class));
         $this->provider = $this->container->get(EquipmentDataModelProviderGateway::class);
         $this->dataModelFactory = $this->container->get(EquipmentDataModelFactory::class);
     }

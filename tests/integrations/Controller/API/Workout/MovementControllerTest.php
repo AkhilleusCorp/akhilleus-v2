@@ -6,6 +6,7 @@ use App\Domain\Gateway\Provider\Workout\MovementDataModelProviderGateway;
 use App\Infrastructure\Controller\API\Workout\MovementController;
 use App\Tests\integrations\AbstractIntegrationTest;
 use App\UseCase\API\GenericGetDropdownableUseCase;
+use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 
 final class MovementControllerTest extends AbstractIntegrationTest
 {
@@ -16,7 +17,7 @@ final class MovementControllerTest extends AbstractIntegrationTest
     {
         parent::setUp();
 
-        $this->controller = new MovementController();
+        $this->controller = new MovementController($this->container->get(JWTTokenManagerInterface::class));
         $this->provider = $this->container->get(MovementDataModelProviderGateway::class);
     }
 

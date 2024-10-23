@@ -14,6 +14,7 @@ final class JWTTokenCreatedListener
         $user = $event->getUser();
 
         $payload = $event->getData();
+        $payload[TokenPayloadRegistry::PAYLOAD_USER_ID] = $user->id;
         $payload[TokenPayloadRegistry::PAYLOAD_USER_TYPE] = $user->type;
         $payload[TokenPayloadRegistry::PAYLOAD_DATE_FORMAT] = $user->configuration->dateFormat;
 

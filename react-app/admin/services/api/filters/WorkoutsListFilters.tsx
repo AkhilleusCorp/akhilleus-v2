@@ -20,6 +20,7 @@ class WorkoutsListFilters implements ListFilters {
 
         this.name = null;
         this.status = null;
+        this.memberId = null;
     }
 }
 
