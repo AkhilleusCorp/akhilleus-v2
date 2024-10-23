@@ -40,10 +40,6 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-progress --no-suggest --no-interaction
 
-      - name: Create .env.test.local
-        run: |
-          cp .env.test.ci .env.test.local
-
       - name: Wait for MySQL to be ready
         run: |
           sudo apt-get install -y mysql-client
@@ -52,7 +48,10 @@ jobs:
           done
 
       - name: Unit & Integration tests
-        run: XDEBUG_MODE=coverage vendor/bin/simple-phpunit --env=test
+        run: |
+          cp .env.test.ci .env.test
+          cp .env.test.ci .env
+          XDEBUG_MODE=coverage vendor/bin/simple-phpunit
 
       - name: Run codacy-coverage-reporter
         uses: codacy/codacy-coverage-reporter-action@v1.3.0
