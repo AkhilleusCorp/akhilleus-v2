@@ -39,9 +39,8 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-progress --no-suggest --no-interaction
 
-      - name: Create .env.test.local
-        run: |
-          echo "DATABASE_URL=mysql://test_user:test_password@127.0.0.1:3306/test_db" > .env.test.local
+      - name: Copy .env file
+        run: cp .env .env.test
 
       - name: Wait for MySQL to be ready
         run: |
