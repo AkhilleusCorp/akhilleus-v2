@@ -10,7 +10,6 @@ permissions:
   contents: read
 
 jobs:
-
   tests:
     runs-on: ubuntu-latest
 
@@ -48,10 +47,10 @@ jobs:
           done
 
       - name: Unit & Integration tests
-        run: |
-          cp .env.test.ci .env.test
-          cp .env.test.ci .env
-          XDEBUG_MODE=coverage vendor/bin/simple-phpunit
+        run: XDEBUG_MODE=coverage vendor/bin/simple-phpunit
+        env:
+          DATABASE_URL: "mysql://test_user:test_password@127.0.0.1:3306/test_db"
+          JWT_PASSPHRASE: "8d4071b86900e8e27c695e34a0316c66371b038a135379e0ece0df664105d027"
 
       - name: Run codacy-coverage-reporter
         uses: codacy/codacy-coverage-reporter-action@v1.3.0
