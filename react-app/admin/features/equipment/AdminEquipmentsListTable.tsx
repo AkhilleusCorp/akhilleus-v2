@@ -9,14 +9,15 @@ import {fetchEquipments} from "app/common/services/redux/reducers/EquipmentSlice
 import ApiResultWrapper from "app/common/components/common/ApiResultWrapper.tsx";
 import equipmentRegistries from "app/common/constants/equipmentRegistries.tsx";
 import PaginatedTableFooter from "app/common/components/table/PaginatedTableFooter.tsx";
+import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
+import {Link} from "react-router-dom";
 
 type EquipmentListTableType = {
     filters: EquipmentsListFilters;
     refreshKey: number;
-    mainLinkClickCallback: (equipmentId: number) => void;
 }
 
-const EquipementsListTable: React.FC<EquipmentListTableType> = ({ filters, refreshKey, mainLinkClickCallback }) => {
+const EquipmentsListTable: React.FC<EquipmentListTableType> = ({ filters, refreshKey }) => {
     const { equipments, pagination, loading, error } = useSelector((state: AppRootState) => state.equipments);
     const dispatch = useDispatch<AppDispatch>();
     const [refresh, setRefresh] = useState<number>(refreshKey);
@@ -24,11 +25,6 @@ const EquipementsListTable: React.FC<EquipmentListTableType> = ({ filters, refre
     useEffect(() => {
         dispatch(fetchEquipments(filters));
     }, [dispatch, refresh]);
-
-    const onNameClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>, equipmentId: number) => {
-        event.preventDefault();
-        mainLinkClickCallback(equipmentId);
-    }
 
     const handlePagination = (paginationFilters: ListFilters) => {
         filters.page = paginationFilters.page;
@@ -49,9 +45,9 @@ const EquipementsListTable: React.FC<EquipmentListTableType> = ({ filters, refre
                         {equipments.map((equipment) => (
                             <TableRow id={'equipment_' + equipment.id} key={'equipment_' + equipment.id}>
                                 <TableCell>
-                                    <a href={"#"} onClick={(event) => onNameClick(event, equipment.id)}>
+                                    <Link to={adminRoutes.equipment.details(equipment.id)}>
                                         {equipment.name}
-                                    </a>
+                                    </Link>
                                 </TableCell>
                                 <TableCell>{equipmentRegistries.status[equipment.status]}</TableCell>
                             </TableRow>
@@ -64,4 +60,4 @@ const EquipementsListTable: React.FC<EquipmentListTableType> = ({ filters, refre
     );
 }
 
-export default EquipementsListTable;
+export default EquipmentsListTable;

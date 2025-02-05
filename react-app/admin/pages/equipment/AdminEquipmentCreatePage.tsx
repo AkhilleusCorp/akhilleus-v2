@@ -2,7 +2,7 @@ import React from 'react';
 import AdminLayout from "app/admin/layouts/AdminLayout.tsx";
 import AdminEquipmentCreateForm from "app/admin/features/equipment/AdminEquipmentCreateForm.tsx";
 
-const EquipmentCreatePage: React.FC = () => {
+const AdminEquipmentCreatePage: React.FC = () => {
     return (
         <AdminLayout>
             <h1>Add new Equipment</h1>
@@ -13,4 +13,4 @@ const EquipmentCreatePage: React.FC = () => {
     );
 }
 
-export default EquipmentCreatePage;
+export default AdminEquipmentCreatePage;

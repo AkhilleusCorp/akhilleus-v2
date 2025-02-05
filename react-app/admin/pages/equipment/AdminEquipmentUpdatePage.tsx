@@ -5,7 +5,7 @@ import useGetOneEquipmentById from "app/common/hooks/equipment/useGetOneEquipmen
 import ErrorPage from "app/common/pages/ErrorPage.tsx";
 import AdminEquipmentUpdateForm from "app/admin/features/equipment/AdminEquipmentUpdateForm.tsx";
 
-const EquipmentUpdatePage: React.FC = () => {
+const AdminEquipmentUpdatePage: React.FC = () => {
     const { equipmentId } = useParams<{ equipmentId: string }>();
     const equipment = useGetOneEquipmentById(equipmentId);
     if (!equipment) {
@@ -20,4 +20,4 @@ const EquipmentUpdatePage: React.FC = () => {
     )
 }
 
-export default EquipmentUpdatePage;
+export default AdminEquipmentUpdatePage;

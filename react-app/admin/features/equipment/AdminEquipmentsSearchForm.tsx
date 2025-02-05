@@ -11,7 +11,7 @@ type EquipmentSearchFormType = {
     callbackFunction: (filters: EquipmentsListFilters) => void;
 }
 
-const EquipmentsSearchForm: React.FC<EquipmentSearchFormType> = ({defaultFilters, callbackFunction}) => {
+const AdminEquipmentsSearchForm: React.FC<EquipmentSearchFormType> = ({defaultFilters, callbackFunction}) => {
     const [filters, setFilters] = useState<EquipmentsListFilters>(defaultFilters);
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,4 +49,4 @@ const EquipmentsSearchForm: React.FC<EquipmentSearchFormType> = ({defaultFilters
     )
 }
 
-export default EquipmentsSearchForm;
+export default AdminEquipmentsSearchForm;

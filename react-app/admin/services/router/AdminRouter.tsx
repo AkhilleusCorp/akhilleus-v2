@@ -14,10 +14,10 @@ import AdminWorkoutsPage from "app/admin/pages/workout/AdminWorkoutsPage.tsx";
 import AdminWorkoutCreatePage from "app/admin/pages/workout/AdminWorkoutCreatePage.tsx";
 import AdminWorkoutUpdatePage from "app/admin/pages/workout/AdminWorkoutUpdatePage.tsx";
 import AdminWorkoutDetailsPage from "app/admin/pages/workout/AdminWorkoutDetailsPage.tsx";
-import EquipmentsPage from "app/admin/pages/equipment/EquipmentsPage.tsx";
-import EquipmentCreatePage from "app/admin/pages/equipment/EquipmentCreatePage.tsx";
-import EquipmentUpdatePage from "app/admin/pages/equipment/EquipmentUpdatePage.tsx";
-import EquipmentDetailsPage from "app/admin/pages/equipment/EquipmentDetailsPage.tsx";
+import AdminEquipmentsPage from "app/admin/pages/equipment/AdminEquipmentsPage.tsx";
+import AdminEquipmentCreatePage from "app/admin/pages/equipment/AdminEquipmentCreatePage.tsx";
+import AdminEquipmentUpdatePage from "app/admin/pages/equipment/AdminEquipmentUpdatePage.tsx";
+import AdminEquipmentDetailsPage from "app/admin/pages/equipment/AdminEquipmentDetailsPage.tsx";
 import MusclesPage from "app/admin/pages/muscle/MusclesPage.tsx";
 import MuscleCreatePage from "app/admin/pages/muscle/MuscleCreatePage.tsx";
 import MuscleUpdatePage from "app/admin/pages/muscle/MuscleUpdatePage.tsx";
@@ -75,16 +75,16 @@ const routerConfig = createBrowserRouter([
                 children: [
                     {
                         index: true,
-                        element: <EquipmentsPage />,
+                        element: <AdminEquipmentsPage />,
                     }, {
                         path: adminRoutes.equipment.create,
-                        element: <EquipmentCreatePage />,
+                        element: <AdminEquipmentCreatePage />,
                     }, {
                         path: adminRoutes.equipment.edit(':equipmentId'),
-                        element: <EquipmentUpdatePage />,
+                        element: <AdminEquipmentUpdatePage />,
                     }, {
                         path: adminRoutes.equipment.details(':equipmentId'),
-                        element: <EquipmentDetailsPage />,
+                        element: <AdminEquipmentDetailsPage />,
                     }
                 ]
             }, {
