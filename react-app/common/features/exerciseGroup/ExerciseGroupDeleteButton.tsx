@@ -1,5 +1,5 @@
 import React from "react";
-import ExerciseGroupApiGateway from "app/admin/services/api/gateway/ExerciseGroupApiGateway.tsx";
+import ExerciseGroupApiGateway from "app/common/services/api/gateway/ExerciseGroupApiGateway.tsx";
 import DeleteButton from "app/common/components/button/DeleteButton.tsx";
 
 type ExerciseGroupDeleteButtonType = {

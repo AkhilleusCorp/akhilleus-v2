@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
-import EquipmentApiGateway from "app/admin/services/api/gateway/EquipmentApiGateway.tsx";
-import EquipmentDTO from "app/admin/services/api/dtos/EquipmentDTO.tsx";
+import EquipmentApiGateway from "app/common/services/api/gateway/EquipmentApiGateway.tsx";
+import EquipmentDTO from "app/common/services/api/dtos/EquipmentDTO.tsx";
 
 function useGetOneEquipmentById(equipmentId: string|undefined): EquipmentDTO | null {
     if (!equipmentId) {

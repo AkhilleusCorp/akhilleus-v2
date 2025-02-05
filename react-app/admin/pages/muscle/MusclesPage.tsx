@@ -3,11 +3,11 @@ import AdminLayout from "app/admin/layouts/AdminLayout.tsx";
 import {Link} from "react-router-dom";
 import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
 import MusclesListFilters from "app/admin/services/api/filters/MusclesListFilters.tsx";
-import MuscleDTO from "app/admin/services/api/dtos/MuscleDTO.tsx";
+import MuscleDTO from "app/common/services/api/dtos/MuscleDTO.tsx";
 import MusclePreviewCard from "app/admin/features/muscle/MusclePreviewCard.tsx";
 import MusclesSearchForm from "app/admin/features/muscle/MusclesSearchForm.tsx";
 import MusclesListTable from "app/admin/features/muscle/MusclesListTable.tsx";
-import MuscleApiGateway from "app/admin/services/api/gateway/MuscleApiGateway.tsx";
+import MuscleApiGateway from "app/common/services/api/gateway/MuscleApiGateway.tsx";
 
 const MusclesPage: React.FC = () => {
     const defaultFilters = new MusclesListFilters();

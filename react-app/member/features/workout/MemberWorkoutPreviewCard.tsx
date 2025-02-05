@@ -1,6 +1,6 @@
 import React from 'react';
 import {Box, Card, CardActions, CardContent, CardMedia, Typography} from "@mui/material";
-import WorkoutDTO from "app/admin/services/api/dtos/WorkoutDTO.tsx";
+import WorkoutDTO from "app/common/services/api/dtos/WorkoutDTO.tsx";
 import workoutRegistries from "app/common/constants/workoutRegistries.tsx";
 import memberRoutes from "app/member/services/router/memberRoutes.tsx";
 import {useNavigate} from "react-router-dom";

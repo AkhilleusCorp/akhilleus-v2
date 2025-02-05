@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import IndexedArray from "app/common/utils/interfaces/IndexedArray.tsx";
-import EquipmentApiGateway from "app/admin/services/api/gateway/EquipmentApiGateway.tsx";
+import EquipmentApiGateway from "app/common/services/api/gateway/EquipmentApiGateway.tsx";
 
 function useGetDropdownableEquipments(): IndexedArray {
     const [equipments, setEquipments] = useState<IndexedArray>({});

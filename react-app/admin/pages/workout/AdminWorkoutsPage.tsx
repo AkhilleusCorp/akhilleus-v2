@@ -3,11 +3,11 @@ import AdminLayout from "app/admin/layouts/AdminLayout.tsx";
 import {Link} from "react-router-dom";
 import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
 import WorkoutsListFilters from "app/admin/services/api/filters/WorkoutsListFilters.tsx";
-import WorkoutDTO from "app/admin/services/api/dtos/WorkoutDTO.tsx";
+import WorkoutDTO from "app/common/services/api/dtos/WorkoutDTO.tsx";
 import WorkoutPreviewCard from "app/admin/features/workout/WorkoutPreviewCard.tsx";
 import WorkoutsSearchForm from "app/admin/features/workout/WorkoutsSearchForm.tsx";
 import WorkoutsListTable from "app/admin/features/workout/WorkoutsListTable.tsx";
-import WorkoutApiGateway from "app/admin/services/api/gateway/WorkoutApiGateway.tsx";
+import WorkoutApiGateway from "app/common/services/api/gateway/WorkoutApiGateway.tsx";
 
 const AdminWorkoutsPage: React.FC = () => {
     const defaultFilters = new WorkoutsListFilters();

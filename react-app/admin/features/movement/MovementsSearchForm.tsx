@@ -3,7 +3,7 @@ import {FormControl, Grid2 as Grid, SelectChangeEvent, TextField} from "@mui/mat
 import MovementsListFilters from "app/admin/services/api/filters/MovementsListFilters.tsx";
 import useGetDropdownableEquipments from "app/common/hooks/equipment/useGetDropdownableEquipments.tsx";
 import useGetDropdownableMuscles from "app/common/hooks/muscle/useGetDropdownableMuscles.tsx";
-import QueryIds from "app/common/utils/interfaces/QueryIds.tsx";
+import QueryIds from "app/common/utils/types/QueryIds.tsx";
 import SearchForm from "app/common/components/form/SearchForm.tsx";
 import SelectInput from "app/common/components/input/SelectInput.tsx";
 import MultiSelectInput from "app/common/components/input/MultiSelectInput.tsx";

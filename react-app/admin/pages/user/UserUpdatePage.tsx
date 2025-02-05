@@ -1,7 +1,7 @@
 import React from 'react';
 import AdminLayout from "app/admin/layouts/AdminLayout.tsx";
 import {useParams} from "react-router-dom";
-import UserUpdateForm from "app/admin/features/user/UserUpdateForm.tsx";
+import AdminUserUpdateForm from "app/admin/features/user/AdminUserUpdateForm.tsx";
 import useGetOneUserById from "app/common/hooks/user/useGetOneUserById.tsx";
 import ErrorPage from "app/common/pages/ErrorPage.tsx";
 
@@ -17,7 +17,7 @@ const UserUpdatePage: React.FC = () => {
             <h3>
                 {user.username} #{user.id}
             </h3>
-            <UserUpdateForm user={user} />
+            <AdminUserUpdateForm user={user} />
         </AdminLayout>
     );
 }

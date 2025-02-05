@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import ListFilters from "app/common/services/api/filters/ListFilters.tsx";
 import UsersListFilters from "app/admin/services/api/filters/UsersListFilters.tsx";
-import {AdminDispatch, AdminRootState} from "app/admin/services/redux";
+import {AppDispatch, AppRootState} from "app/common/services/redux";
 import {fetchUsers} from "app/common/services/redux/reducers/UserSlice.tsx";
 import ApiResultWrapper from "app/common/components/common/ApiResultWrapper.tsx";
 import userRegistries from "app/common/constants/userRegistries.tsx";
@@ -17,8 +17,8 @@ type UsersListTableType = {
 }
 
 const UsersListTable: React.FC<UsersListTableType> = ({ filters, refreshKey, mainLinkClickCallback }) => {
-    const { users, pagination, loading, error } = useSelector((state: AdminRootState) => state.users);
-    const dispatch = useDispatch<AdminDispatch>();
+    const { users, pagination, loading, error } = useSelector((state: AppRootState) => state.users);
+    const dispatch = useDispatch<AppDispatch>();
     const [refresh, setRefresh] = useState<number>(refreshKey);
 
     useEffect(() => {

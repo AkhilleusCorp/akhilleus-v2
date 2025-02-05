@@ -1,4 +1,4 @@
-import MovementDTO from "app/admin/services/api/dtos/MovementDTO.tsx";
+import MovementDTO from "app/common/services/api/dtos/MovementDTO.tsx";
 
 class MovementUpdateSource {
     id: number;

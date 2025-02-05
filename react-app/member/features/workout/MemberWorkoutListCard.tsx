@@ -6,7 +6,7 @@ import {fetchWorkouts} from "app/common/services/redux/reducers/WorkoutSlice.tsx
 import {MemberDispatch, MemberRootState} from "app/member/services/redux";
 import MemberWorkoutPreviewCard from "app/member/features/workout/MemberWorkoutPreviewCard.tsx";
 import {Stack} from "@mui/material";
-import WorkoutDTO from "app/admin/services/api/dtos/WorkoutDTO.tsx";
+import WorkoutDTO from "app/common/services/api/dtos/WorkoutDTO.tsx";
 
 type WorkoutListCardType = {
     filters: WorkoutsListFilters;

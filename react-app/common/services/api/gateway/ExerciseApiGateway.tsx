@@ -1,7 +1,7 @@
 import AbstractApiGateway from "app/common/services/api/gateway/AbstractApiGateway.tsx";
 import apiRoutes from "app/common/services/api/apiRoutes.tsx";
-import QueryId from "app/common/utils/interfaces/QueryId.tsx";
-import ExerciseGroupDTO from "app/admin/services/api/dtos/ExerciseGroupDTO.tsx";
+import QueryId from "app/common/utils/types/QueryId.tsx";
+import ExerciseGroupDTO from "app/common/services/api/dtos/ExerciseGroupDTO.tsx";
 
 class ExerciseApiGateway extends AbstractApiGateway {
 

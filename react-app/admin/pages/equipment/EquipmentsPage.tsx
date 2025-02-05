@@ -3,11 +3,11 @@ import AdminLayout from "app/admin/layouts/AdminLayout.tsx";
 import {Link} from "react-router-dom";
 import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
 import EquipmentsListFilters from "app/admin/services/api/filters/EquipmentsListFilters.tsx";
-import EquipmentDTO from "app/admin/services/api/dtos/EquipmentDTO.tsx";
+import EquipmentDTO from "app/common/services/api/dtos/EquipmentDTO.tsx";
 import EquipmentPreviewCard from "app/admin/features/equipment/EquipmentPreviewCard.tsx";
 import EquipmentsSearchForm from "app/admin/features/equipment/EquipmentsSearchForm.tsx";
 import EquipmentsListTable from "app/admin/features/equipment/EquipmentsListTable.tsx";
-import EquipmentApiGateway from "app/admin/services/api/gateway/EquipmentApiGateway.tsx";
+import EquipmentApiGateway from "app/common/services/api/gateway/EquipmentApiGateway.tsx";
 
 const EquipmentsPage: React.FC = () => {
     const defaultFilters = new EquipmentsListFilters();

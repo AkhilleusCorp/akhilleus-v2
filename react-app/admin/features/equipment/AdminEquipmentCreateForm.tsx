@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import {FormControl, Grid2 as Grid, SelectChangeEvent, TextField} from "@mui/material";
-import EquipmentApiGateway from "app/admin/services/api/gateway/EquipmentApiGateway.tsx";
+import EquipmentApiGateway from "app/common/services/api/gateway/EquipmentApiGateway.tsx";
 import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
 import SaveForm from "app/common/components/form/SaveForm.tsx";
 import equipmentRegistries from "app/common/constants/equipmentRegistries.tsx";
@@ -11,7 +11,7 @@ type EquipmentCreateFormType = {
     name: string;
 }
 
-const EquipmentCreateForm: React.FC = () => {
+const AdminEquipmentCreateForm: React.FC = () => {
     const [equipmentCreate, setEquipmentCreate] = useState<EquipmentCreateFormType>({name: ''});
     const navigate = useNavigate();
 
@@ -53,4 +53,4 @@ const EquipmentCreateForm: React.FC = () => {
     )
 }
 
-export default EquipmentCreateForm;
+export default AdminEquipmentCreateForm;

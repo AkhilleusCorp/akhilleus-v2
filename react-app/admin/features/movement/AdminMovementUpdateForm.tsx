@@ -5,8 +5,8 @@ import {FormControl, Grid2 as Grid, SelectChangeEvent, TextField} from "@mui/mat
 import MovementUpdateSource from "app/admin/services/api/source/MovementUpdateSource.tsx";
 import useGetDropdownableEquipments from "app/common/hooks/equipment/useGetDropdownableEquipments.tsx";
 import useGetDropdownableMuscles from "app/common/hooks/muscle/useGetDropdownableMuscles.tsx";
-import QueryIds from "app/common/utils/interfaces/QueryIds.tsx";
-import MovementApiGateway from "app/admin/services/api/gateway/MovementApiGateway.tsx";
+import QueryIds from "app/common/utils/types/QueryIds.tsx";
+import MovementApiGateway from "app/common/services/api/gateway/MovementApiGateway.tsx";
 import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
 import SaveForm from "app/common/components/form/SaveForm.tsx";
 import SelectInput from "app/common/components/input/SelectInput.tsx";
@@ -17,7 +17,7 @@ type MovementUpdateFormType = {
     movement: MovementUpdateSource,
 }
 
-const MovementUpdateForm: React.FC<MovementUpdateFormType> = ({movement}) => {
+const AdminMovementUpdateForm: React.FC<MovementUpdateFormType> = ({movement}) => {
     const navigate = useNavigate();
     const [movementUpdated, setMovementUpdated] = useState<MovementUpdateSource>(movement);
     const equipments = useGetDropdownableEquipments();
@@ -71,4 +71,4 @@ const MovementUpdateForm: React.FC<MovementUpdateFormType> = ({movement}) => {
     )
 }
 
-export default MovementUpdateForm;
+export default AdminMovementUpdateForm;

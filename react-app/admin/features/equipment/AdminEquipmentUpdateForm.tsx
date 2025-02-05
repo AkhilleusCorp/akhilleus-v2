@@ -2,8 +2,8 @@ import React from 'react';
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import {FormControl, Grid2 as Grid, SelectChangeEvent, TextField} from "@mui/material";
-import EquipmentDTO from "app/admin/services/api/dtos/EquipmentDTO.tsx";
-import EquipmentApiGateway from "app/admin/services/api/gateway/EquipmentApiGateway.tsx";
+import EquipmentDTO from "app/common/services/api/dtos/EquipmentDTO.tsx";
+import EquipmentApiGateway from "app/common/services/api/gateway/EquipmentApiGateway.tsx";
 import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
 import equipmentRegistries from "app/common/constants/equipmentRegistries.tsx";
 import SelectInput from "app/common/components/input/SelectInput.tsx";
@@ -13,7 +13,7 @@ type EquipmentUpdateFormType = {
     equipment: EquipmentDTO,
 }
 
-const EquipmentUpdateForm: React.FC<EquipmentUpdateFormType> = ({equipment}) => {
+const AdminEquipmentUpdateForm: React.FC<EquipmentUpdateFormType> = ({equipment}) => {
     const navigate = useNavigate();
     const [equipmentUpdated, setEquipmentUpdated] = useState<EquipmentDTO>(equipment);
 
@@ -55,4 +55,4 @@ const EquipmentUpdateForm: React.FC<EquipmentUpdateFormType> = ({equipment}) => 
     )
 }
 
-export default EquipmentUpdateForm;
+export default AdminEquipmentUpdateForm;

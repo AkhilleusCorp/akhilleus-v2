@@ -1,5 +1,5 @@
 import React from "react";
-import MuscleApiGateway from "app/admin/services/api/gateway/MuscleApiGateway.tsx";
+import MuscleApiGateway from "app/common/services/api/gateway/MuscleApiGateway.tsx";
 import DeleteButton from "app/common/components/button/DeleteButton.tsx";
 
 type MuscleDeleteButtonType = {
@@ -7,7 +7,7 @@ type MuscleDeleteButtonType = {
     callbackFunction: (muscleId: number) => void;
 }
 
-const MuscleDeleteButton: React.FC<MuscleDeleteButtonType> = ({ muscleId, callbackFunction }) => {
+const AdminMuscleDeleteButton: React.FC<MuscleDeleteButtonType> = ({ muscleId, callbackFunction }) => {
     const handleDeleteMuscle = async () => {
         try {
             await MuscleApiGateway.deleteMuscle(muscleId);
@@ -22,4 +22,4 @@ const MuscleDeleteButton: React.FC<MuscleDeleteButtonType> = ({ muscleId, callba
     )
 }
 
-export default MuscleDeleteButton;
+export default AdminMuscleDeleteButton;

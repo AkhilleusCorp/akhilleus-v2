@@ -1,37 +1,39 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {useNavigate} from "react-router-dom";
+import {useState} from "react";
 import {FormControl, Grid2 as Grid, SelectChangeEvent, TextField} from "@mui/material";
-import MuscleApiGateway from "app/admin/services/api/gateway/MuscleApiGateway.tsx";
+import MuscleDTO from "app/common/services/api/dtos/MuscleDTO.tsx";
+import MuscleApiGateway from "app/common/services/api/gateway/MuscleApiGateway.tsx";
 import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
 import SaveForm from "app/common/components/form/SaveForm.tsx";
-import SelectInput from "app/common/components/input/SelectInput.tsx";
 import muscleRegistries from "app/common/constants/muscleRegistries.tsx";
+import SelectInput from "app/common/components/input/SelectInput.tsx";
 
-type MuscleCreateFormType = {
-    name: string;
+type MuscleUpdateFormType = {
+    muscle: MuscleDTO,
 }
 
-const MuscleCreateForm: React.FC = () => {
-    const [muscleCreate, setMuscleCreate] = useState<MuscleCreateFormType>({name: ''});
+const AdminMuscleUpdateForm: React.FC<MuscleUpdateFormType> = ({muscle}) => {
     const navigate = useNavigate();
+    const [muscleUpdated, setMuscleUpdated] = useState<MuscleDTO>(muscle);
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setMuscleCreate({
-            ...muscleCreate,
+        setMuscleUpdated({
+            ...muscleUpdated,
             [event.target.name]: event.target.value
         });
     }
 
     const handleSelectChange = (event: SelectChangeEvent) => {
-        setMuscleCreate({
-            ...muscleCreate,
+        setMuscleUpdated({
+            ...muscleUpdated,
             [event.target.name]: event.target.value
         });
     }
 
     const handleSubmit = async () => {
         try {
-            const muscle = await MuscleApiGateway.createMuscle(muscleCreate);
+            await MuscleApiGateway.updateMuscle(muscle.id, muscleUpdated);
             navigate(adminRoutes.muscle.details(muscle.id));
         } catch (error) {
             console.log(error);
@@ -42,15 +44,15 @@ const MuscleCreateForm: React.FC = () => {
         <SaveForm submitFunction={handleSubmit}>
             <Grid size={{ xs: 4 }}>
                 <FormControl fullWidth>
-                    <TextField id="outlined-basic" label="Name" variant="outlined" size="small"
-                               name={"name"} required={true} onChange={handleInputChange}/>
+                    <TextField id="outlined-basic" label="Name" variant="outlined" size="small" required={true}
+                               name={"name"} value={muscleUpdated.name} onChange={handleInputChange}/>
                 </FormControl>
 
-                <SelectInput label="Status" name={"status"} value={null}
+                <SelectInput label="Status" name={"status"} value={muscleUpdated.status}
                              options={muscleRegistries.status} required={true} onSelectChange={handleSelectChange}/>
             </Grid>
         </SaveForm>
     )
 }
 
-export default MuscleCreateForm;
+export default AdminMuscleUpdateForm;

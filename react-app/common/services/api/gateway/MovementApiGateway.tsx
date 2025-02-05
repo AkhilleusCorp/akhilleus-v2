@@ -1,8 +1,8 @@
 import AbstractApiGateway from "app/common/services/api/gateway/AbstractApiGateway.tsx";
-import MovementDTO from "app/admin/services/api/dtos/MovementDTO.tsx";
+import MovementDTO from "app/common/services/api/dtos/MovementDTO.tsx";
 import MovementsListFilters from "app/admin/services/api/filters/MovementsListFilters.tsx";
 import apiRoutes from "app/common/services/api/apiRoutes.tsx";
-import QueryId from "app/common/utils/interfaces/QueryId.tsx";
+import QueryId from "app/common/utils/types/QueryId.tsx";
 import IndexedArray from "app/common/utils/interfaces/IndexedArray.tsx";
 import APIResponseDTO from "app/common/services/api/dtos/APIResponseDTO.tsx";
 

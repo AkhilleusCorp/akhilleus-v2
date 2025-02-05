@@ -3,7 +3,7 @@ import {Paper, Table,TableBody,TableCell, TableContainer, TableHead, TableRow} f
 import { useSelector, useDispatch } from "react-redux";
 import ListFilters from "app/common/services/api/filters/ListFilters.tsx";
 import WorkoutsListFilters from "app/admin/services/api/filters/WorkoutsListFilters.tsx";
-import {AdminDispatch, AdminRootState} from "app/admin/services/redux";
+import {AppDispatch, AppRootState} from "app/common/services/redux";
 import {fetchWorkouts} from "app/common/services/redux/reducers/WorkoutSlice.tsx";
 import ApiResultWrapper from "app/common/components/common/ApiResultWrapper.tsx";
 import workoutRegistries from "app/common/constants/workoutRegistries.tsx";
@@ -16,8 +16,8 @@ type WorkoutListTableType = {
 }
 
 const UsersListTable: React.FC<WorkoutListTableType> = ({ filters, refreshKey, mainLinkClickCallback }) => {
-    const { workouts, pagination, loading, error } = useSelector((state: AdminRootState) => state.workouts);
-    const dispatch = useDispatch<AdminDispatch>();
+    const { workouts, pagination, loading, error } = useSelector((state: AppRootState) => state.workouts);
+    const dispatch = useDispatch<AppDispatch>();
     const [refresh, setRefresh] = useState<number>(refreshKey);
 
     useEffect(() => {

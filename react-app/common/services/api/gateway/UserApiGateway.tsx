@@ -1,8 +1,8 @@
 import AbstractApiGateway from "app/common/services/api/gateway/AbstractApiGateway.tsx";
-import UserDTO from "app/admin/services/api/dtos/UserDTO.tsx";
+import UserDTO from "app/common/services/api/dtos/UserDTO.tsx";
 import apiRoutes from "app/common/services/api/apiRoutes.tsx";
 import UsersListFilters from "app/admin/services/api/filters/UsersListFilters.tsx";
-import QueryId from "app/common/utils/interfaces/QueryId.tsx";
+import QueryId from "app/common/utils/types/QueryId.tsx";
 import APIResponseDTO from "app/common/services/api/dtos/APIResponseDTO.tsx";
 
 class UserApiGateway extends AbstractApiGateway {

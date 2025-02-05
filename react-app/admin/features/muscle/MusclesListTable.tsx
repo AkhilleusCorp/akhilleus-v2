@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import ListFilters from "app/common/services/api/filters/ListFilters.tsx";
 import MusclesListFilters from "app/admin/services/api/filters/MusclesListFilters.tsx";
-import {AdminDispatch, AdminRootState} from "app/admin/services/redux";
+import {AppDispatch, AppRootState} from "app/common/services/redux";
 import {fetchMuscles} from "app/common/services/redux/reducers/MuscleSlice.tsx";
 import ApiResultWrapper from "app/common/components/common/ApiResultWrapper.tsx";
 import muscleRegistries from "app/common/constants/muscleRegistries.tsx";
@@ -17,8 +17,8 @@ type MuscleListTableType = {
 }
 
 const MusclesListTable: React.FC<MuscleListTableType> = ({ filters, refreshKey, mainLinkClickCallback }) => {
-    const { muscles, pagination, loading, error } = useSelector((state: AdminRootState) => state.muscles);
-    const dispatch = useDispatch<AdminDispatch>();
+    const { muscles, pagination, loading, error } = useSelector((state: AppRootState) => state.muscles);
+    const dispatch = useDispatch<AppDispatch>();
     const [refresh, setRefresh] = useState<number>(refreshKey);
 
     useEffect(() => {

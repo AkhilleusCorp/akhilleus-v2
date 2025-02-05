@@ -1,12 +1,12 @@
 import React from 'react';
 import {Card, CardActions, CardContent, Typography} from "@mui/material";
 import {useNavigate} from "react-router-dom";
-import WorkoutDTO from "app/admin/services/api/dtos/WorkoutDTO.tsx";
+import WorkoutDTO from "app/common/services/api/dtos/WorkoutDTO.tsx";
 import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
 import workoutRegistries from "app/common/constants/workoutRegistries.tsx";
 import DetailsButton from "app/common/components/button/DetailsButton.tsx";
 import EditButton from "app/common/components/button/EditButton.tsx";
-import WorkoutDeleteButton from "app/admin/features/workout/WorkoutDeleteButton.tsx";
+import WorkoutDeleteButton from "app/common/features/workout/WorkoutDeleteButton.tsx";
 
 type WorkoutDetailsCardType = {
     workout: WorkoutDTO,

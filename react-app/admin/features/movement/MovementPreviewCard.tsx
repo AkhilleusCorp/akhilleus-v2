@@ -1,12 +1,12 @@
 import React from 'react';
 import {Card, CardActions, CardContent, Chip, Typography} from "@mui/material";
 import {useNavigate} from "react-router-dom";
-import MovementDTO from "app/admin/services/api/dtos/MovementDTO.tsx";
+import MovementDTO from "app/common/services/api/dtos/MovementDTO.tsx";
 import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
 import movementRegistries from "app/common/constants/movementRegistries.tsx";
 import DetailsButton from "app/common/components/button/DetailsButton.tsx";
 import EditButton from "app/common/components/button/EditButton.tsx";
-import MovementDeleteButton from "app/admin/features/movement/MovementDeleteButton.tsx";
+import AdminMovementDeleteButton from "app/admin/features/movement/AdminMovementDeleteButton.tsx";
 
 type MovementDetailsCardType = {
     movement: MovementDTO,
@@ -55,7 +55,7 @@ const MovementPreviewCard: React.FC<MovementDetailsCardType> = ({ movement, disp
                 {displayWriteActions  && (
                     <>
                         <EditButton routeToEditPage={adminRoutes.movement.edit(movement.id)} />
-                        <MovementDeleteButton movementId={movement.id} callbackFunction={onConfirmDelete} />
+                        <AdminMovementDeleteButton movementId={movement.id} callbackFunction={onConfirmDelete} />
                     </>
                 )}
             </CardActions>

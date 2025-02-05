@@ -1,8 +1,8 @@
 import AbstractApiGateway from "app/common/services/api/gateway/AbstractApiGateway.tsx";
-import WorkoutDTO from "app/admin/services/api/dtos/WorkoutDTO.tsx";
+import WorkoutDTO from "app/common/services/api/dtos/WorkoutDTO.tsx";
 import WorkoutsListFilters from "app/admin/services/api/filters/WorkoutsListFilters.tsx";
 import apiRoutes from "app/common/services/api/apiRoutes.tsx";
-import QueryId from "app/common/utils/interfaces/QueryId.tsx";
+import QueryId from "app/common/utils/types/QueryId.tsx";
 import APIResponseDTO from "app/common/services/api/dtos/APIResponseDTO.tsx";
 
 class WorkoutApiGateway extends AbstractApiGateway {

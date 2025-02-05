@@ -1,11 +1,11 @@
 import React from 'react';
 import {Card, CardActions, CardContent, Typography} from "@mui/material";
 import {useNavigate} from "react-router-dom";
-import MuscleDTO from "app/admin/services/api/dtos/MuscleDTO.tsx";
+import MuscleDTO from "app/common/services/api/dtos/MuscleDTO.tsx";
 import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
 import muscleRegistries from "app/common/constants/muscleRegistries.tsx";
 import DetailsButton from "app/common/components/button/DetailsButton.tsx";
-import MuscleDeleteButton from "app/admin/features/muscle/MuscleDeleteButton.tsx";
+import AdminMuscleDeleteButton from "app/admin/features/muscle/AdminMuscleDeleteButton.tsx";
 import EditButton from "app/common/components/button/EditButton.tsx";
 
 type MuscleDetailsCardType = {
@@ -40,7 +40,7 @@ const MusclePreviewCard: React.FC<MuscleDetailsCardType> = ({ muscle, displayRea
                 {displayWriteActions  && (
                     <>
                         <EditButton routeToEditPage={adminRoutes.muscle.edit(muscle.id)} />
-                        <MuscleDeleteButton muscleId={muscle.id} callbackFunction={onConfirmDelete} />
+                        <AdminMuscleDeleteButton muscleId={muscle.id} callbackFunction={onConfirmDelete} />
                     </>
                 )}
             </CardActions>

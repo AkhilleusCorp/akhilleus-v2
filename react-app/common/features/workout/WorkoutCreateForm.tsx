@@ -1,16 +1,17 @@
 import React, {useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import {TextField} from "@mui/material";
-import WorkoutApiGateway from "app/admin/services/api/gateway/WorkoutApiGateway.tsx";
-import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
+import WorkoutApiGateway from "app/common/services/api/gateway/WorkoutApiGateway.tsx";
 import SaveForm from "app/common/components/form/SaveForm.tsx";
+import UserType from "app/common/utils/types/UserType.tsx";
+import RouteSwitch from "app/common/services/router/RouteSwitch.tsx";
 
 type WorkoutCreateFormType = {
-    name: string;
+    userType: UserType;
 }
 
-const WorkoutCreateForm: React.FC = () => {
-    const [workoutCreate, setWorkoutCreate] = useState<WorkoutCreateFormType>({name: ''});
+const WorkoutCreateForm: React.FC<WorkoutCreateFormType> = ({userType}) => {
+    const [workoutCreate, setWorkoutCreate] = useState<{}>({name: ''});
     const navigate = useNavigate();
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,7 +24,7 @@ const WorkoutCreateForm: React.FC = () => {
     const handleSubmit = async () => {
         try {
             const workout = await WorkoutApiGateway.createWorkout(workoutCreate);
-            navigate(adminRoutes.workout.details(workout.id));
+            navigate(RouteSwitch.switch(userType).workout.details(workout.id));
         } catch (error) {
             console.log(error);
         }

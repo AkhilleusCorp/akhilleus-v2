@@ -3,7 +3,7 @@ import AdminLayout from "app/admin/layouts/AdminLayout.tsx";
 import {useParams} from "react-router-dom";
 import useGetOneMovementById from "app/common/hooks/movement/useGetOneMovementById.tsx";
 import ErrorPage from "app/common/pages/ErrorPage.tsx";
-import MovementUpdateForm from "app/admin/features/movement/MovementUpdateForm.tsx";
+import AdminMovementUpdateForm from "app/admin/features/movement/AdminMovementUpdateForm.tsx";
 import MovementUpdateSource from "app/admin/services/api/source/MovementUpdateSource.tsx";
 
 const MovementUpdatePage: React.FC = () => {
@@ -16,7 +16,7 @@ const MovementUpdatePage: React.FC = () => {
     return (
         <AdminLayout>
             <h3>{movement.name} #{movement.id}</h3>
-            <MovementUpdateForm movement={new MovementUpdateSource(movement)} />
+            <AdminMovementUpdateForm movement={new MovementUpdateSource(movement)} />
         </AdminLayout>
     )
 }

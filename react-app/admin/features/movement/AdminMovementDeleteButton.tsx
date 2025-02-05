@@ -1,5 +1,5 @@
 import React from "react";
-import MovementApiGateway from "app/admin/services/api/gateway/MovementApiGateway.tsx";
+import MovementApiGateway from "app/common/services/api/gateway/MovementApiGateway.tsx";
 import DeleteButton from "app/common/components/button/DeleteButton.tsx";
 
 type MovementDeleteButtonType = {
@@ -7,7 +7,7 @@ type MovementDeleteButtonType = {
     callbackFunction: (movementId: number) => void;
 }
 
-const MovementDeleteButton: React.FC<MovementDeleteButtonType> = ({ movementId, callbackFunction }) => {
+const AdminMovementDeleteButton: React.FC<MovementDeleteButtonType> = ({ movementId, callbackFunction }) => {
     const handleDeleteMovement = async () => {
         try {
             await MovementApiGateway.deleteMovement(movementId);
@@ -22,4 +22,4 @@ const MovementDeleteButton: React.FC<MovementDeleteButtonType> = ({ movementId, 
     )
 }
 
-export default MovementDeleteButton;
+export default AdminMovementDeleteButton;

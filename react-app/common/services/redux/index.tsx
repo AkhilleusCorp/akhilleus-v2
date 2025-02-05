@@ -17,5 +17,5 @@ export const adminStore = configureStore({
     }
 });
 
-export type AdminRootState = ReturnType<typeof adminStore.getState>
-export type AdminDispatch = typeof adminStore.dispatch
+export type AppRootState = ReturnType<typeof adminStore.getState>
+export type AppDispatch = typeof adminStore.dispatch

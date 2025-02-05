@@ -1,6 +1,6 @@
 import React from "react";
 import {Table, TableBody, TableCell, TableContainer, TableRow} from "@mui/material";
-import ExerciseDTO from "app/admin/services/api/dtos/ExerciseDTO.tsx";
+import ExerciseDTO from "app/common/services/api/dtos/ExerciseDTO.tsx";
 
 type ExercisesPreviewListTable = {
     exercises: ExerciseDTO[];

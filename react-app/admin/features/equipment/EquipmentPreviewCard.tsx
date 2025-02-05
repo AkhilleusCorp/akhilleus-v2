@@ -1,12 +1,12 @@
 import React from 'react';
 import {Card, CardActions, CardContent, Typography} from "@mui/material";
 import {useNavigate} from "react-router-dom";
-import EquipmentDTO from "app/admin/services/api/dtos/EquipmentDTO.tsx";
+import EquipmentDTO from "app/common/services/api/dtos/EquipmentDTO.tsx";
 import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
 import equipmentRegistries from "app/common/constants/equipmentRegistries.tsx";
 import DetailsButton from "app/common/components/button/DetailsButton.tsx";
 import EditButton from "app/common/components/button/EditButton.tsx";
-import EquipmentDeleteButton from "app/admin/features/equipment/EquipmentDeleteButton.tsx";
+import AdminEquipmentDeleteButton from "app/admin/features/equipment/AdminEquipmentDeleteButton.tsx";
 
 type EquipmentDetailsCardType = {
     equipment: EquipmentDTO,
@@ -40,7 +40,7 @@ const EquipmentPreviewCard: React.FC<EquipmentDetailsCardType> = ({ equipment, d
                 {displayWriteActions  && (
                     <>
                         <EditButton routeToEditPage={adminRoutes.equipment.edit(equipment.id)} />
-                        <EquipmentDeleteButton equipmentId={equipment.id} callbackFunction={onConfirmDelete} />
+                        <AdminEquipmentDeleteButton equipmentId={equipment.id} callbackFunction={onConfirmDelete} />
                     </>
                 )}
             </CardActions>

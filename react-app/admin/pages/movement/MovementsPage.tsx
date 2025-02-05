@@ -3,11 +3,11 @@ import AdminLayout from "app/admin/layouts/AdminLayout.tsx";
 import {Link} from "react-router-dom";
 import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
 import MovementsListFilters from "app/admin/services/api/filters/MovementsListFilters.tsx";
-import MovementDTO from "app/admin/services/api/dtos/MovementDTO.tsx";
+import MovementDTO from "app/common/services/api/dtos/MovementDTO.tsx";
 import MovementPreviewCard from "app/admin/features/movement/MovementPreviewCard.tsx";
 import MovementsSearchForm from "app/admin/features/movement/MovementsSearchForm.tsx";
 import MovementsListTable from "app/admin/features/movement/MovementsListTable.tsx";
-import MovementApiGateway from "app/admin/services/api/gateway/MovementApiGateway.tsx";
+import MovementApiGateway from "app/common/services/api/gateway/MovementApiGateway.tsx";
 
 const MovementsPage: React.FC = () => {
     const defaultFilters= new MovementsListFilters();

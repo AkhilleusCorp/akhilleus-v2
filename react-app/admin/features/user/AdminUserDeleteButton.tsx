@@ -1,5 +1,5 @@
 import React from "react";
-import UserApiGateway from "app/admin/services/api/gateway/UserApiGateway.tsx";
+import UserApiGateway from "app/common/services/api/gateway/UserApiGateway.tsx";
 import DeleteButton from "app/common/components/button/DeleteButton.tsx";
 
 type UserDeleteButtonType = {
@@ -7,7 +7,7 @@ type UserDeleteButtonType = {
     callbackFunction: (userId: number) => void;
 }
 
-const UserDeleteButton: React.FC<UserDeleteButtonType> = ({ userId, callbackFunction }) => {
+const AdminUserDeleteButton: React.FC<UserDeleteButtonType> = ({ userId, callbackFunction }) => {
     const handleDeleteUser = async () => {
         try {
             await UserApiGateway.deleteUser(userId);
@@ -22,4 +22,4 @@ const UserDeleteButton: React.FC<UserDeleteButtonType> = ({ userId, callbackFunc
     )
 }
 
-export default UserDeleteButton;
+export default AdminUserDeleteButton;

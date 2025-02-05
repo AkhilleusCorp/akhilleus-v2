@@ -3,7 +3,7 @@ import AdminLayout from "app/admin/layouts/AdminLayout.tsx";
 import {useParams} from "react-router-dom";
 import useGetOneMuscleById from "app/common/hooks/muscle/useGetOneMuscleById.tsx";
 import ErrorPage from "app/common/pages/ErrorPage.tsx";
-import MuscleUpdateForm from "app/admin/features/muscle/MuscleUpdateForm.tsx";
+import AdminMuscleUpdateForm from "app/admin/features/muscle/AdminMuscleUpdateForm.tsx";
 
 const MuscleUpdatePage: React.FC = () => {
     const { muscleId } = useParams<{ muscleId: string }>();
@@ -15,7 +15,7 @@ const MuscleUpdatePage: React.FC = () => {
     return (
         <AdminLayout>
             <h3>{muscle.name} #{muscle.id}</h3>
-            <MuscleUpdateForm muscle={muscle} />
+            <AdminMuscleUpdateForm muscle={muscle} />
         </AdminLayout>
     )
 }

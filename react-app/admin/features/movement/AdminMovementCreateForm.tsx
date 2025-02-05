@@ -3,8 +3,8 @@ import {useNavigate} from "react-router-dom";
 import {FormControl, Grid2 as Grid, SelectChangeEvent, TextField} from "@mui/material";
 import useGetDropdownableEquipments from "app/common/hooks/equipment/useGetDropdownableEquipments.tsx";
 import useGetDropdownableMuscles from "app/common/hooks/muscle/useGetDropdownableMuscles.tsx";
-import QueryIds from "app/common/utils/interfaces/QueryIds.tsx";
-import MovementApiGateway from "app/admin/services/api/gateway/MovementApiGateway.tsx";
+import QueryIds from "app/common/utils/types/QueryIds.tsx";
+import MovementApiGateway from "app/common/services/api/gateway/MovementApiGateway.tsx";
 import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
 import movementRegistries from "app/common/constants/movementRegistries.tsx";
 import SaveForm from "app/common/components/form/SaveForm.tsx";
@@ -15,7 +15,7 @@ type MovementCreateFormType = {
     name: string;
 }
 
-const MovementCreateForm: React.FC = () => {
+const AdminMovementCreateForm: React.FC = () => {
     const [movementCreate, setMovementCreate] = useState<MovementCreateFormType>({name: ''});
     const equipments = useGetDropdownableEquipments();
     const muscles = useGetDropdownableMuscles();
@@ -69,4 +69,4 @@ const MovementCreateForm: React.FC = () => {
     )
 }
 
-export default MovementCreateForm;
+export default AdminMovementCreateForm;

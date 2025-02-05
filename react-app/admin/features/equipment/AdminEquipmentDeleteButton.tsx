@@ -1,5 +1,5 @@
 import React from "react";
-import EquipmentApiGateway from "app/admin/services/api/gateway/EquipmentApiGateway.tsx";
+import EquipmentApiGateway from "app/common/services/api/gateway/EquipmentApiGateway.tsx";
 import DeleteButton from "app/common/components/button/DeleteButton.tsx";
 
 type EquipmentDeleteButtonType = {
@@ -7,7 +7,7 @@ type EquipmentDeleteButtonType = {
     callbackFunction: (equipmentId: number) => void;
 }
 
-const EquipmentDeleteButton: React.FC<EquipmentDeleteButtonType> = ({ equipmentId, callbackFunction }) => {
+const AdminEquipmentDeleteButton: React.FC<EquipmentDeleteButtonType> = ({ equipmentId, callbackFunction }) => {
     const handleDeleteEquipment = async () => {
         try {
             await EquipmentApiGateway.deleteEquipment(equipmentId);
@@ -22,4 +22,4 @@ const EquipmentDeleteButton: React.FC<EquipmentDeleteButtonType> = ({ equipmentI
     )
 }
 
-export default EquipmentDeleteButton;
+export default AdminEquipmentDeleteButton;
