@@ -1,15 +1,16 @@
 import React, {useState} from 'react';
 import AdminLayout from "app/admin/layouts/AdminLayout.tsx";
-import UsersListTable from "app/admin/features/user/UsersListTable.tsx";
+import AdminUsersListTable from "app/admin/features/user/AdminUsersListTable.tsx";
 import {Link} from "react-router-dom";
 import UsersListFilters from "app/admin/services/api/filters/UsersListFilters.tsx";
-import UsersSearchForm from "app/admin/features/user/UsersSearchForm.tsx";
+import AdminUsersSearchForm from "app/admin/features/user/AdminUsersSearchForm.tsx";
 import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
-import UserPreviewCard from "app/admin/features/user/UserPreviewCard.tsx";
+import AdminUserPreviewCard from "app/admin/features/user/AdminUserPreviewCard.tsx";
 import UserApiGateway from "app/common/services/api/gateway/UserApiGateway.tsx";
 import UserDTO from "app/common/services/api/dtos/UserDTO.tsx";
+import AdminUserLifecycleCard from "app/admin/features/user/AdminUserLifecycleCard.tsx";
 
-const UsersPage: React.FC = () => {
+const AdminUsersPage: React.FC = () => {
     const defaultFilters = new UsersListFilters();
     const [filters, setFilters] = useState<UsersListFilters>(defaultFilters)
     const [refreshKey, setRefreshKey] = useState(0)
@@ -36,7 +37,7 @@ const UsersPage: React.FC = () => {
             </h2>
 
             <div className={"margin-bottom-s"}>
-                <UsersSearchForm defaultFilters={filters} callbackFunction={handleUsersSearch}/>
+                <AdminUsersSearchForm defaultFilters={filters} callbackFunction={handleUsersSearch}/>
             </div>
 
             <div className={"margin-bottom-s"}>
@@ -45,13 +46,16 @@ const UsersPage: React.FC = () => {
 
             <div>
                 <div className={"float-left two-thirds-width"}>
-                    <UsersListTable filters={filters} refreshKey={refreshKey}
-                                    mainLinkClickCallback={handleDisplayUserPreview} />
+                    <AdminUsersListTable filters={filters} refreshKey={refreshKey}
+                                         mainLinkClickCallback={handleDisplayUserPreview} />
                 </div>
 
                 <div className={"float-right one-thirds-width"}>
                     {userPreview && (
-                        <UserPreviewCard user={userPreview} displayReadActions={true} displayWriteActions={false}/>
+                        <>
+                            <AdminUserPreviewCard user={userPreview} displayReadActions={true}/>
+                            <AdminUserLifecycleCard user={userPreview} />
+                        </>
                     )}
                 </div>
             </div>
@@ -59,4 +63,4 @@ const UsersPage: React.FC = () => {
     );
 }
 
-export default UsersPage;
+export default AdminUsersPage;

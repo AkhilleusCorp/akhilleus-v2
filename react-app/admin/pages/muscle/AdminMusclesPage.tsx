@@ -31,12 +31,10 @@ const AdminMusclesPage: React.FC = () => {
             </div>
 
             <div className={"margin-bottom-s"}>
-                <Link to={adminRoutes.muscle.create}>Create New Muscle</Link>
+                <Link to={adminRoutes.muscle.create}>Add New Muscle</Link>
             </div>
 
-            <div className={"float-left two-thirds-width"}>
-                <AdminMusclesListTable filters={filters} refreshKey={refreshKey} />
-            </div>
+            <AdminMusclesListTable filters={filters} refreshKey={refreshKey} />
         </AdminLayout>
     )
 }

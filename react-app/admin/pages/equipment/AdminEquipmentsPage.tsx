@@ -31,12 +31,10 @@ const AdminEquipmentsPage: React.FC = () => {
             </div>
 
             <div className={"margin-bottom-s"}>
-                <Link to={adminRoutes.equipment.create}>Create New Equipment</Link>
+                <Link to={adminRoutes.equipment.create}>Add New Equipment</Link>
             </div>
 
-            <div className={"float-left two-thirds-width"}>
-                <AdminEquipmentsListTable filters={filters} refreshKey={refreshKey} />
-            </div>
+            <AdminEquipmentsListTable filters={filters} refreshKey={refreshKey} />
         </AdminLayout>
     )
 }

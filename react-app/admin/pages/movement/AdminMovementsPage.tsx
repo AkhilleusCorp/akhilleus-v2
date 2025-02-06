@@ -31,12 +31,10 @@ const AdminMovementsPage: React.FC = () => {
             </div>
 
             <div className={"margin-bottom-s"}>
-                <Link to={adminRoutes.movement.create}>Create New Movement</Link>
+                <Link to={adminRoutes.movement.create}>Add New Movement</Link>
             </div>
 
-            <div className={"float-left two-thirds-width"}>
-                <AdminMovementsListTable filters={filters} refreshKey={refreshKey} />
-            </div>
+            <AdminMovementsListTable filters={filters} refreshKey={refreshKey} />
         </AdminLayout>
     )
 }

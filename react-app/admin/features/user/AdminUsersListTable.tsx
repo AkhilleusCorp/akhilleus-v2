@@ -16,7 +16,7 @@ type UsersListTableType = {
     mainLinkClickCallback: (userId: number) => void;
 }
 
-const UsersListTable: React.FC<UsersListTableType> = ({ filters, refreshKey, mainLinkClickCallback }) => {
+const AdminUsersListTable: React.FC<UsersListTableType> = ({ filters, refreshKey, mainLinkClickCallback }) => {
     const { users, pagination, loading, error } = useSelector((state: AppRootState) => state.users);
     const dispatch = useDispatch<AppDispatch>();
     const [refresh, setRefresh] = useState<number>(refreshKey);
@@ -70,4 +70,4 @@ const UsersListTable: React.FC<UsersListTableType> = ({ filters, refreshKey, mai
     );
 }
 
-export default UsersListTable;
+export default AdminUsersListTable;

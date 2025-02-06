@@ -6,10 +6,10 @@ import * as React from "react";
 
 import AdminDashboardPage from "app/admin/pages/AdminDashboardPage.tsx";
 import ErrorPage from "app/common/pages/ErrorPage.tsx";
-import UsersPage from "app/admin/pages/user/UsersPage.tsx";
-import UserDetailsPage from "app/admin/pages/user/UserDetailsPage.tsx";
-import UserCreatePage from "app/admin/pages/user/UserCreatePage.tsx";
-import UserUpdatePage from "app/admin/pages/user/UserUpdatePage.tsx";
+import AdminUsersPage from "app/admin/pages/user/AdminUsersPage.tsx";
+import AdminUserDetailsPage from "app/admin/pages/user/AdminUserDetailsPage.tsx";
+import AdminUserCreatePage from "app/admin/pages/user/AdminUserCreatePage.tsx";
+import AdminUserUpdatePage from "app/admin/pages/user/AdminUserUpdatePage.tsx";
 import AdminWorkoutsPage from "app/admin/pages/workout/AdminWorkoutsPage.tsx";
 import AdminWorkoutCreatePage from "app/admin/pages/workout/AdminWorkoutCreatePage.tsx";
 import AdminWorkoutUpdatePage from "app/admin/pages/workout/AdminWorkoutUpdatePage.tsx";
@@ -41,16 +41,16 @@ const routerConfig = createBrowserRouter([
                 children: [
                     {
                         index: true,
-                        element: <UsersPage />,
+                        element: <AdminUsersPage />,
                     }, {
                         path: adminRoutes.user.create,
-                        element: <UserCreatePage />,
+                        element: <AdminUserCreatePage />,
                     }, {
                         path: adminRoutes.user.edit(':userId'),
-                        element: <UserUpdatePage />,
+                        element: <AdminUserUpdatePage />,
                     }, {
                         path: adminRoutes.user.details(':userId'),
-                        element: <UserDetailsPage />,
+                        element: <AdminUserDetailsPage />,
                     }
                 ]
             }, {

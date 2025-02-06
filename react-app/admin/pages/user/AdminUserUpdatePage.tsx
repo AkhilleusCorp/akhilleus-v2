@@ -5,7 +5,7 @@ import AdminUserUpdateForm from "app/admin/features/user/AdminUserUpdateForm.tsx
 import useGetOneUserById from "app/common/hooks/user/useGetOneUserById.tsx";
 import ErrorPage from "app/common/pages/ErrorPage.tsx";
 
-const UserUpdatePage: React.FC = () => {
+const AdminUserUpdatePage: React.FC = () => {
     const { userId } = useParams<{ userId: string }>();
     const user = useGetOneUserById(userId);
     if (!user) {
@@ -22,4 +22,4 @@ const UserUpdatePage: React.FC = () => {
     );
 }
 
-export default UserUpdatePage;
+export default AdminUserUpdatePage;

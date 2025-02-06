@@ -6,7 +6,7 @@ type UserConfigurationType = {
     user: UserDTO,
 }
 
-const UserConfigurationCard: React.FC<UserConfigurationType> = ({ user }) => {
+const AdminUserConfigurationCard: React.FC<UserConfigurationType> = ({ user }) => {
     return (
         <Card sx={{ marginTop: 2 }}>
             <CardContent>
@@ -22,4 +22,4 @@ const UserConfigurationCard: React.FC<UserConfigurationType> = ({ user }) => {
     );
 }
 
-export default UserConfigurationCard;
+export default AdminUserConfigurationCard;

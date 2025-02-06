@@ -6,7 +6,7 @@ type UserLifecycleCardType = {
     user: UserDTO,
 }
 
-const UserLifecycleCard: React.FC<UserLifecycleCardType> = ({ user }) => {
+const AdminUserLifecycleCard: React.FC<UserLifecycleCardType> = ({ user }) => {
     return (
         <Card sx={{ marginTop: 2 }}>
             <CardContent>
@@ -23,4 +23,4 @@ const UserLifecycleCard: React.FC<UserLifecycleCardType> = ({ user }) => {
     );
 }
 
-export default UserLifecycleCard;
+export default AdminUserLifecycleCard;

@@ -12,7 +12,7 @@ type UserSearchFormType = {
     callbackFunction: (filters: UsersListFilters) => void;
 }
 
-const UsersSearchForm: React.FC<UserSearchFormType> = ({defaultFilters, callbackFunction}) => {
+const AdminUsersSearchForm: React.FC<UserSearchFormType> = ({defaultFilters, callbackFunction}) => {
     const [filters, setFilters] = useState<UsersListFilters>(defaultFilters);
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -58,4 +58,4 @@ const UsersSearchForm: React.FC<UserSearchFormType> = ({defaultFilters, callback
     )
 }
 
-export default UsersSearchForm;
+export default AdminUsersSearchForm;

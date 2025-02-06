@@ -6,6 +6,6 @@
     transition: height 350ms ease-in-out, opacity 750ms ease-in-out;
 }
 
-table th {
+table th, table td a {
     text-transform: capitalize;
 }

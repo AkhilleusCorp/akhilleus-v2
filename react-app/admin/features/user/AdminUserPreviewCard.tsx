@@ -1,26 +1,16 @@
 import React from "react";
 import {Card, CardActions, CardContent, Typography} from "@mui/material";
-import {useNavigate} from "react-router-dom";
 import UserDTO from "app/common/services/api/dtos/UserDTO.tsx";
 import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
 import userRegistries from "app/common/constants/userRegistries.tsx";
 import DetailsButton from "app/common/components/button/DetailsButton.tsx";
-import EditButton from "app/common/components/button/EditButton.tsx";
-import AdminUserDeleteButton from "app/admin/features/user/AdminUserDeleteButton.tsx";
 
 type UserDetailsCardType = {
     user: UserDTO,
-    displayReadActions: boolean,
-    displayWriteActions: boolean
+    displayReadActions: boolean
 }
 
-const UserPreviewCard: React.FC<UserDetailsCardType> = ({ user, displayReadActions, displayWriteActions }) => {
-    const navigate = useNavigate();
-
-    const onConfirmDelete = () => {
-        navigate(adminRoutes.user.list);
-    }
-
+const AdminUserPreviewCard: React.FC<UserDetailsCardType> = ({ user, displayReadActions }) => {
     return (
         <Card>
             <CardContent>
@@ -42,16 +32,9 @@ const UserPreviewCard: React.FC<UserDetailsCardType> = ({ user, displayReadActio
                 {displayReadActions && (
                     <DetailsButton routeToDetailsPage={adminRoutes.user.details(user.id)}/>
                 )}
-
-                {displayWriteActions && (
-                    <>
-                        <EditButton routeToEditPage={adminRoutes.user.edit(user.id)}/>
-                        <AdminUserDeleteButton userId={user.id} callbackFunction={onConfirmDelete}/>
-                    </>
-                )}
             </CardActions>
         </Card>
     );
 }
 
-export default UserPreviewCard;
+export default AdminUserPreviewCard;
