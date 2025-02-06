@@ -11,7 +11,7 @@ type WorkoutSearchFormType = {
     callbackFunction: (filters: WorkoutsListFilters) => void;
 }
 
-const WorkoutsSearchForm: React.FC<WorkoutSearchFormType> = ({defaultFilters, callbackFunction}) => {
+const AdminWorkoutsSearchForm: React.FC<WorkoutSearchFormType> = ({defaultFilters, callbackFunction}) => {
     const [filters, setFilters] = useState<WorkoutsListFilters>(defaultFilters);
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,4 +49,4 @@ const WorkoutsSearchForm: React.FC<WorkoutSearchFormType> = ({defaultFilters, ca
 )
 }
 
-export default WorkoutsSearchForm;
+export default AdminWorkoutsSearchForm;

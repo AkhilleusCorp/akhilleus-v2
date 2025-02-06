@@ -1,12 +1,7 @@
 import React from 'react';
-import {Card, CardActions, CardContent, Typography} from "@mui/material";
-import {useNavigate} from "react-router-dom";
+import {Card, CardContent, Typography} from "@mui/material";
 import WorkoutDTO from "app/common/services/api/dtos/WorkoutDTO.tsx";
-import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
 import workoutRegistries from "app/common/constants/workoutRegistries.tsx";
-import DetailsButton from "app/common/components/button/DetailsButton.tsx";
-import EditButton from "app/common/components/button/EditButton.tsx";
-import WorkoutDeleteButton from "app/common/features/workout/WorkoutDeleteButton.tsx";
 
 type WorkoutDetailsCardType = {
     workout: WorkoutDTO,
@@ -14,12 +9,8 @@ type WorkoutDetailsCardType = {
     displayWriteActions: boolean
 }
 
-const WorkoutPreviewCard: React.FC<WorkoutDetailsCardType> = ({ workout, displayReadActions, displayWriteActions }) => {
-    const navigate = useNavigate();
+const WorkoutPreviewCard: React.FC<WorkoutDetailsCardType> = ({ workout }) => {
 
-    const onConfirmDelete = () => {
-        navigate(adminRoutes.workout.list);
-    }
 
     return (
         <Card className={'margin-bottom-s'}>
@@ -53,19 +44,6 @@ const WorkoutPreviewCard: React.FC<WorkoutDetailsCardType> = ({ workout, display
                 )}
 
             </CardContent>
-
-            <CardActions>
-                {displayReadActions && (
-                    <DetailsButton routeToDetailsPage={adminRoutes.workout.details(workout.id)}/>
-                )}
-
-                {displayWriteActions  && (
-                    <>
-                        <EditButton routeToEditPage={adminRoutes.workout.edit(workout.id)} />
-                        <WorkoutDeleteButton workoutId={workout.id} callbackFunction={onConfirmDelete} />
-                    </>
-                )}
-            </CardActions>
         </Card>
     );
 }

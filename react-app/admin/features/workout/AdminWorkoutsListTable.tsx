@@ -8,14 +8,15 @@ import {fetchWorkouts} from "app/common/services/redux/reducers/WorkoutSlice.tsx
 import ApiResultWrapper from "app/common/components/common/ApiResultWrapper.tsx";
 import workoutRegistries from "app/common/constants/workoutRegistries.tsx";
 import PaginatedTableFooter from "app/common/components/table/PaginatedTableFooter.tsx";
+import {Link} from "react-router-dom";
+import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
 
 type WorkoutListTableType = {
     filters: WorkoutsListFilters;
     refreshKey: number;
-    mainLinkClickCallback: (workoutId: number) => void;
 }
 
-const UsersListTable: React.FC<WorkoutListTableType> = ({ filters, refreshKey, mainLinkClickCallback }) => {
+const UsersListTable: React.FC<WorkoutListTableType> = ({ filters, refreshKey }) => {
     const { workouts, pagination, loading, error } = useSelector((state: AppRootState) => state.workouts);
     const dispatch = useDispatch<AppDispatch>();
     const [refresh, setRefresh] = useState<number>(refreshKey);
@@ -23,11 +24,6 @@ const UsersListTable: React.FC<WorkoutListTableType> = ({ filters, refreshKey, m
     useEffect(() => {
         dispatch(fetchWorkouts(filters));
     }, [dispatch, refresh]);
-
-    const onNameClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>, workoutId: number) => {
-        event.preventDefault();
-        mainLinkClickCallback(workoutId);
-    }
 
     const handlePagination = (paginationFilters: ListFilters) => {
         filters.page = paginationFilters.page;
@@ -50,9 +46,9 @@ const UsersListTable: React.FC<WorkoutListTableType> = ({ filters, refreshKey, m
                         <TableRow id={'workout_' + workout.id} key={'workout_' + workout.id}>
                             <TableCell>{workout.id}</TableCell>
                             <TableCell>
-                                <a href={"#"} onClick={(event) => onNameClick(event, workout.id)}>
+                                <Link to={adminRoutes.workout.details(workout.id)}>
                                     {workout.name}
-                                </a>
+                                </Link>
                             </TableCell>
                             <TableCell>{workoutRegistries.status[workout.status]}</TableCell>
                         </TableRow>

@@ -4,16 +4,18 @@ import {useState} from "react";
 import {SelectChangeEvent, TextField} from "@mui/material";
 import WorkoutDTO from "app/common/services/api/dtos/WorkoutDTO.tsx";
 import WorkoutApiGateway from "app/common/services/api/gateway/WorkoutApiGateway.tsx";
-import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
 import SaveForm from "app/common/components/form/SaveForm.tsx";
 import SelectInput from "app/common/components/input/SelectInput.tsx";
 import workoutRegistries from "app/common/constants/workoutRegistries.tsx";
+import RouteSwitch from "app/common/services/router/RouteSwitch.tsx";
+import UserType from "app/common/utils/types/UserType.tsx";
 
 type WorkoutEditFormType = {
     workout: WorkoutDTO,
+    userType: UserType,
 }
 
-const WorkoutUpdateForm: React.FC<WorkoutEditFormType> = ({workout}) => {
+const WorkoutUpdateForm: React.FC<WorkoutEditFormType> = ({ workout, userType }) => {
     const navigate = useNavigate();
     const [workoutUpdated, setWorkoutUpdated] = useState<WorkoutDTO>(workout);
 
@@ -34,7 +36,7 @@ const WorkoutUpdateForm: React.FC<WorkoutEditFormType> = ({workout}) => {
     const handleSubmit = async () => {
         try {
             await WorkoutApiGateway.updateWorkout(workout.id, workoutUpdated);
-            navigate(adminRoutes.workout.details(workout.id));
+            navigate(RouteSwitch.switch(userType).workout.details(workout.id));
         } catch (error) {
             console.log(error);
         }
