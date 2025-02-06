@@ -11,13 +11,13 @@ import WorkoutDeleteButton from "app/common/features/workout/WorkoutDeleteButton
 
 const AdminWorkoutDetailsPage: React.FC = () => {
     const { workoutId } = useParams<{ workoutId: string }>();
-     const workout = useGetOneWorkoutById(workoutId);
     const navigate = useNavigate();
 
     if (undefined == workoutId) {
         return <ErrorPage />
     }
 
+    const workout = useGetOneWorkoutById(workoutId);
     if (!workout) {
         return <ErrorPage />
     }

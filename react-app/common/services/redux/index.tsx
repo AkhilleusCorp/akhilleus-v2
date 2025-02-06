@@ -6,7 +6,7 @@ import WorkoutReducer from "app/common/services/redux/reducers/WorkoutSlice.tsx"
 import ExerciseGroupReducer from "app/common/services/redux/reducers/ExerciseGroupSlice.tsx";
 import UserReducer from "app/common/services/redux/reducers/UserSlice.tsx";
 
-export const adminStore = configureStore({
+export const appStore = configureStore({
     reducer: {
         muscles: MuscleReducer,
         equipments: EquipmentReducer,
@@ -17,5 +17,5 @@ export const adminStore = configureStore({
     }
 });
 
-export type AppRootState = ReturnType<typeof adminStore.getState>
-export type AppDispatch = typeof adminStore.dispatch
+export type AppRootState = ReturnType<typeof appStore.getState>
+export type AppDispatch = typeof appStore.dispatch
