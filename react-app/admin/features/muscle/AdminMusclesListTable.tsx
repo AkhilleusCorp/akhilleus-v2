@@ -3,7 +3,7 @@ import {Paper, Table,TableBody,TableCell, TableContainer, TableHead, TableRow} f
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import ListFilters from "app/common/services/api/filters/ListFilters.tsx";
-import MusclesListFilters from "app/admin/services/api/filters/MusclesListFilters.tsx";
+import MusclesListFilters from "app/admin/services/api/filters/AdminMusclesListFilters.tsx";
 import {AppDispatch, AppRootState} from "app/common/services/redux";
 import {fetchMuscles} from "app/common/services/redux/reducers/MuscleSlice.tsx";
 import ApiResultWrapper from "app/common/components/common/ApiResultWrapper.tsx";

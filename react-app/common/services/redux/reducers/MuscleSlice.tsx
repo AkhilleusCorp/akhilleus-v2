@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit"
 import MuscleDTO from "app/common/services/api/dtos/MuscleDTO.tsx";
-import MuscleListFilters from "app/admin/services/api/filters/MusclesListFilters.tsx";
+import MuscleListFilters from "app/admin/services/api/filters/AdminMusclesListFilters.tsx";
 import MuscleApiGateway from "app/common/services/api/gateway/MuscleApiGateway.tsx";
 import APIResponseDTO from "app/common/services/api/dtos/APIResponseDTO.tsx";
 import PaginationDTO from "app/common/services/api/dtos/PaginationDTO.tsx";

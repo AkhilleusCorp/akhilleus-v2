@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import AdminLayout from "app/admin/layouts/AdminLayout.tsx";
 import {Link} from "react-router-dom";
 import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
-import EquipmentsListFilters from "app/admin/services/api/filters/EquipmentsListFilters.tsx";
+import EquipmentsListFilters from "app/admin/services/api/filters/AdminEquipmentsListFilters.tsx";
 import AdminEquipmentsSearchForm from "app/admin/features/equipment/AdminEquipmentsSearchForm.tsx";
 import AdminEquipmentsListTable from "app/admin/features/equipment/AdminEquipmentsListTable.tsx";
 

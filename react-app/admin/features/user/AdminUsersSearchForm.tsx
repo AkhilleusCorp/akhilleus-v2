@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {FormControl, Grid2 as Grid, SelectChangeEvent, TextField} from "@mui/material";
-import UsersListFilters from "app/admin/services/api/filters/UsersListFilters.tsx";
+import AdminUsersListFilters from "app/admin/services/api/filters/AdminUsersListFilters.tsx";
 import QueryIds from "app/common/utils/types/QueryIds.tsx";
 import SearchForm from "app/common/components/form/SearchForm.tsx";
 import userRegistries from "app/common/constants/userRegistries.tsx";
@@ -8,12 +8,12 @@ import MultiSelectInput from "app/common/components/input/MultiSelectInput.tsx";
 import SelectInput from "app/common/components/input/SelectInput.tsx";
 
 type UserSearchFormType = {
-    defaultFilters: UsersListFilters,
-    callbackFunction: (filters: UsersListFilters) => void;
+    defaultFilters: AdminUsersListFilters,
+    callbackFunction: (filters: AdminUsersListFilters) => void;
 }
 
 const AdminUsersSearchForm: React.FC<UserSearchFormType> = ({defaultFilters, callbackFunction}) => {
-    const [filters, setFilters] = useState<UsersListFilters>(defaultFilters);
+    const [filters, setFilters] = useState<AdminUsersListFilters>(defaultFilters);
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         setFilters({

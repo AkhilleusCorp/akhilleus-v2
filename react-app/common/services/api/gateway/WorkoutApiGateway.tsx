@@ -1,16 +1,17 @@
 import AbstractApiGateway from "app/common/services/api/gateway/AbstractApiGateway.tsx";
 import WorkoutDTO from "app/common/services/api/dtos/WorkoutDTO.tsx";
-import WorkoutsListFilters from "app/admin/services/api/filters/WorkoutsListFilters.tsx";
+import AdminWorkoutsListFilters from "app/admin/services/api/filters/AdminWorkoutsListFilters.tsx";
 import apiRoutes from "app/common/services/api/apiRoutes.tsx";
 import QueryId from "app/common/utils/types/QueryId.tsx";
 import APIResponseDTO from "app/common/services/api/dtos/APIResponseDTO.tsx";
+import MemberWorkoutsListFilters from "app/member/services/api/filters/MemberWorkoutsListFilters.tsx";
 
 class WorkoutApiGateway extends AbstractApiGateway {
     static async getOneWorkout (workoutId: QueryId): Promise<WorkoutDTO|null> {
         return this.getOne(apiRoutes.workout.details(workoutId));
     }
 
-    static async getManyWorkouts (filters: WorkoutsListFilters): Promise<APIResponseDTO> {
+    static async getManyWorkouts (filters: AdminWorkoutsListFilters|MemberWorkoutsListFilters): Promise<APIResponseDTO> {
         return this.getMany(apiRoutes.workout.list, filters);
     }
 

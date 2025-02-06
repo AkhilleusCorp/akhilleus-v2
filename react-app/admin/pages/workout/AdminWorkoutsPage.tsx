@@ -2,16 +2,16 @@ import React, {useState} from 'react';
 import AdminLayout from "app/admin/layouts/AdminLayout.tsx";
 import {Link} from "react-router-dom";
 import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
-import WorkoutsListFilters from "app/admin/services/api/filters/WorkoutsListFilters.tsx";
+import AdminWorkoutsListFilters from "app/admin/services/api/filters/AdminWorkoutsListFilters.tsx";
 import AdminWorkoutsSearchForm from "app/admin/features/workout/AdminWorkoutsSearchForm.tsx";
 import WorkoutsListTable from "app/admin/features/workout/AdminWorkoutsListTable.tsx";
 
 const AdminWorkoutsPage: React.FC = () => {
-    const defaultFilters = new WorkoutsListFilters();
-    const [filters, setFilters] = useState<WorkoutsListFilters>(defaultFilters);
+    const defaultFilters = new AdminWorkoutsListFilters();
+    const [filters, setFilters] = useState<AdminWorkoutsListFilters>(defaultFilters);
     const [refreshKey, setRefreshKey] = useState(0)
 
-    const handleWorkoutsSearch = (filtersFromForm: WorkoutsListFilters) => {
+    const handleWorkoutsSearch = (filtersFromForm: AdminWorkoutsListFilters) => {
         setFilters({
             ...filters,
             ...filtersFromForm

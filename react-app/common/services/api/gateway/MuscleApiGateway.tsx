@@ -1,6 +1,6 @@
 import AbstractApiGateway from "app/common/services/api/gateway/AbstractApiGateway.tsx";
 import MuscleDTO from "app/common/services/api/dtos/MuscleDTO.tsx";
-import MusclesListFilters from "app/admin/services/api/filters/MusclesListFilters.tsx";
+import MusclesListFilters from "app/admin/services/api/filters/AdminMusclesListFilters.tsx";
 import apiRoutes from "app/common/services/api/apiRoutes.tsx";
 import QueryId from "app/common/utils/types/QueryId.tsx";
 import IndexedArray from "app/common/utils/interfaces/IndexedArray.tsx";

@@ -1,7 +1,7 @@
 import AbstractApiGateway from "app/common/services/api/gateway/AbstractApiGateway.tsx";
 import UserDTO from "app/common/services/api/dtos/UserDTO.tsx";
 import apiRoutes from "app/common/services/api/apiRoutes.tsx";
-import UsersListFilters from "app/admin/services/api/filters/UsersListFilters.tsx";
+import AdminUsersListFilters from "app/admin/services/api/filters/AdminUsersListFilters.tsx";
 import QueryId from "app/common/utils/types/QueryId.tsx";
 import APIResponseDTO from "app/common/services/api/dtos/APIResponseDTO.tsx";
 
@@ -10,7 +10,7 @@ class UserApiGateway extends AbstractApiGateway {
         return this.getOne(apiRoutes.user.details(userId));
     }
 
-    static async getManyUsers (filters: UsersListFilters): Promise<APIResponseDTO> {
+    static async getManyUsers (filters: AdminUsersListFilters): Promise<APIResponseDTO> {
         return this.getMany(apiRoutes.user.list, filters);
     }
 

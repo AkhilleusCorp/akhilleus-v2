@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {FormControl, Grid2 as Grid, SelectChangeEvent, TextField} from "@mui/material";
-import EquipmentsListFilters from "app/admin/services/api/filters/EquipmentsListFilters.tsx";
+import EquipmentsListFilters from "app/admin/services/api/filters/AdminEquipmentsListFilters.tsx";
 import QueryIds from "app/common/utils/types/QueryIds.tsx";
 import SearchForm from "app/common/components/form/SearchForm.tsx";
 import MultiSelectInput from "app/common/components/input/MultiSelectInput.tsx";

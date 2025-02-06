@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import AdminLayout from "app/admin/layouts/AdminLayout.tsx";
 import AdminUsersListTable from "app/admin/features/user/AdminUsersListTable.tsx";
 import {Link} from "react-router-dom";
-import UsersListFilters from "app/admin/services/api/filters/UsersListFilters.tsx";
+import AdminUsersListFilters  from "app/admin/services/api/filters/AdminUsersListFilters.tsx";
 import AdminUsersSearchForm from "app/admin/features/user/AdminUsersSearchForm.tsx";
 import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
 import AdminUserPreviewCard from "app/admin/features/user/AdminUserPreviewCard.tsx";
@@ -11,8 +11,8 @@ import UserDTO from "app/common/services/api/dtos/UserDTO.tsx";
 import AdminUserLifecycleCard from "app/admin/features/user/AdminUserLifecycleCard.tsx";
 
 const AdminUsersPage: React.FC = () => {
-    const defaultFilters = new UsersListFilters();
-    const [filters, setFilters] = useState<UsersListFilters>(defaultFilters)
+    const defaultFilters = new AdminUsersListFilters();
+    const [filters, setFilters] = useState<AdminUsersListFilters>(defaultFilters)
     const [refreshKey, setRefreshKey] = useState(0)
     const [userPreview, setUserPreview] = useState<UserDTO|null>(null);
 
@@ -21,7 +21,7 @@ const AdminUsersPage: React.FC = () => {
         setUserPreview(preview);
     }
 
-    const handleUsersSearch = (filtersFromForm: UsersListFilters) => {
+    const handleUsersSearch = (filtersFromForm: AdminUsersListFilters) => {
         setFilters({
             ...filters,
             ...filtersFromForm

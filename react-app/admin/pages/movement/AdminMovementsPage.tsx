@@ -2,16 +2,16 @@ import React, {useState} from 'react';
 import AdminLayout from "app/admin/layouts/AdminLayout.tsx";
 import {Link} from "react-router-dom";
 import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
-import MovementsListFilters from "app/admin/services/api/filters/MovementsListFilters.tsx";
+import AdminMovementsListFilters from "app/admin/services/api/filters/AdminMovementsListFilters.tsx";
 import AdminMovementsSearchForm from "app/admin/features/movement/AdminMovementsSearchForm.tsx";
 import AdminMovementsListTable from "app/admin/features/movement/AdminMovementsListTable.tsx";
 
 const AdminMovementsPage: React.FC = () => {
-    const defaultFilters= new MovementsListFilters();
-    const [filters, setFilters] = useState<MovementsListFilters>(defaultFilters);
+    const defaultFilters= new AdminMovementsListFilters();
+    const [filters, setFilters] = useState<AdminMovementsListFilters>(defaultFilters);
     const [refreshKey, setRefreshKey] = useState(0)
 
-    const handleMovementsSearch = (filtersFromForm: MovementsListFilters) => {
+    const handleMovementsSearch = (filtersFromForm: AdminMovementsListFilters) => {
         setFilters({
             ...filters,
             ...filtersFromForm

@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit"
 import EquipmentDTO from "app/common/services/api/dtos/EquipmentDTO.tsx";
-import EquipmentListFilters from "app/admin/services/api/filters/EquipmentsListFilters.tsx";
+import EquipmentListFilters from "app/admin/services/api/filters/AdminEquipmentsListFilters.tsx";
 import EquipmentApiGateway from "app/common/services/api/gateway/EquipmentApiGateway.tsx";
 import APIResponseDTO from "app/common/services/api/dtos/APIResponseDTO.tsx";
 import PaginationDTO from "app/common/services/api/dtos/PaginationDTO.tsx";

@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {FormControl, Grid2 as Grid, SelectChangeEvent, TextField} from "@mui/material";
-import MusclesListFilters from "app/admin/services/api/filters/MusclesListFilters.tsx";
+import MusclesListFilters from "app/admin/services/api/filters/AdminMusclesListFilters.tsx";
 import QueryIds from "app/common/utils/types/QueryIds.tsx";
 import muscleRegistries from "app/common/constants/muscleRegistries.tsx";
 import MultiSelectInput from "app/common/components/input/MultiSelectInput.tsx";

@@ -3,7 +3,7 @@ import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow}
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import ListFilters from "app/common/services/api/filters/ListFilters.tsx";
-import UsersListFilters from "app/admin/services/api/filters/UsersListFilters.tsx";
+import AdminUsersListFilters from "app/admin/services/api/filters/AdminUsersListFilters.tsx";
 import {AppDispatch, AppRootState} from "app/common/services/redux";
 import {fetchUsers} from "app/common/services/redux/reducers/UserSlice.tsx";
 import ApiResultWrapper from "app/common/components/common/ApiResultWrapper.tsx";
@@ -11,7 +11,7 @@ import userRegistries from "app/common/constants/userRegistries.tsx";
 import PaginatedTableFooter from "app/common/components/table/PaginatedTableFooter.tsx";
 
 type UsersListTableType = {
-    filters: UsersListFilters;
+    filters: AdminUsersListFilters;
     refreshKey: number;
     mainLinkClickCallback: (userId: number) => void;
 }

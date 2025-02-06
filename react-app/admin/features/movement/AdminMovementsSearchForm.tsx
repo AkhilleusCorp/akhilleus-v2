@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {FormControl, Grid2 as Grid, SelectChangeEvent, TextField} from "@mui/material";
-import MovementsListFilters from "app/admin/services/api/filters/MovementsListFilters.tsx";
+import AdminMovementsListFilters from "app/admin/services/api/filters/AdminMovementsListFilters.tsx";
 import useGetDropdownableEquipments from "app/common/hooks/equipment/useGetDropdownableEquipments.tsx";
 import useGetDropdownableMuscles from "app/common/hooks/muscle/useGetDropdownableMuscles.tsx";
 import QueryIds from "app/common/utils/types/QueryIds.tsx";
@@ -10,12 +10,12 @@ import MultiSelectInput from "app/common/components/input/MultiSelectInput.tsx";
 import movementRegistries from "app/common/constants/movementRegistries.tsx";
 
 type MovementSearchFormType = {
-    defaultFilters: MovementsListFilters,
-    callbackFunction: (filters: MovementsListFilters) => void;
+    defaultFilters: AdminMovementsListFilters,
+    callbackFunction: (filters: AdminMovementsListFilters) => void;
 }
 
 const AdminMovementsSearchForm: React.FC<MovementSearchFormType> = ({defaultFilters, callbackFunction}) => {
-    const [filters, setFilters] = useState<MovementsListFilters>(defaultFilters);
+    const [filters, setFilters] = useState<AdminMovementsListFilters>(defaultFilters);
     const equipments = useGetDropdownableEquipments();
     const muscles = useGetDropdownableMuscles();
 

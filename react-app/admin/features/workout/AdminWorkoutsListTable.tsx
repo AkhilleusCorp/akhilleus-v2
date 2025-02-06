@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Paper, Table,TableBody,TableCell, TableContainer, TableHead, TableRow} from '@mui/material';
 import { useSelector, useDispatch } from "react-redux";
 import ListFilters from "app/common/services/api/filters/ListFilters.tsx";
-import WorkoutsListFilters from "app/admin/services/api/filters/WorkoutsListFilters.tsx";
+import AdminWorkoutsListFilters from "app/admin/services/api/filters/AdminWorkoutsListFilters.tsx";
 import {AppDispatch, AppRootState} from "app/common/services/redux";
 import {fetchWorkouts} from "app/common/services/redux/reducers/WorkoutSlice.tsx";
 import ApiResultWrapper from "app/common/components/common/ApiResultWrapper.tsx";
@@ -12,7 +12,7 @@ import {Link} from "react-router-dom";
 import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
 
 type WorkoutListTableType = {
-    filters: WorkoutsListFilters;
+    filters: AdminWorkoutsListFilters;
     refreshKey: number;
 }
 

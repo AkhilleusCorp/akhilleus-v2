@@ -1,9 +1,10 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit"
 import WorkoutDTO from "app/common/services/api/dtos/WorkoutDTO.tsx";
-import WorkoutListFilters from "app/admin/services/api/filters/WorkoutsListFilters.tsx";
 import WorkoutApiGateway from "app/common/services/api/gateway/WorkoutApiGateway.tsx";
 import PaginationDTO from "app/common/services/api/dtos/PaginationDTO.tsx";
 import APIResponseDTO from "app/common/services/api/dtos/APIResponseDTO.tsx";
+import AdminWorkoutListFilters from "app/admin/services/api/filters/AdminWorkoutsListFilters.tsx";
+import MemberWorkoutsListFilters from "app/member/services/api/filters/MemberWorkoutsListFilters.tsx";
 
 export interface WorkoutInitialState {
     workouts: WorkoutDTO[],
@@ -19,9 +20,9 @@ const initialState: WorkoutInitialState = {
     error: null,
 }
 
-export const fetchWorkouts = createAsyncThunk<APIResponseDTO, WorkoutListFilters, { rejectValue: string}>(
+export const fetchWorkouts = createAsyncThunk<APIResponseDTO, AdminWorkoutListFilters|MemberWorkoutsListFilters, { rejectValue: string}>(
     'workouts/fetchWorkouts',
-    async (filters: WorkoutListFilters, {rejectWithValue}) => {
+    async (filters: AdminWorkoutListFilters|MemberWorkoutsListFilters, {rejectWithValue}) => {
         try {
             return WorkoutApiGateway.getManyWorkouts(filters);
         } catch (error: any) {
