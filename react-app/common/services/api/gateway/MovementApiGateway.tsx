@@ -1,6 +1,6 @@
 import AbstractApiGateway from "app/common/services/api/gateway/AbstractApiGateway.tsx";
 import MovementDTO from "app/common/services/api/dtos/MovementDTO.tsx";
-import MovementsListFilters from "app/admin/services/api/filters/MovementsListFilters.tsx";
+import AdminMovementsListFilters from "app/admin/services/api/filters/AdminMovementsListFilters.tsx";
 import apiRoutes from "app/common/services/api/apiRoutes.tsx";
 import QueryId from "app/common/utils/types/QueryId.tsx";
 import IndexedArray from "app/common/utils/interfaces/IndexedArray.tsx";
@@ -11,7 +11,7 @@ class MovementApiGateway extends AbstractApiGateway {
         return this.getOne(apiRoutes.movement.details(movementId));
     }
 
-    static async getManyMovements (filters: MovementsListFilters): Promise<APIResponseDTO> {
+    static async getManyMovements (filters: AdminMovementsListFilters): Promise<APIResponseDTO> {
         return this.getMany(apiRoutes.movement.list, filters);
     }
 

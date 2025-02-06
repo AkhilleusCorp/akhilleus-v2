@@ -1,18 +1,18 @@
 import React, {useState} from "react";
 import {FormControl, Grid2 as Grid, SelectChangeEvent, TextField} from "@mui/material";
-import WorkoutsListFilters from "app/admin/services/api/filters/WorkoutsListFilters.tsx";
+import AdminWorkoutsListFilters from "app/admin/services/api/filters/AdminWorkoutsListFilters.tsx";
 import QueryIds from "app/common/utils/types/QueryIds.tsx";
 import SearchForm from "app/common/components/form/SearchForm.tsx";
 import MultiSelectInput from "app/common/components/input/MultiSelectInput.tsx";
 import workoutRegistries from "app/common/constants/workoutRegistries.tsx";
 
 type WorkoutSearchFormType = {
-    defaultFilters: WorkoutsListFilters,
-    callbackFunction: (filters: WorkoutsListFilters) => void;
+    defaultFilters: AdminWorkoutsListFilters,
+    callbackFunction: (filters: AdminWorkoutsListFilters) => void;
 }
 
 const AdminWorkoutsSearchForm: React.FC<WorkoutSearchFormType> = ({defaultFilters, callbackFunction}) => {
-    const [filters, setFilters] = useState<WorkoutsListFilters>(defaultFilters);
+    const [filters, setFilters] = useState<AdminWorkoutsListFilters>(defaultFilters);
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setFilters({

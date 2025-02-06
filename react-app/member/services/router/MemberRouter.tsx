@@ -8,6 +8,7 @@ import memberRoutes from "app/member/services/router/memberRoutes.tsx";
 import ErrorPage from "app/common/pages/ErrorPage.tsx";
 import MemberDashboardPage from "app/member/pages/MemberDashboardPage.tsx";
 import MemberWorkoutDetailsPage from "app/member/pages/workout/MemberWorkoutDetailsPage.tsx";
+import MemberWorkoutsPage from "app/member/pages/workout/MemberWorkoutsPage.tsx";
 
 const routerConfig = createBrowserRouter([
     {
@@ -24,6 +25,7 @@ const routerConfig = createBrowserRouter([
         children: [
             {
                 index: true,
+                element: <MemberWorkoutsPage />,
             }, {
                 path: memberRoutes.workout.create,
             }, {

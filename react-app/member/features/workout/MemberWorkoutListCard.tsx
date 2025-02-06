@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect} from "react";
-import WorkoutsListFilters from "app/admin/services/api/filters/WorkoutsListFilters.tsx";
+import MemberWorkoutsListFilters from "app/member/services/api/filters/MemberWorkoutsListFilters.tsx";
 import ApiResultWrapper from "app/common/components/common/ApiResultWrapper.tsx";
 import {fetchWorkouts} from "app/common/services/redux/reducers/WorkoutSlice.tsx";
 import {AppDispatch, AppRootState} from "app/common/services/redux";
@@ -9,7 +9,7 @@ import {Stack} from "@mui/material";
 import WorkoutDTO from "app/common/services/api/dtos/WorkoutDTO.tsx";
 
 type WorkoutListCardType = {
-    filters: WorkoutsListFilters;
+    filters: MemberWorkoutsListFilters;
     refreshKey: number;
 }
 

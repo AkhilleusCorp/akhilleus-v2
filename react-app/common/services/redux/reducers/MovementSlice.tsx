@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit"
 import MovementDTO from "app/common/services/api/dtos/MovementDTO.tsx";
-import MovementListFilters from "app/admin/services/api/filters/MovementsListFilters.tsx";
+import MovementListFilters from "app/admin/services/api/filters/AdminMovementsListFilters.tsx";
 import MovementApiGateway from "app/common/services/api/gateway/MovementApiGateway.tsx";
 import APIResponseDTO from "app/common/services/api/dtos/APIResponseDTO.tsx";
 import PaginationDTO from "app/common/services/api/dtos/PaginationDTO.tsx";

@@ -1,6 +1,6 @@
 import ListFilters from "app/common/services/api/filters/ListFilters.tsx";
 
-class UsersListFilters implements ListFilters {
+class AdminUsersListFilters implements ListFilters {
     ids: string[] | null;
     page: number;
     limit: number;
@@ -24,4 +24,4 @@ class UsersListFilters implements ListFilters {
     }
 }
 
-export default UsersListFilters;
+export default AdminUsersListFilters;

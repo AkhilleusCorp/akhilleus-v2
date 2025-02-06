@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import AdminLayout from "app/admin/layouts/AdminLayout.tsx";
 import {Link} from "react-router-dom";
 import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
-import MusclesListFilters from "app/admin/services/api/filters/MusclesListFilters.tsx";
+import MusclesListFilters from "app/admin/services/api/filters/AdminMusclesListFilters.tsx";
 import AdminMusclesSearchForm from "app/admin/features/muscle/AdminMusclesSearchForm.tsx";
 import AdminMusclesListTable from "app/admin/features/muscle/AdminMusclesListTable.tsx";
 

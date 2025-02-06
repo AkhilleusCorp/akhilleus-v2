@@ -35,6 +35,7 @@ const MemberHeader: React.FC = () => {
 
     const navigationConfig: navigationItem[] = [
         {'label': 'dashboard', 'route': memberRoutes.dashboard},
+        {'label': 'workouts', 'route': memberRoutes.workout.list},
     ]
 
     const renderMemberMenu = (

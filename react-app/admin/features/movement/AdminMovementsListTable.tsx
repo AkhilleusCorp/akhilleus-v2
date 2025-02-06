@@ -3,7 +3,7 @@ import {Paper, Table,TableBody,TableCell, TableContainer, TableHead, TableRow} f
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import ListFilters from "app/common/services/api/filters/ListFilters.tsx";
-import MovementsListFilters from "app/admin/services/api/filters/MovementsListFilters.tsx";
+import AdminMovementsListFilters from "app/admin/services/api/filters/AdminMovementsListFilters.tsx";
 import {AppDispatch, AppRootState} from "app/common/services/redux";
 import {fetchMovements} from "app/common/services/redux/reducers/MovementSlice.tsx";
 import ApiResultWrapper from "app/common/components/common/ApiResultWrapper.tsx";
@@ -13,7 +13,7 @@ import PaginatedTableFooter from "app/common/components/table/PaginatedTableFoot
 import {Link} from "react-router-dom";
 
 type MovementListTableType = {
-    filters: MovementsListFilters;
+    filters: AdminMovementsListFilters;
     refreshKey: number;
 }
 

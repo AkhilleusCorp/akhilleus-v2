@@ -1,11 +1,11 @@
 import React from 'react';
 import MemberLayout from "app/member/layouts/MemberLayout.tsx";
-import WorkoutsListFilters from "app/admin/services/api/filters/WorkoutsListFilters.tsx";
+import MemberWorkoutsListFilters from "app/member/services/api/filters/MemberWorkoutsListFilters.tsx";
 import MemberWorkoutListCard from "app/member/features/workout/MemberWorkoutListCard.tsx";
 
 const MemberDashboardPage: React.FC = () => {
-    const defaultFilters = new WorkoutsListFilters(10);
-    defaultFilters.status = ['completed'];
+    const defaultFilters = new MemberWorkoutsListFilters(10);
+    defaultFilters.status = ['planned', 'completed'];
 
     return (
         <MemberLayout>

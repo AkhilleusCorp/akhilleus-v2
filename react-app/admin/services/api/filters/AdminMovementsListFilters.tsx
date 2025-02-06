@@ -1,6 +1,6 @@
 import ListFilters from "app/common/services/api/filters/ListFilters.tsx";
 
-class MovementsListFilters implements ListFilters {
+class AdminMovementsListFilters implements ListFilters {
     ids: string[] | null;
     page: number;
     limit: number;
@@ -24,4 +24,4 @@ class MovementsListFilters implements ListFilters {
     }
 }
 
-export default MovementsListFilters;
+export default AdminMovementsListFilters;
