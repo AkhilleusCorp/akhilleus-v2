@@ -9,14 +9,15 @@ import {fetchMuscles} from "app/common/services/redux/reducers/MuscleSlice.tsx";
 import ApiResultWrapper from "app/common/components/common/ApiResultWrapper.tsx";
 import muscleRegistries from "app/common/constants/muscleRegistries.tsx";
 import PaginatedTableFooter from "app/common/components/table/PaginatedTableFooter.tsx";
+import {Link} from "react-router-dom";
+import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
 
 type MuscleListTableType = {
     filters: MusclesListFilters;
     refreshKey: number;
-    mainLinkClickCallback: (muscleId: number) => void;
 }
 
-const MusclesListTable: React.FC<MuscleListTableType> = ({ filters, refreshKey, mainLinkClickCallback }) => {
+const AdminMusclesListTable: React.FC<MuscleListTableType> = ({ filters, refreshKey }) => {
     const { muscles, pagination, loading, error } = useSelector((state: AppRootState) => state.muscles);
     const dispatch = useDispatch<AppDispatch>();
     const [refresh, setRefresh] = useState<number>(refreshKey);
@@ -24,11 +25,6 @@ const MusclesListTable: React.FC<MuscleListTableType> = ({ filters, refreshKey, 
     useEffect(() => {
         dispatch(fetchMuscles(filters));
     }, [dispatch, refresh]);
-
-    const onNameClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>, muscleId: number) => {
-        event.preventDefault();
-        mainLinkClickCallback(muscleId);
-    }
 
     const handlePagination = (paginationFilters: ListFilters) => {
         filters.page = paginationFilters.page;
@@ -49,9 +45,9 @@ const MusclesListTable: React.FC<MuscleListTableType> = ({ filters, refreshKey, 
                         {muscles.map((muscle) => (
                             <TableRow id={'muscle_' + muscle.id} key={'muscle_' + muscle.id}>
                                 <TableCell>
-                                    <a href={"#"} onClick={(event) => onNameClick(event, muscle.id)}>
+                                    <Link to={adminRoutes.muscle.details(muscle.id)}>
                                         {muscle.name}
-                                    </a>
+                                    </Link>
                                 </TableCell>
                                 <TableCell>{muscleRegistries.status[muscle.status]}</TableCell>
                             </TableRow>
@@ -64,4 +60,4 @@ const MusclesListTable: React.FC<MuscleListTableType> = ({ filters, refreshKey, 
     );
 }
 
-export default MusclesListTable;
+export default AdminMusclesListTable;

@@ -2,7 +2,7 @@ import React from 'react';
 import AdminLayout from "app/admin/layouts/AdminLayout.tsx";
 import AdminMuscleCreateForm from "app/admin/features/muscle/AdminMuscleCreateForm.tsx";
 
-const MuscleCreatePage: React.FC = () => {
+const AdminMuscleCreatePage: React.FC = () => {
     return (
         <AdminLayout>
             <h1>Add new Muscle</h1>
@@ -13,4 +13,4 @@ const MuscleCreatePage: React.FC = () => {
     );
 }
 
-export default MuscleCreatePage;
+export default AdminMuscleCreatePage;

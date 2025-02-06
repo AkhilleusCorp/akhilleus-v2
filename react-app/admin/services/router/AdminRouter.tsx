@@ -18,10 +18,10 @@ import AdminEquipmentsPage from "app/admin/pages/equipment/AdminEquipmentsPage.t
 import AdminEquipmentCreatePage from "app/admin/pages/equipment/AdminEquipmentCreatePage.tsx";
 import AdminEquipmentUpdatePage from "app/admin/pages/equipment/AdminEquipmentUpdatePage.tsx";
 import AdminEquipmentDetailsPage from "app/admin/pages/equipment/AdminEquipmentDetailsPage.tsx";
-import MusclesPage from "app/admin/pages/muscle/MusclesPage.tsx";
-import MuscleCreatePage from "app/admin/pages/muscle/MuscleCreatePage.tsx";
-import MuscleUpdatePage from "app/admin/pages/muscle/MuscleUpdatePage.tsx";
-import MuscleDetailsPage from "app/admin/pages/muscle/MuscleDetailsPage.tsx";
+import AdminMusclesPage from "app/admin/pages/muscle/AdminMusclesPage.tsx";
+import AdminMuscleCreatePage from "app/admin/pages/muscle/AdminMuscleCreatePage.tsx";
+import AdminMuscleUpdatePage from "app/admin/pages/muscle/AdminMuscleUpdatePage.tsx";
+import AdminMuscleDetailsPage from "app/admin/pages/muscle/AdminMuscleDetailsPage.tsx";
 import AdminMovementsPage from "app/admin/pages/movement/AdminMovementsPage.tsx";
 import AdminMovementCreatePage from "app/admin/pages/movement/AdminMovementCreatePage.tsx";
 import AdminMovementUpdatePage from "app/admin/pages/movement/AdminMovementUpdatePage.tsx";
@@ -92,16 +92,16 @@ const routerConfig = createBrowserRouter([
                 children: [
                     {
                         index: true,
-                        element: <MusclesPage />,
+                        element: <AdminMusclesPage />,
                     }, {
                         path: adminRoutes.muscle.create,
-                        element: <MuscleCreatePage />,
+                        element: <AdminMuscleCreatePage />,
                     }, {
                         path: adminRoutes.muscle.edit(':muscleId'),
-                        element: <MuscleUpdatePage />,
+                        element: <AdminMuscleUpdatePage />,
                     }, {
                         path: adminRoutes.muscle.details(':muscleId'),
-                        element: <MuscleDetailsPage />,
+                        element: <AdminMuscleDetailsPage />,
                     }
                 ]
             }, {

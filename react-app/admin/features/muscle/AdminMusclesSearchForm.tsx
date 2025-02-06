@@ -11,7 +11,7 @@ type MuscleSearchFormType = {
     callbackFunction: (filters: MusclesListFilters) => void;
 }
 
-const MusclesSearchForm: React.FC<MuscleSearchFormType> = ({defaultFilters, callbackFunction}) => {
+const AdminMusclesSearchForm: React.FC<MuscleSearchFormType> = ({defaultFilters, callbackFunction}) => {
     const [filters, setFilters] = useState<MusclesListFilters>(defaultFilters);
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,4 +49,4 @@ const MusclesSearchForm: React.FC<MuscleSearchFormType> = ({defaultFilters, call
     )
 }
 
-export default MusclesSearchForm;
+export default AdminMusclesSearchForm;
