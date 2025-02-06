@@ -14,7 +14,7 @@ type MovementSearchFormType = {
     callbackFunction: (filters: MovementsListFilters) => void;
 }
 
-const MovementsSearchForm: React.FC<MovementSearchFormType> = ({defaultFilters, callbackFunction}) => {
+const AdminMovementsSearchForm: React.FC<MovementSearchFormType> = ({defaultFilters, callbackFunction}) => {
     const [filters, setFilters] = useState<MovementsListFilters>(defaultFilters);
     const equipments = useGetDropdownableEquipments();
     const muscles = useGetDropdownableMuscles();
@@ -64,4 +64,4 @@ const MovementsSearchForm: React.FC<MovementSearchFormType> = ({defaultFilters, 
 )
 }
 
-export default MovementsSearchForm;
+export default AdminMovementsSearchForm;

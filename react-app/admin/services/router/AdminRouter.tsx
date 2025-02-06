@@ -22,10 +22,10 @@ import MusclesPage from "app/admin/pages/muscle/MusclesPage.tsx";
 import MuscleCreatePage from "app/admin/pages/muscle/MuscleCreatePage.tsx";
 import MuscleUpdatePage from "app/admin/pages/muscle/MuscleUpdatePage.tsx";
 import MuscleDetailsPage from "app/admin/pages/muscle/MuscleDetailsPage.tsx";
-import MovementsPage from "app/admin/pages/movement/MovementsPage.tsx";
-import MovementCreatePage from "app/admin/pages/movement/MovementCreatePage.tsx";
-import MovementUpdatePage from "app/admin/pages/movement/MovementUpdatePage.tsx";
-import MovementDetailsPage from "app/admin/pages/movement/MovementDetailsPage.tsx";
+import AdminMovementsPage from "app/admin/pages/movement/AdminMovementsPage.tsx";
+import AdminMovementCreatePage from "app/admin/pages/movement/AdminMovementCreatePage.tsx";
+import AdminMovementUpdatePage from "app/admin/pages/movement/AdminMovementUpdatePage.tsx";
+import AdminMovementDetailsPage from "app/admin/pages/movement/AdminMovementDetailsPage.tsx";
 import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
 
 const routerConfig = createBrowserRouter([
@@ -109,16 +109,16 @@ const routerConfig = createBrowserRouter([
                 children: [
                     {
                         index: true,
-                        element: <MovementsPage />,
+                        element: <AdminMovementsPage />,
                     }, {
                         path: adminRoutes.movement.create,
-                        element: <MovementCreatePage />,
+                        element: <AdminMovementCreatePage />,
                     }, {
                         path: adminRoutes.movement.edit(':movementId'),
-                        element: <MovementUpdatePage />,
+                        element: <AdminMovementUpdatePage />,
                     }, {
                         path: adminRoutes.movement.details(':movementId'),
-                        element: <MovementDetailsPage />,
+                        element: <AdminMovementDetailsPage />,
                     }
                 ]
             },

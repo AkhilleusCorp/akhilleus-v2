@@ -2,7 +2,7 @@ import React from 'react';
 import AdminLayout from "app/admin/layouts/AdminLayout.tsx";
 import AdminMovementCreateForm from "app/admin/features/movement/AdminMovementCreateForm.tsx";
 
-const MovementCreatePage: React.FC = () => {
+const AdminMovementCreatePage: React.FC = () => {
     return (
         <AdminLayout>
             <h1>Add new Movement</h1>
@@ -13,4 +13,4 @@ const MovementCreatePage: React.FC = () => {
     );
 }
 
-export default MovementCreatePage;
+export default AdminMovementCreatePage;

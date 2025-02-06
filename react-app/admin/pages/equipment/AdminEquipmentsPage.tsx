@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
 import EquipmentsListFilters from "app/admin/services/api/filters/EquipmentsListFilters.tsx";
 import AdminEquipmentsSearchForm from "app/admin/features/equipment/AdminEquipmentsSearchForm.tsx";
-import EquipmentsListTable from "app/admin/features/equipment/AdminEquipmentsListTable.tsx";
+import AdminEquipmentsListTable from "app/admin/features/equipment/AdminEquipmentsListTable.tsx";
 
 const AdminEquipmentsPage: React.FC = () => {
     const defaultFilters = new EquipmentsListFilters();
@@ -35,7 +35,7 @@ const AdminEquipmentsPage: React.FC = () => {
             </div>
 
             <div className={"float-left two-thirds-width"}>
-                <EquipmentsListTable filters={filters} refreshKey={refreshKey} />
+                <AdminEquipmentsListTable filters={filters} refreshKey={refreshKey} />
             </div>
         </AdminLayout>
     )

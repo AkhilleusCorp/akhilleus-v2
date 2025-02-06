@@ -8,15 +8,16 @@ import {AppDispatch, AppRootState} from "app/common/services/redux";
 import {fetchMovements} from "app/common/services/redux/reducers/MovementSlice.tsx";
 import ApiResultWrapper from "app/common/components/common/ApiResultWrapper.tsx";
 import movementRegistries from "app/common/constants/movementRegistries.tsx";
+import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
 import PaginatedTableFooter from "app/common/components/table/PaginatedTableFooter.tsx";
+import {Link} from "react-router-dom";
 
 type MovementListTableType = {
     filters: MovementsListFilters;
     refreshKey: number;
-    mainLinkClickCallback: (movementId: number) => void;
 }
 
-const MovementsListTable: React.FC<MovementListTableType> = ({ filters, refreshKey, mainLinkClickCallback }) => {
+const AdminMovementsListTable: React.FC<MovementListTableType> = ({ filters, refreshKey }) => {
     const { movements, pagination, loading, error } = useSelector((state: AppRootState) => state.movements);
     const dispatch = useDispatch<AppDispatch>();
     const [refresh, setRefresh] = useState<number>(refreshKey);
@@ -24,11 +25,6 @@ const MovementsListTable: React.FC<MovementListTableType> = ({ filters, refreshK
     useEffect(() => {
         dispatch(fetchMovements(filters));
     }, [dispatch, refresh]);
-
-    const onNameClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>, movementId: number) => {
-        event.preventDefault();
-        mainLinkClickCallback(movementId);
-    }
 
     const handlePagination = (paginationFilters: ListFilters) => {
         filters.page = paginationFilters.page;
@@ -50,9 +46,9 @@ const MovementsListTable: React.FC<MovementListTableType> = ({ filters, refreshK
                         {movements.map((movement) => (
                             <TableRow id={'movement_' + movement.id} key={'movement_' + movement.id}>
                                 <TableCell>
-                                    <a href={"#"} onClick={(event) => onNameClick(event, movement.id)}>
+                                    <Link to={adminRoutes.movement.details(movement.id)}>
                                         {movement.name}
-                                    </a>
+                                    </Link>
                                 </TableCell>
                                 <TableCell>{movementRegistries.status[movement.status]}</TableCell>
                                 <TableCell>
@@ -68,4 +64,4 @@ const MovementsListTable: React.FC<MovementListTableType> = ({ filters, refreshK
     );
 }
 
-export default MovementsListTable;
+export default AdminMovementsListTable;

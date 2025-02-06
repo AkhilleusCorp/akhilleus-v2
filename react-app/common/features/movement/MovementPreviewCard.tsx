@@ -1,26 +1,13 @@
 import React from 'react';
-import {Card, CardActions, CardContent, Chip, Typography} from "@mui/material";
-import {useNavigate} from "react-router-dom";
+import {Card, CardContent, Chip, Typography} from "@mui/material";
 import MovementDTO from "app/common/services/api/dtos/MovementDTO.tsx";
-import adminRoutes from "app/admin/services/router/adminRoutes.tsx";
 import movementRegistries from "app/common/constants/movementRegistries.tsx";
-import DetailsButton from "app/common/components/button/DetailsButton.tsx";
-import EditButton from "app/common/components/button/EditButton.tsx";
-import AdminMovementDeleteButton from "app/admin/features/movement/AdminMovementDeleteButton.tsx";
 
 type MovementDetailsCardType = {
-    movement: MovementDTO,
-    displayReadActions: boolean,
-    displayWriteActions: boolean
+    movement: MovementDTO
 }
 
-const MovementPreviewCard: React.FC<MovementDetailsCardType> = ({ movement, displayReadActions, displayWriteActions }) => {
-    const navigate = useNavigate();
-
-    const onConfirmDelete = () => {
-        navigate(adminRoutes.movement.list);
-    }
-
+const MovementPreviewCard: React.FC<MovementDetailsCardType> = ({ movement }) => {
     return (
         <Card className={'margin-bottom-s'}>
             <CardContent>
@@ -46,19 +33,6 @@ const MovementPreviewCard: React.FC<MovementDetailsCardType> = ({ movement, disp
                     ))}
                 </Typography>
             </CardContent>
-
-            <CardActions>
-                {displayReadActions && (
-                    <DetailsButton routeToDetailsPage={adminRoutes.movement.details(movement.id)}/>
-                )}
-
-                {displayWriteActions  && (
-                    <>
-                        <EditButton routeToEditPage={adminRoutes.movement.edit(movement.id)} />
-                        <AdminMovementDeleteButton movementId={movement.id} callbackFunction={onConfirmDelete} />
-                    </>
-                )}
-            </CardActions>
         </Card>
     );
 }

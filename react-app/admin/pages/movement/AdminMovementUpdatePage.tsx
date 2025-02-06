@@ -6,7 +6,7 @@ import ErrorPage from "app/common/pages/ErrorPage.tsx";
 import AdminMovementUpdateForm from "app/admin/features/movement/AdminMovementUpdateForm.tsx";
 import MovementUpdateSource from "app/admin/services/api/source/MovementUpdateSource.tsx";
 
-const MovementUpdatePage: React.FC = () => {
+const AdminMovementUpdatePage: React.FC = () => {
     const { movementId } = useParams<{ movementId: string }>();
     const movement = useGetOneMovementById(movementId);
     if (!movement) {
@@ -21,4 +21,4 @@ const MovementUpdatePage: React.FC = () => {
     )
 }
 
-export default MovementUpdatePage;
+export default AdminMovementUpdatePage;
