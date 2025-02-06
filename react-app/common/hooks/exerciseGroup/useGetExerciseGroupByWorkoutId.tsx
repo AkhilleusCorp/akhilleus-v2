@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
-import ExerciseGroupApiGateway from "app/admin/services/api/gateway/ExerciseGroupApiGateway.tsx";
-import ExerciseGroupDTO from "app/admin/services/api/dtos/ExerciseGroupDTO.tsx";
-import QueryId from "app/common/utils/interfaces/QueryId.tsx";
+import ExerciseGroupApiGateway from "app/common/services/api/gateway/ExerciseGroupApiGateway.tsx";
+import ExerciseGroupDTO from "app/common/services/api/dtos/ExerciseGroupDTO.tsx";
+import QueryId from "app/common/utils/types/QueryId.tsx";
 
 function useGetExerciseGroupByWorkoutId(workoutId: QueryId|null): ExerciseGroupDTO[] {
     if (null == workoutId) {

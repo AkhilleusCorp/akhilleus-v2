@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
-import MovementApiGateway from "app/admin/services/api/gateway/MovementApiGateway.tsx";
-import MovementDTO from "app/admin/services/api/dtos/MovementDTO.tsx";
+import MovementApiGateway from "app/common/services/api/gateway/MovementApiGateway.tsx";
+import MovementDTO from "app/common/services/api/dtos/MovementDTO.tsx";
 
 function useGetOneMovementById(movementId: string|undefined): MovementDTO | null {
     if (!movementId) {

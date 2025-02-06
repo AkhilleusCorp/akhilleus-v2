@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import MovementApiGateway from "app/admin/services/api/gateway/MovementApiGateway.tsx";
+import MovementApiGateway from "app/common/services/api/gateway/MovementApiGateway.tsx";
 import IndexedArray from "app/common/utils/interfaces/IndexedArray.tsx";
 
 function useGetDropdownableMovements(): IndexedArray {

@@ -1,9 +1,9 @@
 import React, {useState} from "react";
 import {Button, Card, CardActions, CardContent, Typography} from "@mui/material";
-import ExerciseGroupDTO from "app/admin/services/api/dtos/ExerciseGroupDTO.tsx";
+import ExerciseGroupDTO from "app/common/services/api/dtos/ExerciseGroupDTO.tsx";
 import IndexedArray from "app/common/utils/interfaces/IndexedArray.tsx";
-import ExerciseApiGateway from "app/admin/services/api/gateway/ExerciseApiGateway.tsx";
-import ExerciseGroupDeleteButton from "app/admin/features/exerciseGroup/ExerciseGroupDeleteButton.tsx";
+import ExerciseApiGateway from "app/common/services/api/gateway/ExerciseApiGateway.tsx";
+import ExerciseGroupDeleteButton from "app/common/features/exerciseGroup/ExerciseGroupDeleteButton.tsx";
 import ExercisesPreviewListTable from "app/admin/features/exerciseGroup/ExercisesPreviewListTable.tsx";
 
 type ExerciseGroupCardType = {

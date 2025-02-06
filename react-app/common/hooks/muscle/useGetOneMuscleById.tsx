@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
-import MuscleApiGateway from "app/admin/services/api/gateway/MuscleApiGateway.tsx";
-import MuscleDTO from "app/admin/services/api/dtos/MuscleDTO.tsx";
+import MuscleApiGateway from "app/common/services/api/gateway/MuscleApiGateway.tsx";
+import MuscleDTO from "app/common/services/api/dtos/MuscleDTO.tsx";
 
 function useGetOneMuscleById(muscleId: string|undefined): MuscleDTO | null {
     if (!muscleId) {
