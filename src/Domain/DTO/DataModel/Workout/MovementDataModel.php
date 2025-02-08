@@ -25,6 +25,21 @@ class MovementDataModel implements DataModelInterface
     #[ORM\Column(type: Types::STRING, length: 15, nullable: false)]
     public string $status = MovementStatusRegistry::MOVEMENT_STATUS_DRAFT;
 
+    #[ORM\Column(type: Types::BOOLEAN, nullable: false)]
+    public bool $hasReps = false;
+
+    #[ORM\Column(type: Types::BOOLEAN, nullable: false)]
+    public bool $hasWeight = false;
+
+    #[ORM\Column(type: Types::BOOLEAN, nullable: false)]
+    public bool $hasDuration = false;
+
+    #[ORM\Column(type: Types::BOOLEAN, nullable: false)]
+    public bool $hasDistance = false;
+
+    #[ORM\Column(type: Types::BOOLEAN, nullable: false)]
+    public bool $hasSpeed = false;
+
     #[ORM\ManyToOne(targetEntity: MuscleDataModel::class)]
     #[ORM\JoinColumn(name: 'primary_muscle_id', referencedColumnName: 'id', onDelete: 'restrict')]
     public MuscleDataModel $primaryMuscle;
