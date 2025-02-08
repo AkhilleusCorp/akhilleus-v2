@@ -51,7 +51,7 @@ class WorkoutDataModel implements DataModelInterface
 
     #[ORM\ManyToOne(targetEntity: UserDataModel::class)]
     #[ORM\JoinColumn(name: 'coach_id', referencedColumnName: 'id', nullable: true)]
-    public ?UserDataModel $coach;
+    public ?UserDataModel $coach = null;
 
     public function __construct()
     {
