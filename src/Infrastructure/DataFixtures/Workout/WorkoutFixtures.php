@@ -15,15 +15,10 @@ final class WorkoutFixtures extends AbstractFixtures
     {
         foreach ($this->getWorkoutConfig() as $config) {
             $workout = new WorkoutDataModel();
-            $workout->name = $config['name'];
-            $workout->visibility = $config['visibility'];
-            $workout->startDate = $config['startDate'];
-            $workout->endDate = $config['endDate'];
-            $workout->plannedDate = $config['plannedDate'];
+            $this->setProperties($workout, $config);
+
             $workout->duration = WorkoutDurationDataTransformer::computeDurationInSeconds($workout);
             $workout->status = WorkoutStatusDataTransformer::computeStatus($workout);
-            $workout->member = $this->getReference('user-ghriim');
-            $workout->coach = null;
 
             $manager->persist($workout);
 
@@ -61,18 +56,21 @@ final class WorkoutFixtures extends AbstractFixtures
                 'endDate' => null,
                 'plannedDate' => null,
                 'visibility' => WorkoutVisibilityRegistry::WORKOUT_VISIBILITY_PRIVATE,
+                'memberRef' => 'user-ghriim',
             ], [
                 'name' => 'Plan Specific Client',
                 'startDate' => null,
                 'endDate' => null,
                 'plannedDate' => new \DateTimeImmutable('2days'),
                 'visibility' => WorkoutVisibilityRegistry::WORKOUT_VISIBILITY_SPECIFIC_CLIENT,
+                'memberRef' => 'user-ghriim',
             ], [
                 'name' => 'Completed Friends',
                 'startDate' => new \DateTimeImmutable('2hours ago'),
                 'endDate' => new \DateTimeImmutable('1hour ago'),
                 'plannedDate' => null,
                 'visibility' => WorkoutVisibilityRegistry::WORKOUT_VISIBILITY_FRIENDS,
+                'memberRef' => 'user-ghriim',
             ],
         ];
     }

@@ -20,6 +20,32 @@ abstract class AbstractFixtures extends Fixture
 
     abstract protected function volumeFixtures(ObjectManager $manager): void;
 
+    /**
+     * @param mixed[] $properties
+     */
+    protected function setProperties(DataModelInterface $dataModel, array $properties): void
+    {
+        foreach ($properties as $propertyName => $propertyValue) {
+            if (true === $this->isRef($propertyName)) {
+                $propertyName = str_replace('Ref', '', $propertyName);
+                $dataModel->{$propertyName} = $this->getReference($propertyValue);
+
+                continue;
+            }
+
+            if (true === $this->isRefs($propertyName) && true === is_array($propertyValue)) {
+                $propertyName = str_replace('Refs', '', $propertyName);
+                foreach ($propertyValue as $value) {
+                    $dataModel->{$propertyName}->add($this->getReference($value));
+                }
+
+                continue;
+            }
+
+            $dataModel->{$propertyName} = $propertyValue;
+        }
+    }
+
     protected function addRef(string $prefix, string $text, DataModelInterface $object): void
     {
         $ref = str_replace(' ', '-', $text);
@@ -28,5 +54,23 @@ abstract class AbstractFixtures extends Fixture
         $ref = strtolower($ref);
 
         $this->addReference("{$prefix}-{$ref}", $object);
+    }
+
+    private function isRef(string $propertyName): bool
+    {
+        if (str_ends_with($propertyName, 'Ref')) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private function isRefs(string $propertyName): bool
+    {
+        if (str_ends_with($propertyName, 'Refs')) {
+            return true;
+        }
+
+        return false;
     }
 }

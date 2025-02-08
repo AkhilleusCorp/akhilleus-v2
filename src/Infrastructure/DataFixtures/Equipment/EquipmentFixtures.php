@@ -11,15 +11,12 @@ final class EquipmentFixtures extends AbstractFixtures
 {
     protected function explicitFixtures(ObjectManager $manager): void
     {
-        $names = [
-            'barbell', 'dumbbell', 'bench', 'jump-rope', 'cable',
-            'none', 'kettlebell', 'machine', 'plate', 'resistance-band',
-            'suspension-band', 'other',
-        ];
-        foreach ($names as $name) {
+        $configs = $this->getEquipmentConfig();
+        foreach ($configs as $config) {
             $equipment = new EquipmentDataModel();
-            $equipment->name = $name;
             $equipment->status = EquipmentStatusRegistry::EQUIPMENT_STATUS_ACTIVE;
+
+            $this->setProperties($equipment, $config);
 
             $manager->persist($equipment);
 
@@ -29,5 +26,26 @@ final class EquipmentFixtures extends AbstractFixtures
 
     protected function volumeFixtures(ObjectManager $manager): void
     {
+    }
+
+    /**
+     * @return array<mixed>
+     */
+    private function getEquipmentConfig(): array
+    {
+        return [
+            ['name' => 'barbell'],
+            ['name' => 'dumbbell'],
+            ['name' => 'bench'],
+            ['name' => 'jump-rope'],
+            ['name' => 'cable'],
+            ['name' => 'none'],
+            ['name' => 'kettlebell'],
+            ['name' => 'machine'],
+            ['name' => 'plate'],
+            ['name' => 'resistance-band'],
+            ['name' => 'suspension-band'],
+            ['name' => 'other'],
+        ];
     }
 }

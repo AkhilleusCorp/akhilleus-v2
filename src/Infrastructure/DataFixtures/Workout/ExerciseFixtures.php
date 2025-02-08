@@ -16,8 +16,8 @@ final class ExerciseFixtures extends AbstractFixtures implements DependentFixtur
             for ($i = 1; $i <= $config['repeat']; ++$i) {
                 $exercise = new ExerciseDataModel();
                 $exercise->type = 1 === $i ? ExerciseTypeRegistry::EXERCISE_TYPE_WARMUP : ExerciseTypeRegistry::EXERCISE_TYPE_NORMAL;
-                $exercise->movement = $this->getReference($config['movementRef']);
-                $exercise->group = $this->getReference($config['groupRef']);
+
+                $this->setProperties($exercise, $config);
 
                 $manager->persist($exercise);
             }

@@ -16,21 +16,9 @@ final class MovementFixtures extends AbstractFixtures implements DependentFixtur
         $configs = $this->getMovementsConfig();
         foreach ($configs as $config) {
             $movement = new MovementDataModel();
-            $movement->name = $config['name'];
             $movement->status = MovementStatusRegistry::MOVEMENT_STATUS_ACTIVE;
-            $movement->primaryMuscle = $this->getReference($config['primaryMuscleRef']);
 
-            $auxiliaryMuscles = [];
-            foreach ($config['auxiliaryMusclesRefs'] as $auxiliaryMuscleRef) {
-                $auxiliaryMuscles[] = $this->getReference($auxiliaryMuscleRef);
-            }
-            $movement->setAuxiliaryMuscles($auxiliaryMuscles);
-
-            $equipments = [];
-            foreach ($config['equipmentsRefs'] as $equipmentRef) {
-                $equipments[] = $this->getReference($equipmentRef);
-            }
-            $movement->setEquipments($equipments);
+            $this->setProperties($movement, $config);
 
             $manager->persist($movement);
 
@@ -51,18 +39,21 @@ final class MovementFixtures extends AbstractFixtures implements DependentFixtur
         return [
             [
                 'name' => 'Bench press',
+                'hasReps' => true, 'hasWeight' => true,
                 'primaryMuscleRef' => 'muscle-chest',
                 'auxiliaryMusclesRefs' => [],
                 'equipmentsRefs' => ['equipment-barbell', 'equipment-bench'],
             ],
             [
                 'name' => 'Back squat',
+                'hasReps' => true, 'hasWeight' => true,
                 'primaryMuscleRef' => 'muscle-quadriceps',
                 'auxiliaryMusclesRefs' => ['muscle-glutes', 'muscle-hamstrings'],
                 'equipmentsRefs' => ['equipment-barbell'],
             ],
             [
                 'name' => 'Biceps curl',
+                'hasReps' => true, 'hasWeight' => true,
                 'primaryMuscleRef' => 'muscle-biceps',
                 'auxiliaryMusclesRefs' => [],
                 'equipmentsRefs' => ['equipment-dumbbell'],
@@ -75,12 +66,14 @@ final class MovementFixtures extends AbstractFixtures implements DependentFixtur
             ],
             [
                 'name' => 'Goblet squat',
+                'hasReps' => true, 'hasWeight' => true,
                 'primaryMuscleRef' => 'muscle-quadriceps',
                 'auxiliaryMusclesRefs' => [],
                 'equipmentsRefs' => ['equipment-dumbbell'],
             ],
             [
                 'name' => 'Triceps push down (single arm)',
+                'hasReps' => true, 'hasWeight' => true,
                 'primaryMuscleRef' => 'muscle-triceps',
                 'auxiliaryMusclesRefs' => [],
                 'equipmentsRefs' => ['equipment-cable'],

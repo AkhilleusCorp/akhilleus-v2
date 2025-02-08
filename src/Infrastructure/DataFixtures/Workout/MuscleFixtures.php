@@ -11,15 +11,12 @@ final class MuscleFixtures extends AbstractFixtures
 {
     protected function explicitFixtures(ObjectManager $manager): void
     {
-        $names = [
-            'biceps', 'triceps', 'quadriceps', 'calves', 'chest', 'glutes', 'hamstrings',
-            'abdominals', 'abductors', 'adductors', 'forearms', 'lower-back', 'cardio', 'full-body',
-            'neck', 'shoulders', 'lats', 'traps', 'upper-back', 'other',
-        ];
-        foreach ($names as $name) {
+        $configs = $this->getMuscleConfig();
+        foreach ($configs as $config) {
             $muscle = new MuscleDataModel();
-            $muscle->name = $name;
             $muscle->status = MuscleStatusRegistry::MUSCLE_STATUS_ACTIVE;
+
+            $this->setProperties($muscle, $config);
 
             $manager->persist($muscle);
 
@@ -29,5 +26,34 @@ final class MuscleFixtures extends AbstractFixtures
 
     protected function volumeFixtures(ObjectManager $manager): void
     {
+    }
+
+    /**
+     * @return array<mixed>
+     */
+    private function getMuscleConfig(): array
+    {
+        return [
+            ['name' => 'biceps'],
+            ['name' => 'triceps'],
+            ['name' => 'quadriceps'],
+            ['name' => 'calves'],
+            ['name' => 'chest'],
+            ['name' => 'glutes'],
+            ['name' => 'hamstrings'],
+            ['name' => 'abdominals'],
+            ['name' => 'abductors'],
+            ['name' => 'adductors'],
+            ['name' => 'forearms'],
+            ['name' => 'lower-back'],
+            ['name' => 'cardio'],
+            ['name' => 'full-body'],
+            ['name' => 'neck'],
+            ['name' => 'shoulders'],
+            ['name' => 'lats'],
+            ['name' => 'traps'],
+            ['name' => 'upper-back'],
+            ['name' => 'other'],
+        ];
     }
 }
