@@ -18,6 +18,17 @@ final class SingleMovementDataViewModel implements SingleObjectDataViewModelInte
     public string $status;
 
     #[Groups(['admin', 'member'])]
+    public bool $hasReps = false;
+    #[Groups(['admin', 'member'])]
+    public bool $hasWeight = false;
+    #[Groups(['admin', 'member'])]
+    public bool $hasDuration = false;
+    #[Groups(['admin', 'member'])]
+    public bool $hasDistance = false;
+    #[Groups(['admin', 'member'])]
+    public bool $hasSpeed = false;
+
+    #[Groups(['admin', 'member'])]
     public SimpleEmbeddedObjectViewModel $primaryMuscle;
 
     /** @var SimpleEmbeddedObjectViewModel[] $auxiliaryMuscles */

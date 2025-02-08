@@ -35,11 +35,9 @@ abstract class AbstractFixtures extends Fixture
 
             if (true === $this->isRefs($propertyName) && true === is_array($propertyValue)) {
                 $propertyName = str_replace('Refs', '', $propertyName);
-                $items = [];
                 foreach ($propertyValue as $value) {
-                    $items[] = $this->getReference($value);
+                    $dataModel->{$propertyName}->add($this->getReference($value));
                 }
-                $dataModel->{'set'.ucfirst($propertyName)} = $items;
 
                 continue;
             }
