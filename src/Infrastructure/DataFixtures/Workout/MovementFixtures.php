@@ -39,18 +39,21 @@ final class MovementFixtures extends AbstractFixtures implements DependentFixtur
         return [
             [
                 'name' => 'Bench press',
+                'hasReps' => true, 'hasWeight' => true,
                 'primaryMuscleRef' => 'muscle-chest',
                 'auxiliaryMusclesRefs' => [],
                 'equipmentsRefs' => ['equipment-barbell', 'equipment-bench'],
             ],
             [
                 'name' => 'Back squat',
+                'hasReps' => true, 'hasWeight' => true,
                 'primaryMuscleRef' => 'muscle-quadriceps',
                 'auxiliaryMusclesRefs' => ['muscle-glutes', 'muscle-hamstrings'],
                 'equipmentsRefs' => ['equipment-barbell'],
             ],
             [
                 'name' => 'Biceps curl',
+                'hasReps' => true, 'hasWeight' => true,
                 'primaryMuscleRef' => 'muscle-biceps',
                 'auxiliaryMusclesRefs' => [],
                 'equipmentsRefs' => ['equipment-dumbbell'],
@@ -63,12 +66,14 @@ final class MovementFixtures extends AbstractFixtures implements DependentFixtur
             ],
             [
                 'name' => 'Goblet squat',
+                'hasReps' => true, 'hasWeight' => true,
                 'primaryMuscleRef' => 'muscle-quadriceps',
                 'auxiliaryMusclesRefs' => [],
                 'equipmentsRefs' => ['equipment-dumbbell'],
             ],
             [
                 'name' => 'Triceps push down (single arm)',
+                'hasReps' => true, 'hasWeight' => true,
                 'primaryMuscleRef' => 'muscle-triceps',
                 'auxiliaryMusclesRefs' => [],
                 'equipmentsRefs' => ['equipment-cable'],
