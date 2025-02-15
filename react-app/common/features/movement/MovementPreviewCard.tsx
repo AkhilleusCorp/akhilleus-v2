@@ -14,23 +14,37 @@ const MovementPreviewCard: React.FC<MovementDetailsCardType> = ({ movement }) =>
                 <Typography gutterBottom variant="h5" component="div">
                     {movement.name} #{movement.id}
                 </Typography>
+
                 <Typography variant="body2" sx={{color: 'text.secondary'}}>
                     Status: {movementRegistries.status[movement.status]}
                 </Typography>
+
                 <Typography variant="body2" sx={{color: 'text.secondary'}}>
-                    Primary muscle: <Chip label={movement.primaryMuscle.label} color="primary"/>
+                    Primary muscle:
                 </Typography>
+                <Chip label={movement.primaryMuscle.label} color="primary"/>
+
                 <Typography variant="body2" sx={{color: 'text.secondary'}}>
                     Auxiliary muscles:
-                    { movement.auxiliaryMuscles.map((muscle) => (
-                        <Chip variant="outlined" label={muscle.label} color="primary"/>
-                    ))}
                 </Typography>
+                    { movement.auxiliaryMuscles.map((muscle) => (
+                        <Chip variant="outlined" label={muscle.label} key={"auxiliaryMuscles-" + muscle.id} color="primary"/>
+                    ))}
+
                 <Typography variant="body2" sx={{color: 'text.secondary'}}>
                     Equipments:
-                    { movement.equipments.map((equipment) => (
-                        <Chip variant="outlined" label={equipment.label} color="primary"/>
-                    ))}
+                </Typography>
+                { movement.equipments.map((equipment) => (
+                    <Chip variant="outlined" label={equipment.label} key={"equipments-" + equipment.id} color="primary"/>
+                ))}
+
+                <Typography variant="body2" sx={{color: 'text.secondary'}}>
+                    Configuration:
+                    {movement.hasReps ? 'Repetitions,' : ''}
+                    {movement.hasWeight ? 'Weight,' : ''}
+                    {movement.hasDuration ? 'Duration,' : ''}
+                    {movement.hasDistance ? 'Distance,' : ''}
+                    {movement.hasSpeed ? 'Speed,' : ''}
                 </Typography>
             </CardContent>
         </Card>

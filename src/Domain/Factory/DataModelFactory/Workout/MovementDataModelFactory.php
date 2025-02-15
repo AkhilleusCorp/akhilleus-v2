@@ -30,6 +30,12 @@ final class MovementDataModelFactory extends AbstractDataModelFactory
         $movement = new MovementDataModel();
         $movement->name = $source->name;
 
+        $movement->hasReps = $source->hasReps;
+        $movement->hasWeight = $source->hasWeight;
+        $movement->hasDuration = $source->hasDuration;
+        $movement->hasDistance = $source->hasDistance;
+        $movement->hasSpeed = $source->hasSpeed;
+
         return $this->handleConnectedDataModels($movement, $source);
     }
 
@@ -44,6 +50,12 @@ final class MovementDataModelFactory extends AbstractDataModelFactory
         $dataModel = $this->handleConnectedDataModels($dataModel, $sourceModel);
         $dataModel->name = $sourceModel->name;
         $dataModel->status = $sourceModel->status;
+
+        $dataModel->hasReps = $sourceModel->hasReps;
+        $dataModel->hasWeight = $sourceModel->hasWeight;
+        $dataModel->hasDuration = $sourceModel->hasDuration;
+        $dataModel->hasDistance = $sourceModel->hasDistance;
+        $dataModel->hasSpeed = $sourceModel->hasSpeed;
 
         return $dataModel;
     }

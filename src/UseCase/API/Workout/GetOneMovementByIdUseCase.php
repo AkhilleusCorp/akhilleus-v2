@@ -19,11 +19,11 @@ final class GetOneMovementByIdUseCase implements UseCaseInterface
 
     public function execute(int $id, TokenPayloadDTO $payload): SingleObjectViewModel
     {
-        $workout = $this->provider->getMovementById($id);
-        if (null === $workout) {
+        $movement = $this->provider->getMovementById($id);
+        if (null === $movement) {
             throw new NotFoundHttpException("Movement #$id cannot be found");
         }
 
-        return $this->presenter->present($workout, $payload->userType);
+        return $this->presenter->present($movement, $payload->userType);
     }
 }
