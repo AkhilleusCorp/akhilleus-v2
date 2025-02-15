@@ -1,6 +1,14 @@
 import React, {useState} from 'react';
 import {useNavigate} from "react-router-dom";
-import {FormControl, Grid2 as Grid, SelectChangeEvent, TextField} from "@mui/material";
+import {
+    FormControl,
+    FormControlLabel,
+    FormGroup, FormLabel,
+    Grid2 as Grid,
+    SelectChangeEvent,
+    Switch,
+    TextField
+} from "@mui/material";
 import useGetDropdownableEquipments from "app/common/hooks/equipment/useGetDropdownableEquipments.tsx";
 import useGetDropdownableMuscles from "app/common/hooks/muscle/useGetDropdownableMuscles.tsx";
 import QueryIds from "app/common/utils/types/QueryIds.tsx";
@@ -36,9 +44,18 @@ const AdminMovementCreateForm: React.FC = () => {
         });
     }
 
+    const handleSwitchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setMovementCreate({
+            ...movementCreate,
+            [event.target.name]: event.target.checked
+        });
+    }
+
     const handleSubmit = async () => {
         try {
             const movement = await MovementApiGateway.createMovement(movementCreate);
+            console.log('create', movementCreate);
+            console.log('created', movement);
             navigate(adminRoutes.movement.details(movement.id));
         } catch (error) {
             console.log(error);
@@ -56,7 +73,7 @@ const AdminMovementCreateForm: React.FC = () => {
                              options={movementRegistries.status} required={true} onSelectChange={handleSelectChange}/>
             </Grid>
             <Grid size={{ xs: 4 }}>
-                <SelectInput label="Primary muscle" name={"primaryMuscle"} value={null}
+                <SelectInput label="Primary muscle *" name={"primaryMuscle"} value={null}
                              options={muscles} required={true} onSelectChange={handleSelectChange}/>
 
                 <MultiSelectInput name={"auxiliaryMuscles"} label={"Auxiliary muscles"}
@@ -64,6 +81,16 @@ const AdminMovementCreateForm: React.FC = () => {
 
                 <MultiSelectInput name={"equipments"} label={"Equipment"}
                                   value={[]} required={false} options={equipments} onSelectChange={handleSelectChange}/>
+            </Grid>
+            <Grid size={{ xs: 4 }}>
+                <FormGroup>
+                    <FormLabel>Configuration</FormLabel>
+                    <FormControlLabel control={<Switch name={"hasReps"} onChange={handleSwitchChange}/>} label="Reps" />
+                    <FormControlLabel control={<Switch name={"hasWeight"} onChange={handleSwitchChange}/>} label="Weight" />
+                    <FormControlLabel control={<Switch name={"hasDuration"} onChange={handleSwitchChange}/>} label="Duration" />
+                    <FormControlLabel control={<Switch name={"hasDistance"} onChange={handleSwitchChange}/>} label="Distance" />
+                    <FormControlLabel control={<Switch name={"hasSpeed"} onChange={handleSwitchChange}/>} label="Speed" />
+                </FormGroup>
             </Grid>
         </SaveForm>
     )

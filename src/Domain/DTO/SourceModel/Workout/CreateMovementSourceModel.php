@@ -13,6 +13,7 @@ final class CreateMovementSourceModel implements CreateSourceModelInterface
     public bool $hasWeight = false;
     public bool $hasDuration = false;
     public bool $hasDistance = false;
+    public bool $hasSpeed = false;
 
     public int $primaryMuscle;
     /** @var int[]|null */

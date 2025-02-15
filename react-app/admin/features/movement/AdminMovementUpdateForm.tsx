@@ -1,7 +1,15 @@
 import React from 'react';
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
-import {FormControl, Grid2 as Grid, SelectChangeEvent, TextField} from "@mui/material";
+import {
+    FormControl,
+    FormControlLabel,
+    FormGroup, FormLabel,
+    Grid2 as Grid,
+    SelectChangeEvent,
+    Switch,
+    TextField
+} from "@mui/material";
 import MovementUpdateSource from "app/admin/services/api/source/MovementUpdateSource.tsx";
 import useGetDropdownableEquipments from "app/common/hooks/equipment/useGetDropdownableEquipments.tsx";
 import useGetDropdownableMuscles from "app/common/hooks/muscle/useGetDropdownableMuscles.tsx";
@@ -37,6 +45,13 @@ const AdminMovementUpdateForm: React.FC<MovementUpdateFormType> = ({movement}) =
         });
     }
 
+    const handleSwitchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setMovementUpdated({
+            ...movementUpdated,
+            [event.target.name]: event.target.checked
+        });
+    }
+
     const handleSubmit = async () => {
         try {
             await MovementApiGateway.updateMovement(movement.id, movementUpdated);
@@ -58,7 +73,7 @@ const AdminMovementUpdateForm: React.FC<MovementUpdateFormType> = ({movement}) =
                              options={movementRegistries.status} required={true} onSelectChange={handleSelectChange}/>
             </Grid>
             <Grid size={{ xs: 4 }}>
-                <SelectInput label="Primary muscle" name={"primaryMuscle"} value={movementUpdated.primaryMuscle}
+                <SelectInput label="Primary muscle *" name={"primaryMuscle"} value={movementUpdated.primaryMuscle}
                              options={muscles} required={true} onSelectChange={handleSelectChange}/>
 
                 <MultiSelectInput name={"auxiliaryMuscles"} label={"Auxiliary muscles"}
@@ -66,6 +81,16 @@ const AdminMovementUpdateForm: React.FC<MovementUpdateFormType> = ({movement}) =
 
                 <MultiSelectInput name={"equipments"} label={"Equipment"}
                                   value={movementUpdated.equipments} required={false} options={equipments} onSelectChange={handleSelectChange}/>
+            </Grid>
+            <Grid size={{ xs: 4 }}>
+                <FormGroup>
+                    <FormLabel>Configuration</FormLabel>
+                    <FormControlLabel control={<Switch name={"hasReps"} checked={movementUpdated.hasReps} onChange={handleSwitchChange}/>} label="Reps" />
+                    <FormControlLabel control={<Switch name={"hasWeight"} checked={movementUpdated.hasWeight} onChange={handleSwitchChange}/>} label="Weight" />
+                    <FormControlLabel control={<Switch name={"hasDuration"} checked={movementUpdated.hasDuration} onChange={handleSwitchChange}/>} label="Duration" />
+                    <FormControlLabel control={<Switch name={"hasDistance"} checked={movementUpdated.hasDistance} onChange={handleSwitchChange}/>} label="Distance" />
+                    <FormControlLabel control={<Switch name={"hasSpeed"} checked={movementUpdated.hasSpeed} onChange={handleSwitchChange}/>} label="Speed" />
+                </FormGroup>
             </Grid>
         </SaveForm>
     )
