@@ -1,22 +1,20 @@
 import React from "react";
-import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography} from "@mui/material";
+import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
 import ExerciseDTO from "app/common/services/api/dtos/ExerciseDTO.tsx";
 import IndexedArray from "app/common/utils/interfaces/IndexedArray.tsx";
 import MovementPropertyDTO from "app/common/services/api/dtos/MovementPropertyDTO.tsx";
 
 type ExercisesPreviewListTable = {
     movementConfigs: IndexedArray;
+    movementNames: IndexedArray;
     exercises: ExerciseDTO[];
 }
 
-const ExercisesPreviewListTable: React.FC<ExercisesPreviewListTable> = ({movementConfigs, exercises}) => {
-    const movementNames: IndexedArray = {};
-    const headers: IndexedArray = {name: 'name'};
-    const properties: IndexedArray = {};
+const ExercisesPreviewListTable: React.FC<ExercisesPreviewListTable> = ({movementConfigs, movementNames, exercises}) => {
+    const headers: IndexedArray = {name: 'name', type: 'type'};
+    const properties: IndexedArray = {type: 'type'};
 
     Object.keys(movementConfigs).forEach(movementConfigKey => {
-        movementNames[movementConfigKey] = movementConfigs[movementConfigKey].name;
-
         movementConfigs[movementConfigKey].trackedProperties.forEach((trackedProperty: MovementPropertyDTO) => {
             let header = trackedProperty.name;
             if (null !== trackedProperty.unit) {
@@ -28,15 +26,12 @@ const ExercisesPreviewListTable: React.FC<ExercisesPreviewListTable> = ({movemen
         });
     });
 
-    if (Object.keys(movementConfigs).length === 1) {
+    if (Object.keys(movementNames).length === 1) {
         delete headers['name'];
     }
 
     return (
         <>
-            <Typography variant="h6" component="div">
-                { Object.values(movementNames).join(' / ') }
-            </Typography>
             <TableContainer>
                 <Table>
                     <TableHead>
