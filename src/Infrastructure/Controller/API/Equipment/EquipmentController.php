@@ -7,7 +7,10 @@ use App\Domain\DTO\SourceModel\Equipment\CreateEquipmentSourceModel;
 use App\Domain\DTO\SourceModel\Equipment\UpdateEquipmentSourceModel;
 use App\Domain\Factory\DataModelFactory\Equipment\EquipmentDataModelFactory;
 use App\Domain\Gateway\Provider\Equipment\EquipmentDataModelProviderGateway;
+use App\Infrastructure\ApiDoc\MultipleObjectResponse;
+use App\Infrastructure\ApiDoc\SingleObjectResponse;
 use App\Infrastructure\Controller\API\AbstractAPIController;
+use App\Infrastructure\View\ViewModel\Equipment\MultipleEquipmentItemDataViewModel;
 use App\Infrastructure\View\ViewModel\Equipment\SingleEquipmentDataViewModel;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
 use App\Infrastructure\View\ViewModel\SingleObjectViewModel;
@@ -27,6 +30,11 @@ use Symfony\Component\Routing\Attribute\Route;
 final class EquipmentController extends AbstractAPIController
 {
     #[Route('/equipments', name: 'equipment_get_many', methods: ['GET'])]
+    #[MultipleObjectResponse(
+        response: 200,
+        description: 'Successfully returns a list of Equipments',
+        dataClass: MultipleEquipmentItemDataViewModel::class,
+    )]
     public function getMany(
         Request $request,
         GenericGetManyUseCase $useCase,
@@ -47,6 +55,11 @@ final class EquipmentController extends AbstractAPIController
     }
 
     #[Route('/equipments/{id}', name: 'equipment_get_one_by_id', requirements: ['id' => '\d+'], methods: ['GET'])]
+    #[SingleObjectResponse(
+        response: 200,
+        description: 'Successfully returns the details of an Equipment',
+        dataClass: SingleEquipmentDataViewModel::class,
+    )]
     public function getOneById(
         int $id,
         GenericGetOneByIdUseCase $useCase,
