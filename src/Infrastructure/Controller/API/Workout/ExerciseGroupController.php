@@ -2,9 +2,11 @@
 
 namespace App\Infrastructure\Controller\API\Workout;
 
+use App\Infrastructure\ApiDoc\MultipleObjectResponse;
 use App\Infrastructure\Controller\API\AbstractAPIController;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
 use App\Infrastructure\View\ViewModel\SingleObjectViewModel;
+use App\Infrastructure\View\ViewModel\Workout\ExerciseGroupDataViewModel;
 use App\UseCase\API\Workout\CreateOneExerciseGroupUseCase;
 use App\UseCase\API\Workout\DeleteOneExerciseGroupByIdUseCase;
 use App\UseCase\API\Workout\GetManyExerciseGroupUseCase;
@@ -16,6 +18,11 @@ use Symfony\Component\Routing\Attribute\Route;
 final class ExerciseGroupController extends AbstractAPIController
 {
     #[Route('/workouts/{workoutId}/groups', name: 'exercise_group_get_many', requirements: ['workoutId' => '\d+'], methods: ['GET'])]
+    #[MultipleObjectResponse(
+        response: 200,
+        description: 'Successfully returns a list of ExerciseGroups',
+        dataClass: ExerciseGroupDataViewModel::class,
+    )]
     public function getMany(Request $request, int $workoutId, GetManyExerciseGroupUseCase $useCase): MultipleObjectViewModel
     {
         return $useCase->execute($workoutId, $this->getTokenPayload($request));

@@ -4,9 +4,12 @@ namespace App\Infrastructure\Controller\API\User;
 
 use App\Domain\Registry\User\UserStatusRegistry;
 use App\Domain\Registry\User\UserTypeRegistry;
+use App\Infrastructure\ApiDoc\MultipleObjectResponse;
+use App\Infrastructure\ApiDoc\SingleObjectResponse;
 use App\Infrastructure\Controller\API\AbstractAPIController;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
 use App\Infrastructure\View\ViewModel\SingleObjectViewModel;
+use App\Infrastructure\View\ViewModel\User\MultipleUserItemDataViewModel;
 use App\Infrastructure\View\ViewModel\User\SingleUserDataViewModel;
 use App\UseCase\API\User\CreateOneUserUseCase;
 use App\UseCase\API\User\DeleteOneUserByIdUseCase;
@@ -31,10 +34,10 @@ final class UserController extends AbstractAPIController
     #[OA\Parameter(name: 'status', in: 'query', required: false, schema: new OA\Schema(type: 'string', enum: UserStatusRegistry::USER_STATUSES))]
     #[OA\Parameter(name: 'page', in: 'query', required: false, schema: new OA\Schema(type: 'number'))]
     #[OA\Parameter(name: 'limit', in: 'query', required: false, schema: new OA\Schema(type: 'number'))]
-    #[OA\Response(
+    #[MultipleObjectResponse(
         response: 200,
         description: 'Successfully returns a list of Users',
-        content: new Model(type: MultipleObjectViewModel::class)
+        dataClass: MultipleUserItemDataViewModel::class,
     )]
     public function getMany(Request $request, GetManyUserUseCase $useCase): MultipleObjectViewModel
     {
@@ -53,10 +56,10 @@ final class UserController extends AbstractAPIController
     }
 
     #[Route('/users', name: 'user_create_one', methods: ['POST'])]
-    #[OA\Response(
+    #[SingleObjectResponse(
         response: 200,
-        description: 'Successfully returns a details of a User',
-        content: new Model(type: SingleUserDataViewModel::class)
+        description: 'Successfully returns the details of an Equipment',
+        dataClass: SingleUserDataViewModel::class,
     )]
     public function createOne(Request $request, CreateOneUserUseCase $useCase): SingleObjectViewModel
     {

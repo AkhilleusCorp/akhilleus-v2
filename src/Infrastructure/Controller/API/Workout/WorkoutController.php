@@ -3,15 +3,18 @@
 namespace App\Infrastructure\Controller\API\Workout;
 
 use App\Domain\Registry\User\UserStatusRegistry;
+use App\Infrastructure\ApiDoc\MultipleObjectResponse;
+use App\Infrastructure\ApiDoc\SingleObjectResponse;
 use App\Infrastructure\Controller\API\AbstractAPIController;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
 use App\Infrastructure\View\ViewModel\SingleObjectViewModel;
+use App\Infrastructure\View\ViewModel\Workout\MultipleWorkoutItemDataViewModel;
+use App\Infrastructure\View\ViewModel\Workout\SingleWorkoutDataViewModel;
 use App\UseCase\API\Workout\CreateOneWorkoutUseCase;
 use App\UseCase\API\Workout\DeleteOneWorkoutByIdUseCase;
 use App\UseCase\API\Workout\GetManyWorkoutUseCase;
 use App\UseCase\API\Workout\GetOneWorkoutByIdUseCase;
 use App\UseCase\API\Workout\UpdateOneWorkoutByIdUseCase;
-use Nelmio\ApiDocBundle\Annotation\Model;
 use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,10 +31,10 @@ final class WorkoutController extends AbstractAPIController
     #[OA\Parameter(name: 'status', in: 'query', required: false, schema: new OA\Schema(type: 'string', enum: UserStatusRegistry::USER_STATUSES))]
     #[OA\Parameter(name: 'page', in: 'query', required: false, schema: new OA\Schema(type: 'number'))]
     #[OA\Parameter(name: 'limit', in: 'query', required: false, schema: new OA\Schema(type: 'number'))]
-    #[OA\Response(
+    #[MultipleObjectResponse(
         response: 200,
         description: 'Successfully returns a list of Workouts',
-        content: new Model(type: MultipleObjectViewModel::class)
+        dataClass: MultipleWorkoutItemDataViewModel::class,
     )]
     public function getMany(Request $request, GetManyWorkoutUseCase $useCase): MultipleObjectViewModel
     {
@@ -39,6 +42,11 @@ final class WorkoutController extends AbstractAPIController
     }
 
     #[Route('/workouts/{id}', name: 'workout_get_one_by_id', requirements: ['id' => '\d+'], methods: ['GET'])]
+    #[SingleObjectResponse(
+        response: 200,
+        description: 'Successfully returns the details of a Workout',
+        dataClass: SingleWorkoutDataViewModel::class,
+    )]
     public function getOneById(Request $request, int $id, GetOneWorkoutByIdUseCase $useCase): SingleObjectViewModel
     {
         return $useCase->execute($id, $this->getTokenPayload($request));

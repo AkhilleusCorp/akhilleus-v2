@@ -7,9 +7,12 @@ use App\Domain\DTO\SourceModel\Workout\CreateMuscleSourceModel;
 use App\Domain\DTO\SourceModel\Workout\UpdateMuscleSourceModel;
 use App\Domain\Factory\DataModelFactory\Workout\MuscleDataModelFactory;
 use App\Domain\Gateway\Provider\Workout\MuscleDataModelProviderGateway;
+use App\Infrastructure\ApiDoc\MultipleObjectResponse;
+use App\Infrastructure\ApiDoc\SingleObjectResponse;
 use App\Infrastructure\Controller\API\AbstractAPIController;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
 use App\Infrastructure\View\ViewModel\SingleObjectViewModel;
+use App\Infrastructure\View\ViewModel\Workout\MultipleMuscleItemDataViewModel;
 use App\Infrastructure\View\ViewModel\Workout\SingleMuscleDataViewModel;
 use App\UseCase\API\GenericCreateOneUseCase;
 use App\UseCase\API\GenericDeleteOneByIdUseCase;
@@ -27,6 +30,11 @@ use Symfony\Component\Routing\Attribute\Route;
 final class MuscleController extends AbstractAPIController
 {
     #[Route('/muscles', name: 'muscle_get_many', methods: ['GET'])]
+    #[MultipleObjectResponse(
+        response: 200,
+        description: 'Successfully returns a list of Muscles',
+        dataClass: MultipleMuscleItemDataViewModel::class,
+    )]
     public function getMany(
         Request $request,
         GenericGetManyUseCase $useCase,
@@ -47,6 +55,11 @@ final class MuscleController extends AbstractAPIController
     }
 
     #[Route('/muscles/{id}', name: 'muscle_get_one_by_id', requirements: ['id' => '\d+'], methods: ['GET'])]
+    #[SingleObjectResponse(
+        response: 200,
+        description: 'Successfully returns the details of a Muscle',
+        dataClass: SingleMuscleDataViewModel::class,
+    )]
     public function getOneById(
         int $id,
         GenericGetOneByIdUseCase $useCase,

@@ -3,9 +3,13 @@
 namespace App\Infrastructure\Controller\API\Workout;
 
 use App\Domain\Gateway\Provider\Workout\MovementDataModelProviderGateway;
+use App\Infrastructure\ApiDoc\MultipleObjectResponse;
+use App\Infrastructure\ApiDoc\SingleObjectResponse;
 use App\Infrastructure\Controller\API\AbstractAPIController;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
 use App\Infrastructure\View\ViewModel\SingleObjectViewModel;
+use App\Infrastructure\View\ViewModel\Workout\MultipleMovementItemDataViewModel;
+use App\Infrastructure\View\ViewModel\Workout\SingleMovementDataViewModel;
 use App\UseCase\API\GenericGetDropdownableUseCase;
 use App\UseCase\API\Workout\CreateOneMovementUseCase;
 use App\UseCase\API\Workout\DeleteOneMovementByIdUseCase;
@@ -20,6 +24,11 @@ use Symfony\Component\Routing\Attribute\Route;
 final class MovementController extends AbstractAPIController
 {
     #[Route('/movements', name: 'movement_get_many', methods: ['GET'])]
+    #[MultipleObjectResponse(
+        response: 200,
+        description: 'Successfully returns a list of Movements',
+        dataClass: MultipleMovementItemDataViewModel::class,
+    )]
     public function getMany(Request $request, GetManyMovementUseCase $useCase): MultipleObjectViewModel
     {
         return $useCase->execute($request->query->all(), $this->getTokenPayload($request));
@@ -37,6 +46,11 @@ final class MovementController extends AbstractAPIController
     }
 
     #[Route('/movements/{id}', name: 'movement_get_one_by_id', requirements: ['id' => '\d+'], methods: ['GET'])]
+    #[SingleObjectResponse(
+        response: 200,
+        description: 'Successfully returns the details of a Movement',
+        dataClass: SingleMovementDataViewModel::class,
+    )]
     public function getOneById(Request $request, int $id, GetOneMovementByIdUseCase $useCase): SingleObjectViewModel
     {
         return $useCase->execute($id, $this->getTokenPayload($request));
