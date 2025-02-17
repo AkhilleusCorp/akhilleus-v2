@@ -1,31 +1,61 @@
 import React from "react";
-import {Table, TableBody, TableCell, TableContainer, TableRow} from "@mui/material";
+import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
 import ExerciseDTO from "app/common/services/api/dtos/ExerciseDTO.tsx";
+import IndexedArray from "app/common/utils/interfaces/IndexedArray.tsx";
+import MovementPropertyDTO from "app/common/services/api/dtos/MovementPropertyDTO.tsx";
 
 type ExercisesPreviewListTable = {
+    movementConfigs: IndexedArray;
+    movementNames: IndexedArray;
     exercises: ExerciseDTO[];
-    hasMultipleMovement: boolean;
 }
 
-const ExercisesPreviewListTable: React.FC<ExercisesPreviewListTable> = ({exercises, hasMultipleMovement}) => {
-    return (
-        <TableContainer>
-            <Table>
-                <TableBody>
-                { exercises.map((exercise: any) => (
-                    <TableRow key={exercise.id}>
-                        { hasMultipleMovement && (
-                            <TableCell>{exercise.movementName}</TableCell>
-                        )}
+const ExercisesPreviewListTable: React.FC<ExercisesPreviewListTable> = ({movementConfigs, movementNames, exercises}) => {
+    const headers: IndexedArray = {name: 'name', type: 'type'};
+    const properties: IndexedArray = {type: 'type'};
 
-                        <TableCell>
-                            Something
-                        </TableCell>
-                    </TableRow>
-                ))}
-                </TableBody>
-            </Table>
-        </TableContainer>
+    Object.keys(movementConfigs).forEach(movementConfigKey => {
+        movementConfigs[movementConfigKey].trackedProperties.forEach((trackedProperty: MovementPropertyDTO) => {
+            let header = trackedProperty.name;
+            if (null !== trackedProperty.unit) {
+                header += " (" + trackedProperty.unit + ")";
+            }
+
+            properties[trackedProperty.name] = trackedProperty.name;
+            headers[trackedProperty.name] = header;
+        });
+    });
+
+    if (Object.keys(movementNames).length === 1) {
+        delete headers['name'];
+    }
+
+    return (
+        <>
+            <TableContainer>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            { Object.entries(headers).map(([key, header]) => (
+                                <TableCell key={key}>{ header }</TableCell>
+                            ))}
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                    { exercises.map((exercise: any) => (
+                        <TableRow key={exercise.id}>
+                            { Object.keys(movementNames).length > 1 && (
+                                <TableCell>{movementNames[exercise.movementId]}</TableCell>
+                            )}
+                            { Object.entries(properties).map(([key, property]) => (
+                                <TableCell key={exercise.id + "-" + key}>{ exercise[property] }</TableCell>
+                            ))}
+                        </TableRow>
+                    ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        </>
     )
 }
 

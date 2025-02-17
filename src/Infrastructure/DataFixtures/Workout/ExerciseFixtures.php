@@ -46,11 +46,11 @@ final class ExerciseFixtures extends AbstractFixtures implements DependentFixtur
     private function getExerciseConfig(): array
     {
         return [
-            ['movementRef' => 'movement-bench-press', 'groupRef' => 'exerciseGroup-in-progress-private-1', 'repeat' => 5],
-            ['movementRef' => 'movement-back-squat', 'groupRef' => 'exerciseGroup-in-progress-private-2', 'repeat' => 3],
-            ['movementRef' => 'movement-biceps-curl', 'groupRef' => 'exerciseGroup-in-progress-private-3', 'repeat' => 5],
-            ['movementRef' => 'movement-front-squat', 'groupRef' => 'exerciseGroup-in-progress-private-4', 'repeat' => 6],
-            ['movementRef' => 'movement-goblet-squat', 'groupRef' => 'exerciseGroup-in-progress-private-5', 'repeat' => 3],
+            ['movementRef' => 'movement-bench-press', 'groupRef' => 'exerciseGroup-in-progress-private-1', 'repeat' => 5, 'reps' => 10, 'weight' => 55],
+            ['movementRef' => 'movement-back-squat', 'groupRef' => 'exerciseGroup-in-progress-private-2', 'repeat' => 3, 'reps' => 12, 'weight' => 70],
+            ['movementRef' => 'movement-biceps-curl', 'groupRef' => 'exerciseGroup-in-progress-private-3', 'repeat' => 5, 'reps' => 12, 'weight' => 12],
+            ['movementRef' => 'movement-front-squat', 'groupRef' => 'exerciseGroup-in-progress-private-4', 'repeat' => 6, 'reps' => 8, 'weight' => 60],
+            ['movementRef' => 'movement-goblet-squat', 'groupRef' => 'exerciseGroup-in-progress-private-5', 'repeat' => 3, 'reps' => 30, 'weight' => 20],
         ];
     }
 }
