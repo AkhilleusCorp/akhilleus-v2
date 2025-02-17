@@ -69,6 +69,11 @@ final class MuscleController extends AbstractAPIController
     }
 
     #[Route('/muscles', name: 'muscles_create_one', methods: ['POST'])]
+    #[SingleObjectResponse(
+        response: 200,
+        description: 'Successfully returns the details of a Muscle',
+        dataClass: SingleMuscleDataViewModel::class,
+    )]
     public function createOne(
         Request $request,
         GenericCreateOneUseCase $useCase,
@@ -83,6 +88,11 @@ final class MuscleController extends AbstractAPIController
     }
 
     #[Route('/muscles/{id}', name: 'muscle_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
+    #[SingleObjectResponse(
+        response: 200,
+        description: 'Successfully returns the details of a Muscle',
+        dataClass: SingleMuscleDataViewModel::class,
+    )]
     public function updateOneById(
         int $id,
         Request $request,

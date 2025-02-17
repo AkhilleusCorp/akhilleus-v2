@@ -3,6 +3,7 @@
 namespace App\Infrastructure\Controller\API\Workout;
 
 use App\Infrastructure\ApiDoc\MultipleObjectResponse;
+use App\Infrastructure\ApiDoc\SingleObjectResponse;
 use App\Infrastructure\Controller\API\AbstractAPIController;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
 use App\Infrastructure\View\ViewModel\SingleObjectViewModel;
@@ -31,6 +32,11 @@ final class ExerciseGroupController extends AbstractAPIController
     }
 
     #[Route('/workouts/{workoutId}/groups', name: 'exercise_group_create_one', requirements: ['workoutId' => '\d+'], methods: ['POST'])]
+    #[SingleObjectResponse(
+        response: 200,
+        description: 'Successfully returns the details of an Exercise Group',
+        dataClass: ExerciseGroupDataViewModel::class,
+    )]
     public function createOneExerciseGroup(Request $request, int $workoutId, CreateOneExerciseGroupUseCase $useCase): SingleObjectViewModel
     {
         return $useCase->execute(

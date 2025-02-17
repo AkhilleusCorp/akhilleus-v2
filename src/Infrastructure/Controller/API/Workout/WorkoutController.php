@@ -53,12 +53,22 @@ final class WorkoutController extends AbstractAPIController
     }
 
     #[Route('/workouts', name: 'workout_create_one', methods: ['POST'])]
+    #[SingleObjectResponse(
+        response: 200,
+        description: 'Successfully returns the details of a Workout',
+        dataClass: SingleWorkoutDataViewModel::class,
+    )]
     public function createOne(Request $request, CreateOneWorkoutUseCase $useCase): SingleObjectViewModel
     {
         return $useCase->execute(json_decode($request->getContent(), true), $this->getTokenPayload($request));
     }
 
     #[Route('/workouts/{id}', name: 'workout_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
+    #[SingleObjectResponse(
+        response: 200,
+        description: 'Successfully returns the details of a Workout',
+        dataClass: SingleWorkoutDataViewModel::class,
+    )]
     public function updateOneById(Request $request, int $id, UpdateOneWorkoutByIdUseCase $useCase): SingleObjectViewModel
     {
         return $useCase->execute($id, json_decode($request->getContent(), true), $this->getTokenPayload($request));

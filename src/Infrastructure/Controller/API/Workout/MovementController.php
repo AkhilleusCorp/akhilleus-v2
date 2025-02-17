@@ -59,12 +59,22 @@ final class MovementController extends AbstractAPIController
     }
 
     #[Route('/movements', name: 'movement_create_one', methods: ['POST'])]
+    #[SingleObjectResponse(
+        response: 200,
+        description: 'Successfully returns the details of a Movement',
+        dataClass: SingleMovementDataViewModel::class,
+    )]
     public function createOne(Request $request, CreateOneMovementUseCase $useCase): SingleObjectViewModel
     {
         return $useCase->execute(json_decode($request->getContent(), true), $this->getTokenPayload($request));
     }
 
     #[Route('/movements/{id}', name: 'movement_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
+    #[SingleObjectResponse(
+        response: 200,
+        description: 'Successfully returns the details of a Movement',
+        dataClass: SingleMovementDataViewModel::class,
+    )]
     public function updateOneById(Request $request, int $id, UpdateOneMovementByIdUseCase $useCase): SingleObjectViewModel
     {
         return $useCase->execute($id, json_decode($request->getContent(), true), $this->getTokenPayload($request));

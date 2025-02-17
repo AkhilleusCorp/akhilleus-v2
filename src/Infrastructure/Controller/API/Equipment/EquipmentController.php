@@ -69,6 +69,11 @@ final class EquipmentController extends AbstractAPIController
     }
 
     #[Route('/equipments', name: 'equipments_create_one', methods: ['POST'])]
+    #[SingleObjectResponse(
+        response: 200,
+        description: 'Successfully returns the details of an Equipment',
+        dataClass: SingleEquipmentDataViewModel::class,
+    )]
     public function createOne(
         Request $request,
         GenericCreateOneUseCase $useCase,
@@ -83,6 +88,11 @@ final class EquipmentController extends AbstractAPIController
     }
 
     #[Route('/equipments/{id}', name: 'equipment_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
+    #[SingleObjectResponse(
+        response: 200,
+        description: 'Successfully returns the details of an Equipment',
+        dataClass: SingleEquipmentDataViewModel::class,
+    )]
     public function updateOneById(
         int $id,
         Request $request,

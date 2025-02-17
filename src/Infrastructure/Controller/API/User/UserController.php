@@ -16,7 +16,6 @@ use App\UseCase\API\User\DeleteOneUserByIdUseCase;
 use App\UseCase\API\User\GetManyUserUseCase;
 use App\UseCase\API\User\GetOneUserByIdUseCase;
 use App\UseCase\API\User\UpdateOneUserByIdUseCase;
-use Nelmio\ApiDocBundle\Annotation\Model;
 use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -45,10 +44,10 @@ final class UserController extends AbstractAPIController
     }
 
     #[Route('/users/{id}', name: 'user_get_one_by_id', requirements: ['id' => '\d+'], methods: ['GET'])]
-    #[OA\Response(
+    #[SingleObjectResponse(
         response: 200,
-        description: 'Successfully returns a details of a User',
-        content: new Model(type: SingleUserDataViewModel::class)
+        description: 'Successfully returns the details of an User',
+        dataClass: SingleUserDataViewModel::class,
     )]
     public function getOneById(Request $request, int $id, GetOneUserByIdUseCase $useCase): SingleObjectViewModel
     {
@@ -58,7 +57,7 @@ final class UserController extends AbstractAPIController
     #[Route('/users', name: 'user_create_one', methods: ['POST'])]
     #[SingleObjectResponse(
         response: 200,
-        description: 'Successfully returns the details of an Equipment',
+        description: 'Successfully returns the details of an User',
         dataClass: SingleUserDataViewModel::class,
     )]
     public function createOne(Request $request, CreateOneUserUseCase $useCase): SingleObjectViewModel
@@ -67,10 +66,10 @@ final class UserController extends AbstractAPIController
     }
 
     #[Route('/users/{id}', name: 'user_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
-    #[OA\Response(
+    #[SingleObjectResponse(
         response: 200,
-        description: 'Successfully returns a details of a User',
-        content: new Model(type: SingleUserDataViewModel::class)
+        description: 'Successfully returns the details of an User',
+        dataClass: SingleUserDataViewModel::class,
     )]
     public function updateOneById(Request $request, int $id, UpdateOneUserByIdUseCase $useCase): SingleObjectViewModel
     {
