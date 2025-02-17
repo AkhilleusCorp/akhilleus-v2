@@ -19,6 +19,36 @@ class ExerciseDataModel implements DataModelInterface
     #[ORM\Column(type: Types::STRING)]
     public string $type = ExerciseTypeRegistry::EXERCISE_TYPE_NORMAL;
 
+    #[ORM\Column(type: Types::INTEGER, nullable: true)]
+    public ?int $targetReps = null;
+
+    #[ORM\Column(type: Types::INTEGER, nullable: true)]
+    public ?int $targetWeight = null;
+
+    #[ORM\Column(type: Types::INTEGER, nullable: true)]
+    public ?int $targetDuration = null;
+
+    #[ORM\Column(type: Types::INTEGER, nullable: true)]
+    public ?int $targetDistance = null;
+
+    #[ORM\Column(type: Types::INTEGER, nullable: true)]
+    public ?int $targetSpeed = null;
+
+    #[ORM\Column(type: Types::INTEGER, nullable: true)]
+    public ?int $reps = null;
+
+    #[ORM\Column(type: Types::INTEGER, nullable: true)]
+    public ?int $weight = null;
+
+    #[ORM\Column(type: Types::INTEGER, nullable: true)]
+    public ?int $duration = null;
+
+    #[ORM\Column(type: Types::INTEGER, nullable: true)]
+    public ?int $distance = null;
+
+    #[ORM\Column(type: Types::INTEGER, nullable: true)]
+    public ?int $speed = null;
+
     #[ORM\Column(type: Types::BOOLEAN)]
     public bool $isCompleted = false;
 

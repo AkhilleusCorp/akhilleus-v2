@@ -1,7 +1,6 @@
 import React, {useState} from "react";
-import {Button, Card, CardActions, CardContent, Typography} from "@mui/material";
+import {Button, Card, CardActions, CardContent} from "@mui/material";
 import ExerciseGroupDTO from "app/common/services/api/dtos/ExerciseGroupDTO.tsx";
-import IndexedArray from "app/common/utils/interfaces/IndexedArray.tsx";
 import ExerciseApiGateway from "app/common/services/api/gateway/ExerciseApiGateway.tsx";
 import ExerciseGroupDeleteButton from "app/common/features/exerciseGroup/ExerciseGroupDeleteButton.tsx";
 import ExercisesPreviewListTable from "app/admin/features/exerciseGroup/ExercisesPreviewListTable.tsx";
@@ -12,12 +11,7 @@ type ExerciseGroupCardType = {
 }
 
 const ExerciseGroupCard: React.FC<ExerciseGroupCardType> = ({ group, displayWriteActions }) => {
-    const movementNames: IndexedArray = {};
     const [stateGroup, setStateGroup] = useState<ExerciseGroupDTO>(group);
-
-    stateGroup.exercises.map((exercise: any) => {
-        movementNames[exercise.movementId] = exercise.movementName;
-    });
 
     const onConfirmDelete = (groupId: number) => {
         const deletedCard = document.getElementById("card-"+groupId) as HTMLDivElement;
@@ -35,35 +29,17 @@ const ExerciseGroupCard: React.FC<ExerciseGroupCardType> = ({ group, displayWrit
         }
     }
 
-    const movementLabelPrefix = (index: number) => {
-        if (index > 0) {
-            return " / "
-        }
-
-        return "";
-    }
-
     return (
         <Card id={"card-"+stateGroup.id} key={stateGroup.id} className={'margin-bottom-s'}>
             <CardContent>
                 <div className={"margin-bottom-s"}>
-                    <div className={"float-left two-thirds-width"}>
-                        <Typography gutterBottom variant="h6" component="div">
-                            {stateGroup.movementIds.map((movementId: string, index) => (
-                                <span key={stateGroup.id + '-' + movementId}>
-                                    {movementLabelPrefix(index)}{movementNames[movementId]}
-                                </span>
-                            ))}
-                        </Typography>
-                    </div>
-
                     { displayWriteActions && (
-                        <div className={"float-right one-thirds-width text-align-right"}>
+                        <div>
                             <ExerciseGroupDeleteButton workoutId={stateGroup.workoutId} exerciseGroupId={stateGroup.id} callbackFunction={onConfirmDelete}/>
                         </div>
                     )}
                 </div>
-                <ExercisesPreviewListTable exercises={stateGroup.exercises} hasMultipleMovement={1 != stateGroup.movementIds.length}/>
+                <ExercisesPreviewListTable movementConfigs={stateGroup.movementConfigs} exercises={stateGroup.exercises} />
             </CardContent>
             <CardActions style={{justifyContent: 'center'}}>
                 { displayWriteActions && (
