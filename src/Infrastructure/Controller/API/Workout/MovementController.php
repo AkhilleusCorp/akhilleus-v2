@@ -3,8 +3,7 @@
 namespace App\Infrastructure\Controller\API\Workout;
 
 use App\Domain\Gateway\Provider\Workout\MovementDataModelProviderGateway;
-use App\Infrastructure\ApiDoc\MultipleObjectResponse;
-use App\Infrastructure\ApiDoc\SingleObjectResponse;
+use App\Infrastructure\ApiDoc;
 use App\Infrastructure\Controller\API\AbstractAPIController;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
 use App\Infrastructure\View\ViewModel\SingleObjectViewModel;
@@ -26,7 +25,7 @@ use Symfony\Component\Routing\Attribute\Route;
 final class MovementController extends AbstractAPIController
 {
     #[Route('/movements', name: 'movement_get_many', methods: ['GET'])]
-    #[MultipleObjectResponse(
+    #[ApiDoc\MultipleObjectResponse(
         response: 200,
         description: 'Successfully returns a list of Movements',
         dataClass: MultipleMovementItemDataViewModel::class,
@@ -48,10 +47,13 @@ final class MovementController extends AbstractAPIController
     }
 
     #[Route('/movements/{id}', name: 'movement_get_one_by_id', requirements: ['id' => '\d+'], methods: ['GET'])]
-    #[SingleObjectResponse(
+    #[ApiDoc\SingleObjectResponse(
         response: 200,
         description: 'Successfully returns the details of a Movement',
         dataClass: SingleMovementDataViewModel::class,
+    )]
+    #[ApiDoc\NotFoundResponse(
+        description: 'No Movement found for the given id',
     )]
     public function getOneById(Request $request, int $id, GetOneMovementByIdUseCase $useCase): SingleObjectViewModel
     {
@@ -59,9 +61,9 @@ final class MovementController extends AbstractAPIController
     }
 
     #[Route('/movements', name: 'movement_create_one', methods: ['POST'])]
-    #[SingleObjectResponse(
+    #[ApiDoc\SingleObjectResponse(
         response: 200,
-        description: 'Successfully returns the details of a Movement',
+        description: 'Successfully create a Movement',
         dataClass: SingleMovementDataViewModel::class,
     )]
     public function createOne(Request $request, CreateOneMovementUseCase $useCase): SingleObjectViewModel
@@ -70,10 +72,13 @@ final class MovementController extends AbstractAPIController
     }
 
     #[Route('/movements/{id}', name: 'movement_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
-    #[SingleObjectResponse(
+    #[ApiDoc\SingleObjectResponse(
         response: 200,
-        description: 'Successfully returns the details of a Movement',
+        description: 'Successfully edit the details of a Movement',
         dataClass: SingleMovementDataViewModel::class,
+    )]
+    #[ApiDoc\NotFoundResponse(
+        description: 'No Movement found for the given id',
     )]
     public function updateOneById(Request $request, int $id, UpdateOneMovementByIdUseCase $useCase): SingleObjectViewModel
     {
@@ -81,6 +86,9 @@ final class MovementController extends AbstractAPIController
     }
 
     #[Route('/movements/{id}', name: 'movement_delete_one_by_id', requirements: ['id' => '\d+'], methods: ['DELETE'])]
+    #[ApiDoc\NotFoundResponse(
+        description: 'No Movement found for the given id',
+    )]
     public function deleteOneById(int $id, DeleteOneMovementByIdUseCase $useCase): JsonResponse
     {
         $useCase->execute($id);

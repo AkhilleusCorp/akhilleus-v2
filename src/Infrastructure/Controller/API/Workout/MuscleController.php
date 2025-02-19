@@ -7,8 +7,7 @@ use App\Domain\DTO\SourceModel\Workout\CreateMuscleSourceModel;
 use App\Domain\DTO\SourceModel\Workout\UpdateMuscleSourceModel;
 use App\Domain\Factory\DataModelFactory\Workout\MuscleDataModelFactory;
 use App\Domain\Gateway\Provider\Workout\MuscleDataModelProviderGateway;
-use App\Infrastructure\ApiDoc\MultipleObjectResponse;
-use App\Infrastructure\ApiDoc\SingleObjectResponse;
+use App\Infrastructure\ApiDoc;
 use App\Infrastructure\Controller\API\AbstractAPIController;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
 use App\Infrastructure\View\ViewModel\SingleObjectViewModel;
@@ -30,7 +29,7 @@ use Symfony\Component\Routing\Attribute\Route;
 final class MuscleController extends AbstractAPIController
 {
     #[Route('/muscles', name: 'muscle_get_many', methods: ['GET'])]
-    #[MultipleObjectResponse(
+    #[ApiDoc\MultipleObjectResponse(
         response: 200,
         description: 'Successfully returns a list of Muscles',
         dataClass: MultipleMuscleItemDataViewModel::class,
@@ -55,10 +54,13 @@ final class MuscleController extends AbstractAPIController
     }
 
     #[Route('/muscles/{id}', name: 'muscle_get_one_by_id', requirements: ['id' => '\d+'], methods: ['GET'])]
-    #[SingleObjectResponse(
+    #[ApiDoc\SingleObjectResponse(
         response: 200,
         description: 'Successfully returns the details of a Muscle',
         dataClass: SingleMuscleDataViewModel::class,
+    )]
+    #[ApiDoc\NotFoundResponse(
+        description: 'No Muscle found for the given id',
     )]
     public function getOneById(
         int $id,
@@ -69,9 +71,9 @@ final class MuscleController extends AbstractAPIController
     }
 
     #[Route('/muscles', name: 'muscles_create_one', methods: ['POST'])]
-    #[SingleObjectResponse(
+    #[ApiDoc\SingleObjectResponse(
         response: 200,
-        description: 'Successfully returns the details of a Muscle',
+        description: 'Successfully create a Muscle',
         dataClass: SingleMuscleDataViewModel::class,
     )]
     public function createOne(
@@ -88,10 +90,13 @@ final class MuscleController extends AbstractAPIController
     }
 
     #[Route('/muscles/{id}', name: 'muscle_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
-    #[SingleObjectResponse(
+    #[ApiDoc\SingleObjectResponse(
         response: 200,
-        description: 'Successfully returns the details of a Muscle',
+        description: 'Successfully edit the details of a Muscle',
         dataClass: SingleMuscleDataViewModel::class,
+    )]
+    #[ApiDoc\NotFoundResponse(
+        description: 'No Muscle found for the given id',
     )]
     public function updateOneById(
         int $id,
@@ -111,6 +116,9 @@ final class MuscleController extends AbstractAPIController
     }
 
     #[Route('/muscles/{id}', name: 'muscle_delete_by_id', requirements: ['id' => '\d+'], methods: ['DELETE'])]
+    #[ApiDoc\NotFoundResponse(
+        description: 'No Muscle found for the given id',
+    )]
     public function deleteOnById(
         int $id,
         GenericDeleteOneByIdUseCase $useCase,

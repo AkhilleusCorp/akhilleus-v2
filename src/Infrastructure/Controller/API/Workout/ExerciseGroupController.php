@@ -2,8 +2,7 @@
 
 namespace App\Infrastructure\Controller\API\Workout;
 
-use App\Infrastructure\ApiDoc\MultipleObjectResponse;
-use App\Infrastructure\ApiDoc\SingleObjectResponse;
+use App\Infrastructure\ApiDoc;
 use App\Infrastructure\Controller\API\AbstractAPIController;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
 use App\Infrastructure\View\ViewModel\SingleObjectViewModel;
@@ -21,7 +20,7 @@ use Symfony\Component\Routing\Attribute\Route;
 final class ExerciseGroupController extends AbstractAPIController
 {
     #[Route('/workouts/{workoutId}/groups', name: 'exercise_group_get_many', requirements: ['workoutId' => '\d+'], methods: ['GET'])]
-    #[MultipleObjectResponse(
+    #[ApiDoc\MultipleObjectResponse(
         response: 200,
         description: 'Successfully returns a list of ExerciseGroups',
         dataClass: ExerciseGroupDataViewModel::class,
@@ -32,10 +31,13 @@ final class ExerciseGroupController extends AbstractAPIController
     }
 
     #[Route('/workouts/{workoutId}/groups', name: 'exercise_group_create_one', requirements: ['workoutId' => '\d+'], methods: ['POST'])]
-    #[SingleObjectResponse(
+    #[ApiDoc\SingleObjectResponse(
         response: 200,
         description: 'Successfully returns the details of an Exercise Group',
         dataClass: ExerciseGroupDataViewModel::class,
+    )]
+    #[ApiDoc\NotFoundResponse(
+        description: 'No Workout found for the given id',
     )]
     public function createOneExerciseGroup(Request $request, int $workoutId, CreateOneExerciseGroupUseCase $useCase): SingleObjectViewModel
     {
@@ -47,6 +49,9 @@ final class ExerciseGroupController extends AbstractAPIController
     }
 
     #[Route('/workouts/{workoutId}/groups/{groupId}', name: 'exercise_group_delete_one_by_id', requirements: ['workoutId' => '\d+', 'groupId' => '\d+'], methods: ['DELETE'])]
+    #[ApiDoc\NotFoundResponse(
+        description: 'No ExerciseGroup found for the given id',
+    )]
     public function deleteOneById(int $workoutId, int $groupId, DeleteOneExerciseGroupByIdUseCase $useCase): JsonResponse
     {
         $useCase->execute($workoutId, $groupId);

@@ -3,8 +3,7 @@
 namespace App\Infrastructure\Controller\API\Workout;
 
 use App\Domain\Registry\User\UserStatusRegistry;
-use App\Infrastructure\ApiDoc\MultipleObjectResponse;
-use App\Infrastructure\ApiDoc\SingleObjectResponse;
+use App\Infrastructure\ApiDoc;
 use App\Infrastructure\Controller\API\AbstractAPIController;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
 use App\Infrastructure\View\ViewModel\SingleObjectViewModel;
@@ -31,7 +30,7 @@ final class WorkoutController extends AbstractAPIController
     #[OA\Parameter(name: 'status', in: 'query', required: false, schema: new OA\Schema(type: 'string', enum: UserStatusRegistry::USER_STATUSES))]
     #[OA\Parameter(name: 'page', in: 'query', required: false, schema: new OA\Schema(type: 'number'))]
     #[OA\Parameter(name: 'limit', in: 'query', required: false, schema: new OA\Schema(type: 'number'))]
-    #[MultipleObjectResponse(
+    #[ApiDoc\MultipleObjectResponse(
         response: 200,
         description: 'Successfully returns a list of Workouts',
         dataClass: MultipleWorkoutItemDataViewModel::class,
@@ -42,10 +41,13 @@ final class WorkoutController extends AbstractAPIController
     }
 
     #[Route('/workouts/{id}', name: 'workout_get_one_by_id', requirements: ['id' => '\d+'], methods: ['GET'])]
-    #[SingleObjectResponse(
+    #[ApiDoc\SingleObjectResponse(
         response: 200,
         description: 'Successfully returns the details of a Workout',
         dataClass: SingleWorkoutDataViewModel::class,
+    )]
+    #[ApiDoc\NotFoundResponse(
+        description: 'No Workout found for the given id',
     )]
     public function getOneById(Request $request, int $id, GetOneWorkoutByIdUseCase $useCase): SingleObjectViewModel
     {
@@ -53,9 +55,9 @@ final class WorkoutController extends AbstractAPIController
     }
 
     #[Route('/workouts', name: 'workout_create_one', methods: ['POST'])]
-    #[SingleObjectResponse(
+    #[ApiDoc\SingleObjectResponse(
         response: 200,
-        description: 'Successfully returns the details of a Workout',
+        description: 'Successfully create a Workout',
         dataClass: SingleWorkoutDataViewModel::class,
     )]
     public function createOne(Request $request, CreateOneWorkoutUseCase $useCase): SingleObjectViewModel
@@ -64,10 +66,13 @@ final class WorkoutController extends AbstractAPIController
     }
 
     #[Route('/workouts/{id}', name: 'workout_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
-    #[SingleObjectResponse(
+    #[ApiDoc\SingleObjectResponse(
         response: 200,
-        description: 'Successfully returns the details of a Workout',
+        description: 'Successfully edit the details of a Workout',
         dataClass: SingleWorkoutDataViewModel::class,
+    )]
+    #[ApiDoc\NotFoundResponse(
+        description: 'No Workout found for the given id',
     )]
     public function updateOneById(Request $request, int $id, UpdateOneWorkoutByIdUseCase $useCase): SingleObjectViewModel
     {
@@ -75,6 +80,9 @@ final class WorkoutController extends AbstractAPIController
     }
 
     #[Route('/workouts/{id}', name: 'workout_delete_one_by_id', requirements: ['id' => '\d+'], methods: ['DELETE'])]
+    #[ApiDoc\NotFoundResponse(
+        description: 'No Workout found for the given id',
+    )]
     public function deleteOneById(int $id, DeleteOneWorkoutByIdUseCase $useCase): JsonResponse
     {
         $useCase->execute($id);

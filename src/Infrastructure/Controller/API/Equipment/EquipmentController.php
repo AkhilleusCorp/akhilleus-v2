@@ -7,8 +7,7 @@ use App\Domain\DTO\SourceModel\Equipment\CreateEquipmentSourceModel;
 use App\Domain\DTO\SourceModel\Equipment\UpdateEquipmentSourceModel;
 use App\Domain\Factory\DataModelFactory\Equipment\EquipmentDataModelFactory;
 use App\Domain\Gateway\Provider\Equipment\EquipmentDataModelProviderGateway;
-use App\Infrastructure\ApiDoc\MultipleObjectResponse;
-use App\Infrastructure\ApiDoc\SingleObjectResponse;
+use App\Infrastructure\ApiDoc;
 use App\Infrastructure\Controller\API\AbstractAPIController;
 use App\Infrastructure\View\ViewModel\Equipment\MultipleEquipmentItemDataViewModel;
 use App\Infrastructure\View\ViewModel\Equipment\SingleEquipmentDataViewModel;
@@ -30,7 +29,7 @@ use Symfony\Component\Routing\Attribute\Route;
 final class EquipmentController extends AbstractAPIController
 {
     #[Route('/equipments', name: 'equipment_get_many', methods: ['GET'])]
-    #[MultipleObjectResponse(
+    #[ApiDoc\MultipleObjectResponse(
         response: 200,
         description: 'Successfully returns a list of Equipments',
         dataClass: MultipleEquipmentItemDataViewModel::class,
@@ -55,10 +54,13 @@ final class EquipmentController extends AbstractAPIController
     }
 
     #[Route('/equipments/{id}', name: 'equipment_get_one_by_id', requirements: ['id' => '\d+'], methods: ['GET'])]
-    #[SingleObjectResponse(
+    #[ApiDoc\SingleObjectResponse(
         response: 200,
         description: 'Successfully returns the details of an Equipment',
         dataClass: SingleEquipmentDataViewModel::class,
+    )]
+    #[ApiDoc\NotFoundResponse(
+        description: 'No Equipment found for the given id',
     )]
     public function getOneById(
         int $id,
@@ -69,9 +71,9 @@ final class EquipmentController extends AbstractAPIController
     }
 
     #[Route('/equipments', name: 'equipments_create_one', methods: ['POST'])]
-    #[SingleObjectResponse(
+    #[ApiDoc\SingleObjectResponse(
         response: 200,
-        description: 'Successfully returns the details of an Equipment',
+        description: 'Successfully create an Equipment',
         dataClass: SingleEquipmentDataViewModel::class,
     )]
     public function createOne(
@@ -88,10 +90,13 @@ final class EquipmentController extends AbstractAPIController
     }
 
     #[Route('/equipments/{id}', name: 'equipment_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
-    #[SingleObjectResponse(
+    #[ApiDoc\SingleObjectResponse(
         response: 200,
-        description: 'Successfully returns the details of an Equipment',
+        description: 'Successfully edit the details of an Equipment',
         dataClass: SingleEquipmentDataViewModel::class,
+    )]
+    #[ApiDoc\NotFoundResponse(
+        description: 'No Equipment found for the given id',
     )]
     public function updateOneById(
         int $id,
@@ -111,6 +116,9 @@ final class EquipmentController extends AbstractAPIController
     }
 
     #[Route('/equipments/{id}', name: 'equipment_delete_by_id', requirements: ['id' => '\d+'], methods: ['DELETE'])]
+    #[ApiDoc\NotFoundResponse(
+        description: 'No Equipment found for the given id',
+    )]
     public function deleteOnById(
         int $id,
         GenericDeleteOneByIdUseCase $useCase,

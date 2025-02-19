@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Controller\API\Workout;
 
-use App\Infrastructure\ApiDoc\SingleObjectResponse;
+use App\Infrastructure\ApiDoc;
 use App\Infrastructure\Controller\API\AbstractAPIController;
 use App\Infrastructure\View\ViewModel\SingleObjectViewModel;
 use App\Infrastructure\View\ViewModel\Workout\ExerciseGroupDataViewModel;
@@ -18,10 +18,13 @@ use Symfony\Component\Routing\Attribute\Route;
 final class ExerciseController extends AbstractAPIController
 {
     #[Route('/workouts/{workoutId}/groups/{groupId}/exercises', name: 'exercise_add_by_group_id', requirements: ['workoutId' => '\d+', 'groupId' => '\d+'], methods: ['PATCH'])]
-    #[SingleObjectResponse(
+    #[ApiDoc\SingleObjectResponse(
         response: 200,
         description: 'Successfully returns the details of an Exercise Group',
         dataClass: ExerciseGroupDataViewModel::class,
+    )]
+    #[ApiDoc\NotFoundResponse(
+        description: 'No ExerciseGroup found for the given id',
     )]
     public function addExercisesByGroupId(Request $request, int $workoutId, int $groupId, AddExercisesByGroupIdUseCase $useCase): SingleObjectViewModel
     {
@@ -29,6 +32,9 @@ final class ExerciseController extends AbstractAPIController
     }
 
     #[Route('/workouts/{workoutId}/exercises/{exerciseId}', name: 'exercise_delete_one_by_id', requirements: ['workoutId' => '\d+', 'exerciseId' => '\d+'], methods: ['DELETE'])]
+    #[ApiDoc\NotFoundResponse(
+        description: 'No Exercise found for the given id',
+    )]
     public function deleteOneById(int $workoutId, int $exerciseId, DeleteOneExerciseByIdUseCase $useCase): JsonResponse
     {
         $useCase->execute($workoutId, $exerciseId);
