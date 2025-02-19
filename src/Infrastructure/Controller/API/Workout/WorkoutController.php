@@ -20,7 +20,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[OA\Tag('WORKOUTS')]
+#[ApiDoc\DocSection('WORKOUTS')]
 final class WorkoutController extends AbstractAPIController
 {
     #[Route('/workouts', name: 'workout_get_many', methods: ['GET'])]

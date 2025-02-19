@@ -21,7 +21,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[OA\Tag('USERS')]
+#[ApiDoc\DocSection('USERS')]
 final class UserController extends AbstractAPIController
 {
     #[Route('/users', name: 'user_get_many', methods: ['GET'])]
@@ -82,10 +82,6 @@ final class UserController extends AbstractAPIController
     }
 
     #[Route('/users/{id}', name: 'user_delete_one_by_id', requirements: ['id' => '\d+'], methods: ['DELETE'])]
-    #[OA\Response(
-        response: 200,
-        description: 'Successfully delete User by id',
-    )]
     #[ApiDoc\NotFoundResponse(
         description: 'No User found for the given id',
     )]

@@ -19,13 +19,12 @@ use App\UseCase\API\GenericGetDropdownableUseCase;
 use App\UseCase\API\GenericGetManyUseCase;
 use App\UseCase\API\GenericGetOneByIdUseCase;
 use App\UseCase\API\GenericUpdateOneByIdUseCase;
-use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[OA\Tag('MUSCLES')]
+#[ApiDoc\DocSection('MUSCLES')]
 final class MuscleController extends AbstractAPIController
 {
     #[Route('/muscles', name: 'muscle_get_many', methods: ['GET'])]

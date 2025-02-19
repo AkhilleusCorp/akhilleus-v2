@@ -15,13 +15,12 @@ use App\UseCase\API\Workout\DeleteOneMovementByIdUseCase;
 use App\UseCase\API\Workout\GetManyMovementUseCase;
 use App\UseCase\API\Workout\GetOneMovementByIdUseCase;
 use App\UseCase\API\Workout\UpdateOneMovementByIdUseCase;
-use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[OA\Tag('MOVEMENTS')]
+#[ApiDoc\DocSection('MOVEMENTS')]
 final class MovementController extends AbstractAPIController
 {
     #[Route('/movements', name: 'movement_get_many', methods: ['GET'])]

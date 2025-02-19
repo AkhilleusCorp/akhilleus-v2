@@ -10,13 +10,12 @@ use App\Infrastructure\View\ViewModel\Workout\ExerciseGroupDataViewModel;
 use App\UseCase\API\Workout\CreateOneExerciseGroupUseCase;
 use App\UseCase\API\Workout\DeleteOneExerciseGroupByIdUseCase;
 use App\UseCase\API\Workout\GetManyExerciseGroupUseCase;
-use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[OA\Tag('EXERCISE GROUPS')]
+#[ApiDoc\DocSection('EXERCISE GROUPS')]
 final class ExerciseGroupController extends AbstractAPIController
 {
     #[Route('/workouts/{workoutId}/groups', name: 'exercise_group_get_many', requirements: ['workoutId' => '\d+'], methods: ['GET'])]

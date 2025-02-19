@@ -8,13 +8,12 @@ use App\Infrastructure\View\ViewModel\SingleObjectViewModel;
 use App\Infrastructure\View\ViewModel\Workout\ExerciseGroupDataViewModel;
 use App\UseCase\API\Workout\AddExercisesByGroupIdUseCase;
 use App\UseCase\API\Workout\DeleteOneExerciseByIdUseCase;
-use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[OA\Tag('EXERCISES')]
+#[ApiDoc\DocSection('EXERCISES')]
 final class ExerciseController extends AbstractAPIController
 {
     #[Route('/workouts/{workoutId}/groups/{groupId}/exercises', name: 'exercise_add_by_group_id', requirements: ['workoutId' => '\d+', 'groupId' => '\d+'], methods: ['PATCH'])]
