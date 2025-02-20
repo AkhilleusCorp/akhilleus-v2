@@ -7,9 +7,11 @@ use App\Domain\DTO\SourceModel\Workout\CreateMuscleSourceModel;
 use App\Domain\DTO\SourceModel\Workout\UpdateMuscleSourceModel;
 use App\Domain\Factory\DataModelFactory\Workout\MuscleDataModelFactory;
 use App\Domain\Gateway\Provider\Workout\MuscleDataModelProviderGateway;
+use App\Infrastructure\ApiDoc;
 use App\Infrastructure\Controller\API\AbstractAPIController;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
 use App\Infrastructure\View\ViewModel\SingleObjectViewModel;
+use App\Infrastructure\View\ViewModel\Workout\MultipleMuscleItemDataViewModel;
 use App\Infrastructure\View\ViewModel\Workout\SingleMuscleDataViewModel;
 use App\UseCase\API\GenericCreateOneUseCase;
 use App\UseCase\API\GenericDeleteOneByIdUseCase;
@@ -17,16 +19,20 @@ use App\UseCase\API\GenericGetDropdownableUseCase;
 use App\UseCase\API\GenericGetManyUseCase;
 use App\UseCase\API\GenericGetOneByIdUseCase;
 use App\UseCase\API\GenericUpdateOneByIdUseCase;
-use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[OA\Tag('EQUIPMENTS')]
+#[ApiDoc\DocSection('MUSCLES')]
 final class MuscleController extends AbstractAPIController
 {
     #[Route('/muscles', name: 'muscle_get_many', methods: ['GET'])]
+    #[ApiDoc\MultipleObjectResponse(
+        response: 200,
+        description: 'Successfully returns a list of Muscles',
+        dataClass: MultipleMuscleItemDataViewModel::class,
+    )]
     public function getMany(
         Request $request,
         GenericGetManyUseCase $useCase,
@@ -47,6 +53,14 @@ final class MuscleController extends AbstractAPIController
     }
 
     #[Route('/muscles/{id}', name: 'muscle_get_one_by_id', requirements: ['id' => '\d+'], methods: ['GET'])]
+    #[ApiDoc\SingleObjectResponse(
+        response: 200,
+        description: 'Successfully returns the details of a Muscle',
+        dataClass: SingleMuscleDataViewModel::class,
+    )]
+    #[ApiDoc\NotFoundResponse(
+        description: 'No Muscle found for the given id',
+    )]
     public function getOneById(
         int $id,
         GenericGetOneByIdUseCase $useCase,
@@ -56,6 +70,11 @@ final class MuscleController extends AbstractAPIController
     }
 
     #[Route('/muscles', name: 'muscles_create_one', methods: ['POST'])]
+    #[ApiDoc\SingleObjectResponse(
+        response: 200,
+        description: 'Successfully create a Muscle',
+        dataClass: SingleMuscleDataViewModel::class,
+    )]
     public function createOne(
         Request $request,
         GenericCreateOneUseCase $useCase,
@@ -70,6 +89,14 @@ final class MuscleController extends AbstractAPIController
     }
 
     #[Route('/muscles/{id}', name: 'muscle_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
+    #[ApiDoc\SingleObjectResponse(
+        response: 200,
+        description: 'Successfully edit the details of a Muscle',
+        dataClass: SingleMuscleDataViewModel::class,
+    )]
+    #[ApiDoc\NotFoundResponse(
+        description: 'No Muscle found for the given id',
+    )]
     public function updateOneById(
         int $id,
         Request $request,
@@ -88,6 +115,9 @@ final class MuscleController extends AbstractAPIController
     }
 
     #[Route('/muscles/{id}', name: 'muscle_delete_by_id', requirements: ['id' => '\d+'], methods: ['DELETE'])]
+    #[ApiDoc\NotFoundResponse(
+        description: 'No Muscle found for the given id',
+    )]
     public function deleteOnById(
         int $id,
         GenericDeleteOneByIdUseCase $useCase,

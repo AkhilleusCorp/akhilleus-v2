@@ -4,23 +4,24 @@ namespace App\Infrastructure\Controller\API\User;
 
 use App\Domain\Registry\User\UserStatusRegistry;
 use App\Domain\Registry\User\UserTypeRegistry;
+use App\Infrastructure\ApiDoc;
 use App\Infrastructure\Controller\API\AbstractAPIController;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
 use App\Infrastructure\View\ViewModel\SingleObjectViewModel;
+use App\Infrastructure\View\ViewModel\User\MultipleUserItemDataViewModel;
 use App\Infrastructure\View\ViewModel\User\SingleUserDataViewModel;
 use App\UseCase\API\User\CreateOneUserUseCase;
 use App\UseCase\API\User\DeleteOneUserByIdUseCase;
 use App\UseCase\API\User\GetManyUserUseCase;
 use App\UseCase\API\User\GetOneUserByIdUseCase;
 use App\UseCase\API\User\UpdateOneUserByIdUseCase;
-use Nelmio\ApiDocBundle\Annotation\Model;
 use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[OA\Tag('USERS')]
+#[ApiDoc\DocSection('USERS')]
 final class UserController extends AbstractAPIController
 {
     #[Route('/users', name: 'user_get_many', methods: ['GET'])]
@@ -31,10 +32,10 @@ final class UserController extends AbstractAPIController
     #[OA\Parameter(name: 'status', in: 'query', required: false, schema: new OA\Schema(type: 'string', enum: UserStatusRegistry::USER_STATUSES))]
     #[OA\Parameter(name: 'page', in: 'query', required: false, schema: new OA\Schema(type: 'number'))]
     #[OA\Parameter(name: 'limit', in: 'query', required: false, schema: new OA\Schema(type: 'number'))]
-    #[OA\Response(
+    #[ApiDoc\MultipleObjectResponse(
         response: 200,
         description: 'Successfully returns a list of Users',
-        content: new Model(type: MultipleObjectViewModel::class)
+        dataClass: MultipleUserItemDataViewModel::class,
     )]
     public function getMany(Request $request, GetManyUserUseCase $useCase): MultipleObjectViewModel
     {
@@ -42,10 +43,13 @@ final class UserController extends AbstractAPIController
     }
 
     #[Route('/users/{id}', name: 'user_get_one_by_id', requirements: ['id' => '\d+'], methods: ['GET'])]
-    #[OA\Response(
+    #[ApiDoc\SingleObjectResponse(
         response: 200,
-        description: 'Successfully returns a details of a User',
-        content: new Model(type: SingleUserDataViewModel::class)
+        description: 'Successfully returns the details of an User',
+        dataClass: SingleUserDataViewModel::class,
+    )]
+    #[ApiDoc\NotFoundResponse(
+        description: 'No User found for the given id',
     )]
     public function getOneById(Request $request, int $id, GetOneUserByIdUseCase $useCase): SingleObjectViewModel
     {
@@ -53,10 +57,10 @@ final class UserController extends AbstractAPIController
     }
 
     #[Route('/users', name: 'user_create_one', methods: ['POST'])]
-    #[OA\Response(
+    #[ApiDoc\SingleObjectResponse(
         response: 200,
-        description: 'Successfully returns a details of a User',
-        content: new Model(type: SingleUserDataViewModel::class)
+        description: 'Successfully create an User',
+        dataClass: SingleUserDataViewModel::class,
     )]
     public function createOne(Request $request, CreateOneUserUseCase $useCase): SingleObjectViewModel
     {
@@ -64,10 +68,13 @@ final class UserController extends AbstractAPIController
     }
 
     #[Route('/users/{id}', name: 'user_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
-    #[OA\Response(
+    #[ApiDoc\SingleObjectResponse(
         response: 200,
-        description: 'Successfully returns a details of a User',
-        content: new Model(type: SingleUserDataViewModel::class)
+        description: 'Successfully edit the details of an User',
+        dataClass: SingleUserDataViewModel::class,
+    )]
+    #[ApiDoc\NotFoundResponse(
+        description: 'No User found for the given id',
     )]
     public function updateOneById(Request $request, int $id, UpdateOneUserByIdUseCase $useCase): SingleObjectViewModel
     {
@@ -75,9 +82,8 @@ final class UserController extends AbstractAPIController
     }
 
     #[Route('/users/{id}', name: 'user_delete_one_by_id', requirements: ['id' => '\d+'], methods: ['DELETE'])]
-    #[OA\Response(
-        response: 200,
-        description: 'Successfully returns a details of a User',
+    #[ApiDoc\NotFoundResponse(
+        description: 'No User found for the given id',
     )]
     public function deleteOneById(int $id, DeleteOneUserByIdUseCase $useCase): JsonResponse
     {

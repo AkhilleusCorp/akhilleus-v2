@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Button, Card, CardActions, CardContent, Typography} from "@mui/material";
+import {Button, Card, CardActions, CardContent, Grid2 as Grid, Typography} from "@mui/material";
 import ExerciseGroupDTO from "app/common/services/api/dtos/ExerciseGroupDTO.tsx";
 import ExerciseApiGateway from "app/common/services/api/gateway/ExerciseApiGateway.tsx";
 import ExerciseGroupDeleteButton from "app/common/features/exerciseGroup/ExerciseGroupDeleteButton.tsx";
@@ -51,13 +51,13 @@ const ExerciseGroupCard: React.FC<ExerciseGroupCardType> = ({ group, displayWrit
                     { Object.values(movementNames).join(' / ') }
                 </Typography>
 
-                <div className={"float-left one-thirds-width"}>
+                <Grid size={{ xs: 4 }}>
                     INSERT IMAGE HERE
-                </div>
+                </Grid>
 
-                <div className={"float-left two-thirds-width"}>
+                <Grid size={{ xs: 8 }}>
                     <ExercisesPreviewListTable movementConfigs={stateGroup.movementConfigs} movementNames={movementNames} exercises={stateGroup.exercises} />
-                </div>
+                </Grid>
                 </CardContent>
             <CardActions style={{justifyContent: 'center'}}>
                 { displayWriteActions && (

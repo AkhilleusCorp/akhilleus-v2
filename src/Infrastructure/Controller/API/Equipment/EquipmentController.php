@@ -7,7 +7,9 @@ use App\Domain\DTO\SourceModel\Equipment\CreateEquipmentSourceModel;
 use App\Domain\DTO\SourceModel\Equipment\UpdateEquipmentSourceModel;
 use App\Domain\Factory\DataModelFactory\Equipment\EquipmentDataModelFactory;
 use App\Domain\Gateway\Provider\Equipment\EquipmentDataModelProviderGateway;
+use App\Infrastructure\ApiDoc;
 use App\Infrastructure\Controller\API\AbstractAPIController;
+use App\Infrastructure\View\ViewModel\Equipment\MultipleEquipmentItemDataViewModel;
 use App\Infrastructure\View\ViewModel\Equipment\SingleEquipmentDataViewModel;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
 use App\Infrastructure\View\ViewModel\SingleObjectViewModel;
@@ -17,16 +19,20 @@ use App\UseCase\API\GenericGetDropdownableUseCase;
 use App\UseCase\API\GenericGetManyUseCase;
 use App\UseCase\API\GenericGetOneByIdUseCase;
 use App\UseCase\API\GenericUpdateOneByIdUseCase;
-use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[OA\Tag('EQUIPMENTS')]
+#[ApiDoc\DocSection('EQUIPMENTS')]
 final class EquipmentController extends AbstractAPIController
 {
     #[Route('/equipments', name: 'equipment_get_many', methods: ['GET'])]
+    #[ApiDoc\MultipleObjectResponse(
+        response: 200,
+        description: 'Successfully returns a list of Equipments',
+        dataClass: MultipleEquipmentItemDataViewModel::class,
+    )]
     public function getMany(
         Request $request,
         GenericGetManyUseCase $useCase,
@@ -47,6 +53,14 @@ final class EquipmentController extends AbstractAPIController
     }
 
     #[Route('/equipments/{id}', name: 'equipment_get_one_by_id', requirements: ['id' => '\d+'], methods: ['GET'])]
+    #[ApiDoc\SingleObjectResponse(
+        response: 200,
+        description: 'Successfully returns the details of an Equipment',
+        dataClass: SingleEquipmentDataViewModel::class,
+    )]
+    #[ApiDoc\NotFoundResponse(
+        description: 'No Equipment found for the given id',
+    )]
     public function getOneById(
         int $id,
         GenericGetOneByIdUseCase $useCase,
@@ -56,6 +70,11 @@ final class EquipmentController extends AbstractAPIController
     }
 
     #[Route('/equipments', name: 'equipments_create_one', methods: ['POST'])]
+    #[ApiDoc\SingleObjectResponse(
+        response: 200,
+        description: 'Successfully create an Equipment',
+        dataClass: SingleEquipmentDataViewModel::class,
+    )]
     public function createOne(
         Request $request,
         GenericCreateOneUseCase $useCase,
@@ -70,6 +89,14 @@ final class EquipmentController extends AbstractAPIController
     }
 
     #[Route('/equipments/{id}', name: 'equipment_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
+    #[ApiDoc\SingleObjectResponse(
+        response: 200,
+        description: 'Successfully edit the details of an Equipment',
+        dataClass: SingleEquipmentDataViewModel::class,
+    )]
+    #[ApiDoc\NotFoundResponse(
+        description: 'No Equipment found for the given id',
+    )]
     public function updateOneById(
         int $id,
         Request $request,
@@ -88,6 +115,9 @@ final class EquipmentController extends AbstractAPIController
     }
 
     #[Route('/equipments/{id}', name: 'equipment_delete_by_id', requirements: ['id' => '\d+'], methods: ['DELETE'])]
+    #[ApiDoc\NotFoundResponse(
+        description: 'No Equipment found for the given id',
+    )]
     public function deleteOnById(
         int $id,
         GenericDeleteOneByIdUseCase $useCase,
