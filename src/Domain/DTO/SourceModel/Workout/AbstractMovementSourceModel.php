@@ -2,7 +2,7 @@
 
 namespace App\Domain\DTO\SourceModel\Workout;
 
-use App\Domain\Registry\Workout\WorkoutStatusRegistry;
+use App\Domain\Registry\Workout\MovementStatusRegistry;
 use Symfony\Component\Validator\Constraints as Assert;
 
 abstract class AbstractMovementSourceModel
@@ -10,7 +10,7 @@ abstract class AbstractMovementSourceModel
     #[Assert\NotBlank]
     public string $name;
 
-    #[Assert\Choice(choices: WorkoutStatusRegistry::WORKOUT_STATUSES)]
+    #[Assert\Choice(choices: MovementStatusRegistry::MOVEMENT_STATUSES)]
     public string $status;
 
     #[Assert\NotNull()]
