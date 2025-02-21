@@ -4,8 +4,6 @@ namespace App\Infrastructure\Controller\API\User;
 
 use App\Domain\DTO\SourceModel\User\CreateUserSourceModel;
 use App\Domain\DTO\SourceModel\User\UpdateUserSourceModel;
-use App\Domain\Registry\User\UserStatusRegistry;
-use App\Domain\Registry\User\UserTypeRegistry;
 use App\Infrastructure\ApiDoc;
 use App\Infrastructure\Controller\API\AbstractAPIController;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
@@ -17,7 +15,6 @@ use App\UseCase\API\User\DeleteOneUserByIdUseCase;
 use App\UseCase\API\User\GetManyUserUseCase;
 use App\UseCase\API\User\GetOneUserByIdUseCase;
 use App\UseCase\API\User\UpdateOneUserByIdUseCase;
-use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,13 +24,6 @@ use Symfony\Component\Routing\Attribute\Route;
 final class UserController extends AbstractAPIController
 {
     #[Route('/users', name: 'user_get_many', methods: ['GET'])]
-    #[OA\Parameter(name: 'ids', in: 'query', required: false, schema: new OA\Schema(type: 'array', items: new OA\Items(type: 'integer')))]
-    #[OA\Parameter(name: 'username', in: 'query', required: false, schema: new OA\Schema(type: 'string'))]
-    #[OA\Parameter(name: 'email', in: 'query', required: false, schema: new OA\Schema(type: 'string'))]
-    #[OA\Parameter(name: 'type', in: 'query', required: false, schema: new OA\Schema(type: 'string', enum: UserTypeRegistry::USER_TYPES))]
-    #[OA\Parameter(name: 'status', in: 'query', required: false, schema: new OA\Schema(type: 'string', enum: UserStatusRegistry::USER_STATUSES))]
-    #[OA\Parameter(name: 'page', in: 'query', required: false, schema: new OA\Schema(type: 'number'))]
-    #[OA\Parameter(name: 'limit', in: 'query', required: false, schema: new OA\Schema(type: 'number'))]
     #[ApiDoc\MultipleObjectResponse(
         response: 200,
         description: 'Successfully returns a list of Users',
@@ -41,7 +31,7 @@ final class UserController extends AbstractAPIController
     )]
     public function getMany(Request $request, GetManyUserUseCase $useCase): MultipleObjectViewModel
     {
-        return $useCase->execute($request->query->all(), $this->getTokenPayload($request));
+        return $useCase->execute(json_decode($request->getContent(), true), $this->getTokenPayload($request));
     }
 
     #[Route('/users/{id}', name: 'user_get_one_by_id', requirements: ['id' => '\d+'], methods: ['GET'])]

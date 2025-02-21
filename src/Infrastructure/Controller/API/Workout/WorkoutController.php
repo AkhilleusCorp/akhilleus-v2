@@ -4,7 +4,6 @@ namespace App\Infrastructure\Controller\API\Workout;
 
 use App\Domain\DTO\SourceModel\Workout\CreateWorkoutSourceModel;
 use App\Domain\DTO\SourceModel\Workout\UpdateWorkoutSourceModel;
-use App\Domain\Registry\User\UserStatusRegistry;
 use App\Infrastructure\ApiDoc;
 use App\Infrastructure\Controller\API\AbstractAPIController;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
@@ -16,7 +15,6 @@ use App\UseCase\API\Workout\DeleteOneWorkoutByIdUseCase;
 use App\UseCase\API\Workout\GetManyWorkoutUseCase;
 use App\UseCase\API\Workout\GetOneWorkoutByIdUseCase;
 use App\UseCase\API\Workout\UpdateOneWorkoutByIdUseCase;
-use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,12 +24,6 @@ use Symfony\Component\Routing\Attribute\Route;
 final class WorkoutController extends AbstractAPIController
 {
     #[Route('/workouts', name: 'workout_get_many', methods: ['GET'])]
-    #[OA\Parameter(name: 'ids', in: 'query', required: false, schema: new OA\Schema(type: 'array', items: new OA\Items(type: 'integer')))]
-    #[OA\Parameter(name: 'name', in: 'query', required: false, schema: new OA\Schema(type: 'string'))]
-    #[OA\Parameter(name: 'memberId', in: 'query', required: false, schema: new OA\Schema(type: 'number'))]
-    #[OA\Parameter(name: 'status', in: 'query', required: false, schema: new OA\Schema(type: 'string', enum: UserStatusRegistry::USER_STATUSES))]
-    #[OA\Parameter(name: 'page', in: 'query', required: false, schema: new OA\Schema(type: 'number'))]
-    #[OA\Parameter(name: 'limit', in: 'query', required: false, schema: new OA\Schema(type: 'number'))]
     #[ApiDoc\MultipleObjectResponse(
         response: 200,
         description: 'Successfully returns a list of Workouts',
