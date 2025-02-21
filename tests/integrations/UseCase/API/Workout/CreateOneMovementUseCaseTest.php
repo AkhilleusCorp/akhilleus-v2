@@ -3,7 +3,7 @@
 namespace App\Tests\integrations\UseCase\API\Workout;
 
 use App\Domain\Factory\DataModelFactory\Workout\MovementDataModelFactory;
-use App\Domain\Factory\SourceModelFactory\Workout\CreateMovementSourceModelFactory;
+use App\Domain\Factory\SourceModelFactory;
 use App\Domain\Gateway\Persister\Workout\MovementDataModelPersisterGateway;
 use App\Infrastructure\View\ViewModel\Workout\SingleMovementDataViewModel;
 use App\Infrastructure\View\ViewPresenter\Workout\SingleMovementViewPresenter;
@@ -19,7 +19,7 @@ final class CreateOneMovementUseCaseTest extends AbstractIntegrationTest
         parent::setUp();
 
         $this->useCase = new CreateOneMovementUseCase(
-            $this->container->get(CreateMovementSourceModelFactory::class),
+            $this->container->get(SourceModelFactory::class),
             $this->container->get(MovementDataModelFactory::class),
             $this->container->get(MovementDataModelPersisterGateway::class),
             $this->container->get(SingleMovementViewPresenter::class),

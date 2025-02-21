@@ -2,8 +2,9 @@
 
 namespace App\UseCase\API\User;
 
+use App\Domain\DTO\SourceModel\User\CreateUserSourceModel;
 use App\Domain\Factory\DataModelFactory\User\UserDataModelFactory;
-use App\Domain\Factory\SourceModelFactory\User\CreateUserSourceModelFactory;
+use App\Domain\Factory\SourceModelFactory;
 use App\Domain\Gateway\Persister\User\UserDataModelPersisterGateway;
 use App\Infrastructure\DTO\TokenPayloadDTO;
 use App\Infrastructure\View\ViewModel\SingleObjectViewModel;
@@ -13,7 +14,7 @@ use App\UseCase\UseCaseInterface;
 final class CreateOneUserUseCase implements UseCaseInterface
 {
     public function __construct(
-        private readonly CreateUserSourceModelFactory $sourceModelFactory,
+        private readonly SourceModelFactory $sourceModelFactory,
         private readonly UserDataModelFactory $dataModelFactory,
         private readonly UserDataModelPersisterGateway $persister,
         private readonly SingleUserViewPresenter $presenter,
@@ -27,11 +28,8 @@ final class CreateOneUserUseCase implements UseCaseInterface
         array $parameters,
         ?TokenPayloadDTO $payload = null,
     ): SingleObjectViewModel {
-        $source = $this->sourceModelFactory->buildSourceModel($parameters);
-        if (null === $source->userType && null !== $payload) {
-            $source->userType = $payload->userType;
-        }
-
+        /** @var CreateUserSourceModel $source */
+        $source = $this->sourceModelFactory->buildSourceFromParameters($parameters, new CreateUserSourceModel());
         $user = $this->dataModelFactory->buildNewDataModel($source);
 
         $this->persister->create($user);

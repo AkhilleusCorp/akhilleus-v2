@@ -3,7 +3,7 @@
 namespace App\Tests\integrations\UseCase\API\User;
 
 use App\Domain\Factory\DataModelFactory\User\UserDataModelFactory;
-use App\Domain\Factory\SourceModelFactory\User\UpdateUserSourceModelFactory;
+use App\Domain\Factory\SourceModelFactory;
 use App\Domain\Gateway\Provider\User\UserDataModelProviderGateway;
 use App\Domain\Registry\User\UserStatusRegistry;
 use App\Infrastructure\Persister\User\UserDataModelPersister;
@@ -24,7 +24,7 @@ final class UpdateOneUserByIdUseCaseTest extends AbstractIntegrationTest
         parent::setUp();
 
         $this->useCase = new UpdateOneUserByIdUseCase(
-            $this->container->get(UpdateUserSourceModelFactory::class),
+            $this->container->get(SourceModelFactory::class),
             $this->container->get(UserDataModelFactory::class),
             $this->container->get(UserDataModelProviderGateway::class),
             $this->container->get(UserDataModelPersister::class),

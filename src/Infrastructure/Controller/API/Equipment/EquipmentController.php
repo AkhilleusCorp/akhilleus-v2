@@ -70,6 +70,7 @@ final class EquipmentController extends AbstractAPIController
     }
 
     #[Route('/equipments', name: 'equipments_create_one', methods: ['POST'])]
+    #[ApiDoc\PostParameters(dataClass: CreateEquipmentSourceModel::class)]
     #[ApiDoc\SingleObjectResponse(
         response: 200,
         description: 'Successfully create an Equipment',
@@ -89,6 +90,7 @@ final class EquipmentController extends AbstractAPIController
     }
 
     #[Route('/equipments/{id}', name: 'equipment_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
+    #[ApiDoc\PostParameters(dataClass: UpdateEquipmentSourceModel::class)]
     #[ApiDoc\SingleObjectResponse(
         response: 200,
         description: 'Successfully edit the details of an Equipment',

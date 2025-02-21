@@ -2,8 +2,9 @@
 
 namespace App\UseCase\API\Workout;
 
+use App\Domain\DTO\SourceModel\Workout\UpdateWorkoutSourceModel;
 use App\Domain\Factory\DataModelFactory\Workout\WorkoutDataModelFactory;
-use App\Domain\Factory\SourceModelFactory\Workout\UpdateWorkoutSourceModelFactory;
+use App\Domain\Factory\SourceModelFactory;
 use App\Domain\Gateway\Provider\Workout\WorkoutDataModelProviderGateway;
 use App\Infrastructure\DTO\TokenPayloadDTO;
 use App\Infrastructure\Persister\Workout\WorkoutDataModelPersister;
@@ -15,7 +16,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 final class UpdateOneWorkoutByIdUseCase implements UseCaseInterface
 {
     public function __construct(
-        private readonly UpdateWorkoutSourceModelFactory $sourceModelFactory,
+        private readonly SourceModelFactory $sourceModelFactory,
         private readonly WorkoutDataModelFactory $dataModelFactory,
         private readonly WorkoutDataModelProviderGateway $provider,
         private readonly WorkoutDataModelPersister $persister,
@@ -33,7 +34,8 @@ final class UpdateOneWorkoutByIdUseCase implements UseCaseInterface
             throw new NotFoundHttpException("Workout #$id cannot be found");
         }
 
-        $source = $this->sourceModelFactory->buildSourceModel($parameters);
+        /** @var UpdateWorkoutSourceModel $source */
+        $source = $this->sourceModelFactory->buildSourceFromParameters($parameters, new UpdateWorkoutSourceModel());
         $workout = $this->dataModelFactory->mergeSourceAndDataModel($workout, $source);
 
         $this->persister->edit($workout);

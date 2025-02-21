@@ -2,6 +2,8 @@
 
 namespace App\Infrastructure\Controller\API\Workout;
 
+use App\Domain\DTO\SourceModel\Workout\CreateMovementSourceModel;
+use App\Domain\DTO\SourceModel\Workout\UpdateMovementSourceModel;
 use App\Domain\Gateway\Provider\Workout\MovementDataModelProviderGateway;
 use App\Infrastructure\ApiDoc;
 use App\Infrastructure\Controller\API\AbstractAPIController;
@@ -60,6 +62,7 @@ final class MovementController extends AbstractAPIController
     }
 
     #[Route('/movements', name: 'movement_create_one', methods: ['POST'])]
+    #[ApiDoc\PostParameters(dataClass: CreateMovementSourceModel::class)]
     #[ApiDoc\SingleObjectResponse(
         response: 200,
         description: 'Successfully create a Movement',
@@ -71,6 +74,7 @@ final class MovementController extends AbstractAPIController
     }
 
     #[Route('/movements/{id}', name: 'movement_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
+    #[ApiDoc\PostParameters(dataClass: UpdateMovementSourceModel::class)]
     #[ApiDoc\SingleObjectResponse(
         response: 200,
         description: 'Successfully edit the details of a Movement',

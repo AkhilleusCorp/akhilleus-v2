@@ -2,6 +2,8 @@
 
 namespace App\Infrastructure\Controller\API\User;
 
+use App\Domain\DTO\SourceModel\User\CreateUserSourceModel;
+use App\Domain\DTO\SourceModel\User\UpdateUserSourceModel;
 use App\Domain\Registry\User\UserStatusRegistry;
 use App\Domain\Registry\User\UserTypeRegistry;
 use App\Infrastructure\ApiDoc;
@@ -57,6 +59,7 @@ final class UserController extends AbstractAPIController
     }
 
     #[Route('/users', name: 'user_create_one', methods: ['POST'])]
+    #[ApiDoc\PostParameters(dataClass: CreateUserSourceModel::class)]
     #[ApiDoc\SingleObjectResponse(
         response: 200,
         description: 'Successfully create an User',
@@ -68,6 +71,7 @@ final class UserController extends AbstractAPIController
     }
 
     #[Route('/users/{id}', name: 'user_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
+    #[ApiDoc\PostParameters(dataClass: UpdateUserSourceModel::class)]
     #[ApiDoc\SingleObjectResponse(
         response: 200,
         description: 'Successfully edit the details of an User',

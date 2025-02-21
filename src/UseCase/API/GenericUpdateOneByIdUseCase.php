@@ -5,7 +5,7 @@ namespace App\UseCase\API;
 use App\Domain\DTO\SourceModel\SourceModelInterface;
 use App\Domain\DTO\SourceModel\UpdateSourceModelInterface;
 use App\Domain\Factory\DataModelFactory\DataModelFactoryInterface;
-use App\Domain\Factory\SourceModelFactory\GenericSourceModelFactory;
+use App\Domain\Factory\SourceModelFactory;
 use App\Domain\Gateway\Provider\GenericDataModelProviderGateway;
 use App\Infrastructure\Persister\GenericPersister;
 use App\Infrastructure\View\ViewModel\SingleObjectDataViewModelInterface;
@@ -17,7 +17,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 final class GenericUpdateOneByIdUseCase implements UseCaseInterface
 {
     public function __construct(
-        private readonly GenericSourceModelFactory $sourceModelFactory,
+        private readonly SourceModelFactory $sourceModelFactory,
         private readonly GenericPersister $persister,
         private readonly GenericViewPresenter $presenter,
     ) {
@@ -41,7 +41,7 @@ final class GenericUpdateOneByIdUseCase implements UseCaseInterface
         }
 
         /** @var UpdateSourceModelInterface $source */
-        $source = $this->sourceModelFactory->buildGenericSourceModel($parameters, $sourceModel);
+        $source = $this->sourceModelFactory->buildSourceFromParameters($parameters, $sourceModel);
         $dataModel = $dataModelFactory->mergeSourceAndDataModel($data, $source);
 
         $this->persister->edit($data);

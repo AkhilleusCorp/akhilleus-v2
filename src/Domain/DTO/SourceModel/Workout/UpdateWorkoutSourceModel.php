@@ -4,8 +4,6 @@ namespace App\Domain\DTO\SourceModel\Workout;
 
 use App\Domain\DTO\SourceModel\UpdateSourceModelInterface;
 
-final class UpdateWorkoutSourceModel implements UpdateSourceModelInterface
+final class UpdateWorkoutSourceModel extends AbstractWorkoutSourceModel implements UpdateSourceModelInterface
 {
-    public ?string $name;
-    public ?string $visibility;
 }

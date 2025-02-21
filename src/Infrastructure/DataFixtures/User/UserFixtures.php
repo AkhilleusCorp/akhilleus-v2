@@ -5,7 +5,7 @@ namespace App\Infrastructure\DataFixtures\User;
 use App\Domain\DTO\DataModel\User\UserDataModel;
 use App\Domain\DTO\SourceModel\User\CreateUserSourceModel;
 use App\Domain\Factory\DataModelFactory\User\UserDataModelFactory;
-use App\Domain\Factory\SourceModelFactory\User\CreateUserSourceModelFactory;
+use App\Domain\Factory\SourceModelFactory;
 use App\Domain\Registry\User\UserStatusRegistry;
 use App\Domain\Registry\User\UserTypeRegistry;
 use App\Infrastructure\DataFixtures\AbstractFixtures;
@@ -16,7 +16,7 @@ final class UserFixtures extends AbstractFixtures
     private const DEFAULT_PASSWORD = 'Test1234!';
 
     public function __construct(
-        private readonly CreateUserSourceModelFactory $sourceModelFactory,
+        private readonly SourceModelFactory $sourceModelFactory,
         private readonly UserDataModelFactory $dataModelFactory,
     ) {
     }
@@ -71,10 +71,16 @@ final class UserFixtures extends AbstractFixtures
 
     private function buildBaseUserInformation(string $username): CreateUserSourceModel
     {
-        return $this->sourceModelFactory->buildSourceModel([
-            'username' => $username,
-            'email' => "{$username}@fakemail.com",
-            'plainPassword' => self::DEFAULT_PASSWORD,
-        ]);
+        /** @var CreateUserSourceModel $source */
+        $source = $this->sourceModelFactory->buildSourceFromParameters(
+            [
+                'username' => $username,
+                'email' => "{$username}@fakemail.com",
+                'plainPassword' => self::DEFAULT_PASSWORD,
+            ],
+            new CreateUserSourceModel()
+        );
+
+        return $source;
     }
 }

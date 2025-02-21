@@ -70,6 +70,7 @@ final class MuscleController extends AbstractAPIController
     }
 
     #[Route('/muscles', name: 'muscles_create_one', methods: ['POST'])]
+    #[ApiDoc\PostParameters(dataClass: CreateMuscleSourceModel::class)]
     #[ApiDoc\SingleObjectResponse(
         response: 200,
         description: 'Successfully create a Muscle',
@@ -89,6 +90,7 @@ final class MuscleController extends AbstractAPIController
     }
 
     #[Route('/muscles/{id}', name: 'muscle_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
+    #[ApiDoc\PostParameters(dataClass: UpdateMuscleSourceModel::class)]
     #[ApiDoc\SingleObjectResponse(
         response: 200,
         description: 'Successfully edit the details of a Muscle',
