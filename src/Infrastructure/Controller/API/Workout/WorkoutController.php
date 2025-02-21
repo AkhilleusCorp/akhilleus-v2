@@ -39,7 +39,7 @@ final class WorkoutController extends AbstractAPIController
     )]
     public function getMany(Request $request, GetManyWorkoutUseCase $useCase): MultipleObjectViewModel
     {
-        return $useCase->execute($request->query->all(), $this->getTokenPayload($request));
+        return $useCase->execute(json_decode($request->getContent(), true), $this->getTokenPayload($request));
     }
 
     #[Route('/workouts/{id}', name: 'workout_get_one_by_id', requirements: ['id' => '\d+'], methods: ['GET'])]

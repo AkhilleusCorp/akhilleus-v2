@@ -2,7 +2,8 @@
 
 namespace App\UseCase\API\User;
 
-use App\Domain\Factory\FilterModelFactory\User\UsersFilterModelModelFactory;
+use App\Domain\DTO\FilterModel\User\GetManyUsersFilterModel;
+use App\Domain\Factory\FilterModelFactory\FilterModelFactory;
 use App\Domain\Gateway\Provider\User\UserDataModelProviderGateway;
 use App\Infrastructure\DTO\TokenPayloadDTO;
 use App\Infrastructure\View\ViewHydrator\PaginationHydrator;
@@ -15,7 +16,7 @@ final class GetManyUserUseCase implements UseCaseInterface
 {
     public function __construct(
         private readonly UserDataModelProviderGateway $provider,
-        private readonly UsersFilterModelModelFactory $filterFactory,
+        private readonly FilterModelFactory $filterFactory,
         private readonly MultipleUserViewPresenter $presenter,
     ) {
     }
@@ -25,7 +26,8 @@ final class GetManyUserUseCase implements UseCaseInterface
      */
     public function execute(array $parameters, ?TokenPayloadDTO $payload): MultipleObjectViewModel
     {
-        $filter = $this->filterFactory->buildGetManyUsersFilterModel($parameters);
+        /** @var GetManyUsersFilterModel $filter */
+        $filter = $this->filterFactory->buildFilterFromParameters($parameters, new GetManyUsersFilterModel());
         $users = $this->provider->getUsersByFilterModel($filter);
 
         $usersCount = count($users);
