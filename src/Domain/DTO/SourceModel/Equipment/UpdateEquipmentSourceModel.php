@@ -4,8 +4,6 @@ namespace App\Domain\DTO\SourceModel\Equipment;
 
 use App\Domain\DTO\SourceModel\UpdateSourceModelInterface;
 
-final class UpdateEquipmentSourceModel implements UpdateSourceModelInterface
+final class UpdateEquipmentSourceModel extends AbstractEquipmentSourceModel implements UpdateSourceModelInterface
 {
-    public string $name;
-    public string $status;
 }

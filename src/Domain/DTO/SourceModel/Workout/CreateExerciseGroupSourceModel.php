@@ -3,9 +3,11 @@
 namespace App\Domain\DTO\SourceModel\Workout;
 
 use App\Domain\DTO\SourceModel\CreateSourceModelInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 final class CreateExerciseGroupSourceModel implements CreateSourceModelInterface
 {
+    #[Assert\GreaterThan(0)]
     public int $workoutId;
 
     /** @var int[] */
