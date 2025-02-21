@@ -10,7 +10,7 @@ use App\Infrastructure\View\ViewPresenter\Workout\MultipleExerciseGroupViewPrese
 use App\UseCase\UseCaseInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-final class GetManyExerciseGroupUseCase implements UseCaseInterface
+final class GetManyExerciseGroupsUseCase implements UseCaseInterface
 {
     public function __construct(
         private readonly WorkoutDataModelProviderGateway $workoutProvider,

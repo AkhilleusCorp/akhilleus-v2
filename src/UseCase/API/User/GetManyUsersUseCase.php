@@ -12,7 +12,7 @@ use App\Infrastructure\View\ViewModel\PaginationViewModel;
 use App\Infrastructure\View\ViewPresenter\User\MultipleUserViewPresenter;
 use App\UseCase\UseCaseInterface;
 
-final class GetManyUserUseCase implements UseCaseInterface
+final class GetManyUsersUseCase implements UseCaseInterface
 {
     public function __construct(
         private readonly UserDataModelProviderGateway $provider,

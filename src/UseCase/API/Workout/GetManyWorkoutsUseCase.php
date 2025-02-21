@@ -11,7 +11,7 @@ use App\Infrastructure\View\ViewModel\PaginationViewModel;
 use App\Infrastructure\View\ViewPresenter\Workout\MultipleWorkoutViewPresenter;
 use App\UseCase\UseCaseInterface;
 
-final class GetManyWorkoutUseCase implements UseCaseInterface
+final class GetManyWorkoutsUseCase implements UseCaseInterface
 {
     public function __construct(
         private readonly WorkoutDataModelProviderGateway $provider,

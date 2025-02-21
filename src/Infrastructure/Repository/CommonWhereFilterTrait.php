@@ -36,7 +36,10 @@ trait CommonWhereFilterTrait
         }
     }
 
-    protected function filterByType(QueryBuilder $queryBuilder, ?string $type): void
+    /**
+     * @param string[]|null $type
+     */
+    protected function filterByType(QueryBuilder $queryBuilder, ?array $type = []): void
     {
         if (false === empty($type)) {
             $queryBuilder->andWhere($this->getAlias().'.type = :type')

@@ -36,4 +36,14 @@ abstract class AbstractAPIController extends AbstractController
 
         return $payload;
     }
+
+    /**
+     * @return array<mixed>
+     */
+    protected function getRequestBody(Request $request): array
+    {
+        $content = json_decode($request->getContent(), true);
+
+        return $content ?: [];
+    }
 }

@@ -13,7 +13,7 @@ use App\Infrastructure\View\ViewModel\User\MultipleUserItemDataViewModel;
 use App\Infrastructure\View\ViewModel\User\SingleUserDataViewModel;
 use App\UseCase\API\User\CreateOneUserUseCase;
 use App\UseCase\API\User\DeleteOneUserByIdUseCase;
-use App\UseCase\API\User\GetManyUserUseCase;
+use App\UseCase\API\User\GetManyUsersUseCase;
 use App\UseCase\API\User\GetOneUserByIdUseCase;
 use App\UseCase\API\User\UpdateOneUserByIdUseCase;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -31,9 +31,9 @@ final class UserController extends AbstractAPIController
         description: 'Successfully returns a list of Users',
         dataClass: MultipleUserItemDataViewModel::class,
     )]
-    public function getMany(Request $request, GetManyUserUseCase $useCase): MultipleObjectViewModel
+    public function getMany(Request $request, GetManyUsersUseCase $useCase): MultipleObjectViewModel
     {
-        return $useCase->execute(json_decode($request->getContent(), true), $this->getTokenPayload($request));
+        return $useCase->execute($this->getRequestBody($request), $this->getTokenPayload($request));
     }
 
     #[Route('/users/{id}', name: 'user_get_one_by_id', requirements: ['id' => '\d+'], methods: ['GET'])]
@@ -59,7 +59,7 @@ final class UserController extends AbstractAPIController
     )]
     public function createOne(Request $request, CreateOneUserUseCase $useCase): SingleObjectViewModel
     {
-        return $useCase->execute(json_decode($request->getContent(), true), $this->getTokenPayload($request));
+        return $useCase->execute($this->getRequestBody($request), $this->getTokenPayload($request));
     }
 
     #[Route('/users/{id}', name: 'user_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
@@ -74,7 +74,7 @@ final class UserController extends AbstractAPIController
     )]
     public function updateOneById(Request $request, int $id, UpdateOneUserByIdUseCase $useCase): SingleObjectViewModel
     {
-        return $useCase->execute($id, json_decode($request->getContent(), true), $this->getTokenPayload($request));
+        return $useCase->execute($id, $this->getRequestBody($request), $this->getTokenPayload($request));
     }
 
     #[Route('/users/{id}', name: 'user_delete_one_by_id', requirements: ['id' => '\d+'], methods: ['DELETE'])]

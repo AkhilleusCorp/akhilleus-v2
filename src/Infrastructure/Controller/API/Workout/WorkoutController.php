@@ -13,7 +13,7 @@ use App\Infrastructure\View\ViewModel\Workout\MultipleWorkoutItemDataViewModel;
 use App\Infrastructure\View\ViewModel\Workout\SingleWorkoutDataViewModel;
 use App\UseCase\API\Workout\CreateOneWorkoutUseCase;
 use App\UseCase\API\Workout\DeleteOneWorkoutByIdUseCase;
-use App\UseCase\API\Workout\GetManyWorkoutUseCase;
+use App\UseCase\API\Workout\GetManyWorkoutsUseCase;
 use App\UseCase\API\Workout\GetOneWorkoutByIdUseCase;
 use App\UseCase\API\Workout\UpdateOneWorkoutByIdUseCase;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -31,9 +31,9 @@ final class WorkoutController extends AbstractAPIController
         description: 'Successfully returns a list of Workouts',
         dataClass: MultipleWorkoutItemDataViewModel::class,
     )]
-    public function getMany(Request $request, GetManyWorkoutUseCase $useCase): MultipleObjectViewModel
+    public function getMany(Request $request, GetManyWorkoutsUseCase $useCase): MultipleObjectViewModel
     {
-        return $useCase->execute(json_decode($request->getContent(), true), $this->getTokenPayload($request));
+        return $useCase->execute($this->getRequestBody($request), $this->getTokenPayload($request));
     }
 
     #[Route('/workouts/{id}', name: 'workout_get_one_by_id', requirements: ['id' => '\d+'], methods: ['GET'])]
@@ -59,7 +59,7 @@ final class WorkoutController extends AbstractAPIController
     )]
     public function createOne(Request $request, CreateOneWorkoutUseCase $useCase): SingleObjectViewModel
     {
-        return $useCase->execute(json_decode($request->getContent(), true), $this->getTokenPayload($request));
+        return $useCase->execute($this->getRequestBody($request), $this->getTokenPayload($request));
     }
 
     #[Route('/workouts/{id}', name: 'workout_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
@@ -74,7 +74,7 @@ final class WorkoutController extends AbstractAPIController
     )]
     public function updateOneById(Request $request, int $id, UpdateOneWorkoutByIdUseCase $useCase): SingleObjectViewModel
     {
-        return $useCase->execute($id, json_decode($request->getContent(), true), $this->getTokenPayload($request));
+        return $useCase->execute($id, $this->getRequestBody($request), $this->getTokenPayload($request));
     }
 
     #[Route('/workouts/{id}', name: 'workout_delete_one_by_id', requirements: ['id' => '\d+'], methods: ['DELETE'])]

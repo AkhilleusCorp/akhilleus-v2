@@ -39,7 +39,7 @@ final class MuscleController extends AbstractAPIController
         GenericGetManyUseCase $useCase,
         MuscleDataModelProviderGateway $providerGateway,
     ): MultipleObjectViewModel {
-        return $useCase->execute(json_decode($request->getContent(), true), new GetManyMusclesFilterModel(), $providerGateway);
+        return $useCase->execute($this->getRequestBody($request), new GetManyMusclesFilterModel(), $providerGateway);
     }
 
     /**
@@ -83,7 +83,7 @@ final class MuscleController extends AbstractAPIController
         MuscleDataModelFactory $dataModelFactory,
     ): SingleObjectViewModel {
         return $useCase->execute(
-            json_decode($request->getContent(), true),
+            $this->getRequestBody($request),
             new CreateMuscleSourceModel(),
             $dataModelFactory,
             new SingleMuscleDataViewModel()
@@ -109,7 +109,7 @@ final class MuscleController extends AbstractAPIController
     ): SingleObjectViewModel {
         return $useCase->execute(
             $id,
-            json_decode($request->getContent(), true),
+            $this->getRequestBody($request),
             $providerGateway,
             new UpdateMuscleSourceModel(),
             $dataModelFactory,

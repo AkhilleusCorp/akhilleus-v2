@@ -15,7 +15,7 @@ use App\Infrastructure\View\ViewModel\Workout\SingleMovementDataViewModel;
 use App\UseCase\API\GenericGetDropdownableUseCase;
 use App\UseCase\API\Workout\CreateOneMovementUseCase;
 use App\UseCase\API\Workout\DeleteOneMovementByIdUseCase;
-use App\UseCase\API\Workout\GetManyMovementUseCase;
+use App\UseCase\API\Workout\GetManyMovementsUseCase;
 use App\UseCase\API\Workout\GetOneMovementByIdUseCase;
 use App\UseCase\API\Workout\UpdateOneMovementByIdUseCase;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -33,9 +33,9 @@ final class MovementController extends AbstractAPIController
         description: 'Successfully returns a list of Movements',
         dataClass: MultipleMovementItemDataViewModel::class,
     )]
-    public function getMany(Request $request, GetManyMovementUseCase $useCase): MultipleObjectViewModel
+    public function getMany(Request $request, GetManyMovementsUseCase $useCase): MultipleObjectViewModel
     {
-        return $useCase->execute(json_decode($request->getContent(), true), $this->getTokenPayload($request));
+        return $useCase->execute($this->getRequestBody($request), $this->getTokenPayload($request));
     }
 
     /**
@@ -72,7 +72,7 @@ final class MovementController extends AbstractAPIController
     )]
     public function createOne(Request $request, CreateOneMovementUseCase $useCase): SingleObjectViewModel
     {
-        return $useCase->execute(json_decode($request->getContent(), true), $this->getTokenPayload($request));
+        return $useCase->execute($this->getRequestBody($request), $this->getTokenPayload($request));
     }
 
     #[Route('/movements/{id}', name: 'movement_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
@@ -87,7 +87,7 @@ final class MovementController extends AbstractAPIController
     )]
     public function updateOneById(Request $request, int $id, UpdateOneMovementByIdUseCase $useCase): SingleObjectViewModel
     {
-        return $useCase->execute($id, json_decode($request->getContent(), true), $this->getTokenPayload($request));
+        return $useCase->execute($id, $this->getRequestBody($request), $this->getTokenPayload($request));
     }
 
     #[Route('/movements/{id}', name: 'movement_delete_one_by_id', requirements: ['id' => '\d+'], methods: ['DELETE'])]
