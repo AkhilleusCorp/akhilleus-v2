@@ -3,7 +3,7 @@
 namespace App\Tests\integrations\UseCase\API\User;
 
 use App\Domain\Factory\DataModelFactory\User\UserDataModelFactory;
-use App\Domain\Factory\SourceModelFactory\User\CreateUserSourceModelFactory;
+use App\Domain\Factory\SourceModelFactory\SourceModelFactory;
 use App\Domain\Gateway\Persister\User\UserDataModelPersisterGateway;
 use App\Domain\Registry\User\UserStatusRegistry;
 use App\Domain\Registry\User\UserTypeRegistry;
@@ -21,7 +21,7 @@ final class CreateOneUserUseCaseTest extends AbstractIntegrationTest
         parent::setUp();
 
         $this->useCase = new CreateOneUserUseCase(
-            $this->container->get(CreateUserSourceModelFactory::class),
+            $this->container->get(SourceModelFactory::class),
             $this->container->get(UserDataModelFactory::class),
             $this->container->get(UserDataModelPersisterGateway::class),
             $this->container->get(SingleUserViewPresenter::class),
