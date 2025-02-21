@@ -3,7 +3,7 @@
 namespace App\Tests\integrations\UseCase\API\Workout;
 
 use App\Domain\Factory\DataModelFactory\Workout\MovementDataModelFactory;
-use App\Domain\Factory\SourceModelFactory\SourceModelFactory;
+use App\Domain\Factory\SourceModelFactory;
 use App\Domain\Gateway\Provider\Workout\MovementDataModelProviderGateway;
 use App\Domain\Registry\Workout\MovementStatusRegistry;
 use App\Infrastructure\Persister\Workout\MovementDataModelPersister;

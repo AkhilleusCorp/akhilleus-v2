@@ -4,7 +4,7 @@ namespace App\UseCase\API\Workout;
 
 use App\Domain\DTO\SourceModel\Workout\UpdateMovementSourceModel;
 use App\Domain\Factory\DataModelFactory\Workout\MovementDataModelFactory;
-use App\Domain\Factory\SourceModelFactory\SourceModelFactory;
+use App\Domain\Factory\SourceModelFactory;
 use App\Domain\Gateway\Provider\Workout\MovementDataModelProviderGateway;
 use App\Infrastructure\DTO\TokenPayloadDTO;
 use App\Infrastructure\Persister\Workout\MovementDataModelPersister;

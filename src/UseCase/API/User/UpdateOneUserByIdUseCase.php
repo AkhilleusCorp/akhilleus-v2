@@ -4,7 +4,7 @@ namespace App\UseCase\API\User;
 
 use App\Domain\DTO\SourceModel\User\UpdateUserSourceModel;
 use App\Domain\Factory\DataModelFactory\User\UserDataModelFactory;
-use App\Domain\Factory\SourceModelFactory\SourceModelFactory;
+use App\Domain\Factory\SourceModelFactory;
 use App\Domain\Gateway\Provider\User\UserDataModelProviderGateway;
 use App\Infrastructure\DTO\TokenPayloadDTO;
 use App\Infrastructure\Persister\User\UserDataModelPersister;

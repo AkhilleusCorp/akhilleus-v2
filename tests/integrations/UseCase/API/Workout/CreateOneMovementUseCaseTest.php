@@ -3,7 +3,7 @@
 namespace App\Tests\integrations\UseCase\API\Workout;
 
 use App\Domain\Factory\DataModelFactory\Workout\MovementDataModelFactory;
-use App\Domain\Factory\SourceModelFactory\SourceModelFactory;
+use App\Domain\Factory\SourceModelFactory;
 use App\Domain\Gateway\Persister\Workout\MovementDataModelPersisterGateway;
 use App\Infrastructure\View\ViewModel\Workout\SingleMovementDataViewModel;
 use App\Infrastructure\View\ViewPresenter\Workout\SingleMovementViewPresenter;

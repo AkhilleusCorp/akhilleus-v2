@@ -5,7 +5,7 @@ namespace App\UseCase\API;
 use App\Domain\DTO\SourceModel\CreateSourceModelInterface;
 use App\Domain\DTO\SourceModel\SourceModelInterface;
 use App\Domain\Factory\DataModelFactory\DataModelFactoryInterface;
-use App\Domain\Factory\SourceModelFactory\SourceModelFactory;
+use App\Domain\Factory\SourceModelFactory;
 use App\Infrastructure\Persister\GenericPersister;
 use App\Infrastructure\View\ViewModel\SingleObjectDataViewModelInterface;
 use App\Infrastructure\View\ViewModel\SingleObjectViewModel;

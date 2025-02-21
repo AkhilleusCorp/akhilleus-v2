@@ -4,7 +4,7 @@ namespace App\UseCase\API\User;
 
 use App\Domain\DTO\SourceModel\User\CreateUserSourceModel;
 use App\Domain\Factory\DataModelFactory\User\UserDataModelFactory;
-use App\Domain\Factory\SourceModelFactory\SourceModelFactory;
+use App\Domain\Factory\SourceModelFactory;
 use App\Domain\Gateway\Persister\User\UserDataModelPersisterGateway;
 use App\Infrastructure\DTO\TokenPayloadDTO;
 use App\Infrastructure\View\ViewModel\SingleObjectViewModel;
@@ -30,10 +30,6 @@ final class CreateOneUserUseCase implements UseCaseInterface
     ): SingleObjectViewModel {
         /** @var CreateUserSourceModel $source */
         $source = $this->sourceModelFactory->buildSourceFromParameters($parameters, new CreateUserSourceModel());
-        if (null === $source->userType && null !== $payload) {
-            $source->userType = $payload->userType;
-        }
-
         $user = $this->dataModelFactory->buildNewDataModel($source);
 
         $this->persister->create($user);

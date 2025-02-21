@@ -3,7 +3,7 @@
 namespace App\Tests\integrations\UseCase\API\User;
 
 use App\Domain\Factory\DataModelFactory\User\UserDataModelFactory;
-use App\Domain\Factory\SourceModelFactory\SourceModelFactory;
+use App\Domain\Factory\SourceModelFactory;
 use App\Domain\Gateway\Provider\User\UserDataModelProviderGateway;
 use App\Domain\Registry\User\UserStatusRegistry;
 use App\Infrastructure\Persister\User\UserDataModelPersister;

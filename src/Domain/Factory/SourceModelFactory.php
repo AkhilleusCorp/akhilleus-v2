@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Factory\SourceModelFactory;
+namespace App\Domain\Factory;
 
 use App\Domain\DTO\SourceModel\SourceModelInterface;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;

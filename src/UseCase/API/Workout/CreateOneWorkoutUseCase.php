@@ -4,7 +4,7 @@ namespace App\UseCase\API\Workout;
 
 use App\Domain\DTO\SourceModel\Workout\CreateWorkoutSourceModel;
 use App\Domain\Factory\DataModelFactory\Workout\WorkoutDataModelFactory;
-use App\Domain\Factory\SourceModelFactory\SourceModelFactory;
+use App\Domain\Factory\SourceModelFactory;
 use App\Domain\Gateway\Persister\Workout\WorkoutDataModelPersisterGateway;
 use App\Infrastructure\DTO\TokenPayloadDTO;
 use App\Infrastructure\View\ViewModel\SingleObjectViewModel;
