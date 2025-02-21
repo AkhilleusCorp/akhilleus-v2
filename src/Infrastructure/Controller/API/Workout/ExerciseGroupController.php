@@ -2,6 +2,7 @@
 
 namespace App\Infrastructure\Controller\API\Workout;
 
+use App\Domain\DTO\SourceModel\Workout\CreateExerciseGroupSourceModel;
 use App\Infrastructure\ApiDoc;
 use App\Infrastructure\Controller\API\AbstractAPIController;
 use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
@@ -30,6 +31,7 @@ final class ExerciseGroupController extends AbstractAPIController
     }
 
     #[Route('/workouts/{workoutId}/groups', name: 'exercise_group_create_one', requirements: ['workoutId' => '\d+'], methods: ['POST'])]
+    #[ApiDoc\PostParameters(dataClass: CreateExerciseGroupSourceModel::class)]
     #[ApiDoc\SingleObjectResponse(
         response: 200,
         description: 'Successfully returns the details of an Exercise Group',
