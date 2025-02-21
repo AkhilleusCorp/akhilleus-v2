@@ -3,7 +3,7 @@
 namespace App\Tests\integrations\UseCase\API\Workout;
 
 use App\Domain\Factory\DataModelFactory\Workout\WorkoutDataModelFactory;
-use App\Domain\Factory\SourceModelFactory\Workout\UpdateWorkoutSourceModelFactory;
+use App\Domain\Factory\SourceModelFactory\SourceModelFactory;
 use App\Domain\Gateway\Provider\Workout\WorkoutDataModelProviderGateway;
 use App\Infrastructure\Persister\Workout\WorkoutDataModelPersister;
 use App\Infrastructure\Repository\Workout\WorkoutDataModelRepository;
@@ -23,7 +23,7 @@ final class UpdateOneWorkoutByIdUseCaseTest extends AbstractIntegrationTest
         parent::setUp();
 
         $this->useCase = new UpdateOneWorkoutByIdUseCase(
-            $this->container->get(UpdateWorkoutSourceModelFactory::class),
+            $this->container->get(SourceModelFactory::class),
             $this->container->get(WorkoutDataModelFactory::class),
             $this->container->get(WorkoutDataModelProviderGateway::class),
             $this->container->get(WorkoutDataModelPersister::class),

@@ -2,8 +2,9 @@
 
 namespace App\UseCase\API\Workout;
 
+use App\Domain\DTO\SourceModel\Workout\UpdateMovementSourceModel;
 use App\Domain\Factory\DataModelFactory\Workout\MovementDataModelFactory;
-use App\Domain\Factory\SourceModelFactory\Workout\UpdateMovementSourceModelFactory;
+use App\Domain\Factory\SourceModelFactory\SourceModelFactory;
 use App\Domain\Gateway\Provider\Workout\MovementDataModelProviderGateway;
 use App\Infrastructure\DTO\TokenPayloadDTO;
 use App\Infrastructure\Persister\Workout\MovementDataModelPersister;
@@ -15,7 +16,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 final class UpdateOneMovementByIdUseCase implements UseCaseInterface
 {
     public function __construct(
-        private readonly UpdateMovementSourceModelFactory $sourceModelFactory,
+        private readonly SourceModelFactory $sourceModelFactory,
         private readonly MovementDataModelFactory $dataModelFactory,
         private readonly MovementDataModelProviderGateway $provider,
         private readonly MovementDataModelPersister $persister,
@@ -33,7 +34,8 @@ final class UpdateOneMovementByIdUseCase implements UseCaseInterface
             throw new NotFoundHttpException("Movement #$id cannot be found");
         }
 
-        $source = $this->sourceModelFactory->buildSourceModel($parameters);
+        /** @var UpdateMovementSourceModel $source */
+        $source = $this->sourceModelFactory->buildSourceFromParameters($parameters, new UpdateMovementSourceModel());
         $movement = $this->dataModelFactory->mergeSourceAndDataModel($movement, $source);
 
         $this->persister->edit($movement);

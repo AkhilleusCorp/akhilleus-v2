@@ -2,6 +2,7 @@
 
 namespace App\Infrastructure\Controller\API\Workout;
 
+use App\Domain\DTO\SourceModel\Workout\CreateWorkoutSourceModel;
 use App\Domain\Registry\User\UserStatusRegistry;
 use App\Infrastructure\ApiDoc;
 use App\Infrastructure\Controller\API\AbstractAPIController;
@@ -55,6 +56,7 @@ final class WorkoutController extends AbstractAPIController
     }
 
     #[Route('/workouts', name: 'workout_create_one', methods: ['POST'])]
+    #[ApiDoc\PostParameters(dataClass: CreateWorkoutSourceModel::class)]
     #[ApiDoc\SingleObjectResponse(
         response: 200,
         description: 'Successfully create a Workout',

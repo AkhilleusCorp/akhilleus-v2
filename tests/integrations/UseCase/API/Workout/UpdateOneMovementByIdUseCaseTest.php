@@ -3,7 +3,7 @@
 namespace App\Tests\integrations\UseCase\API\Workout;
 
 use App\Domain\Factory\DataModelFactory\Workout\MovementDataModelFactory;
-use App\Domain\Factory\SourceModelFactory\Workout\UpdateMovementSourceModelFactory;
+use App\Domain\Factory\SourceModelFactory\SourceModelFactory;
 use App\Domain\Gateway\Provider\Workout\MovementDataModelProviderGateway;
 use App\Domain\Registry\Workout\MovementStatusRegistry;
 use App\Infrastructure\Persister\Workout\MovementDataModelPersister;
@@ -24,7 +24,7 @@ final class UpdateOneMovementByIdUseCaseTest extends AbstractIntegrationTest
         parent::setUp();
 
         $this->useCase = new UpdateOneMovementByIdUseCase(
-            $this->container->get(UpdateMovementSourceModelFactory::class),
+            $this->container->get(SourceModelFactory::class),
             $this->container->get(MovementDataModelFactory::class),
             $this->container->get(MovementDataModelProviderGateway::class),
             $this->container->get(MovementDataModelPersister::class),

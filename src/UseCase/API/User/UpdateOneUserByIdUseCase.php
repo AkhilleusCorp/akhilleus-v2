@@ -2,8 +2,9 @@
 
 namespace App\UseCase\API\User;
 
+use App\Domain\DTO\SourceModel\User\UpdateUserSourceModel;
 use App\Domain\Factory\DataModelFactory\User\UserDataModelFactory;
-use App\Domain\Factory\SourceModelFactory\User\UpdateUserSourceModelFactory;
+use App\Domain\Factory\SourceModelFactory\SourceModelFactory;
 use App\Domain\Gateway\Provider\User\UserDataModelProviderGateway;
 use App\Infrastructure\DTO\TokenPayloadDTO;
 use App\Infrastructure\Persister\User\UserDataModelPersister;
@@ -15,7 +16,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 final class UpdateOneUserByIdUseCase implements UseCaseInterface
 {
     public function __construct(
-        private readonly UpdateUserSourceModelFactory $sourceModelFactory,
+        private readonly SourceModelFactory $sourceModelFactory,
         private readonly UserDataModelFactory $dataModelFactory,
         private readonly UserDataModelProviderGateway $provider,
         private readonly UserDataModelPersister $persister,
@@ -33,7 +34,8 @@ final class UpdateOneUserByIdUseCase implements UseCaseInterface
             throw new NotFoundHttpException("User #$id cannot be found");
         }
 
-        $source = $this->sourceModelFactory->buildSourceModel($parameters);
+        /** @var UpdateUserSourceModel $source */
+        $source = $this->sourceModelFactory->buildSourceFromParameters($parameters, new UpdateUserSourceModel());
         $user = $this->dataModelFactory->mergeSourceAndDataModel($user, $source);
 
         $this->persister->edit($user);

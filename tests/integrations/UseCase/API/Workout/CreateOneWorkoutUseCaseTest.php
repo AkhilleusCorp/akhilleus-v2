@@ -3,7 +3,7 @@
 namespace App\Tests\integrations\UseCase\API\Workout;
 
 use App\Domain\Factory\DataModelFactory\Workout\WorkoutDataModelFactory;
-use App\Domain\Factory\SourceModelFactory\Workout\CreateWorkoutSourceModelFactory;
+use App\Domain\Factory\SourceModelFactory\SourceModelFactory;
 use App\Domain\Gateway\Persister\Workout\WorkoutDataModelPersisterGateway;
 use App\Domain\Registry\Workout\WorkoutStatusRegistry;
 use App\Domain\Registry\Workout\WorkoutVisibilityRegistry;
@@ -21,7 +21,7 @@ final class CreateOneWorkoutUseCaseTest extends AbstractIntegrationTest
         parent::setUp();
 
         $this->useCase = new CreateOneWorkoutUseCase(
-            $this->container->get(CreateWorkoutSourceModelFactory::class),
+            $this->container->get(SourceModelFactory::class),
             $this->container->get(WorkoutDataModelFactory::class),
             $this->container->get(WorkoutDataModelPersisterGateway::class),
             $this->container->get(SingleWorkoutViewPresenter::class),
