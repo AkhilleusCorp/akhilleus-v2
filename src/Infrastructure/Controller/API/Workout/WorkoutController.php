@@ -2,6 +2,7 @@
 
 namespace App\Infrastructure\Controller\API\Workout;
 
+use App\Domain\DTO\FilterModel\Workout\GetManyWorkoutsFilterModel;
 use App\Domain\DTO\SourceModel\Workout\CreateWorkoutSourceModel;
 use App\Domain\DTO\SourceModel\Workout\UpdateWorkoutSourceModel;
 use App\Infrastructure\ApiDoc;
@@ -24,6 +25,7 @@ use Symfony\Component\Routing\Attribute\Route;
 final class WorkoutController extends AbstractAPIController
 {
     #[Route('/workouts', name: 'workout_get_many', methods: ['GET'])]
+    #[ApiDoc\GetParameters(dataClass: GetManyWorkoutsFilterModel::class)]
     #[ApiDoc\MultipleObjectResponse(
         response: 200,
         description: 'Successfully returns a list of Workouts',

@@ -4,6 +4,8 @@ namespace App\Domain\DTO\FilterModel\Workout;
 
 use App\Domain\DTO\FilterModel\AbstractFilterModel;
 use App\Domain\DTO\FilterModel\FilterModelInterface;
+use App\Domain\Registry\Workout\WorkoutStatusRegistry;
+use App\Infrastructure\ApiDoc;
 
 final class GetManyWorkoutsFilterModel extends AbstractFilterModel implements FilterModelInterface
 {
@@ -17,5 +19,6 @@ final class GetManyWorkoutsFilterModel extends AbstractFilterModel implements Fi
     public ?int $memberId = null;
 
     /** @var string[] */
+    #[ApiDoc\Parameter(enum: WorkoutStatusRegistry::WORKOUT_STATUSES)]
     public array $status = [];
 }

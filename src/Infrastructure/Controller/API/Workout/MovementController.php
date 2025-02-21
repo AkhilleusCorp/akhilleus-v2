@@ -2,6 +2,7 @@
 
 namespace App\Infrastructure\Controller\API\Workout;
 
+use App\Domain\DTO\FilterModel\Workout\GetManyMovementsFilterModel;
 use App\Domain\DTO\SourceModel\Workout\CreateMovementSourceModel;
 use App\Domain\DTO\SourceModel\Workout\UpdateMovementSourceModel;
 use App\Domain\Gateway\Provider\Workout\MovementDataModelProviderGateway;
@@ -26,6 +27,7 @@ use Symfony\Component\Routing\Attribute\Route;
 final class MovementController extends AbstractAPIController
 {
     #[Route('/movements', name: 'movement_get_many', methods: ['GET'])]
+    #[ApiDoc\GetParameters(dataClass: GetManyMovementsFilterModel::class)]
     #[ApiDoc\MultipleObjectResponse(
         response: 200,
         description: 'Successfully returns a list of Movements',

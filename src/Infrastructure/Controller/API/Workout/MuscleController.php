@@ -28,6 +28,7 @@ use Symfony\Component\Routing\Attribute\Route;
 final class MuscleController extends AbstractAPIController
 {
     #[Route('/muscles', name: 'muscle_get_many', methods: ['GET'])]
+    #[ApiDoc\GetParameters(dataClass: GetManyMusclesFilterModel::class)]
     #[ApiDoc\MultipleObjectResponse(
         response: 200,
         description: 'Successfully returns a list of Muscles',

@@ -28,6 +28,7 @@ use Symfony\Component\Routing\Attribute\Route;
 final class EquipmentController extends AbstractAPIController
 {
     #[Route('/equipments', name: 'equipment_get_many', methods: ['GET'])]
+    #[ApiDoc\GetParameters(dataClass: GetManyEquipmentsFilterModel::class)]
     #[ApiDoc\MultipleObjectResponse(
         response: 200,
         description: 'Successfully returns a list of Equipments',

@@ -2,6 +2,7 @@
 
 namespace App\Infrastructure\Controller\API\User;
 
+use App\Domain\DTO\FilterModel\User\GetManyUsersFilterModel;
 use App\Domain\DTO\SourceModel\User\CreateUserSourceModel;
 use App\Domain\DTO\SourceModel\User\UpdateUserSourceModel;
 use App\Infrastructure\ApiDoc;
@@ -24,6 +25,7 @@ use Symfony\Component\Routing\Attribute\Route;
 final class UserController extends AbstractAPIController
 {
     #[Route('/users', name: 'user_get_many', methods: ['GET'])]
+    #[ApiDoc\GetParameters(dataClass: GetManyUsersFilterModel::class)]
     #[ApiDoc\MultipleObjectResponse(
         response: 200,
         description: 'Successfully returns a list of Users',
