@@ -10,7 +10,7 @@ function useGetOneEquipmentById(equipmentId: string|undefined): EquipmentDTO | n
     const [equipment, setEquipment] = useState<EquipmentDTO | null>(null);
     useEffect(() => {
         const fetchEquipment = async () => {
-            const equipment = await EquipmentApiGateway.getOneEquipment(equipmentId);
+            const equipment = await EquipmentApiGateway.fetchOneEquipment(equipmentId);
             setEquipment(equipment);
         }
 

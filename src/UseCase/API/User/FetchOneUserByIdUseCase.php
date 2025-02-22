@@ -9,7 +9,7 @@ use App\Infrastructure\View\ViewPresenter\User\SingleUserViewPresenter;
 use App\UseCase\UseCaseInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-final class GetOneUserByIdUseCase implements UseCaseInterface
+final class FetchOneUserByIdUseCase implements UseCaseInterface
 {
     public function __construct(
         private readonly UserDataModelProviderGateway $provider,

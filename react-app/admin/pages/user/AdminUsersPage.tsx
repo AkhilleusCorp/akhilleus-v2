@@ -17,7 +17,7 @@ const AdminUsersPage: React.FC = () => {
     const [userPreview, setUserPreview] = useState<UserDTO|null>(null);
 
     const handleDisplayUserPreview = async (userId: number) => {
-        const preview = await UserApiGateway.getOneUser(String(userId));
+        const preview = await UserApiGateway.fetchOneUser(String(userId));
         setUserPreview(preview);
     }
 

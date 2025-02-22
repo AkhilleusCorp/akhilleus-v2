@@ -5,8 +5,8 @@ namespace App\Infrastructure\ApiDoc;
 use Nelmio\ApiDocBundle\Annotation\Model;
 use OpenApi\Attributes\RequestBody;
 
-#[\Attribute(\Attribute::TARGET_CLASS | \Attribute::TARGET_METHOD | \Attribute::IS_REPEATABLE)]
-final class PostParameters extends RequestBody
+#[\Attribute(\Attribute::TARGET_METHOD)]
+final class RequestBodyParameters extends RequestBody
 {
     public function __construct(string $dataClass)
     {

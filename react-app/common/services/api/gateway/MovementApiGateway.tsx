@@ -7,12 +7,12 @@ import IndexedArray from "app/common/utils/interfaces/IndexedArray.tsx";
 import APIResponseDTO from "app/common/services/api/dtos/APIResponseDTO.tsx";
 
 class MovementApiGateway extends AbstractApiGateway {
-    static async getOneMovement (movementId: QueryId): Promise<MovementDTO|null> {
-        return this.getOne(apiRoutes.movement.details(movementId));
+    static async fetchOneMovement (movementId: QueryId): Promise<MovementDTO|null> {
+        return this.fetchOne(apiRoutes.movement.details(movementId));
     }
 
-    static async getManyMovements (filters: AdminMovementsListFilters): Promise<APIResponseDTO> {
-        return this.getMany(apiRoutes.movement.list, filters);
+    static async fetchManyMovements (filters: AdminMovementsListFilters): Promise<APIResponseDTO> {
+        return this.fetchMany(apiRoutes.movement.list, filters);
     }
 
     static async getDropdownableMovements (): Promise<IndexedArray> {

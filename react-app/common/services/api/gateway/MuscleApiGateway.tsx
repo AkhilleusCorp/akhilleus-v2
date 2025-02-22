@@ -7,12 +7,12 @@ import IndexedArray from "app/common/utils/interfaces/IndexedArray.tsx";
 import APIResponseDTO from "app/common/services/api/dtos/APIResponseDTO.tsx";
 
 class MuscleApiGateway extends AbstractApiGateway {
-    static async getOneMuscle (muscleId: QueryId): Promise<MuscleDTO|null> {
-        return this.getOne(apiRoutes.muscle.details(muscleId));
+    static async fetchOneMuscle (muscleId: QueryId): Promise<MuscleDTO|null> {
+        return this.fetchOne(apiRoutes.muscle.details(muscleId));
     }
 
-    static async getManyMuscles (filters: MusclesListFilters): Promise<APIResponseDTO> {
-        return this.getMany(apiRoutes.muscle.list, filters);
+    static async fetchManyMuscles (filters: MusclesListFilters): Promise<APIResponseDTO> {
+        return this.fetchMany(apiRoutes.muscle.list, filters);
     }
 
     static async getDropdownableMuscles (): Promise<IndexedArray> {

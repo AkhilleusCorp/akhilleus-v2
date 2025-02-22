@@ -35,7 +35,7 @@ final class GenericUpdateOneByIdUseCase implements UseCaseInterface
         DataModelFactoryInterface $dataModelFactory,
         SingleObjectDataViewModelInterface $view,
     ): SingleObjectViewModel {
-        $data = $providerGateway->getOneById($id);
+        $data = $providerGateway->fetchOneById($id);
         if (null === $data) {
             throw new NotFoundHttpException();
         }

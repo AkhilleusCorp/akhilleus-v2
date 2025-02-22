@@ -10,24 +10,24 @@ use App\Infrastructure\View\ViewModel\PaginationViewModel;
 use App\Infrastructure\View\ViewModel\Workout\MultipleWorkoutItemDataViewModel;
 use App\Infrastructure\View\ViewPresenter\Workout\MultipleWorkoutViewPresenter;
 use App\Tests\integrations\AbstractIntegrationTest;
-use App\UseCase\API\Workout\GetManyWorkoutUseCase;
+use App\UseCase\API\Workout\FetchManyWorkoutsUseCase;
 
-final class GetManyWorkoutUseCaseTest extends AbstractIntegrationTest
+final class FetchManyWorkoutsUseCaseTest extends AbstractIntegrationTest
 {
-    private GetManyWorkoutUseCase $useCase;
+    private FetchManyWorkoutsUseCase $useCase;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->useCase = new GetManyWorkoutUseCase(
+        $this->useCase = new FetchManyWorkoutsUseCase(
             $this->container->get(WorkoutDataModelProviderGateway::class),
             $this->container->get(WorkoutsFilterModelModelFactory::class),
             $this->container->get(MultipleWorkoutViewPresenter::class),
         );
     }
 
-    public function testGetManyWorkoutWithNoFiltersForAdmin(): void
+    public function testFetchManyWorkoutWithNoFiltersForAdmin(): void
     {
         $view = $this->useCase->execute([], $this->getAdminTokenPayload());
 
@@ -42,7 +42,7 @@ final class GetManyWorkoutUseCaseTest extends AbstractIntegrationTest
         $this->assertEquals(3, $pagination->lastPage);
     }
 
-    public function testGetManyWorkoutWithNoFiltersForMember(): void
+    public function testFetchManyWorkoutWithNoFiltersForMember(): void
     {
         $view = $this->useCase->execute([], $this->getMemberTokenPayload());
 
@@ -57,21 +57,21 @@ final class GetManyWorkoutUseCaseTest extends AbstractIntegrationTest
         $this->assertEquals(AbstractFilterModel::DEFAULT_PAGE, $pagination->lastPage);
     }
 
-    public function testGetManyWorkoutWithFilterStatusesFilter(): void
+    public function testFetchManyWorkoutWithFilterStatusesFilter(): void
     {
         $view = $this->useCase->execute(
-            ['status' => WorkoutStatusRegistry::WORKOUT_STATUS_IN_PROGRESS.','.WorkoutStatusRegistry::WORKOUT_STATUS_PLANNED],
+            ['status' => [WorkoutStatusRegistry::WORKOUT_STATUS_IN_PROGRESS, WorkoutStatusRegistry::WORKOUT_STATUS_PLANNED]],
             $this->getAdminTokenPayload()
         );
         $this->assertCount(2, $view->data);
 
-        $view = $this->useCase->execute(['status' => WorkoutStatusRegistry::WORKOUT_STATUS_IN_PROGRESS], $this->getMemberTokenPayload());
+        $view = $this->useCase->execute(['status' => [WorkoutStatusRegistry::WORKOUT_STATUS_IN_PROGRESS]], $this->getMemberTokenPayload());
         $this->assertCount(1, $view->data);
 
-        $view = $this->useCase->execute(['status' => WorkoutStatusRegistry::WORKOUT_STATUS_COMPLETED], $this->getMemberTokenPayload());
+        $view = $this->useCase->execute(['status' => [WorkoutStatusRegistry::WORKOUT_STATUS_COMPLETED]], $this->getMemberTokenPayload());
         $this->assertCount(1, $view->data);
 
-        $view = $this->useCase->execute(['status' => WorkoutStatusRegistry::WORKOUT_STATUS_PLANNED], $this->getMemberTokenPayload());
+        $view = $this->useCase->execute(['status' => [WorkoutStatusRegistry::WORKOUT_STATUS_PLANNED]], $this->getMemberTokenPayload());
         $this->assertCount(1, $view->data);
     }
 }

@@ -10,7 +10,7 @@ function useGetOneUserById(userId: string|undefined): UserDTO | null {
     const [user, setUser] = useState<UserDTO | null>(null);
     useEffect(() => {
         const fetchUser = async () => {
-            const user = await UserApiGateway.getOneUser(userId);
+            const user = await UserApiGateway.fetchOneUser(userId);
             setUser(user);
         }
 

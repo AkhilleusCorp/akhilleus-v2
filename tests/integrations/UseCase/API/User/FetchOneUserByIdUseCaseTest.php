@@ -8,24 +8,24 @@ use App\Domain\Registry\User\UserTypeRegistry;
 use App\Infrastructure\View\ViewModel\User\SingleUserDataViewModel;
 use App\Infrastructure\View\ViewPresenter\User\SingleUserViewPresenter;
 use App\Tests\integrations\AbstractIntegrationTest;
-use App\UseCase\API\User\GetOneUserByIdUseCase;
+use App\UseCase\API\User\FetchOneUserByIdUseCase;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-final class GetOneUserByIdUseCaseTest extends AbstractIntegrationTest
+final class FetchOneUserByIdUseCaseTest extends AbstractIntegrationTest
 {
-    private GetOneUserByIdUseCase $useCase;
+    private FetchOneUserByIdUseCase $useCase;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->useCase = new GetOneUserByIdUseCase(
+        $this->useCase = new FetchOneUserByIdUseCase(
             $this->container->get(UserDataModelProviderGateway::class),
             $this->container->get(SingleUserViewPresenter::class)
         );
     }
 
-    public function testGetOneUserForAdmin(): void
+    public function testFetchOneUserForAdmin(): void
     {
         $userId = 1;
         $viewModel = $this->useCase->execute($userId, $this->getAdminTokenPayload());
@@ -39,7 +39,7 @@ final class GetOneUserByIdUseCaseTest extends AbstractIntegrationTest
         $this->assertEquals(UserTypeRegistry::USER_TYPE_MEMBER, $viewData->type);
     }
 
-    public function testGetOneUserForMember(): void
+    public function testFetchOneUserForMember(): void
     {
         $userId = 1;
         $viewModel = $this->useCase->execute($userId, $this->getMemberTokenPayload());
@@ -53,7 +53,7 @@ final class GetOneUserByIdUseCaseTest extends AbstractIntegrationTest
         $this->assertEquals(UserTypeRegistry::USER_TYPE_MEMBER, $viewData->type);
     }
 
-    public function testGetOneNonExistingUser(): void
+    public function testFetchOneNonExistingUser(): void
     {
         $this->expectException(NotFoundHttpException::class);
         $this->expectExceptionMessage('User #666 cannot be found');

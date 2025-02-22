@@ -15,9 +15,9 @@ use App\Infrastructure\View\ViewModel\Workout\MultipleMuscleItemDataViewModel;
 use App\Infrastructure\View\ViewModel\Workout\SingleMuscleDataViewModel;
 use App\UseCase\API\GenericCreateOneUseCase;
 use App\UseCase\API\GenericDeleteOneByIdUseCase;
+use App\UseCase\API\GenericFetchManyUseCase;
+use App\UseCase\API\GenericFetchOneByIdUseCase;
 use App\UseCase\API\GenericGetDropdownableUseCase;
-use App\UseCase\API\GenericGetManyUseCase;
-use App\UseCase\API\GenericGetOneByIdUseCase;
 use App\UseCase\API\GenericUpdateOneByIdUseCase;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,18 +27,19 @@ use Symfony\Component\Routing\Attribute\Route;
 #[ApiDoc\DocSection('MUSCLES')]
 final class MuscleController extends AbstractAPIController
 {
-    #[Route('/muscles', name: 'muscle_get_many', methods: ['GET'])]
+    #[Route('/muscles/fetch', name: 'muscle_get_many', methods: ['POST'])]
+    #[ApiDoc\RequestBodyParameters(dataClass: GetManyMusclesFilterModel::class)]
     #[ApiDoc\MultipleObjectResponse(
         response: 200,
         description: 'Successfully returns a list of Muscles',
         dataClass: MultipleMuscleItemDataViewModel::class,
     )]
-    public function getMany(
+    public function fetchMany(
         Request $request,
-        GenericGetManyUseCase $useCase,
+        GenericFetchManyUseCase $useCase,
         MuscleDataModelProviderGateway $providerGateway,
     ): MultipleObjectViewModel {
-        return $useCase->execute($request->query->all(), new GetManyMusclesFilterModel(), $providerGateway);
+        return $useCase->execute($this->getRequestBody($request), new GetManyMusclesFilterModel(), $providerGateway);
     }
 
     /**
@@ -52,7 +53,7 @@ final class MuscleController extends AbstractAPIController
         return $useCase->execute('name', $providerGateway);
     }
 
-    #[Route('/muscles/{id}', name: 'muscle_get_one_by_id', requirements: ['id' => '\d+'], methods: ['GET'])]
+    #[Route('/muscles/{id}/fetch', name: 'muscle_get_one_by_id', requirements: ['id' => '\d+'], methods: ['GET'])]
     #[ApiDoc\SingleObjectResponse(
         response: 200,
         description: 'Successfully returns the details of a Muscle',
@@ -61,16 +62,16 @@ final class MuscleController extends AbstractAPIController
     #[ApiDoc\NotFoundResponse(
         description: 'No Muscle found for the given id',
     )]
-    public function getOneById(
+    public function fetchOneById(
         int $id,
-        GenericGetOneByIdUseCase $useCase,
+        GenericFetchOneByIdUseCase $useCase,
         MuscleDataModelProviderGateway $providerGateway,
     ): SingleObjectViewModel {
         return $useCase->execute($id, $providerGateway, new SingleMuscleDataViewModel());
     }
 
-    #[Route('/muscles', name: 'muscles_create_one', methods: ['POST'])]
-    #[ApiDoc\PostParameters(dataClass: CreateMuscleSourceModel::class)]
+    #[Route('/muscles/create', name: 'muscles_create_one', methods: ['POST'])]
+    #[ApiDoc\RequestBodyParameters(dataClass: CreateMuscleSourceModel::class)]
     #[ApiDoc\SingleObjectResponse(
         response: 200,
         description: 'Successfully create a Muscle',
@@ -82,15 +83,15 @@ final class MuscleController extends AbstractAPIController
         MuscleDataModelFactory $dataModelFactory,
     ): SingleObjectViewModel {
         return $useCase->execute(
-            json_decode($request->getContent(), true),
+            $this->getRequestBody($request),
             new CreateMuscleSourceModel(),
             $dataModelFactory,
             new SingleMuscleDataViewModel()
         );
     }
 
-    #[Route('/muscles/{id}', name: 'muscle_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
-    #[ApiDoc\PostParameters(dataClass: UpdateMuscleSourceModel::class)]
+    #[Route('/muscles/{id}/update', name: 'muscle_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
+    #[ApiDoc\RequestBodyParameters(dataClass: UpdateMuscleSourceModel::class)]
     #[ApiDoc\SingleObjectResponse(
         response: 200,
         description: 'Successfully edit the details of a Muscle',
@@ -108,7 +109,7 @@ final class MuscleController extends AbstractAPIController
     ): SingleObjectViewModel {
         return $useCase->execute(
             $id,
-            json_decode($request->getContent(), true),
+            $this->getRequestBody($request),
             $providerGateway,
             new UpdateMuscleSourceModel(),
             $dataModelFactory,
@@ -116,7 +117,7 @@ final class MuscleController extends AbstractAPIController
         );
     }
 
-    #[Route('/muscles/{id}', name: 'muscle_delete_by_id', requirements: ['id' => '\d+'], methods: ['DELETE'])]
+    #[Route('/muscles/{id}/delete', name: 'muscle_delete_by_id', requirements: ['id' => '\d+'], methods: ['DELETE'])]
     #[ApiDoc\NotFoundResponse(
         description: 'No Muscle found for the given id',
     )]

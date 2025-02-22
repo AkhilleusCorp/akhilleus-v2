@@ -24,7 +24,7 @@ export const fetchWorkouts = createAsyncThunk<APIResponseDTO, AdminWorkoutListFi
     'workouts/fetchWorkouts',
     async (filters: AdminWorkoutListFilters|MemberWorkoutsListFilters, {rejectWithValue}) => {
         try {
-            return WorkoutApiGateway.getManyWorkouts(filters);
+            return WorkoutApiGateway.fetchManyWorkouts(filters);
         } catch (error: any) {
             if (error.response && error.response.data.message) {
                 return rejectWithValue(error.response.data.message);

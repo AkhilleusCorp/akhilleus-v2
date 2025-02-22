@@ -54,8 +54,6 @@ const AdminMovementCreateForm: React.FC = () => {
     const handleSubmit = async () => {
         try {
             const movement = await MovementApiGateway.createMovement(movementCreate);
-            console.log('create', movementCreate);
-            console.log('created', movement);
             navigate(adminRoutes.movement.details(movement.id));
         } catch (error) {
             console.log(error);

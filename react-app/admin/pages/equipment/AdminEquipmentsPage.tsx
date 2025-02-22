@@ -9,7 +9,7 @@ import AdminEquipmentsListTable from "app/admin/features/equipment/AdminEquipmen
 const AdminEquipmentsPage: React.FC = () => {
     const defaultFilters = new EquipmentsListFilters();
     const [filters, setFilters] = useState<EquipmentsListFilters>(defaultFilters);
-    const [refreshKey, setRefreshKey] = useState(0)
+    const [refreshKey, setRefreshKey] = useState(0);
 
     const handleEquipmentsSearch = (filtersFromForm: EquipmentsListFilters) => {
         setFilters({

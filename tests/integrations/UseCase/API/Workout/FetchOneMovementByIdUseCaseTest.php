@@ -6,24 +6,24 @@ use App\Domain\Gateway\Provider\Workout\MovementDataModelProviderGateway;
 use App\Infrastructure\View\ViewModel\Workout\SingleMovementDataViewModel;
 use App\Infrastructure\View\ViewPresenter\Workout\SingleMovementViewPresenter;
 use App\Tests\integrations\AbstractIntegrationTest;
-use App\UseCase\API\Workout\GetOneMovementByIdUseCase;
+use App\UseCase\API\Workout\FetchOneMovementByIdUseCase;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-final class GetOneMovementByIdUseCaseTest extends AbstractIntegrationTest
+final class FetchOneMovementByIdUseCaseTest extends AbstractIntegrationTest
 {
-    private GetOneMovementByIdUseCase $useCase;
+    private FetchOneMovementByIdUseCase $useCase;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->useCase = new GetOneMovementByIdUseCase(
+        $this->useCase = new FetchOneMovementByIdUseCase(
             $this->container->get(MovementDataModelProviderGateway::class),
             $this->container->get(SingleMovementViewPresenter::class)
         );
     }
 
-    public function testGetOneUserForAdmin(): void
+    public function testFetchOneUserForAdmin(): void
     {
         $movementId = 1;
         $viewModel = $this->useCase->execute($movementId, $this->getAdminTokenPayload());
@@ -38,7 +38,7 @@ final class GetOneMovementByIdUseCaseTest extends AbstractIntegrationTest
         $this->assertEquals(3, $viewData->equipments[1]->id);
     }
 
-    public function testGetOneUserForMember(): void
+    public function testFetchOneUserForMember(): void
     {
         $movementId = 1;
         $viewModel = $this->useCase->execute($movementId, $this->getMemberTokenPayload());
@@ -53,7 +53,7 @@ final class GetOneMovementByIdUseCaseTest extends AbstractIntegrationTest
         $this->assertEquals(3, $viewData->equipments[1]->id);
     }
 
-    public function testGetOneNonExistingUser(): void
+    public function testFetchOneNonExistingUser(): void
     {
         $this->expectException(NotFoundHttpException::class);
         $this->expectExceptionMessage('Movement #666 cannot be found');

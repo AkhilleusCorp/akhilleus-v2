@@ -2,7 +2,8 @@
 
 namespace App\UseCase\API\Workout;
 
-use App\Domain\Factory\FilterModelFactory\Workout\MovementsFilterModelModelFactory;
+use App\Domain\DTO\FilterModel\Workout\GetManyMovementsFilterModel;
+use App\Domain\Factory\FilterModelFactory\FilterModelFactory;
 use App\Domain\Gateway\Provider\Workout\MovementDataModelProviderGateway;
 use App\Infrastructure\DTO\TokenPayloadDTO;
 use App\Infrastructure\View\ViewHydrator\PaginationHydrator;
@@ -11,11 +12,11 @@ use App\Infrastructure\View\ViewModel\PaginationViewModel;
 use App\Infrastructure\View\ViewPresenter\Workout\MultipleMovementViewPresenter;
 use App\UseCase\UseCaseInterface;
 
-final class GetManyMovementUseCase implements UseCaseInterface
+final class FetchManyMovementsUseCase implements UseCaseInterface
 {
     public function __construct(
         private readonly MovementDataModelProviderGateway $provider,
-        private readonly MovementsFilterModelModelFactory $filterFactory,
+        private readonly FilterModelFactory $filterFactory,
         private readonly MultipleMovementViewPresenter $presenter,
     ) {
     }
@@ -25,7 +26,8 @@ final class GetManyMovementUseCase implements UseCaseInterface
      */
     public function execute(array $parameters, TokenPayloadDTO $payload): MultipleObjectViewModel
     {
-        $filter = $this->filterFactory->buildGetManyMovementsFilterModel($parameters);
+        /** @var GetManyMovementsFilterModel $filter */
+        $filter = $this->filterFactory->buildFilterFromParameters($parameters, new GetManyMovementsFilterModel());
         $movements = $this->provider->getMovementsByFilterModel($filter);
 
         $movementsCount = count($movements);

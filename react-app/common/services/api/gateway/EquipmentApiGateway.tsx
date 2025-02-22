@@ -7,12 +7,12 @@ import IndexedArray from "app/common/utils/interfaces/IndexedArray.tsx";
 import APIResponseDTO from "app/common/services/api/dtos/APIResponseDTO.tsx";
 
 class EquipmentApiGateway extends AbstractApiGateway {
-    static async getOneEquipment (equipmentId: QueryId): Promise<EquipmentDTO|null> {
-        return this.getOne(apiRoutes.equipment.details(equipmentId));
+    static async fetchOneEquipment (equipmentId: QueryId): Promise<EquipmentDTO|null> {
+        return this.fetchOne(apiRoutes.equipment.details(equipmentId));
     }
 
-    static async getManyEquipments (filters: EquipmentsListFilters): Promise<APIResponseDTO> {
-        return this.getMany(apiRoutes.equipment.list, filters);
+    static async fetchManyEquipments (filters: EquipmentsListFilters): Promise<APIResponseDTO> {
+        return this.fetchMany(apiRoutes.equipment.list, filters);
     }
 
     static async getDropdownableEquipments (): Promise<IndexedArray> {

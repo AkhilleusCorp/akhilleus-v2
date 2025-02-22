@@ -15,7 +15,7 @@ final class DeleteOneEquipmentByIdUseCase implements UseCaseInterface
 
     public function execute(int $id): void
     {
-        $equipment = $this->provider->getOneById($id);
+        $equipment = $this->provider->fetchOneById($id);
         if (null === $equipment) {
             throw new NotFoundHttpException("Equipment #$id cannot be found");
         }

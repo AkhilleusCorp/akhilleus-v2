@@ -8,7 +8,9 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 final class SourceModelFactory
 {
-    public function __construct(private ValidatorInterface $validator)
+    use InferModelPropertiesTrait;
+
+    public function __construct(private readonly ValidatorInterface $validator)
     {
     }
 
@@ -17,7 +19,7 @@ final class SourceModelFactory
      */
     public function buildSourceFromParameters(array $parameters, SourceModelInterface $source): SourceModelInterface
     {
-        $this->inferSourceModel($parameters, $source);
+        $this->inferFromParameters($parameters, $source);
         $errors = $this->validator->validate($source);
 
         $formattedErrors = [];
@@ -30,17 +32,5 @@ final class SourceModelFactory
         }
 
         return $source;
-    }
-
-    /**
-     * @param array<mixed> $parameters
-     */
-    private function inferSourceModel(array $parameters, SourceModelInterface $source): void
-    {
-        foreach ($parameters as $key => $value) {
-            if (property_exists($source, $key)) {
-                $source->{$key} = $value;
-            }
-        }
     }
 }

@@ -35,7 +35,7 @@ final class ExerciseGroupDataModelRepository extends AbstractBaseDataModelReposi
     /**
      * @return ExerciseGroupDataModel[]
      */
-    public function getManyAllGroupsByWorkout(int $workoutId): array
+    public function fetchManyAllGroupsByWorkout(int $workoutId): array
     {
         return $this->createQueryBuilder($this->getAlias())
             ->andWhere($this->getAlias().'.workout = :workoutId')

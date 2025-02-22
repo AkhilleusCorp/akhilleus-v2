@@ -30,7 +30,7 @@ final class ExerciseController extends AbstractAPIController
         return $useCase->execute($workoutId, $groupId, $this->getTokenPayload($request));
     }
 
-    #[Route('/workouts/{workoutId}/exercises/{exerciseId}', name: 'exercise_delete_one_by_id', requirements: ['workoutId' => '\d+', 'exerciseId' => '\d+'], methods: ['DELETE'])]
+    #[Route('/workouts/{workoutId}/exercises/{exerciseId}/delete', name: 'exercise_delete_one_by_id', requirements: ['workoutId' => '\d+', 'exerciseId' => '\d+'], methods: ['DELETE'])]
     #[ApiDoc\NotFoundResponse(
         description: 'No Exercise found for the given id',
     )]

@@ -6,7 +6,7 @@ use App\Domain\DTO\DataModel\DataModelInterface;
 
 trait GenericQueriesTrait
 {
-    public function getOneById(int $id): ?DataModelInterface
+    public function fetchOneById(int $id): ?DataModelInterface
     {
         return $this->createQueryBuilder($this->getAlias())
             ->andWhere($this->getAlias().'.id = :id')

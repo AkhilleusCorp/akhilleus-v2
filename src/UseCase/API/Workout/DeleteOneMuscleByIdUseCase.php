@@ -15,7 +15,7 @@ final class DeleteOneMuscleByIdUseCase implements UseCaseInterface
 
     public function execute(int $id): void
     {
-        $muscle = $this->provider->getOneById($id);
+        $muscle = $this->provider->fetchOneById($id);
         if (null === $muscle) {
             throw new NotFoundHttpException("Muscle #$id cannot be found");
         }

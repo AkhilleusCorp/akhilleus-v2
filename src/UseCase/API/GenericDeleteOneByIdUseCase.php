@@ -17,7 +17,7 @@ final class GenericDeleteOneByIdUseCase implements UseCaseInterface
         int $id,
         GenericDataModelProviderGateway $providerGateway,
     ): void {
-        $dataModel = $providerGateway->getOneById($id);
+        $dataModel = $providerGateway->fetchOneById($id);
         if (null === $dataModel) {
             throw new NotFoundHttpException();
         }

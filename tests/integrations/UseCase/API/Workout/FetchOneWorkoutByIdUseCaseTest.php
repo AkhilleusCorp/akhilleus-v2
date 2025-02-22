@@ -8,24 +8,24 @@ use App\Domain\Registry\Workout\WorkoutVisibilityRegistry;
 use App\Infrastructure\View\ViewModel\Workout\SingleWorkoutDataViewModel;
 use App\Infrastructure\View\ViewPresenter\Workout\SingleWorkoutViewPresenter;
 use App\Tests\integrations\AbstractIntegrationTest;
-use App\UseCase\API\Workout\GetOneWorkoutByIdUseCase;
+use App\UseCase\API\Workout\FetchOneWorkoutByIdUseCase;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-final class GetOneWorkoutByIdUseCaseTest extends AbstractIntegrationTest
+final class FetchOneWorkoutByIdUseCaseTest extends AbstractIntegrationTest
 {
-    private GetOneWorkoutByIdUseCase $useCase;
+    private FetchOneWorkoutByIdUseCase $useCase;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->useCase = new GetOneWorkoutByIdUseCase(
+        $this->useCase = new FetchOneWorkoutByIdUseCase(
             $this->container->get(WorkoutDataModelProviderGateway::class),
             $this->container->get(SingleWorkoutViewPresenter::class)
         );
     }
 
-    public function testGetOneUserForAdmin(): void
+    public function testFetchOneUserForAdmin(): void
     {
         $workoutId = 1;
         $viewModel = $this->useCase->execute($workoutId, $this->getAdminTokenPayload());
@@ -38,7 +38,7 @@ final class GetOneWorkoutByIdUseCaseTest extends AbstractIntegrationTest
         $this->assertEquals(WorkoutVisibilityRegistry::WORKOUT_VISIBILITY_PRIVATE, $viewData->visibility);
     }
 
-    public function testGetOneUserForMember(): void
+    public function testFetchOneUserForMember(): void
     {
         $workoutId = 1;
         $viewModel = $this->useCase->execute($workoutId, $this->getMemberTokenPayload());
@@ -51,7 +51,7 @@ final class GetOneWorkoutByIdUseCaseTest extends AbstractIntegrationTest
         $this->assertEquals(WorkoutVisibilityRegistry::WORKOUT_VISIBILITY_PRIVATE, $viewData->visibility);
     }
 
-    public function testGetOneNonExistingUser(): void
+    public function testFetchOneNonExistingUser(): void
     {
         $this->expectException(NotFoundHttpException::class);
         $this->expectExceptionMessage('Workout #666 cannot be found');

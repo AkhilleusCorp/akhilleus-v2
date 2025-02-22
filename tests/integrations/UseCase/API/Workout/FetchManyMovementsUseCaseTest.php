@@ -3,30 +3,30 @@
 namespace App\Tests\integrations\UseCase\API\Workout;
 
 use App\Domain\DTO\FilterModel\AbstractFilterModel;
-use App\Domain\Factory\FilterModelFactory\Workout\MovementsFilterModelModelFactory;
+use App\Domain\Factory\FilterModelFactory\FilterModelFactory;
 use App\Domain\Gateway\Provider\Workout\MovementDataModelProviderGateway;
 use App\Infrastructure\View\ViewModel\PaginationViewModel;
 use App\Infrastructure\View\ViewModel\Workout\MultipleMovementItemDataViewModel;
 use App\Infrastructure\View\ViewPresenter\Workout\MultipleMovementViewPresenter;
 use App\Tests\integrations\AbstractIntegrationTest;
-use App\UseCase\API\Workout\GetManyMovementUseCase;
+use App\UseCase\API\Workout\FetchManyMovementsUseCase;
 
-final class GetManyMovementUseCaseTest extends AbstractIntegrationTest
+final class FetchManyMovementsUseCaseTest extends AbstractIntegrationTest
 {
-    private GetManyMovementUseCase $useCase;
+    private FetchManyMovementsUseCase $useCase;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->useCase = new GetManyMovementUseCase(
+        $this->useCase = new FetchManyMovementsUseCase(
             $this->container->get(MovementDataModelProviderGateway::class),
-            $this->container->get(MovementsFilterModelModelFactory::class),
+            $this->container->get(FilterModelFactory::class),
             $this->container->get(MultipleMovementViewPresenter::class),
         );
     }
 
-    public function testGetManyMovementWithNoFiltersForAdmin(): void
+    public function testFetchManyMovementWithNoFiltersForAdmin(): void
     {
         $view = $this->useCase->execute([], $this->getAdminTokenPayload());
 
@@ -41,7 +41,7 @@ final class GetManyMovementUseCaseTest extends AbstractIntegrationTest
         $this->assertEquals(AbstractFilterModel::DEFAULT_PAGE, $pagination->lastPage);
     }
 
-    public function testGetManyMovementWithNoFiltersForMember(): void
+    public function testFetchManyMovementWithNoFiltersForMember(): void
     {
         $view = $this->useCase->execute([], $this->getMemberTokenPayload());
 

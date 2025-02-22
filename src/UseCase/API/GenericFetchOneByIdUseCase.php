@@ -9,7 +9,7 @@ use App\Infrastructure\View\ViewPresenter\GenericViewPresenter;
 use App\UseCase\UseCaseInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-final class GenericGetOneByIdUseCase implements UseCaseInterface
+final class GenericFetchOneByIdUseCase implements UseCaseInterface
 {
     public function __construct(
         private readonly GenericViewPresenter $presenter,
@@ -21,7 +21,7 @@ final class GenericGetOneByIdUseCase implements UseCaseInterface
         GenericDataModelProviderGateway $providerGateway,
         SingleObjectDataViewModelInterface $view,
     ): SingleObjectViewModel {
-        $dataModel = $providerGateway->getOneById($id);
+        $dataModel = $providerGateway->fetchOneById($id);
         if (null === $dataModel) {
             throw new NotFoundHttpException();
         }

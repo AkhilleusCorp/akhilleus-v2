@@ -4,6 +4,8 @@ namespace App\Domain\DTO\FilterModel\Workout;
 
 use App\Domain\DTO\FilterModel\AbstractFilterModel;
 use App\Domain\DTO\FilterModel\FilterModelInterface;
+use App\Domain\Registry\Workout\MovementStatusRegistry;
+use App\Infrastructure\ApiDoc;
 
 final class GetManyMovementsFilterModel extends AbstractFilterModel implements FilterModelInterface
 {
@@ -19,5 +21,6 @@ final class GetManyMovementsFilterModel extends AbstractFilterModel implements F
     public ?string $equipmentId = null;
 
     /** @var string[] */
+    #[ApiDoc\Parameter(enum: MovementStatusRegistry::MOVEMENT_STATUSES)]
     public array $status = [];
 }

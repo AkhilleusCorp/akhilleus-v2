@@ -11,7 +11,7 @@ function useGetExerciseGroupByWorkoutId(workoutId: QueryId|null): ExerciseGroupD
     const [groups, setGroups] = useState<ExerciseGroupDTO[]>([]);
     useEffect(() => {
         const fetchGroups = async () => {
-            const groups = await ExerciseGroupApiGateway.getManyExerciseGroups(workoutId);
+            const groups = await ExerciseGroupApiGateway.fetchManyExerciseGroups(workoutId);
             setGroups(groups);
         }
 
