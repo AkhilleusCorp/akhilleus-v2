@@ -35,7 +35,7 @@ final class MovementController extends AbstractAPIController
     )]
     public function fetchMany(Request $request, FetchManyMovementsUseCase $useCase): MultipleObjectViewModel
     {
-        return $useCase->execute($this->getRequestParams($request), $this->getTokenPayload($request));
+        return $useCase->execute($this->getRequestBody($request), $this->getTokenPayload($request));
     }
 
     /**

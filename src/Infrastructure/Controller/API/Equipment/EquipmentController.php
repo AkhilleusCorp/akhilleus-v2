@@ -39,7 +39,7 @@ final class EquipmentController extends AbstractAPIController
         GenericFetchManyUseCase $useCase,
         EquipmentDataModelProviderGateway $providerGateway,
     ): MultipleObjectViewModel {
-        return $useCase->execute($this->getRequestParams($request), new GetManyEquipmentsFilterModel(), $providerGateway);
+        return $useCase->execute($this->getRequestBody($request), new GetManyEquipmentsFilterModel(), $providerGateway);
     }
 
     /**

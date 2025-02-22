@@ -33,7 +33,7 @@ final class UserController extends AbstractAPIController
     )]
     public function fetchMany(Request $request, FetchManyUsersUseCase $useCase): MultipleObjectViewModel
     {
-        return $useCase->execute($this->getRequestParams($request), $this->getTokenPayload($request));
+        return $useCase->execute($this->getRequestBody($request), $this->getTokenPayload($request));
     }
 
     #[Route('/users/{id}', name: 'user_get_one_by_id', requirements: ['id' => '\d+'], methods: ['GET'])]
