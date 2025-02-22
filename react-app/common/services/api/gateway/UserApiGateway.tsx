@@ -6,11 +6,11 @@ import QueryId from "app/common/utils/types/QueryId.tsx";
 import APIResponseDTO from "app/common/services/api/dtos/APIResponseDTO.tsx";
 
 class UserApiGateway extends AbstractApiGateway {
-    static async getOneUser (userId: QueryId): Promise<UserDTO|null> {
+    static async fetchOneUser (userId: QueryId): Promise<UserDTO|null> {
         return this.fetchOne(apiRoutes.user.details(userId));
     }
 
-    static async getManyUsers (filters: AdminUsersListFilters): Promise<APIResponseDTO> {
+    static async fetchManyUsers (filters: AdminUsersListFilters): Promise<APIResponseDTO> {
         return this.fetchMany(apiRoutes.user.list, filters);
     }
 

@@ -7,11 +7,11 @@ import APIResponseDTO from "app/common/services/api/dtos/APIResponseDTO.tsx";
 import MemberWorkoutsListFilters from "app/member/services/api/filters/MemberWorkoutsListFilters.tsx";
 
 class WorkoutApiGateway extends AbstractApiGateway {
-    static async getOneWorkout (workoutId: QueryId): Promise<WorkoutDTO|null> {
+    static async fetchOneWorkout (workoutId: QueryId): Promise<WorkoutDTO|null> {
         return this.fetchOne(apiRoutes.workout.details(workoutId));
     }
 
-    static async getManyWorkouts (filters: AdminWorkoutsListFilters|MemberWorkoutsListFilters): Promise<APIResponseDTO> {
+    static async fetchManyWorkouts (filters: AdminWorkoutsListFilters|MemberWorkoutsListFilters): Promise<APIResponseDTO> {
         return this.fetchMany(apiRoutes.workout.list, filters);
     }
 
