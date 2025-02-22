@@ -11,6 +11,10 @@ final class SingleExerciseGroupViewPresenter extends AbstractSingleObjectViewPre
 {
     use PresentExerciseGroupTrait;
 
+    public function __construct(private readonly EmbeddedExerciseViewPresenter $embeddedExercisePresenter)
+    {
+    }
+
     /**
      * @param ExerciseGroupDataModel $data
      */
