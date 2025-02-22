@@ -9,7 +9,7 @@ use App\Infrastructure\View\ViewPresenter\Workout\SingleWorkoutViewPresenter;
 use App\UseCase\UseCaseInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-final class GetOneWorkoutByIdUseCase implements UseCaseInterface
+final class FetchOneWorkoutByIdUseCase implements UseCaseInterface
 {
     public function __construct(
         private readonly WorkoutDataModelProviderGateway $provider,

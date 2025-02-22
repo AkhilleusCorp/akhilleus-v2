@@ -8,18 +8,18 @@ use App\Domain\Registry\User\UserTypeRegistry;
 use App\Infrastructure\View\ViewModel\User\SingleUserDataViewModel;
 use App\Infrastructure\View\ViewPresenter\User\SingleUserViewPresenter;
 use App\Tests\integrations\AbstractIntegrationTest;
-use App\UseCase\API\User\GetOneUserByIdUseCase;
+use App\UseCase\API\User\FetchOneUserByIdUseCase;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-final class GetOneUserByIdUseCaseTest extends AbstractIntegrationTest
+final class FetchOneUserByIdUseCaseTest extends AbstractIntegrationTest
 {
-    private GetOneUserByIdUseCase $useCase;
+    private FetchOneUserByIdUseCase $useCase;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->useCase = new GetOneUserByIdUseCase(
+        $this->useCase = new FetchOneUserByIdUseCase(
             $this->container->get(UserDataModelProviderGateway::class),
             $this->container->get(SingleUserViewPresenter::class)
         );

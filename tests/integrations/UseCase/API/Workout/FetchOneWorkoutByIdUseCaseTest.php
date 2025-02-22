@@ -8,18 +8,18 @@ use App\Domain\Registry\Workout\WorkoutVisibilityRegistry;
 use App\Infrastructure\View\ViewModel\Workout\SingleWorkoutDataViewModel;
 use App\Infrastructure\View\ViewPresenter\Workout\SingleWorkoutViewPresenter;
 use App\Tests\integrations\AbstractIntegrationTest;
-use App\UseCase\API\Workout\GetOneWorkoutByIdUseCase;
+use App\UseCase\API\Workout\FetchOneWorkoutByIdUseCase;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-final class GetOneWorkoutByIdUseCaseTest extends AbstractIntegrationTest
+final class FetchOneWorkoutByIdUseCaseTest extends AbstractIntegrationTest
 {
-    private GetOneWorkoutByIdUseCase $useCase;
+    private FetchOneWorkoutByIdUseCase $useCase;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->useCase = new GetOneWorkoutByIdUseCase(
+        $this->useCase = new FetchOneWorkoutByIdUseCase(
             $this->container->get(WorkoutDataModelProviderGateway::class),
             $this->container->get(SingleWorkoutViewPresenter::class)
         );

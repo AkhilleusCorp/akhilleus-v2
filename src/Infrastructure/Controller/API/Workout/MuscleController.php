@@ -15,9 +15,9 @@ use App\Infrastructure\View\ViewModel\Workout\MultipleMuscleItemDataViewModel;
 use App\Infrastructure\View\ViewModel\Workout\SingleMuscleDataViewModel;
 use App\UseCase\API\GenericCreateOneUseCase;
 use App\UseCase\API\GenericDeleteOneByIdUseCase;
+use App\UseCase\API\GenericFetchManyUseCase;
+use App\UseCase\API\GenericFetchOneByIdUseCase;
 use App\UseCase\API\GenericGetDropdownableUseCase;
-use App\UseCase\API\GenericGetManyUseCase;
-use App\UseCase\API\GenericGetOneByIdUseCase;
 use App\UseCase\API\GenericUpdateOneByIdUseCase;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -34,12 +34,12 @@ final class MuscleController extends AbstractAPIController
         description: 'Successfully returns a list of Muscles',
         dataClass: MultipleMuscleItemDataViewModel::class,
     )]
-    public function getMany(
+    public function fetchMany(
         Request $request,
-        GenericGetManyUseCase $useCase,
+        GenericFetchManyUseCase $useCase,
         MuscleDataModelProviderGateway $providerGateway,
     ): MultipleObjectViewModel {
-        return $useCase->execute($this->getRequestBody($request), new GetManyMusclesFilterModel(), $providerGateway);
+        return $useCase->execute($this->getRequestParams($request), new GetManyMusclesFilterModel(), $providerGateway);
     }
 
     /**
@@ -62,9 +62,9 @@ final class MuscleController extends AbstractAPIController
     #[ApiDoc\NotFoundResponse(
         description: 'No Muscle found for the given id',
     )]
-    public function getOneById(
+    public function fetchOneById(
         int $id,
-        GenericGetOneByIdUseCase $useCase,
+        GenericFetchOneByIdUseCase $useCase,
         MuscleDataModelProviderGateway $providerGateway,
     ): SingleObjectViewModel {
         return $useCase->execute($id, $providerGateway, new SingleMuscleDataViewModel());

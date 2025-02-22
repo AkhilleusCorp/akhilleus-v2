@@ -9,7 +9,7 @@ use App\Infrastructure\View\ViewPresenter\Workout\SingleMovementViewPresenter;
 use App\UseCase\UseCaseInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-final class GetOneMovementByIdUseCase implements UseCaseInterface
+final class FetchOneMovementByIdUseCase implements UseCaseInterface
 {
     public function __construct(
         private readonly MovementDataModelProviderGateway $provider,

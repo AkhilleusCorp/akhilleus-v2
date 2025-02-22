@@ -10,17 +10,17 @@ use App\Infrastructure\View\ViewModel\PaginationViewModel;
 use App\Infrastructure\View\ViewModel\Workout\MultipleWorkoutItemDataViewModel;
 use App\Infrastructure\View\ViewPresenter\Workout\MultipleWorkoutViewPresenter;
 use App\Tests\integrations\AbstractIntegrationTest;
-use App\UseCase\API\Workout\GetManyWorkoutsUseCase;
+use App\UseCase\API\Workout\FetchManyWorkoutsUseCase;
 
-final class GetManyWorkoutsUseCaseTest extends AbstractIntegrationTest
+final class FetchManyWorkoutsUseCaseTest extends AbstractIntegrationTest
 {
-    private GetManyWorkoutsUseCase $useCase;
+    private FetchManyWorkoutsUseCase $useCase;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->useCase = new GetManyWorkoutsUseCase(
+        $this->useCase = new FetchManyWorkoutsUseCase(
             $this->container->get(WorkoutDataModelProviderGateway::class),
             $this->container->get(WorkoutsFilterModelModelFactory::class),
             $this->container->get(MultipleWorkoutViewPresenter::class),

@@ -8,7 +8,7 @@ use Doctrine\ORM\QueryBuilder;
 
 interface GenericDataModelProviderGateway extends DropdownableDataModelProviderGateway
 {
-    public function getOneById(int $id): ?DataModelInterface;
+    public function fetchOneById(int $id): ?DataModelInterface;
 
     public function getByFilterModel(FilterModelInterface $filter): QueryBuilder;
 

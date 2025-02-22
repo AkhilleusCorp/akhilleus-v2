@@ -11,5 +11,5 @@ interface ExerciseGroupDataModelProviderGateway
     /**
      * @return ExerciseGroupDataModel[]
      */
-    public function getManyAllGroupsByWorkout(int $workoutId): array;
+    public function fetchManyAllGroupsByWorkout(int $workoutId): array;
 }

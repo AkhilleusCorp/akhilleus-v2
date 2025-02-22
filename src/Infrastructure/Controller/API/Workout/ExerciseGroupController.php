@@ -10,7 +10,7 @@ use App\Infrastructure\View\ViewModel\SingleObjectViewModel;
 use App\Infrastructure\View\ViewModel\Workout\ExerciseGroupDataViewModel;
 use App\UseCase\API\Workout\CreateOneExerciseGroupUseCase;
 use App\UseCase\API\Workout\DeleteOneExerciseGroupByIdUseCase;
-use App\UseCase\API\Workout\GetManyExerciseGroupsUseCase;
+use App\UseCase\API\Workout\FetchManyExerciseGroupsUseCase;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,7 +25,7 @@ final class ExerciseGroupController extends AbstractAPIController
         description: 'Successfully returns a list of ExerciseGroups',
         dataClass: ExerciseGroupDataViewModel::class,
     )]
-    public function getMany(Request $request, int $workoutId, GetManyExerciseGroupsUseCase $useCase): MultipleObjectViewModel
+    public function fetchMany(Request $request, int $workoutId, FetchManyExerciseGroupsUseCase $useCase): MultipleObjectViewModel
     {
         return $useCase->execute($workoutId, $this->getTokenPayload($request));
     }

@@ -13,8 +13,8 @@ use App\Infrastructure\View\ViewModel\User\MultipleUserItemDataViewModel;
 use App\Infrastructure\View\ViewModel\User\SingleUserDataViewModel;
 use App\UseCase\API\User\CreateOneUserUseCase;
 use App\UseCase\API\User\DeleteOneUserByIdUseCase;
-use App\UseCase\API\User\GetManyUsersUseCase;
-use App\UseCase\API\User\GetOneUserByIdUseCase;
+use App\UseCase\API\User\FetchManyUsersUseCase;
+use App\UseCase\API\User\FetchOneUserByIdUseCase;
 use App\UseCase\API\User\UpdateOneUserByIdUseCase;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,9 +31,9 @@ final class UserController extends AbstractAPIController
         description: 'Successfully returns a list of Users',
         dataClass: MultipleUserItemDataViewModel::class,
     )]
-    public function getMany(Request $request, GetManyUsersUseCase $useCase): MultipleObjectViewModel
+    public function fetchMany(Request $request, FetchManyUsersUseCase $useCase): MultipleObjectViewModel
     {
-        return $useCase->execute($this->getRequestBody($request), $this->getTokenPayload($request));
+        return $useCase->execute($this->getRequestParams($request), $this->getTokenPayload($request));
     }
 
     #[Route('/users/{id}', name: 'user_get_one_by_id', requirements: ['id' => '\d+'], methods: ['GET'])]
@@ -45,7 +45,7 @@ final class UserController extends AbstractAPIController
     #[ApiDoc\NotFoundResponse(
         description: 'No User found for the given id',
     )]
-    public function getOneById(Request $request, int $id, GetOneUserByIdUseCase $useCase): SingleObjectViewModel
+    public function fetchOneById(Request $request, int $id, FetchOneUserByIdUseCase $useCase): SingleObjectViewModel
     {
         return $useCase->execute($id, $this->getTokenPayload($request));
     }

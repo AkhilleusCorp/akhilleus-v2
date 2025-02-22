@@ -65,7 +65,7 @@ final class MovementDataModelFactory extends AbstractDataModelFactory
         CreateMovementSourceModel|UpdateMovementSourceModel $sourceModel,
     ): MovementDataModel {
         /** @var ?MuscleDataModel $primaryMuscle */
-        $primaryMuscle = $this->muscleProvider->getOneById($sourceModel->primaryMuscle);
+        $primaryMuscle = $this->muscleProvider->fetchOneById($sourceModel->primaryMuscle);
         if (null === $primaryMuscle) {
             throw new \LogicException('Cannot create a movement on a non existing muscle.');
         }

@@ -10,7 +10,7 @@ use App\Infrastructure\View\ViewPresenter\Workout\MultipleExerciseGroupViewPrese
 use App\UseCase\UseCaseInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-final class GetManyExerciseGroupsUseCase implements UseCaseInterface
+final class FetchManyExerciseGroupsUseCase implements UseCaseInterface
 {
     public function __construct(
         private readonly WorkoutDataModelProviderGateway $workoutProvider,
@@ -26,7 +26,7 @@ final class GetManyExerciseGroupsUseCase implements UseCaseInterface
             throw new NotFoundHttpException("Workout #$workoutId cannot be found");
         }
 
-        $groups = $this->groupProvider->getManyAllGroupsByWorkout($workoutId);
+        $groups = $this->groupProvider->fetchManyAllGroupsByWorkout($workoutId);
         if (true === empty($groups)) {
             return new MultipleObjectViewModel();
         }

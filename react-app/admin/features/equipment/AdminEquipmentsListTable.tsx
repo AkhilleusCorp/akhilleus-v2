@@ -23,6 +23,7 @@ const EquipmentsListTable: React.FC<EquipmentListTableType> = ({ filters, refres
     const [refresh, setRefresh] = useState<number>(refreshKey);
 
     useEffect(() => {
+        console.log("Equipment list");
         dispatch(fetchEquipments(filters));
     }, [dispatch, refresh]);
 

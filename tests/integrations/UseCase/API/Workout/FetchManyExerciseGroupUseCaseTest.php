@@ -6,18 +6,18 @@ use App\Domain\Gateway\Provider\Workout\ExerciseGroupDataModelProviderGateway;
 use App\Domain\Gateway\Provider\Workout\WorkoutDataModelProviderGateway;
 use App\Infrastructure\View\ViewPresenter\Workout\MultipleExerciseGroupViewPresenter;
 use App\Tests\integrations\AbstractIntegrationTest;
-use App\UseCase\API\Workout\GetManyExerciseGroupsUseCase;
+use App\UseCase\API\Workout\FetchManyExerciseGroupsUseCase;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-final class GetManyExerciseGroupUseCaseTest extends AbstractIntegrationTest
+final class FetchManyExerciseGroupUseCaseTest extends AbstractIntegrationTest
 {
-    private GetManyExerciseGroupsUseCase $useCase;
+    private FetchManyExerciseGroupsUseCase $useCase;
 
     public function setUp(): void
     {
         parent::setUp();
 
-        $this->useCase = new GetManyExerciseGroupsUseCase(
+        $this->useCase = new FetchManyExerciseGroupsUseCase(
             $this->container->get(WorkoutDataModelProviderGateway::class),
             $this->container->get(ExerciseGroupDataModelProviderGateway::class),
             $this->container->get(MultipleExerciseGroupViewPresenter::class),

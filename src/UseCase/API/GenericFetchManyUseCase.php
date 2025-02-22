@@ -12,7 +12,7 @@ use App\Infrastructure\View\ViewModel\PaginationViewModel;
 use App\Infrastructure\View\ViewPresenter\GenericViewPresenter;
 use App\UseCase\UseCaseInterface;
 
-final class GenericGetManyUseCase implements UseCaseInterface
+final class GenericFetchManyUseCase implements UseCaseInterface
 {
     public function __construct(
         private readonly FilterModelFactory $filterFactory,

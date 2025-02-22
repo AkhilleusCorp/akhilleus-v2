@@ -28,9 +28,9 @@ final class EquipmentControllerTest extends AbstractGenericControllerTest
 
     public function testGetManyWithoutFilters(): void
     {
-        $view = $this->controller->getMany(
+        $view = $this->controller->fetchMany(
             new Request(),
-            $this->getManyUseCase,
+            $this->fetchManyUseCase,
             $this->provider
         );
 
@@ -50,9 +50,9 @@ final class EquipmentControllerTest extends AbstractGenericControllerTest
 
     public function testGetOneByExistingId(): void
     {
-        $view = $this->controller->getOneById(
+        $view = $this->controller->fetchOneById(
             1,
-            $this->getOneByIdUseCase,
+            $this->fetchOneByIdUseCase,
             $this->provider
         );
 
@@ -65,9 +65,9 @@ final class EquipmentControllerTest extends AbstractGenericControllerTest
     {
         $this->expectException(NotFoundHttpException::class);
 
-        $this->controller->getOneById(
+        $this->controller->fetchOneById(
             666,
-            $this->getOneByIdUseCase,
+            $this->fetchOneByIdUseCase,
             $this->provider
         );
     }

@@ -15,9 +15,9 @@ use App\Infrastructure\View\ViewModel\MultipleObjectViewModel;
 use App\Infrastructure\View\ViewModel\SingleObjectViewModel;
 use App\UseCase\API\GenericCreateOneUseCase;
 use App\UseCase\API\GenericDeleteOneByIdUseCase;
+use App\UseCase\API\GenericFetchManyUseCase;
+use App\UseCase\API\GenericFetchOneByIdUseCase;
 use App\UseCase\API\GenericGetDropdownableUseCase;
-use App\UseCase\API\GenericGetManyUseCase;
-use App\UseCase\API\GenericGetOneByIdUseCase;
 use App\UseCase\API\GenericUpdateOneByIdUseCase;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -34,12 +34,12 @@ final class EquipmentController extends AbstractAPIController
         description: 'Successfully returns a list of Equipments',
         dataClass: MultipleEquipmentItemDataViewModel::class,
     )]
-    public function getMany(
+    public function fetchMany(
         Request $request,
-        GenericGetManyUseCase $useCase,
+        GenericFetchManyUseCase $useCase,
         EquipmentDataModelProviderGateway $providerGateway,
     ): MultipleObjectViewModel {
-        return $useCase->execute($this->getRequestBody($request), new GetManyEquipmentsFilterModel(), $providerGateway);
+        return $useCase->execute($this->getRequestParams($request), new GetManyEquipmentsFilterModel(), $providerGateway);
     }
 
     /**
@@ -62,9 +62,9 @@ final class EquipmentController extends AbstractAPIController
     #[ApiDoc\NotFoundResponse(
         description: 'No Equipment found for the given id',
     )]
-    public function getOneById(
+    public function fetchOneById(
         int $id,
-        GenericGetOneByIdUseCase $useCase,
+        GenericFetchOneByIdUseCase $useCase,
         EquipmentDataModelProviderGateway $providerGateway,
     ): SingleObjectViewModel {
         return $useCase->execute($id, $providerGateway, new SingleEquipmentDataViewModel());

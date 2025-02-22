@@ -12,7 +12,7 @@ use App\Infrastructure\View\ViewModel\PaginationViewModel;
 use App\Infrastructure\View\ViewPresenter\Workout\MultipleMovementViewPresenter;
 use App\UseCase\UseCaseInterface;
 
-final class GetManyMovementsUseCase implements UseCaseInterface
+final class FetchManyMovementsUseCase implements UseCaseInterface
 {
     public function __construct(
         private readonly MovementDataModelProviderGateway $provider,

@@ -15,8 +15,8 @@ use App\Infrastructure\View\ViewModel\Workout\SingleMovementDataViewModel;
 use App\UseCase\API\GenericGetDropdownableUseCase;
 use App\UseCase\API\Workout\CreateOneMovementUseCase;
 use App\UseCase\API\Workout\DeleteOneMovementByIdUseCase;
-use App\UseCase\API\Workout\GetManyMovementsUseCase;
-use App\UseCase\API\Workout\GetOneMovementByIdUseCase;
+use App\UseCase\API\Workout\FetchManyMovementsUseCase;
+use App\UseCase\API\Workout\FetchOneMovementByIdUseCase;
 use App\UseCase\API\Workout\UpdateOneMovementByIdUseCase;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,9 +33,9 @@ final class MovementController extends AbstractAPIController
         description: 'Successfully returns a list of Movements',
         dataClass: MultipleMovementItemDataViewModel::class,
     )]
-    public function getMany(Request $request, GetManyMovementsUseCase $useCase): MultipleObjectViewModel
+    public function fetchMany(Request $request, FetchManyMovementsUseCase $useCase): MultipleObjectViewModel
     {
-        return $useCase->execute($this->getRequestBody($request), $this->getTokenPayload($request));
+        return $useCase->execute($this->getRequestParams($request), $this->getTokenPayload($request));
     }
 
     /**
@@ -58,7 +58,7 @@ final class MovementController extends AbstractAPIController
     #[ApiDoc\NotFoundResponse(
         description: 'No Movement found for the given id',
     )]
-    public function getOneById(Request $request, int $id, GetOneMovementByIdUseCase $useCase): SingleObjectViewModel
+    public function fetchOneById(Request $request, int $id, FetchOneMovementByIdUseCase $useCase): SingleObjectViewModel
     {
         return $useCase->execute($id, $this->getTokenPayload($request));
     }

@@ -9,17 +9,17 @@ use App\Infrastructure\View\ViewModel\PaginationViewModel;
 use App\Infrastructure\View\ViewModel\Workout\MultipleMovementItemDataViewModel;
 use App\Infrastructure\View\ViewPresenter\Workout\MultipleMovementViewPresenter;
 use App\Tests\integrations\AbstractIntegrationTest;
-use App\UseCase\API\Workout\GetManyMovementsUseCase;
+use App\UseCase\API\Workout\FetchManyMovementsUseCase;
 
-final class GetManyMovementsUseCaseTest extends AbstractIntegrationTest
+final class FetchManyMovementsUseCaseTest extends AbstractIntegrationTest
 {
-    private GetManyMovementsUseCase $useCase;
+    private FetchManyMovementsUseCase $useCase;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->useCase = new GetManyMovementsUseCase(
+        $this->useCase = new FetchManyMovementsUseCase(
             $this->container->get(MovementDataModelProviderGateway::class),
             $this->container->get(FilterModelFactory::class),
             $this->container->get(MultipleMovementViewPresenter::class),

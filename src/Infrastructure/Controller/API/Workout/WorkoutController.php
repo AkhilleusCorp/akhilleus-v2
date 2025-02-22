@@ -13,8 +13,8 @@ use App\Infrastructure\View\ViewModel\Workout\MultipleWorkoutItemDataViewModel;
 use App\Infrastructure\View\ViewModel\Workout\SingleWorkoutDataViewModel;
 use App\UseCase\API\Workout\CreateOneWorkoutUseCase;
 use App\UseCase\API\Workout\DeleteOneWorkoutByIdUseCase;
-use App\UseCase\API\Workout\GetManyWorkoutsUseCase;
-use App\UseCase\API\Workout\GetOneWorkoutByIdUseCase;
+use App\UseCase\API\Workout\FetchManyWorkoutsUseCase;
+use App\UseCase\API\Workout\FetchOneWorkoutByIdUseCase;
 use App\UseCase\API\Workout\UpdateOneWorkoutByIdUseCase;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,9 +31,9 @@ final class WorkoutController extends AbstractAPIController
         description: 'Successfully returns a list of Workouts',
         dataClass: MultipleWorkoutItemDataViewModel::class,
     )]
-    public function getMany(Request $request, GetManyWorkoutsUseCase $useCase): MultipleObjectViewModel
+    public function fetchMany(Request $request, FetchManyWorkoutsUseCase $useCase): MultipleObjectViewModel
     {
-        return $useCase->execute($this->getRequestBody($request), $this->getTokenPayload($request));
+        return $useCase->execute($this->getRequestParams($request), $this->getTokenPayload($request));
     }
 
     #[Route('/workouts/{id}', name: 'workout_get_one_by_id', requirements: ['id' => '\d+'], methods: ['GET'])]
@@ -45,7 +45,7 @@ final class WorkoutController extends AbstractAPIController
     #[ApiDoc\NotFoundResponse(
         description: 'No Workout found for the given id',
     )]
-    public function getOneById(Request $request, int $id, GetOneWorkoutByIdUseCase $useCase): SingleObjectViewModel
+    public function fetchOneById(Request $request, int $id, FetchOneWorkoutByIdUseCase $useCase): SingleObjectViewModel
     {
         return $useCase->execute($id, $this->getTokenPayload($request));
     }

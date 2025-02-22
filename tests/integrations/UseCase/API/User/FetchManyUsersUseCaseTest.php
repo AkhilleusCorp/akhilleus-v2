@@ -11,17 +11,17 @@ use App\Infrastructure\View\ViewModel\PaginationViewModel;
 use App\Infrastructure\View\ViewModel\User\MultipleUserItemDataViewModel;
 use App\Infrastructure\View\ViewPresenter\User\MultipleUserViewPresenter;
 use App\Tests\integrations\AbstractIntegrationTest;
-use App\UseCase\API\User\GetManyUsersUseCase;
+use App\UseCase\API\User\FetchManyUsersUseCase;
 
-final class GetManyUsersUseCaseTest extends AbstractIntegrationTest
+final class FetchManyUsersUseCaseTest extends AbstractIntegrationTest
 {
-    private GetManyUsersUseCase $useCase;
+    private FetchManyUsersUseCase $useCase;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->useCase = new GetManyUsersUseCase(
+        $this->useCase = new FetchManyUsersUseCase(
             $this->container->get(UserDataModelProviderGateway::class),
             $this->container->get(FilterModelFactory::class),
             $this->container->get(MultipleUserViewPresenter::class)
