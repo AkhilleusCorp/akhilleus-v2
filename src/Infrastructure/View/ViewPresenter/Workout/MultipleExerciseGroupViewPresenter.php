@@ -11,6 +11,10 @@ final class MultipleExerciseGroupViewPresenter extends AbstractMultipleObjectVie
 {
     use PresentExerciseGroupTrait;
 
+    public function __construct(private readonly EmbeddedExerciseViewPresenter $embeddedExercisePresenter)
+    {
+    }
+
     /**
      * @param ExerciseGroupDataModel $data
      */
