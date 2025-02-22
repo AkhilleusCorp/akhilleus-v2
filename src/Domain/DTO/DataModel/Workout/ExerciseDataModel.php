@@ -22,17 +22,17 @@ class ExerciseDataModel implements DataModelInterface
     #[ORM\Column(type: Types::INTEGER, nullable: true)]
     public ?int $targetReps = null;
 
-    #[ORM\Column(type: Types::INTEGER, nullable: true)]
-    public ?int $targetWeight = null;
+    #[ORM\Column(type: Types::FLOAT, nullable: true)]
+    public ?float $targetWeight = null; // in Kg
 
     #[ORM\Column(type: Types::INTEGER, nullable: true)]
-    public ?int $targetDuration = null;
+    public ?int $targetDuration = null; // in seconds
 
     #[ORM\Column(type: Types::INTEGER, nullable: true)]
-    public ?int $targetDistance = null;
+    public ?float $targetDistance = null; // in Km
 
-    #[ORM\Column(type: Types::INTEGER, nullable: true)]
-    public ?int $targetSpeed = null;
+    #[ORM\Column(type: Types::FLOAT, nullable: true)]
+    public ?float $targetSpeed = null; // in Km/h ?
 
     #[ORM\Column(type: Types::INTEGER, nullable: true)]
     public ?int $reps = null;
