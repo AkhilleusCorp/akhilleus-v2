@@ -27,8 +27,8 @@ use Symfony\Component\Routing\Attribute\Route;
 #[ApiDoc\DocSection('EQUIPMENTS')]
 final class EquipmentController extends AbstractAPIController
 {
-    #[Route('/equipments', name: 'equipment_get_many', methods: ['GET'])]
-    #[ApiDoc\GetParameters(dataClass: GetManyEquipmentsFilterModel::class)]
+    #[Route('/equipments/fetch', name: 'equipment_get_many', methods: ['GET'])]
+    #[ApiDoc\RequestBodyParameters(dataClass: GetManyEquipmentsFilterModel::class)]
     #[ApiDoc\MultipleObjectResponse(
         response: 200,
         description: 'Successfully returns a list of Equipments',
@@ -53,7 +53,7 @@ final class EquipmentController extends AbstractAPIController
         return $useCase->execute('name', $providerGateway);
     }
 
-    #[Route('/equipments/{id}', name: 'equipment_get_one_by_id', requirements: ['id' => '\d+'], methods: ['GET'])]
+    #[Route('/equipments/{id}/fetch', name: 'equipment_get_one_by_id', requirements: ['id' => '\d+'], methods: ['GET'])]
     #[ApiDoc\SingleObjectResponse(
         response: 200,
         description: 'Successfully returns the details of an Equipment',
@@ -70,8 +70,8 @@ final class EquipmentController extends AbstractAPIController
         return $useCase->execute($id, $providerGateway, new SingleEquipmentDataViewModel());
     }
 
-    #[Route('/equipments', name: 'equipments_create_one', methods: ['POST'])]
-    #[ApiDoc\PostParameters(dataClass: CreateEquipmentSourceModel::class)]
+    #[Route('/equipments/create', name: 'equipments_create_one', methods: ['POST'])]
+    #[ApiDoc\RequestBodyParameters(dataClass: CreateEquipmentSourceModel::class)]
     #[ApiDoc\SingleObjectResponse(
         response: 200,
         description: 'Successfully create an Equipment',
@@ -90,8 +90,8 @@ final class EquipmentController extends AbstractAPIController
         );
     }
 
-    #[Route('/equipments/{id}', name: 'equipment_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
-    #[ApiDoc\PostParameters(dataClass: UpdateEquipmentSourceModel::class)]
+    #[Route('/equipments/{id}/update', name: 'equipment_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
+    #[ApiDoc\RequestBodyParameters(dataClass: UpdateEquipmentSourceModel::class)]
     #[ApiDoc\SingleObjectResponse(
         response: 200,
         description: 'Successfully edit the details of an Equipment',
@@ -117,7 +117,7 @@ final class EquipmentController extends AbstractAPIController
         );
     }
 
-    #[Route('/equipments/{id}', name: 'equipment_delete_by_id', requirements: ['id' => '\d+'], methods: ['DELETE'])]
+    #[Route('/equipments/{id}/delete', name: 'equipment_delete_by_id', requirements: ['id' => '\d+'], methods: ['DELETE'])]
     #[ApiDoc\NotFoundResponse(
         description: 'No Equipment found for the given id',
     )]

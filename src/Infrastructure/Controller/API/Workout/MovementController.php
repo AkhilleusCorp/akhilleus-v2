@@ -26,8 +26,8 @@ use Symfony\Component\Routing\Attribute\Route;
 #[ApiDoc\DocSection('MOVEMENTS')]
 final class MovementController extends AbstractAPIController
 {
-    #[Route('/movements', name: 'movement_get_many', methods: ['GET'])]
-    #[ApiDoc\GetParameters(dataClass: GetManyMovementsFilterModel::class)]
+    #[Route('/movements/fetch', name: 'movement_get_many', methods: ['GET'])]
+    #[ApiDoc\RequestBodyParameters(dataClass: GetManyMovementsFilterModel::class)]
     #[ApiDoc\MultipleObjectResponse(
         response: 200,
         description: 'Successfully returns a list of Movements',
@@ -49,7 +49,7 @@ final class MovementController extends AbstractAPIController
         return $useCase->execute('name', $providerGateway);
     }
 
-    #[Route('/movements/{id}', name: 'movement_get_one_by_id', requirements: ['id' => '\d+'], methods: ['GET'])]
+    #[Route('/movements/{id}/fetch', name: 'movement_get_one_by_id', requirements: ['id' => '\d+'], methods: ['GET'])]
     #[ApiDoc\SingleObjectResponse(
         response: 200,
         description: 'Successfully returns the details of a Movement',
@@ -63,8 +63,8 @@ final class MovementController extends AbstractAPIController
         return $useCase->execute($id, $this->getTokenPayload($request));
     }
 
-    #[Route('/movements', name: 'movement_create_one', methods: ['POST'])]
-    #[ApiDoc\PostParameters(dataClass: CreateMovementSourceModel::class)]
+    #[Route('/movements/create', name: 'movement_create_one', methods: ['POST'])]
+    #[ApiDoc\RequestBodyParameters(dataClass: CreateMovementSourceModel::class)]
     #[ApiDoc\SingleObjectResponse(
         response: 200,
         description: 'Successfully create a Movement',
@@ -75,8 +75,8 @@ final class MovementController extends AbstractAPIController
         return $useCase->execute($this->getRequestBody($request), $this->getTokenPayload($request));
     }
 
-    #[Route('/movements/{id}', name: 'movement_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
-    #[ApiDoc\PostParameters(dataClass: UpdateMovementSourceModel::class)]
+    #[Route('/movements/{id}/update', name: 'movement_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
+    #[ApiDoc\RequestBodyParameters(dataClass: UpdateMovementSourceModel::class)]
     #[ApiDoc\SingleObjectResponse(
         response: 200,
         description: 'Successfully edit the details of a Movement',
@@ -90,7 +90,7 @@ final class MovementController extends AbstractAPIController
         return $useCase->execute($id, $this->getRequestBody($request), $this->getTokenPayload($request));
     }
 
-    #[Route('/movements/{id}', name: 'movement_delete_one_by_id', requirements: ['id' => '\d+'], methods: ['DELETE'])]
+    #[Route('/movements/{id}/delete', name: 'movement_delete_one_by_id', requirements: ['id' => '\d+'], methods: ['DELETE'])]
     #[ApiDoc\NotFoundResponse(
         description: 'No Movement found for the given id',
     )]

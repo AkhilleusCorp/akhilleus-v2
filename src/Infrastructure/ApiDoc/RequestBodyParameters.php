@@ -6,7 +6,7 @@ use Nelmio\ApiDocBundle\Annotation\Model;
 use OpenApi\Attributes\RequestBody;
 
 #[\Attribute(\Attribute::TARGET_METHOD)]
-final class PostParameters extends RequestBody
+final class RequestBodyParameters extends RequestBody
 {
     public function __construct(string $dataClass)
     {

@@ -27,8 +27,8 @@ use Symfony\Component\Routing\Attribute\Route;
 #[ApiDoc\DocSection('MUSCLES')]
 final class MuscleController extends AbstractAPIController
 {
-    #[Route('/muscles', name: 'muscle_get_many', methods: ['GET'])]
-    #[ApiDoc\GetParameters(dataClass: GetManyMusclesFilterModel::class)]
+    #[Route('/muscles/fetch', name: 'muscle_get_many', methods: ['GET'])]
+    #[ApiDoc\RequestBodyParameters(dataClass: GetManyMusclesFilterModel::class)]
     #[ApiDoc\MultipleObjectResponse(
         response: 200,
         description: 'Successfully returns a list of Muscles',
@@ -53,7 +53,7 @@ final class MuscleController extends AbstractAPIController
         return $useCase->execute('name', $providerGateway);
     }
 
-    #[Route('/muscles/{id}', name: 'muscle_get_one_by_id', requirements: ['id' => '\d+'], methods: ['GET'])]
+    #[Route('/muscles/{id}/fetch', name: 'muscle_get_one_by_id', requirements: ['id' => '\d+'], methods: ['GET'])]
     #[ApiDoc\SingleObjectResponse(
         response: 200,
         description: 'Successfully returns the details of a Muscle',
@@ -70,8 +70,8 @@ final class MuscleController extends AbstractAPIController
         return $useCase->execute($id, $providerGateway, new SingleMuscleDataViewModel());
     }
 
-    #[Route('/muscles', name: 'muscles_create_one', methods: ['POST'])]
-    #[ApiDoc\PostParameters(dataClass: CreateMuscleSourceModel::class)]
+    #[Route('/muscles/create', name: 'muscles_create_one', methods: ['POST'])]
+    #[ApiDoc\RequestBodyParameters(dataClass: CreateMuscleSourceModel::class)]
     #[ApiDoc\SingleObjectResponse(
         response: 200,
         description: 'Successfully create a Muscle',
@@ -90,8 +90,8 @@ final class MuscleController extends AbstractAPIController
         );
     }
 
-    #[Route('/muscles/{id}', name: 'muscle_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
-    #[ApiDoc\PostParameters(dataClass: UpdateMuscleSourceModel::class)]
+    #[Route('/muscles/{id}/update', name: 'muscle_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
+    #[ApiDoc\RequestBodyParameters(dataClass: UpdateMuscleSourceModel::class)]
     #[ApiDoc\SingleObjectResponse(
         response: 200,
         description: 'Successfully edit the details of a Muscle',
@@ -117,7 +117,7 @@ final class MuscleController extends AbstractAPIController
         );
     }
 
-    #[Route('/muscles/{id}', name: 'muscle_delete_by_id', requirements: ['id' => '\d+'], methods: ['DELETE'])]
+    #[Route('/muscles/{id}/delete', name: 'muscle_delete_by_id', requirements: ['id' => '\d+'], methods: ['DELETE'])]
     #[ApiDoc\NotFoundResponse(
         description: 'No Muscle found for the given id',
     )]

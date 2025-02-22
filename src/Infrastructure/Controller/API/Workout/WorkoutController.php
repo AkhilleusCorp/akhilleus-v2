@@ -24,8 +24,8 @@ use Symfony\Component\Routing\Attribute\Route;
 #[ApiDoc\DocSection('WORKOUTS')]
 final class WorkoutController extends AbstractAPIController
 {
-    #[Route('/workouts', name: 'workout_get_many', methods: ['GET'])]
-    #[ApiDoc\GetParameters(dataClass: GetManyWorkoutsFilterModel::class)]
+    #[Route('/workouts/fetch', name: 'workout_get_many', methods: ['GET'])]
+    #[ApiDoc\RequestBodyParameters(dataClass: GetManyWorkoutsFilterModel::class)]
     #[ApiDoc\MultipleObjectResponse(
         response: 200,
         description: 'Successfully returns a list of Workouts',
@@ -36,7 +36,7 @@ final class WorkoutController extends AbstractAPIController
         return $useCase->execute($this->getRequestBody($request), $this->getTokenPayload($request));
     }
 
-    #[Route('/workouts/{id}', name: 'workout_get_one_by_id', requirements: ['id' => '\d+'], methods: ['GET'])]
+    #[Route('/workouts/{id}/fetch', name: 'workout_get_one_by_id', requirements: ['id' => '\d+'], methods: ['GET'])]
     #[ApiDoc\SingleObjectResponse(
         response: 200,
         description: 'Successfully returns the details of a Workout',
@@ -50,8 +50,8 @@ final class WorkoutController extends AbstractAPIController
         return $useCase->execute($id, $this->getTokenPayload($request));
     }
 
-    #[Route('/workouts', name: 'workout_create_one', methods: ['POST'])]
-    #[ApiDoc\PostParameters(dataClass: CreateWorkoutSourceModel::class)]
+    #[Route('/workouts/create', name: 'workout_create_one', methods: ['POST'])]
+    #[ApiDoc\RequestBodyParameters(dataClass: CreateWorkoutSourceModel::class)]
     #[ApiDoc\SingleObjectResponse(
         response: 200,
         description: 'Successfully create a Workout',
@@ -62,8 +62,8 @@ final class WorkoutController extends AbstractAPIController
         return $useCase->execute($this->getRequestBody($request), $this->getTokenPayload($request));
     }
 
-    #[Route('/workouts/{id}', name: 'workout_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
-    #[ApiDoc\PostParameters(dataClass: UpdateWorkoutSourceModel::class)]
+    #[Route('/workouts/{id}/update', name: 'workout_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
+    #[ApiDoc\RequestBodyParameters(dataClass: UpdateWorkoutSourceModel::class)]
     #[ApiDoc\SingleObjectResponse(
         response: 200,
         description: 'Successfully edit the details of a Workout',
@@ -77,7 +77,7 @@ final class WorkoutController extends AbstractAPIController
         return $useCase->execute($id, $this->getRequestBody($request), $this->getTokenPayload($request));
     }
 
-    #[Route('/workouts/{id}', name: 'workout_delete_one_by_id', requirements: ['id' => '\d+'], methods: ['DELETE'])]
+    #[Route('/workouts/{id}/delete', name: 'workout_delete_one_by_id', requirements: ['id' => '\d+'], methods: ['DELETE'])]
     #[ApiDoc\NotFoundResponse(
         description: 'No Workout found for the given id',
     )]

@@ -19,7 +19,7 @@ use Symfony\Component\Routing\Attribute\Route;
 #[ApiDoc\DocSection('EXERCISE GROUPS')]
 final class ExerciseGroupController extends AbstractAPIController
 {
-    #[Route('/workouts/{workoutId}/groups', name: 'exercise_group_get_many', requirements: ['workoutId' => '\d+'], methods: ['GET'])]
+    #[Route('/workouts/{workoutId}/groups/fetch', name: 'exercise_group_get_many', requirements: ['workoutId' => '\d+'], methods: ['GET'])]
     #[ApiDoc\MultipleObjectResponse(
         response: 200,
         description: 'Successfully returns a list of ExerciseGroups',
@@ -30,8 +30,8 @@ final class ExerciseGroupController extends AbstractAPIController
         return $useCase->execute($workoutId, $this->getTokenPayload($request));
     }
 
-    #[Route('/workouts/{workoutId}/groups', name: 'exercise_group_create_one', requirements: ['workoutId' => '\d+'], methods: ['POST'])]
-    #[ApiDoc\PostParameters(dataClass: CreateExerciseGroupSourceModel::class)]
+    #[Route('/workouts/{workoutId}/groups/create', name: 'exercise_group_create_one', requirements: ['workoutId' => '\d+'], methods: ['POST'])]
+    #[ApiDoc\RequestBodyParameters(dataClass: CreateExerciseGroupSourceModel::class)]
     #[ApiDoc\SingleObjectResponse(
         response: 200,
         description: 'Successfully returns the details of an Exercise Group',
@@ -49,7 +49,7 @@ final class ExerciseGroupController extends AbstractAPIController
         );
     }
 
-    #[Route('/workouts/{workoutId}/groups/{groupId}', name: 'exercise_group_delete_one_by_id', requirements: ['workoutId' => '\d+', 'groupId' => '\d+'], methods: ['DELETE'])]
+    #[Route('/workouts/{workoutId}/groups/{groupId}/delete', name: 'exercise_group_delete_one_by_id', requirements: ['workoutId' => '\d+', 'groupId' => '\d+'], methods: ['DELETE'])]
     #[ApiDoc\NotFoundResponse(
         description: 'No ExerciseGroup found for the given id',
     )]

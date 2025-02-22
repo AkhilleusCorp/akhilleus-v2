@@ -24,8 +24,8 @@ use Symfony\Component\Routing\Attribute\Route;
 #[ApiDoc\DocSection('USERS')]
 final class UserController extends AbstractAPIController
 {
-    #[Route('/users', name: 'user_get_many', methods: ['GET'])]
-    #[ApiDoc\GetParameters(dataClass: GetManyUsersFilterModel::class)]
+    #[Route('/users/fetch', name: 'user_get_many', methods: ['GET'])]
+    #[ApiDoc\RequestBodyParameters(dataClass: GetManyUsersFilterModel::class)]
     #[ApiDoc\MultipleObjectResponse(
         response: 200,
         description: 'Successfully returns a list of Users',
@@ -36,7 +36,7 @@ final class UserController extends AbstractAPIController
         return $useCase->execute($this->getRequestBody($request), $this->getTokenPayload($request));
     }
 
-    #[Route('/users/{id}', name: 'user_get_one_by_id', requirements: ['id' => '\d+'], methods: ['GET'])]
+    #[Route('/users/{id}/fetch', name: 'user_get_one_by_id', requirements: ['id' => '\d+'], methods: ['GET'])]
     #[ApiDoc\SingleObjectResponse(
         response: 200,
         description: 'Successfully returns the details of an User',
@@ -50,8 +50,8 @@ final class UserController extends AbstractAPIController
         return $useCase->execute($id, $this->getTokenPayload($request));
     }
 
-    #[Route('/users', name: 'user_create_one', methods: ['POST'])]
-    #[ApiDoc\PostParameters(dataClass: CreateUserSourceModel::class)]
+    #[Route('/users/create', name: 'user_create_one', methods: ['POST'])]
+    #[ApiDoc\RequestBodyParameters(dataClass: CreateUserSourceModel::class)]
     #[ApiDoc\SingleObjectResponse(
         response: 200,
         description: 'Successfully create an User',
@@ -62,8 +62,8 @@ final class UserController extends AbstractAPIController
         return $useCase->execute($this->getRequestBody($request), $this->getTokenPayload($request));
     }
 
-    #[Route('/users/{id}', name: 'user_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
-    #[ApiDoc\PostParameters(dataClass: UpdateUserSourceModel::class)]
+    #[Route('/users/{id}/update', name: 'user_update_one_by_id', requirements: ['id' => '\d+'], methods: ['PUT'])]
+    #[ApiDoc\RequestBodyParameters(dataClass: UpdateUserSourceModel::class)]
     #[ApiDoc\SingleObjectResponse(
         response: 200,
         description: 'Successfully edit the details of an User',
@@ -77,7 +77,7 @@ final class UserController extends AbstractAPIController
         return $useCase->execute($id, $this->getRequestBody($request), $this->getTokenPayload($request));
     }
 
-    #[Route('/users/{id}', name: 'user_delete_one_by_id', requirements: ['id' => '\d+'], methods: ['DELETE'])]
+    #[Route('/users/{id}/delete', name: 'user_delete_one_by_id', requirements: ['id' => '\d+'], methods: ['DELETE'])]
     #[ApiDoc\NotFoundResponse(
         description: 'No User found for the given id',
     )]
