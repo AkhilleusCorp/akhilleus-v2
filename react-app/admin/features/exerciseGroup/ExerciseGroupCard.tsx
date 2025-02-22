@@ -52,6 +52,7 @@ const ExerciseGroupCard: React.FC<ExerciseGroupCardType> = ({ group, displayWrit
                 </Typography>
 
                 <Grid size={{ xs: 4 }}>
+                    { stateGroup.restDuration } <br />
                     INSERT IMAGE HERE
                 </Grid>
 

@@ -4,7 +4,7 @@ import APIResponseDTO from "app/common/services/api/dtos/APIResponseDTO.tsx";
 abstract class AbstractApiGateway {
 
     static async fetchOne (url: string): Promise<any|null> {
-        const response = await axios.get(url + '/fetch');
+        const response = await axios.get(url);
 
         if (response.status !== 200) {
             throw new Error('An error as occurred');
@@ -14,7 +14,7 @@ abstract class AbstractApiGateway {
     }
 
     static async fetchMany (url: string, filters: any|null): Promise<APIResponseDTO> {
-        const response = await axios.post(url + '/fetch', {params: filters});
+        const response = await axios.post(url, {params: filters});
         if (response.status !== 200) {
             throw new Error('An error as occurred');
         }
@@ -23,7 +23,7 @@ abstract class AbstractApiGateway {
     }
 
     static async getDropdownable (url: string): Promise<IndexedArray> {
-        const response = await axios.get(url + '/dropdownable');
+        const response = await axios.get(url);
 
         if (response.status !== 200) {
             throw new Error('An error as occurred');
@@ -33,7 +33,7 @@ abstract class AbstractApiGateway {
     }
 
     static async createOne (url: string, formData: unknown): Promise<any> {
-        const response = await axios.post(url + '/create', formData);
+        const response = await axios.post(url, formData);
 
         if (response.status !== 200) {
             throw new Error('An error as occurred');
@@ -43,7 +43,7 @@ abstract class AbstractApiGateway {
     }
 
     static async updateOne (url: string, formData: unknown): Promise<any> {
-        const response = await axios.put(url + '/update', formData);
+        const response = await axios.put(url, formData);
 
         if (response.status !== 200) {
             throw new Error('An error as occurred');
@@ -53,7 +53,7 @@ abstract class AbstractApiGateway {
     }
 
     static async deleteOne (url: string): Promise<void> {
-        const response = await axios.delete(url + '/delete');
+        const response = await axios.delete(url);
 
         if (response.status !== 200) {
             throw new Error('An error as occurred');

@@ -13,6 +13,7 @@ final class ExerciseGroupFixtures extends AbstractFixtures implements DependentF
     {
         for ($i = 1; $i <= 5; ++$i) {
             $group = new ExerciseGroupDataModel();
+            $group->restDuration = 90;
             $group->movementIds = [$i]; // Those values are theoretical as Ids are not know in fixture context
             $group->workout = $this->getReference('workout-in-progress-private');
 

@@ -7,7 +7,7 @@ import axios from "axios";
 class ExerciseGroupApiGateway extends AbstractApiGateway {
 
     static async fetchManyExerciseGroups (workoutId: QueryId): Promise<ExerciseGroupDTO[]> {
-        const response = await axios.get(apiRoutes.exerciseGroup.list(workoutId));
+        const response = await axios.post(apiRoutes.exerciseGroup.list(workoutId));
         return response.data.data;
     }
 
