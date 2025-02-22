@@ -26,7 +26,7 @@ final class EquipmentControllerTest extends AbstractGenericControllerTest
         $this->dataModelFactory = $this->container->get(EquipmentDataModelFactory::class);
     }
 
-    public function testGetManyWithoutFilters(): void
+    public function testFetchManyWithoutFilters(): void
     {
         $view = $this->controller->fetchMany(
             new Request(),
@@ -48,7 +48,7 @@ final class EquipmentControllerTest extends AbstractGenericControllerTest
         $this->assertCount(12, $result);
     }
 
-    public function testGetOneByExistingId(): void
+    public function testFetchOneByExistingId(): void
     {
         $view = $this->controller->fetchOneById(
             1,
@@ -61,7 +61,7 @@ final class EquipmentControllerTest extends AbstractGenericControllerTest
         $this->assertEquals(1, $data->id);
     }
 
-    public function testGetOneByNonExistingId(): void
+    public function testFetchOneByNonExistingId(): void
     {
         $this->expectException(NotFoundHttpException::class);
 

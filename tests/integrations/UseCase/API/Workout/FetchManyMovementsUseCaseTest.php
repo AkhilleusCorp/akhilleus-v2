@@ -26,7 +26,7 @@ final class FetchManyMovementsUseCaseTest extends AbstractIntegrationTest
         );
     }
 
-    public function testGetManyMovementWithNoFiltersForAdmin(): void
+    public function testFetchManyMovementWithNoFiltersForAdmin(): void
     {
         $view = $this->useCase->execute([], $this->getAdminTokenPayload());
 
@@ -41,7 +41,7 @@ final class FetchManyMovementsUseCaseTest extends AbstractIntegrationTest
         $this->assertEquals(AbstractFilterModel::DEFAULT_PAGE, $pagination->lastPage);
     }
 
-    public function testGetManyMovementWithNoFiltersForMember(): void
+    public function testFetchManyMovementWithNoFiltersForMember(): void
     {
         $view = $this->useCase->execute([], $this->getMemberTokenPayload());
 

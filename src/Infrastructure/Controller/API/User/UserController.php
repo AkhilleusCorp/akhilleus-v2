@@ -24,7 +24,7 @@ use Symfony\Component\Routing\Attribute\Route;
 #[ApiDoc\DocSection('USERS')]
 final class UserController extends AbstractAPIController
 {
-    #[Route('/users/fetch', name: 'user_get_many', methods: ['GET'])]
+    #[Route('/users/fetch', name: 'user_get_many', methods: ['POST'])]
     #[ApiDoc\RequestBodyParameters(dataClass: GetManyUsersFilterModel::class)]
     #[ApiDoc\MultipleObjectResponse(
         response: 200,

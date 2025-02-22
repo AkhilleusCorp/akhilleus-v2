@@ -24,7 +24,7 @@ use Symfony\Component\Routing\Attribute\Route;
 #[ApiDoc\DocSection('WORKOUTS')]
 final class WorkoutController extends AbstractAPIController
 {
-    #[Route('/workouts/fetch', name: 'workout_get_many', methods: ['GET'])]
+    #[Route('/workouts/fetch', name: 'workout_get_many', methods: ['POST'])]
     #[ApiDoc\RequestBodyParameters(dataClass: GetManyWorkoutsFilterModel::class)]
     #[ApiDoc\MultipleObjectResponse(
         response: 200,

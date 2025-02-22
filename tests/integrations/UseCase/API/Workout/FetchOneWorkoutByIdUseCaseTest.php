@@ -25,7 +25,7 @@ final class FetchOneWorkoutByIdUseCaseTest extends AbstractIntegrationTest
         );
     }
 
-    public function testGetOneUserForAdmin(): void
+    public function testFetchOneUserForAdmin(): void
     {
         $workoutId = 1;
         $viewModel = $this->useCase->execute($workoutId, $this->getAdminTokenPayload());
@@ -38,7 +38,7 @@ final class FetchOneWorkoutByIdUseCaseTest extends AbstractIntegrationTest
         $this->assertEquals(WorkoutVisibilityRegistry::WORKOUT_VISIBILITY_PRIVATE, $viewData->visibility);
     }
 
-    public function testGetOneUserForMember(): void
+    public function testFetchOneUserForMember(): void
     {
         $workoutId = 1;
         $viewModel = $this->useCase->execute($workoutId, $this->getMemberTokenPayload());
@@ -51,7 +51,7 @@ final class FetchOneWorkoutByIdUseCaseTest extends AbstractIntegrationTest
         $this->assertEquals(WorkoutVisibilityRegistry::WORKOUT_VISIBILITY_PRIVATE, $viewData->visibility);
     }
 
-    public function testGetOneNonExistingUser(): void
+    public function testFetchOneNonExistingUser(): void
     {
         $this->expectException(NotFoundHttpException::class);
         $this->expectExceptionMessage('Workout #666 cannot be found');

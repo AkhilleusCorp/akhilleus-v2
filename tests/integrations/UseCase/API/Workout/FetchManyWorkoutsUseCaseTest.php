@@ -27,7 +27,7 @@ final class FetchManyWorkoutsUseCaseTest extends AbstractIntegrationTest
         );
     }
 
-    public function testGetManyWorkoutWithNoFiltersForAdmin(): void
+    public function testFetchManyWorkoutWithNoFiltersForAdmin(): void
     {
         $view = $this->useCase->execute([], $this->getAdminTokenPayload());
 
@@ -42,7 +42,7 @@ final class FetchManyWorkoutsUseCaseTest extends AbstractIntegrationTest
         $this->assertEquals(3, $pagination->lastPage);
     }
 
-    public function testGetManyWorkoutWithNoFiltersForMember(): void
+    public function testFetchManyWorkoutWithNoFiltersForMember(): void
     {
         $view = $this->useCase->execute([], $this->getMemberTokenPayload());
 
@@ -57,7 +57,7 @@ final class FetchManyWorkoutsUseCaseTest extends AbstractIntegrationTest
         $this->assertEquals(AbstractFilterModel::DEFAULT_PAGE, $pagination->lastPage);
     }
 
-    public function testGetManyWorkoutWithFilterStatusesFilter(): void
+    public function testFetchManyWorkoutWithFilterStatusesFilter(): void
     {
         $view = $this->useCase->execute(
             ['status' => [WorkoutStatusRegistry::WORKOUT_STATUS_IN_PROGRESS, WorkoutStatusRegistry::WORKOUT_STATUS_PLANNED]],

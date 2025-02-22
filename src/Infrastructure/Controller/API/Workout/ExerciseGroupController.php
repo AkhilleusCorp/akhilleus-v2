@@ -19,7 +19,7 @@ use Symfony\Component\Routing\Attribute\Route;
 #[ApiDoc\DocSection('EXERCISE GROUPS')]
 final class ExerciseGroupController extends AbstractAPIController
 {
-    #[Route('/workouts/{workoutId}/groups/fetch', name: 'exercise_group_get_many', requirements: ['workoutId' => '\d+'], methods: ['GET'])]
+    #[Route('/workouts/{workoutId}/groups/fetch', name: 'exercise_group_get_many', requirements: ['workoutId' => '\d+'], methods: ['POST'])]
     #[ApiDoc\MultipleObjectResponse(
         response: 200,
         description: 'Successfully returns a list of ExerciseGroups',

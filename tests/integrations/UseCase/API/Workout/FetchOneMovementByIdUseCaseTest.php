@@ -23,7 +23,7 @@ final class FetchOneMovementByIdUseCaseTest extends AbstractIntegrationTest
         );
     }
 
-    public function testGetOneUserForAdmin(): void
+    public function testFetchOneUserForAdmin(): void
     {
         $movementId = 1;
         $viewModel = $this->useCase->execute($movementId, $this->getAdminTokenPayload());
@@ -38,7 +38,7 @@ final class FetchOneMovementByIdUseCaseTest extends AbstractIntegrationTest
         $this->assertEquals(3, $viewData->equipments[1]->id);
     }
 
-    public function testGetOneUserForMember(): void
+    public function testFetchOneUserForMember(): void
     {
         $movementId = 1;
         $viewModel = $this->useCase->execute($movementId, $this->getMemberTokenPayload());
@@ -53,7 +53,7 @@ final class FetchOneMovementByIdUseCaseTest extends AbstractIntegrationTest
         $this->assertEquals(3, $viewData->equipments[1]->id);
     }
 
-    public function testGetOneNonExistingUser(): void
+    public function testFetchOneNonExistingUser(): void
     {
         $this->expectException(NotFoundHttpException::class);
         $this->expectExceptionMessage('Movement #666 cannot be found');

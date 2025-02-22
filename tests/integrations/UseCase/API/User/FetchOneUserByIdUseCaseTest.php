@@ -25,7 +25,7 @@ final class FetchOneUserByIdUseCaseTest extends AbstractIntegrationTest
         );
     }
 
-    public function testGetOneUserForAdmin(): void
+    public function testFetchOneUserForAdmin(): void
     {
         $userId = 1;
         $viewModel = $this->useCase->execute($userId, $this->getAdminTokenPayload());
@@ -39,7 +39,7 @@ final class FetchOneUserByIdUseCaseTest extends AbstractIntegrationTest
         $this->assertEquals(UserTypeRegistry::USER_TYPE_MEMBER, $viewData->type);
     }
 
-    public function testGetOneUserForMember(): void
+    public function testFetchOneUserForMember(): void
     {
         $userId = 1;
         $viewModel = $this->useCase->execute($userId, $this->getMemberTokenPayload());
@@ -53,7 +53,7 @@ final class FetchOneUserByIdUseCaseTest extends AbstractIntegrationTest
         $this->assertEquals(UserTypeRegistry::USER_TYPE_MEMBER, $viewData->type);
     }
 
-    public function testGetOneNonExistingUser(): void
+    public function testFetchOneNonExistingUser(): void
     {
         $this->expectException(NotFoundHttpException::class);
         $this->expectExceptionMessage('User #666 cannot be found');

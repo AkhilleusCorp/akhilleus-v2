@@ -27,7 +27,7 @@ use Symfony\Component\Routing\Attribute\Route;
 #[ApiDoc\DocSection('EQUIPMENTS')]
 final class EquipmentController extends AbstractAPIController
 {
-    #[Route('/equipments/fetch', name: 'equipment_get_many', methods: ['GET'])]
+    #[Route('/equipments/fetch', name: 'equipment_get_many', methods: ['POST'])]
     #[ApiDoc\RequestBodyParameters(dataClass: GetManyEquipmentsFilterModel::class)]
     #[ApiDoc\MultipleObjectResponse(
         response: 200,

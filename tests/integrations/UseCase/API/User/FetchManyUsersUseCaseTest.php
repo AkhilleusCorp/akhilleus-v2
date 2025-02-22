@@ -28,7 +28,7 @@ final class FetchManyUsersUseCaseTest extends AbstractIntegrationTest
         );
     }
 
-    public function testGetManyUserWithNoFiltersForAdmin(): void
+    public function testFetchManyUserWithNoFiltersForAdmin(): void
     {
         $view = $this->useCase->execute([], $this->getAdminTokenPayload());
 
@@ -43,7 +43,7 @@ final class FetchManyUsersUseCaseTest extends AbstractIntegrationTest
         $this->assertEquals(3, $pagination->lastPage);
     }
 
-    public function testGetManyUserWithNoFiltersForMember(): void
+    public function testFetchManyUserWithNoFiltersForMember(): void
     {
         $view = $this->useCase->execute([], $this->getMemberTokenPayload());
 
@@ -58,7 +58,7 @@ final class FetchManyUsersUseCaseTest extends AbstractIntegrationTest
         $this->assertEquals(3, $pagination->lastPage);
     }
 
-    public function testGetManyUserWithFilterIdsFilter(): void
+    public function testFetchManyUserWithFilterIdsFilter(): void
     {
         $view = $this->useCase->execute(['ids' => [1, 2, 3], 'email' => null], $this->getAdminTokenPayload());
         $this->assertCount(3, $view->data);
@@ -67,7 +67,7 @@ final class FetchManyUsersUseCaseTest extends AbstractIntegrationTest
         $this->assertCount(3, $view->data);
     }
 
-    public function testGetManyUserWithFilterUsernameFilter(): void
+    public function testFetchManyUserWithFilterUsernameFilter(): void
     {
         $view = $this->useCase->execute(['username' => 'ghriim'], $this->getAdminTokenPayload());
         $this->assertCount(1, $view->data);
@@ -76,7 +76,7 @@ final class FetchManyUsersUseCaseTest extends AbstractIntegrationTest
         $this->assertCount(1, $view->data);
     }
 
-    public function testGetManyUserWithFilterEmailFilter(): void
+    public function testFetchManyUserWithFilterEmailFilter(): void
     {
         $view = $this->useCase->execute(['email' => 'coach@fakemail.com'], $this->getAdminTokenPayload());
         $this->assertCount(1, $view->data);
@@ -85,7 +85,7 @@ final class FetchManyUsersUseCaseTest extends AbstractIntegrationTest
         $this->assertCount(0, $view->data);
     }
 
-    public function testGetManyUserWithFilterTypesFilter(): void
+    public function testFetchManyUserWithFilterTypesFilter(): void
     {
         $view = $this->useCase->execute(['type' => [UserTypeRegistry::USER_TYPE_ADMIN]], $this->getAdminTokenPayload());
         $this->assertCount(1, $view->data);
@@ -97,7 +97,7 @@ final class FetchManyUsersUseCaseTest extends AbstractIntegrationTest
         $this->assertCount(25, $view->data);
     }
 
-    public function testGetManyUserWithFilterStatusesFilter(): void
+    public function testFetchManyUserWithFilterStatusesFilter(): void
     {
         $view = $this->useCase->execute(['status' => [UserStatusRegistry::USER_STATUS_DEACTIVATED]], $this->getAdminTokenPayload());
         $this->assertCount(0, $view->data);

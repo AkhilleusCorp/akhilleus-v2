@@ -26,7 +26,7 @@ use Symfony\Component\Routing\Attribute\Route;
 #[ApiDoc\DocSection('MOVEMENTS')]
 final class MovementController extends AbstractAPIController
 {
-    #[Route('/movements/fetch', name: 'movement_get_many', methods: ['GET'])]
+    #[Route('/movements/fetch', name: 'movement_get_many', methods: ['POST'])]
     #[ApiDoc\RequestBodyParameters(dataClass: GetManyMovementsFilterModel::class)]
     #[ApiDoc\MultipleObjectResponse(
         response: 200,
