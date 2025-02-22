@@ -10,7 +10,7 @@ function useGetOneWorkoutById(workoutId: string|undefined): WorkoutDTO | null {
     const [workout, setWorkout] = useState<WorkoutDTO | null>(null);
     useEffect(() => {
         const fetchWorkout = async () => {
-            const workout = await WorkoutApiGateway.getOneWorkout(workoutId);
+            const workout = await WorkoutApiGateway.fetchOneWorkout(workoutId);
             setWorkout(workout);
         }
 

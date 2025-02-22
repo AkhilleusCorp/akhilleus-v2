@@ -10,7 +10,7 @@ function useGetOneMuscleById(muscleId: string|undefined): MuscleDTO | null {
     const [muscle, setMuscle] = useState<MuscleDTO | null>(null);
     useEffect(() => {
         const fetchMuscle = async () => {
-            const muscle = await MuscleApiGateway.getOneMuscle(muscleId);
+            const muscle = await MuscleApiGateway.fetchOneMuscle(muscleId);
             setMuscle(muscle);
         }
 

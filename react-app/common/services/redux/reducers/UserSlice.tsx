@@ -23,7 +23,7 @@ export const fetchUsers = createAsyncThunk<APIResponseDTO, UserListFilters, { re
     'users/fetchUsers',
     async (filters: UserListFilters, {rejectWithValue}) => {
         try {
-            return UserApiGateway.getManyUsers(filters);
+            return UserApiGateway.fetchManyUsers(filters);
         } catch (error: any) {
             if (error.response && error.response.data.message) {
                 return rejectWithValue(error.response.data.message);

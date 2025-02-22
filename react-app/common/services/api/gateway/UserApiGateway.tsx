@@ -7,11 +7,11 @@ import APIResponseDTO from "app/common/services/api/dtos/APIResponseDTO.tsx";
 
 class UserApiGateway extends AbstractApiGateway {
     static async getOneUser (userId: QueryId): Promise<UserDTO|null> {
-        return this.getOne(apiRoutes.user.details(userId));
+        return this.fetchOne(apiRoutes.user.details(userId));
     }
 
     static async getManyUsers (filters: AdminUsersListFilters): Promise<APIResponseDTO> {
-        return this.getMany(apiRoutes.user.list, filters);
+        return this.fetchMany(apiRoutes.user.list, filters);
     }
 
     static async createUser (formData: unknown): Promise<UserDTO> {

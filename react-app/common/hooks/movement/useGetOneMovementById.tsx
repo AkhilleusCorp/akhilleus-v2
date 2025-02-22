@@ -10,7 +10,7 @@ function useGetOneMovementById(movementId: string|undefined): MovementDTO | null
     const [movement, setMovement] = useState<MovementDTO | null>(null);
     useEffect(() => {
         const fetchMovement = async () => {
-            const movement = await MovementApiGateway.getOneMovement(movementId);
+            const movement = await MovementApiGateway.fetchOneMovement(movementId);
             setMovement(movement);
         }
 

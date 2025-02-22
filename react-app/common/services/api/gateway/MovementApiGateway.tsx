@@ -8,11 +8,11 @@ import APIResponseDTO from "app/common/services/api/dtos/APIResponseDTO.tsx";
 
 class MovementApiGateway extends AbstractApiGateway {
     static async getOneMovement (movementId: QueryId): Promise<MovementDTO|null> {
-        return this.getOne(apiRoutes.movement.details(movementId));
+        return this.fetchOne(apiRoutes.movement.details(movementId));
     }
 
     static async getManyMovements (filters: AdminMovementsListFilters): Promise<APIResponseDTO> {
-        return this.getMany(apiRoutes.movement.list, filters);
+        return this.fetchMany(apiRoutes.movement.list, filters);
     }
 
     static async getDropdownableMovements (): Promise<IndexedArray> {

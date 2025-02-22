@@ -23,7 +23,7 @@ export const fetchMovements = createAsyncThunk<APIResponseDTO, MovementListFilte
     'movements/fetchMovements',
     async (filters: MovementListFilters, {rejectWithValue}) => {
         try {
-            return MovementApiGateway.getManyMovements(filters);
+            return MovementApiGateway.fetchManyMovements(filters);
         } catch (error: any) {
             if (error.response && error.response.data.message) {
                 return rejectWithValue(error.response.data.message);

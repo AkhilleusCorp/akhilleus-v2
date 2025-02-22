@@ -18,7 +18,7 @@ export const fetchExerciseGroups = createAsyncThunk<ExerciseGroupDTO[], number, 
     'exerciseGroups/fetchExerciseGroups',
     async (workoutId, {rejectWithValue}) => {
         try {
-            return ExerciseGroupApiGateway.getManyExerciseGroups(workoutId);
+            return ExerciseGroupApiGateway.fetchManyExerciseGroups(workoutId);
         } catch (error: any) {
             if (error.response && error.response.data.message) {
                 return rejectWithValue(error.response.data.message);

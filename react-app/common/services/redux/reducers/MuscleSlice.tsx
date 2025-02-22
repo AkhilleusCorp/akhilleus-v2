@@ -23,7 +23,7 @@ export const fetchMuscles = createAsyncThunk<APIResponseDTO, MuscleListFilters, 
     'muscles/fetchMuscles',
     async (filters: MuscleListFilters, {rejectWithValue}) => {
         try {
-            return MuscleApiGateway.getManyMuscles(filters);
+            return MuscleApiGateway.fetchManyMuscles(filters);
         } catch (error: any) {
             if (error.response && error.response.data.message) {
                 return rejectWithValue(error.response.data.message);

@@ -8,11 +8,11 @@ import APIResponseDTO from "app/common/services/api/dtos/APIResponseDTO.tsx";
 
 class MuscleApiGateway extends AbstractApiGateway {
     static async getOneMuscle (muscleId: QueryId): Promise<MuscleDTO|null> {
-        return this.getOne(apiRoutes.muscle.details(muscleId));
+        return this.fetchOne(apiRoutes.muscle.details(muscleId));
     }
 
     static async getManyMuscles (filters: MusclesListFilters): Promise<APIResponseDTO> {
-        return this.getMany(apiRoutes.muscle.list, filters);
+        return this.fetchMany(apiRoutes.muscle.list, filters);
     }
 
     static async getDropdownableMuscles (): Promise<IndexedArray> {

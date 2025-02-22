@@ -23,7 +23,7 @@ export const fetchEquipments = createAsyncThunk<APIResponseDTO, EquipmentListFil
     'equipments/fetchEquipments',
     async (filters: EquipmentListFilters, {rejectWithValue}) => {
         try {
-            return EquipmentApiGateway.getManyEquipments(filters);
+            return EquipmentApiGateway.fetchManyEquipments(filters);
         } catch (error: any) {
             if (error.response && error.response.data.message) {
                 return rejectWithValue(error.response.data.message);
