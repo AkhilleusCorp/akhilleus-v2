@@ -18,7 +18,7 @@ class ExerciseGroupDataModel implements DataModelInterface
     public int $id;
 
     #[ORM\Column(type: Types::INTEGER, nullable: true)]
-    public ?int $restDuration; // in seconds
+    public ?int $restDuration = null; // in seconds
 
     #[ORM\ManyToOne(targetEntity: WorkoutDataModel::class)]
     #[ORM\JoinColumn(name: 'workout_id', referencedColumnName: 'id', onDelete: 'restrict')]

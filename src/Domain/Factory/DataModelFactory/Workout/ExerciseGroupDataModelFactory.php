@@ -36,6 +36,7 @@ final class ExerciseGroupDataModelFactory extends AbstractDataModelFactory
         }
 
         $exerciseGroup = new ExerciseGroupDataModel();
+        $exerciseGroup->restDuration = $source->restDuration;
         $exerciseGroup->workout = $workout;
         $exerciseGroup->movementIds = $source->movementIds;
 

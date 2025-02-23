@@ -8,29 +8,38 @@ import {
 } from "@mui/material";
 import IndexedArray from "app/common/utils/interfaces/IndexedArray.tsx";
 import SelectInput from "app/common/components/input/SelectInput.tsx";
+import DurationSelectInput from "app/common/components/input/DurationSelectInput.tsx";
+import ExerciseGroupSource from "app/common/services/api/sources/ExerciseGroupSource.tsx";
 
 type ExerciseGroupAddModalType = {
     shouldBeOpen: boolean;
     movements: IndexedArray;
     type: 'exercise' | 'superset' | 'circuit',
     onCancel: () => void;
-    onConfirm: (movementIds: number[]) => void;
+    onConfirm: (exerciseGroupCreate: ExerciseGroupSource) => void;
 }
 
 const ExerciseGroupAddModal: React.FC<ExerciseGroupAddModalType> = (
     { shouldBeOpen, movements, type, onCancel, onConfirm }) => {
+    const [exerciseGroupCreate, setExerciseGroupCreate] = useState<ExerciseGroupSource>({movementIds: [], restDuration: null});
     const [indexedMovementIds, setIndexedMovementIds] = useState<IndexedArray>({});
 
     const onConfirmClick = () => {
-        const movementIds = [];
         for (const movementId in indexedMovementIds) {
-            movementIds.push(indexedMovementIds[movementId] as number);
+            exerciseGroupCreate.movementIds.push(indexedMovementIds[movementId] as number);
         }
 
-        onConfirm(movementIds)
+        onConfirm(exerciseGroupCreate);
     }
 
     const handleSelectChange = (event: SelectChangeEvent) => {
+        setExerciseGroupCreate({
+            ...exerciseGroupCreate,
+            [event.target.name]: event.target.value
+        })
+    }
+
+    const handleMovementChange = (event: SelectChangeEvent) => {
         setIndexedMovementIds({
             ...indexedMovementIds,
             [event.target.name]: event.target.value
@@ -45,11 +54,13 @@ const ExerciseGroupAddModal: React.FC<ExerciseGroupAddModalType> = (
             </DialogTitle>
             <DialogContent>
                 <SelectInput label={"Exercise"} name={"movementId"} value={null}
-                             options={movements} required={true} onSelectChange={handleSelectChange}/>
+                             options={movements} required={true} onSelectChange={handleMovementChange}/>
                 { type === 'superset' && (
                     <SelectInput label={"Exercise"} name={"movementId2"} value={null}
-                                 options={movements} required={true} onSelectChange={handleSelectChange}/>
+                                 options={movements} required={true} onSelectChange={handleMovementChange}/>
                 )}
+                <DurationSelectInput label={"Rest"} name={"restDuration"} value={null}
+                             required={false} onSelectChange={handleSelectChange}/>
             </DialogContent>
 
             <DialogActions>

@@ -5,6 +5,7 @@ import IndexedArray from "app/common/utils/interfaces/IndexedArray.tsx";
 import {AppDispatch} from "app/common/services/redux";
 import {addExerciseGroup} from "app/common/services/redux/reducers/ExerciseGroupSlice.tsx";
 import ExerciseGroupAddModal from "app/admin/features/exerciseGroup/ExerciseGroupAddModal.tsx";
+import ExerciseGroupSource from "app/common/services/api/sources/ExerciseGroupSource.tsx";
 
 type ExerciseGroupAddButtonType = {
     workoutId: number,
@@ -24,8 +25,8 @@ const ExerciseGroupAddButton: React.FC<ExerciseGroupAddButtonType> = ({ workoutI
         setOpenModal(false);
     }
 
-    const handleAddExerciseGroup = async (movementIds: number[]) => {
-        dispatch(addExerciseGroup({workoutId, movementIds}));
+    const handleAddExerciseGroup = async (exerciseGroupCreate: ExerciseGroupSource) => {
+        dispatch(addExerciseGroup({workoutId, exerciseGroupCreate}));
 
         setOpenModal(false);
     }
