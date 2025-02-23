@@ -22,28 +22,25 @@ type ExerciseGroupAddModalType = {
 const ExerciseGroupAddModal: React.FC<ExerciseGroupAddModalType> = (
     { shouldBeOpen, movements, type, onCancel, onConfirm }) => {
     const [exerciseGroupCreate, setExerciseGroupCreate] = useState<ExerciseGroupSource>({movementIds: [], restDuration: null});
-    const [indexedMovementIds, setIndexedMovementIds] = useState<IndexedArray>({});
+    const [movementIds, setMovementIds] = useState<number[]>([]);
 
     const onConfirmClick = () => {
-        for (const movementId in indexedMovementIds) {
-            exerciseGroupCreate.movementIds.push(indexedMovementIds[movementId] as number);
-        }
-
+        exerciseGroupCreate.movementIds = movementIds;
         onConfirm(exerciseGroupCreate);
     }
 
     const handleSelectChange = (event: SelectChangeEvent) => {
         setExerciseGroupCreate({
             ...exerciseGroupCreate,
-            [event.target.name]: event.target.value
+            [event.target.name]: parseInt(event.target.value)
         })
     }
 
     const handleMovementChange = (event: SelectChangeEvent) => {
-        setIndexedMovementIds({
-            ...indexedMovementIds,
-            [event.target.name]: event.target.value
-        })
+        setMovementIds((prevMovementIds) => [
+            ...prevMovementIds,
+            parseInt(event.target.value)
+        ]);
     }
 
     return (
