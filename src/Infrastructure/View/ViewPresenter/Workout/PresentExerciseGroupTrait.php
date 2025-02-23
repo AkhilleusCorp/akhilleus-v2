@@ -11,6 +11,7 @@ trait PresentExerciseGroupTrait
     {
         $groupedExercises = new ExerciseGroupDataViewModel();
         $groupedExercises->id = $data->id;
+        $groupedExercises->restDuration = $data->restDuration;
         $groupedExercises->workoutId = $data->workout->id;
         $groupedExercises->movementConfigs = [];
 

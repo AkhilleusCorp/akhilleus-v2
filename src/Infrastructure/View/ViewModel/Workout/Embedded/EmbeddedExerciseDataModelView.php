@@ -19,31 +19,31 @@ final class EmbeddedExerciseDataModelView
     public ?int $targetReps;
 
     #[Groups(['admin', 'member'])]
-    public ?int $targetWeight;
+    public ?float $targetWeight;
 
     #[Groups(['admin', 'member'])]
     public ?int $targetDuration;
 
     #[Groups(['admin', 'member'])]
-    public ?int $targetDistance;
+    public ?float $targetDistance;
 
     #[Groups(['admin', 'member'])]
-    public ?int $targetSpeed;
+    public ?float $targetSpeed;
 
     #[Groups(['admin', 'member'])]
     public ?int $reps;
 
     #[Groups(['admin', 'member'])]
-    public ?int $weight;
+    public ?float $weight;
 
     #[Groups(['admin', 'member'])]
     public ?int $duration;
 
     #[Groups(['admin', 'member'])]
-    public ?int $distance;
+    public ?float $distance;
 
     #[Groups(['admin', 'member'])]
-    public ?int $speed;
+    public ?float $speed;
 
     #[Groups(['admin', 'member'])]
     public bool $isCompleted;

@@ -10,6 +10,8 @@ final class CreateExerciseGroupSourceModel implements CreateSourceModelInterface
     #[Assert\GreaterThan(0)]
     public int $workoutId;
 
+    public ?int $restDuration = null;
+
     /** @var int[] */
     public array $movementIds;
 }

@@ -1,6 +1,7 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit"
 import ExerciseGroupDTO from "app/common/services/api/dtos/ExerciseGroupDTO.tsx";
 import ExerciseGroupApiGateway from "app/common/services/api/gateway/ExerciseGroupApiGateway.tsx";
+import ExerciseGroupSource from "app/common/services/api/sources/ExerciseGroupSource.tsx";
 
 export interface ExerciseGroupInitialState {
     exerciseGroups: ExerciseGroupDTO[],
@@ -28,11 +29,11 @@ export const fetchExerciseGroups = createAsyncThunk<ExerciseGroupDTO[], number, 
     }
 )
 
-export const addExerciseGroup = createAsyncThunk<ExerciseGroupDTO, {workoutId: number, movementIds: number[]}, { rejectValue: string}>(
+export const addExerciseGroup = createAsyncThunk<ExerciseGroupDTO, {workoutId: number, exerciseGroupCreate: ExerciseGroupSource}, { rejectValue: string}>(
     'exerciseGroups/addExerciseGroup',
-    async ({workoutId, movementIds}, {rejectWithValue}) => {
+    async ({workoutId, exerciseGroupCreate}, {rejectWithValue}) => {
         try {
-            return ExerciseGroupApiGateway.createOneExerciseGroup(workoutId, {movementIds: movementIds});
+            return ExerciseGroupApiGateway.createOneExerciseGroup(workoutId, exerciseGroupCreate);
         } catch (error: any) {
             if (error.response && error.response.data.message) {
                 return rejectWithValue(error.response.data.message);

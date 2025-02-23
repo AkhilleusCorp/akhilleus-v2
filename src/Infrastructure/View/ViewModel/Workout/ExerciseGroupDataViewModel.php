@@ -14,6 +14,9 @@ final class ExerciseGroupDataViewModel implements MultipleObjectItemDataViewMode
     public int $id;
 
     #[Groups(['admin', 'member'])]
+    public ?int $restDuration = null;
+
+    #[Groups(['admin', 'member'])]
     public int $workoutId;
 
     /** @var EmbeddedMovementDataModelView[] */
