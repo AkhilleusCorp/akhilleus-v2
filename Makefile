@@ -44,7 +44,7 @@ init_project: .env.local up create_local_db load_fixtures
 
 reset_db: create_local_db load_fixtures
 
-start: up install_dependencies create_local_db load_fixtures
+start: down up install_dependencies create_local_db load_fixtures
 
 tests_unit:
 	$(PHP) vendor/bin/simple-phpunit --testsuite unit
