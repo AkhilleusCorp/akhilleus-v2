@@ -1,11 +1,3 @@
-react_app_controllers:
-    resource:
-        path: ../src/Infrastructure/Controller/ReactApp
-        namespace: App\Infrastructure\Controller\ReactApp
-    type: attribute
-    schemes: ['%url_scheme%']
-    host: '%host_website%'
-
 api_controllers:
     resource:
         path: ../src/Infrastructure/Controller/API
@@ -14,6 +6,14 @@ api_controllers:
     type: attribute
     schemes: ['%url_scheme%']
     host: '%host_api%'
+
+react_app_controllers:
+    resource:
+        path: ../src/Infrastructure/Controller/ReactApp
+        namespace: App\Infrastructure\Controller\ReactApp
+    type: attribute
+    schemes: ['%url_scheme%']
+    host: '%host_website%'
 
 website_controllers:
     resource:

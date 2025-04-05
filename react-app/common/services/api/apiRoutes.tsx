@@ -1,10 +1,11 @@
 import QueryId from "app/common/utils/types/QueryId.tsx";
 
-const EQUIPMENT_API_HOST = 'https://api.akhilleus.com/api/equipments';
-const MOVEMENT_API_HOST = 'https://api.akhilleus.com/api/movements';
-const MUSCLE_API_HOST = 'https://api.akhilleus.com/api/muscles';
-const USER_API_HOST = 'https://api.akhilleus.com/api/users';
-const WORKOUT_API_HOST = 'https://api.akhilleus.com/api/workouts';
+const API_HOST = 'akhilleus.com';
+const EQUIPMENT_API_HOST = `https://${API_HOST}/api/equipments`;
+const MOVEMENT_API_HOST = `https://${API_HOST}/api/movements`;
+const MUSCLE_API_HOST = `https://${API_HOST}/api/muscles`;
+const USER_API_HOST = `https://${API_HOST}/api/users`;
+const WORKOUT_API_HOST = `https://${API_HOST}/api/workouts`;
 
 const apiRoutes = {
     user: {

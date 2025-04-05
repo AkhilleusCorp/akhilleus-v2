@@ -14,8 +14,7 @@ services:
     networks:
       symfony:
         aliases:
-          - 'website.akhilleus.com'
-          - 'api.akhilleus.com'
+          - 'akhilleus.com'
 
   php:
     container_name: php_server

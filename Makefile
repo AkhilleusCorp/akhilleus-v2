@@ -1,7 +1,8 @@
 include .env
 -include .env.local
 
-PHP := docker compose exec php
+DOCKER_COMPOSER := docker-compose
+PHP := $(DOCKER_COMPOSER) exec php
 
 .env.local:
 	touch .env.local
@@ -16,11 +17,11 @@ install_dependencies:
 	yarn
 
 up:
-	docker compose up -d
+	$(DOCKER_COMPOSER) up -d
 	sleep 3
 
 down:
-	docker compose down --remove-orphan
+	$(DOCKER_COMPOSER) down --remove-orphan
 
 create_local_db:
 	$(PHP) bin/console doctrine:database:drop --force --if-exists
@@ -28,7 +29,7 @@ create_local_db:
 	$(PHP) bin/console doctrine:migrations:migrate -n
 
 remove_local_db:
-	docker compose down --remove-orphan
+	$(DOCKER_COMPOSER) down --remove-orphan
 
 create_migration:
 	$(PHP) bin/console make:migration --formatted -n

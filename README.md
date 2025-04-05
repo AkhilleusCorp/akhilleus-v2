@@ -3,15 +3,17 @@
 
 ## Requirements
  * git
- * docker
+ * docker.io, docker-compose
+ * php, php-dom (for grumphp execution on commit)
  * node, npm, yarn (need to be moved to docker)
 
 ## Installation
  * clone the repository
- * make setup (creates local files required for applications to run)
- * make start (up containers, install symfony dependencies, create database, load fixtures)
- * yarn install (install js dependencies)
- * yarn watch (for dev)
+ * generates required config files: `make setup`
+ * start the backend: `make start`
+ * create jwt keys: `docker-compose exec php bin/console lexik:jwt:generate-keypair`
+ * build the front end: `yarn install`
+ * start the frontend (for dev): `yarn watch`
 
 ## Backend tests
  * unit tests only: make tests_unit
