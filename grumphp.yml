@@ -18,6 +18,7 @@ grumphp:
             allow_empty_message: false
             case_insensitive: true
             multiline: true
+            max_subject_width: 150
             additional_modifiers: ''
     ascii:
         failed: ~

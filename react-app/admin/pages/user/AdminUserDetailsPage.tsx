@@ -1,7 +1,7 @@
 import React from 'react';
 import AdminLayout from "app/admin/layouts/AdminLayout.tsx";
 import AdminUserPreviewCard from "app/admin/features/user/AdminUserPreviewCard.tsx";
-import {useNavigate, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import ErrorPage from "app/common/pages/ErrorPage.tsx";
 import useGetOneUserById from "app/common/hooks/user/useGetOneUserById.tsx";
 import AdminUserLifecycleCard from "app/admin/features/user/AdminUserLifecycleCard.tsx";
@@ -12,22 +12,17 @@ import AdminUserDeleteButton from "app/admin/features/user/AdminUserDeleteButton
 
 const AdminUserDetailsPage: React.FC = () => {
     const { userId } = useParams<{ userId: string }>();
-    const navigate = useNavigate();
 
     const user = useGetOneUserById(userId);
     if (!user) {
         return <ErrorPage />
     }
 
-    const onConfirmDelete = () => {
-        navigate(adminRoutes.user.list);
-    }
-
     return (
         <AdminLayout>
             <>
                 <EditButton routeToEditPage={adminRoutes.user.edit(user.id)}/>
-                <AdminUserDeleteButton userId={user.id} callbackFunction={onConfirmDelete}/>
+                <AdminUserDeleteButton userId={user.id} postDeleteTarget={adminRoutes.user.list}/>
             </>
 
             <AdminUserPreviewCard user={user} displayReadActions={false}/>
