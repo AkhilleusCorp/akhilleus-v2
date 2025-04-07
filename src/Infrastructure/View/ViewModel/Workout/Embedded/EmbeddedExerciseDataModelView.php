@@ -10,6 +10,9 @@ final class EmbeddedExerciseDataModelView
     public int $id;
 
     #[Groups(['admin', 'member'])]
+    public string $name;
+
+    #[Groups(['admin', 'member'])]
     public int $movementId;
 
     #[Groups(['admin', 'member'])]

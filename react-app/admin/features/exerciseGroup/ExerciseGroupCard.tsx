@@ -4,7 +4,6 @@ import ExerciseGroupDTO from "app/common/services/api/dtos/ExerciseGroupDTO.tsx"
 import ExerciseApiGateway from "app/common/services/api/gateway/ExerciseApiGateway.tsx";
 import ExerciseGroupDeleteButton from "app/common/features/exerciseGroup/ExerciseGroupDeleteButton.tsx";
 import ExercisesPreviewListTable from "app/admin/features/exerciseGroup/ExercisesPreviewListTable.tsx";
-import IndexedArray from "app/common/utils/interfaces/IndexedArray.tsx";
 
 type ExerciseGroupCardType = {
     group: ExerciseGroupDTO,
@@ -13,12 +12,6 @@ type ExerciseGroupCardType = {
 
 const ExerciseGroupCard: React.FC<ExerciseGroupCardType> = ({ group, displayWriteActions }) => {
     const [stateGroup, setStateGroup] = useState<ExerciseGroupDTO>(group);
-    const movementNames: IndexedArray = {};
-
-    Object.keys(stateGroup.movementConfigs).forEach(movementConfigKey => {
-        const key: number = +movementConfigKey;
-        movementNames[movementConfigKey] = stateGroup.movementConfigs[key].name;
-    });
 
     const onConfirmDelete = (groupId: number) => {
         const deletedCard = document.getElementById("card-"+groupId) as HTMLDivElement;
@@ -48,7 +41,7 @@ const ExerciseGroupCard: React.FC<ExerciseGroupCardType> = ({ group, displayWrit
                 </div>
 
                 <Typography variant="h6" component="div">
-                    { Object.values(movementNames).join(' / ') }
+                    { stateGroup.name }
                 </Typography>
 
                 <Grid size={{ xs: 4 }}>
@@ -57,7 +50,7 @@ const ExerciseGroupCard: React.FC<ExerciseGroupCardType> = ({ group, displayWrit
                 </Grid>
 
                 <Grid size={{ xs: 8 }}>
-                    <ExercisesPreviewListTable movementConfigs={stateGroup.movementConfigs} movementNames={movementNames} exercises={stateGroup.exercises} />
+                    <ExercisesPreviewListTable movementConfigs={stateGroup.movementConfigs} exercises={stateGroup.exercises} />
                 </Grid>
                 </CardContent>
             <CardActions style={{justifyContent: 'center'}}>

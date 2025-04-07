@@ -3,6 +3,7 @@ import MovementConfigsDTO from "app/common/services/api/dtos/MovementConfigsDTO.
 
 class ExerciseGroupDTO {
     id: number;
+    name: string;
     restDuration: number;
     workoutId: number;
     movementConfigs: MovementConfigsDTO;
@@ -10,12 +11,14 @@ class ExerciseGroupDTO {
 
     constructor(
         id: number,
+        name: string,
         restDuration: number,
         workoutId: number,
         movementConfigs: MovementConfigsDTO,
         exercises: ExerciseDTO[]
     ) {
         this.id = id;
+        this.name = name;
         this.restDuration = restDuration;
         this.workoutId = workoutId;
         this.movementConfigs = movementConfigs;
