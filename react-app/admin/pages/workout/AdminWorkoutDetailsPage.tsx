@@ -1,7 +1,7 @@
 import React from 'react';
 import AdminLayout from "app/admin/layouts/AdminLayout.tsx";
 import WorkoutPreviewCard from "app/common/features/workout/WorkoutPreviewCard.tsx";
-import {useNavigate, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import ErrorPage from "app/common/pages/ErrorPage.tsx";
 import useGetOneWorkoutById from "app/common/hooks/workout/useGetOneWorkoutById.tsx";
 import ExerciseGroupsListCard from "app/admin/features/exerciseGroup/ExerciseGroupsListCard.tsx";
@@ -11,7 +11,6 @@ import WorkoutDeleteButton from "app/common/features/workout/WorkoutDeleteButton
 
 const AdminWorkoutDetailsPage: React.FC = () => {
     const { workoutId } = useParams<{ workoutId: string }>();
-    const navigate = useNavigate();
 
     if (undefined == workoutId) {
         return <ErrorPage />
@@ -22,15 +21,11 @@ const AdminWorkoutDetailsPage: React.FC = () => {
         return <ErrorPage />
     }
 
-    const onConfirmDelete = () => {
-        navigate(adminRoutes.workout.list);
-    }
-
     return (
         <AdminLayout>
             <>
                 <EditButton routeToEditPage={adminRoutes.workout.edit(workout.id)} />
-                <WorkoutDeleteButton workoutId={workout.id} callbackFunction={onConfirmDelete} />
+                <WorkoutDeleteButton workoutId={workout.id} postDeleteTarget={adminRoutes.workout.list} />
             </>
 
             <WorkoutPreviewCard workout={workout} displayReadActions={false} displayWriteActions={true}/>

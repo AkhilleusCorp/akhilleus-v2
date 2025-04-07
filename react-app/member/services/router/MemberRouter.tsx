@@ -9,6 +9,7 @@ import ErrorPage from "app/common/pages/ErrorPage.tsx";
 import MemberDashboardPage from "app/member/pages/MemberDashboardPage.tsx";
 import MemberWorkoutDetailsPage from "app/member/pages/workout/MemberWorkoutDetailsPage.tsx";
 import MemberWorkoutsPage from "app/member/pages/workout/MemberWorkoutsPage.tsx";
+import MemberWorkoutUpdatePage from "app/member/pages/workout/MemberWorkoutUpdatePage.tsx";
 
 const routerConfig = createBrowserRouter([
     {
@@ -30,6 +31,7 @@ const routerConfig = createBrowserRouter([
                 path: memberRoutes.workout.create,
             }, {
                 path: memberRoutes.workout.edit(':workoutId'),
+                element: <MemberWorkoutUpdatePage />,
             }, {
                 path: memberRoutes.workout.details(':workoutId'),
                 element: <MemberWorkoutDetailsPage />,

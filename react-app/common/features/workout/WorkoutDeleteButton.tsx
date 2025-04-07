@@ -1,17 +1,20 @@
 import React from "react";
 import WorkoutApiGateway from "app/common/services/api/gateway/WorkoutApiGateway.tsx";
 import DeleteButton from "app/common/components/button/DeleteButton.tsx";
+import {useNavigate} from "react-router-dom";
 
 type WorkoutDeleteButtonType = {
     workoutId: number,
-    callbackFunction: (workoutId: number) => void;
+    postDeleteTarget: string;
 }
 
-const WorkoutDeleteButton: React.FC<WorkoutDeleteButtonType> = ({ workoutId, callbackFunction }) => {
+const WorkoutDeleteButton: React.FC<WorkoutDeleteButtonType> = ({ workoutId, postDeleteTarget }) => {
+    const navigate = useNavigate();
+
     const handleDeleteWorkout = async () => {
         try {
             await WorkoutApiGateway.deleteWorkout(workoutId);
-            callbackFunction(workoutId);
+            navigate(postDeleteTarget);
         } catch (error) {
             console.log(error);
         }

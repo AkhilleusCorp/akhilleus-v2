@@ -1,5 +1,5 @@
 import React from 'react';
-import {useNavigate, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import ErrorPage from "app/common/pages/ErrorPage.tsx";
 import useGetOneWorkoutById from "app/common/hooks/workout/useGetOneWorkoutById.tsx";
 import MemberLayout from "app/member/layouts/MemberLayout.tsx";
@@ -11,7 +11,6 @@ import ExerciseGroupsListCard from "app/admin/features/exerciseGroup/ExerciseGro
 
 const MemberWorkoutDetailsPage: React.FC = () => {
     const { workoutId } = useParams<{ workoutId: string }>();
-    const navigate = useNavigate();
 
     if (undefined == workoutId) {
         return <ErrorPage />
@@ -22,15 +21,11 @@ const MemberWorkoutDetailsPage: React.FC = () => {
         return <ErrorPage />
     }
 
-    const onConfirmDelete = () => {
-        navigate(memberRoutes.workout.list);
-    }
-
     return (
         <MemberLayout>
             <>
                 <EditButton routeToEditPage={memberRoutes.workout.edit(workout.id)} />
-                <WorkoutDeleteButton workoutId={workout.id} callbackFunction={onConfirmDelete} />
+                <WorkoutDeleteButton workoutId={workout.id} postDeleteTarget={memberRoutes.workout.list} />
             </>
             <MemberWorkoutPreviewCard workout={workout} />
             <ExerciseGroupsListCard workoutId={workout.id} displayWriteActions={false}/>
