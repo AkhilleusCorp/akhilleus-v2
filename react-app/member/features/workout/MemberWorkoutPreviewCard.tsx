@@ -36,6 +36,23 @@ const MemberWorkoutPreviewCard: React.FC<WorkoutDetailsCardType> = ({ workout })
                         <Typography variant="body2" sx={{color: 'text.secondary'}}>
                             Status: {workoutRegistries.status[workout.status]}
                         </Typography>
+                        { workout.plannedDate && (
+                            <Typography variant="body2" sx={{color: 'text.secondary'}}>
+                                Planned Date: {workout.plannedDate}
+                            </Typography>
+                        )}
+
+                        { workout.startDate && (
+                            <Typography variant="body2" sx={{color: 'text.secondary'}}>
+                                Start Date: {workout.startDate}
+                            </Typography>
+                        )}
+
+                        { workout.duration && (
+                            <Typography variant="body2" sx={{color: 'text.secondary'}}>
+                                Duration: {workout.duration}
+                            </Typography>
+                        )}
                     </CardContent>
                 </Box>
             </Box>
