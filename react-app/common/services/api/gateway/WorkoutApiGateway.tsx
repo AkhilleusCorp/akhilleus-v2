@@ -19,8 +19,12 @@ class WorkoutApiGateway extends AbstractApiGateway {
         return this.createOne(apiRoutes.workout.create, formData);
     }
 
-    static async updateWorkout (workoutId: number, formData: unknown): Promise<WorkoutDTO> {
+    static async updateWorkout (workoutId: QueryId, formData: unknown): Promise<WorkoutDTO> {
         return this.updateOne(apiRoutes.workout.update(workoutId), formData);
+    }
+
+    static async startWorkout (workoutId: QueryId): Promise<WorkoutDTO> {
+        return this.patchOne(apiRoutes.workout.start(workoutId));
     }
 
     static async deleteWorkout (workoutId: QueryId): Promise<void> {

@@ -5,6 +5,7 @@ const memberRoutes = {
         details: (workoutId: number|string) => `/member/workouts/${workoutId}`,
         create: '/member/workouts/new',
         edit: (workoutId: number|string) => `/member/workouts/${workoutId}/edit`,
+        train: (workoutId: number|string) => `/member/workouts/${workoutId}/train`,
     },
     logout: '/logout'
 }

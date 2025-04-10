@@ -21,6 +21,7 @@ final class SingleWorkoutViewPresenter extends AbstractSingleObjectViewPresenter
         $view->name = $data->name;
         $view->status = $data->status;
         $view->visibility = $data->visibility;
+        $view->startDate = DateDataTransformer::toStringFormat($data->startDate);
         $view->endDate = DateDataTransformer::toStringFormat($data->endDate);
         $view->plannedDate = DateDataTransformer::toStringFormat($data->plannedDate);
         $view->duration = DurationDataTransformer::toHMFormat($data->duration);

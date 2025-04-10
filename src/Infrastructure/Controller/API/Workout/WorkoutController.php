@@ -15,6 +15,7 @@ use App\UseCase\API\Workout\CreateOneWorkoutUseCase;
 use App\UseCase\API\Workout\DeleteOneWorkoutByIdUseCase;
 use App\UseCase\API\Workout\FetchManyWorkoutsUseCase;
 use App\UseCase\API\Workout\FetchOneWorkoutByIdUseCase;
+use App\UseCase\API\Workout\StartOneWorkoutByIdUseCase;
 use App\UseCase\API\Workout\UpdateOneWorkoutByIdUseCase;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -75,6 +76,20 @@ final class WorkoutController extends AbstractAPIController
     public function updateOneById(Request $request, int $id, UpdateOneWorkoutByIdUseCase $useCase): SingleObjectViewModel
     {
         return $useCase->execute($id, $this->getRequestBody($request), $this->getTokenPayload($request));
+    }
+
+    #[Route('/workouts/{id}/start', name: 'workout_start_one', requirements: ['id' => '\d+'], methods: ['PATCH'])]
+    #[ApiDoc\SingleObjectResponse(
+        response: 200,
+        description: 'Successfully started a Workout',
+        dataClass: SingleWorkoutDataViewModel::class,
+    )]
+    #[ApiDoc\NotFoundResponse(
+        description: 'No Workout found for the given id',
+    )]
+    public function startOneWorkoutById(Request $request, int $id, StartOneWorkoutByIdUseCase $useCase): SingleObjectViewModel
+    {
+        return $useCase->execute($id, $this->getTokenPayload($request));
     }
 
     #[Route('/workouts/{id}/delete', name: 'workout_delete_one_by_id', requirements: ['id' => '\d+'], methods: ['DELETE'])]
