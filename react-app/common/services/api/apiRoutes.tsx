@@ -20,6 +20,7 @@ const apiRoutes = {
         list: `${WORKOUT_API_HOST}/fetch`,
         details: (workoutId: QueryId) => `${WORKOUT_API_HOST}/${workoutId}/fetch`,
         update: (workoutId: QueryId) => `${WORKOUT_API_HOST}/${workoutId}/update`,
+        start: (workoutId: QueryId) => `${WORKOUT_API_HOST}/${workoutId}/start`,
         delete: (workoutId: QueryId) => `${WORKOUT_API_HOST}/${workoutId}/delete`,
     },
     exerciseGroup: {

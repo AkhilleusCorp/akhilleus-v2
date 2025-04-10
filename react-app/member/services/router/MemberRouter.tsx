@@ -10,6 +10,7 @@ import MemberDashboardPage from "app/member/pages/MemberDashboardPage.tsx";
 import MemberWorkoutDetailsPage from "app/member/pages/workout/MemberWorkoutDetailsPage.tsx";
 import MemberWorkoutsPage from "app/member/pages/workout/MemberWorkoutsPage.tsx";
 import MemberWorkoutUpdatePage from "app/member/pages/workout/MemberWorkoutUpdatePage.tsx";
+import MemberWorkoutTrainPage from "app/member/pages/workout/MemberWorkoutTrainPage.tsx";
 
 const routerConfig = createBrowserRouter([
     {
@@ -35,6 +36,9 @@ const routerConfig = createBrowserRouter([
             }, {
                 path: memberRoutes.workout.details(':workoutId'),
                 element: <MemberWorkoutDetailsPage />,
+            }, {
+                path: memberRoutes.workout.train(':workoutId'),
+                element: <MemberWorkoutTrainPage />,
             }
         ]
     }

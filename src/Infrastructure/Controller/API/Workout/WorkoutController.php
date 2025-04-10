@@ -78,6 +78,15 @@ final class WorkoutController extends AbstractAPIController
         return $useCase->execute($id, $this->getRequestBody($request), $this->getTokenPayload($request));
     }
 
+    #[Route('/workouts/{id}/start', name: 'workout_start_one', requirements: ['id' => '\d+'], methods: ['PATCH'])]
+    #[ApiDoc\SingleObjectResponse(
+        response: 200,
+        description: 'Successfully started a Workout',
+        dataClass: SingleWorkoutDataViewModel::class,
+    )]
+    #[ApiDoc\NotFoundResponse(
+        description: 'No Workout found for the given id',
+    )]
     public function startOneWorkoutById(Request $request, int $id, StartOneWorkoutByIdUseCase $useCase): SingleObjectViewModel
     {
         return $useCase->execute($id, $this->getTokenPayload($request));
