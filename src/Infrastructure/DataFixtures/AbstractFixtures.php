@@ -4,6 +4,8 @@ namespace App\Infrastructure\DataFixtures;
 
 use App\Domain\DTO\DataModel\DataModelInterface;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\Persistence\ObjectManager;
 
 abstract class AbstractFixtures extends Fixture
@@ -26,24 +28,23 @@ abstract class AbstractFixtures extends Fixture
     protected function setProperties(DataModelInterface $dataModel, array $properties): void
     {
         foreach ($properties as $propertyName => $propertyValue) {
-            if (true === $this->isRef($propertyName)) {
-                $propertyName = str_replace('Ref', '', $propertyName);
-                $dataModel->{$propertyName} = $this->getReference($propertyValue);
-
-                continue;
+            if (false === $this->isRef($propertyName)) {
+                $dataModel->{$propertyName} = $propertyValue;
             }
-
-            if (true === $this->isRefs($propertyName) && true === is_array($propertyValue)) {
-                $propertyName = str_replace('Refs', '', $propertyName);
-                foreach ($propertyValue as $value) {
-                    $dataModel->{$propertyName}->add($this->getReference($value));
-                }
-
-                continue;
-            }
-
-            $dataModel->{$propertyName} = $propertyValue;
         }
+    }
+
+    /**
+     * @param string[] $refs
+     */
+    protected function getRefs(array $refs, string $className): Collection // @phpstan-ignore-line
+    {
+        $collection = new ArrayCollection();
+        foreach ($refs as $ref) {
+            $collection->add($this->getReference($ref, $className)); // @phpstan-ignore-line
+        }
+
+        return $collection;
     }
 
     protected function addRef(string $prefix, string $text, DataModelInterface $object): void
@@ -58,16 +59,7 @@ abstract class AbstractFixtures extends Fixture
 
     private function isRef(string $propertyName): bool
     {
-        if (str_ends_with($propertyName, 'Ref')) {
-            return true;
-        }
-
-        return false;
-    }
-
-    private function isRefs(string $propertyName): bool
-    {
-        if (str_ends_with($propertyName, 'Refs')) {
+        if (str_ends_with($propertyName, 'Ref') || str_ends_with($propertyName, 'Refs')) {
             return true;
         }
 

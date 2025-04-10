@@ -8,6 +8,7 @@ import EditButton from "app/common/components/button/EditButton.tsx";
 import memberRoutes from "app/member/services/router/memberRoutes.tsx";
 import WorkoutDeleteButton from "app/common/features/workout/WorkoutDeleteButton.tsx";
 import ExerciseGroupsListCard from "app/admin/features/exerciseGroup/ExerciseGroupsListCard.tsx";
+import MemberWorkoutStartButton from "app/member/features/workout/MemberWorkoutStartButton.tsx";
 
 const MemberWorkoutDetailsPage: React.FC = () => {
     const { workoutId } = useParams<{ workoutId: string }>();
@@ -24,6 +25,7 @@ const MemberWorkoutDetailsPage: React.FC = () => {
     return (
         <MemberLayout>
             <>
+                <MemberWorkoutStartButton workoutId={workout.id}  />
                 <EditButton routeToEditPage={memberRoutes.workout.edit(workout.id)} />
                 <WorkoutDeleteButton workoutId={workout.id} postDeleteTarget={memberRoutes.workout.list} />
             </>

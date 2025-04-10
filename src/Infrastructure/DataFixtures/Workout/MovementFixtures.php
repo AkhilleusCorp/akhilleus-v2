@@ -2,7 +2,9 @@
 
 namespace App\Infrastructure\DataFixtures\Workout;
 
+use App\Domain\DTO\DataModel\Equipment\EquipmentDataModel;
 use App\Domain\DTO\DataModel\Workout\MovementDataModel;
+use App\Domain\DTO\DataModel\Workout\MuscleDataModel;
 use App\Domain\Registry\Workout\MovementStatusRegistry;
 use App\Infrastructure\DataFixtures\AbstractFixtures;
 use App\Infrastructure\DataFixtures\Equipment\EquipmentFixtures;
@@ -16,9 +18,13 @@ final class MovementFixtures extends AbstractFixtures implements DependentFixtur
         $configs = $this->getMovementsConfig();
         foreach ($configs as $config) {
             $movement = new MovementDataModel();
+            $this->setProperties($movement, $config);
+
             $movement->status = MovementStatusRegistry::MOVEMENT_STATUS_ACTIVE;
 
-            $this->setProperties($movement, $config);
+            $movement->primaryMuscle = $this->getReference($config['primaryMuscleRef'], MuscleDataModel::class);
+            $movement->auxiliaryMuscles = $this->getRefs($config['auxiliaryMusclesRefs'], MuscleDataModel::class);
+            $movement->equipments = $this->getRefs($config['equipmentsRefs'], EquipmentDataModel::class);
 
             $manager->persist($movement);
 

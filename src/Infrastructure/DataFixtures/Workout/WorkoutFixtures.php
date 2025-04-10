@@ -4,6 +4,7 @@ namespace App\Infrastructure\DataFixtures\Workout;
 
 use App\Domain\DataTransformer\WorkoutDurationDataTransformer;
 use App\Domain\DataTransformer\WorkoutStatusDataTransformer;
+use App\Domain\DTO\DataModel\User\UserDataModel;
 use App\Domain\DTO\DataModel\Workout\WorkoutDataModel;
 use App\Domain\Registry\Workout\WorkoutVisibilityRegistry;
 use App\Infrastructure\DataFixtures\AbstractFixtures;
@@ -19,6 +20,8 @@ final class WorkoutFixtures extends AbstractFixtures
 
             $workout->duration = WorkoutDurationDataTransformer::computeDurationInSeconds($workout);
             $workout->status = WorkoutStatusDataTransformer::computeStatus($workout);
+
+            $workout->member = $this->getReference($config['memberRef'], UserDataModel::class);
 
             $manager->persist($workout);
 
@@ -37,6 +40,8 @@ final class WorkoutFixtures extends AbstractFixtures
             $workout->plannedDate = null;
             $workout->duration = WorkoutDurationDataTransformer::computeDurationInSeconds($workout);
             $workout->status = WorkoutStatusDataTransformer::computeStatus($workout);
+
+            $workout->member = $this->getReference('user-ghriim', UserDataModel::class);
 
             $manager->persist($workout);
 
