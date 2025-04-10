@@ -25,7 +25,10 @@ const MemberWorkoutDetailsPage: React.FC = () => {
     return (
         <MemberLayout>
             <>
-                <MemberWorkoutStartButton workoutId={workout.id}  />
+                { null === workout.startDate && (
+                    <MemberWorkoutStartButton workoutId={workout.id}  />
+                )}
+
                 <EditButton routeToEditPage={memberRoutes.workout.edit(workout.id)} />
                 <WorkoutDeleteButton workoutId={workout.id} postDeleteTarget={memberRoutes.workout.list} />
             </>
