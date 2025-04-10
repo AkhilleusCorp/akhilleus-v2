@@ -67,6 +67,6 @@ final class StartOneWorkoutByIdUseCaseTest extends AbstractIntegrationTest
         $this->assertEquals($workoutId, $viewData->id);
         $this->assertEquals('Plan Specific Client', $viewData->name);
         $this->assertEquals(WorkoutStatusRegistry::WORKOUT_STATUS_IN_PROGRESS, $viewData->status);
-        $this->assertEquals(WorkoutVisibilityRegistry::WORKOUT_VISIBILITY_PRIVATE, $viewData->visibility);
+        $this->assertEquals(WorkoutVisibilityRegistry::WORKOUT_VISIBILITY_SPECIFIC_CLIENT, $viewData->visibility);
     }
 }
