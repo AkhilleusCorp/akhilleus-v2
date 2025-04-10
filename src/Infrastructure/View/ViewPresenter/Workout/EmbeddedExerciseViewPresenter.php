@@ -16,6 +16,7 @@ final class EmbeddedExerciseViewPresenter
     {
         $embedded = new EmbeddedExerciseDataModelView();
         $embedded->id = $exercise->id;
+        $embedded->name = $exercise->movement->name;
 
         $embedded->movementId = $exercise->movement->id;
         if (false === isset($groupedExercises->movementConfigs[$embedded->movementId])) {

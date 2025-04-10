@@ -3,6 +3,7 @@
 namespace App\Infrastructure\DataFixtures\Workout;
 
 use App\Domain\DTO\DataModel\Workout\ExerciseGroupDataModel;
+use App\Domain\DTO\DataModel\Workout\WorkoutDataModel;
 use App\Infrastructure\DataFixtures\AbstractFixtures;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -15,7 +16,7 @@ final class ExerciseGroupFixtures extends AbstractFixtures implements DependentF
             $group = new ExerciseGroupDataModel();
             $group->restDuration = 90;
             $group->movementIds = [$i]; // Those values are theoretical as Ids are not know in fixture context
-            $group->workout = $this->getReference('workout-in-progress-private');
+            $group->workout = $this->getReference('workout-in-progress-private', WorkoutDataModel::class);
 
             $manager->persist($group);
 

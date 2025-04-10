@@ -15,9 +15,13 @@ trait PresentExerciseGroupTrait
         $groupedExercises->workoutId = $data->workout->id;
         $groupedExercises->movementConfigs = [];
 
+        $exerciseNames = [];
         foreach ($data->exercises->toArray() as $exercise) {
+            $exerciseNames[$exercise->movement->name] = $exercise->movement->name;
             $this->embeddedExercisePresenter->presentExercise($groupedExercises, $exercise);
         }
+
+        $groupedExercises->name = implode(' / ', $exerciseNames);
 
         return $groupedExercises;
     }

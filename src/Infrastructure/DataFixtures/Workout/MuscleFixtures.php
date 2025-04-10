@@ -14,9 +14,9 @@ final class MuscleFixtures extends AbstractFixtures
         $configs = $this->getMuscleConfig();
         foreach ($configs as $config) {
             $muscle = new MuscleDataModel();
-            $muscle->status = MuscleStatusRegistry::MUSCLE_STATUS_ACTIVE;
-
             $this->setProperties($muscle, $config);
+
+            $muscle->status = MuscleStatusRegistry::MUSCLE_STATUS_ACTIVE;
 
             $manager->persist($muscle);
 

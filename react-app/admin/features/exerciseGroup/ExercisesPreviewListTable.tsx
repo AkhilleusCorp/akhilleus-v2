@@ -6,11 +6,10 @@ import MovementPropertyDTO from "app/common/services/api/dtos/MovementPropertyDT
 
 type ExercisesPreviewListTable = {
     movementConfigs: IndexedArray;
-    movementNames: IndexedArray;
     exercises: ExerciseDTO[];
 }
 
-const ExercisesPreviewListTable: React.FC<ExercisesPreviewListTable> = ({movementConfigs, movementNames, exercises}) => {
+const ExercisesPreviewListTable: React.FC<ExercisesPreviewListTable> = ({movementConfigs, exercises}) => {
     const headers: IndexedArray = {name: 'name', type: 'type'};
     const properties: IndexedArray = {type: 'type'};
 
@@ -26,7 +25,7 @@ const ExercisesPreviewListTable: React.FC<ExercisesPreviewListTable> = ({movemen
         });
     });
 
-    if (Object.keys(movementNames).length === 1) {
+    if (Object.keys(movementConfigs).length === 1) {
         delete headers['name'];
     }
 
@@ -44,9 +43,9 @@ const ExercisesPreviewListTable: React.FC<ExercisesPreviewListTable> = ({movemen
                     <TableBody>
                     { exercises.map((exercise: any) => (
                         <TableRow key={exercise.id}>
-                            { Object.keys(movementNames).length > 1 && (
-                                <TableCell>{movementNames[exercise.movementId]}</TableCell>
-                            )}
+                            {(Object.keys(movementConfigs).length > 1) &&
+                                <TableCell>{exercise.name}</TableCell>
+                            }
                             { Object.entries(properties).map(([key, property]) => (
                                 <TableCell key={exercise.id + "-" + key}>{ exercise[property] }</TableCell>
                             ))}

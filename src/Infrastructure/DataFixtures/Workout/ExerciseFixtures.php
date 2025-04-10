@@ -3,6 +3,8 @@
 namespace App\Infrastructure\DataFixtures\Workout;
 
 use App\Domain\DTO\DataModel\Workout\ExerciseDataModel;
+use App\Domain\DTO\DataModel\Workout\ExerciseGroupDataModel;
+use App\Domain\DTO\DataModel\Workout\MovementDataModel;
 use App\Domain\Registry\Workout\ExerciseTypeRegistry;
 use App\Infrastructure\DataFixtures\AbstractFixtures;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -15,9 +17,11 @@ final class ExerciseFixtures extends AbstractFixtures implements DependentFixtur
         foreach ($this->getExerciseConfig() as $config) {
             for ($i = 1; $i <= $config['repeat']; ++$i) {
                 $exercise = new ExerciseDataModel();
-                $exercise->type = 1 === $i ? ExerciseTypeRegistry::EXERCISE_TYPE_WARMUP : ExerciseTypeRegistry::EXERCISE_TYPE_NORMAL;
-
                 $this->setProperties($exercise, $config);
+
+                $exercise->type = 1 === $i ? ExerciseTypeRegistry::EXERCISE_TYPE_WARMUP : ExerciseTypeRegistry::EXERCISE_TYPE_NORMAL;
+                $exercise->movement = $this->getReference($config['movementRef'], MovementDataModel::class);
+                $exercise->group = $this->getReference($config['groupRef'], ExerciseGroupDataModel::class);
 
                 $manager->persist($exercise);
             }
