@@ -36,6 +36,8 @@ abstract class AbstractFixtures extends Fixture
 
     /**
      * @param string[] $refs
+     *
+     * @return ArrayCollection PHPStan is ignored as it has hard time following the typing of generics
      */
     protected function getRefs(array $refs, string $className): Collection // @phpstan-ignore-line
     {
