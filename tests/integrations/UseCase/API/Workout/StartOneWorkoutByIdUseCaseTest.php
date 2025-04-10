@@ -39,7 +39,7 @@ final class StartOneWorkoutByIdUseCaseTest extends AbstractIntegrationTest
     public function testStartCompletedWorkout(): void
     {
         $this->expectException(AccessDeniedHttpException::class);
-        $this->expectExceptionMessage('Workout #3 is already completed.');
+        $this->expectExceptionMessage('Workout #3 is already completed');
 
         $this->useCase->execute(3, $this->getMemberTokenPayload());
     }
@@ -65,7 +65,7 @@ final class StartOneWorkoutByIdUseCaseTest extends AbstractIntegrationTest
         $viewData = $viewModel->data;
 
         $this->assertEquals($workoutId, $viewData->id);
-        $this->assertEquals('In Progress Private', $viewData->name);
+        $this->assertEquals('Plan Specific Client', $viewData->name);
         $this->assertEquals(WorkoutStatusRegistry::WORKOUT_STATUS_IN_PROGRESS, $viewData->status);
         $this->assertEquals(WorkoutVisibilityRegistry::WORKOUT_VISIBILITY_PRIVATE, $viewData->visibility);
     }
