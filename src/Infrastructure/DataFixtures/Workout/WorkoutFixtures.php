@@ -41,7 +41,7 @@ final class WorkoutFixtures extends AbstractFixtures
             $workout->duration = WorkoutDurationDataTransformer::computeDurationInSeconds($workout);
             $workout->status = WorkoutStatusDataTransformer::computeStatus($workout);
 
-            $workout->member = $this->getReference('user-coach', UserDataModel::class);
+            $workout->member = $this->getReference('user-ghriim', UserDataModel::class);
 
             $manager->persist($workout);
 
